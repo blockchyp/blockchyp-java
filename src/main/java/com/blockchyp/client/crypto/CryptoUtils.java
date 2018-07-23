@@ -10,6 +10,7 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.codec.binary.Hex;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.ArrayUtils;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
@@ -37,6 +38,19 @@ public class CryptoUtils {
         
         return instance;
         
+    }
+    
+    public String computeSHA256(String hex) {
+        
+        try {
+        
+            return DigestUtils.sha256Hex(Hex.decodeHex(hex));
+            
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+            
+            
     }
     
     public String computeSharedKey(String privateKey, String publicKey) {
