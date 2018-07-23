@@ -2,6 +2,16 @@ package com.blockchyp.client.crypto;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
+import java.security.Security;
+import java.security.spec.AlgorithmParameterSpec;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+
+import org.apache.commons.codec.binary.Hex;
+import org.apache.commons.lang.ArrayUtils;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 public class CryptoUtils {
     
@@ -9,6 +19,8 @@ public class CryptoUtils {
    public static long GROUP_14_GENERATOR = 2;
     
     private static CryptoUtils instance;
+    
+    private SecureRandom rand;
     
     
     private CryptoUtils() {
@@ -19,6 +31,8 @@ public class CryptoUtils {
         
         if (instance == null) {
             instance = new CryptoUtils();
+            instance.rand = new SecureRandom();
+            Security.addProvider(new BouncyCastleProvider());  
         }
         
         return instance;
@@ -32,24 +46,34 @@ public class CryptoUtils {
         BigInteger pub = new BigInteger(publicKey, 16);
         
         BigInteger shared = pub.modPow(priv, p);
+        
+        //convert to the proper key size
+        return Hex.encodeHexString(ArrayUtils.subarray(shared.toByteArray(), 0, 16));
        
-        return shared.toString(16);
-       
+    }
+    
+    public byte[] randomBytes(int len) {
+        
+        byte[] results = new byte[len];
+        
+        rand.nextBytes(results);
+        
+        return results;
+        
     }
     
     
     public BigInteger randomBigInt(BigInteger len) {
         
-        SecureRandom rnd = new SecureRandom();
         
         byte[] val = new byte[len.toByteArray().length];
 
-        rnd.nextBytes(val);
+        rand.nextBytes(val);
         
         BigInteger result;
         
         do {
-            rnd.nextBytes(val);
+            rand.nextBytes(val);
             result = new BigInteger(val);
             if (result.compareTo(BigInteger.ZERO) < 0) {
                 result = result.negate();
@@ -57,6 +81,52 @@ public class CryptoUtils {
         } while (result.compareTo(len) > -1);
         
         return result;
+        
+    }
+    
+    public String encrypt(String plainText, String key) {
+
+        try {
+
+            byte[] iv = randomBytes(16);
+            byte[] rawKey = Hex.decodeHex(key);
+            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding", "BC");
+            SecretKeySpec secretKeySpec = new SecretKeySpec(rawKey, "AES");
+            AlgorithmParameterSpec paramSpec = new IvParameterSpec(iv);
+            cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec, paramSpec);
+
+            byte[] cipherText = cipher.doFinal(plainText.getBytes());
+            byte[] results = ArrayUtils.addAll(iv, cipherText);
+            return Hex.encodeHexString(results);
+
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
+    public String decrypt(String cipherText, String key) {
+        
+        try {
+        
+            byte[] fullCipher = Hex.decodeHex(cipherText);
+            byte[] rawKey = Hex.decodeHex(key);
+            byte[] iv = ArrayUtils.subarray(fullCipher, 0, 16);
+            byte[] baseCipher = ArrayUtils.subarray(fullCipher, 16, fullCipher.length);
+            
+            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding", "BC");
+            SecretKeySpec secretKeySpec = new SecretKeySpec(rawKey, "AES");
+            AlgorithmParameterSpec paramSpec = new IvParameterSpec(iv);
+            cipher.init(Cipher.DECRYPT_MODE, secretKeySpec, paramSpec);
+
+            byte[] plainBytes = cipher.doFinal(baseCipher);
+            return new String(plainBytes);
+            
+        
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        
         
     }
     

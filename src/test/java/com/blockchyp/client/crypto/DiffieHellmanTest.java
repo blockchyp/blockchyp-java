@@ -34,6 +34,17 @@ public class DiffieHellmanTest {
         System.out.println("Shared Key 2: " + shared2);
         
         Assert.assertEquals(shared1, shared2);
+        
+        String plainText = "The quick brown fox jumped over the lazy dog.";
+        
+        String cipherText = CryptoUtils.getInstance().encrypt(plainText, shared1);
+        
+        System.out.println("Cipher: " + cipherText);
+        
+        String decryptedPlainText = CryptoUtils.getInstance().decrypt(cipherText, shared2);
+        
+        
+        Assert.assertEquals(plainText, decryptedPlainText);
 
     }
 
