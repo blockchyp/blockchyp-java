@@ -12,7 +12,13 @@ import javax.crypto.spec.SecretKeySpec;
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.ArrayUtils;
+import org.bouncycastle.crypto.params.ECDomainParameters;
+import org.bouncycastle.crypto.params.ECPublicKeyParameters;
+import org.bouncycastle.crypto.signers.ECDSASigner;
+import org.bouncycastle.jce.ECNamedCurveTable;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import org.bouncycastle.jce.spec.ECNamedCurveParameterSpec;
+import org.bouncycastle.math.ec.ECCurve;
 
 public class CryptoUtils {
     
@@ -25,15 +31,14 @@ public class CryptoUtils {
     
     
     private CryptoUtils() {
-        
+        rand = new SecureRandom();
+        Security.addProvider(new BouncyCastleProvider());  
     }
     
     public static CryptoUtils getInstance() {
         
         if (instance == null) {
             instance = new CryptoUtils();
-            instance.rand = new SecureRandom();
-            Security.addProvider(new BouncyCastleProvider());  
         }
         
         return instance;
@@ -51,6 +56,33 @@ public class CryptoUtils {
         }
             
             
+    }
+    
+    public boolean validateECDSA(String hexMsg, EllipticCurvePublicKey pk, EllipticCurveSignature sig) {
+        
+        try {
+            
+            ECNamedCurveParameterSpec params = ECNamedCurveTable.getParameterSpec("P-256");
+            ECCurve curve = params.getCurve();
+           
+            ECPublicKeyParameters keyParams = new ECPublicKeyParameters(
+                    curve.createPoint(
+                            new BigInteger(pk.getX(), 16), 
+                            new BigInteger(pk.getY(), 16)), 
+                    new ECDomainParameters(curve, params.getG(), params.getN()));
+            
+            ECDSASigner signer = new ECDSASigner();
+            signer.init(false, keyParams);
+            
+            byte[] hash = DigestUtils.sha256(Hex.decodeHex(hexMsg));
+            
+            return signer.verifySignature(hash, new BigInteger(sig.getR(), 16), new BigInteger(sig.getS(), 16));                
+            
+            
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        
     }
     
     public String computeSharedKey(String privateKey, String publicKey) {
