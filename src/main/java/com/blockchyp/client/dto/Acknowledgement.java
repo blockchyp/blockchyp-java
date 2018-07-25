@@ -6,6 +6,7 @@ public class Acknowledgement {
     
     private boolean success;
     private String error;
+    private String errorMessage;
     private String localizedError;
     private List<ValidationError> errors;
     
@@ -32,6 +33,12 @@ public class Acknowledgement {
     }
     public void setErrors(List<ValidationError> errors) {
         this.errors = errors;
+    }
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
     
     
