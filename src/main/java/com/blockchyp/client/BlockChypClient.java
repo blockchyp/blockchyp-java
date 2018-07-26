@@ -212,6 +212,9 @@ public class BlockChypClient {
         
         if (request.getCredentials() == null) {
             request.setCredentials(defaultCredentials);
+            request.setApiId(defaultCredentials.getApiId());
+            request.setBearerToken(defaultCredentials.getBearerToken());
+            request.setSigningKey(defaultCredentials.getSigningKey());
         }
         
         TerminalRouteResponse route = resolveTerminalRoute(terminalName, request.getCredentials());

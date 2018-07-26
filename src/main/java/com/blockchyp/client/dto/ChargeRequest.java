@@ -14,6 +14,7 @@ public class ChargeRequest extends TerminalRequest {
     public ChargeRequest(GatewayCredentials creds) {
         super(creds);
     }
+    
     public String getAmount() {
         return amount;
     }

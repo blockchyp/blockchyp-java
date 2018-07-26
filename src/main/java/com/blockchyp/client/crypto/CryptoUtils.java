@@ -174,7 +174,7 @@ public class CryptoUtils {
             rand.nextBytes(val);
             result = new BigInteger(val);
             if (result.compareTo(BigInteger.ZERO) < 0) {
-                result = result.negate();
+                continue;
             }
         } while (result.compareTo(len) > -1);
 
