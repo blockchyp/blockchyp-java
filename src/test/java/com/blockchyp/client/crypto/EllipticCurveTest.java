@@ -5,6 +5,27 @@ import org.junit.Test;
 
 public class EllipticCurveTest {
     
+    @Test
+    public void testECCDH() throws Exception {
+        
+        ECCDiffieHellmanKey key1 = CryptoUtils.getInstance().generateECCDiffieHellmanKeys();
+        ECCDiffieHellmanKey key2 = CryptoUtils.getInstance().generateECCDiffieHellmanKeys();
+        
+        System.out.println(key1.getPrivateKey());
+        System.out.println(key1.getPublicKey());
+
+        String derived1 = CryptoUtils.getInstance().deriveECCDiffieHellmanKey(key1.getPrivateKey(), key2.getPublicKey());
+        String derived2 = CryptoUtils.getInstance().deriveECCDiffieHellmanKey(key2.getPrivateKey(), key1.getPublicKey());
+        
+        System.out.println("Derived 1: " + derived1);
+        System.out.println("Derived 2: " + derived2);
+        
+        Assert.assertEquals(derived1, derived2);
+       
+        
+        
+    }
+    
     
     @Test
     public void testECDSA() {
