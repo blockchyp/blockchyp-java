@@ -5,6 +5,8 @@ public class KeyExchangeResponse {
     private String publicKey;
     private String sig;
     private RawSignature rawSig;
+    private String handshakeCipher;
+    
     public String getPublicKey() {
         return publicKey;
     }
@@ -22,6 +24,12 @@ public class KeyExchangeResponse {
     }
     public void setRawSig(RawSignature rawSig) {
         this.rawSig = rawSig;
+    }
+    public String getHandshakeCipher() {
+        return handshakeCipher;
+    }
+    public void setHandshakeCipher(String handshakeCipher) {
+        this.handshakeCipher = handshakeCipher;
     }
     
     

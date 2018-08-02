@@ -5,6 +5,8 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.codec.binary.Hex;
+
 import com.blockchyp.client.crypto.CryptoUtils;
 import com.blockchyp.client.crypto.DiffieHellmanKey;
 import com.blockchyp.client.crypto.EllipticCurvePublicKey;
@@ -152,41 +154,62 @@ public class BlockChypClient {
             return sessionKey;
         }
         
-        DiffieHellmanKey key = CryptoUtils.getInstance().generateDiffieHellmanKeys();
-        
-        KeyExchangeRequest request = new KeyExchangeRequest();
-        request.setPublicKey(key.getPublicKey());
+        boolean validKey = false;
         
         try {
-            HttpResponse<KeyExchangeResponse> response = Unirest.post(toFullyQualifiedTerminalPath(route, "/api/kex")).body(request).asObject(KeyExchangeResponse.class);
+               
+            while (!validKey) {
             
-            if (response.getStatus() != 200) {
-                throw new IllegalStateException(response.getStatusText());
+                DiffieHellmanKey key = CryptoUtils.getInstance().generateDiffieHellmanKeys();
+                
+                KeyExchangeRequest request = new KeyExchangeRequest();
+                request.setPublicKey(key.getPublicKey());
+                request.setHandshake(Hex.encodeHexString(CryptoUtils.getInstance().randomBytes(16)));
+            
+           
+                HttpResponse<KeyExchangeResponse> response = Unirest.post(toFullyQualifiedTerminalPath(route, "/api/kex")).body(request).asObject(KeyExchangeResponse.class);
+                
+                if (response.getStatus() != 200) {
+                    throw new IllegalStateException(response.getStatusText());
+                }
+                
+                
+                KeyExchangeResponse kexResponse = response.getBody();
+                
+                EllipticCurvePublicKey pk = new EllipticCurvePublicKey();
+                pk.setCurve(route.getRawKey().getCurve());
+                pk.setX(route.getRawKey().getX());
+                pk.setY(route.getRawKey().getY());
+                
+                EllipticCurveSignature sig = new EllipticCurveSignature();
+                sig.setCurve(kexResponse.getRawSig().getCurve());
+                sig.setR(kexResponse.getRawSig().getR());
+                sig.setS(kexResponse.getRawSig().getS());
+                
+                if (!CryptoUtils.getInstance().validateECDSA(kexResponse.getPublicKey(), pk, sig)) {
+                    throw new SecurityException("Unable to verify signature of terminal diffie hellman public key");
+                }
+                
+                sessionKey = new TerminalSessionKey();
+                sessionKey.setPrivateKey(key.getPrivateKey());
+                sessionKey.setPublicKey(key.getPublicKey());
+                sessionKey.setDerivedKey(CryptoUtils.getInstance().computeSharedKey(key.getPrivateKey(), kexResponse.getPublicKey()));
+             
+                try {
+                    String localHandshake = CryptoUtils.getInstance().decrypt(kexResponse.getHandshakeCipher(), sessionKey.getDerivedKey());
+                    if (!localHandshake.equals(request.getHandshake())) {
+                        continue;
+                    } else {
+                        validKey = true;
+                        terminalKeyCache.put(route.getTerminalName(), sessionKey);
+                        break;
+                    }
+                } catch (Exception e) {
+                    continue;
+                }
+               
+                
             }
-            
-            
-            KeyExchangeResponse kexResponse = response.getBody();
-            
-            EllipticCurvePublicKey pk = new EllipticCurvePublicKey();
-            pk.setCurve(route.getRawKey().getCurve());
-            pk.setX(route.getRawKey().getX());
-            pk.setY(route.getRawKey().getY());
-            
-            EllipticCurveSignature sig = new EllipticCurveSignature();
-            sig.setCurve(kexResponse.getRawSig().getCurve());
-            sig.setR(kexResponse.getRawSig().getR());
-            sig.setS(kexResponse.getRawSig().getS());
-            
-            if (!CryptoUtils.getInstance().validateECDSA(kexResponse.getPublicKey(), pk, sig)) {
-                throw new SecurityException("Unable to verify signature of terminal diffie hellman public key");
-            }
-            
-            sessionKey = new TerminalSessionKey();
-            sessionKey.setPrivateKey(key.getPrivateKey());
-            sessionKey.setPublicKey(key.getPublicKey());
-            sessionKey.setDerivedKey(CryptoUtils.getInstance().computeSharedKey(key.getPrivateKey(), kexResponse.getPublicKey()));
-            
-            terminalKeyCache.put(route.getTerminalName(), sessionKey);
             
             return sessionKey;
         } catch (Exception e) {
@@ -221,6 +244,7 @@ public class BlockChypClient {
         TerminalSessionKey key = resolveTerminalKey(route);
         
         Map<String, String> headers = new HashMap<>();
+        
         
         headers.put("Content-Type", "application/octet-stream");
         headers.put("x-blockchyp-terminal-key", key.getPublicKey());

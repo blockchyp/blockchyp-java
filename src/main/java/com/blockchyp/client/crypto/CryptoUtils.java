@@ -1,16 +1,9 @@
 package com.blockchyp.client.crypto;
 
 import java.math.BigInteger;
-import java.security.KeyFactory;
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
 import java.security.SecureRandom;
 import java.security.Security;
-import java.security.interfaces.ECPrivateKey;
-import java.security.interfaces.ECPublicKey;
 import java.security.spec.AlgorithmParameterSpec;
-import java.security.spec.PKCS8EncodedKeySpec;
-import java.security.spec.X509EncodedKeySpec;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -18,7 +11,6 @@ import java.util.Map;
 import java.util.TimeZone;
 
 import javax.crypto.Cipher;
-import javax.crypto.KeyAgreement;
 import javax.crypto.Mac;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
@@ -30,7 +22,6 @@ import org.apache.commons.codec.digest.HmacAlgorithms;
 import org.apache.commons.codec.digest.HmacUtils;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
-import org.bouncycastle.crypto.agreement.ECDHCBasicAgreement;
 import org.bouncycastle.crypto.params.ECDomainParameters;
 import org.bouncycastle.crypto.params.ECPublicKeyParameters;
 import org.bouncycastle.crypto.signers.ECDSASigner;
@@ -38,9 +29,6 @@ import org.bouncycastle.jce.ECNamedCurveTable;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.jce.spec.ECNamedCurveParameterSpec;
 import org.bouncycastle.math.ec.ECCurve;
-import org.bouncycastle.math.ec.ECPoint;
-
-import com.blockchyp.client.dto.RawPoint;
 
 public class CryptoUtils {
 
@@ -160,7 +148,10 @@ public class CryptoUtils {
         BigInteger shared = pub.modPow(priv, p);
 
         // convert to the proper key size
-        return Hex.encodeHexString(ArrayUtils.subarray(shared.toByteArray(), 0, 16));
+        
+        byte[] hash = DigestUtils.sha256(shared.toByteArray());
+        
+        return Hex.encodeHexString(ArrayUtils.subarray(hash, 0, 16));
 
     }
 
@@ -176,18 +167,10 @@ public class CryptoUtils {
 
     public BigInteger randomBigInt(BigInteger len) {
 
-        byte[] val = new byte[len.toByteArray().length];
-
-        rand.nextBytes(val);
-
         BigInteger result;
 
         do {
-            rand.nextBytes(val);
-            result = new BigInteger(val);
-            if ( (result.compareTo(BigInteger.ZERO) < 0) || (result.compareTo(len) >= 0) ) {
-                continue;
-            }
+            result = new BigInteger(len.bitLength(), rand);
         } while (result.compareTo(len) > -1);
 
         return result;
@@ -237,52 +220,6 @@ public class CryptoUtils {
 
     }
     
-    public ECCDiffieHellmanKey generateECCDiffieHellmanKeys() throws Exception {
-        
-        ECNamedCurveParameterSpec params = ECNamedCurveTable.getParameterSpec("P-256");
-        ECCurve curve = params.getCurve();
-        
-        KeyPairGenerator kpg = KeyPairGenerator.getInstance("EC", "BC");
-        kpg.initialize(256);
-        KeyPair kp = kpg.generateKeyPair();
-        
-        ECPrivateKey privateKey = (ECPrivateKey)kp.getPrivate();
-        ECPublicKey pubKey = (ECPublicKey)kp.getPublic();
-        
-        ECCDiffieHellmanKey key = new ECCDiffieHellmanKey();
-        key.setPrivateKey(Hex.encodeHexString(privateKey.getEncoded()));
-        key.setPrivateKeyFormat(privateKey.getFormat());
-        
-        key.setPublicKey(Hex.encodeHexString(pubKey.getEncoded()));
-        key.setPublicKeyFormat(pubKey.getFormat());
-        
-        return key;
-        
-    }
-    
-    public String deriveECCDiffieHellmanKey(String privateKey, String publicKey) {
-        
-        ECNamedCurveParameterSpec params = ECNamedCurveTable.getParameterSpec("P-256");
-        ECCurve curve = params.getCurve();
-
-        try {
-            KeyFactory kf = KeyFactory.getInstance("ECDH", "BC");
-            KeyAgreement ka = KeyAgreement.getInstance("ECDH", "BC");
-            
-            ECPrivateKey priv = (ECPrivateKey)kf.generatePrivate(new PKCS8EncodedKeySpec(Hex.decodeHex(privateKey)));
-            ECPublicKey pub = (ECPublicKey)kf.generatePublic(new X509EncodedKeySpec(Hex.decodeHex(publicKey)));
-            
-            ka.init(priv);
-            ka.doPhase(pub, true);
-            return Hex.encodeHexString(ka.generateSecret());
-            
-
-            
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        
-    }
 
     public DiffieHellmanKey generateDiffieHellmanKeys() {
 
@@ -292,7 +229,7 @@ public class CryptoUtils {
         BigInteger g = BigInteger.valueOf(GROUP_14_GENERATOR);
 
         BigInteger privateKey = randomBigInt(p);
-
+    
         BigInteger publicKey = g.modPow(privateKey, p);
 
         key.setPrivateKey(privateKey.toString(16));
