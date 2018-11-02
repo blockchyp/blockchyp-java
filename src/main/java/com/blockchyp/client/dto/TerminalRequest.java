@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class TerminalRequest {
     
-    private String apiId;
+    private String apiKey;
     private String bearerToken;
     private String signingKey;
     private GatewayCredentials creds;
@@ -16,7 +16,7 @@ public class TerminalRequest {
     
     public TerminalRequest(GatewayCredentials creds) {
         this.creds = creds;
-        this.apiId = creds.getApiId();
+        this.apiKey = creds.getApiKey();
         this.bearerToken = creds.getBearerToken();
         this.signingKey = creds.getSigningKey();
     }
@@ -29,13 +29,22 @@ public class TerminalRequest {
     public void setCredentials(GatewayCredentials creds) {
         this.creds = creds;
     }
-    
-    public String getApiId() {
-        return apiId;
+    public String getApiKey() {
+        return apiKey;
     }
-    public void setApiId(String apiId) {
-        this.apiId = apiId;
+
+    public void setApiKey(String apiKey) {
+        this.apiKey = apiKey;
     }
+
+    public GatewayCredentials getCreds() {
+        return creds;
+    }
+
+    public void setCreds(GatewayCredentials creds) {
+        this.creds = creds;
+    }
+
     public String getBearerToken() {
         return bearerToken;
     }

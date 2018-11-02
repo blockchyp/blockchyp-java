@@ -5,18 +5,11 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.codec.binary.Hex;
-
 import com.blockchyp.client.crypto.CryptoUtils;
-import com.blockchyp.client.crypto.DiffieHellmanKey;
-import com.blockchyp.client.crypto.EllipticCurvePublicKey;
-import com.blockchyp.client.crypto.EllipticCurveSignature;
 import com.blockchyp.client.dto.Acknowledgement;
 import com.blockchyp.client.dto.ChargeRequest;
 import com.blockchyp.client.dto.ChargeResponse;
 import com.blockchyp.client.dto.HeartbeatResponse;
-import com.blockchyp.client.dto.KeyExchangeRequest;
-import com.blockchyp.client.dto.KeyExchangeResponse;
 import com.blockchyp.client.dto.TerminalRequest;
 import com.blockchyp.client.dto.TerminalRouteResponse;
 import com.blockchyp.client.dto.TerminalSessionKey;
@@ -31,7 +24,6 @@ public class BlockChypClient {
     private String gatewayHost = "https://api.blockchyp.com";
     private GatewayCredentials defaultCredentials;
     private Map<String, Map<String, TerminalRouteResponse>> routeCache = new HashMap<>();
-    private Map<String, TerminalSessionKey> terminalKeyCache = new HashMap<>();
     private com.fasterxml.jackson.databind.ObjectMapper objectMapper;
     
     public BlockChypClient() {
@@ -121,7 +113,7 @@ public class BlockChypClient {
     protected TerminalRouteResponse resolveTerminalRoute(String terminalName, GatewayCredentials credentials) {
         
         TerminalRouteResponse route = null;
-        Map<String, TerminalRouteResponse> apiRoutes = routeCache.get(credentials.getApiId());
+        Map<String, TerminalRouteResponse> apiRoutes = routeCache.get(credentials.getApiKey());
         if (apiRoutes != null) {
             route = apiRoutes.get(terminalName);
         }
@@ -133,7 +125,7 @@ public class BlockChypClient {
             route = getFromGateway("/api/terminal-route?terminal=" + URLEncoder.encode(terminalName, "UTF-8"), credentials, TerminalRouteResponse.class);
             if (apiRoutes == null) {
                 apiRoutes = new HashMap<>();
-                routeCache.put(credentials.getApiId(), apiRoutes);
+                routeCache.put(credentials.getApiKey(), apiRoutes);
             }
             apiRoutes.put(terminalName, route);
             
@@ -146,77 +138,6 @@ public class BlockChypClient {
         
     }
     
-    protected TerminalSessionKey resolveTerminalKey(TerminalRouteResponse route) {
-        
-        TerminalSessionKey sessionKey = terminalKeyCache.get(route.getTerminalName());
-        
-        if (sessionKey != null) {
-            return sessionKey;
-        }
-        
-        boolean validKey = false;
-        
-        try {
-               
-            while (!validKey) {
-            
-                DiffieHellmanKey key = CryptoUtils.getInstance().generateDiffieHellmanKeys();
-                
-                KeyExchangeRequest request = new KeyExchangeRequest();
-                request.setPublicKey(key.getPublicKey());
-                request.setHandshake(Hex.encodeHexString(CryptoUtils.getInstance().randomBytes(16)));
-            
-           
-                HttpResponse<KeyExchangeResponse> response = Unirest.post(toFullyQualifiedTerminalPath(route, "/api/kex")).body(request).asObject(KeyExchangeResponse.class);
-                
-                if (response.getStatus() != 200) {
-                    throw new IllegalStateException(response.getStatusText());
-                }
-                
-                
-                KeyExchangeResponse kexResponse = response.getBody();
-                
-                EllipticCurvePublicKey pk = new EllipticCurvePublicKey();
-                pk.setCurve(route.getRawKey().getCurve());
-                pk.setX(route.getRawKey().getX());
-                pk.setY(route.getRawKey().getY());
-                
-                EllipticCurveSignature sig = new EllipticCurveSignature();
-                sig.setCurve(kexResponse.getRawSig().getCurve());
-                sig.setR(kexResponse.getRawSig().getR());
-                sig.setS(kexResponse.getRawSig().getS());
-                
-                if (!CryptoUtils.getInstance().validateECDSA(kexResponse.getPublicKey(), pk, sig)) {
-                    throw new SecurityException("Unable to verify signature of terminal diffie hellman public key");
-                }
-                
-                sessionKey = new TerminalSessionKey();
-                sessionKey.setPrivateKey(key.getPrivateKey());
-                sessionKey.setPublicKey(key.getPublicKey());
-                sessionKey.setDerivedKey(CryptoUtils.getInstance().computeSharedKey(key.getPrivateKey(), kexResponse.getPublicKey()));
-             
-                try {
-                    String localHandshake = CryptoUtils.getInstance().decrypt(kexResponse.getHandshakeCipher(), sessionKey.getDerivedKey());
-                    if (!localHandshake.equals(request.getHandshake())) {
-                        continue;
-                    } else {
-                        validKey = true;
-                        terminalKeyCache.put(route.getTerminalName(), sessionKey);
-                        break;
-                    }
-                } catch (Exception e) {
-                    continue;
-                }
-               
-                
-            }
-            
-            return sessionKey;
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        
-    }
     
     protected String resolveTerminalHost(TerminalRouteResponse route) {
         
@@ -235,23 +156,21 @@ public class BlockChypClient {
         
         if (request.getCredentials() == null) {
             request.setCredentials(defaultCredentials);
-            request.setApiId(defaultCredentials.getApiId());
+            request.setApiKey(defaultCredentials.getApiKey());
             request.setBearerToken(defaultCredentials.getBearerToken());
             request.setSigningKey(defaultCredentials.getSigningKey());
         }
         
         TerminalRouteResponse route = resolveTerminalRoute(terminalName, request.getCredentials());
-        TerminalSessionKey key = resolveTerminalKey(route);
         
         Map<String, String> headers = new HashMap<>();
         
         
         headers.put("Content-Type", "application/octet-stream");
-        headers.put("x-blockchyp-terminal-key", key.getPublicKey());
         
         try {
             
-            String body = CryptoUtils.getInstance().encrypt(objectMapper.writeValueAsString(request), key.getDerivedKey());
+            String body = objectMapper.writeValueAsString(request);
 
             HttpResponse<String> response = Unirest.post(toFullyQualifiedTerminalPath(route, path)).headers(headers).body(body).asString();
             
@@ -259,7 +178,7 @@ public class BlockChypClient {
                 throw new IllegalStateException(response.getStatusText());
             }
 
-            String json = CryptoUtils.getInstance().decrypt(response.getBody(), key.getDerivedKey());
+            String json = response.getBody();
 
             return objectMapper.readValue(json, responseType);
             
@@ -273,7 +192,7 @@ public class BlockChypClient {
         
         Map<String, String> headers = new HashMap<>();
         if (credentials != null) {
-            headers = CryptoUtils.getInstance().generateApiHeaders(credentials.getApiId(), credentials.getBearerToken(), credentials.getSigningKey());
+            headers = CryptoUtils.getInstance().generateApiHeaders(credentials.getApiKey(), credentials.getBearerToken(), credentials.getSigningKey());
         }
                 
         HttpResponse<T> response = Unirest.get(this.toFullyQualifiedGatewayPath(path)).headers(headers).asObject(responseType);

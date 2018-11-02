@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Acknowledgement {
     
+    private String id;
     private boolean success;
     private String error;
     private String errorMessage;
@@ -40,7 +41,11 @@ public class Acknowledgement {
     public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
     }
-    
-    
+    public String getId() {
+        return id;
+    }
+    public void setId(String id) {
+        this.id = id;
+    }
 
 }

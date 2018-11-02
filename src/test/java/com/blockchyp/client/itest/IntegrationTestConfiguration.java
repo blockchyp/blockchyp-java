@@ -33,7 +33,7 @@ public class IntegrationTestConfiguration {
         
         GatewayCredentials creds = new GatewayCredentials();
         IntegrationTestSettings settings = getSettings();
-        creds.setApiId(settings.getApiId());
+        creds.setApiKey(settings.getApiKey());
         creds.setBearerToken(settings.getBearerToken());
         creds.setSigningKey(settings.getSigningKey());
                 

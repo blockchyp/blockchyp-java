@@ -2,14 +2,15 @@ package com.blockchyp.client;
 
 public class GatewayCredentials {
     
-    private String apiId;
+    private String apiKey;
     private String bearerToken;
     private String signingKey;
-    public String getApiId() {
-        return apiId;
+
+    public String getApiKey() {
+        return apiKey;
     }
-    public void setApiId(String apiId) {
-        this.apiId = apiId;
+    public void setApiKey(String apiKey) {
+        this.apiKey = apiKey;
     }
     public String getBearerToken() {
         return bearerToken;

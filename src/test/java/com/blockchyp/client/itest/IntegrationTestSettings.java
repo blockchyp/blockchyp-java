@@ -5,7 +5,7 @@ public class IntegrationTestSettings {
     private String gatewayHost;
     private String defaultTerminalName;
     private String defaultTerminalAddress;
-    private String apiId;
+    private String apiKey;
     private String bearerToken;
     private String signingKey;
     public String getGatewayHost() {
@@ -26,11 +26,11 @@ public class IntegrationTestSettings {
     public void setDefaultTerminalAddress(String defaultTerminalAddress) {
         this.defaultTerminalAddress = defaultTerminalAddress;
     }
-    public String getApiId() {
-        return apiId;
+    public String getApiKey() {
+        return apiKey;
     }
-    public void setApiId(String apiId) {
-        this.apiId = apiId;
+    public void setApiKey(String apiKey) {
+        this.apiKey = apiKey;
     }
     public String getBearerToken() {
         return bearerToken;

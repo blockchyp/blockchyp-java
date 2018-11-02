@@ -24,6 +24,7 @@ public class ChargeTest {
         
         Assert.assertNotNull(response);
         Assert.assertTrue(response.isSuccess());
+        Assert.assertTrue(response.isApproved());
         
     }
 
