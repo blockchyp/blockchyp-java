@@ -7,12 +7,23 @@ pipeline {
   }
 
   stages {
-    stage('Start') { steps {
-      notifySlack 'Started'
-    }}
-    stage('Build') { steps {
-      sh 'mvn clean package'
-    }}
+    stage('Start') {
+      steps {
+        notifySlack 'Started'
+      }
+    }
+    stage('Build') {
+      steps {
+        sh 'mvn clean package'
+      }
+    }
+    stage('SonarQube') {
+      steps {
+        withSonarQubeEnv('SonarQubeDev') {
+          sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar'
+        }
+      }
+    }
   }
 
   post {
