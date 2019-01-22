@@ -6,6 +6,11 @@ pipeline {
     docker { image 'maven:3.5-jdk-8-alpine' }
   }
 
+  options {
+      timeout(time: 1, unit: 'HOURS')
+      buildDiscarder(logRotator(numToKeepStr: '10'))
+  }
+
   stages {
     stage('Start') {
       steps {
