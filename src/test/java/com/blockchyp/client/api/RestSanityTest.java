@@ -11,9 +11,9 @@ public class RestSanityTest {
     @Test
     public void testGatewayHeartbeat() throws Exception {
         
-        BlockChypClient client = new BlockChypClient("https://api.dev.blockchyp.com");  //no creds
+        BlockChypClient client = new BlockChypClient("https://api.blockchyp.com");  //no creds
         
-        HeartbeatResponse response = client.heartbeat();
+        HeartbeatResponse response = client.heartbeat(false);
         
         Assert.assertNotNull(response);
         Assert.assertTrue(response.isSuccess());

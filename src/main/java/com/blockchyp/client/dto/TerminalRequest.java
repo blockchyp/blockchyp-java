@@ -1,48 +1,22 @@
 package com.blockchyp.client.dto;
 
-import com.blockchyp.client.GatewayCredentials;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 public class TerminalRequest {
     
     private String apiKey;
     private String bearerToken;
     private String signingKey;
-    private GatewayCredentials creds;
+    private Object request;
     
     public TerminalRequest() {
         
     }
-    
-    public TerminalRequest(GatewayCredentials creds) {
-        this.creds = creds;
-        this.apiKey = creds.getApiKey();
-        this.bearerToken = creds.getBearerToken();
-        this.signingKey = creds.getSigningKey();
-    }
-    
-    @JsonIgnore
-    public GatewayCredentials getCredentials() {
-        return creds;
-    }
-    
-    public void setCredentials(GatewayCredentials creds) {
-        this.creds = creds;
-    }
+
     public String getApiKey() {
         return apiKey;
     }
 
     public void setApiKey(String apiKey) {
         this.apiKey = apiKey;
-    }
-
-    public GatewayCredentials getCreds() {
-        return creds;
-    }
-
-    public void setCreds(GatewayCredentials creds) {
-        this.creds = creds;
     }
 
     public String getBearerToken() {
@@ -57,6 +31,14 @@ public class TerminalRequest {
     public void setSigningKey(String signingKey) {
         this.signingKey = signingKey;
     }
+
+	public Object getRequest() {
+		return request;
+	}
+
+	public void setRequest(Object request) {
+		this.request = request;
+	}
 
 
 }

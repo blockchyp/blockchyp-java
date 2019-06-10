@@ -14,8 +14,9 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<!-- This is for maximum backward compatibility with java versions.  We'd love to use at least 1.7, but it was not to be. -->
+					<source>1.6</source>
+					<target>1.6</target>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -52,10 +53,10 @@
 		</dependency>
 		
 		<dependency>
-		    <groupId>com.mashape.unirest</groupId>
-		    <artifactId>unirest-java</artifactId>
-		    <version>1.4.9</version>
-		</dependency>	
+			<groupId>commons-httpclient</groupId>
+			<artifactId>commons-httpclient</artifactId>
+			<version>3.1</version>
+		</dependency>
 		
 		<dependency>
 		    <groupId>com.fasterxml.jackson.core</groupId>

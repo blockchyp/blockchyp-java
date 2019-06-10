@@ -6,17 +6,23 @@ import org.junit.experimental.categories.Category;
 
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.dto.Acknowledgement;
+import com.blockchyp.client.dto.PingRequest;
 
-public class TerminalTestAPITest {
+public class PingTest {
     
     @Test
     @Category(IntegrationTest.class)
     public void testTestApi() throws Exception {
         
         
-        BlockChypClient client = new BlockChypClient(IntegrationTestConfiguration.getGatewayHost());  //no creds
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
         
-        Acknowledgement ack = client.test(IntegrationTestConfiguration.getDefaultTerminalName(), IntegrationTestConfiguration.getTestCredentials());
+        PingRequest request = new PingRequest();
+        request.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
+        request.setTest(true);
+        
+        
+        Acknowledgement ack = client.ping(request);
         
         Assert.assertNotNull(ack);
         Assert.assertTrue(ack.isSuccess());

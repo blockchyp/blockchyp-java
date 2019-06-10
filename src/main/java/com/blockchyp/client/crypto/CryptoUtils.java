@@ -55,7 +55,7 @@ public class CryptoUtils {
 
     public Map<String, String> generateApiHeaders(String apiKey, String bearerToken, String signingKey) {
         
-        Map<String, String> results = new HashMap<>();
+        Map results = new HashMap();
         
         Base32 base32 = new Base32();
         
@@ -77,14 +77,8 @@ public class CryptoUtils {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        
-        
-        
-        
-        
-        return results;
-        
-        
+
+        return results;        
         
     }
     

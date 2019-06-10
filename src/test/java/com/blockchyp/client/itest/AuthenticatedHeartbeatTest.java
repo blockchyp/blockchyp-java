@@ -12,12 +12,11 @@ public class AuthenticatedHeartbeatTest {
     
     @Test
     @Category(IntegrationTest.class)
-    public void testHeartbeatApi() throws Exception {
+    public void testHeartbeatApi() throws Exception {        
         
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
         
-        BlockChypClient client = new BlockChypClient(IntegrationTestConfiguration.getGatewayHost());  //no creds
-        
-        HeartbeatResponse response = client.heartbeat(IntegrationTestConfiguration.getTestCredentials());
+        HeartbeatResponse response = client.heartbeat(false);
         
         Assert.assertNotNull(response);
         Assert.assertTrue(response.isSuccess());

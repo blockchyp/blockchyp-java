@@ -1,15 +1,21 @@
 package com.blockchyp.client.dto;
 
-import java.util.List;
-
+/**
+ * Models basic response information.  This is typically used as a base class for most API responses.
+ * @author jeffreydpayne
+ *
+ */
 public class Acknowledgement {
-    
-    private String id;
+	
+	/**
+	 * Indicates whether or not the request succeeded.
+	 */
     private boolean success;
+    /**
+     * Description of the error if success is false.
+     */
     private String error;
-    private String errorMessage;
-    private String localizedError;
-    private List<ValidationError> errors;
+
     
     public boolean isSuccess() {
         return success;
@@ -23,29 +29,5 @@ public class Acknowledgement {
     public void setError(String error) {
         this.error = error;
     }
-    public String getLocalizedError() {
-        return localizedError;
-    }
-    public void setLocalizedError(String localizedError) {
-        this.localizedError = localizedError;
-    }
-    public List<ValidationError> getErrors() {
-        return errors;
-    }
-    public void setErrors(List<ValidationError> errors) {
-        this.errors = errors;
-    }
-    public String getErrorMessage() {
-        return errorMessage;
-    }
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
-    }
-    public String getId() {
-        return id;
-    }
-    public void setId(String id) {
-        this.id = id;
-    }
-
+   
 }

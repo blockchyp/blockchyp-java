@@ -3,28 +3,71 @@ package com.blockchyp.client;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.HttpMethod;
+import org.apache.commons.httpclient.HttpStatus;
+import org.apache.commons.httpclient.methods.GetMethod;
+import org.apache.commons.httpclient.methods.PostMethod;
+import org.apache.commons.httpclient.methods.StringRequestEntity;
+import org.apache.commons.lang.StringUtils;
 
 import com.blockchyp.client.crypto.CryptoUtils;
 import com.blockchyp.client.dto.Acknowledgement;
-import com.blockchyp.client.dto.ChargeRequest;
-import com.blockchyp.client.dto.ChargeResponse;
+import com.blockchyp.client.dto.AuthorizationRequest;
+import com.blockchyp.client.dto.AuthorizationResponse;
+import com.blockchyp.client.dto.CaptureRequest;
+import com.blockchyp.client.dto.CaptureResponse;
+import com.blockchyp.client.dto.CoreRequest;
 import com.blockchyp.client.dto.HeartbeatResponse;
+import com.blockchyp.client.dto.ITerminalReference;
+import com.blockchyp.client.dto.PingRequest;
 import com.blockchyp.client.dto.TerminalRequest;
 import com.blockchyp.client.dto.TerminalRouteResponse;
-import com.blockchyp.client.dto.TerminalSessionKey;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.ObjectMapper;
-import com.mashape.unirest.http.Unirest;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+
+/**
+ * This is the main class Java developers will interact with.  You can instantiate this class directly or use it with a dependency 
+ * injection framework like Spring or Dropwizard.  Most developers will only need to inject credentials, but you may also want to override 
+ * default endpoints if you're targeting non production BlockChyp systems (which is unlikely).
+ * 
+ * You can inject settings via the constructors or via setters depending on your preferences.
+ * 
+ * You'll also notice that we're not using generics or any features from Java 1.7 or later.  This is just to maintain as much backward compatibility
+ * as possible with older systems (1.6 or later).  The underlying REST API's are invoked using commons-httpclient 3.1 and we use Jackson for json serialization.
+ * 
+ * @author jeffreydpayne
+ *
+ */
 
 public class BlockChypClient {
     
     
-    private String gatewayHost = "https://api.blockchyp.com";
+    public void setGatewayHost(String gatewayHost) {
+		this.gatewayHost = gatewayHost;
+	}
+
+	public void setTestGatewayHost(String testGatewayHost) {
+		this.testGatewayHost = testGatewayHost;
+	}
+
+	public void setDefaultCredentials(GatewayCredentials defaultCredentials) {
+		this.defaultCredentials = defaultCredentials;
+	}
+
+	private String gatewayHost = "https://api.blockchyp.com";
+    private String testGatewayHost = "https://test.blockchyp.com";
     private GatewayCredentials defaultCredentials;
-    private Map<String, Map<String, TerminalRouteResponse>> routeCache = new HashMap<>();
-    private com.fasterxml.jackson.databind.ObjectMapper objectMapper;
+    private Map routeCache = new HashMap();
+    private ObjectMapper objectMapper;
+    
+    private HttpClient gatewayClient;
+    
+    private HttpClient terminalClient;
     
     public BlockChypClient() {
         initObjectMapper();
@@ -46,86 +89,68 @@ public class BlockChypClient {
         this.defaultCredentials = defaultCredentials;
     }
     
+    public BlockChypClient(String gatewayHost, String testGatewayHost, GatewayCredentials defaultCredentials) {
+        this();
+        this.gatewayHost = gatewayHost;
+        this.testGatewayHost = testGatewayHost;
+        this.defaultCredentials = defaultCredentials;
+    }
+    
     protected void initObjectMapper() {
         objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
-        Unirest.setTimeouts(30000, 30000);
-        Unirest.setObjectMapper(new ObjectMapper() {
-            private com.fasterxml.jackson.databind.ObjectMapper jacksonObjectMapper
-                        = new com.fasterxml.jackson.databind.ObjectMapper();
-
-            public <T> T readValue(String value, Class<T> valueType) {
-                try {
-                    return jacksonObjectMapper.readValue(value, valueType);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-
-            public String writeValue(Object value) {
-                try {
-                    return jacksonObjectMapper.writeValueAsString(value);
-                } catch (JsonProcessingException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        });
-        
-    }
-    
-    public HeartbeatResponse heartbeat() throws Exception {
-        
-        return heartbeat(defaultCredentials);
-        
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
     
 
-    public HeartbeatResponse heartbeat(GatewayCredentials credentials) throws Exception {
+    public HeartbeatResponse heartbeat(boolean test) throws Exception {
         
-        return getFromGateway("/api/heartbeat", credentials, HeartbeatResponse.class);
-        
-    }
-    
-    public Acknowledgement heartbeat(String terminalName) throws Exception {
-        
-        return test(terminalName, defaultCredentials);
-        
-    }
-    
-    public Acknowledgement test(String terminalName, GatewayCredentials credentials) throws Exception {
-        
-        return postTerminal(terminalName, "/api/test", new TerminalRequest(credentials), Acknowledgement.class);
-        
-    }
-    
-    public ChargeResponse charge(String terminalName, ChargeRequest request) throws Exception {
-        
-        return postTerminal(terminalName, "/api/charge", request, ChargeResponse.class);
-        
-    }
-    
-    public ChargeResponse preauth(String terminalName, ChargeRequest request) throws Exception {
-        
-        return postTerminal(terminalName, "/api/preauth", request, ChargeResponse.class);
+        return (HeartbeatResponse)getGateway("/api/heartbeat", test, HeartbeatResponse.class);
         
     }
     
     
-    protected TerminalRouteResponse resolveTerminalRoute(String terminalName, GatewayCredentials credentials) {
+    public Acknowledgement ping(PingRequest request) throws Exception {
+        
+        return (Acknowledgement)postTerminal("/api/test", request, Acknowledgement.class);
+        
+    }
+    
+    public AuthorizationResponse charge(AuthorizationRequest request) throws Exception {
+        
+        return (AuthorizationResponse)postTerminal("/api/charge", request, AuthorizationResponse.class);
+        
+    }
+    
+    public AuthorizationResponse preauth(AuthorizationRequest request) throws Exception {
+        
+        return (AuthorizationResponse)postTerminal("/api/preauth", request, AuthorizationResponse.class);
+        
+    }
+    
+    public CaptureResponse capture(CaptureRequest request) throws Exception {
+        
+        return (CaptureResponse)postGateway("/api/capture", request, CaptureResponse.class);
+        
+    }
+    
+    
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	protected TerminalRouteResponse resolveTerminalRoute(String terminalName) {
         
         TerminalRouteResponse route = null;
-        Map<String, TerminalRouteResponse> apiRoutes = routeCache.get(credentials.getApiKey());
+        Map apiRoutes = (Map)routeCache.get(defaultCredentials.getApiKey());
         if (apiRoutes != null) {
-            route = apiRoutes.get(terminalName);
+            route = (TerminalRouteResponse)apiRoutes.get(terminalName);
         }
         if (route != null) {
             return route;
         }
         
         try {
-            route = getFromGateway("/api/terminal-route?terminal=" + URLEncoder.encode(terminalName, "UTF-8"), credentials, TerminalRouteResponse.class);
+            route = (TerminalRouteResponse)getGateway("/api/terminal-route?terminal=" + URLEncoder.encode(terminalName, "UTF-8"), false, TerminalRouteResponse.class);
             if (apiRoutes == null) {
-                apiRoutes = new HashMap<>();
-                routeCache.put(credentials.getApiKey(), apiRoutes);
+                apiRoutes = new HashMap();
+                routeCache.put(defaultCredentials.getApiKey(), apiRoutes);
             }
             apiRoutes.put(terminalName, route);
             
@@ -136,6 +161,20 @@ public class BlockChypClient {
         
         
         
+    }
+    
+    protected HttpClient getGatewayClient() {
+    	if (gatewayClient == null) {
+    		gatewayClient = new HttpClient();
+    	}
+    	return gatewayClient;
+    }
+    
+    protected HttpClient getTerminalClient() {
+    	if (terminalClient == null) {
+    		terminalClient = new HttpClient();
+    	}
+    	return terminalClient;
     }
     
     
@@ -151,62 +190,143 @@ public class BlockChypClient {
         
     }
     
+    protected boolean isTerminalRouted(ITerminalReference terminalName)  {
+    	
+    	return StringUtils.isNotEmpty(terminalName.getTerminalName());
+    	
+    }
     
-    protected <T> T postTerminal(String terminalName, String path, TerminalRequest request, Class<T> responseType) {
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	protected Object cloudRelay(String path, Object request, Class responseType) throws Exception {
+    	
+    	return null;
+    	
+    }
+    
+    
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	protected Object postTerminal(String path, Object request, Class responseType) throws Exception {
+    	
+    	
+    	String terminalName = null;
+    	
+		if (request instanceof ITerminalReference) {
+			ITerminalReference ref = (ITerminalReference)request;
+			terminalName = ref.getTerminalName();
+			if (!isTerminalRouted(ref)) {
+				return cloudRelay(path, request, responseType);
+			}
+		}
+
+    	TerminalRequest termRequest = new TerminalRequest();
+
+        termRequest.setApiKey(defaultCredentials.getApiKey());
+        termRequest.setBearerToken(defaultCredentials.getBearerToken());
+        termRequest.setSigningKey(defaultCredentials.getSigningKey());
+        termRequest.setRequest(request);
         
-        if (request.getCredentials() == null) {
-            request.setCredentials(defaultCredentials);
-            request.setApiKey(defaultCredentials.getApiKey());
-            request.setBearerToken(defaultCredentials.getBearerToken());
-            request.setSigningKey(defaultCredentials.getSigningKey());
-        }
+        TerminalRouteResponse route = resolveTerminalRoute(terminalName);
+
         
-        TerminalRouteResponse route = resolveTerminalRoute(terminalName, request.getCredentials());
+        HttpClient client = getGatewayClient();
+        PostMethod method = new PostMethod(resolveTerminalHost(route) + path);
+        StringRequestEntity requestEntity = new StringRequestEntity(
+        		objectMapper.writeValueAsString(termRequest),
+        	    "application/json",
+        	    "UTF-8");
         
-        Map<String, String> headers = new HashMap<>();
-        
-        
-        headers.put("Content-Type", "application/octet-stream");
-        
+        method.setRequestEntity(requestEntity);
+
         try {
-            
-            String body = objectMapper.writeValueAsString(request);
-
-            HttpResponse<String> response = Unirest.post(toFullyQualifiedTerminalPath(route, path)).headers(headers).body(body).asString();
-            
-            if (response.getStatus() != 200) {
-                throw new IllegalStateException(response.getStatusText());
-            }
-
-            String json = response.getBody();
-
-            return objectMapper.readValue(json, responseType);
-            
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        	int status = client.executeMethod(method);
+        	if (status != HttpStatus.SC_OK) {
+        		throw new IOException(method.getStatusText());
+        	}
+        	
+        	System.out.println(method.getResponseBodyAsString());
+        	return objectMapper.readValue(method.getResponseBodyAsStream(), responseType);
+        }
+        finally {
+        	method.releaseConnection();
         }
         
     }
+
     
-    protected <T> T getFromGateway(String path, GatewayCredentials credentials, Class<T> responseType) throws Exception {
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	protected Object getGateway(String path, boolean test, Class responseType) throws Exception {
         
-        Map<String, String> headers = new HashMap<>();
-        if (credentials != null) {
-            headers = CryptoUtils.getInstance().generateApiHeaders(credentials.getApiKey(), credentials.getBearerToken(), credentials.getSigningKey());
+
+        HttpMethod method = new GetMethod(toFullyQualifiedGatewayPath(path, test));
+        return finishGatewayRequest(method, responseType);
+        
+        
+    }
+     
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	protected Object finishGatewayRequest(HttpMethod method, Class responseType) throws Exception {
+    	
+    	
+    	HttpClient client = getGatewayClient();
+    	
+        Map headers = new HashMap();
+        if (defaultCredentials != null) {
+            headers = CryptoUtils.getInstance().generateApiHeaders(
+            		defaultCredentials.getApiKey(), 
+            		defaultCredentials.getBearerToken(), 
+            		defaultCredentials.getSigningKey()
+            	);  	
         }
-                
-        HttpResponse<T> response = Unirest.get(this.toFullyQualifiedGatewayPath(path)).headers(headers).asObject(responseType);
-        
-        if (response.getStatus() != 200) {
-            throw new IllegalStateException(response.getStatusText());
+    	
+    	
+        Iterator itr = headers.keySet().iterator();
+        while (itr.hasNext()) {
+			String key = (String)itr.next();
+			String value = (String)headers.get(key);
+			method.addRequestHeader(key, value);
         }
+        try {
+         	int status = client.executeMethod(method);
+         	if (status == HttpStatus.SC_FORBIDDEN) {
+         		//check clock drift
+         	}
+         	if (status != HttpStatus.SC_OK) {
+         		System.out.println(method.getResponseBodyAsString());
+         		throw new IOException(method.getStatusText());
+         	}
+         	System.out.println(method.getResponseBodyAsString());
+         	return objectMapper.readValue(method.getResponseBodyAsStream(), responseType);
+        }
+        finally {
+         	method.releaseConnection();
+        }
+    }
+    
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	protected Object postGateway(String path, CoreRequest request, Class responseClass) throws Exception {
+    	
+    	
+    	System.out.println(toFullyQualifiedGatewayPath(path, request.isTest()));
         
-        return response.getBody();
+        
+        PostMethod method = new PostMethod(toFullyQualifiedGatewayPath(path, request.isTest()));
+        StringRequestEntity requestEntity = new StringRequestEntity(
+        		objectMapper.writeValueAsString(request),
+        	    "application/json",
+        	    "UTF-8");
+        
+        method.setRequestEntity(requestEntity);
+        
+        return finishGatewayRequest(method, responseClass);
         
     }
     
-    protected String toFullyQualifiedGatewayPath(String path) {
-        return this.gatewayHost + path;
+    protected String toFullyQualifiedGatewayPath(String path, boolean test) {
+    	if (test) {
+    		return this.testGatewayHost + path;
+    	} else {
+    		return this.gatewayHost + path;
+    	}
     }
     
 

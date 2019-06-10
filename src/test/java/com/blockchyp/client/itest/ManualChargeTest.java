@@ -8,7 +8,7 @@ import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.dto.AuthorizationRequest;
 import com.blockchyp.client.dto.AuthorizationResponse;
 
-public class ChargeTest {
+public class ManualChargeTest {
     
     @Test
     @Category(IntegrationTest.class)
@@ -18,11 +18,10 @@ public class ChargeTest {
     	BlockChypClient client = IntegrationTestConfiguration.getTestClient();
         
         AuthorizationRequest request = new AuthorizationRequest();
-        request.setAmount("55.55");
+        request.setAmount("12.13");
         request.setTest(true);
+        request.setManualEntry(true);
         request.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
-        request.setSigFormat("png");
-        request.setSigWidth(200);
 
         
         AuthorizationResponse response = client.charge(request);
