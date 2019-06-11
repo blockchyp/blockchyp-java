@@ -242,6 +242,7 @@ public class BlockChypClient {
     	if (isTerminalRouted(request)) {
     		return (Acknowledgement)postTerminal("/api/txdisplay", request, Acknowledgement.class);
     	} else {
+    		System.out.println("Cloud relay...");
     		return (Acknowledgement)postGateway("/api/terminal-txdisplay", request, Acknowledgement.class);
     	}
         
@@ -252,8 +253,12 @@ public class BlockChypClient {
     	
     	ClearTransactionDisplayRequest request = new ClearTransactionDisplayRequest();
     	request.setTerminalName(terminalName);
-    	
-    	return (Acknowledgement)deleteTerminal("/api/txdisplay", request, Acknowledgement.class);
+    	if (isTerminalRouted(request)) {
+    		return (Acknowledgement)deleteTerminal("/api/txdisplay", request, Acknowledgement.class);
+    	} else {
+    		//return (Acknowledgement)deleteGateway("/api/terminal-txdisplay", request, Acknowledgement.class);
+    		return null;
+    	}
         
     }
     
@@ -264,6 +269,7 @@ public class BlockChypClient {
     	if (isTerminalRouted(request)) {
     		return (Acknowledgement)putTerminal("/api/txdisplay", request, Acknowledgement.class);
     	} else {
+    		System.out.println("Cloud relay...");
     		return (Acknowledgement)putGateway("/api/terminal-txdisplay", request, Acknowledgement.class);
     	}
         
@@ -447,7 +453,9 @@ public class BlockChypClient {
     
     protected boolean isTerminalRouted(ITerminalReference terminalName)  {
     	
-    	return StringUtils.isNotEmpty(terminalName.getTerminalName());
+    	TerminalRouteResponse route = resolveTerminalRoute(terminalName.getTerminalName());
+    	
+    	return StringUtils.isNotEmpty(terminalName.getTerminalName()) && !route.isCloudRelayEnabled();
     	
     }
     
@@ -691,6 +699,7 @@ public class BlockChypClient {
     	
     	try {
     		
+    		System.out.println(file.getAbsolutePath());
     		TerminalRouteResponse route = objectMapper.readValue(file, TerminalRouteResponse.class);
     		route.setTransientCredentials(decrypt(route.getTransientCredentials()));
     		return route;
