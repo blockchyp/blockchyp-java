@@ -9,8 +9,11 @@ import java.util.Map;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.HttpStatus;
+import org.apache.commons.httpclient.methods.DeleteMethod;
+import org.apache.commons.httpclient.methods.EntityEnclosingMethod;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
+import org.apache.commons.httpclient.methods.PutMethod;
 import org.apache.commons.httpclient.methods.StringRequestEntity;
 import org.apache.commons.lang.StringUtils;
 
@@ -22,6 +25,9 @@ import com.blockchyp.client.dto.BooleanPromptRequest;
 import com.blockchyp.client.dto.BooleanPromptResponse;
 import com.blockchyp.client.dto.CaptureRequest;
 import com.blockchyp.client.dto.CaptureResponse;
+import com.blockchyp.client.dto.ClearTransactionDisplayRequest;
+import com.blockchyp.client.dto.CloseBatchRequest;
+import com.blockchyp.client.dto.CloseBatchResponse;
 import com.blockchyp.client.dto.CoreRequest;
 import com.blockchyp.client.dto.HeartbeatResponse;
 import com.blockchyp.client.dto.ITerminalReference;
@@ -32,6 +38,7 @@ import com.blockchyp.client.dto.TerminalRequest;
 import com.blockchyp.client.dto.TerminalRouteResponse;
 import com.blockchyp.client.dto.TextPromptRequest;
 import com.blockchyp.client.dto.TextPromptResponse;
+import com.blockchyp.client.dto.TransactionDisplayRequest;
 import com.blockchyp.client.dto.VoidRequest;
 import com.blockchyp.client.dto.VoidResponse;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -140,6 +147,13 @@ public class BlockChypClient {
         
     }
     
+    
+    public CloseBatchResponse closeBatch(CloseBatchRequest request) throws Exception {
+        
+    	return (CloseBatchResponse)postGateway("/api/close-batch", request, CloseBatchResponse.class);
+        
+    }
+    
     public AuthorizationResponse refund(RefundRequest request) throws Exception {
     	
     	if (isTerminalRouted(request)) {
@@ -192,6 +206,40 @@ public class BlockChypClient {
     	}
         
     }
+    
+    
+    public Acknowledgement newTransactionDisplay(TransactionDisplayRequest request) throws Exception {
+    	
+    	if (isTerminalRouted(request)) {
+    		return (Acknowledgement)postTerminal("/api/txdisplay", request, Acknowledgement.class);
+    	} else {
+    		return (Acknowledgement)postGateway("/api/terminal-txdisplay", request, Acknowledgement.class);
+    	}
+        
+    }
+    
+    
+    public Acknowledgement clearTransactionDisplay(String terminalName) throws Exception {
+    	
+    	ClearTransactionDisplayRequest request = new ClearTransactionDisplayRequest();
+    	request.setTerminalName(terminalName);
+    	
+    	return (Acknowledgement)deleteTerminal("/api/txdisplay", request, Acknowledgement.class);
+        
+    }
+    
+    
+    
+    public Acknowledgement updateTransactionDisplay(TransactionDisplayRequest request) throws Exception {
+    	
+    	if (isTerminalRouted(request)) {
+    		return (Acknowledgement)putTerminal("/api/txdisplay", request, Acknowledgement.class);
+    	} else {
+    		return (Acknowledgement)putGateway("/api/terminal-txdisplay", request, Acknowledgement.class);
+    	}
+        
+    }
+    
     
     public CaptureResponse capture(CaptureRequest request) throws Exception {
         
@@ -275,33 +323,19 @@ public class BlockChypClient {
     	
     }
     
-    
     @SuppressWarnings({ "rawtypes", "unchecked" })
-	protected Object postTerminal(String path, Object request, Class responseType) throws Exception {
+	protected Object finishTerminalRequest(Object request, EntityEnclosingMethod method, Class responseType) throws Exception {
     	
     	
-    	String terminalName = null;
-    	
-		if (request instanceof ITerminalReference) {
-			ITerminalReference ref = (ITerminalReference)request;
-			terminalName = ref.getTerminalName();
-			if (!isTerminalRouted(ref)) {
-				return cloudRelay(path, request, responseType);
-			}
-		}
-
     	TerminalRequest termRequest = new TerminalRequest();
 
         termRequest.setApiKey(defaultCredentials.getApiKey());
         termRequest.setBearerToken(defaultCredentials.getBearerToken());
         termRequest.setSigningKey(defaultCredentials.getSigningKey());
         termRequest.setRequest(request);
-        
-        TerminalRouteResponse route = resolveTerminalRoute(terminalName);
 
         
         HttpClient client = getGatewayClient();
-        PostMethod method = new PostMethod(resolveTerminalHost(route) + path);
         StringRequestEntity requestEntity = new StringRequestEntity(
         		objectMapper.writeValueAsString(termRequest),
         	    "application/json",
@@ -314,13 +348,83 @@ public class BlockChypClient {
         	if (status != HttpStatus.SC_OK) {
         		throw new IOException(method.getStatusText());
         	}
-        	
-        	System.out.println(method.getResponseBodyAsString());
         	return objectMapper.readValue(method.getResponseBodyAsStream(), responseType);
         }
         finally {
         	method.releaseConnection();
         }
+        
+    	
+    	
+    }
+    
+    @SuppressWarnings({ "rawtypes" })
+   	protected Object putTerminal(String path, Object request, Class responseType) throws Exception {
+    	
+    	String terminalName = null;
+		if (request instanceof ITerminalReference) {
+			ITerminalReference ref = (ITerminalReference)request;
+			terminalName = ref.getTerminalName();
+		}
+
+        TerminalRouteResponse route = resolveTerminalRoute(terminalName);
+
+        PutMethod method = new PutMethod(resolveTerminalHost(route) + path);
+       
+        return finishTerminalRequest(request, method, responseType);
+    	
+    	
+    	
+    }
+    
+    
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	protected Object deleteTerminal(String path, ITerminalReference request, Class responseType) throws Exception {
+    	
+    	
+        TerminalRouteResponse route = resolveTerminalRoute(request.getTerminalName());
+
+        DeleteMethod method = new DeleteMethod(resolveTerminalHost(route) + path);
+       
+
+    	TerminalRequest termRequest = new TerminalRequest();
+
+        termRequest.setApiKey(defaultCredentials.getApiKey());
+        termRequest.setBearerToken(defaultCredentials.getBearerToken());
+        termRequest.setSigningKey(defaultCredentials.getSigningKey());
+        termRequest.setRequest(request);
+
+        
+        HttpClient client = getGatewayClient();
+
+        try {
+        	int status = client.executeMethod(method);
+        	if (status != HttpStatus.SC_OK) {
+        		throw new IOException(method.getStatusText());
+        	}
+        	return objectMapper.readValue(method.getResponseBodyAsStream(), responseType);
+        }
+        finally {
+        	method.releaseConnection();
+        }
+        
+    }
+    
+    
+    @SuppressWarnings({ "rawtypes" })
+	protected Object postTerminal(String path, Object request, Class responseType) throws Exception {
+    	
+    	String terminalName = null;
+		if (request instanceof ITerminalReference) {
+			ITerminalReference ref = (ITerminalReference)request;
+			terminalName = ref.getTerminalName();
+		}
+
+        TerminalRouteResponse route = resolveTerminalRoute(terminalName);
+
+        PostMethod method = new PostMethod(resolveTerminalHost(route) + path);
+       
+        return finishTerminalRequest(request, method, responseType);
         
     }
 
@@ -376,12 +480,26 @@ public class BlockChypClient {
     
     @SuppressWarnings({ "rawtypes" })
 	protected Object postGateway(String path, CoreRequest request, Class responseClass) throws Exception {
-    	
-    	
-    	System.out.println(toFullyQualifiedGatewayPath(path, request.isTest()));
-        
+
         
         PostMethod method = new PostMethod(toFullyQualifiedGatewayPath(path, request.isTest()));
+        StringRequestEntity requestEntity = new StringRequestEntity(
+        		objectMapper.writeValueAsString(request),
+        	    "application/json",
+        	    "UTF-8");
+        
+        method.setRequestEntity(requestEntity);
+        
+        return finishGatewayRequest(method, responseClass);
+        
+    }
+    
+    
+    @SuppressWarnings({ "rawtypes" })
+	protected Object putGateway(String path, CoreRequest request, Class responseClass) throws Exception {
+        
+        
+        PutMethod method = new PutMethod(toFullyQualifiedGatewayPath(path, request.isTest()));
         StringRequestEntity requestEntity = new StringRequestEntity(
         		objectMapper.writeValueAsString(request),
         	    "application/json",
