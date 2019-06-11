@@ -5,10 +5,10 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 import com.blockchyp.client.BlockChypClient;
-import com.blockchyp.client.dto.AuthorizationRequest;
 import com.blockchyp.client.dto.AuthorizationResponse;
+import com.blockchyp.client.dto.RefundRequest;
 
-public class ChargeTest {
+public class FreeRangeRefundTest {
     
     @Test
     @Category(IntegrationTest.class)
@@ -17,7 +17,7 @@ public class ChargeTest {
         
     	BlockChypClient client = IntegrationTestConfiguration.getTestClient();
         
-        AuthorizationRequest request = new AuthorizationRequest();
+        RefundRequest request = new RefundRequest();
         request.setAmount("55.55");
         request.setTest(true);
         request.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
@@ -25,7 +25,7 @@ public class ChargeTest {
         request.setSigWidth(200);
 
         
-        AuthorizationResponse response = client.charge(request);
+        AuthorizationResponse response = client.refund(request);
         
         Assert.assertNotNull(response);
         Assert.assertTrue(response.isApproved());

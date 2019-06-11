@@ -5,30 +5,29 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 import com.blockchyp.client.BlockChypClient;
-import com.blockchyp.client.dto.AuthorizationRequest;
-import com.blockchyp.client.dto.AuthorizationResponse;
+import com.blockchyp.client.dto.TextPromptRequest;
+import com.blockchyp.client.dto.TextPromptResponse;
 
-public class ChargeTest {
+public class TextPromptTest {
     
     @Test
     @Category(IntegrationTest.class)
-    public void testTransaction() throws Exception {
+    public void testPrompt() throws Exception {
         
         
     	BlockChypClient client = IntegrationTestConfiguration.getTestClient();
         
-        AuthorizationRequest request = new AuthorizationRequest();
-        request.setAmount("55.55");
+        TextPromptRequest request = new TextPromptRequest();
         request.setTest(true);
         request.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
-        request.setSigFormat("png");
-        request.setSigWidth(200);
-
+        request.setPromptType("email");
         
-        AuthorizationResponse response = client.charge(request);
+        
+        TextPromptResponse response = client.textPrompt(request);
         
         Assert.assertNotNull(response);
-        Assert.assertTrue(response.isApproved());
+        Assert.assertTrue(response.isSuccess());
+        Assert.assertNotNull(response.getResponse());
         
     }
 

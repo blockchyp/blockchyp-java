@@ -53,7 +53,8 @@ public class CryptoUtils {
 
     }
 
-    public Map<String, String> generateApiHeaders(String apiKey, String bearerToken, String signingKey) {
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	public Map<String, String> generateApiHeaders(String apiKey, String bearerToken, String signingKey) {
         
         Map results = new HashMap();
         

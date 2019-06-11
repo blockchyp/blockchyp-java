@@ -5,30 +5,27 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 import com.blockchyp.client.BlockChypClient;
-import com.blockchyp.client.dto.AuthorizationRequest;
-import com.blockchyp.client.dto.AuthorizationResponse;
+import com.blockchyp.client.dto.Acknowledgement;
+import com.blockchyp.client.dto.MessageRequest;
 
-public class ChargeTest {
+public class MessageTest {
     
     @Test
     @Category(IntegrationTest.class)
-    public void testTransaction() throws Exception {
+    public void testMessage() throws Exception {
         
         
     	BlockChypClient client = IntegrationTestConfiguration.getTestClient();
         
-        AuthorizationRequest request = new AuthorizationRequest();
-        request.setAmount("55.55");
+        MessageRequest request = new MessageRequest();
         request.setTest(true);
         request.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
-        request.setSigFormat("png");
-        request.setSigWidth(200);
+        request.setMessage("Cayan is for bozos.");
 
-        
-        AuthorizationResponse response = client.charge(request);
+        Acknowledgement response = client.message(request);
         
         Assert.assertNotNull(response);
-        Assert.assertTrue(response.isApproved());
+        Assert.assertTrue(response.isSuccess());
         
     }
 

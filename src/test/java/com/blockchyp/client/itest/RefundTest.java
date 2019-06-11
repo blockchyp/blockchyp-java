@@ -7,8 +7,9 @@ import org.junit.experimental.categories.Category;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.dto.AuthorizationRequest;
 import com.blockchyp.client.dto.AuthorizationResponse;
+import com.blockchyp.client.dto.RefundRequest;
 
-public class ChargeTest {
+public class RefundTest {
     
     @Test
     @Category(IntegrationTest.class)
@@ -29,6 +30,17 @@ public class ChargeTest {
         
         Assert.assertNotNull(response);
         Assert.assertTrue(response.isApproved());
+        
+        RefundRequest refundRequest = new RefundRequest();
+        refundRequest.setTransactionId(response.getTransactionId());
+        refundRequest.setTest(response.isTest());
+        
+        AuthorizationResponse refundResponse = client.refund(refundRequest);
+        
+        Assert.assertNotNull(refundRequest);
+        Assert.assertTrue(refundResponse.isApproved());
+        
+
         
     }
 

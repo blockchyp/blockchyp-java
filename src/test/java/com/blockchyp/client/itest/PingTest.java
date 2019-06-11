@@ -12,7 +12,7 @@ public class PingTest {
     
     @Test
     @Category(IntegrationTest.class)
-    public void testTestApi() throws Exception {
+    public void testTransaction() throws Exception {
         
         
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();

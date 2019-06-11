@@ -18,14 +18,22 @@ import com.blockchyp.client.crypto.CryptoUtils;
 import com.blockchyp.client.dto.Acknowledgement;
 import com.blockchyp.client.dto.AuthorizationRequest;
 import com.blockchyp.client.dto.AuthorizationResponse;
+import com.blockchyp.client.dto.BooleanPromptRequest;
+import com.blockchyp.client.dto.BooleanPromptResponse;
 import com.blockchyp.client.dto.CaptureRequest;
 import com.blockchyp.client.dto.CaptureResponse;
 import com.blockchyp.client.dto.CoreRequest;
 import com.blockchyp.client.dto.HeartbeatResponse;
 import com.blockchyp.client.dto.ITerminalReference;
+import com.blockchyp.client.dto.MessageRequest;
 import com.blockchyp.client.dto.PingRequest;
+import com.blockchyp.client.dto.RefundRequest;
 import com.blockchyp.client.dto.TerminalRequest;
 import com.blockchyp.client.dto.TerminalRouteResponse;
+import com.blockchyp.client.dto.TextPromptRequest;
+import com.blockchyp.client.dto.TextPromptResponse;
+import com.blockchyp.client.dto.VoidRequest;
+import com.blockchyp.client.dto.VoidResponse;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -62,7 +70,8 @@ public class BlockChypClient {
 	private String gatewayHost = "https://api.blockchyp.com";
     private String testGatewayHost = "https://test.blockchyp.com";
     private GatewayCredentials defaultCredentials;
-    private Map routeCache = new HashMap();
+    @SuppressWarnings("rawtypes")
+	private Map routeCache = new HashMap();
     private ObjectMapper objectMapper;
     
     private HttpClient gatewayClient;
@@ -117,19 +126,82 @@ public class BlockChypClient {
     
     public AuthorizationResponse charge(AuthorizationRequest request) throws Exception {
         
-        return (AuthorizationResponse)postTerminal("/api/charge", request, AuthorizationResponse.class);
+    	if (isTerminalRouted(request)) {
+    		return (AuthorizationResponse)postTerminal("/api/charge", request, AuthorizationResponse.class);
+    	} else {
+    		return (AuthorizationResponse)postGateway("/api/charge", request, AuthorizationResponse.class);
+    	}
+        
+    }
+    
+    public AuthorizationResponse reverse(AuthorizationRequest request) throws Exception {
+        
+    	return (AuthorizationResponse)postGateway("/api/reverse", request, AuthorizationResponse.class);
+        
+    }
+    
+    public AuthorizationResponse refund(RefundRequest request) throws Exception {
+    	
+    	if (isTerminalRouted(request)) {
+    		return (AuthorizationResponse)postTerminal("/api/refund", request, AuthorizationResponse.class);
+    	} else {
+    		return (AuthorizationResponse)postGateway("/api/refund", request, AuthorizationResponse.class);
+    	}
         
     }
     
     public AuthorizationResponse preauth(AuthorizationRequest request) throws Exception {
+    	
+    	if (isTerminalRouted(request)) {
+    		return (AuthorizationResponse)postTerminal("/api/preauth", request, AuthorizationResponse.class);
+    	} else {
+    		return (AuthorizationResponse)postGateway("/api/preauth", request, AuthorizationResponse.class);
+    	}
         
-        return (AuthorizationResponse)postTerminal("/api/preauth", request, AuthorizationResponse.class);
+    }
+    
+    public Acknowledgement message(MessageRequest request) throws Exception {
+    	
+    	if (isTerminalRouted(request)) {
+    		return (Acknowledgement)postTerminal("/api/message", request, Acknowledgement.class);
+    	} else {
+    		return (Acknowledgement)postGateway("/api/message", request, Acknowledgement.class);
+    	}
+        
+    }
+    
+    
+    
+    public TextPromptResponse textPrompt(TextPromptRequest request) throws Exception {
+    	
+    	if (isTerminalRouted(request)) {
+    		return (TextPromptResponse)postTerminal("/api/text-prompt", request, TextPromptResponse.class);
+    	} else {
+    		return (TextPromptResponse)postGateway("/api/text-prompt", request, TextPromptResponse.class);
+    	}
+        
+    }
+    
+    
+    public BooleanPromptResponse booleanPrompt(BooleanPromptRequest request) throws Exception {
+    	
+    	if (isTerminalRouted(request)) {
+    		return (BooleanPromptResponse)postTerminal("/api/boolean-prompt", request, BooleanPromptResponse.class);
+    	} else {
+    		return (BooleanPromptResponse)postGateway("/api/boolean-prompt", request, BooleanPromptResponse.class);
+    	}
         
     }
     
     public CaptureResponse capture(CaptureRequest request) throws Exception {
         
         return (CaptureResponse)postGateway("/api/capture", request, CaptureResponse.class);
+        
+    }
+    
+    public VoidResponse voidTx(VoidRequest request) throws Exception {
+        
+        return (VoidResponse)postGateway("/api/void", request, VoidResponse.class);
         
     }
     
@@ -196,7 +268,7 @@ public class BlockChypClient {
     	
     }
     
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @SuppressWarnings({ "rawtypes" })
 	protected Object cloudRelay(String path, Object request, Class responseType) throws Exception {
     	
     	return null;
@@ -253,7 +325,7 @@ public class BlockChypClient {
     }
 
     
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @SuppressWarnings({ "rawtypes" })
 	protected Object getGateway(String path, boolean test, Class responseType) throws Exception {
         
 
@@ -302,7 +374,7 @@ public class BlockChypClient {
         }
     }
     
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @SuppressWarnings({ "rawtypes" })
 	protected Object postGateway(String path, CoreRequest request, Class responseClass) throws Exception {
     	
     	
