@@ -1,6 +1,6 @@
 package com.blockchyp.client.dto;
 
-public class TerminalKey {
+public class RawPublicKey {
     
     private String curve;
     private String x;

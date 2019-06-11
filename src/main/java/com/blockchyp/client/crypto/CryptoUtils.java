@@ -1,13 +1,18 @@
 package com.blockchyp.client.crypto;
 
 import java.security.SecureRandom;
+import java.security.spec.AlgorithmParameterSpec;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.TimeZone;
 
+import javax.crypto.Cipher;
 import javax.crypto.Mac;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.codec.binary.Base32;
 import org.apache.commons.codec.binary.Hex;
@@ -90,6 +95,31 @@ public class CryptoUtils {
         
         return fmt.format(new Date());
         
+    }
+    
+    public String decrypt(String cipherText, byte[] key) throws Exception {
+    	
+    	String[] tokens = StringUtils.split(cipherText, "|");
+    	
+    	SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
+    	Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+    	byte[] iv = Hex.decodeHex(tokens[0]);
+        AlgorithmParameterSpec paramSpec = new IvParameterSpec(iv);
+        cipher.init(Cipher.DECRYPT_MODE, secretKey, paramSpec);
+        return new String(cipher.doFinal(Hex.decodeHex(tokens[1])));
+
+    }
+    
+    public String encrypt(String plainText, byte[] key) throws Exception {
+    	
+    	SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
+    	Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+    	byte[] iv = new byte[16];
+    	new Random().nextBytes(iv);
+        AlgorithmParameterSpec paramSpec = new IvParameterSpec(iv);
+        cipher.init(Cipher.ENCRYPT_MODE, secretKey, paramSpec);
+        return Hex.encodeHexString(iv) + "|" + Hex.encodeHexString(cipher.doFinal(plainText.getBytes()));
+    	
     }
 
 

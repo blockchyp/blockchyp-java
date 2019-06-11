@@ -1,11 +1,19 @@
 package com.blockchyp.client;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.security.MessageDigest;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.httpclient.ConnectTimeoutException;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.HttpStatus;
@@ -16,8 +24,10 @@ import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.methods.PutMethod;
 import org.apache.commons.httpclient.methods.StringRequestEntity;
 import org.apache.commons.lang.StringUtils;
+import org.bouncycastle.util.encoders.Hex;
 
 import com.blockchyp.client.crypto.CryptoUtils;
+import com.blockchyp.client.dto.APICredentials;
 import com.blockchyp.client.dto.Acknowledgement;
 import com.blockchyp.client.dto.AuthorizationRequest;
 import com.blockchyp.client.dto.AuthorizationResponse;
@@ -61,24 +71,27 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class BlockChypClient {
     
+	
+	static final public String OFFLINE_CACHE = ".blockchyp_routes";
+	static final public String OFFLINE_FIXED_KEY = "cb22789c9d5c344a10e0474f134db39e25eb3bbf5a1b1a5e89b507f15ea9519c";
+	static final public long MS_PER_HOUR = 3600000;
     
-    public void setGatewayHost(String gatewayHost) {
-		this.gatewayHost = gatewayHost;
-	}
-
-	public void setTestGatewayHost(String testGatewayHost) {
-		this.testGatewayHost = testGatewayHost;
-	}
-
-	public void setDefaultCredentials(GatewayCredentials defaultCredentials) {
-		this.defaultCredentials = defaultCredentials;
-	}
 
 	private String gatewayHost = "https://api.blockchyp.com";
     private String testGatewayHost = "https://test.blockchyp.com";
     private GatewayCredentials defaultCredentials;
+    
     @SuppressWarnings("rawtypes")
 	private Map routeCache = new HashMap();
+    
+    private boolean offlineRouteCacheEnabled = true;
+    
+    private String offlineRouteCacheLocation = null;
+    
+    private int connectionTimeout = 0;
+    
+    private int timeout = 0;
+    
     private ObjectMapper objectMapper;
     
     private HttpClient gatewayClient;
@@ -112,7 +125,23 @@ public class BlockChypClient {
         this.defaultCredentials = defaultCredentials;
     }
     
-    protected void initObjectMapper() {
+    public void setGatewayHost(String gatewayHost) {
+		this.gatewayHost = gatewayHost;
+	}
+
+	public void setTestGatewayHost(String testGatewayHost) {
+		this.testGatewayHost = testGatewayHost;
+	}
+
+	public void setDefaultCredentials(GatewayCredentials defaultCredentials) {
+		this.defaultCredentials = defaultCredentials;
+	}
+    
+    public void setOfflineRouteCacheEnabled(boolean offlineRouteCacheEnabled) {
+		this.offlineRouteCacheEnabled = offlineRouteCacheEnabled;
+	}
+
+	protected void initObjectMapper() {
         objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
@@ -253,32 +282,126 @@ public class BlockChypClient {
         
     }
     
+    protected APICredentials decrypt(APICredentials creds) {
+    	CryptoUtils crypto = CryptoUtils.getInstance();
+    	
+    	APICredentials results = new APICredentials();
+    	
+    	byte[] key = deriveOfflineKey();
+    	try {
+    		
+    		results.setApiKey(crypto.decrypt(creds.getApiKey(), key));
+    		results.setBearerToken(crypto.decrypt(creds.getBearerToken(), key));
+    		results.setSigningKey(crypto.decrypt(creds.getSigningKey(), key));
+    		
+    	} catch (Exception e) {
+    		throw new RuntimeException(e);
+    	}
+    	
+    	return results;
+    }
     
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-	protected TerminalRouteResponse resolveTerminalRoute(String terminalName) {
-        
-        TerminalRouteResponse route = null;
-        Map apiRoutes = (Map)routeCache.get(defaultCredentials.getApiKey());
-        if (apiRoutes != null) {
-            route = (TerminalRouteResponse)apiRoutes.get(terminalName);
-        }
+    protected APICredentials encrypt(APICredentials creds) {
+    	
+    	CryptoUtils crypto = CryptoUtils.getInstance();
+    	
+    	APICredentials results = new APICredentials();
+    	
+    	byte[] key = deriveOfflineKey();
+    	try {
+    		results.setApiKey(crypto.encrypt(creds.getApiKey(), key));
+    		results.setBearerToken(crypto.encrypt(creds.getBearerToken(), key));
+    		results.setSigningKey(crypto.encrypt(creds.getSigningKey(), key));
+    	} catch (Exception e) {
+    		throw new RuntimeException(e);
+    	}
+    	
+    	return results;
+    }
+    
+    protected byte[] deriveOfflineKey() {
+    	
+    	MessageDigest md = DigestUtils.getSha1Digest();
+    	md.digest(Hex.decode(OFFLINE_FIXED_KEY));
+    	return Arrays.copyOfRange(md.digest(Hex.decode(defaultCredentials.getSigningKey())), 0, 16);    	
+    	
+    }
+    
+	protected TerminalRouteResponse routeCacheGet(String terminalName) {
+    	
+    	TerminalRouteResponse route = (TerminalRouteResponse)routeCache.get(toTerminalRouteKey(terminalName));
         if (route != null) {
             return route;
         }
         
-        try {
-            route = (TerminalRouteResponse)getGateway("/api/terminal-route?terminal=" + URLEncoder.encode(terminalName, "UTF-8"), false, TerminalRouteResponse.class);
-            if (apiRoutes == null) {
-                apiRoutes = new HashMap();
-                routeCache.put(defaultCredentials.getApiKey(), apiRoutes);
-            }
-            apiRoutes.put(terminalName, route);
-            
-            return route;
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        if (offlineRouteCacheEnabled) {
+        	route = getOfflineCache(terminalName);
+        }
+    	
+    	return route;
+    }
+    
+    @SuppressWarnings({ "unchecked" })
+	protected TerminalRouteResponse routeCachePut(TerminalRouteResponse route) {
+  
+        routeCache.put(defaultCredentials.getApiKey() + route.getTerminalName(), route);
+
+    	if (offlineRouteCacheEnabled) {
+    		try {
+    			//we clone this because we're going to store a version of it with transient creds encrypted
+	    		TerminalRouteResponse offlineRoute = (TerminalRouteResponse)BeanUtils.cloneBean(route);
+	    		offlineRoute.setTransientCredentials(encrypt(route.getTransientCredentials()));
+	    		
+	    		File offlineFile = new File(resolveOfflineRouteCacheLocation(route.getTerminalName()));
+	    		FileWriter writer = new FileWriter(offlineFile);
+	    		objectMapper.writeValue(writer, offlineRoute);
+	    		
+    		} catch (Exception e) {
+    			throw new RuntimeException(e);
+    		}
+    		
+    	}
+    	return null;
+    }
+    
+    protected String toTerminalRouteKey(String terminalName)  {
+    	
+    	return defaultCredentials.getApiKey() + terminalName;
+    	
+    }
+    
+	protected TerminalRouteResponse resolveTerminalRoute(String terminalName) {
+        
+        TerminalRouteResponse route = routeCacheGet(terminalName);
+        
+        TerminalRouteResponse fallbackRoute = null;  //fallback to stale cache if route lookup fails
+        
+        if (route != null) {
+        	fallbackRoute = route;
+        	long expiry = route.getTimestamp().getTime() + 3600000;
+        	if (System.currentTimeMillis() > expiry) {
+        		route = null;
+        	}	
         }
         
+        if (route == null) {
+        	try {
+        		route = (TerminalRouteResponse)getGateway("/api/terminal-route?terminal=" + URLEncoder.encode(terminalName, "UTF-8"), false, TerminalRouteResponse.class);
+	            if (route != null) {
+	            	route.setTimestamp(new Date());
+	            	routeCachePut(route);
+	            }
+	        }
+        	catch (ConnectTimeoutException e) {
+        		e.printStackTrace();
+        		return fallbackRoute;
+        	}
+        	catch (Exception e) {
+	            throw new RuntimeException(e);
+	        }
+        }
+        
+        return route;
         
         
     }
@@ -286,6 +409,12 @@ public class BlockChypClient {
     protected HttpClient getGatewayClient() {
     	if (gatewayClient == null) {
     		gatewayClient = new HttpClient();
+    		if (connectionTimeout > 0) {
+    			gatewayClient.getHttpConnectionManager().getParams().setConnectionTimeout(connectionTimeout);  
+    		}
+    		if (timeout > 0) {
+    			gatewayClient.getHttpConnectionManager().getParams().setSoTimeout(timeout);
+    		}
     	}
     	return gatewayClient;
     }
@@ -293,6 +422,12 @@ public class BlockChypClient {
     protected HttpClient getTerminalClient() {
     	if (terminalClient == null) {
     		terminalClient = new HttpClient();
+    		if (connectionTimeout > 0) {
+    			terminalClient.getHttpConnectionManager().getParams().setConnectionTimeout(connectionTimeout);  
+    		}
+    		if (timeout > 0) {
+    			terminalClient.getHttpConnectionManager().getParams().setSoTimeout(timeout);
+    		}
     	}
     	return terminalClient;
     }
@@ -324,14 +459,10 @@ public class BlockChypClient {
     }
     
     @SuppressWarnings({ "rawtypes", "unchecked" })
-	protected Object finishTerminalRequest(Object request, EntityEnclosingMethod method, Class responseType) throws Exception {
+	protected Object finishTerminalRequest(TerminalRouteResponse route, Object request, EntityEnclosingMethod method, Class responseType) throws Exception {
     	
     	
-    	TerminalRequest termRequest = new TerminalRequest();
-
-        termRequest.setApiKey(defaultCredentials.getApiKey());
-        termRequest.setBearerToken(defaultCredentials.getBearerToken());
-        termRequest.setSigningKey(defaultCredentials.getSigningKey());
+    	TerminalRequest termRequest = newTerminalRequestForRoute(route);
         termRequest.setRequest(request);
 
         
@@ -371,12 +502,30 @@ public class BlockChypClient {
 
         PutMethod method = new PutMethod(resolveTerminalHost(route) + path);
        
-        return finishTerminalRequest(request, method, responseType);
+        return finishTerminalRequest(route, request, method, responseType);
     	
     	
     	
     }
     
+    protected TerminalRequest newTerminalRequestForRoute(TerminalRouteResponse route) {
+    	
+    	TerminalRequest termRequest = new TerminalRequest();
+
+    	if ( (route.getTransientCredentials() != null) && StringUtils.isNotEmpty(route.getTransientCredentials().getApiKey())) {
+    		termRequest.setApiKey(route.getTransientCredentials().getApiKey());
+	        termRequest.setBearerToken(route.getTransientCredentials().getBearerToken());
+	        termRequest.setSigningKey(route.getTransientCredentials().getSigningKey());
+    	} else {
+	        termRequest.setApiKey(defaultCredentials.getApiKey());
+	        termRequest.setBearerToken(defaultCredentials.getBearerToken());
+	        termRequest.setSigningKey(defaultCredentials.getSigningKey());
+    	}
+    	
+    	return termRequest;
+    	
+    	
+    }
     
     @SuppressWarnings({ "rawtypes", "unchecked" })
 	protected Object deleteTerminal(String path, ITerminalReference request, Class responseType) throws Exception {
@@ -387,11 +536,8 @@ public class BlockChypClient {
         DeleteMethod method = new DeleteMethod(resolveTerminalHost(route) + path);
        
 
-    	TerminalRequest termRequest = new TerminalRequest();
-
-        termRequest.setApiKey(defaultCredentials.getApiKey());
-        termRequest.setBearerToken(defaultCredentials.getBearerToken());
-        termRequest.setSigningKey(defaultCredentials.getSigningKey());
+    	TerminalRequest termRequest = newTerminalRequestForRoute(route);
+    	
         termRequest.setRequest(request);
 
         
@@ -424,16 +570,26 @@ public class BlockChypClient {
 
         PostMethod method = new PostMethod(resolveTerminalHost(route) + path);
        
-        return finishTerminalRequest(request, method, responseType);
+        return finishTerminalRequest(route, request, method, responseType);
+        
+    }
+    
+    @SuppressWarnings({ "rawtypes" })
+	protected Object getGateway(String path, boolean test, Class responseType) throws Exception {
+        
+       return getGateway(path, test, responseType, timeout);
         
     }
 
     
     @SuppressWarnings({ "rawtypes" })
-	protected Object getGateway(String path, boolean test, Class responseType) throws Exception {
+	protected Object getGateway(String path, boolean test, Class responseType, int timeout) throws Exception {
         
 
         HttpMethod method = new GetMethod(toFullyQualifiedGatewayPath(path, test));
+        if (timeout > 0) {
+        	method.getParams().setSoTimeout(timeout);
+        }
         return finishGatewayRequest(method, responseType);
         
         
@@ -467,10 +623,8 @@ public class BlockChypClient {
          		//check clock drift
          	}
          	if (status != HttpStatus.SC_OK) {
-         		System.out.println(method.getResponseBodyAsString());
          		throw new IOException(method.getStatusText());
          	}
-         	System.out.println(method.getResponseBodyAsString());
          	return objectMapper.readValue(method.getResponseBodyAsStream(), responseType);
         }
         finally {
@@ -511,12 +665,71 @@ public class BlockChypClient {
         
     }
     
-    protected String toFullyQualifiedGatewayPath(String path, boolean test) {
+    protected String resolveOfflineRouteCacheLocation(String terminalName) {
+    	
+    	
+    	if (offlineRouteCacheLocation != null) {
+    		return offlineRouteCacheLocation + "_" + StringUtils.replaceChars(toTerminalRouteKey(terminalName), " ", "_");
+    	}
+    	else {
+    		String temp = System.getProperty("java.io.tmpdir");
+    		if (!StringUtils.endsWith(temp, String.valueOf(File.separatorChar))) {
+    			temp = temp + File.separatorChar;
+    		}
+    		return temp +  OFFLINE_CACHE + "_" + StringUtils.replaceChars(toTerminalRouteKey(terminalName), " ", "_");
+    	}
+    	
+    }
+    
+    public TerminalRouteResponse getOfflineCache(String terminalName) {
+    	
+    	File file = new File(resolveOfflineRouteCacheLocation(terminalName));
+    	
+    	if (!file.exists()) {
+    		return null;
+    	}
+    	
+    	try {
+    		
+    		TerminalRouteResponse route = objectMapper.readValue(file, TerminalRouteResponse.class);
+    		route.setTransientCredentials(decrypt(route.getTransientCredentials()));
+    		return route;
+    		
+    		
+    	} catch (Exception e) {
+    		throw new RuntimeException(e);
+    	}
+    	
+    }
+    
+    public String getOfflineRouteCacheLocation() {
+		return offlineRouteCacheLocation;
+	}
+
+	public void setOfflineRouteCacheLocation(String offlineRouteCacheLocation) {
+		this.offlineRouteCacheLocation = offlineRouteCacheLocation;
+	}
+
+	protected String toFullyQualifiedGatewayPath(String path, boolean test) {
     	if (test) {
     		return this.testGatewayHost + path;
     	} else {
     		return this.gatewayHost + path;
     	}
+    }
+    
+    private static class RouteCache {
+    	private Map routes;
+
+		public Map getRoutes() {
+			return routes;
+		}
+
+		public void setRoutes(Map routes) {
+			this.routes = routes;
+		}
+
+    	
     }
     
 
