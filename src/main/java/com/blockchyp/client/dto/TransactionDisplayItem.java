@@ -5,14 +5,23 @@ import java.util.Collection;
 
 public class TransactionDisplayItem {
 	
+	private String id;
 	private String description;
 	private String price;
 	private float quantity;
-	private String subtotal;
+	private String extended;
 	
 	@SuppressWarnings("rawtypes")
 	private Collection discounts;
 	
+	
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getDescription() {
 		return description;
 	}
@@ -31,11 +40,11 @@ public class TransactionDisplayItem {
 	public void setQuantity(float quantity) {
 		this.quantity = quantity;
 	}
-	public String getSubtotal() {
-		return subtotal;
+	public String getExtended() {
+		return extended;
 	}
-	public void setSubtotal(String subtotal) {
-		this.subtotal = subtotal;
+	public void setExtended(String extended) {
+		this.extended = extended;
 	}
 	@SuppressWarnings("rawtypes")
 	public Collection getDiscounts() {

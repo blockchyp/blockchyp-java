@@ -1,6 +1,6 @@
 package com.blockchyp.client.dto;
 
-public class ClearTransactionDisplayRequest extends CoreRequest implements ITerminalReference {
+public class ClearTerminalRequest extends CoreRequest implements ITerminalReference {
 	
 	private String terminalName;
 

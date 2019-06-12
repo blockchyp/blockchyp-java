@@ -35,7 +35,7 @@ import com.blockchyp.client.dto.BooleanPromptRequest;
 import com.blockchyp.client.dto.BooleanPromptResponse;
 import com.blockchyp.client.dto.CaptureRequest;
 import com.blockchyp.client.dto.CaptureResponse;
-import com.blockchyp.client.dto.ClearTransactionDisplayRequest;
+import com.blockchyp.client.dto.ClearTerminalRequest;
 import com.blockchyp.client.dto.CloseBatchRequest;
 import com.blockchyp.client.dto.CloseBatchResponse;
 import com.blockchyp.client.dto.CoreRequest;
@@ -242,22 +242,18 @@ public class BlockChypClient {
     	if (isTerminalRouted(request)) {
     		return (Acknowledgement)postTerminal("/api/txdisplay", request, Acknowledgement.class);
     	} else {
-    		System.out.println("Cloud relay...");
     		return (Acknowledgement)postGateway("/api/terminal-txdisplay", request, Acknowledgement.class);
     	}
         
     }
     
     
-    public Acknowledgement clearTransactionDisplay(String terminalName) throws Exception {
+    public Acknowledgement clear(ClearTerminalRequest request) throws Exception {
     	
-    	ClearTransactionDisplayRequest request = new ClearTransactionDisplayRequest();
-    	request.setTerminalName(terminalName);
     	if (isTerminalRouted(request)) {
-    		return (Acknowledgement)deleteTerminal("/api/txdisplay", request, Acknowledgement.class);
+    		return (Acknowledgement)postTerminal("/api/clear", request, Acknowledgement.class);
     	} else {
-    		//return (Acknowledgement)deleteGateway("/api/terminal-txdisplay", request, Acknowledgement.class);
-    		return null;
+    		return (Acknowledgement)postGateway("/api/terminal-clear", request, Acknowledgement.class);
     	}
         
     }
@@ -269,7 +265,6 @@ public class BlockChypClient {
     	if (isTerminalRouted(request)) {
     		return (Acknowledgement)putTerminal("/api/txdisplay", request, Acknowledgement.class);
     	} else {
-    		System.out.println("Cloud relay...");
     		return (Acknowledgement)putGateway("/api/terminal-txdisplay", request, Acknowledgement.class);
     	}
         
@@ -377,6 +372,10 @@ public class BlockChypClient {
     }
     
 	protected TerminalRouteResponse resolveTerminalRoute(String terminalName) {
+		
+		if (StringUtils.isEmpty(terminalName)) {
+			return null;
+		}
         
         TerminalRouteResponse route = routeCacheGet(terminalName);
         
@@ -452,6 +451,7 @@ public class BlockChypClient {
     }
     
     protected boolean isTerminalRouted(ITerminalReference terminalName)  {
+    	
     	
     	TerminalRouteResponse route = resolveTerminalRoute(terminalName.getTerminalName());
     	
@@ -698,13 +698,9 @@ public class BlockChypClient {
     	}
     	
     	try {
-    		
-    		System.out.println(file.getAbsolutePath());
     		TerminalRouteResponse route = objectMapper.readValue(file, TerminalRouteResponse.class);
     		route.setTransientCredentials(decrypt(route.getTransientCredentials()));
-    		return route;
-    		
-    		
+    		return route;   		
     	} catch (Exception e) {
     		throw new RuntimeException(e);
     	}
@@ -727,19 +723,4 @@ public class BlockChypClient {
     	}
     }
     
-    private static class RouteCache {
-    	private Map routes;
-
-		public Map getRoutes() {
-			return routes;
-		}
-
-		public void setRoutes(Map routes) {
-			this.routes = routes;
-		}
-
-    	
-    }
-    
-
 }
