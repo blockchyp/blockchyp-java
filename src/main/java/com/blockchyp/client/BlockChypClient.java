@@ -23,6 +23,7 @@ import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.methods.PutMethod;
 import org.apache.commons.httpclient.methods.StringRequestEntity;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.bouncycastle.util.encoders.Hex;
 
@@ -42,6 +43,7 @@ import com.blockchyp.client.dto.CoreRequest;
 import com.blockchyp.client.dto.HeartbeatResponse;
 import com.blockchyp.client.dto.ITerminalReference;
 import com.blockchyp.client.dto.MessageRequest;
+import com.blockchyp.client.dto.PaymentRequest;
 import com.blockchyp.client.dto.PingRequest;
 import com.blockchyp.client.dto.RefundRequest;
 import com.blockchyp.client.dto.TerminalRequest;
@@ -65,6 +67,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * You'll also notice that we're not using generics or any features from Java 1.7 or later.  This is just to maintain as much backward compatibility
  * as possible with older systems (1.6 or later).  The underlying REST API's are invoked using commons-httpclient 3.1 and we use Jackson for json serialization.
  * 
+ * Most internal methods are scoped as protected in order to give developers the ability to override things if they need special
+ * behavior of have weird classpath issues.
+ * 
  * @author jeffreydpayne
  *
  */
@@ -80,6 +85,7 @@ public class BlockChypClient {
 	private String gatewayHost = "https://api.blockchyp.com";
     private String testGatewayHost = "https://test.blockchyp.com";
     private GatewayCredentials defaultCredentials;
+    private PaymentLogger paymentLogger = new SystemOutPaymentLogger();
     
     @SuppressWarnings("rawtypes")
 	private Map routeCache = new HashMap();
@@ -141,6 +147,10 @@ public class BlockChypClient {
 		this.offlineRouteCacheEnabled = offlineRouteCacheEnabled;
 	}
 
+	public void setPaymentLogger(PaymentLogger paymentLogger) {
+		this.paymentLogger = paymentLogger;
+	}
+
 	protected void initObjectMapper() {
         objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -161,12 +171,20 @@ public class BlockChypClient {
     }
     
     public AuthorizationResponse charge(AuthorizationRequest request) throws Exception {
+    	
+    	populateSignatureOptions(request);
+    	
+    	AuthorizationResponse response;
         
     	if (isTerminalRouted(request)) {
-    		return (AuthorizationResponse)postTerminal("/api/charge", request, AuthorizationResponse.class);
+    		response = (AuthorizationResponse)postTerminal("/api/charge", request, AuthorizationResponse.class);
     	} else {
-    		return (AuthorizationResponse)postGateway("/api/charge", request, AuthorizationResponse.class);
+    		response = (AuthorizationResponse)postGateway("/api/charge", request, AuthorizationResponse.class);
     	}
+    	
+    	dumpSignatureFile(request, response);
+    	
+    	return response;
         
     }
     
@@ -185,21 +203,37 @@ public class BlockChypClient {
     
     public AuthorizationResponse refund(RefundRequest request) throws Exception {
     	
+    	populateSignatureOptions(request);
+    	
+    	AuthorizationResponse response;
+    	
     	if (isTerminalRouted(request)) {
-    		return (AuthorizationResponse)postTerminal("/api/refund", request, AuthorizationResponse.class);
+    		response = (AuthorizationResponse)postTerminal("/api/refund", request, AuthorizationResponse.class);
     	} else {
-    		return (AuthorizationResponse)postGateway("/api/refund", request, AuthorizationResponse.class);
+    		response = (AuthorizationResponse)postGateway("/api/refund", request, AuthorizationResponse.class);
     	}
+    	
+    	dumpSignatureFile(request, response);
+    	
+    	return response;
         
     }
     
     public AuthorizationResponse preauth(AuthorizationRequest request) throws Exception {
     	
+    	populateSignatureOptions(request);
+    	
+    	AuthorizationResponse response;
+    	
     	if (isTerminalRouted(request)) {
-    		return (AuthorizationResponse)postTerminal("/api/preauth", request, AuthorizationResponse.class);
+    		response = (AuthorizationResponse)postTerminal("/api/preauth", request, AuthorizationResponse.class);
     	} else {
-    		return (AuthorizationResponse)postGateway("/api/preauth", request, AuthorizationResponse.class);
+    		response = (AuthorizationResponse)postGateway("/api/preauth", request, AuthorizationResponse.class);
     	}
+    	
+    	dumpSignatureFile(request, response);
+    	
+    	return response;
         
     }
     
@@ -332,6 +366,7 @@ public class BlockChypClient {
     	
     	TerminalRouteResponse route = (TerminalRouteResponse)routeCache.get(toTerminalRouteKey(terminalName));
         if (route != null) {
+        	paymentLogger.debug("Memory Route Cache Hit: " + terminalName);
             return route;
         }
         
@@ -371,6 +406,55 @@ public class BlockChypClient {
     	
     }
     
+    /**
+     * This method is used to setup sensible defaults for local signature file dumps.
+     * For example, if the sig file is provided without a format, it's possible to infer
+     * a format from the file extension.  Note that we don't validate that the file format
+     * is supported.  We leave that to the terminal firmware in order to prevent 
+     * SDK updates being needed when file format support in the firmware changes.
+     * 
+     * @param request
+     */
+    
+    protected void populateSignatureOptions(PaymentRequest request) {
+    	
+    	if (StringUtils.isNotEmpty(request.getSigFile()) && StringUtils.isEmpty(request.getSigFormat())) {
+    		String[] tokens = StringUtils.split(request.getSigFile(), ".");
+    		if (tokens.length > 1) {
+    			request.setSigFormat(tokens[tokens.length - 1]);
+    		}
+    	}
+    	
+    }
+    
+    /**
+     * Writes the signature to a file if a signature is present and the caller has requested it.
+     * Notice this does not throw exceptions because  if this methods gets called a transaction
+     * has already been authorized and we wouldn't want the client application to error out here.
+     * 
+     * @param response
+     */
+    protected void dumpSignatureFile(PaymentRequest request, AuthorizationResponse response) {
+    	
+    	
+    	if (StringUtils.isEmpty(response.getSigFile())) {
+    		return;
+    	}
+    	
+    	if (StringUtils.isEmpty(request.getSigFile())) {
+    		return;
+    	}
+    	
+    	try {
+	    	byte[] sigBinary = Hex.decode(response.getSigFile());
+	    	FileUtils.writeByteArrayToFile(new File(request.getSigFile()), sigBinary);
+    	} catch (Exception e) {
+    		paymentLogger.error("Exception storing signature file", e);
+    	}
+    	
+    	
+    }
+    
 	protected TerminalRouteResponse resolveTerminalRoute(String terminalName) {
 		
 		if (StringUtils.isEmpty(terminalName)) {
@@ -385,6 +469,7 @@ public class BlockChypClient {
         	fallbackRoute = route;
         	long expiry = route.getTimestamp().getTime() + 3600000;
         	if (System.currentTimeMillis() > expiry) {
+        		paymentLogger.debug("Ignoring stale route in memory route cache.");
         		route = null;
         	}	
         }
@@ -481,6 +566,8 @@ public class BlockChypClient {
         	    "UTF-8");
         
         method.setRequestEntity(requestEntity);
+        
+        paymentLogger.debug("Terminal: " + method.getURI().toString());
 
         try {
         	int status = client.executeMethod(method);
@@ -618,6 +705,7 @@ public class BlockChypClient {
             	);  	
         }
     	
+        paymentLogger.debug("Gateway: " + method.getURI().toString());
     	
         Iterator itr = headers.keySet().iterator();
         while (itr.hasNext()) {
@@ -693,13 +781,17 @@ public class BlockChypClient {
     	
     	File file = new File(resolveOfflineRouteCacheLocation(terminalName));
     	
+    	paymentLogger.debug("Checking Offline Route Cache: " + file.getAbsolutePath());
+    	
     	if (!file.exists()) {
+    		paymentLogger.debug("Offline Route Cache Miss: " + terminalName);
     		return null;
     	}
     	
     	try {
     		TerminalRouteResponse route = objectMapper.readValue(file, TerminalRouteResponse.class);
     		route.setTransientCredentials(decrypt(route.getTransientCredentials()));
+    		paymentLogger.debug("Offline Route Cache Hit: " + terminalName);
     		return route;   		
     	} catch (Exception e) {
     		throw new RuntimeException(e);

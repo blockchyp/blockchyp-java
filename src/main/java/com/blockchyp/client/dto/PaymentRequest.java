@@ -1,5 +1,7 @@
 package com.blockchyp.client.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class PaymentRequest extends AmountRequest implements ITerminalReference {
 	
 	private String terminalName;
@@ -17,6 +19,7 @@ public class PaymentRequest extends AmountRequest implements ITerminalReference 
 	private boolean manualEntry;
 	private String sigFormat;
 	private int sigWidth;
+	private String sigFile; //local SDK only
 	
 	
 	public String getTerminalName() {
@@ -108,6 +111,14 @@ public class PaymentRequest extends AmountRequest implements ITerminalReference 
 	}
 	public void setSigWidth(int sigWidth) {
 		this.sigWidth = sigWidth;
+	}
+	
+	@JsonIgnore
+	public String getSigFile() {
+		return sigFile;
+	}
+	public void setSigFile(String sigFile) {
+		this.sigFile = sigFile;
 	}
 
 

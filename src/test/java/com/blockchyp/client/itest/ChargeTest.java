@@ -1,5 +1,7 @@
 package com.blockchyp.client.itest;
 
+import java.io.File;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
@@ -23,12 +25,16 @@ public class ChargeTest {
         request.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
         request.setSigFormat("png");
         request.setSigWidth(200);
+        request.setSigFile("sig.png");
 
         
         AuthorizationResponse response = client.charge(request);
         
         Assert.assertNotNull(response);
         Assert.assertTrue(response.isApproved());
+        
+        File file = new File("sig.png");
+        Assert.assertTrue(file.exists());
         
     }
 
