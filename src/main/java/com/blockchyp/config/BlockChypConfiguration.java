@@ -2,12 +2,13 @@ package com.blockchyp.config;
 
 public class BlockChypConfiguration {
     
-    public String gatewayHost;
-    public String apiId;
-    public String bearerToken;
-    public String signingKey;
-    public String defaultTerminalName;
-    public String defaultTerminalAddress;
+    private String gatewayHost;
+    private String apiId;
+    private String bearerToken;
+    private String signingKey;
+    private String defaultTerminalName;
+    private String defaultTerminalAddress;
+    
     public String getGatewayHost() {
         return gatewayHost;
     }

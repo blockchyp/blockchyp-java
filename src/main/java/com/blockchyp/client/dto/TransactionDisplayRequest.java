@@ -1,24 +1,46 @@
 package com.blockchyp.client.dto;
 
+/**
+ * This class models a request to update the transaction line item display on the terminal.
+ * 
+ * @author jeffreydpayne
+ *
+ */
 public class TransactionDisplayRequest extends CoreRequest implements ITerminalReference {
-	
-	private String terminalName;
-	private TransactionDisplayTransaction transaction;
 
-	public String getTerminalName() {
-		return terminalName;
-	}
+    private String terminalName;
+    private TransactionDisplayTransaction transaction;
+    
+    /**
+     * Returns the target terminal name.
+     * @return - terminal name.
+     */
+    public String getTerminalName() {
+        return terminalName;
+    }
 
-	public void setTerminalName(String terminalName) {
-		this.terminalName = terminalName;
-	}
+    /**
+     * Sets the target terminal name.
+     * @param terminalName - terminal name.
+     */
+    public void setTerminalName(String terminalName) {
+        this.terminalName = terminalName;
+    }
 
-	public TransactionDisplayTransaction getTransaction() {
-		return transaction;
-	}
+    /**
+     * Returns the transaction to be display on the terminal.
+     * @return {@link TransactionDisplayTransaction}
+     */
+    public TransactionDisplayTransaction getTransaction() {
+        return transaction;
+    }
 
-	public void setTransaction(TransactionDisplayTransaction transaction) {
-		this.transaction = transaction;
-	}
+    /**
+     * Sets the transaction to be displayed on the terminal.
+     * @param transaction {@link TransactionDisplayTransaction}
+     */
+    public void setTransaction(TransactionDisplayTransaction transaction) {
+        this.transaction = transaction;
+    }
 
 }

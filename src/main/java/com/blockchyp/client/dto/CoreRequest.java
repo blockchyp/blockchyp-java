@@ -6,42 +6,60 @@ package com.blockchyp.client.dto;
  * @author jeffreydpayne
  *
  */
-
 public class CoreRequest {
 
-	/**
-	 * This should be the transaction number or invoice number used by your application.
-	 */
-	private String transactionRef;
-	
-	/**
-	 * For law firms and other systems with split bank account settlement, this should
-	 * be the destination bank account for the deposit.
-	 */
-	private String destinationAccount;
-	
-	/**
-	 * Flags this as a test transaction.  Will route to the test url: https://test.blockchyp.com.
-	 */
-	private boolean test;
-	
-	public String getTransactionRef() {
-		return transactionRef;
-	}
-	public void setTransactionRef(String transactionRef) {
-		this.transactionRef = transactionRef;
-	}
-	public String getDestinationAccount() {
-		return destinationAccount;
-	}
-	public void setDestinationAccount(String destinationAccount) {
-		this.destinationAccount = destinationAccount;
-	}
-	public boolean isTest() {
-		return test;
-	}
-	public void setTest(boolean test) {
-		this.test = test;
-	}
-	
+
+    private String transactionRef;
+    private String destinationAccount;
+    private boolean test;
+
+    /**
+     * Returns the transaction ref value.
+     * @return - developer provided transaction id.
+     */
+    public String getTransactionRef() {
+        return transactionRef;
+    
+    }
+
+    /**
+     * Sets the transaction ref value.  This is intended for your own identifiers.
+     * @param transactionRef - developer provided transaction id.
+     */
+    public void setTransactionRef(String transactionRef) {
+        this.transactionRef = transactionRef;
+    }
+
+    /**
+     * Returns the settlement account id.
+     * @return - settlement account id.
+     */
+    public String getDestinationAccount() {
+        return destinationAccount;
+    }
+
+    /**
+     * Sets the settlement account for merchants with split settlement enabled. (not common).
+     * @param destinationAccount - settlement account id.
+     */
+    public void setDestinationAccount(String destinationAccount) {
+        this.destinationAccount = destinationAccount;
+    }
+
+    /**
+     * Sets the transaction test flag.
+     * @return - if true, the transaction will be routed to the test gateway.
+     */
+    public boolean isTest() {
+        return test;
+    }
+
+    /**
+     * Sets the test transaction flag.
+     * @param test - if true, the transaction will be routed to the test gateway.
+     */
+    public void setTest(boolean test) {
+        this.test = test;
+    }
+
 }

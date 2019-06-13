@@ -6,7 +6,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.SystemUtils;
 
 import com.blockchyp.client.BlockChypClient;
-import com.blockchyp.client.GatewayCredentials;
+import com.blockchyp.client.dto.APICredentials;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /*
@@ -94,9 +94,9 @@ public class IntegrationTestConfiguration {
         return getSettings().getTestGatewayHost();
     }
     
-    public static GatewayCredentials getTestCredentials() {
+    public static APICredentials getTestCredentials() {
         
-        GatewayCredentials creds = new GatewayCredentials();
+        APICredentials creds = new APICredentials();
         IntegrationTestSettings settings = getSettings();
         creds.setApiKey(settings.getApiKey());
         creds.setBearerToken(settings.getBearerToken());

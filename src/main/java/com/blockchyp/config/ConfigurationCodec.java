@@ -4,7 +4,7 @@ import org.apache.commons.codec.binary.Base64;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class ConfigurationCodec {
+public final class ConfigurationCodec {
     
     private static ConfigurationCodec instance;
     
