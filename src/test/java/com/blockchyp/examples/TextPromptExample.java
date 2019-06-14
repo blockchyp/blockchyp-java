@@ -3,8 +3,6 @@ package com.blockchyp.examples;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.blockchyp.client.BlockChypClient;
-import com.blockchyp.client.dto.BooleanPromptRequest;
-import com.blockchyp.client.dto.BooleanPromptResponse;
 import com.blockchyp.client.dto.TextPromptRequest;
 import com.blockchyp.client.dto.TextPromptResponse;
 
@@ -17,6 +15,8 @@ public class TextPromptExample {
         
         TextPromptRequest request = new TextPromptRequest();
         request.setTerminalName("Test Terminal");
+        
+        //must be one of: "email", "phone", "customer-number", or "rewards-number"
         request.setPromptType("email");
 
         TextPromptResponse response = blockchypClient.textPrompt(request);

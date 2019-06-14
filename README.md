@@ -587,3 +587,71 @@ be entered because you might prompt the user for card numbers or pins - and that
             System.out.println("The user's email is " + response.getResponse());
         }       
 ```
+
+## The Test Flag
+
+During development, you won't be running transactions against the live API.  All transaction request will need to be flagged 
+as tests by adding this line of code...
+
+```
+	request.setTest(true);
+```
+
+If you're like most developers, you'll probably have some kind of environment variable or configuration property in your
+application that turns this on.
+
+## Signature Capture
+
+If, for some reason, the payment terminal prompts the user for a written signature, BlockChyp uploads the signature image to our web scale database for archival.  
+By default, it will not return it to the caller.  You do have the option of getting the image back in PNG or JPEG format, either as hex as has a file.
+
+```
+        
+        AuthorizationRequest request = new AuthorizationRequest();
+        request.setAmount("55.55");
+        request.setTerminalName("Test Terminal");
+        request.setSigFormat("png");
+        request.setSigWidth(200);
+        request.setSigFile("sig.png");
+
+        
+        AuthorizationResponse response = client.charge(request);
+        
+        Assert.assertNotNull(response);
+        Assert.assertTrue(response.isApproved());
+        
+        File file = new File("sig.png");  //here's your image file
+```
+
+## Keyed Entry Mode
+
+If, for some reason, the payment terminal prompts the user for a written signature, BlockChyp uploads the signature image to our web scale database for archival.  
+By default, it will not return it to the caller.  You do have the option of getting the image back in PNG or JPEG format, either as hex as has a file.
+
+```
+        AuthorizationRequest request = new AuthorizationRequest();
+        request.setTransactionRef("your invoice or tender id");
+        request.setTerminalName("Test Terminal");
+        request.setAmount("50.00");
+        request.setManualEntry(true);
+
+        AuthorizationResponse response = blockchypClient.charge(request);
+        
+        if (response.isApproved()) {
+            System.out.println("Approved!");
+        }
+        
+        String txId = response.getTransactionId(); //store this for refunding or voiding later
+```
+
+## Cloud Relay
+
+It's not always possible for terminals to live in the same network subnet as the application they're integrated with.  
+For example, cloud or SaaS based applications may not have access to the in store network.  In these situations, 
+terminals can be configured for cloud relay when they're activated.
+
+In these situations, the Java SDK will send transactions to the Gateway and the Gateway will relay them back to 
+the terminal.  This is a bit slower since it involves a little more network I/O.  But more importantly, offline
+or store and forward processing is not available to applications using cloud relay.
+
+It's an option,  but only use it if you really need it.
