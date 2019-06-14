@@ -603,6 +603,7 @@ application that turns this on.
 ## Signature Capture
 
 If, for some reason, the payment terminal prompts the user for a written signature, BlockChyp uploads the signature image to our web scale database for archival.  
+
 By default, it will not return it to the caller.  You do have the option of getting the image back in PNG or JPEG format, either as hex as has a file.
 
 ```
@@ -625,8 +626,8 @@ By default, it will not return it to the caller.  You do have the option of gett
 
 ## Keyed Entry Mode
 
-If, for some reason, the payment terminal prompts the user for a written signature, BlockChyp uploads the signature image to our web scale database for archival.  
-By default, it will not return it to the caller.  You do have the option of getting the image back in PNG or JPEG format, either as hex as has a file.
+If you need the consumer to enter a card number by hand, set the manual entry flag on an authorization request first.
+
 
 ```
         AuthorizationRequest request = new AuthorizationRequest();
