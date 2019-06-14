@@ -1,146 +1,155 @@
+<?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.blockchyp</groupId>
-	<artifactId>blockchyp-java</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+  <modelVersion>4.0.0</modelVersion>
 
+  <groupId>com.blockchyp</groupId>
+  <artifactId>blockchyp-java</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
 
-	<build>
-		<plugins>
+  <name>${project.groupId}:${project.artifactId}</name>
+  <description>
+    This is the recommended means for Java developers to access the BlockChyp gateway and BlockChyp terminals.
+  </description>
+  <url>https://github.com/blockchyp/blockchyp-java</url>
 
+  <licenses>
+    <license>
+      <name>MIT License</name>
+      <url>https://opensource.org/licenses/MIT</url>
+    </license>
+  </licenses>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
-				<configuration>
-					<!-- This is for maximum backward compatibility with java versions.  We'd love to use at least 1.7, but it was not to be. -->
-					<source>1.6</source>
-					<target>1.6</target>
-				</configuration>
-			</plugin>
-			<plugin>
-		        <groupId>org.apache.maven.plugins</groupId>
-		        <artifactId>maven-surefire-plugin</artifactId>
-				<configuration>
-				  <excludedGroups>com.blockchyp.client.itest.IntegrationTest</excludedGroups>
-				</configuration>
-		    </plugin>
-		    <plugin>
-			   <groupId>org.apache.maven.plugins</groupId>
-			   <artifactId>maven-checkstyle-plugin</artifactId>
-			   <version>3.1.0</version>
-			   <configuration>
-			     <configLocation>checkstyle.xml</configLocation>
-			     <encoding>UTF-8</encoding>
-			     <consoleOutput>true</consoleOutput>
-			     <failsOnError>true</failsOnError>
-			     <linkXRef>false</linkXRef>
-			   </configuration>
-			   <executions>
-			     <execution>
-			       <id>validate</id>
-			       <phase>validate</phase>
-			       <goals>
-			         <goal>check</goal>
-			       </goals>
-			     </execution>
-			   </executions>
-			</plugin>
-			<plugin>
-		        <groupId>org.apache.maven.plugins</groupId>
-		        <artifactId>maven-javadoc-plugin</artifactId>
-		        <version>3.1.0</version>
-		        <configuration>
-		        	<doctitle>BlockChyp Java SDK</doctitle>
-		        </configuration>
-		        <executions>
-				    <execution>
-				      <id>attach-javadocs</id>
-				      <goals>
-				        <goal>jar</goal>
-				      </goals>
-					</execution>
-				</executions>
-		    </plugin>
-		    <plugin>
-			  <groupId>org.apache.maven.plugins</groupId>
-			  <artifactId>maven-source-plugin</artifactId>
-			  <executions>
-			    <execution>
-			      <id>attach-sources</id>
-			      <goals>
-			        <goal>jar</goal>
-			      </goals>
-			    </execution>
-			  </executions>
-			</plugin>
+  <organization>
+    <name>BlockChyp, Inc.</name>
+    <url>https://www.blockchyp.com</url>
+  </organization>
 
+  <scm>
+    <connection>scm:git:git://github.com/blockchyp/blockchyp-java.git</connection>
+    <developerConnection>scm:git:ssh://github.com:blockchyp/blockchyp-java.git</developerConnection>
+    <url>https://github.com/blockchyp/blockchyp-java/tree/master</url>
+  </scm>
 
-		</plugins>
-		
-	</build>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.1</version>
+        <configuration>
+          <!-- This is for maximum backward compatibility with java versions.  We'd love to use at least 1.7, but it was not to be. -->
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <excludedGroups>com.blockchyp.client.itest.IntegrationTest</excludedGroups>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>3.1.0</version>
+        <configuration>
+          <configLocation>checkstyle.xml</configLocation>
+          <encoding>UTF-8</encoding>
+          <consoleOutput>true</consoleOutput>
+          <failsOnError>true</failsOnError>
+          <linkXRef>false</linkXRef>
+        </configuration>
+        <executions>
+          <execution>
+            <id>validate</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.1.0</version>
+        <configuration>
+          <doctitle>BlockChyp Java SDK</doctitle>
+        </configuration>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 
-	<dependencies>
-	
-		<dependency>
-		    <groupId>commons-lang</groupId>
-		    <artifactId>commons-lang</artifactId>
-		    <version>2.6</version>
-		</dependency>
-		
-		<dependency>
-		    <groupId>org.bouncycastle</groupId>
-		    <artifactId>bcprov-jdk15on</artifactId>
-		    <version>1.60</version>
-		</dependency>
-		
-		<dependency>
-		    <groupId>commons-codec</groupId>
-		    <artifactId>commons-codec</artifactId>
-		    <version>1.11</version>
-		</dependency>
-		
-		<dependency>
-		    <groupId>commons-io</groupId>
-		    <artifactId>commons-io</artifactId>
-		    <version>2.5</version>
-		</dependency>
-				
-		<dependency>
-			<groupId>commons-httpclient</groupId>
-			<artifactId>commons-httpclient</artifactId>
-			<version>3.1</version>
-		</dependency>
-		
-		<dependency>
-		    <groupId>com.fasterxml.jackson.core</groupId>
-		    <artifactId>jackson-databind</artifactId>
-		    <version>2.9.9</version>
-		</dependency>
-		
-		<dependency>
-		    <groupId>commons-beanutils</groupId>
-		    <artifactId>commons-beanutils</artifactId>
-		    <version>1.7.0</version>
-		</dependency>
-
-		<dependency>
-		    <groupId>junit</groupId>
-		    <artifactId>junit</artifactId>
-		    <version>4.12</version>
-		    <scope>test</scope>
-		</dependency>
-		
-		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-context</artifactId>
-		    <version>3.2.18.RELEASE</version>
-		    <scope>test</scope>
-		</dependency>
-
-		
-	</dependencies>
-
+  <dependencies>
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+      <version>2.6</version>
+    </dependency>
+    <dependency>
+      <groupId>org.bouncycastle</groupId>
+      <artifactId>bcprov-jdk15on</artifactId>
+      <version>1.60</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-codec</groupId>
+      <artifactId>commons-codec</artifactId>
+      <version>1.11</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.5</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-httpclient</groupId>
+      <artifactId>commons-httpclient</artifactId>
+      <version>3.1</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.9.9</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-beanutils</groupId>
+      <artifactId>commons-beanutils</artifactId>
+      <version>1.7.0</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>3.2.18.RELEASE</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
 
 </project>
