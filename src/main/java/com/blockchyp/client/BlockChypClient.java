@@ -245,6 +245,23 @@ public class BlockChypClient {
         return (Acknowledgement) postTerminal("/api/test", request, Acknowledgement.class);
 
     }
+    
+    
+    /**
+     * Enrolls the payment method in the recurring payment token vault.  Any amounts passed in are ignored.
+     * @param request {@link AuthorizationRequest}
+     * @return {@link AuthorizationResponse}
+     * @throws Exception - exception if any errors occurred processing the request.
+     */
+    public AuthorizationResponse enroll(AuthorizationRequest request) throws Exception {
+
+        if (isTerminalRouted(request)) {
+            return (AuthorizationResponse) postTerminal("/api/enroll", request, AuthorizationResponse.class);
+        } else {
+            return (AuthorizationResponse) postGateway("/api/enroll", request, AuthorizationResponse.class);
+        }
+
+    }
 
     /**
      * Performs a standard auth and capture.

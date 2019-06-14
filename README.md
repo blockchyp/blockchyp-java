@@ -12,9 +12,9 @@ commons-httpclient-3.1 and we also use commons-lang, commons-io, and commons-cod
 JCE provider for encryption services, but we don't use any Bouncy Castle specific classes so if you exclude this 
 dependency you should still be fine with the standard Java stuff.
 
-## Getting a Developer Kit
+## Getting a Developer Terminal
 
-If you don't already have a test terminal, login to the BlockChyp dashboard and order a developer developer terminal 
+If you don't already have a test terminal, login to the BlockChyp dashboard and order a developer terminal 
 kit.  You'll get a swanky new Equinox Luxe 8500i terminal and a set of test cards.
 
 If you don't have BlockChyp dashboard access, contact us at support@blockchyp.com to get setup.  Right now, developer
@@ -24,11 +24,11 @@ Don't worry.  We're pretty lenient when it comes to deeming.
 ## Getting the SDK
 
 There are several techniques for getting your hands on the SDK.  Most developers use a dependency management system like
-Maven or Gradle.
+Maven.
 
 #### Maven
 
-The BlockChyp SDK is in Maven's repo 1.  Just add this snippet to your pom:
+The BlockChyp SDK is in Maven's Central Repository.  Just add this snippet to your pom:
 
 ```
 	<dependency>
@@ -40,7 +40,7 @@ The BlockChyp SDK is in Maven's repo 1.  Just add this snippet to your pom:
 
 #### Gradle
 
-For the hipster's among you who've moved up to Gradle, try adding this snippet under dependencies in your Gradle build file.
+For the hipsters among you who've moved up to Gradle, try adding this snippet under dependencies in your Gradle build file.
 
 ```
 	compile group: 'com.blockchyp', name: 'blockchyp-java', version:'1.0.0'
@@ -213,12 +213,15 @@ public class SpringConfigExample {
 We designed this SDK to work out of the box with no special configuration for those developers who never read this
 (most developers, we assume), but there are a few recommended best practices for production use.
 
-By default, the Java SDK communicates with terminals without SSL or TLS.  The reason for this is that BlockChyp terminals
+By default, the Java SDK communicates with terminals without SSL or TLS.  (Gateway communication is always TLS.)  The reason for 
+this is that BlockChyp terminals
 run on private networks where the standard root certificate authorities cannot be used and it's difficult, if not impossible,
 to add new root CA's in Java programmatically.  We recommend you install our terminal root CA as a trusted CA and turn 
 https on in your client.  In order to provide some extra protection in situations where developers choose not to do this, 
-the SDK uses transient credentials when communicating with terminals.
+the SDK uses transient credentials when communicating with terminals in order to prevent exposing real merchant credentials.
 
+
+##### BlockChyp Root Certificate For Private Terminal Networks:
 ```
 -----BEGIN CERTIFICATE-----
 MIIFAjCCAuqgAwIBAgIBATANBgkqhkiG9w0BAQsFADAgMR4wHAYDVQQDDBVCbG9j
@@ -251,4 +254,288 @@ jD1XNpXvgH2k91jjsK67khN+4bWoFBsfrMYt6vgjtXyv0kf12y0=
 -----END CERTIFICATE-----
 ```
 
+## Transaction Code Examples
 
+You don't want to read words.  You want examples.  Here's a quick rundown of the stuff you can do with BlockChyp's Java
+SDK.  Checkout the javadocs for more details.
+
+#### Charge
+
+This transaction is the basic authorize and capture transaction.
+
+```
+        AuthorizationRequest request = new AuthorizationRequest();
+        request.setTransactionRef("your invoice or tender id");
+        request.setTerminalName("Test Terminal");
+        request.setAmount("50.00");
+
+        AuthorizationResponse response = blockchypClient.charge(request);
+        
+        if (response.isApproved()) {
+            System.out.println("Approved!");
+        }
+        
+        String txId = response.getTransactionId(); //store this for refunding or voiding later
+
+```
+
+
+#### Preauth
+
+This transaction preauthorizes a transaction.
+
+```
+        AuthorizationRequest request = new AuthorizationRequest();
+        request.setTransactionRef("your invoice or tender id");
+        request.setTerminalName("Test Terminal");
+        request.setAmount("50.00");
+
+        AuthorizationResponse response = blockchypClient.preauth(request);
+        
+        if (response.isApproved()) {
+            System.out.println("Approved!");
+        }
+        
+        String txId = response.getTransactionId(); //store this for capturing later
+
+```
+
+#### Capture
+
+This one captures a preauth.  Can be for a different amount than the original authorization, optionally with a tip adjustment.
+
+```
+        CaptureRequest request = new CaptureRequest();
+        request.setTransactionId("previous transaction id");
+        request.setTipAmount("5.00"); //optional tip amount
+        request.setAmount("55.00"); //total including the tip
+
+        CaptureResponse response = blockchypClient.capture(request);
+        
+        if (response.isApproved()) {
+            System.out.println("Approved!");
+        }
+```
+
+#### Enroll
+
+This captures a payment method on the terminal and then enrolls it in the token vault.  
+You can then use the token for recurring payments.
+
+```
+        AuthorizationRequest request = new AuthorizationRequest();
+        request.setTransactionRef("your invoice or tender id");
+        request.setTerminalName("Test Terminal");
+
+        AuthorizationResponse response = blockchypClient.enroll(request);
+        
+        if (response.isApproved()) {
+            System.out.println("Approved!");
+        }
+        
+        String token = response.getToken(); //here's your token!
+```
+
+#### Refunds the Right Way
+
+If you need to execute a refund, the best way is to do so using the transaction id from the transaction you're refunding.
+This lowers the surface area for fraud and makes refund easily traceable to the original purchase.
+
+```
+        RefundRequest request = new RefundRequest();
+        request.setTransactionId("previous transaction id");
+        request.setAmount("25.00"); //could be a reduced amount if it's a partial refund
+
+        AuthorizationResponse response = blockchypClient.refund(request);
+        
+        if (response.isApproved()) {
+            System.out.println("Approved!");
+        }
+```
+
+#### Refunds the Wrong Way
+
+If you absolutely must do a refund without referencing the previous transaction here's how you do it.  But please don't.
+
+```
+        
+        RefundRequest request = new RefundRequest();
+        request.setTransactionRef("your own refund id");
+        request.setTerminalName("Test Terminal");
+        request.setAmount("55.00");
+
+        AuthorizationResponse response = blockchypClient.refund(request);
+        
+        if (response.isApproved()) {
+            System.out.println("Approved!");
+        }
+```
+
+#### Voids
+
+You can void a transaction anytime before the batch closes.  Here's an example.
+
+```
+        VoidRequest request = new VoidRequest();
+        request.setTransactionId("previous transaction id");
+
+        VoidResponse response = blockchypClient.voidTx(request);
+        
+        if (response.isApproved()) {
+            System.out.println("Approved!");
+        }
+```
+
+#### Time Out Reversals
+
+We love time out reversals.  Don't be afraid to use them whenever a request to a BlockChyp terminal times out. You have up to two minutes to reverse any transaction.
+The only caveat is that you must use assign transactionRef values when you build the original request.  Otherwise, we have no real way of knowing which transaction
+you're trying to reverse because we may not have assigned it an id yet.  And if we did assign it an id, you wouldn't know what it is because your request to the 
+terminal timed out before you got a response.
+
+```
+        AuthorizationRequest request = new AuthorizationRequest();
+        request.setTransactionRef("your invoice or tender id");
+        request.setTerminalName("Test Terminal");
+        request.setAmount("50.00");
+
+        try {
+            AuthorizationResponse response = blockchypClient.charge(request);
+            
+            if (response.isApproved()) {
+                System.out.println("Approved!");
+            }
+        } catch (TimeoutException te) {
+            //nope
+            AuthorizationResponse response = blockchypClient.reverse(request);
+            
+           if (response.isApproved()) {
+               //blockchyp authorized the transaction the first time
+               //but it's now been reversed
+           } else {
+               //blockchyp never recieved the transaction
+           }
+        }
+```
+
+
+#### Batch Closure
+
+By default, batches always close at 3 AM in the merchant's local time zone.  You can adjust this in the dashboard or turn off automatic batching.
+In which case, you'll need this code snippet to close out a batch programmatically.
+
+```
+        CloseBatchRequest request = new CloseBatchRequest();
+
+        CloseBatchResponse response = blockchypClient.closeBatch(request);
+        
+        if (response.isSuccess()) {
+            System.out.println("Batch closed successfully!");
+            System.out.println(response.getCapturedTotal()); //the amount of the expected deposit
+            System.out.println(response.getOpenPreauths()); //the total of preauths opened during the batch that weren't captured
+        }
+```
+
+#### Heartbeat
+
+This method is used primarily to test connectivity with the gateway.  But it also returns a timestamp and 
+some blockchain stuff you might find interesting.  Pro Tip: If merchantPk is non null in the response, your
+credentials are valid.
+
+```
+        HeartbeatResponse response = blockchypClient.heartbeat(false);
+        
+        if (response.isSuccess()) {
+            //the blockchyp gateway is up
+        }
+        
+        if (response.getMerchantPk() != null) {
+            //your gateway credentials are valid
+        }
+```
+
+#### Terminal Ping
+
+This gives you the ability to test if communication with a terminal is possible.
+
+```
+        PingRequest request = new PingRequest();
+        request.setTerminalName("Test Terminal");
+        
+        
+        Acknowledgement ack = blockchypClient.ping(request);
+        
+        if (ack.isSuccess()) {
+            //the terminal is up and accessible!
+        }     
+```
+
+#### Terminal Line Item Display
+
+This fun option gives you the ability to display line items and totals on the terminals as orders
+are scanned or entered.  Use liberally.
+
+```
+        TransactionDisplayRequest request = new TransactionDisplayRequest();
+        request.setTerminalName("Test Terminal");
+        
+        TransactionDisplayDiscount discount = new TransactionDisplayDiscount();
+        discount.setAmount("5.00");
+        discount.setDescription("Member Discount");
+        TransactionDisplayItem item = new TransactionDisplayItem();
+        item.addDiscount(discount);
+        item.setDescription("Leki Trekking Poles");  // these things saved Josiah's life once
+        item.setPrice("150.00");
+        item.setQuantity(1f);
+        item.setExtended("145.00");
+       
+        
+        TransactionDisplayTransaction tx = new TransactionDisplayTransaction();
+        tx.addItem(item);
+        tx.setSubtotal("145");
+        tx.setTax("0.00");        
+        request.setTransaction(tx);
+
+        // newTransactionDisplay() replaces the terminal contents
+        Acknowledgement ack = blockchypClient.newTransactionDisplay(request); 
+     
+        request = new TransactionDisplayRequest();
+        request.setTerminalName("Test Terminal");
+        
+        item = new TransactionDisplayItem();
+        item.setDescription("Northwest Forest Pass");  //you'll get a free one if you work here
+        item.setPrice("30.00");
+        item.setQuantity(1f);
+        item.setExtended("30.00");
+        
+        tx.setSubtotal("175.00");
+        tx.setTax("0.00");        
+        tx.setTotal("175.00");
+
+        // updateTransactionDisplay() adds more line items to the display
+        ack = blockchypClient.updateTransactionDisplay(request);
+```
+
+#### Clearing The Terminal
+
+This example shows you how to clear and reset the terminal.  The line item display will be cleared and any in progress transaction will be cancelled.
+
+```
+        ClearTerminalRequest request = new ClearTerminalRequest();
+        request.setTerminalName("Test Terminal");
+
+        Acknowledgement ack = blockchypClient.clear(request);
+        
+        if (ack.isSuccess()) {
+            System.out.println("Terminal?  What terminal?");
+        }
+```
+
+#### Terminal Messages
+
+This one displays a message on the terminal.  These might be little thank you's or some kind of promotional 
+message.  The message is displayed for thirty seconds before the terminal is placed in the idle state.
+
+```
+
+```
