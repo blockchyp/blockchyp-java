@@ -9,6 +9,30 @@ public class APICredentials {
     private String apiKey;
     private String bearerToken;
     private String signingKey;
+    
+    
+    /**
+     * Default constructor.
+     */
+    public APICredentials() {
+        
+    }
+    
+    
+    /**
+     * Alternate constructor that initializes all the credential fields.
+     * @param apiKey - the API key
+     * @param bearerToken - the bearer token
+     * @param signingKey - the signing key.
+     */
+    public APICredentials(String apiKey, String bearerToken, String signingKey) {
+        super();
+        this.apiKey = apiKey;
+        this.bearerToken = bearerToken;
+        this.signingKey = signingKey;
+    }
+
+
 
     /**
      * Returns the API key.

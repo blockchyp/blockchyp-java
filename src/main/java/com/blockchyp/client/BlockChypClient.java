@@ -58,7 +58,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 /**
  * This is the main class Java developers will interact with. You can
  * instantiate this class directly or use it with a dependency injection
- * framework like Spring or Dropwizard. Most developers will only need to inject
+ * framework like Spring or Guice. Most developers will only need to inject
  * credentials, but you may also want to override default endpoints if you're
  * targeting non production BlockChyp systems (which is unlikely).
  * 

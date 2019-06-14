@@ -8,11 +8,20 @@ avoided some of the newer Java features we love like streams and generics in ord
 all the way back to Java 1.6.
 
 We've tried to avoid introducing classpath problems for you whenever possible.  HTTP interaction is done using
-commons-httpclient-3.1 and we use also use commons-lang, commons-io, and commons-codec.  We're using the Bouncy Castle 
+commons-httpclient-3.1 and we also use commons-lang, commons-io, and commons-codec.  We're using the Bouncy Castle 
 JCE provider for encryption services, but we don't use any Bouncy Castle specific classes so if you exclude this 
 dependency you should still be fine with the standard Java stuff.
 
-## Getting the Code
+## Getting a Developer Kit
+
+If you don't already have a test terminal, login to the BlockChyp dashboard and order a developer developer terminal 
+kit.  You'll get a swanky new Equinox Luxe 8500i terminal and a set of test cards.
+
+If you don't have BlockChyp dashboard access, contact us at support@blockchyp.com to get setup.  Right now, developer
+accounts are available by invitation only.  Just ping us and if we deem you worthy, we'll set you up with a developer account.
+Don't worry.  We're pretty lenient when it comes to deeming.
+
+## Getting the SDK
 
 There are several techniques for getting your hands on the SDK.  Most developers use a dependency management system like
 Maven or Gradle.
@@ -53,6 +62,149 @@ and run `mvn package` to build a jar.
 We strongly recommend you get BlockChyp from the Maven repository, but just in case you want a jar, you can download one right here on 
 Github from releases.
 
+
+## Using the SDK
+
+Once the BlockChyp SDK is in your classpath, you can start using it to run transaction.  All interaction with BlockChyp is done via the BlockChypClient class.
+
+Just instantiate the BlockChypClient class, add your credentials and start charging.  Here's an example..
+
+```
+package com.blockchyp.examples;
+
+import com.blockchyp.client.BlockChypClient;
+import com.blockchyp.client.dto.APICredentials;
+import com.blockchyp.client.dto.AuthorizationRequest;
+import com.blockchyp.client.dto.AuthorizationResponse;
+
+public class HelloBlockChyp {
+    
+    
+    public static void main(String[] args) throws Exception {
+        
+        
+        APICredentials creds = new APICredentials("APIKEY", "BEARER TOKEN", "SIGNING_KEY");
+        
+        BlockChypClient client = new BlockChypClient(creds);
+        
+        AuthorizationRequest request = new AuthorizationRequest();
+        request.setTerminalName("Test Terminal");
+        request.setAmount("50.00");
+        
+        
+        AuthorizationResponse response = client.charge(request);
+        
+        if (response.isApproved()) {
+            System.out.println("Approved!  Auth Code: " + response.getAuthCode());
+        }
+        
+        
+    }
+
+}
+```
+
+The above code is sufficient for running a basic charge transaction against a terminal.  You don't need to keep track of termina IP addresses or anything like that.
+Our terminal routing system, which is essentially a DNS system for payment terminals on private networks, handles everything for you.
+
+#### What About Spring?
+
+Don't worry.  We've got you covered.  The BlockChypClient was designed to be easy to use with Spring.  We're former Spring developers ourselves.
+
+If you're still using XML based configuration for Spring, you'll need a snippet like this...
+
+```
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+   
+   <bean id="blockchypCredentials" class="com.blockchyp.client.dto.APICredentials">
+      <property name="apiKey" value="API_KEY_VALUE"/>
+      <property name="bearerToken" value="BEARER_TOKEN"/>
+      <property name="signingKey" value="SIGNING_KEY"/>
+   </bean>
+
+   <bean id="blockchypClient" class="com.blockchyp.client.BlockChypClient">
+      <property name="defaultCredentials" ref="blockchypCredentials"/>
+   </bean>
+   
+   
+   <bean id="blockchypSpringExample" class="com.blockchyp.examples.SpringExample">
+      <property name="blockchypClient" ref="blockchypClient"/>
+   </bean>
+
+   
+</beans>
+```
+
+This is pretty conventional Spring dependency injection.  The example below shows the Java code behind the above example.
+If you're autowiring wherever possible, you can probably leave out the last bean definition from the XML sample above.
+
+```
+package com.blockchyp.examples;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.blockchyp.client.BlockChypClient;
+import com.blockchyp.client.dto.AuthorizationRequest;
+import com.blockchyp.client.dto.AuthorizationResponse;
+
+public class SpringExample {
+    
+    @Autowired
+    private BlockChypClient blockchypClient;
+    
+    public boolean charge(String terminalName, String amount) throws Exception {
+        
+        AuthorizationRequest request = new AuthorizationRequest();
+        request.setTerminalName("Test Terminal");
+        request.setAmount("50.00");
+        
+        
+        AuthorizationResponse response = blockchypClient.charge(request);
+        
+        return response.isApproved();
+        
+    }
+
+}
+```
+
+#### Spring Boot or Configuration Without XML
+
+We get it.  You're over XML.  We think XML's been unfairly maligned as a format for configuration, but we know we can't fight progress
+and we've stopped using it too.
+
+Here's an example of how to do all of the above without XML.
+
+```
+package com.blockchyp.examples;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import com.blockchyp.client.BlockChypClient;
+import com.blockchyp.client.dto.APICredentials;
+
+@Configuration
+public class SpringConfigExample {
+
+    @Bean
+    public APICredentials blockchypCredentials() {
+        return new APICredentials("APIKEY", "BEARER TOKEN", "SIGNING_KEY");
+    }
+    
+    @Bean
+    public BlockChypClient blockchypClient() {
+        return new BlockChypClient(blockchypCredentials());
+    } 
+    
+}
+```
 
 ## Best Practices For Production Use
 
