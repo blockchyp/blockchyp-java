@@ -3,8 +3,6 @@ package com.blockchyp.client.dto;
 /**
  * Models payment method information associated with a transaction response.
  * 
- * @author jeffreydpayne
- *
  */
 public class ApprovalResponseWithPaymentMethod extends ApprovalResponseWithAmounts {
 

@@ -6,8 +6,6 @@ import java.util.Date;
  * Models metadata about a terminal route, including it's location on the local network
  * and transient credentials.
  * 
- * @author jeffreydpayne
- *
  */
 
 public class TerminalRouteResponse extends Acknowledgement {

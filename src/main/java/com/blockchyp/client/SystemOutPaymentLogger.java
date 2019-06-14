@@ -4,8 +4,6 @@ package com.blockchyp.client;
  * Very minimal implementation of PaymentLogger. We recommend you provide your
  * own implementation that hooks into your existing logging framework.
  * 
- * @author jeffreydpayne
- *
  */
 
 public class SystemOutPaymentLogger implements PaymentLogger {

@@ -3,8 +3,6 @@ package com.blockchyp.client.dto;
 /**
  * Models the settings needed to display a message on the screen.
  * 
- * @author jeffreydpayne
- */
 public class MessageRequest extends CoreRequest implements ITerminalReference {
 
     private String terminalName;

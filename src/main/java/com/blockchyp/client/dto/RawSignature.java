@@ -4,8 +4,6 @@ package com.blockchyp.client.dto;
  * This class models the raw parameters of an elliptic curve signature.  This is provided for 
  * situations where encoding abstractions are difficult to work with, which in Java is always.
  * 
- * @author jeffreydpayne
- *
  */
 public class RawSignature {
     

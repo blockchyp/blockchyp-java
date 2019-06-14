@@ -3,8 +3,6 @@ package com.blockchyp.client.dto;
 /**
  * Models transaction discount information for the line item display.
  * 
- * @author jeffreydpayne
- *
  */
 public class TransactionDisplayDiscount {
 

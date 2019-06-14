@@ -2,8 +2,6 @@ package com.blockchyp.client.dto;
 
 /**
  * Models information needed for boolean prompt support.
- * @author jeffreydpayne
- *
  */
 public class BooleanPromptRequest extends CoreRequest implements ITerminalReference {
 

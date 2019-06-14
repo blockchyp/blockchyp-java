@@ -3,8 +3,6 @@ package com.blockchyp.client.dto;
 /**
  * Voids a previous transaction in the current batch.
  * 
- * @author jeffreydpayne
- *
  */
 
 public class VoidRequest extends CoreRequest {

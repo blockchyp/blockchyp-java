@@ -8,8 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * 
  * We recommend that you never use PAN and track data as this would put you in PCI scope.
  * 
- * @author jeffreydpayne
- *
  */
 
 public class PaymentRequest extends AmountRequest implements ITerminalReference {

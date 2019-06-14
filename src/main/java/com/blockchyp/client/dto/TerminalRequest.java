@@ -6,8 +6,6 @@ package com.blockchyp.client.dto;
  * 
  * The credentials should almost always be transient credentials.
  * 
- * @author jeffreydpayne
- *
  */
 public class TerminalRequest {
 

@@ -7,8 +7,6 @@ package com.blockchyp.client;
  * implementation of this interface for whatever logging framework you like
  * best. By default, we'll just dump everything to stdout.
  * 
- * @author jeffreydpayne
- *
  */
 
 public interface PaymentLogger {

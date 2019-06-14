@@ -4,8 +4,6 @@ package com.blockchyp.client.dto;
 /**
  * Models the amount data for transaction responses that have associated currency amounts.
  * 
- * @author jeffreydpayne
- *
  */
 public class ApprovalResponseWithAmounts extends ApprovalResponse {
 

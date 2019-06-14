@@ -4,8 +4,6 @@ import java.util.Map;
 
 /**
  * Models the full detail needed for authorization requests.
- * @author jeffreydpayne
- *
  */
 
 public class AuthorizationRequest extends PaymentRequest {

@@ -3,8 +3,6 @@ package com.blockchyp.client.dto;
 /**
  * Models the information needed to call the text prompt API.
  * 
- * @author jeffreydpayne
- *
  */
 public class TextPromptRequest extends CoreRequest implements ITerminalReference {
 

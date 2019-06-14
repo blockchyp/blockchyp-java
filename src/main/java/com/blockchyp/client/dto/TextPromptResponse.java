@@ -2,8 +2,6 @@ package com.blockchyp.client.dto;
 
 /**
  * Models results from a text prompt on the teminal.
- * @author jeffreydpayne
- *
  */
 public class TextPromptResponse extends Acknowledgement {
 

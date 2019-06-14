@@ -4,8 +4,6 @@ package com.blockchyp.client.dto;
  * Used to reset a terminal.  Clears transactions in progress and line item display, returning
  * the terminal to the idle state.
  * 
- * @author jeffreydpayne
- *
  */
 public class ClearTerminalRequest extends CoreRequest implements ITerminalReference {
 

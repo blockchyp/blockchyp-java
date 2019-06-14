@@ -3,8 +3,6 @@ package com.blockchyp.client.dto;
 /**
  * Adds amount information to requests that require amounts to be specified.
  * 
- * @author jeffreydpayne
- *
  */
 
 public class AmountRequest extends CoreRequest {

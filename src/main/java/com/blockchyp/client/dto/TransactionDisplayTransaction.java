@@ -6,8 +6,6 @@ import java.util.Collection;
 /**
  * Models a transaction to be displayed on the terminal line item display.
  * 
- * @author jeffreydpayne
- *
  */
 
 public class TransactionDisplayTransaction {

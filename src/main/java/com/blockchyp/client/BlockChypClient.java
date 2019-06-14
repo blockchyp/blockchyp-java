@@ -75,8 +75,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * ability to override things if they need special behavior of have weird
  * classpath issues.
  * 
- * @author jeffreydpayne
- *
  */
 
 public class BlockChypClient {

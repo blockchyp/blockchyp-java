@@ -27,8 +27,6 @@ import org.apache.commons.lang.StringUtils;
  * It handles the authorization headers required for direct gateway requests along 
  * with AES encryption for the offline route cache.
  * 
- * @author jeffreydpayne
- *
  */
 
 public final class CryptoUtils {

@@ -4,8 +4,6 @@ package com.blockchyp.client.dto;
  * This class models the raw parameters of an elliptic curve public key.  This is provided for 
  * situations where Base58 encoding is unavailable or difficult to work with.
  * 
- * @author jeffreydpayne
- *
  */
 public class RawPublicKey {
     

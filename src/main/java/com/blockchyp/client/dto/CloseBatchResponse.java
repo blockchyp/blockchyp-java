@@ -6,8 +6,6 @@ import java.util.Map;
 /**
  * Models the response to a close batch request.
  * 
- * @author jeffreydpayne
- *
  */
 
 public class CloseBatchResponse extends Acknowledgement {

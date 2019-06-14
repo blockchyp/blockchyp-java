@@ -5,8 +5,6 @@ package com.blockchyp.client.dto;
  * Similar to payment requests except that it's possible (and recommended)
  * for refunds to reference a transaction instead of providing card data.
  * 
- * @author jeffreydpayne
- *
  */
 
 public class RefundRequest extends PaymentRequest {

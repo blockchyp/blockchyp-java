@@ -5,8 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * This class models information we recommend you put on your receipts.
  * 
- * @author jeffreydpayne
- *
  */
 
 public class ReceiptSuggestions {

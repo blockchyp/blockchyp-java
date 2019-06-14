@@ -3,8 +3,6 @@ package com.blockchyp.client.dto;
 /**
  * This class models a request to update the transaction line item display on the terminal.
  * 
- * @author jeffreydpayne
- *
  */
 public class TransactionDisplayRequest extends CoreRequest implements ITerminalReference {
 

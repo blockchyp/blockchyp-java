@@ -3,8 +3,6 @@ package com.blockchyp.client.dto;
 /**
  * Encapsulates the big three BlockChyp API credentials.
  * 
- * @author jeffreydpayne
- *
  */
 public class APICredentials {
 

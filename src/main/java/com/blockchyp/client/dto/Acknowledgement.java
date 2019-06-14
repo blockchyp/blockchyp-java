@@ -4,8 +4,6 @@ package com.blockchyp.client.dto;
  * Models basic response information. This is typically used as a base class for
  * most API responses.
  * 
- * @author jeffreydpayne
- *
  */
 public class Acknowledgement {
 

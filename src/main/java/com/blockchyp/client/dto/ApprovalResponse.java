@@ -3,8 +3,6 @@ package com.blockchyp.client.dto;
 /**
  * This is a primitive base class for responses that include some kind of network approval information.
  * 
- * @author jeffreydpayne
- *
  */
 public class ApprovalResponse extends CoreResponse {
 

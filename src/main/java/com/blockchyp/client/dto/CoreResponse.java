@@ -3,8 +3,6 @@ package com.blockchyp.client.dto;
 /**
  * Models elements almost all API responses have in common.
  * 
- * @author jeffreydpayne
- *
  */
 public class CoreResponse {
 

@@ -2,8 +2,6 @@ package com.blockchyp.client.dto;
 
 /**
  * Models the response for a terminal boolean prompt.
- * @author jeffreydpayne
- *
  */
 public class BooleanPromptResponse extends Acknowledgement {
 

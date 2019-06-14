@@ -8,8 +8,6 @@ import java.util.Date;
  * you'll get a response, but without a merchant public key. The idea here is to
  * make it easy to troubleshoot and test the authentication code.
  * 
- * @author jeffreydpayne
- *
  */
 public class HeartbeatResponse extends Acknowledgement {
 

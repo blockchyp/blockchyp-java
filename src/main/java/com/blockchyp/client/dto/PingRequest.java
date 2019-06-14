@@ -3,8 +3,6 @@ package com.blockchyp.client.dto;
 /**
  * Models a ping request to test connectivity with a terminal.
  * 
- * @author jeffreydpayne
- *
  */
 public class PingRequest extends CoreRequest implements ITerminalReference {
 

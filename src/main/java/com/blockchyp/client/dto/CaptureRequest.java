@@ -2,8 +2,6 @@ package com.blockchyp.client.dto;
 
 /**
  * Models the information needed to capture a preauthorization.
- * @author jeffreydpayne
- *
  */
 public class CaptureRequest extends AmountRequest {
 

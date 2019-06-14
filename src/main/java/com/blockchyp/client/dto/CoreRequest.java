@@ -3,8 +3,6 @@ package com.blockchyp.client.dto;
 /**
  * Models common information for all SDK requests.
  * 
- * @author jeffreydpayne
- *
  */
 public class CoreRequest {
 
