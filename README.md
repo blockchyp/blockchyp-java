@@ -537,5 +537,53 @@ This one displays a message on the terminal.  These might be little thank you's 
 message.  The message is displayed for thirty seconds before the terminal is placed in the idle state.
 
 ```
+        MessageRequest request = new MessageRequest();
+        request.setTerminalName("Test Terminal");
+        request.setMessage("Something derogatory about about Verifone.");
 
+        Acknowledgement ack = blockchypClient.message(request);
+        
+        if (ack.isSuccess()) {
+            System.out.println("The truth is now out there.");
+        }
+```
+
+#### Boolean Prompts
+
+This one lets you ask the user yes or no questions.  You might do this for suggestive selling or maybe
+just if the POS is feeling lonely.
+
+```
+        BooleanPromptRequest request = new BooleanPromptRequest();
+        request.setTerminalName("Test Terminal");
+        request.setPrompt("Is Game of Thrones overrated?");
+
+        BooleanPromptResponse response = blockchypClient.booleanPrompt(request);
+        
+        if (response.isResponse()) {
+            // Well, at least Josiah agrees with you.
+        } else {
+            // Night gathers, and now your watch begins.
+        }    
+```
+
+
+#### Text Prompts
+
+This option allows you to prompt the user for text or numeric data.  As of this writing, you can use this 
+email to capture email address, phone numbers, customer numbers, and rewards numbers.  
+
+Unlike boolean prompts, which support freeform prompt text, PCI rules restrict free form prompts when text can
+be entered because you might prompt the user for card numbers or pins - and that would be bad.
+
+```
+        TextPromptRequest request = new TextPromptRequest();
+        request.setTerminalName("Test Terminal");
+        request.setPromptType("email");
+
+        TextPromptResponse response = blockchypClient.textPrompt(request);
+        
+        if (response.isSuccess()) {
+            System.out.println("The user's email is " + response.getResponse());
+        }       
 ```
