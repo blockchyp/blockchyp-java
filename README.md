@@ -208,7 +208,7 @@ public class SpringConfigExample {
 }
 ```
 
-## Best Practices For Production Use
+## SSL/TLS Configuration
 
 We designed this SDK to work out of the box with no special configuration for those developers who never read this
 (most developers, we assume), but there are a few recommended best practices for production use.
