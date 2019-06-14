@@ -65,7 +65,7 @@ Github from releases.
 
 ## Using the SDK
 
-Once the BlockChyp SDK is in your classpath, you can start using it to run transaction.  All interaction with BlockChyp is done via the BlockChypClient class.
+Once the BlockChyp SDK is in your classpath, you can start using it to run transactions.  All interaction with BlockChyp is done via the BlockChypClient class.
 
 Just instantiate the BlockChypClient class, add your credentials and start charging.  Here's an example..
 
@@ -104,12 +104,12 @@ public class HelloBlockChyp {
 }
 ```
 
-The above code is sufficient for running a basic charge transaction against a terminal.  You don't need to keep track of termina IP addresses or anything like that.
+The above code is sufficient for running a basic charge transaction against a terminal.  You don't need to keep track of terminal IP addresses or anything like that.
 Our terminal routing system, which is essentially a DNS system for payment terminals on private networks, handles everything for you.
 
 #### What About Spring?
 
-Don't worry.  We've got you covered.  The BlockChypClient was designed to be easy to use with Spring.  We're former Spring developers ourselves.
+Don't worry.  We've got you covered.  The BlockChypClient was designed to be easy to use with Spring or other dependency injection frameworks.  We're former Spring developers ourselves.
 
 If you're still using XML based configuration for Spring, you'll need a snippet like this...
 
@@ -143,6 +143,8 @@ If you're still using XML based configuration for Spring, you'll need a snippet 
 
 This is pretty conventional Spring dependency injection.  The example below shows the Java code behind the above example.
 If you're autowiring wherever possible, you can probably leave out the last bean definition from the XML sample above.
+Also note that APICredentials and BlockChypClient can also be initialized via constructors if you prefer constructor 
+based dependency injection.
 
 ```
 package com.blockchyp.examples;
