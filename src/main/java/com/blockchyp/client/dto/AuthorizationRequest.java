@@ -73,7 +73,7 @@ public class AuthorizationRequest extends PaymentRequest {
      * Returns a map of alternate currencies to their prices in each currencies.  Used
      * to support cryptocurrencies.
      * 
-     * @return - a Map of strings to strings.  In Java 1.7, it would be Map<String, String>.
+     * @return - a Map of strings to strings.  In Java 1.7, it would be Map&lt;String, String&gt;.
      */
     @SuppressWarnings("rawtypes")
     public Map getAltPrices() {
@@ -81,10 +81,10 @@ public class AuthorizationRequest extends PaymentRequest {
     }
 
     /**
-     * A Map<String, String> that maps alternate currencies to their prices in each currencies.  Used
+     * A Map&lt;String, String&gt; that maps alternate currencies to their prices in each currencies.  Used
      * to support cryptocurrencies.
      * 
-     * @param altPrices - a Map of strings to strings.  In Java 1.7, it would be Map<String, String>.
+     * @param altPrices - a Map of strings to strings.  In Java 1.7, it would be Map&lt;String, String&gt;.
      */
     @SuppressWarnings("rawtypes")
     public void setAltPrices(Map altPrices) {
