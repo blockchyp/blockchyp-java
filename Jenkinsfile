@@ -22,6 +22,27 @@ pipeline {
         sh 'mvn clean package'
       }
     }
+    stage('Docs') {
+      steps {
+        sh 'mvn javadoc:javadoc'
+        script {
+          if (env.BRANCH_NAME == 'master') {
+            withAWS(
+              role: docsDeploymentRole(),
+              roleSessionName: 'DocsJavaDeployment',
+            ) {
+              s3Upload(
+                bucket: 'blockchyp-prod-docs',
+                acl: 'Private',
+                workingDir: "${workspace}/target/site/apidocs",
+                includePathPattern: "**/*",
+                path: "sdks/java/latest/"
+              )
+            }
+          }
+        }
+      }
+    }
     stage('SonarQube') {
       steps {
         withSonarQubeEnv('SonarQubeDev') {
