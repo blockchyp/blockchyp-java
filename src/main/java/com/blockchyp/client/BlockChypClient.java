@@ -893,6 +893,15 @@ public class BlockChypClient {
         TerminalRouteResponse route = resolveTerminalRoute(terminalName);
 
         PostMethod method = new PostMethod(resolveTerminalHost(route) + path);
+        
+        if (request instanceof CoreRequest) {
+            CoreRequest coreRequest = (CoreRequest)request;
+            if (coreRequest.getTimeout() > 0) {
+                method.getParams().setSoTimeout(coreRequest.getTimeout());
+            }
+        }
+        
+
 
         return finishTerminalRequest(route, request, method, responseType);
 
@@ -991,6 +1000,14 @@ public class BlockChypClient {
                 "application/json", "UTF-8");
 
         method.setRequestEntity(requestEntity);
+        
+        if (request instanceof CoreRequest) {
+            CoreRequest coreRequest = (CoreRequest)request;
+            if (coreRequest.getTimeout() > 0) {
+                method.getParams().setSoTimeout(coreRequest.getTimeout());
+            }
+        }
+        
 
         return finishGatewayRequest(method, responseClass);
 
