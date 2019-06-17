@@ -13,14 +13,14 @@ public class RawPublicKey {
     
     /**
      * Returns the name of the standard curve.  This is almost always 'P256'.
-     * @return - name of the standard curve.
+     * @return name of the standard curve.
      */
     public String getCurve() {
         return curve;
     }
     /**
      * Sets the name of the standard curve.
-     * @param curve - name of the standard curve.
+     * @param curve name of the standard curve.
      */
     public void setCurve(String curve) {
         this.curve = curve;
@@ -28,28 +28,28 @@ public class RawPublicKey {
     
     /**
      * Returns the X coordinate as hex.
-     * @return - the X coordinate.
+     * @return the X coordinate.
      */
     public String getX() {
         return x;
     }
     /**
      * Sets the X coordinate in hex.
-     * @param x - the X coordinate.
+     * @param x the X coordinate.
      */
     public void setX(String x) {
         this.x = x;
     }
     /**
      * Returns the Y coordinate as hex.
-     * @return - the Y coordinate.
+     * @return the Y coordinate.
      */
     public String getY() {
         return y;
     }
     /**
      * Sets the Y coordinate in hex.
-     * @param y - the Y coordinate.
+     * @param y the Y coordinate.
      */
     public void setY(String y) {
         this.y = y;

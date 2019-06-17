@@ -16,7 +16,7 @@ public class TerminalRequest {
 
     /**
      * Returns the API key.
-     * @return - the API key.
+     * @return the API key.
      */
     public String getApiKey() {
         return apiKey;
@@ -24,7 +24,7 @@ public class TerminalRequest {
 
     /**
      * Sets the API key.
-     * @param apiKey - the API key.
+     * @param apiKey the API key.
      */
     public void setApiKey(String apiKey) {
         this.apiKey = apiKey;
@@ -32,7 +32,7 @@ public class TerminalRequest {
 
     /**
      * Returns the bearer token.
-     * @return - bearer token.
+     * @return bearer token.
      */
     public String getBearerToken() {
         return bearerToken;
@@ -40,7 +40,7 @@ public class TerminalRequest {
 
     /**
      * Sets the bearer token.
-     * @param bearerToken - the bearer token.
+     * @param bearerToken the bearer token.
      */
     public void setBearerToken(String bearerToken) {
         this.bearerToken = bearerToken;
@@ -48,7 +48,7 @@ public class TerminalRequest {
 
     /**
      * Returns the signing key.
-     * @return - the signing key.
+     * @return the signing key.
      */
     public String getSigningKey() {
         return signingKey;
@@ -56,7 +56,7 @@ public class TerminalRequest {
 
     /**
      * Sets the signing key.
-     * @param signingKey - the signing key.
+     * @param signingKey the signing key.
      */
     public void setSigningKey(String signingKey) {
         this.signingKey = signingKey;
@@ -64,7 +64,7 @@ public class TerminalRequest {
 
     /**
      * Returns the underlying request object.
-     * @return - the underlying request. 
+     * @return the underlying request. 
      */
     public Object getRequest() {
         return request;
@@ -72,7 +72,7 @@ public class TerminalRequest {
 
     /**
      * Sets the underlying request.
-     * @param request - the underlying request.
+     * @param request the underlying request.
      */
     public void setRequest(Object request) {
         this.request = request;

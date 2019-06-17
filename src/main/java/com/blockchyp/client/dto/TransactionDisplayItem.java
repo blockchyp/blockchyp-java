@@ -19,7 +19,7 @@ public class TransactionDisplayItem {
 
     /**
      * Returns the line item id.
-     * @return - line item id.
+     * @return line item id.
      */
     public String getId() {
         return id;
@@ -27,7 +27,7 @@ public class TransactionDisplayItem {
 
     /**
      * Sets the line item id.
-     * @param id - line item id.
+     * @param id line item id.
      */
     public void setId(String id) {
         this.id = id;
@@ -35,7 +35,7 @@ public class TransactionDisplayItem {
 
     /**
      * Returns the line item description. 
-     * @return - line item description.
+     * @return line item description.
      */
     public String getDescription() {
         return description;
@@ -43,7 +43,7 @@ public class TransactionDisplayItem {
 
     /**
      * Sets the line item description.
-     * @param description - line item description.
+     * @param description line item description.
      */
     public void setDescription(String description) {
         this.description = description;
@@ -51,7 +51,7 @@ public class TransactionDisplayItem {
 
     /**
      * Returns the undiscounted price per unit quantity.
-     * @return - price each.
+     * @return price each.
      */
     public String getPrice() {
         return price;
@@ -59,7 +59,7 @@ public class TransactionDisplayItem {
 
     /**
      * Sets the undiscounted price per unit quantity.
-     * @param price - price each.
+     * @param price price each.
      */
     public void setPrice(String price) {
         this.price = price;
@@ -67,7 +67,7 @@ public class TransactionDisplayItem {
 
     /**
      * Returns the line item quantity.
-     * @return - line item quantity.
+     * @return line item quantity.
      */
     public float getQuantity() {
         return quantity;
@@ -75,7 +75,7 @@ public class TransactionDisplayItem {
 
     /**
      * Sets the line item quantity.
-     * @param quantity - line item quantity.
+     * @param quantity line item quantity.
      */
     public void setQuantity(float quantity) {
         this.quantity = quantity;
@@ -83,7 +83,7 @@ public class TransactionDisplayItem {
 
     /**
      * Gets the extended price for a line item.
-     * @return - extended amount.
+     * @return extended amount.
      */
     public String getExtended() {
         return extended;
@@ -91,7 +91,7 @@ public class TransactionDisplayItem {
 
     /**
      * Sets the extended price.
-     * @param extended - extended amount.
+     * @param extended extended amount.
      */
     public void setExtended(String extended) {
         this.extended = extended;

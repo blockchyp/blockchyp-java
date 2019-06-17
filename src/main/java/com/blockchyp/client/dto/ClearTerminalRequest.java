@@ -11,7 +11,7 @@ public class ClearTerminalRequest extends CoreRequest implements ITerminalRefere
 
     /**
      * Returns the name of the target payment terminal.
-     * @return - payment terminal name.
+     * @return payment terminal name.
      */
     public String getTerminalName() {
         return terminalName;
@@ -19,7 +19,7 @@ public class ClearTerminalRequest extends CoreRequest implements ITerminalRefere
 
     /**
      * Sets the target payment terminal.
-     * @param terminalName - payment terminal name.
+     * @param terminalName payment terminal name.
      */
     public void setTerminalName(String terminalName) {
         this.terminalName = terminalName;

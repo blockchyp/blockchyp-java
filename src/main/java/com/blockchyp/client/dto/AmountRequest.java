@@ -15,7 +15,7 @@ public class AmountRequest extends CoreRequest {
 
     /**
      * Returns the currency code.
-     * @return - ISO currency code.
+     * @return ISO currency code.
      */
     public String getCurrencyCode() {
         return currencyCode;
@@ -23,7 +23,7 @@ public class AmountRequest extends CoreRequest {
 
     /**
      * Sets the currency code.
-     * @param currencyCode - ISO currency code.
+     * @param currencyCode ISO currency code.
      */
     public void setCurrencyCode(String currencyCode) {
         this.currencyCode = currencyCode;
@@ -31,7 +31,7 @@ public class AmountRequest extends CoreRequest {
 
     /**
      * Returns the transaction amount.
-     * @return - requested amount.
+     * @return requested amount.
      */
     public String getAmount() {
         return amount;
@@ -39,7 +39,7 @@ public class AmountRequest extends CoreRequest {
 
     /**
      * Sets the requested transaction amount.
-     * @param amount - requested amount.
+     * @param amount requested amount.
      */
     public void setAmount(String amount) {
         this.amount = amount;
@@ -48,7 +48,7 @@ public class AmountRequest extends CoreRequest {
     
     /**
      * Returns the tax exempt flag.
-     * @return - tax exempt flag.
+     * @return tax exempt flag.
      */
     public boolean isTaxExempt() {
         return taxExempt;
@@ -56,7 +56,7 @@ public class AmountRequest extends CoreRequest {
 
     /**
      * Sets the tax exempt flag.  Needed only for tax exempt Level 2 processing.
-     * @param taxExempt - tax exempt flag.
+     * @param taxExempt tax exempt flag.
      */
     public void setTaxExempt(boolean taxExempt) {
         this.taxExempt = taxExempt;
@@ -64,7 +64,7 @@ public class AmountRequest extends CoreRequest {
 
     /**
      * Returns the tip amount.
-     * @return - tip amount.
+     * @return tip amount.
      */
     public String getTipAmount() {
         return tipAmount;
@@ -72,7 +72,7 @@ public class AmountRequest extends CoreRequest {
 
     /**
      * Sets the tip amount, if there is one.
-     * @param tipAmount - tip amount.
+     * @param tipAmount tip amount.
      */
     public void setTipAmount(String tipAmount) {
         this.tipAmount = tipAmount;
@@ -88,7 +88,7 @@ public class AmountRequest extends CoreRequest {
 
     /**
      * Sets tax amount.  Required for level 2 and 3 processing.
-     * @param taxAmount - tax amount
+     * @param taxAmount tax amount
      */
     public void setTaxAmount(String taxAmount) {
         this.taxAmount = taxAmount;

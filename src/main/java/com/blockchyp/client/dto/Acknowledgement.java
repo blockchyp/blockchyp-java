@@ -13,7 +13,7 @@ public class Acknowledgement {
 
     /**
      * Gets the success flag.
-     * @return - true if the API call succeeded.
+     * @return true if the API call succeeded.
      */
     public boolean isSuccess() {
         return success;
@@ -22,7 +22,7 @@ public class Acknowledgement {
     /**
      * Sets the success flag.
      * 
-     * @param success - true if the API call succeeded.
+     * @param success true if the API call succeeded.
      */
     public void setSuccess(boolean success) {
         this.success = success;
@@ -30,7 +30,7 @@ public class Acknowledgement {
 
     /**
      * Gets a narrative description of the error, if any.
-     * @return - narrative description of any error.
+     * @return narrative description of any error.
      */
     public String getError() {
         return error;
@@ -38,7 +38,7 @@ public class Acknowledgement {
 
     /**
      * Sets a narrative description of the error, if any.
-     * @param error - narrative description of any error.
+     * @param error narrative description of any error.
      */
     public void setError(String error) {
         this.error = error;

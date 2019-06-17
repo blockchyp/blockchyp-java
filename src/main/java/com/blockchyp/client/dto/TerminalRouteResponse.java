@@ -20,8 +20,8 @@ public class TerminalRouteResponse extends Acknowledgement {
     private Date timestamp;
 
     /**
-     * Echos back the terminal name for the route lookup.
-     * @return - name of the terminal assigned at activation.
+     * Echoes back the terminal name for the route lookup.
+     * @return name of the terminal assigned at activation.
      */
     public String getTerminalName() {
         return terminalName;
@@ -29,7 +29,7 @@ public class TerminalRouteResponse extends Acknowledgement {
 
     /**
      * Sets the terminal name.
-     * @param terminalName - name of the terminal assigned at activation.
+     * @param terminalName name of the terminal assigned at activation.
      */
     public void setTerminalName(String terminalName) {
         this.terminalName = terminalName;
@@ -37,7 +37,7 @@ public class TerminalRouteResponse extends Acknowledgement {
 
     /**
      * Returns the current local IP address of the terminal on its local subnet. Updated every hour.
-     * @return  - standard IPv4 IP address.
+     * @return  standard IPv4 IP address.
      */
     public String getIpAddress() {
         return ipAddress;
@@ -45,7 +45,7 @@ public class TerminalRouteResponse extends Acknowledgement {
 
     /**
      * Sets the local IP address.
-     * @param ipAddress - standard IPv4 IP address.
+     * @param ipAddress standard IPv4 IP address.
      */
     public void setIpAddress(String ipAddress) {
         this.ipAddress = ipAddress;
@@ -55,7 +55,7 @@ public class TerminalRouteResponse extends Acknowledgement {
      * Gets the public key of the terminal.  This can be used to verify the digital signature of a terminal response and
      * detect man in the middle attacks.
      * 
-     * @return - Base58 encoded compressed public key.
+     * @return Base58 encoded compressed public key.
      */
     public String getPublicKey() {
         return publicKey;
@@ -88,7 +88,7 @@ public class TerminalRouteResponse extends Acknowledgement {
 
     /**
      * Gets the exists flag.
-     * @return - true if the terminal exists.
+     * @return true if the terminal exists.
      */
     public boolean isExists() {
         return exists;
@@ -96,17 +96,17 @@ public class TerminalRouteResponse extends Acknowledgement {
 
     /**
      * Sets the exists flag.
-     * @param exists - true if the terminal exists.
+     * @param exists true if the terminal exists.
      */
     public void setExists(boolean exists) {
         this.exists = exists;
     }
 
     /**
-     * Returns the cloud relay flag.  If true, then all requests the terminal are relayed through the 
+     * Returns the cloud relay flag.  If true, then all requests for the terminal are relayed through the 
      * payment gateway instead of sent over the local network.  This would typically be done in situations
      * where the terminal and the client application are on difference subnets.
-     * @return - true if cloud relay is enabled.
+     * @return true if cloud relay is enabled.
      */
     public boolean isCloudRelayEnabled() {
         return cloudRelayEnabled;
@@ -114,7 +114,7 @@ public class TerminalRouteResponse extends Acknowledgement {
 
     /**
      * Sets the cloud relay flag.
-     * @param cloudRelayEnabled - true if cloud relay is enabled.
+     * @param cloudRelayEnabled true if cloud relay is enabled.
      */
     public void setCloudRelayEnabled(boolean cloudRelayEnabled) {
         this.cloudRelayEnabled = cloudRelayEnabled;
@@ -140,7 +140,7 @@ public class TerminalRouteResponse extends Acknowledgement {
 
     /**
      * Gets the timestamp associated with the route request.  Used for cache expiry.
-     * @return - date and time the route request was processed.
+     * @return date and time the route request was processed.
      */
     public Date getTimestamp() {
         return timestamp;
@@ -148,7 +148,7 @@ public class TerminalRouteResponse extends Acknowledgement {
 
     /**
      * Sets the timestamp associated with the route request.  Used for cache expiry.
-     * @param timestamp - date and time the route request was processed.
+     * @param timestamp date and time the route request was processed.
      */
     public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;

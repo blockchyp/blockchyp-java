@@ -48,7 +48,7 @@ public final class CryptoUtils {
     }
 
     /**
-     * Rteurns the CryptoUtils singleton.
+     * Returns the CryptoUtils singleton.
      * @return an instance of {@link CryptoUtils}
      */
     public static CryptoUtils getInstance() {
@@ -64,8 +64,8 @@ public final class CryptoUtils {
     
     /**
      * Computes a SHA 256 hash of the given hex.
-     * @param hex - data to be hashed in hex format.
-     * @return - hex encoded hash of the input data
+     * @param hex data to be hashed in hex format.
+     * @return hex encoded hash of the input data
      */
     public String computeSHA256(String hex) {
 
@@ -81,10 +81,10 @@ public final class CryptoUtils {
     
     /**
      * Generates the big three API request headers based on the input credentials.
-     * @param apiKey - BlockChyp API Key (root or transient)
-     * @param bearerToken - BlockChyp Bearer Token (root or transient)
-     * @param signingKey - BlockChyp Signing Key (root or transient)
-     * @return - a {@link java.util.Map} containing the API request headers.
+     * @param apiKey BlockChyp API Key (root or transient)
+     * @param bearerToken BlockChyp Bearer Token (root or transient)
+     * @param signingKey BlockChyp Signing Key (root or transient)
+     * @return a {@link java.util.Map} containing the API request headers.
      */
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
@@ -134,10 +134,10 @@ public final class CryptoUtils {
     /**
      * Decrypts ciphertext previously encoded with {@link encrypt}.
      * 
-     * @param cipherText - the initialization vector and cipher text separated by a pipe character.
-     * @param key - the AES encryption to use.
-     * @return - the plain text
-     * @throws Exception - if the decryption or associated encoding operations fail.
+     * @param cipherText the initialization vector and cipher text separated by a pipe character.
+     * @param key the AES encryption to use.
+     * @return the plain text
+     * @throws Exception if the decryption or associated encoding operations fail.
      */
 
     public String decrypt(String cipherText, byte[] key) throws Exception {
@@ -158,10 +158,10 @@ public final class CryptoUtils {
      * 
      * Generates and returns a CBC initialization vector prepended to the main cipher text.
      * 
-     * @param plainText - the message to be encrypted
-     * @param key - AES encryption key
-     * @return - return hex encoded initialization vector and cipher text, pipe delimited.
-     * @throws Exception - if an error occurs during encryption or encoding.
+     * @param plainText the message to be encrypted
+     * @param key AES encryption key
+     * @return return hex encoded initialization vector and cipher text, pipe delimited.
+     * @throws Exception if an error occurs during encryption or encoding.
      */
     public String encrypt(String plainText, byte[] key) throws Exception {
 
@@ -176,7 +176,7 @@ public final class CryptoUtils {
     }
     
     /**
-     * Returns an array of random bytes of the given lenth.
+     * Returns an array of random bytes of the given length.
      * @param len Number of random bytes to return.
      * @return byte[]
      */

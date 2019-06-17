@@ -13,42 +13,42 @@ public class RawSignature {
     
     /**
      * Returns the name of the standard curve.  This is almost always 'P256'.
-     * @return - name of the standard curve.
+     * @return name of the standard curve.
      */
     public String getCurve() {
         return curve;
     }
     /**
      * Sets the name of the standard curve.
-     * @param curve - name of the standard curve.
+     * @param curve name of the standard curve.
      */
     public void setCurve(String curve) {
         this.curve = curve;
     }
     /**
      * Returns the signature's 'R' parameter as hex.
-     * @return - the R parameter
+     * @return the R parameter
      */
     public String getR() {
         return r;
     }
     /**
      * Sets the signature's 'R' parameter as hex. 
-     * @param r - the R parameter.
+     * @param r the R parameter.
      */
     public void setR(String r) {
         this.r = r;
     }
     /**
      * Returns the signature's 'S' parameter as hex.
-     * @return - the S parameter
+     * @return the S parameter
      */
     public String getS() {
         return s;
     }
     /**
      * Sets the signature's 'S' parameter as hex. 
-     * @param s - the S parameter.
+     * @param s the S parameter.
      */
     public void setS(String s) {
         this.s = s;

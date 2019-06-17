@@ -10,7 +10,7 @@ public class MessageRequest extends CoreRequest implements ITerminalReference {
 
     /**
      * Returns the target terminal name.
-     * @return - terminal name.
+     * @return terminal name.
      */
     public String getTerminalName() {
         return terminalName;
@@ -18,7 +18,7 @@ public class MessageRequest extends CoreRequest implements ITerminalReference {
 
     /**
      * Sets the target terminal name.
-     * @param terminalName - terminal name.
+     * @param terminalName terminal name.
      */
     public void setTerminalName(String terminalName) {
         this.terminalName = terminalName;
@@ -26,7 +26,7 @@ public class MessageRequest extends CoreRequest implements ITerminalReference {
 
     /**
      * Returns the message to be displayed on the terminal.
-     * @return - message to be displayed on the terminal.
+     * @return message to be displayed on the terminal.
      */
     public String getMessage() {
         return message;
@@ -34,7 +34,7 @@ public class MessageRequest extends CoreRequest implements ITerminalReference {
 
     /**
      * Sets the message to be displayed on the terminal.
-     * @param message - message to be displayed on the terminal.
+     * @param message message to be displayed on the terminal.
      */
     public void setMessage(String message) {
         this.message = message;

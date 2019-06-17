@@ -18,7 +18,7 @@ public class CoreResponse {
 
     /**
      * Returns the response description. This will return extra detail if a transaction is not approved.
-     * @return - response description.
+     * @return response description.
      */
     public String getResponseDescription() {
         return responseDescription;
@@ -26,7 +26,7 @@ public class CoreResponse {
 
     /**
      * Sets the response description.
-     * @param responseDescription - response description.
+     * @param responseDescription response description.
      */
     public void setResponseDescription(String responseDescription) {
         this.responseDescription = responseDescription;
@@ -42,7 +42,7 @@ public class CoreResponse {
 
     /**
      * Sets the transaction id.
-     * @param transactionId - transaction id.
+     * @param transactionId transaction id.
      */
     public void setTransactionId(String transactionId) {
         this.transactionId = transactionId;
@@ -50,7 +50,7 @@ public class CoreResponse {
 
     /**
      * Returns the batch id assigned to the transaction.
-     * @return - transaction id.
+     * @return transaction id.
      */
     public String getBatchId() {
         return batchId;
@@ -58,15 +58,15 @@ public class CoreResponse {
 
     /**
      * Sets the batch id.
-     * @param batchId - batch id.
+     * @param batchId batch id.
      */
     public void setBatchId(String batchId) {
         this.batchId = batchId;
     }
 
     /**
-     * Echos back the transaction ref from the original request. 
-     * @return - transaction ref.
+     * Echoes back the transaction ref from the original request. 
+     * @return transaction ref.
      */
     public String getTransactionRef() {
         return transactionRef;
@@ -74,15 +74,15 @@ public class CoreResponse {
 
     /**
      * Sets the transaction ref.
-     * @param transactionRef - transaction ref.
+     * @param transactionRef transaction ref.
      */
     public void setTransactionRef(String transactionRef) {
         this.transactionRef = transactionRef;
     }
 
     /**
-     * Echos back the transaction type from the original request.
-     * @return - transaction type.
+     * Echoes back the transaction type from the original request.
+     * @return transaction type.
      */
     public String getTransactionType() {
         return transactionType;
@@ -90,7 +90,7 @@ public class CoreResponse {
 
     /**
      * Sets the transaction type.
-     * @param transactionType - transaction type.
+     * @param transactionType transaction type.
      */
     public void setTransactionType(String transactionType) {
         this.transactionType = transactionType;
@@ -114,7 +114,7 @@ public class CoreResponse {
 
     /**
      * Returns the last tick block hash.
-     * @return - tick block hash.
+     * @return tick block hash.
      */
     public String getTickBlock() {
         return tickBlock;
@@ -122,15 +122,15 @@ public class CoreResponse {
 
     /**
      * Hash of the latest tick block.  This is essentially a blockchain timestamp.
-     * @param tickBlock - the tick block hash.
+     * @param tickBlock the tick block hash.
      */
     public void setTickBlock(String tickBlock) {
         this.tickBlock = tickBlock;
     }
 
     /**
-     * Echos back the test flag set on the original request.
-     * @return - the test flag.
+     * Echoes back the test flag set on the original request.
+     * @return the test flag.
      */
     public boolean isTest() {
         return test;
@@ -138,7 +138,7 @@ public class CoreResponse {
 
     /**
      * Sets the test flag.
-     * @param test - the test flag.
+     * @param test the test flag.
      */
     public void setTest(boolean test) {
         this.test = test;
@@ -148,7 +148,7 @@ public class CoreResponse {
      * Returns the ECC signature of the response.  Can be used to ensure it was signed by the terminal
      * and detect man in the middle attacks.
      * 
-     * @return - ECCDSA signature in hex format.
+     * @return ECCDSA signature in hex format.
      */
     public String getSig() {
         return sig;
@@ -156,7 +156,7 @@ public class CoreResponse {
 
     /**
      * Sets the response signature.
-     * @param sig - ECCDSA signature in hex format.
+     * @param sig ECCDSA signature in hex format.
      */
     public void setSig(String sig) {
         this.sig = sig;

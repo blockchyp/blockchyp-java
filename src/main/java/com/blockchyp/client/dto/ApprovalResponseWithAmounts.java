@@ -25,7 +25,7 @@ public class ApprovalResponseWithAmounts extends ApprovalResponse {
 
     /**
      * Sets the partial auth flag.
-     * @param partialAuth - if true, the authorized amount is less than the requested amount.
+     * @param partialAuth if true, the authorized amount is less than the requested amount.
      */
     public void setPartialAuth(boolean partialAuth) {
         this.partialAuth = partialAuth;
@@ -34,7 +34,7 @@ public class ApprovalResponseWithAmounts extends ApprovalResponse {
     /**
      * Returns alternate currency code, if relevant.  This would typically be returned
      * if the user opted to pay in cryptocurrency.
-     * @return - alt currency code (e.g. BTC)
+     * @return alt currency code (e.g. BTC)
      */
     public String getAltCurrency() {
         return altCurrency;
@@ -42,7 +42,7 @@ public class ApprovalResponseWithAmounts extends ApprovalResponse {
 
     /**
      * Sets alternate currency code if selected by the consumer.
-     * @param altCurrency - alt currency code.
+     * @param altCurrency alt currency code.
      */
     public void setAltCurrency(String altCurrency) {
         this.altCurrency = altCurrency;
@@ -50,7 +50,7 @@ public class ApprovalResponseWithAmounts extends ApprovalResponse {
 
     /**
      * Returns the currency code.
-     * @return - three character ISO currency code (e.g. "USD")
+     * @return three character ISO currency code (e.g. "USD")
      */
     public String getCurrencyCode() {
         return currencyCode;
@@ -58,7 +58,7 @@ public class ApprovalResponseWithAmounts extends ApprovalResponse {
 
     /**
      * Sets the currency code.
-     * @param currencyCode - three character ISO currency code (e.g. "USD")
+     * @param currencyCode three character ISO currency code (e.g. "USD")
      */
     public void setCurrencyCode(String currencyCode) {
         this.currencyCode = currencyCode;
@@ -66,7 +66,7 @@ public class ApprovalResponseWithAmounts extends ApprovalResponse {
 
     /**
      * Returns the requested amount.
-     * @return - the requested amount.
+     * @return the requested amount.
      */
     public String getRequestedAmount() {
         return requestedAmount;
@@ -74,24 +74,24 @@ public class ApprovalResponseWithAmounts extends ApprovalResponse {
 
     /**
      * Sets the requested amount.
-     * @param requestedAmount - requested amount.
+     * @param requestedAmount requested amount.
      */
     public void setRequestedAmount(String requestedAmount) {
         this.requestedAmount = requestedAmount;
     }
 
     /**
-     * Returns the authorized amount.  Might differ from requested amount in the even of a partial auth.
-     * @return - authorized amount.
+     * Returns the authorized amount.  Might differ from requested amount in the event of a partial auth.
+     * @return authorized amount.
      */
     public String getAuthorizedAmount() {
         return authorizedAmount;
     }
 
     /**
-     * Sets the authorized amount.  Might differ from requested amount in the even of a partial auth.
+     * Sets the authorized amount.  Might differ from requested amount in the event of a partial auth.
      * 
-     * @param authorizedAmount - authorized amount.
+     * @param authorizedAmount authorized amount.
      */
     public void setAuthorizedAmount(String authorizedAmount) {
         this.authorizedAmount = authorizedAmount;
@@ -99,7 +99,7 @@ public class ApprovalResponseWithAmounts extends ApprovalResponse {
 
     /**
      * Returns the tip amount.
-     * @return - the tip amount.
+     * @return the tip amount.
      */
     public String getTipAmount() {
         return tipAmount;
@@ -107,7 +107,7 @@ public class ApprovalResponseWithAmounts extends ApprovalResponse {
 
     /**
      * Sets the tip amount.
-     * @param tipAmount - tip amount.
+     * @param tipAmount tip amount.
      */
     public void setTipAmount(String tipAmount) {
         this.tipAmount = tipAmount;
@@ -115,7 +115,7 @@ public class ApprovalResponseWithAmounts extends ApprovalResponse {
 
     /**
      * Returns tax amount.
-     * @return - tax amount.
+     * @return tax amount.
      */
     public String getTaxAmount() {
         return taxAmount;
@@ -123,7 +123,7 @@ public class ApprovalResponseWithAmounts extends ApprovalResponse {
 
     /**
      * Sets the tax amount.
-     * @param taxAmount - tax amount.
+     * @param taxAmount tax amount.
      */
     public void setTaxAmount(String taxAmount) {
         this.taxAmount = taxAmount;

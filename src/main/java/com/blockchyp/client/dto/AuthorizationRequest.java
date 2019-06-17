@@ -26,7 +26,7 @@ public class AuthorizationRequest extends PaymentRequest {
     /**
      * Sets the enroll flag.  If set, the payment method will be enrolled in the token vault after
      * authorization.
-     * @param enroll - the enroll flag.
+     * @param enroll the enroll flag.
      */
     public void setEnroll(boolean enroll) {
         this.enroll = enroll;
@@ -34,7 +34,7 @@ public class AuthorizationRequest extends PaymentRequest {
 
     /**
      * Returns the transaction description.
-     * @return - transaction description.
+     * @return transaction description.
      */
     public String getDescription() {
         return description;
@@ -43,15 +43,15 @@ public class AuthorizationRequest extends PaymentRequest {
     /**
      * Sets the transaction description.
      * 
-     * @param description - transaction description.
+     * @param description transaction description.
      */
     public void setDescription(String description) {
         this.description = description;
     }
 
     /**
-     * Retuns the prompt for tip flag.
-     * @return - prompt for tip flag.
+     * Returns the prompt for tip flag.
+     * @return prompt for tip flag.
      */
     public boolean isPromptForTip() {
         return promptForTip;
@@ -61,17 +61,17 @@ public class AuthorizationRequest extends PaymentRequest {
      * Sets the prompt for tip flag.  This will cause the terminal to capture a tip amount 
      * from the user before starting the transaction.
      *  
-     * @param promptForTip - prompt for tip flag.
+     * @param promptForTip prompt for tip flag.
      */
     public void setPromptForTip(boolean promptForTip) {
         this.promptForTip = promptForTip;
     }
 
     /**
-     * Returns a map of alternate currencies to their prices in each currencies.  Used
+     * Returns a map of alternate currencies to their prices in each currency.  Used
      * to support cryptocurrencies.
      * 
-     * @return - a Map of strings to strings.  In Java 1.7, it would be Map&lt;String, String&gt;.
+     * @return a Map of strings to strings.  In Java 1.7, it would be Map&lt;String, String&gt;.
      */
     @SuppressWarnings("rawtypes")
     public Map getAltPrices() {
@@ -79,7 +79,7 @@ public class AuthorizationRequest extends PaymentRequest {
     }
 
     /**
-     * A Map&lt;String, String&gt; that maps alternate currencies to their prices in each currencies.  Used
+     * A Map&lt;String, String&gt; that maps alternate currencies to their prices in each currency.  Used
      * to support cryptocurrencies.
      * 
      * @param altPrices - a Map of strings to strings.  In Java 1.7, it would be Map&lt;String, String&gt;.

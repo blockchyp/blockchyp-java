@@ -27,15 +27,15 @@ public class VoidRequest extends CoreRequest {
 
     /**
      * Sets the transaction id for the previous transaction being captured. Required.
-     * @param transactionId - transaction id.
+     * @param transactionId transaction id.
      */
     public void setTransactionId(String transactionId) {
         this.transactionId = transactionId;
     }
 
     /**
-     * Sets the token if the transaction was an enrolling transaction. 
-     * @return - reusable payment token.
+     * Gets the token if the transaction was an enrolling transaction. 
+     * @return reusable payment token.
      */
     public String getToken() {
         return token;
@@ -43,7 +43,7 @@ public class VoidRequest extends CoreRequest {
 
     /**
      * Sets the token if the transaction was an enrolling transaction.
-     * @param token - reusable payment token.
+     * @param token reusable payment token.
      */
     public void setToken(String token) {
         this.token = token;
@@ -51,7 +51,7 @@ public class VoidRequest extends CoreRequest {
 
     /**
      * Returns the entry method for a transaction.  This would be things like MSR, CHIP, KEYED, etc. 
-     * @return - transaction entry method code.
+     * @return transaction entry method code.
      */
     public String getEntryMethod() {
         return entryMethod;
@@ -59,7 +59,7 @@ public class VoidRequest extends CoreRequest {
 
     /**
      * Sets the entry method for the transactions.
-     * @param entryMethod - transaction entry method code.
+     * @param entryMethod transaction entry method code.
      */
     public void setEntryMethod(String entryMethod) {
         this.entryMethod = entryMethod;
@@ -67,7 +67,7 @@ public class VoidRequest extends CoreRequest {
 
     /**
      * Returns the payment type.  This would be the card brand (VISA, MC, AMEX, etc.)
-     * @return - payment type.
+     * @return payment type.
      */
     public String getPaymentType() {
         return paymentType;
@@ -75,7 +75,7 @@ public class VoidRequest extends CoreRequest {
 
     /**
      * Sets the payment type.  This would be the card brand (VISA, MC, AMEX, etc.)
-     * @param paymentType - payment type.
+     * @param paymentType payment type.
      */
     public void setPaymentType(String paymentType) {
         this.paymentType = paymentType;
@@ -83,15 +83,15 @@ public class VoidRequest extends CoreRequest {
 
     /**
      * Returns the masked version of the PAN.
-     * @return maksed primary account number.
+     * @return masked primary account number.
      */
     public String getMaskedPan() {
         return maskedPan;
     }
 
     /**
-     * Sets the masked version of the pan.
-     * @param maskedPan - masked primary account number.
+     * Sets the masked version of the PAN.
+     * @param maskedPan masked primary account number.
      */
     public void setMaskedPan(String maskedPan) {
         this.maskedPan = maskedPan;
@@ -108,7 +108,7 @@ public class VoidRequest extends CoreRequest {
 
     /**
      * Sets the payment method public key, if it's a blockchain method.
-     * @param publicKey - blockchain public key.
+     * @param publicKey blockchain public key.
      */
     public void setPublicKey(String publicKey) {
         this.publicKey = publicKey;
@@ -116,7 +116,7 @@ public class VoidRequest extends CoreRequest {
 
     /**
      * Returns true if the transaction did something that would put the system in PCI scope.
-     * @return - scope alert flag.
+     * @return scope alert flag.
      */
     public boolean isScopeAlert() {
         return scopeAlert;
@@ -124,7 +124,7 @@ public class VoidRequest extends CoreRequest {
 
     /**
      * Sets the scope alert flag.
-     * @param scopeAlert - scope alert flag.
+     * @param scopeAlert scope alert flag.
      */
     public void setScopeAlert(boolean scopeAlert) {
         this.scopeAlert = scopeAlert;
@@ -132,7 +132,7 @@ public class VoidRequest extends CoreRequest {
     
     /**
      * Returns cardholder name.
-     * @return - card holder's name.
+     * @return card holder's name.
      */
     public String getCardHolder() {
         return cardHolder;

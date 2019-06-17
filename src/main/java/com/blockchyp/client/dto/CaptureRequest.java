@@ -17,7 +17,7 @@ public class CaptureRequest extends AmountRequest {
 
     /**
      * Sets the transaction id for the previous transaction being captured. Required.
-     * @param transactionId - transaction id.
+     * @param transactionId transaction id.
      */
     public void setTransactionId(String transactionId) {
         this.transactionId = transactionId;

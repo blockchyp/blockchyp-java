@@ -11,7 +11,7 @@ public class TransactionDisplayRequest extends CoreRequest implements ITerminalR
     
     /**
      * Returns the target terminal name.
-     * @return - terminal name.
+     * @return terminal name.
      */
     public String getTerminalName() {
         return terminalName;
@@ -19,14 +19,14 @@ public class TransactionDisplayRequest extends CoreRequest implements ITerminalR
 
     /**
      * Sets the target terminal name.
-     * @param terminalName - terminal name.
+     * @param terminalName terminal name.
      */
     public void setTerminalName(String terminalName) {
         this.terminalName = terminalName;
     }
 
     /**
-     * Returns the transaction to be display on the terminal.
+     * Returns the transaction to be displayed on the terminal.
      * @return {@link TransactionDisplayTransaction}
      */
     public TransactionDisplayTransaction getTransaction() {

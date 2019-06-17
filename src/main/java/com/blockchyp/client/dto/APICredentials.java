@@ -21,9 +21,9 @@ public class APICredentials {
     
     /**
      * Alternate constructor that initializes all the credential fields.
-     * @param apiKey - the API key
-     * @param bearerToken - the bearer token
-     * @param signingKey - the signing key.
+     * @param apiKey the API key
+     * @param bearerToken the bearer token
+     * @param signingKey the signing key.
      */
     public APICredentials(String apiKey, String bearerToken, String signingKey) {
         super();
@@ -36,7 +36,7 @@ public class APICredentials {
 
     /**
      * Returns the API key.
-     * @return - the API key.
+     * @return the API key.
      */
     public String getApiKey() {
         return apiKey;
@@ -44,7 +44,7 @@ public class APICredentials {
 
     /**
      * Sets the API key.
-     * @param apiKey - the API key.
+     * @param apiKey the API key.
      */
     public void setApiKey(String apiKey) {
         this.apiKey = apiKey;
@@ -53,7 +53,7 @@ public class APICredentials {
     
     /**
      * Returns the bearer token.
-     * @return - the bearer token.
+     * @return the bearer token.
      */
     public String getBearerToken() {
         return bearerToken;
@@ -61,7 +61,7 @@ public class APICredentials {
 
     /**
      * Sets the bearer token.
-     * @param bearerToken - the bearer token.
+     * @param bearerToken the bearer token.
      */
     public void setBearerToken(String bearerToken) {
         this.bearerToken = bearerToken;
@@ -69,7 +69,7 @@ public class APICredentials {
 
     /**
      * Returns the signing key.  This is used to build HMAC signatures for API requests.
-     * @return - signing key.
+     * @return signing key.
      */
     public String getSigningKey() {
         return signingKey;
@@ -77,7 +77,7 @@ public class APICredentials {
 
     /**
      * Sets the signing key.
-     * @param signingKey - signing key.
+     * @param signingKey signing key.
      */
     public void setSigningKey(String signingKey) {
         this.signingKey = signingKey;

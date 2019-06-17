@@ -20,7 +20,7 @@ public class TransactionDisplayTransaction {
     
     /**
      * Gets the pre tax subtotal for the line item display.
-     * @return - pretax subtotal for the line item display.
+     * @return pre tax subtotal for the line item display.
      */
     public String getSubtotal() {
         return subtotal;
@@ -28,7 +28,7 @@ public class TransactionDisplayTransaction {
 
     /**
      * Sets the pre tax subtotal for the line item display.
-     * @param subtotal - pretax subtotal for the line item display.
+     * @param subtotal pre tax subtotal for the line item display.
      */
     public void setSubtotal(String subtotal) {
         this.subtotal = subtotal;
@@ -36,7 +36,7 @@ public class TransactionDisplayTransaction {
 
     /**
      * Returns tax for the line item display. 
-     * @return - tax for the line item display.
+     * @return tax for the line item display.
      */
     public String getTax() {
         return tax;
@@ -44,7 +44,7 @@ public class TransactionDisplayTransaction {
 
     /**
      * Sets tax for the line item display. 
-     * @param tax - tax for the line item display.
+     * @param tax tax for the line item display.
      */
     public void setTax(String tax) {
         this.tax = tax;
@@ -52,7 +52,7 @@ public class TransactionDisplayTransaction {
 
     /**
      * Returns grand total for the line item display.
-     * @return - grand total.
+     * @return grand total.
      */
     public String getTotal() {
         return total;
@@ -60,7 +60,7 @@ public class TransactionDisplayTransaction {
 
     /**
      * Sets the grand total on the line item display.
-     * @param total - grand total.
+     * @param total grand total.
      */
     public void setTotal(String total) {
         this.total = total;
@@ -97,7 +97,7 @@ public class TransactionDisplayTransaction {
     }
 
     /**
-     * Add a single line item to an existing transaction For those developers who like the builder pattern.
+     * Add a single line item to an existing transaction for those developers who like the builder pattern.
      * @param item {@link TransactionDisplayItem}
      * @return {@link TransactionDisplayTransaction}
      */
@@ -109,7 +109,7 @@ public class TransactionDisplayTransaction {
     /**
      * Sets the line items for the transaction using the builder pattern.
      * 
-     * @param newItems - a java.util.Collection of TransactionDisplayItem object.
+     * @param newItems a java.util.Collection of TransactionDisplayItem object.
      * @return {@link TransactionDisplayTransaction}
      */
     @SuppressWarnings("rawtypes")

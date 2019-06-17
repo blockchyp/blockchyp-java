@@ -9,7 +9,7 @@ public class BooleanPromptResponse extends Acknowledgement {
 
     /**
      * Gets the boolean prompt response.
-     * @return - true if the user pressed the 'yes' button
+     * @return true if the user pressed the 'yes' button
      */
     public boolean isResponse() {
         return response;
@@ -17,7 +17,7 @@ public class BooleanPromptResponse extends Acknowledgement {
 
     /**
      * Sets the boolean prompt response.
-     * @param response - true if the user pressed the 'yes' button.
+     * @param response true if the user pressed the 'yes' button.
      */
     public void setResponse(boolean response) {
         this.response = response;

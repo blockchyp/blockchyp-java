@@ -7,7 +7,7 @@ public interface ITerminalReference {
 
     /**
      * Returns the name of a payment terminal.
-     * @return - payment terminal name.
+     * @return payment terminal name.
      */
     String getTerminalName();
 

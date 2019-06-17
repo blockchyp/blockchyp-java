@@ -37,7 +37,7 @@ public class CloseBatchResponse extends Acknowledgement {
 
     /**
      * Returns the success flag.
-     * @return - success flag.
+     * @return success flag.
      */
     public boolean isSuccess() {
         return success;
@@ -46,15 +46,15 @@ public class CloseBatchResponse extends Acknowledgement {
     
     /**
      * Sets the success flag.
-     * @param success - success flag.
+     * @param success success flag.
      */
     public void setSuccess(boolean success) {
         this.success = success;
     }
 
     /**
-     * Returns the currency code for the this batch.
-     * @return - ISO currency code.
+     * Returns the currency code for this batch.
+     * @return ISO currency code.
      */
     public String getCurrencyCode() {
         return currencyCode;
@@ -62,7 +62,7 @@ public class CloseBatchResponse extends Acknowledgement {
 
     /**
      * Sets the currency code.
-     * @param currencyCode - ISO currency code.
+     * @param currencyCode ISO currency code.
      */
     public void setCurrencyCode(String currencyCode) {
         this.currencyCode = currencyCode;
@@ -70,7 +70,7 @@ public class CloseBatchResponse extends Acknowledgement {
 
     /**
      * Returns the total captured amount for the batch.  Should be the expected deposit amount.
-     * @return - captured total.
+     * @return captured total.
      */
     public String getCapturedTotal() {
         return capturedTotal;
@@ -78,7 +78,7 @@ public class CloseBatchResponse extends Acknowledgement {
 
     /**
      * Sets the captured total.
-     * @param capturedTotal - captured total.
+     * @param capturedTotal captured total.
      */
     public void setCapturedTotal(String capturedTotal) {
         this.capturedTotal = capturedTotal;
@@ -86,7 +86,7 @@ public class CloseBatchResponse extends Acknowledgement {
 
     /**
      * Returns the total of preauths opened for this batch that were not captured.
-     * @return - open preauth total.
+     * @return open preauth total.
      */
     public String getOpenPreauths() {
         return openPreauths;
@@ -94,7 +94,7 @@ public class CloseBatchResponse extends Acknowledgement {
 
     /**
      * Sets the open preauth total.
-     * @param openPreauths - open peauth total.
+     * @param openPreauths open peauth total.
      */
     public void setOpenPreauths(String openPreauths) {
         this.openPreauths = openPreauths;
@@ -102,7 +102,7 @@ public class CloseBatchResponse extends Acknowledgement {
 
     /**
      * Returns captured totals by card brand.
-     * @return - cardBrands - captured totals grouped by card brand.
+     * @return captured totals grouped by card brand.
      */
     @SuppressWarnings("rawtypes")
     public Map getCardBrands() {
@@ -111,7 +111,7 @@ public class CloseBatchResponse extends Acknowledgement {
     
     /**
      * Sets captured totals by card brands map.
-     * @param cardBrands - captured totals grouped by card brand.
+     * @param cardBrands captured totals grouped by card brand.
      */
     @SuppressWarnings("rawtypes")
     public void setCardBrands(Map cardBrands) {

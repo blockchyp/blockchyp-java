@@ -10,7 +10,7 @@ public class AuthorizationResponse extends ApprovalResponseWithPaymentMethod {
 
     /**
      * Gets the store and forward flag.
-     * @return - if true, the associated transaction is was flagged for store and forward due to network problems.
+     * @return if true, the associated transaction is was flagged for store and forward due to network problems.
      */
     public boolean isStoreAndForward() {
         return storeAndForward;
@@ -18,7 +18,7 @@ public class AuthorizationResponse extends ApprovalResponseWithPaymentMethod {
 
     /**
      * Sets the store and forward flag.
-     * @param storeAndForward - if true, the associated transaction is was flagged for store and forward due to network problems.
+     * @param storeAndForward if true, the associated transaction is was flagged for store and forward due to network problems.
      */
     public void setStoreAndForward(boolean storeAndForward) {
         this.storeAndForward = storeAndForward;

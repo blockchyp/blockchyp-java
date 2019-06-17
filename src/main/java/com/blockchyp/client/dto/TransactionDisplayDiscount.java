@@ -11,7 +11,7 @@ public class TransactionDisplayDiscount {
 
     /**
      * Returns the discount description.
-     * @return - discount description.
+     * @return discount description.
      */
     public String getDescription() {
         return description;
@@ -19,7 +19,7 @@ public class TransactionDisplayDiscount {
 
     /**
      * Sets the discount description.
-     * @param description - discount description.
+     * @param description discount description.
      */
     public void setDescription(String description) {
         this.description = description;
@@ -28,7 +28,7 @@ public class TransactionDisplayDiscount {
     
     /**
      * Returns the discount amount.
-     * @return - discount amount.
+     * @return discount amount.
      */
     public String getAmount() {
         return amount;
@@ -36,7 +36,7 @@ public class TransactionDisplayDiscount {
 
     /**
      * Sets the discount amount.
-     * @param amount - discount amount.
+     * @param amount discount amount.
      */
     public void setAmount(String amount) {
         this.amount = amount;

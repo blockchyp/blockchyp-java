@@ -11,7 +11,7 @@ public class TextPromptRequest extends CoreRequest implements ITerminalReference
 
     /**
      * Returns the target terminal name.
-     * @return - terminal name.
+     * @return terminal name.
      */
     public String getTerminalName() {
         return terminalName;
@@ -19,7 +19,7 @@ public class TextPromptRequest extends CoreRequest implements ITerminalReference
 
     /**
      * Sets the target terminal name.
-     * @param terminalName - terminal name.
+     * @param terminalName terminal name.
      */
     public void setTerminalName(String terminalName) {
         this.terminalName = terminalName;
@@ -27,7 +27,7 @@ public class TextPromptRequest extends CoreRequest implements ITerminalReference
 
     /**
      * Gets the prompt type.
-     * @return - prompt type.
+     * @return prompt type.
      */
     public String getPromptType() {
         return promptType;
@@ -35,7 +35,7 @@ public class TextPromptRequest extends CoreRequest implements ITerminalReference
 
     /**
      * Sets the type of prompt.  (e.g "email", "phone", etc.)
-     * @param promptType - prompt type.
+     * @param promptType prompt type.
      */
     public void setPromptType(String promptType) {
         this.promptType = promptType;

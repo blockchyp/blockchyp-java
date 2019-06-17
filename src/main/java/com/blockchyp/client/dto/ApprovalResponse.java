@@ -20,7 +20,7 @@ public class ApprovalResponse extends CoreResponse {
 
     /**
      * Sets the approved flag.
-     * @param approved - if true, the transaction was approved.
+     * @param approved if true, the transaction was approved.
      */
     public void setApproved(boolean approved) {
         this.approved = approved;
@@ -28,7 +28,7 @@ public class ApprovalResponse extends CoreResponse {
 
     /**
      * Returns the auth code from the payment network.
-     * @return - network auth code.
+     * @return network auth code.
      */
     public String getAuthCode() {
         return authCode;
@@ -36,7 +36,7 @@ public class ApprovalResponse extends CoreResponse {
 
     /**
      * Sets the auth code from the payment network.
-     * @param authCode - network auth code.
+     * @param authCode network auth code.
      */
     public void setAuthCode(String authCode) {
         this.authCode = authCode;
@@ -44,7 +44,7 @@ public class ApprovalResponse extends CoreResponse {
 
     /**
      * Returns the sig file data if requested.  The request specifies a format or filename.
-     * @return - signature file data in hex.
+     * @return signature file data in hex.
      */
     public String getSigFile() {
         return sigFile;
@@ -52,7 +52,7 @@ public class ApprovalResponse extends CoreResponse {
 
     /**
      * Sets the signature file hex.
-     * @param sigFile - signature file data in hex.
+     * @param sigFile signature file data in hex.
      */
     public void setSigFile(String sigFile) {
         this.sigFile = sigFile;

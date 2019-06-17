@@ -68,11 +68,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * You'll also notice that we're not using generics or any features from Java
  * 1.7 or later. This is just to maintain as much backward compatibility as
  * possible with older systems (1.6 or later). The underlying REST API's are
- * invoked using commons-httpclient 3.1 and we use Jackson for json
+ * invoked using commons-httpclient 3.1 and we use Jackson for JSON
  * serialization.
  * 
  * Most internal methods are scoped as protected in order to give developers the
- * ability to override things if they need special behavior of have weird
+ * ability to override things if they need special behavior or have weird
  * classpath issues.
  * 
  */
@@ -117,7 +117,7 @@ public class BlockChypClient {
     /**
      * Provided as a convenience to support constructor based dependency injection.
      * 
-     * @param gatewayHost - alternate gateway endpoint.
+     * @param gatewayHost alternate gateway endpoint.
      */  
     public BlockChypClient(String gatewayHost) {
         this();
@@ -127,7 +127,7 @@ public class BlockChypClient {
     /**
      * Provided as a convenience to support constructor based dependency injection.
      * 
-     * @param defaultCredentials - {@link APICredentials}
+     * @param defaultCredentials {@link APICredentials}
      */
     public BlockChypClient(APICredentials defaultCredentials) {
         this();
@@ -138,7 +138,7 @@ public class BlockChypClient {
      * Provided as a convenience to support constructor based dependency injection.
      * 
      * @param gatewayHost - alternate gateway endpoint.
-     * @param defaultCredentials - {@link APICredentials}
+     * @param defaultCredentials {@link APICredentials}
      */
     public BlockChypClient(String gatewayHost, APICredentials defaultCredentials) {
         this();
@@ -149,9 +149,9 @@ public class BlockChypClient {
     /**
      * Provided as a convenience to support constructor based dependency injection.
      * 
-     * @param gatewayHost - alternate gateway endpoint.
-     * @param testGatewayHost - alternate gateway endpoint.
-     * @param defaultCredentials - {@link APICredentials}
+     * @param gatewayHost alternate gateway endpoint.
+     * @param testGatewayHost alternate gateway endpoint.
+     * @param defaultCredentials {@link APICredentials}
      */
     public BlockChypClient(String gatewayHost, String testGatewayHost, APICredentials defaultCredentials) {
         this();
@@ -164,7 +164,7 @@ public class BlockChypClient {
      * Used to override the live gateway host.  Unless you work at BlockChyp, you probably
      * won't ever need to do this.
      * 
-     * @param gatewayHost - alternate gateway endpoint.
+     * @param gatewayHost alternate gateway endpoint.
      */
 
     public void setGatewayHost(String gatewayHost) {
@@ -176,15 +176,15 @@ public class BlockChypClient {
      * Used to override the test gateway host.  Unless you work at BlockChyp, you probably
      * won't ever need to do this.
      * 
-     * @param testGatewayHost - alternate gateway endpoint.
+     * @param testGatewayHost alternate gateway endpoint.
      */
     public void setTestGatewayHost(String testGatewayHost) {
         this.testGatewayHost = testGatewayHost;
     }
 
     /**
-     * Sets the default root api credentials for the client.
-     * @param defaultCredentials - {@link APICredentials}
+     * Sets the default root API credentials for the client.
+     * @param defaultCredentials {@link APICredentials}
      */
     public void setDefaultCredentials(APICredentials defaultCredentials) {
         this.defaultCredentials = defaultCredentials;
@@ -194,20 +194,20 @@ public class BlockChypClient {
      * Enables or disables offline terminal route caching.  Offline route caching is really meant 
      * as a defense for situations where developers are creating new BlockChypClient instances
      * over and over for each request and therefore making the in memory cache useless.  The
-     * BlockChypClient is thread safe so we encourage you to only create once instance and share it 
+     * BlockChypClient is thread safe so we encourage you to only create one instance and share it 
      * for all requests.  If you're doing this, you can safely disable offline route caching
      * and we recommend it.  Defaults to enabled.
      *  
-     * @param offlineRouteCacheEnabled - true if offline route caching is enabled.
+     * @param offlineRouteCacheEnabled true if offline route caching is enabled.
      */
     public void setOfflineRouteCacheEnabled(boolean offlineRouteCacheEnabled) {
         this.offlineRouteCacheEnabled = offlineRouteCacheEnabled;
     }
 
     /**
-     * Sets the payment logger.  Can be used override that default
+     * Sets the payment logger.  Can be used to override that default
      * System.out based logging.
-     * @param paymentLogger - an implementation of {@link PaymentLogger}
+     * @param paymentLogger an implementation of {@link PaymentLogger}
      */
     public void setPaymentLogger(PaymentLogger paymentLogger) {
         this.paymentLogger = paymentLogger;
@@ -222,11 +222,11 @@ public class BlockChypClient {
     }
 
     /**
-     * Tests communication with the Gateway.  If Authentication is successful, a merchantPk value
+     * Tests communication with the Gateway.  If authentication is successful, a merchantPk value
      * is returned.
-     * @param test - whether or not to route the the transaction to the test gateway.
+     * @param test whether or not to route the the transaction to the test gateway.
      * @return {@link Acknowledgement}
-     * @throws Exception - exception if any errors occurred processing the request.
+     * @throws Exception exception if any errors occurred processing the request.
      */
     public HeartbeatResponse heartbeat(boolean test) throws Exception {
 
@@ -238,7 +238,7 @@ public class BlockChypClient {
      * Tests local communication with a terminal.
      * @param request {@link PingRequest}
      * @return {@link Acknowledgement}
-     * @throws Exception - exception if any errors occurred processing the request.
+     * @throws Exception exception if any errors occurred processing the request.
      */
     public Acknowledgement ping(PingRequest request) throws Exception {
 
@@ -251,7 +251,7 @@ public class BlockChypClient {
      * Enrolls the payment method in the recurring payment token vault.  Any amounts passed in are ignored.
      * @param request {@link AuthorizationRequest}
      * @return {@link AuthorizationResponse}
-     * @throws Exception - exception if any errors occurred processing the request.
+     * @throws Exception exception if any errors occurred processing the request.
      */
     public AuthorizationResponse enroll(AuthorizationRequest request) throws Exception {
 
@@ -267,7 +267,7 @@ public class BlockChypClient {
      * Performs a standard auth and capture.
      * @param request {@link AuthorizationRequest}
      * @return {@link AuthorizationResponse}
-     * @throws Exception - exception if any errors occurred processing the request.
+     * @throws Exception exception if any errors occurred processing the request.
      */
     public AuthorizationResponse charge(AuthorizationRequest request) throws Exception {
 
@@ -299,7 +299,7 @@ public class BlockChypClient {
      * 
      * @param request {@link AuthorizationRequest}
      * @return {@link AuthorizationResponse}
-     * @throws Exception - exception if any errors occurred processing the request.
+     * @throws Exception exception if any errors occurred processing the request.
      */
     public AuthorizationResponse reverse(AuthorizationRequest request) throws Exception {
 
@@ -313,7 +313,7 @@ public class BlockChypClient {
      * to do this for preauth based businesses (restaurants and bars) with unusual hours.
      * @param request {@link CloseBatchRequest}
      * @return {@link CloseBatchResponse}
-     * @throws Exception - exception if any errors occurred processing the request.
+     * @throws Exception exception if any errors occurred processing the request.
      */
     public CloseBatchResponse closeBatch(CloseBatchRequest request) throws Exception {
 
@@ -323,11 +323,11 @@ public class BlockChypClient {
 
     /**
      * Refunds a transaction.  You can execute a full or partial refund referencing a previous transaction.
-     * You can also do a free range refund without referencing a previous transactions, but please, pretty 
+     * You can also do a free range refund without referencing a previous transaction, but please, pretty 
      * please, don't do this.  Basing a refund on a previous transaction is way more secure.
      * @param request {@link RefundRequest}
      * @return {@link AuthorizationResponse}
-     * @throws Exception - exception if any errors occurred processing the request.
+     * @throws Exception exception if any errors occurred processing the request.
      */
     public AuthorizationResponse refund(RefundRequest request) throws Exception {
 
@@ -351,7 +351,7 @@ public class BlockChypClient {
      * Preauthorizes a transaction.  Must be captured later.
      * @param request {@link AuthorizationRequest}
      * @return {@link AuthorizationResponse}
-     * @throws Exception - exception if any errors occurred processing the request.
+     * @throws Exception exception if any errors occurred processing the request.
      */
     public AuthorizationResponse preauth(AuthorizationRequest request) throws Exception {
 
@@ -375,7 +375,7 @@ public class BlockChypClient {
      * Displays a text message on the terminal screen.
      * @param request {@link MessageRequest}
      * @return {@link Acknowledgement}
-     * @throws Exception - exception if any errors occurred processing the request.
+     * @throws Exception exception if any errors occurred processing the request.
      */
     public Acknowledgement message(MessageRequest request) throws Exception {
 
@@ -393,7 +393,7 @@ public class BlockChypClient {
      * prompt text isn't permitted for text input prompts per PCI.
      * @param request {@link TextPromptRequest}
      * @return {@link TextPromptResponse}
-     * @throws Exception - exception if any errors occurred processing the request.
+     * @throws Exception exception if any errors occurred processing the request.
      */
     public TextPromptResponse textPrompt(TextPromptRequest request) throws Exception {
 
@@ -407,11 +407,11 @@ public class BlockChypClient {
 
     /**
      * Asks the user a yes or no question.  You can use this for things like suggestive selling.  You can also 
-     * use this for surveys, but BlockChyp does have  built in survey feature that your merchants
+     * use this for surveys, but BlockChyp does have a built in survey feature that your merchants
      * can use without any coding needed. 
      * @param request {@link BooleanPromptRequest}
      * @return {@link BooleanPromptResponse}
-     * @throws Exception - exception if any errors occurred processing the request.
+     * @throws Exception exception if any errors occurred processing the request.
      */
     public BooleanPromptResponse booleanPrompt(BooleanPromptRequest request) throws Exception {
 
@@ -428,7 +428,7 @@ public class BlockChypClient {
      * this method if you need to delete line items.
      * @param request {@link TransactionDisplayRequest}
      * @return {@link Acknowledgement}
-     * @throws Exception - exception if any errors occurred processing the request.
+     * @throws Exception exception if any errors occurred processing the request.
      */
     public Acknowledgement newTransactionDisplay(TransactionDisplayRequest request) throws Exception {
 
@@ -444,7 +444,7 @@ public class BlockChypClient {
      * Clears the terminal of any in progress transactions or line item information.  Returns it to the idle state.
      * @param request {@link ClearTerminalRequest}
      * @return {@link Acknowledgement}
-     * @throws Exception - exception if any errors occurred processing the request.
+     * @throws Exception exception if any errors occurred processing the request.
      */
     public Acknowledgement clear(ClearTerminalRequest request) throws Exception {
 
@@ -460,7 +460,7 @@ public class BlockChypClient {
      * Updates the line item display.  This will add new line items to the terminal and update totals.
      * @param request {@link TransactionDisplayRequest}
      * @return {@link Acknowledgement}
-     * @throws Exception - exception if any errors occurred processing the request.
+     * @throws Exception exception if any errors occurred processing the request.
      */
     public Acknowledgement updateTransactionDisplay(TransactionDisplayRequest request) throws Exception {
 
@@ -476,7 +476,7 @@ public class BlockChypClient {
      * Captures a preauth.  Captures are always routed to the gateway.
      * @param request {@link CaptureRequest}
      * @return {@link CaptureResponse}
-     * @throws Exception - exception if any errors occurred processing the request.
+     * @throws Exception exception if any errors occurred processing the request.
      */
     public CaptureResponse capture(CaptureRequest request) throws Exception {
 
@@ -488,7 +488,7 @@ public class BlockChypClient {
      * Voids a transaction.  Voids are always routed to the gateway.
      * @param request {@link VoidRequest}
      * @return {@link VoidResponse}
-     * @throws Exception - exception if any errors occurred processing the request.
+     * @throws Exception exception if any errors occurred processing the request.
      */
     public VoidResponse voidTx(VoidRequest request) throws Exception {
 
@@ -498,8 +498,8 @@ public class BlockChypClient {
 
     /**
      * Decrypts API credentials using the offline cache key.
-     * @param creds - blockchyp API credentials.
-     * @return - a decrypted copy of the original credentials.
+     * @param creds blockchyp API credentials.
+     * @return a decrypted copy of the original credentials.
      */
     protected APICredentials decrypt(APICredentials creds) {
         CryptoUtils crypto = CryptoUtils.getInstance();
@@ -522,8 +522,8 @@ public class BlockChypClient {
 
     /**
      * Encrypts API credentials using the offline cache key.
-     * @param creds - blockchyp API credentials.
-     * @return - an encrypted copy of the original credentials.
+     * @param creds blockchyp API credentials.
+     * @return an encrypted copy of the original credentials.
      */
     protected APICredentials encrypt(APICredentials creds) {
 
@@ -545,7 +545,7 @@ public class BlockChypClient {
 
     /**
      * Generates the encryption key used for offline cache records.
-     * @return - the key in bytes.
+     * @return the key in bytes.
      */
     protected byte[] deriveOfflineKey() {
 
@@ -558,7 +558,7 @@ public class BlockChypClient {
     /**
      * Looks up a terminal route from the cache.
      * @param terminalName - terminal name assigned at activation.
-     * @return - the terminal route record.
+     * @return the terminal route record.
      */
     protected TerminalRouteResponse routeCacheGet(String terminalName) {
 
@@ -580,7 +580,7 @@ public class BlockChypClient {
 
     /**
      * Puts a terminal route in the cache (both caches).
-     * @param route - the terminal route record.
+     * @param route the terminal route record.
      */
     @SuppressWarnings({ "unchecked" })
     protected void routeCachePut(TerminalRouteResponse route) {
@@ -608,7 +608,7 @@ public class BlockChypClient {
     /**
      * Creates a cache key for terminal routes.
      * @param terminalName - terminal name.
-     * @return - terminal cache key.
+     * @return terminal cache key.
      */
     protected String toTerminalRouteKey(String terminalName) {
 
@@ -640,9 +640,8 @@ public class BlockChypClient {
 
     /**
      * Writes the signature to a file if a signature is present and the caller has
-     * requested it. Notice this does not throw exceptions because if this methods
-     * gets called a transaction has already been authorized and we wouldn't want
-     * the client application to error out here.
+     * requested it. Notice this does not throw exceptions in order to prevent
+     * the calling application from losing track of the authorization.
      * 
      * @param request {@link PaymentRequest}
      * @param response {@link AuthorizationResponse}
@@ -673,7 +672,7 @@ public class BlockChypClient {
      * the gateway route API is invoked.  If we have a stale cache entry and the 
      * gateway route lookup fails or times out, we fall back to the stale cache entry.
      * @param terminalName - name of the terminal assigned at activation.
-     * @return - the terminal route record.
+     * @return the terminal route record.
      */
     protected TerminalRouteResponse resolveTerminalRoute(String terminalName) {
 
@@ -717,7 +716,7 @@ public class BlockChypClient {
 
     /**
      * Returns the gateway client singleton.
-     * @return - HttpClient configured for gateway requests.
+     * @return HttpClient configured for gateway requests.
      */
     protected HttpClient getGatewayClient() {
         if (gatewayClient == null) {
@@ -734,7 +733,7 @@ public class BlockChypClient {
 
     /**
      * Returns the terminal client singleton.
-     * @return - HttpClient configured for terminal requests.
+     * @return HttpClient configured for terminal requests.
      */
     protected HttpClient getTerminalClient() {
         if (terminalClient == null) {
@@ -751,9 +750,9 @@ public class BlockChypClient {
 
     
     /**
-     * Assembles the scheme, ip address, and port number bits of a terminal url.
-     * @param route - the terminal route record.
-     * @return - scheme, ip addres, and port number.
+     * Assembles the scheme, ip address, and port number bits of a terminal URL.
+     * @param route the terminal route record.
+     * @return scheme, ip addres, and port number.
      */
     protected String resolveTerminalHost(TerminalRouteResponse route) {
          
@@ -763,10 +762,10 @@ public class BlockChypClient {
     }
 
     /**
-     * Assembles a full path to the terminal for an api call.
-     * @param route - the terminal route record.
-     * @param path - api path relative to the root (e.g. "/api/charge")
-     * @return - the fully qualified URI.
+     * Assembles a full path to the terminal for an API call.
+     * @param route the terminal route record.
+     * @param path API path relative to the root (e.g. "/api/charge")
+     * @return the fully qualified URI.
      */
     protected String toFullyQualifiedTerminalPath(TerminalRouteResponse route, String path) {
 
@@ -776,7 +775,7 @@ public class BlockChypClient {
 
     /**
      * Returns true if transaction for the given terminal reference should be routed over the local subnet.
-     * @param terminalName - reference to the terminal.
+     * @param terminalName reference to the terminal.
      * @return true, if terminal (local subnet) routed.
      */
     protected boolean isTerminalRouted(ITerminalReference terminalName) {
@@ -790,12 +789,12 @@ public class BlockChypClient {
 
     /**
      * This handles all the common logic associated with processing terminal http requests.
-     * @param route - the terminal route record
-     * @param request - the request payload, if put or post
-     * @param method - the HttpMethod prepopulated
-     * @param responseType - expected response type.
-     * @return - a response of type specified by responseClass
-     * @throws Exception - exception if any errors occurred processing the request.
+     * @param route the terminal route record
+     * @param request the request payload, if put or post
+     * @param method the HttpMethod prepopulated
+     * @param responseType expected response type.
+     * @return a response of type specified by responseClass
+     * @throws Exception exception if any errors occurred processing the request.
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })
     protected Object finishTerminalRequest(TerminalRouteResponse route, Object request, EntityEnclosingMethod method,
@@ -826,11 +825,11 @@ public class BlockChypClient {
 
     /**
      * Executes a put http request against the terminal API.
-     * @param path - api path relative to the root (e.g. "/api/charge")
-     * @param request - the request payload object.
-     * @param responseType - expected response type.
-     * @return - a response of type specified by responseClass
-     * @throws Exception - exception if any errors occurred processing the request.
+     * @param path api path relative to the root (e.g. "/api/charge")
+     * @param request the request payload object.
+     * @param responseType expected response type.
+     * @return a response of type specified by responseClass
+     * @throws Exception exception if any errors occurred processing the request.
      */
     @SuppressWarnings({ "rawtypes" })
     protected Object putTerminal(String path, Object request, Class responseType) throws Exception {
@@ -852,7 +851,7 @@ public class BlockChypClient {
     /**
      * Assembles a new terminal request and populates the credentials, using transient 
      * credentials if available.
-     * @param route - the terminal route record.
+     * @param route the terminal route record.
      * @return {@link TerminalRequest}
      */
     protected TerminalRequest newTerminalRequestForRoute(TerminalRouteResponse route) {
@@ -876,11 +875,11 @@ public class BlockChypClient {
 
     /**
      * Posts an http request to the terminal API.
-     * @param path - api path relative to the root (e.g. "/api/charge")
-     * @param request - the request payload object.
-     * @param responseType - expected response type.
-     * @return - a response of type specified by responseClass
-     * @throws Exception - exception if any errors occurred processing the request.
+     * @param path api path relative to the root (e.g. "/api/charge")
+     * @param request the request payload object.
+     * @param responseType expected response type.
+     * @return a response of type specified by responseClass
+     * @throws Exception exception if any errors occurred processing the request.
      */
     @SuppressWarnings({ "rawtypes" })
     protected Object postTerminal(String path, Object request, Class responseType) throws Exception {
@@ -901,11 +900,11 @@ public class BlockChypClient {
     
     /**
      * Executes an http get request against the gateway with a timeout override.
-     * @param path - api path relative to the root (e.g. "/api/heartbeat")
-     * @param test - whether or not this request should go to the test gateway
-     * @param responseType - expected response type.
-     * @return - a response of type specified by responseClass
-     * @throws Exception - exception if any errors occurred processing the request.
+     * @param path api path relative to the root (e.g. "/api/heartbeat")
+     * @param test whether or not this request should go to the test gateway
+     * @param responseType expected response type.
+     * @return a response of type specified by responseClass
+     * @throws Exception exception if any errors occurred processing the request.
      */
     @SuppressWarnings({ "rawtypes" })
     protected Object getGateway(String path, boolean test, Class responseType) throws Exception {
@@ -916,12 +915,12 @@ public class BlockChypClient {
 
     /**
      * Executes an http get request against the gateway with a timeout override.
-     * @param path - api path relative to the root (e.g. "/api/heartbeat")
-     * @param test - whether or not this request should go to the test gateway
-     * @param responseType - expected response type.
-     * @param requestTimeout - timeout for the request in milliseconds
-     * @return - a response of type specified by responseClass
-     * @throws Exception - exception if any errors occurred processing the request.
+     * @param path API path relative to the root (e.g. "/api/heartbeat")
+     * @param test whether or not this request should go to the test gateway
+     * @param responseType expected response type.
+     * @param requestTimeout timeout for the request in milliseconds
+     * @return a response of type specified by responseClass
+     * @throws Exception exception if any errors occurred processing the request.
      */
     @SuppressWarnings({ "rawtypes" })
     protected Object getGateway(String path, boolean test, Class responseType, int requestTimeout) throws Exception {
@@ -937,10 +936,10 @@ public class BlockChypClient {
     /**
      * Executes a previously assembled HttpMethod against the gateway.  Aggregates common logic
      * associated with hitting the gateway.
-     * @param method - the HttpMethod to execute.
-     * @param responseType - expected response type.
-     * @return - a response of type specified by responseClass
-     * @throws Exception - exception if any errors occurred processing the request.
+     * @param method the HttpMethod to execute.
+     * @param responseType expected response type.
+     * @return a response of type specified by responseClass
+     * @throws Exception exception if any errors occurred processing the request.
      */
     @SuppressWarnings({ "unchecked", "rawtypes" })
     protected Object finishGatewayRequest(HttpMethod method, Class responseType) throws Exception {
@@ -978,11 +977,11 @@ public class BlockChypClient {
 
     /**
      * Executes a post HTTP request against the gateway.
-     * @param path - api path from root (e.g. "/api/charge")
-     * @param request - the request object.
-     * @param responseClass - expected response type.
-     * @return - a response of type specified by responseClass
-     * @throws Exception - exception if any errors occurred processing the request.
+     * @param path API path from root (e.g. "/api/charge")
+     * @param request the request object.
+     * @param responseClass expected response type.
+     * @return a response of type specified by responseClass
+     * @throws Exception exception if any errors occurred processing the request.
      */
     @SuppressWarnings({ "rawtypes" })
     protected Object postGateway(String path, CoreRequest request, Class responseClass) throws Exception {
@@ -999,11 +998,11 @@ public class BlockChypClient {
 
     /**
      * Executes a put HTTP request against the gateway.
-     * @param path - api path from root (e.g. "/api/charge")
-     * @param request - the request object.
-     * @param responseClass - expected response type.
-     * @return - a reponse of type specified by responseClass
-     * @throws Exception - exception if any errors occurred processing the request.
+     * @param path API path from root (e.g. "/api/charge")
+     * @param request the request object.
+     * @param responseClass expected response type.
+     * @return a reponse of type specified by responseClass
+     * @throws Exception exception if any errors occurred processing the request.
      */
     @SuppressWarnings({ "rawtypes" })
     protected Object putGateway(String path, CoreRequest request, Class responseClass) throws Exception {
@@ -1022,8 +1021,8 @@ public class BlockChypClient {
      * Returns the offline cache location.  This will be the value of offlineRouteCacheLocation if specified
      * and the operation system default tmp folder otherwise.
      * 
-     * @param terminalName - the target terminal name.
-     * @return - local path.
+     * @param terminalName the target terminal name.
+     * @return local path.
      */
     protected String resolveOfflineRouteCacheLocation(String terminalName) {
 
@@ -1042,8 +1041,8 @@ public class BlockChypClient {
 
     /**
      * Returns the route stored in the offline cache for the given terminal.
-     * @param terminalName - the target terminal name.
-     * @return - terminal route, null if not found.
+     * @param terminalName the target terminal name.
+     * @return terminal route, null if not found.
      */
     public TerminalRouteResponse getOfflineCache(String terminalName) {
 
@@ -1069,7 +1068,7 @@ public class BlockChypClient {
 
     /**
      * Returns the offline route cache location.
-     * @return - offline route cache location.
+     * @return offline route cache location.
      */
     public String getOfflineRouteCacheLocation() {
         return offlineRouteCacheLocation;
@@ -1078,7 +1077,7 @@ public class BlockChypClient {
     /**
      * Sets the offline route cache location if you want to override the default.  Defaults 
      * to your operation system's tmp file location.
-     * @param offlineRouteCacheLocation - offline route cache location.
+     * @param offlineRouteCacheLocation offline route cache location.
      */
     public void setOfflineRouteCacheLocation(String offlineRouteCacheLocation) {
         this.offlineRouteCacheLocation = offlineRouteCacheLocation;
@@ -1086,9 +1085,9 @@ public class BlockChypClient {
 
     /**
      * Converts path to the fully qualified URL for a gateway API call.
-     * @param path - path relative to the root (e.g. "/api/charge")
-     * @param test - whether or not this should route to the test transaction.
-     * @return - fully qualified URI.
+     * @param path path relative to the root (e.g. "/api/charge")
+     * @param test whether or not this should route to the test transaction.
+     * @return fully qualified URI.
      */
     protected String toFullyQualifiedGatewayPath(String path, boolean test) {
         if (test) {
@@ -1107,7 +1106,7 @@ public class BlockChypClient {
      * 
      * Our terminal root CA can be found here: https://docs.blockchyp.com/rest-api/terminal/index.html#ssl-tls
      * 
-     * @return - https flag.
+     * @return https flag.
      */
     public boolean isTerminalHttps() {
         return terminalHttps;
@@ -1122,7 +1121,7 @@ public class BlockChypClient {
      * 
      * Our terminal root CA can be found here: https://docs.blockchyp.com/rest-api/terminal/index.html#ssl-tls
      * 
-     * @param terminalHttps - https flag.
+     * @param terminalHttps https flag.
      */
     public void setTerminalHttps(boolean terminalHttps) {
         this.terminalHttps = terminalHttps;

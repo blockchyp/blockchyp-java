@@ -339,7 +339,7 @@ You can then use the token for recurring payments.
 #### Refunds the Right Way
 
 If you need to execute a refund, the best way is to do so using the transaction id from the transaction you're refunding.
-This lowers the surface area for fraud and makes refund easily traceable to the original purchase.
+This lowers the surface area for fraud and makes refunds easily traceable to the original purchase.
 
 ```
         RefundRequest request = new RefundRequest();
@@ -389,7 +389,7 @@ You can void a transaction anytime before the batch closes.  Here's an example.
 #### Time Out Reversals
 
 We love time out reversals.  Don't be afraid to use them whenever a request to a BlockChyp terminal times out. You have up to two minutes to reverse any transaction.
-The only caveat is that you must use assign transactionRef values when you build the original request.  Otherwise, we have no real way of knowing which transaction
+The only caveat is that you must assign transactionRef values when you build the original request.  Otherwise, we have no real way of knowing which transaction
 you're trying to reverse because we may not have assigned it an id yet.  And if we did assign it an id, you wouldn't know what it is because your request to the 
 terminal timed out before you got a response.
 
@@ -550,8 +550,7 @@ message.  The message is displayed for thirty seconds before the terminal is pla
 
 #### Boolean Prompts
 
-This one lets you ask the user yes or no questions.  You might do this for suggestive selling or maybe
-just if the POS is feeling lonely.
+This one lets you ask the user yes or no questions.  You might do this for suggestive selling or if the POS is feeling lonely.
 
 ```
         BooleanPromptRequest request = new BooleanPromptRequest();
@@ -574,7 +573,7 @@ This option allows you to prompt the user for text or numeric data.  As of this 
 email to capture email address, phone numbers, customer numbers, and rewards numbers.  
 
 Unlike boolean prompts, which support freeform prompt text, PCI rules restrict free form prompts when text can
-be entered because you might prompt the user for card numbers or pins - and that would be bad.
+be entered because you might prompt the user for card numbers or pin codes - and that would be bad.
 
 ```
         TextPromptRequest request = new TextPromptRequest();
@@ -590,7 +589,7 @@ be entered because you might prompt the user for card numbers or pins - and that
 
 ## The Test Flag
 
-During development, you won't be running transactions against the live API.  All transaction request will need to be flagged 
+During development, you won't be running transactions against the live API.  All transaction requests will need to be flagged 
 as tests by adding this line of code...
 
 ```
@@ -604,7 +603,7 @@ application that turns this on.
 
 If, for some reason, the payment terminal prompts the user for a written signature, BlockChyp uploads the signature image to our web scale database for archival.  
 
-By default, it will not return it to the caller.  You do have the option of getting the image back in PNG or JPEG format, either as hex as has a file.
+By default, it will not return it to the caller.  You do have the option of getting the image back in PNG or JPEG format, either as hex as a file.
 
 ```
         

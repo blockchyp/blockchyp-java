@@ -1,7 +1,7 @@
 package com.blockchyp.client.dto;
 
 /**
- * Models results from a text prompt on the teminal.
+ * Models results from a text prompt on the terminal.
  */
 public class TextPromptResponse extends Acknowledgement {
 
@@ -10,7 +10,7 @@ public class TextPromptResponse extends Acknowledgement {
     
     /**
      * Returns the text prompt response.
-     * @return - the text prompt responsel.
+     * @return the text prompt response.
      */
     public String getResponse() {
         return response;
@@ -18,7 +18,7 @@ public class TextPromptResponse extends Acknowledgement {
 
     /**
      * Sets the text prompt response.
-     * @param response - text prompt response.
+     * @param response text prompt response.
      */
     public void setResponse(String response) {
         this.response = response;

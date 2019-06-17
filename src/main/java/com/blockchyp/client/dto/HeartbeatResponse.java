@@ -40,7 +40,7 @@ public class HeartbeatResponse extends Acknowledgement {
 
     /**
      * Gets the hash of the latest tick block on the clockchain.
-     * @return  - tick block hash.
+     * @return tick block hash.
      */
     public String getLatestTick() {
         return latestTick;
@@ -48,7 +48,7 @@ public class HeartbeatResponse extends Acknowledgement {
 
     /**
      * Sets the hash of the latest tick block on the clockchain.
-     * @param latestTick - tick block hash.
+     * @param latestTick tick block hash.
      */
     public void setLatestTick(String latestTick) {
         this.latestTick = latestTick;
@@ -61,7 +61,7 @@ public class HeartbeatResponse extends Acknowledgement {
      * For the production clockchain this is always
      * '3cuhsckVUd9HzMjbdUSW17aY5kCcm1d6YAphJMUwmtXRj7WLyU'.
      * 
-     * @return - Base58 encoded public key of the clock chain.
+     * @return Base58 encoded public key of the clock chain.
      */
     public String getClockchain() {
         return clockchain;
@@ -69,7 +69,7 @@ public class HeartbeatResponse extends Acknowledgement {
 
     /**
      * Sets the public key of the clockchain.
-     * @param clockchain - Base58 encoded and compressed ECC public key.
+     * @param clockchain Base58 encoded and compressed ECC public key.
      */
     public void setClockchain(String clockchain) {
         this.clockchain = clockchain;
@@ -77,7 +77,7 @@ public class HeartbeatResponse extends Acknowledgement {
 
     /**
      * Gets the public key for the merchant's blockchain.
-     * @return - Base58 encoded and compressed ECC public key.
+     * @return Base58 encoded and compressed ECC public key.
      */
     public String getMerchantPk() {
         return merchantPk;
@@ -85,7 +85,7 @@ public class HeartbeatResponse extends Acknowledgement {
 
     /**
      * Sets the public key of the merchant's blockchain.
-     * @param merchantPk - Base58 encoded and compressed ECC public key.
+     * @param merchantPk Base58 encoded and compressed ECC public key.
      */
     public void setMerchantPk(String merchantPk) {
         this.merchantPk = merchantPk;

@@ -13,7 +13,7 @@ public class RefundRequest extends PaymentRequest {
 
     /**
      * Gets the id of the transaction being refunded.
-     * @return - id of a previous transaction to be refunded.
+     * @return id of a previous transaction to be refunded.
      */
     public String getTransactionId() {
         return transactionId;
@@ -21,7 +21,7 @@ public class RefundRequest extends PaymentRequest {
 
     /**
      * Sets the id of the transaction being refunded.
-     * @param transactionId - id of a previous transaction to be refunded.
+     * @param transactionId id of a previous transaction to be refunded.
      */
     public void setTransactionId(String transactionId) {
         this.transactionId = transactionId;
