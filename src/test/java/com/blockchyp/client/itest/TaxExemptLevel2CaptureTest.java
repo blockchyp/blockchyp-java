@@ -7,8 +7,10 @@ import org.junit.experimental.categories.Category;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.dto.AuthorizationRequest;
 import com.blockchyp.client.dto.AuthorizationResponse;
+import com.blockchyp.client.dto.CaptureRequest;
+import com.blockchyp.client.dto.CaptureResponse;
 
-public class TaxableLevel2Test {
+public class TaxExemptLevel2CaptureTest {
     
     @Test
     @Category(IntegrationTest.class)
@@ -19,17 +21,27 @@ public class TaxableLevel2Test {
         
         AuthorizationRequest request = new AuthorizationRequest();
         request.setAmount("15.00");
-        request.setTaxAmount("2.00");
         request.setTest(true);
-        request.setTaxExempt(false);
         request.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
 
 
         
-        AuthorizationResponse response = client.charge(request);
+        AuthorizationResponse response = client.preauth(request);
         
         Assert.assertNotNull(response);
         Assert.assertTrue(response.isApproved());
+        
+        
+        CaptureRequest captureRequest = new CaptureRequest();
+        captureRequest.setAmount("24.00");
+        captureRequest.setTaxExempt(true);
+        captureRequest.setTransactionId(response.getTransactionId());
+        
+        CaptureResponse captureResponse = client.capture(captureRequest);
+        
+        Assert.assertNotNull(captureResponse);
+        Assert.assertTrue(response.isApproved());
+       
         
     }
 
