@@ -895,7 +895,7 @@ public class BlockChypClient {
         PostMethod method = new PostMethod(resolveTerminalHost(route) + path);
         
         if (request instanceof CoreRequest) {
-            CoreRequest coreRequest = (CoreRequest)request;
+            CoreRequest coreRequest = (CoreRequest) request;
             if (coreRequest.getTimeout() > 0) {
                 method.getParams().setSoTimeout(coreRequest.getTimeout());
             }
@@ -1002,7 +1002,7 @@ public class BlockChypClient {
         method.setRequestEntity(requestEntity);
         
         if (request instanceof CoreRequest) {
-            CoreRequest coreRequest = (CoreRequest)request;
+            CoreRequest coreRequest = (CoreRequest) request;
             if (coreRequest.getTimeout() > 0) {
                 method.getParams().setSoTimeout(coreRequest.getTimeout());
             }
