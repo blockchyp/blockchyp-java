@@ -24,6 +24,15 @@
     </license>
   </licenses>
 
+  <developers>
+    <developer>
+      <name>BlockChyp</name>
+      <id>blockchyp</id>
+      <email>support@blockchyp.com</email>
+      <organization>BlockChyp, Inc.</organization>
+    </developer>
+  </developers>
+
   <organization>
     <name>BlockChyp, Inc.</name>
     <url>https://www.blockchyp.com</url>

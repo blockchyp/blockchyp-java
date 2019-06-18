@@ -31,7 +31,7 @@ deploy:
     # ghr doesn't support artibrary globs
     - rm -rf target/artifacts && mkdir -p target/artifacts && cp target/*jar target/artifacts
     - ghr
-        -n "BlockChyp Java SDK ${CI_COMMIT_TAG#v}"
+        -n "BlockChyp Java SDK ${CI_COMMIT_TAG##*-}"
         -u blockchyp
         -r blockchyp-java -c "${CI_COMMIT_SHA}"
         -recreate
@@ -39,5 +39,3 @@ deploy:
         target/artifacts
   only:
     - tags
-  except:
-    - /^(?!master).+@/
