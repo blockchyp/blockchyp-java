@@ -557,7 +557,7 @@ public class BlockChypClient {
 
     /**
      * Looks up a terminal route from the cache.
-     * @param terminalName - terminal name assigned at activation.
+     * @param terminalName terminal name assigned at activation.
      * @return the terminal route record.
      */
     protected TerminalRouteResponse routeCacheGet(String terminalName) {
@@ -607,7 +607,7 @@ public class BlockChypClient {
 
     /**
      * Creates a cache key for terminal routes.
-     * @param terminalName - terminal name.
+     * @param terminalName terminal name.
      * @return terminal cache key.
      */
     protected String toTerminalRouteKey(String terminalName) {
@@ -671,7 +671,7 @@ public class BlockChypClient {
      * If the first two cache lookups come up empty or the cache is over an hour old,
      * the gateway route API is invoked.  If we have a stale cache entry and the 
      * gateway route lookup fails or times out, we fall back to the stale cache entry.
-     * @param terminalName - name of the terminal assigned at activation.
+     * @param terminalName name of the terminal assigned at activation.
      * @return the terminal route record.
      */
     protected TerminalRouteResponse resolveTerminalRoute(String terminalName) {
@@ -1117,7 +1117,7 @@ public class BlockChypClient {
     /**
      * Gets the terminal https flag.  The Java SDK defaults to using http for 
      * terminal communication because installing custom root certificate authorities
-     * in Java is quite tricky and cannot be done programatically.  We strongly 
+     * in Java is quite tricky and cannot be done programmatically.  We strongly 
      * recommend that all developers install our root CA in your local keystores
      * and then turn https on in production.
      * 
@@ -1132,7 +1132,7 @@ public class BlockChypClient {
     /**
      * Sets the terminal https flag.  The Java SDK defaults to using http for 
      * terminal communication because installing custom root certificate authorities
-     * in Java is quite tricky and cannot be done programatically.  We strongly 
+     * in Java is quite tricky and cannot be done programmatically.  We strongly 
      * recommend that all developers install our root CA in your local keystores
      * and then turn https on in production.
      * 

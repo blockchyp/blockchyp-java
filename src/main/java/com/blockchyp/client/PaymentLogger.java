@@ -13,46 +13,46 @@ public interface PaymentLogger {
 
     /**
      * Logs the message at the debug log level.
-     * @param message - the message to be logged.
+     * @param message the message to be logged.
      */
     void debug(Object message);
 
     /**
      * Logs the message and throwable at the debug log level.
-     * @param message - the message to be logged.
-     * @param t - a throwable for which the stack trace should be logged.
+     * @param message the message to be logged.
+     * @param t a throwable for which the stack trace should be logged.
      */
     void debug(Object message, Throwable t);
 
     /**
      * Logs the message at the error log level.
-     * @param message - the message to be logged.
+     * @param message the message to be logged.
      */
     void error(Object message);
 
     /**
      * Logs the message and throwable at the error log level.
-     * @param message - the message to be logged.
-     * @param t - a throwable for which the stack trace should be logged.
+     * @param message the message to be logged.
+     * @param t a throwable for which the stack trace should be logged.
      */
     void error(Object message, Throwable t);
 
     /**
      * Logs the message at the fatal log level.
-     * @param message - the message to be logged.
+     * @param message the message to be logged.
      */
     void fatal(Object message);
 
     /**
      * Logs the message and throwable at the fatal log level.
-     * @param message - the message to be logged.
-     * @param t - a throwable for which the stack trace should be logged.
+     * @param message the message to be logged.
+     * @param t a throwable for which the stack trace should be logged.
      */
     void fatal(Object message, Throwable t);
 
     /**
      * Logs the message at the info log level.
-     * @param message - the message to be logged.
+     * @param message the message to be logged.
      */
     void info(Object message);
     
@@ -60,7 +60,7 @@ public interface PaymentLogger {
     /**
      * Logs the message and throwable at the info log level.
      * @param message - the message to be logged.
-     * @param t - a throwable for which the stack trace should be logged.
+     * @param t a throwable for which the stack trace should be logged.
      */
     void info(Object message, Throwable t);
 

@@ -132,7 +132,7 @@ public final class CryptoUtils {
     }
     
     /**
-     * Decrypts ciphertext previously encoded with {@link encrypt}.
+     * Decrypts cipher text previously encoded with {@link encrypt}.
      * 
      * @param cipherText the initialization vector and cipher text separated by a pipe character.
      * @param key the AES encryption to use.
