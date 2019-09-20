@@ -39,6 +39,10 @@ public class ReceiptSuggestions {
 
     private String entryMethod;
 
+    private boolean pinVerified;
+
+    private String cashBackAmount;
+
     /**
      * Returns EMV issuer application data, a mysterious value the card issuer sends with every EMV transaction.
      * @return issuer application data.
@@ -288,6 +292,38 @@ public class ReceiptSuggestions {
      */
     public void setArqc(String arqc) {
         this.arqc = arqc;
+    }
+
+    /**
+     * Gets whether or not PIN verification was performed.
+     * @return whether or not PIN verification was performed
+     */
+    public boolean isPinVerified() {
+        return pinVerified;
+    }
+
+    /**
+     * Sets whether or not PIN verification was performed.
+     * @param pinVerified whether or not PIN verification was performed
+     */
+    public void setPinVerified(boolean pinVerified) {
+        this.pinVerified = pinVerified;
+    }
+
+    /**
+     * Gets the authorized cash back amount.
+     * @return the authorized cash back amount.
+     */
+    public String getCashBackAmount() {
+        return cashBackAmount;
+    }
+
+    /**
+     * Sets the authorized cash back amount.
+     * @param cashBackAmount the authorized cash back amount.
+     */
+    public void setCashBackAmount(String cashBackAmount) {
+        this.cashBackAmount = cashBackAmount;
     }
 
 }
