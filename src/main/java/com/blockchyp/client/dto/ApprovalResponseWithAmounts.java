@@ -12,6 +12,8 @@ public class ApprovalResponseWithAmounts extends ApprovalResponse {
     private String currencyCode;
     private String requestedAmount;
     private String authorizedAmount;
+    private String requestedCashBackAmount;
+    private String authorizedCashBackAmount;
     private String tipAmount;
     private String taxAmount;
 
@@ -90,11 +92,45 @@ public class ApprovalResponseWithAmounts extends ApprovalResponse {
 
     /**
      * Sets the authorized amount.  Might differ from requested amount in the event of a partial auth.
-     * 
+     *
      * @param authorizedAmount authorized amount.
      */
     public void setAuthorizedAmount(String authorizedAmount) {
         this.authorizedAmount = authorizedAmount;
+    }
+
+    /**
+     * Returns the requested cash back amount.
+     * @return requested cash back amount.
+     */
+    public String getRequestedCashBackAmount() {
+        return requestedCashBackAmount;
+    }
+
+    /**
+     * Sets the requested cash back amount.
+     *
+     * @param requestedCashBackAmount requested cash back amount.
+     */
+    public void setRequestedCashBackAmount(String requestedCashBackAmount) {
+        this.requestedCashBackAmount = requestedCashBackAmount;
+    }
+
+    /**
+     * Returns the authorized cash back amount. This amount will be the entire amount requested, or zero.
+     * @return authorized cash back amount.
+     */
+    public String getAuthorizedCashBackAmount() {
+        return authorizedCashBackAmount;
+    }
+
+    /**
+     * Sets the authorized cash back amount.
+     *
+     * @param authorizedCashBackAmount authorized cash back amount.
+     */
+    public void setAuthorizedCashBackAmount(String authorizedCashBackAmount) {
+        this.authorizedCashBackAmount = authorizedCashBackAmount;
     }
 
     /**
