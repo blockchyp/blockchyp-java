@@ -2,11 +2,11 @@ package com.blockchyp.client.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-
 /**
  * Models requests that include payment method information.
  * 
- * We recommend that you never use PAN and track data as this would put you in PCI scope.
+ * We recommend that you never use PAN and track data as this would put you in
+ * PCI scope.
  * 
  */
 
@@ -25,10 +25,10 @@ public class PaymentRequest extends AmountRequest implements ITerminalReference 
     private String address;
     private String postalCode;
     private boolean manualEntry;
+    private boolean cashBackEnabled;
     private String sigFormat;
     private int sigWidth;
     private String sigFile; // local SDK only
-    
 
     /**
      * Sets the target terminal name to which the transaction will be routed.
@@ -254,6 +254,21 @@ public class PaymentRequest extends AmountRequest implements ITerminalReference 
         this.manualEntry = manualEntry;
     }
 
+    /**
+     * Gets whether or not cash back is enabled.
+     * @return true if cash back is enabled.
+     */
+    public boolean isCashBackEnabled() {
+        return cashBackEnabled;
+    }
+
+    /**
+     * Sets whether or not cash back is enabled.
+     * @param cashBackEnabled whether or not cash back is enabled.
+     */
+    public void setCashBackEnabled(boolean cashBackEnabled) {
+        this.cashBackEnabled = cashBackEnabled;
+    }
     
     /**
      * Gets the preferred output format for signature images.
