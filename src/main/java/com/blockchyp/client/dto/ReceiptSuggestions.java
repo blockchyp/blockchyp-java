@@ -21,6 +21,8 @@ public class ReceiptSuggestions {
 
     private String tsi;
 
+    private String tvr;
+
     private String terminalId;
 
     private String merchantName;
@@ -96,6 +98,23 @@ public class ReceiptSuggestions {
      */
     public void setTsi(String tsi) {
         this.tsi = tsi;
+    }
+
+    /**
+     * Returns the EMV Terminal Verification Results (Tag 95).
+     * @return terminal verification reuslts.
+     */
+    @JsonProperty("TVR")
+    public String getTvr() {
+        return tvr;
+    }
+
+    /**
+     * Sets the EMV Terminal Verification Results tag.
+     * @param tvr terminal vericiation results.
+     */
+    public void setTvr(String tvr) {
+        this.tvr = tvr;
     }
 
     /**
