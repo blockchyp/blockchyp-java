@@ -137,7 +137,7 @@ public class BlockChypClient {
     /**
      * Provided as a convenience to support constructor based dependency injection.
      * 
-     * @param gatewayHost - alternate gateway endpoint.
+     * @param gatewayHost alternate gateway endpoint.
      * @param defaultCredentials {@link APICredentials}
      */
     public BlockChypClient(String gatewayHost, APICredentials defaultCredentials) {

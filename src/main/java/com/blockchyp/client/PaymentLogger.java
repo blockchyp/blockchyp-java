@@ -59,7 +59,7 @@ public interface PaymentLogger {
     
     /**
      * Logs the message and throwable at the info log level.
-     * @param message - the message to be logged.
+     * @param message the message to be logged.
      * @param t a throwable for which the stack trace should be logged.
      */
     void info(Object message, Throwable t);

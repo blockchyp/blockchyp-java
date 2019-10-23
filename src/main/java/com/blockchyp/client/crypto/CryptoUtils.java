@@ -132,9 +132,9 @@ public final class CryptoUtils {
     }
     
     /**
-     * Decrypts cipher text previously encoded with {@link encrypt}.
+     * Decrypts ciphertext previously encoded with {@link encrypt}.
      * 
-     * @param cipherText the initialization vector and cipher text separated by a pipe character.
+     * @param cipherText the initialization vector and ciphertext separated by a pipe character.
      * @param key the AES encryption to use.
      * @return the plain text
      * @throws Exception if the decryption or associated encoding operations fail.
@@ -156,11 +156,11 @@ public final class CryptoUtils {
     /**
      * Encrypts the given plain text using the given key using AES with PKCS#5 padding.
      * 
-     * Generates and returns a CBC initialization vector prepended to the main cipher text.
+     * Generates and returns a CBC initialization vector prepended to the main ciphertext.
      * 
      * @param plainText the message to be encrypted
      * @param key AES encryption key
-     * @return return hex encoded initialization vector and cipher text, pipe delimited.
+     * @return return hex encoded initialization vector and ciphertext, pipe delimited.
      * @throws Exception if an error occurs during encryption or encoding.
      */
     public String encrypt(String plainText, byte[] key) throws Exception {
