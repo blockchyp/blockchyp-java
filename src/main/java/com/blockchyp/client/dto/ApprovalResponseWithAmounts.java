@@ -8,7 +8,7 @@ package com.blockchyp.client.dto;
 public class ApprovalResponseWithAmounts extends ApprovalResponse {
 
     private boolean partialAuth;
-    private String altCurrency;
+    private boolean altCurrency;
     private String currencyCode;
     private String requestedAmount;
     private String authorizedAmount;
@@ -34,19 +34,18 @@ public class ApprovalResponseWithAmounts extends ApprovalResponse {
     }
 
     /**
-     * Returns alternate currency code, if relevant.  This would typically be returned
-     * if the user opted to pay in cryptocurrency.
-     * @return alt currency code (e.g. BTC)
+     * Returns a boolean indicating that an alternate curreency was used.
+     * @return bool
      */
-    public String getAltCurrency() {
+    public boolean isAltCurrency() {
         return altCurrency;
     }
 
     /**
-     * Sets alternate currency code if selected by the consumer.
-     * @param altCurrency alt currency code.
+     * Sets alternate currency flag.
+     * @param altCurrency bool
      */
-    public void setAltCurrency(String altCurrency) {
+    public void setAltCurrency(boolean altCurrency) {
         this.altCurrency = altCurrency;
     }
 
