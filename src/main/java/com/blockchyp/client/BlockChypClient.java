@@ -757,7 +757,7 @@ public class BlockChypClient {
     protected String resolveTerminalHost(TerminalRouteResponse route) {
          
         //Note: our terminals don't actually run Java, but port 8080 should make you feel at home.
-        return (isTerminalHttps() ? "https://" : "http://") + route.getIpAddress() + ":8080";
+        return (isTerminalHttps() ? "https://" : "http://") + route.getIpAddress() + (isTerminalHttps() ? ":8443 " : ":8080");
 
     }
 
