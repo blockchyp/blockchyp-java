@@ -43,7 +43,7 @@ public class ApprovalResponseWithAmounts extends ApprovalResponse {
 
     /**
      * Sets alternate currency flag.
-     * @param altCurrency
+     * @param altCurrency bool
      */
     public void setAltCurrency(boolean altCurrency) {
         this.altCurrency = altCurrency;
