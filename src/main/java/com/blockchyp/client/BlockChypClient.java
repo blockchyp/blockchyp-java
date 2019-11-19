@@ -31,6 +31,7 @@ import com.blockchyp.client.dto.APICredentials;
 import com.blockchyp.client.dto.Acknowledgement;
 import com.blockchyp.client.dto.AuthorizationRequest;
 import com.blockchyp.client.dto.AuthorizationResponse;
+import com.blockchyp.client.dto.BalanceResponse;
 import com.blockchyp.client.dto.BooleanPromptRequest;
 import com.blockchyp.client.dto.BooleanPromptResponse;
 import com.blockchyp.client.dto.CaptureRequest;
@@ -304,6 +305,26 @@ public class BlockChypClient {
     public AuthorizationResponse reverse(AuthorizationRequest request) throws Exception {
 
         return (AuthorizationResponse) postGateway("/api/reverse", request, AuthorizationResponse.class);
+
+    }
+
+    /**
+     * Performs a balance check.
+     * @param request {@link AuthorizationRequest}
+     * @return {@link BalanceResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public BalanceResponse balance(AuthorizationRequest request) throws Exception {
+
+        BalanceResponse response;
+
+        if (isTerminalRouted(request)) {
+            response = (BalanceResponse) postTerminal("/api/balance", request, BalanceResponse.class);
+        } else {
+            response = (BalanceResponse) postGateway("/api/balance", request, BalanceResponse.class);
+        }
+
+        return response;
 
     }
 
@@ -1002,7 +1023,7 @@ public class BlockChypClient {
         method.setRequestEntity(requestEntity);
 
         if (request instanceof CoreRequest) {
-            CoreRequest coreRequest = (CoreRequest) request;
+            CoreRequest coreRequest = request;
             if (coreRequest.getTimeout() > 0) {
                 method.getParams().setSoTimeout(coreRequest.getTimeout());
             }

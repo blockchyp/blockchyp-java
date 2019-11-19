@@ -29,6 +29,7 @@ public class PaymentRequest extends AmountRequest implements ITerminalReference 
     private String sigFormat;
     private int sigWidth;
     private String sigFile; // local SDK only
+    private CardType cardType;
 
     /**
      * Sets the target terminal name to which the transaction will be routed.
@@ -319,4 +320,19 @@ public class PaymentRequest extends AmountRequest implements ITerminalReference 
         this.sigFile = sigFile;
     }
 
+    /**
+     * Gets the card type for the transaction.
+     * @return the card type for the transaction.
+     */
+    public CardType getCardType() {
+        return cardType;
+    }
+
+    /**
+     * Sets the card type for the transaction.
+     * @param cardType the card type for the transaction.
+     */
+    public void setCardType(CardType cardType) {
+        this.cardType = cardType;
+    }
 }

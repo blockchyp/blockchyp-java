@@ -73,7 +73,9 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.0.0-M3</version>
         <configuration>
-          <excludedGroups>com.blockchyp.client.itest.IntegrationTest</excludedGroups>
+          <excludes>
+            <exclude>**/itest/*</exclude>
+          </excludes>
         </configuration>
       </plugin>
       <plugin>

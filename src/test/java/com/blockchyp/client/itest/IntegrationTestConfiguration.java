@@ -7,6 +7,7 @@ import org.apache.commons.lang.SystemUtils;
 
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.dto.APICredentials;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /*
@@ -27,7 +28,8 @@ public class IntegrationTestConfiguration {
 
     protected static IntegrationTestSettings getSettings() {
 
-        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper = new ObjectMapper()
+            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         try {
 
             File configFile = new File(resolveFileLocation());
@@ -77,7 +79,7 @@ public class IntegrationTestConfiguration {
         }
 
 
-        return configHome + "/blockchyp/sdk-itest-config.json";
+        return configHome + "/blockchyp/blockchyp.json";
 
     }
 
@@ -86,12 +88,12 @@ public class IntegrationTestConfiguration {
     }
 
 
-    public static String getGatewayHost() {
-        return getSettings().getGatewayHost();
+    public static String getGatewayUrl() {
+        return getSettings().getGatewayUrl();
     }
 
-    public static String getTestGatewayHost() {
-        return getSettings().getTestGatewayHost();
+    public static String getTestGatewayUrl() {
+        return getSettings().getTestGatewayUrl();
     }
 
     public static APICredentials getTestCredentials() {
@@ -107,8 +109,8 @@ public class IntegrationTestConfiguration {
 
     public static BlockChypClient getTestClient() {
         return new BlockChypClient(
-                IntegrationTestConfiguration.getGatewayHost(), 
-                IntegrationTestConfiguration.getTestGatewayHost(), 
+                IntegrationTestConfiguration.getGatewayUrl(),
+                IntegrationTestConfiguration.getTestGatewayUrl(),
                 IntegrationTestConfiguration.getTestCredentials()
             );
     }
