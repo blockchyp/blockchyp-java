@@ -95,7 +95,7 @@ public class CoreResponse {
     public void setTransactionType(String transactionType) {
         this.transactionType = transactionType;
     }
-    
+
     /**
      * Returns the timestamp on the server at the time the heartbeat request was processed.
      * @return java.util.Date

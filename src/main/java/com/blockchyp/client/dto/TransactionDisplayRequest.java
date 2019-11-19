@@ -8,7 +8,7 @@ public class TransactionDisplayRequest extends CoreRequest implements ITerminalR
 
     private String terminalName;
     private TransactionDisplayTransaction transaction;
-    
+
     /**
      * Returns the target terminal name.
      * @return terminal name.

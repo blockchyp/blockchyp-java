@@ -46,8 +46,8 @@ public class ApprovalResponseWithPaymentMethod extends ApprovalResponseWithAmoun
     public void setEntryMethod(String entryMethod) {
         this.entryMethod = entryMethod;
     }
-    
-    
+
+
     /**
      * Returns the payment type.  This would be the card brand (VISA, MC, AMEX, etc.)
      * @return payment type.

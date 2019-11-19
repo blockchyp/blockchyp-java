@@ -9,14 +9,14 @@ import com.blockchyp.client.dto.AuthorizationRequest;
 import com.blockchyp.client.dto.AuthorizationResponse;
 
 public class TaxableLevel2Test {
-    
+
     @Test
     @Category(IntegrationTest.class)
     public void testTransaction() throws Exception {
-        
-        
+
+
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
-        
+
         AuthorizationRequest request = new AuthorizationRequest();
         request.setAmount("15.00");
         request.setTaxAmount("2.00");
@@ -25,12 +25,12 @@ public class TaxableLevel2Test {
         request.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
 
 
-        
+
         AuthorizationResponse response = client.charge(request);
-        
+
         Assert.assertNotNull(response);
         Assert.assertTrue(response.isApproved());
-        
+
     }
 
 }

@@ -9,16 +9,16 @@ public class APICredentials {
     private String apiKey;
     private String bearerToken;
     private String signingKey;
-    
-    
+
+
     /**
      * Default constructor.
      */
     public APICredentials() {
-        
+
     }
-    
-    
+
+
     /**
      * Alternate constructor that initializes all the credential fields.
      * @param apiKey the API key
@@ -50,7 +50,7 @@ public class APICredentials {
         this.apiKey = apiKey;
     }
 
-    
+
     /**
      * Returns the bearer token.
      * @return the bearer token.

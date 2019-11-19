@@ -7,7 +7,7 @@ public class TextPromptResponse extends Acknowledgement {
 
     private String response;
 
-    
+
     /**
      * Returns the text prompt response.
      * @return the text prompt response.

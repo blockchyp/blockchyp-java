@@ -9,26 +9,26 @@ import com.blockchyp.client.dto.TextPromptRequest;
 import com.blockchyp.client.dto.TextPromptResponse;
 
 public class PhonePromptTest {
-    
+
     @Test
     @Category(IntegrationTest.class)
     public void testPrompt() throws Exception {
-        
-        
-    	BlockChypClient client = IntegrationTestConfiguration.getTestClient();
-        
+
+
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+
         TextPromptRequest request = new TextPromptRequest();
         request.setTest(true);
         request.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
         request.setPromptType("phone");
-        
-        
+
+
         TextPromptResponse response = client.textPrompt(request);
-        
+
         Assert.assertNotNull(response);
         Assert.assertTrue(response.isSuccess());
         Assert.assertNotNull(response.getResponse());
-        
+
     }
 
 }

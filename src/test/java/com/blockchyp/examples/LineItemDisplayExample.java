@@ -18,16 +18,16 @@ import com.blockchyp.client.dto.TransactionDisplayTransaction;
 import com.blockchyp.client.itest.IntegrationTestConfiguration;
 
 public class LineItemDisplayExample {
-    
+
     @Autowired
     private BlockChypClient blockchypClient;
-    
+
     public void lineItemDisplay() throws Exception {
-       
-        
+
+
         TransactionDisplayRequest request = new TransactionDisplayRequest();
         request.setTerminalName("Test Terminal");
-        
+
         TransactionDisplayDiscount discount = new TransactionDisplayDiscount();
         discount.setAmount("5.00");
         discount.setDescription("Member Discount");
@@ -37,8 +37,8 @@ public class LineItemDisplayExample {
         item.setPrice("150.00");
         item.setQuantity(1f);
         item.setExtended("145.00");
-       
-        
+
+
         TransactionDisplayTransaction tx = new TransactionDisplayTransaction();
         tx.addItem(item);
         tx.setSubtotal("145");
@@ -47,24 +47,24 @@ public class LineItemDisplayExample {
 
         // newTransactionDisplay() replaces the terminal contents
         Acknowledgement ack = blockchypClient.newTransactionDisplay(request); 
-     
+
         request = new TransactionDisplayRequest();
         request.setTerminalName("Test Terminal");
-        
+
         item = new TransactionDisplayItem();
         item.setDescription("Northwest Forest Pass");  //you'll get a free one if you work here
         item.setPrice("30.00");
         item.setQuantity(1f);
         item.setExtended("30.00");
-        
+
         tx.setSubtotal("175.00");
         tx.setTax("0.00");        
         tx.setTotal("175.00");
 
         // updateTransactionDisplay() adds more line items to the display
         ack = blockchypClient.updateTransactionDisplay(request);
-        
-        
+
+
     }
 
 }

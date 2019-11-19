@@ -104,7 +104,7 @@ public class BlockChypClient {
     private HttpClient gatewayClient;
 
     private HttpClient terminalClient;
-    
+
     private boolean terminalHttps = false;
 
     /**
@@ -159,7 +159,7 @@ public class BlockChypClient {
         this.testGatewayHost = testGatewayHost;
         this.defaultCredentials = defaultCredentials;
     }
-    
+
     /**
      * Used to override the live gateway host.  Unless you work at BlockChyp, you probably
      * won't ever need to do this.
@@ -170,7 +170,7 @@ public class BlockChypClient {
     public void setGatewayHost(String gatewayHost) {
         this.gatewayHost = gatewayHost;
     }
-    
+
 
     /**
      * Used to override the test gateway host.  Unless you work at BlockChyp, you probably
@@ -245,8 +245,8 @@ public class BlockChypClient {
         return (Acknowledgement) postTerminal("/api/test", request, Acknowledgement.class);
 
     }
-    
-    
+
+
     /**
      * Enrolls the payment method in the recurring payment token vault.  Any amounts passed in are ignored.
      * @param request {@link AuthorizationRequest}
@@ -748,14 +748,14 @@ public class BlockChypClient {
         return terminalClient;
     }
 
-    
+
     /**
      * Assembles the scheme, ip address, and port number bits of a terminal URL.
      * @param route the terminal route record.
      * @return scheme, ip addres, and port number.
      */
     protected String resolveTerminalHost(TerminalRouteResponse route) {
-         
+
         //Note: our terminals don't actually run Java, but port 8080 should make you feel at home.
         return (isTerminalHttps() ? "https://" : "http://") + route.getIpAddress() + (isTerminalHttps() ? ":8443 " : ":8080");
 
@@ -893,20 +893,20 @@ public class BlockChypClient {
         TerminalRouteResponse route = resolveTerminalRoute(terminalName);
 
         PostMethod method = new PostMethod(resolveTerminalHost(route) + path);
-        
+
         if (request instanceof CoreRequest) {
             CoreRequest coreRequest = (CoreRequest) request;
             if (coreRequest.getTimeout() > 0) {
                 method.getParams().setSoTimeout(coreRequest.getTimeout());
             }
         }
-        
+
 
 
         return finishTerminalRequest(route, request, method, responseType);
 
     }
-    
+
     /**
      * Executes an http get request against the gateway with a timeout override.
      * @param path api path relative to the root (e.g. "/api/heartbeat")
@@ -1000,14 +1000,14 @@ public class BlockChypClient {
                 "application/json", "UTF-8");
 
         method.setRequestEntity(requestEntity);
-        
+
         if (request instanceof CoreRequest) {
             CoreRequest coreRequest = (CoreRequest) request;
             if (coreRequest.getTimeout() > 0) {
                 method.getParams().setSoTimeout(coreRequest.getTimeout());
             }
         }
-        
+
 
         return finishGatewayRequest(method, responseClass);
 

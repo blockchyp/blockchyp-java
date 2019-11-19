@@ -50,7 +50,7 @@ public class TerminalRouteResponse extends Acknowledgement {
     public void setIpAddress(String ipAddress) {
         this.ipAddress = ipAddress;
     }
-    
+
     /**
      * Gets the public key of the terminal.  This can be used to verify the digital signature of a terminal response and
      * detect man in the middle attacks.

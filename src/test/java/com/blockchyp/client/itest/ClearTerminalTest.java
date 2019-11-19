@@ -9,25 +9,25 @@ import com.blockchyp.client.dto.Acknowledgement;
 import com.blockchyp.client.dto.ClearTerminalRequest;
 
 public class ClearTerminalTest {
-	
-	
+
+
     @Test
     @Category(IntegrationTest.class)
     public void testClearTerminal() throws Exception {
-        
-        
-    	BlockChypClient client = IntegrationTestConfiguration.getTestClient();
-    	
-    	ClearTerminalRequest clearRequest = new ClearTerminalRequest();
-    	clearRequest.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
-    	clearRequest.setTest(true);
-    	
-    	Acknowledgement ack = client.clear(clearRequest);
-    	
+
+
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+
+        ClearTerminalRequest clearRequest = new ClearTerminalRequest();
+        clearRequest.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
+        clearRequest.setTest(true);
+
+        Acknowledgement ack = client.clear(clearRequest);
+
         Assert.assertNotNull(ack);
         Assert.assertTrue(ack.isSuccess());
-        
-        
+
+
     }
 
 }

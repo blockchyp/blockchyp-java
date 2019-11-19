@@ -25,7 +25,7 @@ public class TransactionDisplayDiscount {
         this.description = description;
     }
 
-    
+
     /**
      * Returns the discount amount.
      * @return discount amount.

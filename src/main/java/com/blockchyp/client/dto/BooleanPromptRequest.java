@@ -43,7 +43,7 @@ public class BooleanPromptRequest extends CoreRequest implements ITerminalRefere
         this.prompt = prompt;
     }
 
-    
+
     /**
      * Gets the preferred caption for the 'yes' button.
      * @return caption for the 'yes' button.

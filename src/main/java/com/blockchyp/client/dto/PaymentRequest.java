@@ -93,7 +93,7 @@ public class PaymentRequest extends AmountRequest implements ITerminalReference 
     public void setTrack2(String track2) {
         this.track2 = track2;
     }
-    
+
     /**
      * Gets the primary account number (PAN).
      * @return Primary Account Number.
@@ -126,7 +126,7 @@ public class PaymentRequest extends AmountRequest implements ITerminalReference 
     public void setRoutingNumber(String routingNumber) {
         this.routingNumber = routingNumber;
     }
-    
+
     /**
      * Gets the cardholder name for use with PAN based transaction authorization.  
      * @return cardholder's name.
@@ -144,7 +144,7 @@ public class PaymentRequest extends AmountRequest implements ITerminalReference 
     public void setCardholderName(String cardholderName) {
         this.cardholderName = cardholderName;
     }
-    
+
     /**
      * Gets the card expiration month for use with PAN based transaction authorization.
      * @return card expiration month. 
@@ -162,7 +162,7 @@ public class PaymentRequest extends AmountRequest implements ITerminalReference 
     public void setExpMonth(String expMonth) {
         this.expMonth = expMonth;
     }
-    
+
     /**
      * Gets the card expiration year for use with PAN based transaction authorization.
      * @return card expiration year.  
@@ -200,8 +200,8 @@ public class PaymentRequest extends AmountRequest implements ITerminalReference 
     public void setCvv(String cvv) {
         this.cvv = cvv;
     }
-    
-    
+
+
     /**
      * Gets the address for use with address verification.
      * @return cardholder's street address.
@@ -269,7 +269,7 @@ public class PaymentRequest extends AmountRequest implements ITerminalReference 
     public void setCashBackEnabled(boolean cashBackEnabled) {
         this.cashBackEnabled = cashBackEnabled;
     }
-    
+
     /**
      * Gets the preferred output format for signature images.
      * @return signature file format (PNG, JPEG, etc)

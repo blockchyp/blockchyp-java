@@ -9,24 +9,24 @@ import com.blockchyp.client.dto.Acknowledgement;
 import com.blockchyp.client.dto.PingRequest;
 
 public class PingTest {
-    
+
     @Test
     @Category(IntegrationTest.class)
     public void testTransaction() throws Exception {
-        
-        
+
+
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
-        
+
         PingRequest request = new PingRequest();
         request.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
         request.setTest(true);
-        
-        
+
+
         Acknowledgement ack = client.ping(request);
-        
+
         Assert.assertNotNull(ack);
         Assert.assertTrue(ack.isSuccess());
-        
+
     }
 
 }
