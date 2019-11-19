@@ -9,14 +9,14 @@ import com.blockchyp.client.dto.BooleanPromptRequest;
 import com.blockchyp.client.dto.BooleanPromptResponse;
 
 public class BooleanPromptTest {
-    
+
     @Test
     @Category(IntegrationTest.class)
     public void testPrompt() throws Exception {
-        
-        
-    	BlockChypClient client = IntegrationTestConfiguration.getTestClient();
-        
+
+
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+
         BooleanPromptRequest request = new BooleanPromptRequest();
         request.setTest(true);
         request.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
@@ -25,11 +25,11 @@ public class BooleanPromptTest {
         request.setNoCaption("MMM...");
 
         BooleanPromptResponse response = client.booleanPrompt(request);
-        
+
         Assert.assertNotNull(response);
         Assert.assertTrue(response.isSuccess());
         Assert.assertTrue(response.isResponse());
-        
+
     }
 
 }

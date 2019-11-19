@@ -7,12 +7,12 @@ import com.blockchyp.client.dto.AuthorizationRequest;
 import com.blockchyp.client.dto.AuthorizationResponse;
 
 public class KeyedEntryExample {
-    
+
     @Autowired
     private BlockChypClient blockchypClient;
-    
+
     public void charge(String terminalName, String amount) throws Exception {
-        
+
         AuthorizationRequest request = new AuthorizationRequest();
         request.setTransactionRef("your invoice or tender id");
         request.setTerminalName("Test Terminal");
@@ -20,15 +20,15 @@ public class KeyedEntryExample {
         request.setManualEntry(true);
 
         AuthorizationResponse response = blockchypClient.charge(request);
-        
+
         if (response.isApproved()) {
             System.out.println("Approved!");
         }
-        
-        String txId = response.getTransactionId(); //store this for refunding or voiding later
-        
 
-        
+        String txId = response.getTransactionId(); //store this for refunding or voiding later
+
+
+
     }
 
 }

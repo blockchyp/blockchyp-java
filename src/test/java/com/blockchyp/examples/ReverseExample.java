@@ -9,12 +9,12 @@ import com.blockchyp.client.dto.AuthorizationRequest;
 import com.blockchyp.client.dto.AuthorizationResponse;
 
 public class ReverseExample {
-    
+
     @Autowired
     private BlockChypClient blockchypClient;
-    
+
     public void reverse(String terminalName, String amount) throws Exception {
-        
+
         AuthorizationRequest request = new AuthorizationRequest();
         request.setTransactionRef("your invoice or tender id");
         request.setTerminalName("Test Terminal");
@@ -22,14 +22,14 @@ public class ReverseExample {
 
         try {
             AuthorizationResponse response = blockchypClient.charge(request);
-            
+
             if (response.isApproved()) {
                 System.out.println("Approved!");
             }
         } catch (TimeoutException te) {
             //nope
             AuthorizationResponse response = blockchypClient.reverse(request);
-            
+
            if (response.isApproved()) {
                //blockchyp authorized the transaction the first time
                //but it's now been reversed
@@ -37,7 +37,7 @@ public class ReverseExample {
                //blockchyp never recieved the transaction
            }
         }
-           
+
     }
 
 }

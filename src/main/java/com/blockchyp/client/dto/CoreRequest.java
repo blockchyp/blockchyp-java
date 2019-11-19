@@ -18,7 +18,7 @@ public class CoreRequest {
      */
     public String getTransactionRef() {
         return transactionRef;
-    
+
     }
 
     /**
@@ -76,6 +76,6 @@ public class CoreRequest {
     public void setTimeout(int timeout) {
         this.timeout = timeout;
     }
-    
+
 
 }

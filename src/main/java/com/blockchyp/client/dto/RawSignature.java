@@ -6,11 +6,11 @@ package com.blockchyp.client.dto;
  * 
  */
 public class RawSignature {
-    
+
     private String curve;
     private String r;
     private String s;
-    
+
     /**
      * Returns the name of the standard curve.  This is almost always 'P256'.
      * @return name of the standard curve.
@@ -53,7 +53,7 @@ public class RawSignature {
     public void setS(String s) {
         this.s = s;
     }
-    
-    
+
+
 
 }

@@ -18,7 +18,7 @@ public class CloseBatchResponse extends Acknowledgement {
     @SuppressWarnings("rawtypes")
     private Map cardBrands;
 
-    
+
     /**
      * Returns the timestamp on the server at the time the heartbeat request was processed.
      * @return java.util.Date
@@ -43,7 +43,7 @@ public class CloseBatchResponse extends Acknowledgement {
         return success;
     }
 
-    
+
     /**
      * Sets the success flag.
      * @param success success flag.
@@ -108,7 +108,7 @@ public class CloseBatchResponse extends Acknowledgement {
     public Map getCardBrands() {
         return cardBrands;
     }
-    
+
     /**
      * Sets captured totals by card brands map.
      * @param cardBrands captured totals grouped by card brand.

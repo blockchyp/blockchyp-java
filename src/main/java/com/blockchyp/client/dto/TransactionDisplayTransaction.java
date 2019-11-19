@@ -17,7 +17,7 @@ public class TransactionDisplayTransaction {
     @SuppressWarnings("rawtypes")
     private Collection items;
 
-    
+
     /**
      * Gets the pre tax subtotal for the line item display.
      * @return pre tax subtotal for the line item display.
@@ -105,7 +105,7 @@ public class TransactionDisplayTransaction {
         this.addItem(item);
         return this;
     }
-    
+
     /**
      * Sets the line items for the transaction using the builder pattern.
      * 

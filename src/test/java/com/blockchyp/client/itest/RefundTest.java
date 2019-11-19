@@ -10,14 +10,14 @@ import com.blockchyp.client.dto.AuthorizationResponse;
 import com.blockchyp.client.dto.RefundRequest;
 
 public class RefundTest {
-    
+
     @Test
     @Category(IntegrationTest.class)
     public void testTransaction() throws Exception {
-        
-        
-    	BlockChypClient client = IntegrationTestConfiguration.getTestClient();
-        
+
+
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+
         AuthorizationRequest request = new AuthorizationRequest();
         request.setAmount("55.55");
         request.setTest(true);
@@ -25,23 +25,23 @@ public class RefundTest {
         request.setSigFormat("png");
         request.setSigWidth(200);
 
-        
+
         AuthorizationResponse response = client.charge(request);
-        
+
         Assert.assertNotNull(response);
         Assert.assertTrue(response.isApproved());
-        
+
         RefundRequest refundRequest = new RefundRequest();
         refundRequest.setTransactionId(response.getTransactionId());
         refundRequest.setTest(response.isTest());
-        
+
         AuthorizationResponse refundResponse = client.refund(refundRequest);
-        
+
         Assert.assertNotNull(refundRequest);
         Assert.assertTrue(refundResponse.isApproved());
-        
 
-        
+
+
     }
 
 }

@@ -6,11 +6,11 @@ package com.blockchyp.client.dto;
  * 
  */
 public class RawPublicKey {
-    
+
     private String curve;
     private String x;
     private String y;
-    
+
     /**
      * Returns the name of the standard curve.  This is almost always 'P256'.
      * @return name of the standard curve.
@@ -25,7 +25,7 @@ public class RawPublicKey {
     public void setCurve(String curve) {
         this.curve = curve;
     }
-    
+
     /**
      * Returns the X coordinate as hex.
      * @return the X coordinate.
@@ -54,8 +54,8 @@ public class RawPublicKey {
     public void setY(String y) {
         this.y = y;
     }
-    
-    
-    
+
+
+
 
 }

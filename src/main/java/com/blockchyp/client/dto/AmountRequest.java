@@ -44,8 +44,8 @@ public class AmountRequest extends CoreRequest {
     public void setAmount(String amount) {
         this.amount = amount;
     }
-    
-    
+
+
     /**
      * Returns the tax exempt flag.
      * @return tax exempt flag.

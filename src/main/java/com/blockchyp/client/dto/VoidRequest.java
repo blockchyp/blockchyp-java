@@ -8,7 +8,7 @@ package com.blockchyp.client.dto;
 public class VoidRequest extends CoreRequest {
 
     private String transactionId;
-  
+
 
     /**
      * Returns the transaction id being captured.

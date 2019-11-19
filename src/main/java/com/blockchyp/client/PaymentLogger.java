@@ -55,8 +55,8 @@ public interface PaymentLogger {
      * @param message the message to be logged.
      */
     void info(Object message);
-    
-    
+
+
     /**
      * Logs the message and throwable at the info log level.
      * @param message the message to be logged.

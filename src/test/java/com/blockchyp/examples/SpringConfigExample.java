@@ -13,10 +13,10 @@ public class SpringConfigExample {
     public APICredentials blockchypCredentials() {
         return new APICredentials("APIKEY", "BEARER TOKEN", "SIGNING_KEY");
     }
-    
+
     @Bean
     public BlockChypClient blockchypClient() {
         return new BlockChypClient(blockchypCredentials());
     } 
-    
+
 }

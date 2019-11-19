@@ -105,7 +105,7 @@ public class TransactionDisplayItem {
     public Collection getDiscounts() {
         return discounts;
     }
-    
+
     /**
      * Sets the discounts on the line item.  
      * @param discounts a java.util.Collection of {@link TransactionDisplayDiscount} objects.
