@@ -51,6 +51,8 @@ import com.blockchyp.client.dto.TextPromptResponse;
 import com.blockchyp.client.dto.BooleanPromptResponse;
 import com.blockchyp.client.dto.WhiteListedCard;
 import com.blockchyp.client.dto.AuthorizationRequest;
+import com.blockchyp.client.dto.BalanceRequest;
+import com.blockchyp.client.dto.BalanceResponse;
 import com.blockchyp.client.dto.RefundRequest;
 import com.blockchyp.client.dto.CaptureRequest;
 import com.blockchyp.client.dto.CaptureResponse;
@@ -338,6 +340,19 @@ public class BlockChypClient {
             return (PingResponse) postTerminal("/api/test", request, PingResponse.class);
         } else {
             return (PingResponse) postGateway("/api/terminal-test", request, PingResponse.class);
+        }
+
+    }
+
+    /**
+     * checks the remaining balance on a payment method.
+     */
+    public BalanceResponse balance(BalanceRequest request) throws Exception {
+
+        if (isTerminalRouted(request)) {
+            return (BalanceResponse) postTerminal("/api/balance", request, BalanceResponse.class);
+        } else {
+            return (BalanceResponse) postGateway("/api/balance", request, BalanceResponse.class);
         }
 
     }

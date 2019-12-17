@@ -8,7 +8,7 @@ package com.blockchyp.client.dto;
 
 
 /**
- * models the response to a text prompt request
+ * models the response to a text prompt request.
  */
 
 public class TextPromptResponse {

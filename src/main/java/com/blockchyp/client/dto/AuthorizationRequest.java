@@ -64,7 +64,7 @@ public class AuthorizationRequest implements ICoreRequest, ITerminalReference, I
      
      private String postalCode;
   
-     // ManualEntry specifies that the payment entry method is a manual keyed transaction. If this is true, no other payment method will be accepted 
+     // ManualEntry specifies that the payment entry method is a manual keyed transaction. If this is true, no other payment method will be accepted. 
      private boolean manualEntry;
   
      // KSN is the key serial number used for DUKPT encryption. 
@@ -291,13 +291,13 @@ public class AuthorizationRequest implements ICoreRequest, ITerminalReference, I
      }
   
      /**
-      * specifies that the payment entry method is a manual keyed transaction. If this is true, no other payment method will be accepted
+      * specifies that the payment entry method is a manual keyed transaction. If this is true, no other payment method will be accepted.
       */
      public void setManualEntry(boolean value) {
           this.manualEntry = value;
      }
      /**
-      * specifies that the payment entry method is a manual keyed transaction. If this is true, no other payment method will be accepted
+      * specifies that the payment entry method is a manual keyed transaction. If this is true, no other payment method will be accepted.
       */
      public boolean isManualEntry() {
           return this.manualEntry;

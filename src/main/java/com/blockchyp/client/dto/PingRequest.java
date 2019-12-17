@@ -8,7 +8,7 @@ package com.blockchyp.client.dto;
 
 
 /**
- * models information needed to test connectivity with a terminal
+ * models information needed to test connectivity with a terminal.
  */
 
 public class PingRequest implements ICoreRequest, ITerminalReference {

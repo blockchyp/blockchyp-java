@@ -8,7 +8,7 @@ package com.blockchyp.client.dto;
 
 
 /**
- * models a text prompt request
+ * models a text prompt request.
  */
 
 public class TextPromptRequest implements ICoreRequest, ITerminalReference {

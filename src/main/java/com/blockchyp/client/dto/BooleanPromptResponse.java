@@ -8,7 +8,7 @@ package com.blockchyp.client.dto;
 
 
 /**
- * models the response to a boolean prompt request
+ * models the response to a boolean prompt request.
  */
 
 public class BooleanPromptResponse {

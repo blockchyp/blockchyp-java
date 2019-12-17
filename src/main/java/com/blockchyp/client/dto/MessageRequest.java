@@ -8,7 +8,7 @@ package com.blockchyp.client.dto;
 
 
 /**
- * models a message to be displayed on the terminal screen
+ * models a message to be displayed on the terminal screen.
  */
 
 public class MessageRequest implements ICoreRequest, ITerminalReference {

@@ -8,7 +8,7 @@ package com.blockchyp.client.dto;
 
 
 /**
- * models a simple yes no prompt request
+ * models a simple yes no prompt request.
  */
 
 public class BooleanPromptRequest implements ICoreRequest, ITerminalReference {

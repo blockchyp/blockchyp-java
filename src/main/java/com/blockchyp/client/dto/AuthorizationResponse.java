@@ -8,7 +8,7 @@ package com.blockchyp.client.dto;
 
 
 /**
- * models the response to authorization requests
+ * models the response to authorization requests.
  */
 
 public class AuthorizationResponse implements ICoreResponse, IApprovalResponse, IPaymentMethodResponse, IPaymentAmounts {
