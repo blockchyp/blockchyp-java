@@ -1,6 +1,8 @@
-package com.blockchyp.client.dto;
+package com.blockchyp.client;
 
 import java.util.Date;
+
+import com.blockchyp.client.dto.Acknowledgement;
 
 /**
  * Models metadata about a terminal route, including it's location on the local network
@@ -10,6 +12,8 @@ import java.util.Date;
 
 public class TerminalRouteResponse extends Acknowledgement {
 
+    private boolean success;
+    private String error;
     private boolean exists;
     private String terminalName;
     private String ipAddress;
@@ -18,6 +22,39 @@ public class TerminalRouteResponse extends Acknowledgement {
     private String publicKey;
     private RawPublicKey rawKey;
     private Date timestamp;
+    
+    /**
+     * Gets the success flag.
+     * @return true if the API call succeeded.
+     */
+    public boolean isSuccess() {
+        return success;
+    }
+
+    /**
+     * Sets the success flag.
+     * 
+     * @param success true if the API call succeeded.
+     */
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+
+    /**
+     * Gets a narrative description of the error, if any.
+     * @return narrative description of any error.
+     */
+    public String getError() {
+        return error;
+    }
+
+    /**
+     * Sets a narrative description of the error, if any.
+     * @param error narrative description of any error.
+     */
+    public void setError(String error) {
+        this.error = error;
+    }
 
     /**
      * Echoes back the terminal name for the route lookup.

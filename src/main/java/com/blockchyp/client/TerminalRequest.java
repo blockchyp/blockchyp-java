@@ -1,4 +1,5 @@
-package com.blockchyp.client.dto;
+package com.blockchyp.client;
+
 
 /**
  * This class is used to wrap conventional transaction requests with an outer structure that adds API credentials.

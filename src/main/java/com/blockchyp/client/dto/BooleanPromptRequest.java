@@ -1,79 +1,127 @@
 package com.blockchyp.client.dto;
 
+
+
+
+
+
+
+
 /**
- * Models information needed for boolean prompt support.
+ * models a simple yes no prompt request
  */
-public class BooleanPromptRequest extends CoreRequest implements ITerminalReference {
 
-    private String terminalName;
-    private String prompt;
-    private String yesCaption;
-    private String noCaption;
+public class BooleanPromptRequest implements ICoreRequest, ITerminalReference {
+  
+     
+     private String transactionRef;
+  
+     
+     private String orderRef;
+  
+     
+     private String destinationAccount;
+  
+     
+     private boolean test;
+  
+     
+     private int timeout;
+  
+     
+     private String terminalName;
+  
+     
+     private String yesCaption;
+  
+     
+     private String noCaption;
+  
+     
+     private String prompt;
+  
+  
+     
+     public void setTransactionRef(String value) {
+          this.transactionRef = value;
+     }
+     
+     public String getTransactionRef() {
+          return this.transactionRef;
+     }
+  
+     
+     public void setOrderRef(String value) {
+          this.orderRef = value;
+     }
+     
+     public String getOrderRef() {
+          return this.orderRef;
+     }
+  
+     
+     public void setDestinationAccount(String value) {
+          this.destinationAccount = value;
+     }
+     
+     public String getDestinationAccount() {
+          return this.destinationAccount;
+     }
+  
+     
+     public void setTest(boolean value) {
+          this.test = value;
+     }
+     
+     public boolean isTest() {
+          return this.test;
+     }
+  
+     
+     public void setTimeout(int value) {
+          this.timeout = value;
+     }
+     
+     public int getTimeout() {
+          return this.timeout;
+     }
+  
+     
+     public void setTerminalName(String value) {
+          this.terminalName = value;
+     }
+     
+     public String getTerminalName() {
+          return this.terminalName;
+     }
+  
+     
+     public void setYesCaption(String value) {
+          this.yesCaption = value;
+     }
+     
+     public String getYesCaption() {
+          return this.yesCaption;
+     }
+  
+     
+     public void setNoCaption(String value) {
+          this.noCaption = value;
+     }
+     
+     public String getNoCaption() {
+          return this.noCaption;
+     }
+  
+     
+     public void setPrompt(String value) {
+          this.prompt = value;
+     }
+     
+     public String getPrompt() {
+          return this.prompt;
+     }
+  
 
-
-    /**
-     * Returns the name of the target payment terminal.
-     * @return payment terminal name.
-     */
-    public String getTerminalName() {
-        return terminalName;
-    }
-
-    /**
-     * Sets the target payment terminal.
-     * @param terminalName payment terminal name.
-     */
-    public void setTerminalName(String terminalName) {
-        this.terminalName = terminalName;
-    }
-
-    /**
-     * Returns the text to be displayed on the terminal.
-     * @return text to be displayed as the terminal prompt.
-     */
-    public String getPrompt() {
-        return prompt;
-    }
-
-    /**
-     * Sets the text to be displayed on the terminal.  Typically a yes or no question.
-     * @param prompt text to be displayed as the terminal prompt.
-     */
-    public void setPrompt(String prompt) {
-        this.prompt = prompt;
-    }
-
-    
-    /**
-     * Gets the preferred caption for the 'yes' button.
-     * @return caption for the 'yes' button.
-     */
-    public String getYesCaption() {
-        return yesCaption;
-    }
-
-    /**
-     * Sets the preferred caption for the 'yes' button.  Defaults to 'YES'.
-     * @param yesCaption caption for the 'yes' button.
-     */
-    public void setYesCaption(String yesCaption) {
-        this.yesCaption = yesCaption;
-    }
-
-    /**
-     * Gets the preferred caption for the 'no' button.
-     * @return caption for the no button.
-     */
-    public String getNoCaption() {
-        return noCaption;
-    }
-
-    /**
-     * Sets the preferred caption for the 'no' button.  Defaults to 'NO'.
-     * @param noCaption caption for the 'no' button.
-     */
-    public void setNoCaption(String noCaption) {
-        this.noCaption = noCaption;
-    }
-
+  
 }

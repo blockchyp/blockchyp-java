@@ -1,4 +1,4 @@
-package com.blockchyp.client.itest;
+package com.blockchyp.client;
 
 public interface IntegrationTest {
 

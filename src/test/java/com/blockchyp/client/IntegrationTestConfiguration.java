@@ -1,4 +1,4 @@
-package com.blockchyp.client.itest;
+package com.blockchyp.client;
 
 import java.io.File;
 
@@ -6,7 +6,8 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.SystemUtils;
 
 import com.blockchyp.client.BlockChypClient;
-import com.blockchyp.client.dto.APICredentials;
+import com.blockchyp.client.APICredentials;
+import com.blockchyp.client.IntegrationTestSettings;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /*
@@ -18,13 +19,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class IntegrationTestConfiguration {
 	
-	
 	static final String[] HOME_ENV_VARIABLES = {"user.dir", "HOME"};
 	
-	
-	
-    
-    
     protected static IntegrationTestSettings getSettings() {
         
         ObjectMapper mapper = new ObjectMapper();

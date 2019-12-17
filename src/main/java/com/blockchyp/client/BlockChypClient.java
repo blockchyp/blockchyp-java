@@ -27,31 +27,51 @@ import org.apache.commons.lang.StringUtils;
 import org.bouncycastle.util.encoders.Hex;
 
 import com.blockchyp.client.crypto.CryptoUtils;
-import com.blockchyp.client.dto.APICredentials;
-import com.blockchyp.client.dto.Acknowledgement;
-import com.blockchyp.client.dto.AuthorizationRequest;
-import com.blockchyp.client.dto.AuthorizationResponse;
-import com.blockchyp.client.dto.BooleanPromptRequest;
-import com.blockchyp.client.dto.BooleanPromptResponse;
-import com.blockchyp.client.dto.CaptureRequest;
-import com.blockchyp.client.dto.CaptureResponse;
-import com.blockchyp.client.dto.ClearTerminalRequest;
-import com.blockchyp.client.dto.CloseBatchRequest;
-import com.blockchyp.client.dto.CloseBatchResponse;
-import com.blockchyp.client.dto.CoreRequest;
-import com.blockchyp.client.dto.HeartbeatResponse;
+import com.blockchyp.client.APICredentials;
+import com.blockchyp.client.TerminalRequest;
 import com.blockchyp.client.dto.ITerminalReference;
-import com.blockchyp.client.dto.MessageRequest;
-import com.blockchyp.client.dto.PaymentRequest;
+import com.blockchyp.client.dto.ISignatureResponse;
+import com.blockchyp.client.dto.ISignatureRequest;
+import com.blockchyp.client.dto.IApprovalResponse;
+import com.blockchyp.client.dto.ICoreRequest;
+import com.blockchyp.client.dto.IPaymentMethodResponse;
+import com.blockchyp.client.dto.IPaymentAmounts;
+import com.blockchyp.client.dto.IPaymentMethod;
+import com.blockchyp.client.dto.IRequestAmount;
+import com.blockchyp.client.dto.ISubtotals;
+import com.blockchyp.client.dto.IPreviousTransaction;
+import com.blockchyp.client.dto.ICoreResponse;
+import com.blockchyp.client.dto.Acknowledgement;
 import com.blockchyp.client.dto.PingRequest;
-import com.blockchyp.client.dto.RefundRequest;
-import com.blockchyp.client.dto.TerminalRequest;
-import com.blockchyp.client.dto.TerminalRouteResponse;
+import com.blockchyp.client.dto.PingResponse;
+import com.blockchyp.client.dto.MessageRequest;
+import com.blockchyp.client.dto.BooleanPromptRequest;
 import com.blockchyp.client.dto.TextPromptRequest;
 import com.blockchyp.client.dto.TextPromptResponse;
-import com.blockchyp.client.dto.TransactionDisplayRequest;
+import com.blockchyp.client.dto.BooleanPromptResponse;
+import com.blockchyp.client.dto.WhiteListedCard;
+import com.blockchyp.client.dto.AuthorizationRequest;
+import com.blockchyp.client.dto.RefundRequest;
+import com.blockchyp.client.dto.CaptureRequest;
+import com.blockchyp.client.dto.CaptureResponse;
 import com.blockchyp.client.dto.VoidRequest;
 import com.blockchyp.client.dto.VoidResponse;
+import com.blockchyp.client.dto.EnrollRequest;
+import com.blockchyp.client.dto.EnrollResponse;
+import com.blockchyp.client.dto.ClearTerminalRequest;
+import com.blockchyp.client.dto.GiftActivateRequest;
+import com.blockchyp.client.dto.GiftActivateResponse;
+import com.blockchyp.client.dto.CloseBatchRequest;
+import com.blockchyp.client.dto.CloseBatchResponse;
+import com.blockchyp.client.dto.TermsAndConditionsRequest;
+import com.blockchyp.client.dto.TermsAndConditionsResponse;
+import com.blockchyp.client.dto.ReceiptSuggestions;
+import com.blockchyp.client.dto.AuthorizationResponse;
+import com.blockchyp.client.dto.TransactionDisplayDiscount;
+import com.blockchyp.client.dto.TransactionDisplayItem;
+import com.blockchyp.client.dto.TransactionDisplayTransaction;
+import com.blockchyp.client.dto.TransactionDisplayRequest;
+import com.blockchyp.client.dto.HeartbeatResponse;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -61,20 +81,20 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * framework like Spring or Guice. Most developers will only need to inject
  * credentials, but you may also want to override default endpoints if you're
  * targeting non production BlockChyp systems (which is unlikely).
- * 
+ *
  * You can inject settings via the constructors or via setters depending on your
  * preferences.
- * 
+ *
  * You'll also notice that we're not using generics or any features from Java
  * 1.7 or later. This is just to maintain as much backward compatibility as
  * possible with older systems (1.6 or later). The underlying REST API's are
  * invoked using commons-httpclient 3.1 and we use Jackson for JSON
  * serialization.
- * 
+ *
  * Most internal methods are scoped as protected in order to give developers the
  * ability to override things if they need special behavior or have weird
  * classpath issues.
- * 
+ *
  */
 
 public class BlockChypClient {
@@ -104,7 +124,7 @@ public class BlockChypClient {
     private HttpClient gatewayClient;
 
     private HttpClient terminalClient;
-    
+
     private boolean terminalHttps = false;
 
     /**
@@ -116,9 +136,9 @@ public class BlockChypClient {
 
     /**
      * Provided as a convenience to support constructor based dependency injection.
-     * 
+     *
      * @param gatewayHost alternate gateway endpoint.
-     */  
+     */
     public BlockChypClient(String gatewayHost) {
         this();
         this.gatewayHost = gatewayHost;
@@ -126,7 +146,7 @@ public class BlockChypClient {
 
     /**
      * Provided as a convenience to support constructor based dependency injection.
-     * 
+     *
      * @param defaultCredentials {@link APICredentials}
      */
     public BlockChypClient(APICredentials defaultCredentials) {
@@ -136,7 +156,7 @@ public class BlockChypClient {
 
     /**
      * Provided as a convenience to support constructor based dependency injection.
-     * 
+     *
      * @param gatewayHost alternate gateway endpoint.
      * @param defaultCredentials {@link APICredentials}
      */
@@ -148,7 +168,7 @@ public class BlockChypClient {
 
     /**
      * Provided as a convenience to support constructor based dependency injection.
-     * 
+     *
      * @param gatewayHost alternate gateway endpoint.
      * @param testGatewayHost alternate gateway endpoint.
      * @param defaultCredentials {@link APICredentials}
@@ -159,23 +179,23 @@ public class BlockChypClient {
         this.testGatewayHost = testGatewayHost;
         this.defaultCredentials = defaultCredentials;
     }
-    
+
     /**
      * Used to override the live gateway host.  Unless you work at BlockChyp, you probably
      * won't ever need to do this.
-     * 
+     *
      * @param gatewayHost alternate gateway endpoint.
      */
 
     public void setGatewayHost(String gatewayHost) {
         this.gatewayHost = gatewayHost;
     }
-    
+
 
     /**
      * Used to override the test gateway host.  Unless you work at BlockChyp, you probably
      * won't ever need to do this.
-     * 
+     *
      * @param testGatewayHost alternate gateway endpoint.
      */
     public void setTestGatewayHost(String testGatewayHost) {
@@ -191,13 +211,13 @@ public class BlockChypClient {
     }
 
     /**
-     * Enables or disables offline terminal route caching.  Offline route caching is really meant 
+     * Enables or disables offline terminal route caching.  Offline route caching is really meant
      * as a defense for situations where developers are creating new BlockChypClient instances
      * over and over for each request and therefore making the in memory cache useless.  The
-     * BlockChypClient is thread safe so we encourage you to only create one instance and share it 
+     * BlockChypClient is thread safe so we encourage you to only create one instance and share it
      * for all requests.  If you're doing this, you can safely disable offline route caching
      * and we recommend it.  Defaults to enabled.
-     *  
+     *
      * @param offlineRouteCacheEnabled true if offline route caching is enabled.
      */
     public void setOfflineRouteCacheEnabled(boolean offlineRouteCacheEnabled) {
@@ -220,7 +240,7 @@ public class BlockChypClient {
         objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
-
+    
     /**
      * Tests communication with the Gateway.  If authentication is successful, a merchantPk value
      * is returned.
@@ -234,72 +254,18 @@ public class BlockChypClient {
 
     }
 
-    /**
-     * Tests local communication with a terminal.
-     * @param request {@link PingRequest}
-     * @return {@link Acknowledgement}
-     * @throws Exception exception if any errors occurred processing the request.
-     */
-    public Acknowledgement ping(PingRequest request) throws Exception {
-
-        return (Acknowledgement) postTerminal("/api/test", request, Acknowledgement.class);
-
-    }
-    
-    
-    /**
-     * Enrolls the payment method in the recurring payment token vault.  Any amounts passed in are ignored.
-     * @param request {@link AuthorizationRequest}
-     * @return {@link AuthorizationResponse}
-     * @throws Exception exception if any errors occurred processing the request.
-     */
-    public AuthorizationResponse enroll(AuthorizationRequest request) throws Exception {
-
-        if (isTerminalRouted(request)) {
-            return (AuthorizationResponse) postTerminal("/api/enroll", request, AuthorizationResponse.class);
-        } else {
-            return (AuthorizationResponse) postGateway("/api/enroll", request, AuthorizationResponse.class);
-        }
-
-    }
 
     /**
-     * Performs a standard auth and capture.
-     * @param request {@link AuthorizationRequest}
-     * @return {@link AuthorizationResponse}
-     * @throws Exception exception if any errors occurred processing the request.
-     */
-    public AuthorizationResponse charge(AuthorizationRequest request) throws Exception {
-
-        populateSignatureOptions(request);
-
-        AuthorizationResponse response;
-
-        if (isTerminalRouted(request)) {
-            response = (AuthorizationResponse) postTerminal("/api/charge", request, AuthorizationResponse.class);
-        } else {
-            response = (AuthorizationResponse) postGateway("/api/charge", request, AuthorizationResponse.class);
-        }
-
-        dumpSignatureFile(request, response);
-
-        return response;
-
-    }
-
-    /**
-     * Executes a time out reversal.  You should use this API in situations where your requests for 
-     * authorizations time out or give ambiguous results.  Must be done within two minutes of the original
-     * authorization.  Will help prevent double charge issues.
-     * To use this method, you'll need to provide a transationRef value to uniquely identify 
-     * your transactions.  It's designed such that you can take the original AuthorizationRequest you
-     * assembled for the charge or preauth and just resend it as a reverse.  Bear in mind that terminals
-     * always automatically reverse transactions if there's trouble with terminal to gateway communication
-     * or the customer doesn't provide a signature when signatures are required.
+     * executes a manual time out reversal.
      * 
-     * @param request {@link AuthorizationRequest}
-     * @return {@link AuthorizationResponse}
-     * @throws Exception exception if any errors occurred processing the request.
+     * We love time out reversals. Don't be afraid to use them whenever a request to
+     * a BlockChyp terminal times out. You have up to two minutes to reverse any
+     * transaction. The only caveat is that you must assign transactionRef values
+     * when you build the original request. Otherwise, we have no real way of
+     * knowing which transaction you're trying to reverse because we may not have
+     * assigned it an id yet. And if we did assign it an id, you wouldn't know what
+     * it is because your request to the terminal timed out before you got a
+     * response.
      */
     public AuthorizationResponse reverse(AuthorizationRequest request) throws Exception {
 
@@ -308,12 +274,16 @@ public class BlockChypClient {
     }
 
     /**
-     * Executes a manual batch close.  BlockChyp defaults to automatically closing batches at 3 AM in the
-     * merchant's local time zone.  You can turn this off and batch manually if you want.  You might need
-     * to do this for preauth based businesses (restaurants and bars) with unusual hours.
-     * @param request {@link CloseBatchRequest}
-     * @return {@link CloseBatchResponse}
-     * @throws Exception exception if any errors occurred processing the request.
+     * captures a preauthorization.
+     */
+    public CaptureResponse capture(CaptureRequest request) throws Exception {
+
+        return (CaptureResponse) postGateway("/api/capture", request, CaptureResponse.class);
+
+    }
+
+    /**
+     * closes the current credit card batch.
      */
     public CloseBatchResponse closeBatch(CloseBatchRequest request) throws Exception {
 
@@ -322,129 +292,58 @@ public class BlockChypClient {
     }
 
     /**
-     * Refunds a transaction.  You can execute a full or partial refund referencing a previous transaction.
-     * You can also do a free range refund without referencing a previous transaction, but please, pretty 
-     * please, don't do this.  Basing a refund on a previous transaction is way more secure.
-     * @param request {@link RefundRequest}
-     * @return {@link AuthorizationResponse}
-     * @throws Exception exception if any errors occurred processing the request.
+     * discards a previous preauth transaction.
      */
-    public AuthorizationResponse refund(RefundRequest request) throws Exception {
+    public VoidResponse voidTx(VoidRequest request) throws Exception {
 
-        populateSignatureOptions(request);
+        return (VoidResponse) postGateway("/api/void", request, VoidResponse.class);
 
-        AuthorizationResponse response;
+    }
+
+
+
+
+    /**
+     * executes a standard direct preauth and capture.
+     */
+    public AuthorizationResponse charge(AuthorizationRequest request) throws Exception {
 
         if (isTerminalRouted(request)) {
-            response = (AuthorizationResponse) postTerminal("/api/refund", request, AuthorizationResponse.class);
+            return (AuthorizationResponse) postTerminal("/api/charge", request, AuthorizationResponse.class);
         } else {
-            response = (AuthorizationResponse) postGateway("/api/refund", request, AuthorizationResponse.class);
+            return (AuthorizationResponse) postGateway("/api/charge", request, AuthorizationResponse.class);
         }
-
-        dumpSignatureFile(request, response);
-
-        return response;
 
     }
 
     /**
-     * Preauthorizes a transaction.  Must be captured later.
-     * @param request {@link AuthorizationRequest}
-     * @return {@link AuthorizationResponse}
-     * @throws Exception exception if any errors occurred processing the request.
+     * executes a preauthorization intended to be captured later.
      */
     public AuthorizationResponse preauth(AuthorizationRequest request) throws Exception {
 
-        populateSignatureOptions(request);
-
-        AuthorizationResponse response;
-
         if (isTerminalRouted(request)) {
-            response = (AuthorizationResponse) postTerminal("/api/preauth", request, AuthorizationResponse.class);
+            return (AuthorizationResponse) postTerminal("/api/preauth", request, AuthorizationResponse.class);
         } else {
-            response = (AuthorizationResponse) postGateway("/api/preauth", request, AuthorizationResponse.class);
+            return (AuthorizationResponse) postGateway("/api/preauth", request, AuthorizationResponse.class);
         }
-
-        dumpSignatureFile(request, response);
-
-        return response;
 
     }
 
     /**
-     * Displays a text message on the terminal screen.
-     * @param request {@link MessageRequest}
-     * @return {@link Acknowledgement}
-     * @throws Exception exception if any errors occurred processing the request.
+     * tests connectivity with a payment terminal.
      */
-    public Acknowledgement message(MessageRequest request) throws Exception {
+    public PingResponse ping(PingRequest request) throws Exception {
 
         if (isTerminalRouted(request)) {
-            return (Acknowledgement) postTerminal("/api/message", request, Acknowledgement.class);
+            return (PingResponse) postTerminal("/api/test", request, PingResponse.class);
         } else {
-            return (Acknowledgement) postGateway("/api/message", request, Acknowledgement.class);
+            return (PingResponse) postGateway("/api/terminal-test", request, PingResponse.class);
         }
 
     }
 
     /**
-     * Captures text input from the user. This can be used for things like email addresses, phone numbers,
-     * and loyalty program numbers.  You have to specify a promptType in the request since free form
-     * prompt text isn't permitted for text input prompts per PCI.
-     * @param request {@link TextPromptRequest}
-     * @return {@link TextPromptResponse}
-     * @throws Exception exception if any errors occurred processing the request.
-     */
-    public TextPromptResponse textPrompt(TextPromptRequest request) throws Exception {
-
-        if (isTerminalRouted(request)) {
-            return (TextPromptResponse) postTerminal("/api/text-prompt", request, TextPromptResponse.class);
-        } else {
-            return (TextPromptResponse) postGateway("/api/text-prompt", request, TextPromptResponse.class);
-        }
-
-    }
-
-    /**
-     * Asks the user a yes or no question.  You can use this for things like suggestive selling.  You can also 
-     * use this for surveys, but BlockChyp does have a built in survey feature that your merchants
-     * can use without any coding needed. 
-     * @param request {@link BooleanPromptRequest}
-     * @return {@link BooleanPromptResponse}
-     * @throws Exception exception if any errors occurred processing the request.
-     */
-    public BooleanPromptResponse booleanPrompt(BooleanPromptRequest request) throws Exception {
-
-        if (isTerminalRouted(request)) {
-            return (BooleanPromptResponse) postTerminal("/api/boolean-prompt", request, BooleanPromptResponse.class);
-        } else {
-            return (BooleanPromptResponse) postGateway("/api/boolean-prompt", request, BooleanPromptResponse.class);
-        }
-
-    }
-
-    /**
-     * Resets the line item display.  This will clear any existing line items and start over.  Use 
-     * this method if you need to delete line items.
-     * @param request {@link TransactionDisplayRequest}
-     * @return {@link Acknowledgement}
-     * @throws Exception exception if any errors occurred processing the request.
-     */
-    public Acknowledgement newTransactionDisplay(TransactionDisplayRequest request) throws Exception {
-
-        if (isTerminalRouted(request)) {
-            return (Acknowledgement) postTerminal("/api/txdisplay", request, Acknowledgement.class);
-        } else {
-            return (Acknowledgement) postGateway("/api/terminal-txdisplay", request, Acknowledgement.class);
-        }
-
-    }
-
-    /**
-     * Clears the terminal of any in progress transactions or line item information.  Returns it to the idle state.
-     * @param request {@link ClearTerminalRequest}
-     * @return {@link Acknowledgement}
-     * @throws Exception exception if any errors occurred processing the request.
+     * clears the line item display and any in progress transaction.
      */
     public Acknowledgement clear(ClearTerminalRequest request) throws Exception {
 
@@ -457,44 +356,124 @@ public class BlockChypClient {
     }
 
     /**
-     * Updates the line item display.  This will add new line items to the terminal and update totals.
-     * @param request {@link TransactionDisplayRequest}
-     * @return {@link Acknowledgement}
-     * @throws Exception exception if any errors occurred processing the request.
+     * prompts the user to accept terms and conditions.
      */
-    public Acknowledgement updateTransactionDisplay(TransactionDisplayRequest request) throws Exception {
+    public TermsAndConditionsResponse tc(TermsAndConditionsRequest request) throws Exception {
 
         if (isTerminalRouted(request)) {
-            return (Acknowledgement) putTerminal("/api/txdisplay", request, Acknowledgement.class);
+            return (TermsAndConditionsResponse) postTerminal("/api/tc", request, TermsAndConditionsResponse.class);
         } else {
-            return (Acknowledgement) putGateway("/api/terminal-txdisplay", request, Acknowledgement.class);
+            return (TermsAndConditionsResponse) postGateway("/api/tc", request, TermsAndConditionsResponse.class);
         }
 
     }
 
     /**
-     * Captures a preauth.  Captures are always routed to the gateway.
-     * @param request {@link CaptureRequest}
-     * @return {@link CaptureResponse}
-     * @throws Exception exception if any errors occurred processing the request.
+     * appends items to an existing transaction display Subtotal, Tax, and Total are
+     * overwritten by the request. Items with the same description are combined into
+     * groups.
      */
-    public CaptureResponse capture(CaptureRequest request) throws Exception {
+    public Acknowledgement updateTransactionDisplay(TransactionDisplayRequest request) throws Exception {
 
-        return (CaptureResponse) postGateway("/api/capture", request, CaptureResponse.class);
+        if (isTerminalRouted(request)) {
+            return (Acknowledgement) postTerminal("/api/txdisplay", request, Acknowledgement.class);
+        } else {
+            return (Acknowledgement) postGateway("/api/terminal-txdisplay", request, Acknowledgement.class);
+        }
 
     }
 
     /**
-     * Voids a transaction.  Voids are always routed to the gateway.
-     * @param request {@link VoidRequest}
-     * @return {@link VoidResponse}
-     * @throws Exception exception if any errors occurred processing the request.
+     * displays a new transaction on the terminal.
      */
-    public VoidResponse voidTx(VoidRequest request) throws Exception {
+    public Acknowledgement newTransactionDisplay(TransactionDisplayRequest request) throws Exception {
 
-        return (VoidResponse) postGateway("/api/void", request, VoidResponse.class);
+        if (isTerminalRouted(request)) {
+            return (Acknowledgement) postTerminal("/api/txdisplay", request, Acknowledgement.class);
+        } else {
+            return (Acknowledgement) postGateway("/api/terminal-txdisplay", request, Acknowledgement.class);
+        }
 
     }
+
+    /**
+     * asks the consumer text based question.
+     */
+    public TextPromptResponse textPrompt(TextPromptRequest request) throws Exception {
+
+        if (isTerminalRouted(request)) {
+            return (TextPromptResponse) postTerminal("/api/text-prompt", request, TextPromptResponse.class);
+        } else {
+            return (TextPromptResponse) postGateway("/api/text-prompt", request, TextPromptResponse.class);
+        }
+
+    }
+
+    /**
+     * asks the consumer a yes/no question.
+     */
+    public BooleanPromptResponse booleanPrompt(BooleanPromptRequest request) throws Exception {
+
+        if (isTerminalRouted(request)) {
+            return (BooleanPromptResponse) postTerminal("/api/boolean-prompt", request, BooleanPromptResponse.class);
+        } else {
+            return (BooleanPromptResponse) postGateway("/api/boolean-prompt", request, BooleanPromptResponse.class);
+        }
+
+    }
+
+    /**
+     * displays a short message on the terminal.
+     */
+    public Acknowledgement message(MessageRequest request) throws Exception {
+
+        if (isTerminalRouted(request)) {
+            return (Acknowledgement) postTerminal("/api/message", request, Acknowledgement.class);
+        } else {
+            return (Acknowledgement) postGateway("/api/message", request, Acknowledgement.class);
+        }
+
+    }
+
+    /**
+     * executes a refund.
+     */
+    public AuthorizationResponse refund(RefundRequest request) throws Exception {
+
+        if (isTerminalRouted(request)) {
+            return (AuthorizationResponse) postTerminal("/api/refund", request, AuthorizationResponse.class);
+        } else {
+            return (AuthorizationResponse) postGateway("/api/refund", request, AuthorizationResponse.class);
+        }
+
+    }
+
+    /**
+     * adds a new payment method to the token vault.
+     */
+    public EnrollResponse enroll(EnrollRequest request) throws Exception {
+
+        if (isTerminalRouted(request)) {
+            return (EnrollResponse) postTerminal("/api/enroll", request, EnrollResponse.class);
+        } else {
+            return (EnrollResponse) postGateway("/api/enroll", request, EnrollResponse.class);
+        }
+
+    }
+
+    /**
+     * activates or recharges a gift card.
+     */
+    public GiftActivateResponse giftActivate(GiftActivateRequest request) throws Exception {
+
+        if (isTerminalRouted(request)) {
+            return (GiftActivateResponse) postTerminal("/api/gift-activate", request, GiftActivateResponse.class);
+        } else {
+            return (GiftActivateResponse) postGateway("/api/gift-activate", request, GiftActivateResponse.class);
+        }
+
+    }
+
 
     /**
      * Decrypts API credentials using the offline cache key.
@@ -617,50 +596,36 @@ public class BlockChypClient {
     }
 
     /**
-     * This method is used to setup sensible defaults for local signature file
-     * dumps. For example, if the sig file is provided without a format, it's
-     * possible to infer a format from the file extension. Note that we don't
-     * validate that the file format is supported. We leave that to the terminal
-     * firmware in order to prevent SDK updates being needed when file format
-     * support in the firmware changes.
-     * 
-     * @param request {@link PaymentRequest}
-     */
-
-    protected void populateSignatureOptions(PaymentRequest request) {
-
-        if (StringUtils.isNotEmpty(request.getSigFile()) && StringUtils.isEmpty(request.getSigFormat())) {
-            String[] tokens = StringUtils.split(request.getSigFile(), ".");
-            if (tokens.length > 1) {
-                request.setSigFormat(tokens[tokens.length - 1]);
-            }
-        }
-
-    }
-
-    /**
      * Writes the signature to a file if a signature is present and the caller has
      * requested it. Notice this does not throw exceptions in order to prevent
      * the calling application from losing track of the authorization.
-     * 
+     *
      * @param request {@link PaymentRequest}
      * @param response {@link AuthorizationResponse}
      */
-    protected void dumpSignatureFile(PaymentRequest request, AuthorizationResponse response) {
+    protected void dumpSignatureFile(Object request, Object response) {
 
-        if (StringUtils.isEmpty(response.getSigFile())) {
-            return;
-        }
 
-        if (StringUtils.isEmpty(request.getSigFile())) {
-            return;
-        }
+        if ( (request instanceof ISignatureRequest) && (response instanceof ISignatureResponse) ) {
 
-        try {
-            byte[] sigBinary = Hex.decode(response.getSigFile());
-            FileUtils.writeByteArrayToFile(new File(request.getSigFile()), sigBinary);
-        } catch (Exception e) {
-            paymentLogger.error("Exception storing signature file", e);
+          ISignatureRequest sigRequest = (ISignatureRequest) request;
+          ISignatureResponse sigResponse = (ISignatureResponse) response;
+
+          if (StringUtils.isEmpty(sigResponse.getSigFile())) {
+              return;
+          }
+
+          if (StringUtils.isEmpty(sigRequest.getSigFile())) {
+              return;
+          }
+
+          try {
+              byte[] sigBinary = Hex.decode(sigResponse.getSigFile());
+              FileUtils.writeByteArrayToFile(new File(sigRequest.getSigFile()), sigBinary);
+          } catch (Exception e) {
+              paymentLogger.error("Exception storing signature file", e);
+          }
+
         }
 
     }
@@ -669,7 +634,7 @@ public class BlockChypClient {
      * Finds the terminal route record for the given terminal name.
      * First the local in memory cache is checked, then the offline cache (if enabled).
      * If the first two cache lookups come up empty or the cache is over an hour old,
-     * the gateway route API is invoked.  If we have a stale cache entry and the 
+     * the gateway route API is invoked.  If we have a stale cache entry and the
      * gateway route lookup fails or times out, we fall back to the stale cache entry.
      * @param terminalName name of the terminal assigned at activation.
      * @return the terminal route record.
@@ -748,16 +713,16 @@ public class BlockChypClient {
         return terminalClient;
     }
 
-    
+
     /**
      * Assembles the scheme, ip address, and port number bits of a terminal URL.
      * @param route the terminal route record.
      * @return scheme, ip addres, and port number.
      */
     protected String resolveTerminalHost(TerminalRouteResponse route) {
-         
+
         //Note: our terminals don't actually run Java, but port 8080 should make you feel at home.
-        return (isTerminalHttps() ? "https://" : "http://") + route.getIpAddress() + (isTerminalHttps() ? ":8443 " : ":8080");
+        return (isTerminalHttps() ? "https://" : "http://") + route.getIpAddress() + (isTerminalHttps() ? ":8443" : ":8080");
 
     }
 
@@ -849,7 +814,7 @@ public class BlockChypClient {
     }
 
     /**
-     * Assembles a new terminal request and populates the credentials, using transient 
+     * Assembles a new terminal request and populates the credentials, using transient
      * credentials if available.
      * @param route the terminal route record.
      * @return {@link TerminalRequest}
@@ -893,20 +858,20 @@ public class BlockChypClient {
         TerminalRouteResponse route = resolveTerminalRoute(terminalName);
 
         PostMethod method = new PostMethod(resolveTerminalHost(route) + path);
-        
-        if (request instanceof CoreRequest) {
-            CoreRequest coreRequest = (CoreRequest) request;
+
+        if (request instanceof ICoreRequest) {
+            ICoreRequest coreRequest = (ICoreRequest) request;
             if (coreRequest.getTimeout() > 0) {
                 method.getParams().setSoTimeout(coreRequest.getTimeout());
             }
         }
-        
+
 
 
         return finishTerminalRequest(route, request, method, responseType);
 
     }
-    
+
     /**
      * Executes an http get request against the gateway with a timeout override.
      * @param path api path relative to the root (e.g. "/api/heartbeat")
@@ -993,21 +958,17 @@ public class BlockChypClient {
      * @throws Exception exception if any errors occurred processing the request.
      */
     @SuppressWarnings({ "rawtypes" })
-    protected Object postGateway(String path, CoreRequest request, Class responseClass) throws Exception {
+    protected Object postGateway(String path, ICoreRequest request, Class responseClass) throws Exception {
 
         PostMethod method = new PostMethod(toFullyQualifiedGatewayPath(path, request.isTest()));
         StringRequestEntity requestEntity = new StringRequestEntity(objectMapper.writeValueAsString(request),
                 "application/json", "UTF-8");
 
         method.setRequestEntity(requestEntity);
-        
-        if (request instanceof CoreRequest) {
-            CoreRequest coreRequest = (CoreRequest) request;
-            if (coreRequest.getTimeout() > 0) {
-                method.getParams().setSoTimeout(coreRequest.getTimeout());
-            }
+
+        if (request.getTimeout() > 0) {
+            method.getParams().setSoTimeout(request.getTimeout());
         }
-        
 
         return finishGatewayRequest(method, responseClass);
 
@@ -1022,7 +983,7 @@ public class BlockChypClient {
      * @throws Exception exception if any errors occurred processing the request.
      */
     @SuppressWarnings({ "rawtypes" })
-    protected Object putGateway(String path, CoreRequest request, Class responseClass) throws Exception {
+    protected Object putGateway(String path, ICoreRequest request, Class responseClass) throws Exception {
 
         PutMethod method = new PutMethod(toFullyQualifiedGatewayPath(path, request.isTest()));
         StringRequestEntity requestEntity = new StringRequestEntity(objectMapper.writeValueAsString(request),
@@ -1037,7 +998,7 @@ public class BlockChypClient {
     /**
      * Returns the offline cache location.  This will be the value of offlineRouteCacheLocation if specified
      * and the operation system default tmp folder otherwise.
-     * 
+     *
      * @param terminalName the target terminal name.
      * @return local path.
      */
@@ -1092,7 +1053,7 @@ public class BlockChypClient {
     }
 
     /**
-     * Sets the offline route cache location if you want to override the default.  Defaults 
+     * Sets the offline route cache location if you want to override the default.  Defaults
      * to your operation system's tmp file location.
      * @param offlineRouteCacheLocation offline route cache location.
      */
@@ -1115,14 +1076,14 @@ public class BlockChypClient {
     }
 
     /**
-     * Gets the terminal https flag.  The Java SDK defaults to using http for 
+     * Gets the terminal https flag.  The Java SDK defaults to using http for
      * terminal communication because installing custom root certificate authorities
-     * in Java is quite tricky and cannot be done programmatically.  We strongly 
+     * in Java is quite tricky and cannot be done programmatically.  We strongly
      * recommend that all developers install our root CA in your local keystores
      * and then turn https on in production.
-     * 
+     *
      * Our terminal root CA can be found here: https://docs.blockchyp.com/rest-api/terminal/index.html#ssl-tls
-     * 
+     *
      * @return https flag.
      */
     public boolean isTerminalHttps() {
@@ -1130,14 +1091,14 @@ public class BlockChypClient {
     }
 
     /**
-     * Sets the terminal https flag.  The Java SDK defaults to using http for 
+     * Sets the terminal https flag.  The Java SDK defaults to using http for
      * terminal communication because installing custom root certificate authorities
-     * in Java is quite tricky and cannot be done programmatically.  We strongly 
+     * in Java is quite tricky and cannot be done programmatically.  We strongly
      * recommend that all developers install our root CA in your local keystores
      * and then turn https on in production.
-     * 
+     *
      * Our terminal root CA can be found here: https://docs.blockchyp.com/rest-api/terminal/index.html#ssl-tls
-     * 
+     *
      * @param terminalHttps https flag.
      */
     public void setTerminalHttps(boolean terminalHttps) {

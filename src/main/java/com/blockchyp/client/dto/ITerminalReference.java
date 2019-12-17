@@ -1,14 +1,12 @@
 package com.blockchyp.client.dto;
 
 /**
- * Common abstraction for DTO's with terminal references.
+ * 
  */
-public interface ITerminalReference {
 
-    /**
-     * Returns the name of a payment terminal.
-     * @return payment terminal name.
-     */
-    String getTerminalName();
+public interface ITerminalReference {
+  
+     String getTerminalName();
+  
 
 }

@@ -1,3 +1,4 @@
+
 # BlockChyp Java SDK
 
 Javadocs: [https://docs.blockchyp.com/sdks/java/latest/index.html](https://docs.blockchyp.com/sdks/java/latest/index.html).
@@ -8,13 +9,13 @@ avoided some of the newer Java features we love like streams and generics in ord
 all the way back to Java 1.6.
 
 We've tried to avoid introducing classpath problems for you whenever possible.  HTTP interaction is done using
-commons-httpclient-3.1 and we also use commons-lang, commons-io, and commons-codec.  We're using the Bouncy Castle 
-JCE provider for encryption services, but we don't use any Bouncy Castle specific classes so if you exclude this 
+commons-httpclient-3.1 and we also use commons-lang, commons-io, and commons-codec.  We're using the Bouncy Castle
+JCE provider for encryption services, but we don't use any Bouncy Castle specific classes so if you exclude this
 dependency you should still be fine with the standard Java stuff.
 
 ## Getting a Developer Terminal
 
-If you don't already have a test terminal, login to the BlockChyp dashboard and order a developer terminal 
+If you don't already have a test terminal, login to the BlockChyp dashboard and order a developer terminal
 kit.  You'll get a swanky new Equinox Luxe 8500i terminal and a set of test cards.
 
 If you don't have BlockChyp dashboard access, contact us at support@blockchyp.com to get setup.  Right now, developer
@@ -59,7 +60,7 @@ and run `mvn package` to build a jar.
 
 #### Download a Jar
 
-We strongly recommend you get BlockChyp from the Maven repository, but just in case you want a jar, you can download one right here on 
+We strongly recommend you get BlockChyp from the Maven repository, but just in case you want a jar, you can download one right here on
 Github from releases.
 
 
@@ -78,27 +79,27 @@ import com.blockchyp.client.dto.AuthorizationRequest;
 import com.blockchyp.client.dto.AuthorizationResponse;
 
 public class HelloBlockChyp {
-    
-    
+
+
     public static void main(String[] args) throws Exception {
-        
-        
+
+
         APICredentials creds = new APICredentials("APIKEY", "BEARER TOKEN", "SIGNING_KEY");
-        
+
         BlockChypClient client = new BlockChypClient(creds);
-        
+
         AuthorizationRequest request = new AuthorizationRequest();
         request.setTerminalName("Test Terminal");
         request.setAmount("50.00");
-        
-        
+
+
         AuthorizationResponse response = client.charge(request);
-        
+
         if (response.isApproved()) {
             System.out.println("Approved!  Auth Code: " + response.getAuthCode());
         }
-        
-        
+
+
     }
 
 }
@@ -121,7 +122,7 @@ If you're still using XML based configuration for Spring, you'll need a snippet 
    xsi:schemaLocation = "http://www.springframework.org/schema/beans
    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-   
+
    <bean id="blockchypCredentials" class="com.blockchyp.client.dto.APICredentials">
       <property name="apiKey" value="API_KEY_VALUE"/>
       <property name="bearerToken" value="BEARER_TOKEN"/>
@@ -131,19 +132,19 @@ If you're still using XML based configuration for Spring, you'll need a snippet 
    <bean id="blockchypClient" class="com.blockchyp.client.BlockChypClient">
       <property name="defaultCredentials" ref="blockchypCredentials"/>
    </bean>
-   
-   
+
+
    <bean id="blockchypSpringExample" class="com.blockchyp.examples.SpringExample">
       <property name="blockchypClient" ref="blockchypClient"/>
    </bean>
 
-   
+
 </beans>
 ```
 
 This is pretty conventional Spring dependency injection.  The example below shows the Java code behind the above example.
 If you're autowiring wherever possible, you can probably leave out the last bean definition from the XML sample above.
-Also note that APICredentials and BlockChypClient can also be initialized via constructors if you prefer constructor 
+Also note that APICredentials and BlockChypClient can also be initialized via constructors if you prefer constructor
 based dependency injection.
 
 ```
@@ -156,21 +157,21 @@ import com.blockchyp.client.dto.AuthorizationRequest;
 import com.blockchyp.client.dto.AuthorizationResponse;
 
 public class SpringExample {
-    
+
     @Autowired
     private BlockChypClient blockchypClient;
-    
+
     public boolean charge(String terminalName, String amount) throws Exception {
-        
+
         AuthorizationRequest request = new AuthorizationRequest();
         request.setTerminalName("Test Terminal");
         request.setAmount("50.00");
-        
-        
+
+
         AuthorizationResponse response = blockchypClient.charge(request);
-        
+
         return response.isApproved();
-        
+
     }
 
 }
@@ -199,12 +200,12 @@ public class SpringConfigExample {
     public APICredentials blockchypCredentials() {
         return new APICredentials("APIKEY", "BEARER TOKEN", "SIGNING_KEY");
     }
-    
+
     @Bean
     public BlockChypClient blockchypClient() {
         return new BlockChypClient(blockchypCredentials());
-    } 
-    
+    }
+
 }
 ```
 
@@ -213,11 +214,11 @@ public class SpringConfigExample {
 We designed this SDK to work out of the box with no special configuration for those developers who never read this
 (most developers, we assume), but there are a few recommended best practices for production use.
 
-By default, the Java SDK communicates with terminals without SSL or TLS.  (Gateway communication is always TLS.)  The reason for 
+By default, the Java SDK communicates with terminals without SSL or TLS.  (Gateway communication is always TLS.)  The reason for
 this is that BlockChyp terminals
 run on private networks where the standard root certificate authorities cannot be used and it's difficult, if not impossible,
-to add new root CA's in Java programmatically.  We recommend you install our terminal root CA as a trusted CA and turn 
-https on in your client.  In order to provide some extra protection in situations where developers choose not to do this, 
+to add new root CA's in Java programmatically.  We recommend you install our terminal root CA as a trusted CA and turn
+https on in your client.  In order to provide some extra protection in situations where developers choose not to do this,
 the SDK uses transient credentials when communicating with terminals in order to prevent exposing real merchant credentials.
 
 
@@ -254,404 +255,948 @@ jD1XNpXvgH2k91jjsK67khN+4bWoFBsfrMYt6vgjtXyv0kf12y0=
 -----END CERTIFICATE-----
 ```
 
+
+
 ## Transaction Code Examples
 
-You don't want to read words.  You want examples.  Here's a quick rundown of the stuff you can do with BlockChyp's Java
-SDK.  Checkout the javadocs for more details.
+You don't want to read words.  You want examples.  Here's a quick rundown of the stuff you can do with the BlockChyp Java SDK and a few basic examples.
+
 
 #### Charge
 
-This transaction is the basic authorize and capture transaction.
+Executes a standard direct preauth and capture.
 
-```
-        AuthorizationRequest request = new AuthorizationRequest();
-        request.setTransactionRef("your invoice or tender id");
-        request.setTerminalName("Test Terminal");
-        request.setAmount("50.00");
-
-        AuthorizationResponse response = blockchypClient.charge(request);
-        
-        if (response.isApproved()) {
-            System.out.println("Approved!");
-        }
-        
-        String txId = response.getTransactionId(); //store this for refunding or voiding later
 
 ```
 
+package com.blockchyp.client.examples;
 
-#### Preauth
+import java.util.ArrayList;
+import java.util.Collection;
 
-This transaction preauthorizes a transaction.
+import com.blockchyp.client.APICredentials;
+import com.blockchyp.client.BlockChypClient;
+import com.blockchyp.client.dto.AuthorizationRequest;
+import com.blockchyp.client.dto.AuthorizationResponse;
 
-```
-        AuthorizationRequest request = new AuthorizationRequest();
-        request.setTransactionRef("your invoice or tender id");
-        request.setTerminalName("Test Terminal");
-        request.setAmount("50.00");
 
-        AuthorizationResponse response = blockchypClient.preauth(request);
-        
-        if (response.isApproved()) {
-            System.out.println("Approved!");
-        }
-        
-        String txId = response.getTransactionId(); //store this for capturing later
+public class ChargeExample {
 
-```
+  public void runSampleTransaction() throws Exception {
 
-#### Capture
+    APICredentials creds = new APICredentials();
+    creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
+    creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
+    creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
 
-This one captures a preauth.  Can be for a different amount than the original authorization, optionally with a tip adjustment.
+    BlockChypClient client = new BlockChypClient(creds);
 
-```
-        CaptureRequest request = new CaptureRequest();
-        request.setTransactionId("previous transaction id");
-        request.setTipAmount("5.00"); //optional tip amount
-        request.setAmount("55.00"); //total including the tip
+    // setup request object
+    AuthorizationRequest request = new AuthorizationRequest();
+    request.setTest(true);
+    request.setTerminalName("Test Terminal");
+    request.setAmount("55.00");
 
-        CaptureResponse response = blockchypClient.capture(request);
-        
-        if (response.isApproved()) {
-            System.out.println("Approved!");
-        }
-```
+    AuthorizationResponse response = client.charge(request);
 
-#### Enroll
+    //process the result
+    
+    if (response.isApproved()) {
+      System.out.println("Approved");
+    }
 
-This captures a payment method on the terminal and then enrolls it in the token vault.  
-You can then use the token for recurring payments.
+    System.out.println(response.getAuthCode());
+    System.out.println(response.getAuthorizedAmount());
+  }
 
-```
-        AuthorizationRequest request = new AuthorizationRequest();
-        request.setTransactionRef("your invoice or tender id");
-        request.setTerminalName("Test Terminal");
 
-        AuthorizationResponse response = blockchypClient.enroll(request);
-        
-        if (response.isApproved()) {
-            System.out.println("Approved!");
-        }
-        
-        String token = response.getToken(); //here's your token!
-```
-
-#### Refunds the Right Way
-
-If you need to execute a refund, the best way is to do so using the transaction id from the transaction you're refunding.
-This lowers the surface area for fraud and makes refunds easily traceable to the original purchase.
-
-```
-        RefundRequest request = new RefundRequest();
-        request.setTransactionId("previous transaction id");
-        request.setAmount("25.00"); //could be a reduced amount if it's a partial refund
-
-        AuthorizationResponse response = blockchypClient.refund(request);
-        
-        if (response.isApproved()) {
-            System.out.println("Approved!");
-        }
-```
-
-#### Refunds the Wrong Way
-
-If you absolutely must do a refund without referencing the previous transaction here's how you do it.  But please don't.
-
-```
-        
-        RefundRequest request = new RefundRequest();
-        request.setTransactionRef("your own refund id");
-        request.setTerminalName("Test Terminal");
-        request.setAmount("55.00");
-
-        AuthorizationResponse response = blockchypClient.refund(request);
-        
-        if (response.isApproved()) {
-            System.out.println("Approved!");
-        }
-```
-
-#### Voids
-
-You can void a transaction anytime before the batch closes.  Here's an example.
-
-```
-        VoidRequest request = new VoidRequest();
-        request.setTransactionId("previous transaction id");
-
-        VoidResponse response = blockchypClient.voidTx(request);
-        
-        if (response.isApproved()) {
-            System.out.println("Approved!");
-        }
-```
-
-#### Time Out Reversals
-
-We love time out reversals.  Don't be afraid to use them whenever a request to a BlockChyp terminal times out. You have up to two minutes to reverse any transaction.
-The only caveat is that you must assign transactionRef values when you build the original request.  Otherwise, we have no real way of knowing which transaction
-you're trying to reverse because we may not have assigned it an id yet.  And if we did assign it an id, you wouldn't know what it is because your request to the 
-terminal timed out before you got a response.
-
-```
-        AuthorizationRequest request = new AuthorizationRequest();
-        request.setTransactionRef("your invoice or tender id");
-        request.setTerminalName("Test Terminal");
-        request.setAmount("50.00");
-
-        try {
-            AuthorizationResponse response = blockchypClient.charge(request);
-            
-            if (response.isApproved()) {
-                System.out.println("Approved!");
-            }
-        } catch (TimeoutException te) {
-            //nope
-            AuthorizationResponse response = blockchypClient.reverse(request);
-            
-           if (response.isApproved()) {
-               //blockchyp authorized the transaction the first time
-               //but it's now been reversed
-           } else {
-               //blockchyp never recieved the transaction
-           }
-        }
+}
 ```
 
 
-#### Batch Closure
+#### Preauthorization
 
-By default, batches always close at 3 AM in the merchant's local time zone.  You can adjust this in the dashboard or turn off automatic batching.
-In which case, you'll need this code snippet to close out a batch programmatically.
+Executes a preauthorization intended to be captured later.
 
-```
-        CloseBatchRequest request = new CloseBatchRequest();
-
-        CloseBatchResponse response = blockchypClient.closeBatch(request);
-        
-        if (response.isSuccess()) {
-            System.out.println("Batch closed successfully!");
-            System.out.println(response.getCapturedTotal()); //the amount of the expected deposit
-            System.out.println(response.getOpenPreauths()); //the total of preauths opened during the batch that weren't captured
-        }
-```
-
-#### Heartbeat
-
-This method is used primarily to test connectivity with the gateway.  But it also returns a timestamp and 
-some blockchain stuff you might find interesting.  Pro Tip: If merchantPk is non null in the response, your
-credentials are valid.
 
 ```
-        HeartbeatResponse response = blockchypClient.heartbeat(false);
-        
-        if (response.isSuccess()) {
-            //the blockchyp gateway is up
-        }
-        
-        if (response.getMerchantPk() != null) {
-            //your gateway credentials are valid
-        }
+
+package com.blockchyp.client.examples;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import com.blockchyp.client.APICredentials;
+import com.blockchyp.client.BlockChypClient;
+import com.blockchyp.client.dto.AuthorizationRequest;
+import com.blockchyp.client.dto.AuthorizationResponse;
+
+
+public class PreauthExample {
+
+  public void runSampleTransaction() throws Exception {
+
+    APICredentials creds = new APICredentials();
+    creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
+    creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
+    creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+
+    BlockChypClient client = new BlockChypClient(creds);
+
+    // setup request object
+    AuthorizationRequest request = new AuthorizationRequest();
+    request.setTest(true);
+    request.setTerminalName("Test Terminal");
+    request.setAmount("27.00");
+
+    AuthorizationResponse response = client.preauth(request);
+
+    //process the result
+    
+    if (response.isApproved()) {
+      System.out.println("Approved");
+    }
+
+    System.out.println(response.getAuthCode());
+    System.out.println(response.getAuthorizedAmount());
+  }
+
+
+}
 ```
+
 
 #### Terminal Ping
 
-This gives you the ability to test if communication with a terminal is possible.
-
-```
-        PingRequest request = new PingRequest();
-        request.setTerminalName("Test Terminal");
-        
-        
-        Acknowledgement ack = blockchypClient.ping(request);
-        
-        if (ack.isSuccess()) {
-            //the terminal is up and accessible!
-        }     
-```
-
-#### Terminal Line Item Display
-
-This fun option gives you the ability to display line items and totals on the terminals as orders
-are scanned or entered.  Use liberally.
-
-```
-        TransactionDisplayRequest request = new TransactionDisplayRequest();
-        request.setTerminalName("Test Terminal");
-        
-        TransactionDisplayDiscount discount = new TransactionDisplayDiscount();
-        discount.setAmount("5.00");
-        discount.setDescription("Member Discount");
-        TransactionDisplayItem item = new TransactionDisplayItem();
-        item.addDiscount(discount);
-        item.setDescription("Leki Trekking Poles");  // these things saved Josiah's life once
-        item.setPrice("150.00");
-        item.setQuantity(1f);
-        item.setExtended("145.00");
-       
-        
-        TransactionDisplayTransaction tx = new TransactionDisplayTransaction();
-        tx.addItem(item);
-        tx.setSubtotal("145");
-        tx.setTax("0.00");        
-        request.setTransaction(tx);
-
-        // newTransactionDisplay() replaces the terminal contents
-        Acknowledgement ack = blockchypClient.newTransactionDisplay(request); 
-     
-        request = new TransactionDisplayRequest();
-        request.setTerminalName("Test Terminal");
-        
-        item = new TransactionDisplayItem();
-        item.setDescription("Northwest Forest Pass");  //you'll get a free one if you work here
-        item.setPrice("30.00");
-        item.setQuantity(1f);
-        item.setExtended("30.00");
-        
-        tx.setSubtotal("175.00");
-        tx.setTax("0.00");        
-        tx.setTotal("175.00");
-
-        // updateTransactionDisplay() adds more line items to the display
-        ack = blockchypClient.updateTransactionDisplay(request);
-```
-
-#### Clearing The Terminal
-
-This example shows you how to clear and reset the terminal.  The line item display will be cleared and any in progress transaction will be cancelled.
-
-```
-        ClearTerminalRequest request = new ClearTerminalRequest();
-        request.setTerminalName("Test Terminal");
-
-        Acknowledgement ack = blockchypClient.clear(request);
-        
-        if (ack.isSuccess()) {
-            System.out.println("Terminal?  What terminal?");
-        }
-```
-
-#### Terminal Messages
-
-This one displays a message on the terminal.  These might be little thank you's or some kind of promotional 
-message.  The message is displayed for thirty seconds before the terminal is placed in the idle state.
-
-```
-        MessageRequest request = new MessageRequest();
-        request.setTerminalName("Test Terminal");
-        request.setMessage("Something derogatory about about Verifone.");
-
-        Acknowledgement ack = blockchypClient.message(request);
-        
-        if (ack.isSuccess()) {
-            System.out.println("The truth is now out there.");
-        }
-```
-
-#### Boolean Prompts
-
-This one lets you ask the user yes or no questions.  You might do this for suggestive selling or if the POS is feeling lonely.
-
-```
-        BooleanPromptRequest request = new BooleanPromptRequest();
-        request.setTerminalName("Test Terminal");
-        request.setPrompt("Is Game of Thrones overrated?");
-
-        BooleanPromptResponse response = blockchypClient.booleanPrompt(request);
-        
-        if (response.isResponse()) {
-            // Well, at least Josiah agrees with you.
-        } else {
-            // Night gathers, and now your watch begins.
-        }    
-```
-
-
-#### Text Prompts
-
-This option allows you to prompt the user for text or numeric data.  As of this writing, you can use this 
-email to capture email address, phone numbers, customer numbers, and rewards numbers.  
-
-Unlike boolean prompts, which support freeform prompt text, PCI rules restrict free form prompts when text can
-be entered because you might prompt the user for card numbers or pin codes - and that would be bad.
-
-```
-        TextPromptRequest request = new TextPromptRequest();
-        request.setTerminalName("Test Terminal");
-        request.setPromptType("email");
-
-        TextPromptResponse response = blockchypClient.textPrompt(request);
-        
-        if (response.isSuccess()) {
-            System.out.println("The user's email is " + response.getResponse());
-        }       
-```
-
-## The Test Flag
-
-During development, you won't be running transactions against the live API.  All transaction requests will need to be flagged 
-as tests by adding this line of code...
-
-```
-	request.setTest(true);
-```
-
-If you're like most developers, you'll probably have some kind of environment variable or configuration property in your
-application that turns this on.
-
-## Signature Capture
-
-If, for some reason, the payment terminal prompts the user for a written signature, BlockChyp uploads the signature image to our web scale database for archival.  
-
-By default, it will not return it to the caller.  You do have the option of getting the image back in PNG or JPEG format, either as hex as a file.
-
-```
-        
-        AuthorizationRequest request = new AuthorizationRequest();
-        request.setAmount("55.55");
-        request.setTerminalName("Test Terminal");
-        request.setSigFormat("png");
-        request.setSigWidth(200);
-        request.setSigFile("sig.png");
-
-        
-        AuthorizationResponse response = client.charge(request);
-        
-        Assert.assertNotNull(response);
-        Assert.assertTrue(response.isApproved());
-        
-        File file = new File("sig.png");  //here's your image file
-```
-
-## Keyed Entry Mode
-
-If you need the consumer to enter a card number by hand, set the manual entry flag on an authorization request first.
+Tests connectivity with a payment terminal.
 
 
 ```
-        AuthorizationRequest request = new AuthorizationRequest();
-        request.setTransactionRef("your invoice or tender id");
-        request.setTerminalName("Test Terminal");
-        request.setAmount("50.00");
-        request.setManualEntry(true);
 
-        AuthorizationResponse response = blockchypClient.charge(request);
-        
-        if (response.isApproved()) {
-            System.out.println("Approved!");
-        }
-        
-        String txId = response.getTransactionId(); //store this for refunding or voiding later
+package com.blockchyp.client.examples;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import com.blockchyp.client.APICredentials;
+import com.blockchyp.client.BlockChypClient;
+import com.blockchyp.client.dto.PingRequest;
+import com.blockchyp.client.dto.PingResponse;
+
+
+public class PingExample {
+
+  public void runSampleTransaction() throws Exception {
+
+    APICredentials creds = new APICredentials();
+    creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
+    creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
+    creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+
+    BlockChypClient client = new BlockChypClient(creds);
+
+    // setup request object
+    PingRequest request = new PingRequest();
+    request.setTerminalName("Test Terminal");
+
+    PingResponse response = client.ping(request);
+
+    //process the result
+    
+    if (response.isSuccess()) {
+      System.out.println("Success");
+    }
+
+  }
+
+
+}
 ```
 
-## Cloud Relay
 
-It's not always possible for terminals to live in the same network subnet as the application they're integrated with.  
-For example, cloud or SaaS based applications may not have access to the in store network.  In these situations, 
-terminals can be configured for cloud relay when they're activated.
+#### Terminal Clear
 
-In these situations, the Java SDK will send transactions to the Gateway and the Gateway will relay them back to 
-the terminal.  This is a bit slower since it involves a little more network I/O.  But more importantly, offline
-or store and forward processing is not available to applications using cloud relay.
+Clears the line item display and any in progress transaction.
 
-It's an option,  but only use it if you really need it.
+
+```
+
+package com.blockchyp.client.examples;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import com.blockchyp.client.APICredentials;
+import com.blockchyp.client.BlockChypClient;
+import com.blockchyp.client.dto.ClearTerminalRequest;
+import com.blockchyp.client.dto.Acknowledgement;
+
+
+public class ClearExample {
+
+  public void runSampleTransaction() throws Exception {
+
+    APICredentials creds = new APICredentials();
+    creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
+    creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
+    creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+
+    BlockChypClient client = new BlockChypClient(creds);
+
+    // setup request object
+    ClearTerminalRequest request = new ClearTerminalRequest();
+    request.setTest(true);
+    request.setTerminalName("Test Terminal");
+
+    Acknowledgement response = client.clear(request);
+
+    //process the result
+    
+    if (response.isSuccess()) {
+      System.out.println("Success");
+    }
+
+  }
+
+
+}
+```
+
+
+#### Terms & Conditions Capture
+
+Prompts the user to accept terms and conditions.
+
+
+```
+
+package com.blockchyp.client.examples;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import com.blockchyp.client.APICredentials;
+import com.blockchyp.client.BlockChypClient;
+import com.blockchyp.client.dto.TermsAndConditionsRequest;
+import com.blockchyp.client.dto.TermsAndConditionsResponse;
+
+
+public class TCExample {
+
+  public void runSampleTransaction() throws Exception {
+
+    APICredentials creds = new APICredentials();
+    creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
+    creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
+    creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+
+    BlockChypClient client = new BlockChypClient(creds);
+
+    // setup request object
+    TermsAndConditionsRequest request = new TermsAndConditionsRequest();
+    request.setTest(true);
+    request.setTerminalName("Test Terminal");
+    request.setTCAlias("hippa");// Alias for a T&C template configured in blockchyp
+    request.setTCName("HIPPA Disclosure");// Name of the contract or document if not using an alias
+    request.setTCContent("Full contract text");// Full text of the contract or disclosure if not using an alias
+    request.setSigFormat("png");// file format for the signature image, if desired can be PNG or JPG
+    request.setSigWidth(200);// width of the signature image in pixels
+    request.setSigRequired(true);// Whether or not a signature is required.  Defaults to true.
+
+    TermsAndConditionsResponse response = client.tc(request);
+
+    //process the result
+    
+    if (response.isSuccess()) {
+      System.out.println("Success");
+    }
+
+    System.out.println(response.getSig());
+    System.out.println(response.getSigFile());
+  }
+
+
+}
+```
+
+
+#### Update Transaction Display
+
+Appends items to an existing transaction display Subtotal, Tax, and Total are overwritten by the request. Items with the same description are combined into groups.
+
+
+```
+
+package com.blockchyp.client.examples;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import com.blockchyp.client.APICredentials;
+import com.blockchyp.client.BlockChypClient;
+import com.blockchyp.client.dto.TransactionDisplayRequest;
+import com.blockchyp.client.dto.Acknowledgement;
+import com.blockchyp.client.dto.TransactionDisplayTransaction;
+import com.blockchyp.client.dto.TransactionDisplayItem;
+import com.blockchyp.client.dto.TransactionDisplayDiscount;
+
+
+public class UpdateTransactionDisplayExample {
+
+  public void runSampleTransaction() throws Exception {
+
+    APICredentials creds = new APICredentials();
+    creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
+    creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
+    creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+
+    BlockChypClient client = new BlockChypClient(creds);
+
+    // setup request object
+    TransactionDisplayRequest request = new TransactionDisplayRequest();
+    request.setTest(true);
+    request.setTerminalName("Test Terminal");
+    request.setTransaction(newTransactionDisplayTransaction());
+
+    Acknowledgement response = client.updateTransactionDisplay(request);
+
+    //process the result
+    
+    if (response.isSuccess()) {
+      System.out.println("Succeded");
+    }
+
+  }
+
+    private TransactionDisplayTransaction newTransactionDisplayTransaction() {
+         TransactionDisplayTransaction val = new TransactionDisplayTransaction();
+         val.setSubtotal("60.00");
+         val.setTax("5.00");
+         val.setTotal("65.00");
+         val.setItems(newTransactionDisplayItems());
+         return val;
+    }
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    private Collection newTransactionDisplayItems() {
+         Collection results = new ArrayList();
+         results.add(newTransactionDisplayItem2());
+         return results;
+    }
+    private TransactionDisplayItem newTransactionDisplayItem2() {
+         TransactionDisplayItem val = new TransactionDisplayItem();
+         val.setDescription("Leki Trekking Poles");
+         val.setPrice("35.00");
+         val.setQuantity(2);
+         val.setExtended("70.00");
+         val.setDiscounts(newTransactionDisplayDiscounts());
+         return val;
+    }
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    private Collection newTransactionDisplayDiscounts() {
+         Collection results = new ArrayList();
+         results.add(newTransactionDisplayDiscount2());
+         return results;
+    }
+    private TransactionDisplayDiscount newTransactionDisplayDiscount2() {
+         TransactionDisplayDiscount val = new TransactionDisplayDiscount();
+         val.setDescription("memberDiscount");
+         val.setAmount("10.00");
+         return val;
+    }
+
+}
+```
+
+
+#### New Transaction Display
+
+Displays a new transaction on the terminal.
+
+
+```
+
+package com.blockchyp.client.examples;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import com.blockchyp.client.APICredentials;
+import com.blockchyp.client.BlockChypClient;
+import com.blockchyp.client.dto.TransactionDisplayRequest;
+import com.blockchyp.client.dto.Acknowledgement;
+import com.blockchyp.client.dto.TransactionDisplayTransaction;
+import com.blockchyp.client.dto.TransactionDisplayItem;
+import com.blockchyp.client.dto.TransactionDisplayDiscount;
+
+
+public class NewTransactionDisplayExample {
+
+  public void runSampleTransaction() throws Exception {
+
+    APICredentials creds = new APICredentials();
+    creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
+    creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
+    creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+
+    BlockChypClient client = new BlockChypClient(creds);
+
+    // setup request object
+    TransactionDisplayRequest request = new TransactionDisplayRequest();
+    request.setTest(true);
+    request.setTerminalName("Test Terminal");
+    request.setTransaction(newTransactionDisplayTransaction());
+
+    Acknowledgement response = client.newTransactionDisplay(request);
+
+    //process the result
+    
+    if (response.isSuccess()) {
+      System.out.println("Succeded");
+    }
+
+  }
+
+    private TransactionDisplayTransaction newTransactionDisplayTransaction() {
+         TransactionDisplayTransaction val = new TransactionDisplayTransaction();
+         val.setSubtotal("60.00");
+         val.setTax("5.00");
+         val.setTotal("65.00");
+         val.setItems(newTransactionDisplayItems());
+         return val;
+    }
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    private Collection newTransactionDisplayItems() {
+         Collection results = new ArrayList();
+         results.add(newTransactionDisplayItem2());
+         return results;
+    }
+    private TransactionDisplayItem newTransactionDisplayItem2() {
+         TransactionDisplayItem val = new TransactionDisplayItem();
+         val.setDescription("Leki Trekking Poles");
+         val.setPrice("35.00");
+         val.setQuantity(2);
+         val.setExtended("70.00");
+         val.setDiscounts(newTransactionDisplayDiscounts());
+         return val;
+    }
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    private Collection newTransactionDisplayDiscounts() {
+         Collection results = new ArrayList();
+         results.add(newTransactionDisplayDiscount2());
+         return results;
+    }
+    private TransactionDisplayDiscount newTransactionDisplayDiscount2() {
+         TransactionDisplayDiscount val = new TransactionDisplayDiscount();
+         val.setDescription("memberDiscount");
+         val.setAmount("10.00");
+         return val;
+    }
+
+}
+```
+
+
+#### Text Prompt
+
+Asks the consumer text based question.
+
+
+```
+
+package com.blockchyp.client.examples;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import com.blockchyp.client.APICredentials;
+import com.blockchyp.client.BlockChypClient;
+import com.blockchyp.client.dto.TextPromptRequest;
+import com.blockchyp.client.dto.TextPromptResponse;
+
+
+public class TextPromptExample {
+
+  public void runSampleTransaction() throws Exception {
+
+    APICredentials creds = new APICredentials();
+    creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
+    creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
+    creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+
+    BlockChypClient client = new BlockChypClient(creds);
+
+    // setup request object
+    TextPromptRequest request = new TextPromptRequest();
+    request.setTest(true);
+    request.setTerminalName("Test Terminal");
+    request.setPromptType("email");//  Type of prompt.  Can be 'email', 'phone', 'customer-number', or 'rewards-number'
+
+    TextPromptResponse response = client.textPrompt(request);
+
+    //process the result
+    
+    if (response.isSuccess()) {
+      System.out.println("Success");
+    }
+
+    System.out.println(response.getResponse());
+  }
+
+
+}
+```
+
+
+#### Boolean Prompt
+
+Asks the consumer a yes/no question.
+
+
+```
+
+package com.blockchyp.client.examples;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import com.blockchyp.client.APICredentials;
+import com.blockchyp.client.BlockChypClient;
+import com.blockchyp.client.dto.BooleanPromptRequest;
+import com.blockchyp.client.dto.BooleanPromptResponse;
+
+
+public class BooleanPromptExample {
+
+  public void runSampleTransaction() throws Exception {
+
+    APICredentials creds = new APICredentials();
+    creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
+    creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
+    creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+
+    BlockChypClient client = new BlockChypClient(creds);
+
+    // setup request object
+    BooleanPromptRequest request = new BooleanPromptRequest();
+    request.setTest(true);
+    request.setTerminalName("Test Terminal");
+    request.setPrompt("Would you like to become a member?");
+    request.setYesCaption("Yes");
+    request.setNoCaption("No");
+
+    BooleanPromptResponse response = client.booleanPrompt(request);
+
+    //process the result
+    
+    if (response.isSuccess()) {
+      System.out.println("Success");
+    }
+
+    System.out.println(response.isResponse());
+  }
+
+
+}
+```
+
+
+#### Display Message
+
+Displays a short message on the terminal.
+
+
+```
+
+package com.blockchyp.client.examples;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import com.blockchyp.client.APICredentials;
+import com.blockchyp.client.BlockChypClient;
+import com.blockchyp.client.dto.MessageRequest;
+import com.blockchyp.client.dto.Acknowledgement;
+
+
+public class MessageExample {
+
+  public void runSampleTransaction() throws Exception {
+
+    APICredentials creds = new APICredentials();
+    creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
+    creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
+    creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+
+    BlockChypClient client = new BlockChypClient(creds);
+
+    // setup request object
+    MessageRequest request = new MessageRequest();
+    request.setTest(true);
+    request.setTerminalName("Test Terminal");
+    request.setMessage("Thank you for your business.");
+
+    Acknowledgement response = client.message(request);
+
+    //process the result
+    
+    if (response.isSuccess()) {
+      System.out.println("Success");
+    }
+
+  }
+
+
+}
+```
+
+
+#### Refund
+
+Executes a refund.
+
+
+```
+
+package com.blockchyp.client.examples;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import com.blockchyp.client.APICredentials;
+import com.blockchyp.client.BlockChypClient;
+import com.blockchyp.client.dto.RefundRequest;
+import com.blockchyp.client.dto.AuthorizationResponse;
+
+
+public class RefundExample {
+
+  public void runSampleTransaction() throws Exception {
+
+    APICredentials creds = new APICredentials();
+    creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
+    creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
+    creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+
+    BlockChypClient client = new BlockChypClient(creds);
+
+    // setup request object
+    RefundRequest request = new RefundRequest();
+    request.setTerminalName("Test Terminal");
+    request.setTransactionID("PREVIOUS_TRANSACTION_ID");
+    request.setAmount("5.00");// Optional amount for partial refunds.
+
+    AuthorizationResponse response = client.refund(request);
+
+    //process the result
+    
+    if (response.isApproved()) {
+      System.out.println("Approved");
+    }
+
+  }
+
+
+}
+```
+
+
+#### Enroll
+
+Adds a new payment method to the token vault.
+
+
+```
+
+package com.blockchyp.client.examples;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import com.blockchyp.client.APICredentials;
+import com.blockchyp.client.BlockChypClient;
+import com.blockchyp.client.dto.EnrollRequest;
+import com.blockchyp.client.dto.EnrollResponse;
+
+
+public class EnrollExample {
+
+  public void runSampleTransaction() throws Exception {
+
+    APICredentials creds = new APICredentials();
+    creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
+    creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
+    creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+
+    BlockChypClient client = new BlockChypClient(creds);
+
+    // setup request object
+    EnrollRequest request = new EnrollRequest();
+    request.setTest(true);
+    request.setTerminalName("Test Terminal");
+
+    EnrollResponse response = client.enroll(request);
+
+    //process the result
+    
+    if (response.isApproved()) {
+      System.out.println("Approved");
+    }
+
+    System.out.println(response.getToken());
+  }
+
+
+}
+```
+
+
+#### Gift Card Activation
+
+Activates or recharges a gift card.
+
+
+```
+
+package com.blockchyp.client.examples;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import com.blockchyp.client.APICredentials;
+import com.blockchyp.client.BlockChypClient;
+import com.blockchyp.client.dto.GiftActivateRequest;
+import com.blockchyp.client.dto.GiftActivateResponse;
+
+
+public class GiftActivateExample {
+
+  public void runSampleTransaction() throws Exception {
+
+    APICredentials creds = new APICredentials();
+    creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
+    creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
+    creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+
+    BlockChypClient client = new BlockChypClient(creds);
+
+    // setup request object
+    GiftActivateRequest request = new GiftActivateRequest();
+    request.setTest(true);
+    request.setTerminalName("Test Terminal");
+    request.setAmount("50.00");
+
+    GiftActivateResponse response = client.giftActivate(request);
+
+    //process the result
+    
+    if (response.isApproved()) {
+      System.out.println("Approved");
+    }
+
+    System.out.println(response.getAmount());
+    System.out.println(response.getCurrentBalance());
+    System.out.println(response.getPublicKey());
+  }
+
+
+}
+```
+
+
+#### Time Out Reversal
+
+Executes a manual time out reversal.
+
+We love time out reversals. Don't be afraid to use them whenever a request to a BlockChyp terminal times out. You have up to two minutes to reverse any transaction. The only caveat is that you must assign transactionRef values when you build the original request. Otherwise, we have no real way of knowing which transaction you're trying to reverse because we may not have assigned it an id yet. And if we did assign it an id, you wouldn't know what it is because your request to the terminal timed out before you got a response.
+
+
+```
+
+package com.blockchyp.client.examples;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import com.blockchyp.client.APICredentials;
+import com.blockchyp.client.BlockChypClient;
+import com.blockchyp.client.dto.AuthorizationRequest;
+import com.blockchyp.client.dto.AuthorizationResponse;
+
+
+public class ReverseExample {
+
+  public void runSampleTransaction() throws Exception {
+
+    APICredentials creds = new APICredentials();
+    creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
+    creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
+    creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+
+    BlockChypClient client = new BlockChypClient(creds);
+
+    // setup request object
+    AuthorizationRequest request = new AuthorizationRequest();
+    request.setTerminalName("Test Terminal");
+    request.setTransactionRef("LAST TRANSACTION REF");
+
+    AuthorizationResponse response = client.reverse(request);
+
+    //process the result
+    
+    if (response.isApproved()) {
+      System.out.println("Approved");
+    }
+
+  }
+
+
+}
+```
+
+
+#### Capture Preauthorization
+
+Captures a preauthorization.
+
+
+```
+
+package com.blockchyp.client.examples;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import com.blockchyp.client.APICredentials;
+import com.blockchyp.client.BlockChypClient;
+import com.blockchyp.client.dto.CaptureRequest;
+import com.blockchyp.client.dto.CaptureResponse;
+
+
+public class CaptureExample {
+
+  public void runSampleTransaction() throws Exception {
+
+    APICredentials creds = new APICredentials();
+    creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
+    creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
+    creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+
+    BlockChypClient client = new BlockChypClient(creds);
+
+    // setup request object
+    CaptureRequest request = new CaptureRequest();
+    request.setTest(true);
+    request.setTransactionID("PREAUTH TRANSACTION ID");
+
+    CaptureResponse response = client.capture(request);
+
+    //process the result
+    
+    if (response.isApproved()) {
+      System.out.println("Approved");
+    }
+
+  }
+
+
+}
+```
+
+
+#### Close Batch
+
+Closes the current credit card batch.
+
+
+```
+
+package com.blockchyp.client.examples;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import com.blockchyp.client.APICredentials;
+import com.blockchyp.client.BlockChypClient;
+import com.blockchyp.client.dto.CloseBatchRequest;
+import com.blockchyp.client.dto.CloseBatchResponse;
+
+
+public class CloseBatchExample {
+
+  public void runSampleTransaction() throws Exception {
+
+    APICredentials creds = new APICredentials();
+    creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
+    creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
+    creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+
+    BlockChypClient client = new BlockChypClient(creds);
+
+    // setup request object
+    CloseBatchRequest request = new CloseBatchRequest();
+    request.setTest(true);
+
+    CloseBatchResponse response = client.closeBatch(request);
+
+    //process the result
+    
+    if (response.isSuccess()) {
+      System.out.println("Success");
+    }
+
+    System.out.println(response.getCapturedTotal());
+    System.out.println(response.getOpenPreauths());
+  }
+
+
+}
+```
+
+
+#### Void Transaction
+
+Discards a previous preauth transaction.
+
+
+```
+
+package com.blockchyp.client.examples;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import com.blockchyp.client.APICredentials;
+import com.blockchyp.client.BlockChypClient;
+import com.blockchyp.client.dto.VoidRequest;
+import com.blockchyp.client.dto.VoidResponse;
+
+
+public class VoidExample {
+
+  public void runSampleTransaction() throws Exception {
+
+    APICredentials creds = new APICredentials();
+    creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
+    creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
+    creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+
+    BlockChypClient client = new BlockChypClient(creds);
+
+    // setup request object
+    VoidRequest request = new VoidRequest();
+    request.setTest(true);
+    request.setTransactionID("PREVIOUS TRANSACTION ID");
+
+    VoidResponse response = client.voidTx(request);
+
+    //process the result
+    
+    if (response.isApproved()) {
+      System.out.println("Approved");
+    }
+
+  }
+
+
+}
+```

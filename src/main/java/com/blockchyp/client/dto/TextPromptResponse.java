@@ -1,27 +1,67 @@
 package com.blockchyp.client.dto;
 
+
+
+
+
+
+
+
 /**
- * Models results from a text prompt on the terminal.
+ * models the response to a text prompt request
  */
-public class TextPromptResponse extends Acknowledgement {
 
-    private String response;
+public class TextPromptResponse {
+  
+     
+     private boolean success;
+  
+     
+     private String error;
+  
+     
+     private String responseDescription;
+  
+     
+     private String response;
+  
+  
+     
+     public void setSuccess(boolean value) {
+          this.success = value;
+     }
+     
+     public boolean isSuccess() {
+          return this.success;
+     }
+  
+     
+     public void setError(String value) {
+          this.error = value;
+     }
+     
+     public String getError() {
+          return this.error;
+     }
+  
+     
+     public void setResponseDescription(String value) {
+          this.responseDescription = value;
+     }
+     
+     public String getResponseDescription() {
+          return this.responseDescription;
+     }
+  
+     
+     public void setResponse(String value) {
+          this.response = value;
+     }
+     
+     public String getResponse() {
+          return this.response;
+     }
+  
 
-    
-    /**
-     * Returns the text prompt response.
-     * @return the text prompt response.
-     */
-    public String getResponse() {
-        return response;
-    }
-
-    /**
-     * Sets the text prompt response.
-     * @param response text prompt response.
-     */
-    public void setResponse(String response) {
-        this.response = response;
-    }
-
+  
 }

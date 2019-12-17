@@ -1,4 +1,4 @@
-package com.blockchyp.client.dto;
+package com.blockchyp.client;
 
 /**
  * This class models the raw parameters of an elliptic curve signature.  This is provided for 

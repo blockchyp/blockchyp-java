@@ -1,4 +1,5 @@
-package com.blockchyp.client.itest;
+package com.blockchyp.client;
+
 
 public class IntegrationTestSettings {
     
@@ -45,12 +46,12 @@ public class IntegrationTestSettings {
     public void setSigningKey(String signingKey) {
         this.signingKey = signingKey;
     }
-	public String getTestGatewayHost() {
-		return testGatewayHost;
-	}
-	public void setTestGatewayHost(String testGatewayHost) {
-		this.testGatewayHost = testGatewayHost;
-	}
+    public String getTestGatewayHost() {
+        return testGatewayHost;
+    }
+    public void setTestGatewayHost(String testGatewayHost) {
+        this.testGatewayHost = testGatewayHost;
+    }
     
     
 

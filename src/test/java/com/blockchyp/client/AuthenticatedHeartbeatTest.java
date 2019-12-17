@@ -1,4 +1,4 @@
-package com.blockchyp.client.itest;
+package com.blockchyp.client;
 
 import org.apache.commons.lang.StringUtils;
 import org.junit.Assert;
@@ -21,7 +21,7 @@ public class AuthenticatedHeartbeatTest {
         Assert.assertNotNull(response);
         Assert.assertTrue(response.isSuccess());
         Assert.assertNotNull(response.getTimestamp());
-        Assert.assertFalse(StringUtils.isEmpty(response.getMerchantPk()));
+        Assert.assertFalse(StringUtils.isEmpty(response.getMerchantPublicKey()));
         Assert.assertNotNull(response.getLatestTick());
         
     }

@@ -1,26 +1,67 @@
 package com.blockchyp.client.dto;
 
+
+
+
+
+
+
+
 /**
- * Models the response for a terminal boolean prompt.
+ * models the response to a boolean prompt request
  */
-public class BooleanPromptResponse extends Acknowledgement {
 
-    private boolean response;
+public class BooleanPromptResponse {
+  
+     
+     private boolean success;
+  
+     
+     private String error;
+  
+     
+     private String responseDescription;
+  
+     
+     private boolean response;
+  
+  
+     
+     public void setSuccess(boolean value) {
+          this.success = value;
+     }
+     
+     public boolean isSuccess() {
+          return this.success;
+     }
+  
+     
+     public void setError(String value) {
+          this.error = value;
+     }
+     
+     public String getError() {
+          return this.error;
+     }
+  
+     
+     public void setResponseDescription(String value) {
+          this.responseDescription = value;
+     }
+     
+     public String getResponseDescription() {
+          return this.responseDescription;
+     }
+  
+     
+     public void setResponse(boolean value) {
+          this.response = value;
+     }
+     
+     public boolean isResponse() {
+          return this.response;
+     }
+  
 
-    /**
-     * Gets the boolean prompt response.
-     * @return true if the user pressed the 'yes' button
-     */
-    public boolean isResponse() {
-        return response;
-    }
-
-    /**
-     * Sets the boolean prompt response.
-     * @param response true if the user pressed the 'yes' button.
-     */
-    public void setResponse(boolean response) {
-        this.response = response;
-    }
-
+  
 }

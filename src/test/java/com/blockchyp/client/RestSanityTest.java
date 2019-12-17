@@ -1,4 +1,4 @@
-package com.blockchyp.client.api;
+package com.blockchyp.client;
 
 import org.junit.Assert;
 import org.junit.Test;

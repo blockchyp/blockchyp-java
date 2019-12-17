@@ -1,47 +1,55 @@
 package com.blockchyp.client.dto;
 
+
+
+
+
+
+
+
 /**
- * Models basic response information. This is typically used as a base class for
- * most API responses.
- * 
+ * models a basic api acknowledgement.
  */
+
 public class Acknowledgement {
+  
+     
+     private boolean success;
+  
+     
+     private String error;
+  
+     
+     private String responseDescription;
+  
+  
+     
+     public void setSuccess(boolean value) {
+          this.success = value;
+     }
+     
+     public boolean isSuccess() {
+          return this.success;
+     }
+  
+     
+     public void setError(String value) {
+          this.error = value;
+     }
+     
+     public String getError() {
+          return this.error;
+     }
+  
+     
+     public void setResponseDescription(String value) {
+          this.responseDescription = value;
+     }
+     
+     public String getResponseDescription() {
+          return this.responseDescription;
+     }
+  
 
-
-    private boolean success;
-    private String error;
-
-    /**
-     * Gets the success flag.
-     * @return true if the API call succeeded.
-     */
-    public boolean isSuccess() {
-        return success;
-    }
-
-    /**
-     * Sets the success flag.
-     * 
-     * @param success true if the API call succeeded.
-     */
-    public void setSuccess(boolean success) {
-        this.success = success;
-    }
-
-    /**
-     * Gets a narrative description of the error, if any.
-     * @return narrative description of any error.
-     */
-    public String getError() {
-        return error;
-    }
-
-    /**
-     * Sets a narrative description of the error, if any.
-     * @param error narrative description of any error.
-     */
-    public void setError(String error) {
-        this.error = error;
-    }
-
+  
 }

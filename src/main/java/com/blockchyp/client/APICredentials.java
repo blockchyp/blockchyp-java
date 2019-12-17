@@ -1,4 +1,4 @@
-package com.blockchyp.client.dto;
+package com.blockchyp.client;
 
 /**
  * Encapsulates the big three BlockChyp API credentials.
