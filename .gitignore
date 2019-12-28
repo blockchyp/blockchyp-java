@@ -1,0 +1,9 @@
+**/.DS_Store
+*.syso
+/README.md
+/target/
+/.classpath
+/.project
+/.settings/
+/.idea/
+/sig.png
