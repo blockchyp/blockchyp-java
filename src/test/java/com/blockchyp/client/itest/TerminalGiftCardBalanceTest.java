@@ -17,12 +17,10 @@ import org.junit.experimental.categories.Category;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.IntegrationTest;
 import com.blockchyp.client.IntegrationTestConfiguration;
-import com.blockchyp.client.dto.VoidRequest;
-import com.blockchyp.client.dto.VoidResponse;
-import com.blockchyp.client.dto.AuthorizationRequest;
-import com.blockchyp.client.dto.AuthorizationResponse;
+import com.blockchyp.client.dto.BalanceRequest;
+import com.blockchyp.client.dto.BalanceResponse;
 
-public class SimpleVoidTest {
+public class TerminalGiftCardBalanceTest {
 
     @Test
     @Category(IntegrationTest.class)
@@ -31,31 +29,19 @@ public class SimpleVoidTest {
          BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
 
-	     // setup request object
-         AuthorizationRequest setupRequest = new AuthorizationRequest();
-
-         setupRequest.setPAN("4111111111111111");
-
-         setupRequest.setAmount("25.55");
-
-         setupRequest.setTest(true);
-
-         setupRequest.setTransactionRef();
-
-         AuthorizationResponse setupResponse = client.charge(setupRequest);
-
-
 
          // setup request object
-         VoidRequest request = new VoidRequest();
-         request.setTransactionID(setupResponse.getTransactionID());
+         BalanceRequest request = new BalanceRequest();
          request.setTest(true);
+         request.setTerminalName("Test Terminal");
 
-         VoidResponse response = client.voidTx(request);
+         BalanceResponse response = client.balance(request);
 
 
          // response assertions
-         Assert.assertTrue(response.isApproved());
+         Assert.assertTrue(response.isSuccess());
+         Assert.assertNotNull(response.getRemainingBalance());
+         Assert.assertTrue(response.getRemainingBalance().trim().length() > 0);
 
     }
 

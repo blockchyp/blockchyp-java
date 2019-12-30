@@ -40,7 +40,7 @@ public class SimpleRefundTest {
 
          setupRequest.setTest(true);
 
-         setupRequest.setTransactionRef(setupResponse.getTransactionRef());
+         setupRequest.setTransactionRef();
 
          AuthorizationResponse setupResponse = client.charge(setupRequest);
 

@@ -414,7 +414,7 @@ public class BlockChypClient {
         if (isTerminalRouted(request)) {
             return (TermsAndConditionsResponse) postTerminal("/api/tc", request, TermsAndConditionsResponse.class);
         } else {
-            return (TermsAndConditionsResponse) postGateway("/api/tc", request, TermsAndConditionsResponse.class);
+            return (TermsAndConditionsResponse) postGateway("/api/terminal-tc", request, TermsAndConditionsResponse.class);
         }
 
     }

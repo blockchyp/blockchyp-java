@@ -20,7 +20,7 @@ import com.blockchyp.client.IntegrationTestConfiguration;
 import com.blockchyp.client.dto.AuthorizationRequest;
 import com.blockchyp.client.dto.AuthorizationResponse;
 
-public class PANChargeTest {
+public class TerminalEBTChargeTest {
 
     @Test
     @Category(IntegrationTest.class)
@@ -32,9 +32,10 @@ public class PANChargeTest {
 
          // setup request object
          AuthorizationRequest request = new AuthorizationRequest();
-         request.setPAN("4111111111111111");
-         request.setAmount("25.55");
+         request.setTerminalName("Test Terminal");
+         request.setAmount("25.00");
          request.setTest(true);
+         request.setCardType(2);
 
          AuthorizationResponse response = client.charge(request);
 
@@ -56,8 +57,8 @@ public class PANChargeTest {
          Assert.assertTrue(response.getMaskedPAN().trim().length() > 0);
          Assert.assertNotNull(response.getEntryMethod());
          Assert.assertTrue(response.getEntryMethod().trim().length() > 0);
-         Assert.assertEquals("25.55", response.getAuthorizedAmount());
-         Assert.assertEquals("KEYED", response.getEntryMethod());
+         Assert.assertEquals("25.00", response.getAuthorizedAmount());
+         Assert.assertEquals("75.00", response.getRemainingBalance());
 
     }
 
