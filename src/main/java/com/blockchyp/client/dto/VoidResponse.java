@@ -11,7 +11,7 @@ package com.blockchyp.client.dto;
 /**
  * The response to a void request.
  */
-public class VoidResponse implements IAcknowledgement, ICoreResponse, IApprovalResponse, IPaymentMethodResponse {
+public class VoidResponse implements ICoreResponse, IApprovalResponse, IPaymentMethodResponse {
 
      private boolean success;
 

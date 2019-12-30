@@ -11,7 +11,7 @@ package com.blockchyp.client.dto;
 /**
  * A T&C signature capture response.
  */
-public class TermsAndConditionsResponse implements IAcknowledgement, ICoreResponse, ISignatureResponse {
+public class TermsAndConditionsResponse implements ICoreResponse, ISignatureResponse {
 
      private boolean success;
 

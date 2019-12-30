@@ -11,7 +11,7 @@ package com.blockchyp.client.dto;
 /**
  * The response to a capture request.
  */
-public class CaptureResponse implements IAcknowledgement, ICoreResponse, IApprovalResponse, IPaymentMethodResponse, IPaymentAmounts {
+public class CaptureResponse implements ICoreResponse, IApprovalResponse, IPaymentMethodResponse, IPaymentAmounts {
 
      private boolean success;
 

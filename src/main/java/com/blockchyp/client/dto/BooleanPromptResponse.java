@@ -11,7 +11,7 @@ package com.blockchyp.client.dto;
 /**
  * The response to a boolean prompt request.
  */
-public class BooleanPromptResponse implements IAcknowledgement {
+public class BooleanPromptResponse {
 
      private boolean success;
 

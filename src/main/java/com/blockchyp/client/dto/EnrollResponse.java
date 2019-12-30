@@ -11,7 +11,7 @@ package com.blockchyp.client.dto;
 /**
  * The response to an enroll request.
  */
-public class EnrollResponse implements IAcknowledgement, ICoreResponse, IPaymentMethodResponse, IApprovalResponse {
+public class EnrollResponse implements ICoreResponse, IPaymentMethodResponse, IApprovalResponse {
 
      private boolean success;
 

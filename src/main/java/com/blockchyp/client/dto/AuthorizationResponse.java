@@ -11,7 +11,7 @@ package com.blockchyp.client.dto;
 /**
  * The response to authorization requests.
  */
-public class AuthorizationResponse implements IAcknowledgement, ICoreResponse, IApprovalResponse, IPaymentMethodResponse, IPaymentAmounts {
+public class AuthorizationResponse implements ICoreResponse, IApprovalResponse, IPaymentMethodResponse, IPaymentAmounts {
 
      private boolean success;
 

@@ -13,7 +13,7 @@ import java.util.Date;
  * The response to a basic API health check. If the security context permits it, the
  * response may also include the public key of the current merchant.
  */
-public class HeartbeatResponse implements IAcknowledgement {
+public class HeartbeatResponse {
 
      private boolean success;
 

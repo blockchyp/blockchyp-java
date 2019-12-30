@@ -14,7 +14,7 @@ import java.util.Map;
  */
 
 @SuppressWarnings({"rawtypes", "unchecked"})
-public class CloseBatchResponse implements IAcknowledgement, ICoreResponse {
+public class CloseBatchResponse implements ICoreResponse {
 
      private boolean success;
 
