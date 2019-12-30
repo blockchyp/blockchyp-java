@@ -24,7 +24,7 @@ public class TextPromptExample {
         TextPromptRequest request = new TextPromptRequest();
         request.setTest(true);
         request.setTerminalName("Test Terminal");
-        request.setPromptType("email"); // Type of prompt. Can be 'email', 'phone', 'customer-number', or 'rewards-number'.
+        request.setPromptType(PromptType.EMAIL); // Type of prompt. Can be 'email', 'phone', 'customer-number', or 'rewards-number'.
 
         TextPromptResponse response = client.textPrompt(request);
 

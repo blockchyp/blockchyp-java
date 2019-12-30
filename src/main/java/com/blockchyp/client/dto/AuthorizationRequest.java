@@ -7,15 +7,13 @@
  */
 package com.blockchyp.client.dto;
 
-
 import com.blockchyp.client.CardType;
-
+import com.blockchyp.client.SignatureFormat;
 import java.util.Map;
 
 /**
  * Auth requests for charge, preauth, and reverse transaction types.
  */
-
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class AuthorizationRequest implements ICoreRequest, ITerminalReference, IPaymentMethod, IRequestAmount, ISubtotals, ISignatureRequest, IPreviousTransaction {
 
@@ -83,7 +81,7 @@ public class AuthorizationRequest implements ICoreRequest, ITerminalReference, I
 
      private String sigFile;
 
-     private String sigFormat;
+     private SignatureFormat sigFormat;
 
      private int sigWidth;
 
@@ -641,7 +639,7 @@ public class AuthorizationRequest implements ICoreRequest, ITerminalReference, I
       * Sets the image format to be used for returning signatures.
       * @param value the image format to be used for returning signatures.
       */
-     public void setSigFormat(String value) {
+     public void setSigFormat(SignatureFormat value) {
           this.sigFormat = value;
      }
 
@@ -649,7 +647,7 @@ public class AuthorizationRequest implements ICoreRequest, ITerminalReference, I
       * Gets the image format to be used for returning signatures.
       * @return the image format to be used for returning signatures.
       */
-     public String getSigFormat() {
+     public SignatureFormat getSigFormat() {
           return this.sigFormat;
      }
 

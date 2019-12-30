@@ -34,7 +34,7 @@ public class TerminalEBTBalanceTest {
          BalanceRequest request = new BalanceRequest();
          request.setTest(true);
          request.setTerminalName("Test Terminal");
-         request.setCardType(2);
+         request.setCardType(CardType.EBT);
 
          BalanceResponse response = client.balance(request);
 

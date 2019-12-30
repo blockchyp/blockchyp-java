@@ -7,9 +7,8 @@
  */
 package com.blockchyp.client.dto;
 
-
 import com.blockchyp.client.CardType;
-
+import com.blockchyp.client.SignatureFormat;
 
 /**
  * Refund requests.
@@ -80,7 +79,7 @@ public class RefundRequest implements ICoreRequest, ITerminalReference, IPayment
 
      private String sigFile;
 
-     private String sigFormat;
+     private SignatureFormat sigFormat;
 
      private int sigWidth;
 
@@ -626,7 +625,7 @@ public class RefundRequest implements ICoreRequest, ITerminalReference, IPayment
       * Sets the image format to be used for returning signatures.
       * @param value the image format to be used for returning signatures.
       */
-     public void setSigFormat(String value) {
+     public void setSigFormat(SignatureFormat value) {
           this.sigFormat = value;
      }
 
@@ -634,7 +633,7 @@ public class RefundRequest implements ICoreRequest, ITerminalReference, IPayment
       * Gets the image format to be used for returning signatures.
       * @return the image format to be used for returning signatures.
       */
-     public String getSigFormat() {
+     public SignatureFormat getSigFormat() {
           return this.sigFormat;
      }
 

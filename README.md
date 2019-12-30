@@ -436,7 +436,7 @@ public class BalanceExample {
         BalanceRequest request = new BalanceRequest();
         request.setTest(true);
         request.setTerminalName("Test Terminal");
-        request.setCardType(2);
+        request.setCardType(CardType.EBT);
 
         BalanceResponse response = client.balance(request);
 
@@ -534,7 +534,7 @@ public class TermsAndConditionsExample {
         request.setTCAlias("hippa"); // Alias for a T&C template configured in blockchyp.
         request.setTCName("HIPPA Disclosure"); // Name of the contract or document if not using an alias.
         request.setTCContent("Full contract text"); // Full text of the contract or disclosure if not using an alias.
-        request.setSigFormat("png"); // file format for the signature image, if desired can be PNG or JPG.
+        request.setSigFormat(SignatureFormat.PNG); // file format for the signature image.
         request.setSigWidth(200); // width of the signature image in pixels.
         request.setSigRequired(true); // Whether or not a signature is required. Defaults to true.
 
@@ -760,7 +760,7 @@ public class TextPromptExample {
         TextPromptRequest request = new TextPromptRequest();
         request.setTest(true);
         request.setTerminalName("Test Terminal");
-        request.setPromptType("email"); // Type of prompt. Can be 'email', 'phone', 'customer-number', or 'rewards-number'.
+        request.setPromptType(PromptType.EMAIL); // Type of prompt. Can be 'email', 'phone', 'customer-number', or 'rewards-number'.
 
         TextPromptResponse response = client.textPrompt(request);
 

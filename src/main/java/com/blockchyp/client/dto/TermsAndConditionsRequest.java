@@ -7,6 +7,7 @@
  */
 package com.blockchyp.client.dto;
 
+import com.blockchyp.client.SignatureFormat;
 
 /**
  * The fields needed for custom T&C prompts.
@@ -29,7 +30,7 @@ public class TermsAndConditionsRequest implements ICoreRequest, ITerminalReferen
 
      private String sigFile;
 
-     private String sigFormat;
+     private SignatureFormat sigFormat;
 
      private int sigWidth;
 
@@ -179,7 +180,7 @@ public class TermsAndConditionsRequest implements ICoreRequest, ITerminalReferen
       * Sets the image format to be used for returning signatures.
       * @param value the image format to be used for returning signatures.
       */
-     public void setSigFormat(String value) {
+     public void setSigFormat(SignatureFormat value) {
           this.sigFormat = value;
      }
 
@@ -187,7 +188,7 @@ public class TermsAndConditionsRequest implements ICoreRequest, ITerminalReferen
       * Gets the image format to be used for returning signatures.
       * @return the image format to be used for returning signatures.
       */
-     public String getSigFormat() {
+     public SignatureFormat getSigFormat() {
           return this.sigFormat;
      }
 

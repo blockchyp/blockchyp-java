@@ -7,9 +7,7 @@
  */
 package com.blockchyp.client.dto;
 
-
 import com.blockchyp.client.CardType;
-
 
 /**
  * The information needed to enroll a new payment method in the token vault.

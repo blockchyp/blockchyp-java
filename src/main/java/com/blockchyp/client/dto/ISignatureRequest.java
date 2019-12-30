@@ -1,5 +1,7 @@
 package com.blockchyp.client.dto;
 
+import com.blockchyp.client.SignatureFormat;
+
 /**
  * 
  */
@@ -8,7 +10,7 @@ public interface ISignatureRequest {
 
      String getSigFile();
 
-     String getSigFormat();
+     SignatureFormat getSigFormat();
 
      int getSigWidth();
 

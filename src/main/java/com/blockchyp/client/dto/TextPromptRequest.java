@@ -7,6 +7,7 @@
  */
 package com.blockchyp.client.dto;
 
+import com.blockchyp.client.PromptType;
 
 /**
  * A text prompt request.
@@ -25,7 +26,7 @@ public class TextPromptRequest implements ICoreRequest, ITerminalReference {
 
      private String terminalName;
 
-     private String promptType;
+     private PromptType promptType;
 
      /**
       * Sets the transaction reference string assigned to the transaction request.
@@ -131,7 +132,7 @@ public class TextPromptRequest implements ICoreRequest, ITerminalReference {
       * Sets the prompt type (email, phone, etc).
       * @param value the prompt type (email, phone, etc).
       */
-     public void setPromptType(String value) {
+     public void setPromptType(PromptType value) {
           this.promptType = value;
      }
 
@@ -139,7 +140,7 @@ public class TextPromptRequest implements ICoreRequest, ITerminalReference {
       * Gets the prompt type (email, phone, etc).
       * @return the prompt type (email, phone, etc).
       */
-     public String getPromptType() {
+     public PromptType getPromptType() {
           return this.promptType;
      }
 

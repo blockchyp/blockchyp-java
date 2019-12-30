@@ -34,7 +34,7 @@ public class TextPromptTest {
          TextPromptRequest request = new TextPromptRequest();
          request.setTest(true);
          request.setTerminalName("Test Terminal");
-         request.setPromptType("email");
+         request.setPromptType(PromptType.EMAIL);
 
          TextPromptResponse response = client.textPrompt(request);
 

@@ -13,7 +13,6 @@ import java.util.Collection;
 /**
  * The items to display on a terminal.
  */
-
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class TransactionDisplayTransaction {
 

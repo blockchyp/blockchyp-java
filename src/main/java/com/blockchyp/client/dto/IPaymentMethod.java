@@ -1,6 +1,7 @@
 package com.blockchyp.client.dto;
 
 import com.blockchyp.client.CardType;
+
 /**
  * 
  */

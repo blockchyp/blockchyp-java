@@ -27,7 +27,7 @@ public class TermsAndConditionsExample {
         request.setTCAlias("hippa"); // Alias for a T&C template configured in blockchyp.
         request.setTCName("HIPPA Disclosure"); // Name of the contract or document if not using an alias.
         request.setTCContent("Full contract text"); // Full text of the contract or disclosure if not using an alias.
-        request.setSigFormat("png"); // file format for the signature image, if desired can be PNG or JPG.
+        request.setSigFormat(SignatureFormat.PNG); // file format for the signature image.
         request.setSigWidth(200); // width of the signature image in pixels.
         request.setSigRequired(true); // Whether or not a signature is required. Defaults to true.
 

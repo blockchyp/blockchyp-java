@@ -15,7 +15,6 @@ import java.util.Collection;
  * Calculated subtotal amounts are rounded to two decimal places of precision. Quantity
  * is a floating point number that is not rounded at all.
  */
-
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class TransactionDisplayItem {
 

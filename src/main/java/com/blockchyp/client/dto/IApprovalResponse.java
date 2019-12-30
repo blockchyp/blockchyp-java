@@ -1,5 +1,6 @@
 package com.blockchyp.client.dto;
 
+
 /**
  * 
  */

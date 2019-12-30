@@ -36,7 +36,7 @@ public class TermsAndConditionsTest {
          request.setTerminalName("Test Terminal");
          request.setTCName("HIPPA Disclosure");
          request.setTCContent("Full contract text");
-         request.setSigFormat("png");
+         request.setSigFormat(SignatureFormat.PNG);
          request.setSigWidth(200);
          request.setSigRequired(true);
 
