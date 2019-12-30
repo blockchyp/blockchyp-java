@@ -1,3 +1,10 @@
+/**
+ * Copyright 2019 BlockChyp, Inc. All rights reserved. Use of this code is governed by a
+ * license that can be found in the LICENSE file.
+ *
+ * This file was generated automatically. Changes to this file will be lost every time the
+ * code is regenerated.
+ */
 package com.blockchyp.client.itest;
 
 import java.util.ArrayList;
@@ -27,7 +34,7 @@ public class TerminalBalanceTest {
          BalanceRequest request = new BalanceRequest();
          request.setTest(true);
          request.setTerminalName("Test Terminal");
-         request.setCardType(3);
+         request.setCardType(2);
 
          BalanceResponse response = client.balance(request);
 

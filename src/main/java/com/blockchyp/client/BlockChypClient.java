@@ -1,3 +1,10 @@
+/**
+ * Copyright 2019 BlockChyp, Inc. All rights reserved. Use of this code is governed by a
+ * license that can be found in the LICENSE file.
+ *
+ * This file was generated automatically. Changes to this file will be lost every time the
+ * code is regenerated.
+ */
 package com.blockchyp.client;
 
 import java.io.File;
@@ -29,6 +36,7 @@ import org.bouncycastle.util.encoders.Hex;
 import com.blockchyp.client.crypto.CryptoUtils;
 import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.TerminalRequest;
+import com.blockchyp.client.dto.IAcknowledgement;
 import com.blockchyp.client.dto.ITerminalReference;
 import com.blockchyp.client.dto.ISignatureResponse;
 import com.blockchyp.client.dto.ISignatureRequest;
@@ -41,7 +49,7 @@ import com.blockchyp.client.dto.IRequestAmount;
 import com.blockchyp.client.dto.ISubtotals;
 import com.blockchyp.client.dto.IPreviousTransaction;
 import com.blockchyp.client.dto.ICoreResponse;
-import com.blockchyp.client.dto.Acknowledgement;
+import com.blockchyp.client.dto.ReceiptSuggestions;
 import com.blockchyp.client.dto.PingRequest;
 import com.blockchyp.client.dto.PingResponse;
 import com.blockchyp.client.dto.MessageRequest;
@@ -67,7 +75,6 @@ import com.blockchyp.client.dto.CloseBatchRequest;
 import com.blockchyp.client.dto.CloseBatchResponse;
 import com.blockchyp.client.dto.TermsAndConditionsRequest;
 import com.blockchyp.client.dto.TermsAndConditionsResponse;
-import com.blockchyp.client.dto.ReceiptSuggestions;
 import com.blockchyp.client.dto.AuthorizationResponse;
 import com.blockchyp.client.dto.TransactionDisplayDiscount;
 import com.blockchyp.client.dto.TransactionDisplayItem;
@@ -242,7 +249,7 @@ public class BlockChypClient {
         objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
-    
+
     /**
      * Tests communication with the Gateway.  If authentication is successful, a merchantPk value
      * is returned.
@@ -257,45 +264,56 @@ public class BlockChypClient {
     }
 
 
-    /**
-     * executes a manual time out reversal.
-     * 
-     * We love time out reversals. Don't be afraid to use them whenever a request to
-     * a BlockChyp terminal times out. You have up to two minutes to reverse any
-     * transaction. The only caveat is that you must assign transactionRef values
-     * when you build the original request. Otherwise, we have no real way of
-     * knowing which transaction you're trying to reverse because we may not have
-     * assigned it an id yet. And if we did assign it an id, you wouldn't know what
-     * it is because your request to the terminal timed out before you got a
-     * response.
-     */
+     /**
+      * Executes a manual time out reversal.
+      *
+      * We love time out reversals. Don't be afraid to use them whenever a request to a
+      * BlockChyp terminal times out. You have up to two minutes to reverse any
+      * transaction. The only caveat is that you must assign transactionRef values when
+      * you build the original request. Otherwise, we have no real way of knowing which
+      * transaction you're trying to reverse because we may not have assigned it an id yet.
+      * And if we did assign it an id, you wouldn't know what it is because your request to the
+      * terminal timed out before you got a response.
+      * @param request the request parameters.
+      * @return {@link AuthorizationResponse}
+      * @throws Exception exception if any errors occurred processing the request.
+      */
     public AuthorizationResponse reverse(AuthorizationRequest request) throws Exception {
 
         return (AuthorizationResponse) postGateway("/api/reverse", request, AuthorizationResponse.class);
 
     }
 
-    /**
-     * captures a preauthorization.
-     */
+     /**
+      * Captures a preauthorization.
+      * @param request the request parameters.
+      * @return {@link CaptureResponse}
+      * @throws Exception exception if any errors occurred processing the request.
+      */
     public CaptureResponse capture(CaptureRequest request) throws Exception {
 
         return (CaptureResponse) postGateway("/api/capture", request, CaptureResponse.class);
 
     }
 
-    /**
-     * closes the current credit card batch.
-     */
+     /**
+      * Closes the current credit card batch.
+      * @param request the request parameters.
+      * @return {@link CloseBatchResponse}
+      * @throws Exception exception if any errors occurred processing the request.
+      */
     public CloseBatchResponse closeBatch(CloseBatchRequest request) throws Exception {
 
         return (CloseBatchResponse) postGateway("/api/close-batch", request, CloseBatchResponse.class);
 
     }
 
-    /**
-     * discards a previous preauth transaction.
-     */
+     /**
+      * Discards a previous preauth transaction.
+      * @param request the request parameters.
+      * @return {@link VoidResponse}
+      * @throws Exception exception if any errors occurred processing the request.
+      */
     public VoidResponse voidTx(VoidRequest request) throws Exception {
 
         return (VoidResponse) postGateway("/api/void", request, VoidResponse.class);
@@ -305,9 +323,12 @@ public class BlockChypClient {
 
 
 
-    /**
-     * executes a standard direct preauth and capture.
-     */
+     /**
+      * Executes a standard direct preauth and capture.
+      * @param request the request parameters.
+      * @return {@link AuthorizationResponse}
+      * @throws Exception exception if any errors occurred processing the request.
+      */
     public AuthorizationResponse charge(AuthorizationRequest request) throws Exception {
 
         if (isTerminalRouted(request)) {
@@ -318,9 +339,12 @@ public class BlockChypClient {
 
     }
 
-    /**
-     * executes a preauthorization intended to be captured later.
-     */
+     /**
+      * Executes a preauthorization intended to be captured later.
+      * @param request the request parameters.
+      * @return {@link AuthorizationResponse}
+      * @throws Exception exception if any errors occurred processing the request.
+      */
     public AuthorizationResponse preauth(AuthorizationRequest request) throws Exception {
 
         if (isTerminalRouted(request)) {
@@ -331,9 +355,12 @@ public class BlockChypClient {
 
     }
 
-    /**
-     * tests connectivity with a payment terminal.
-     */
+     /**
+      * Tests connectivity with a payment terminal.
+      * @param request the request parameters.
+      * @return {@link PingResponse}
+      * @throws Exception exception if any errors occurred processing the request.
+      */
     public PingResponse ping(PingRequest request) throws Exception {
 
         if (isTerminalRouted(request)) {
@@ -344,9 +371,12 @@ public class BlockChypClient {
 
     }
 
-    /**
-     * checks the remaining balance on a payment method.
-     */
+     /**
+      * Checks the remaining balance on a payment method.
+      * @param request the request parameters.
+      * @return {@link BalanceResponse}
+      * @throws Exception exception if any errors occurred processing the request.
+      */
     public BalanceResponse balance(BalanceRequest request) throws Exception {
 
         if (isTerminalRouted(request)) {
@@ -357,9 +387,12 @@ public class BlockChypClient {
 
     }
 
-    /**
-     * clears the line item display and any in progress transaction.
-     */
+     /**
+      * Clears the line item display and any in progress transaction.
+      * @param request the request parameters.
+      * @return {@link Acknowledgement}
+      * @throws Exception exception if any errors occurred processing the request.
+      */
     public Acknowledgement clear(ClearTerminalRequest request) throws Exception {
 
         if (isTerminalRouted(request)) {
@@ -370,10 +403,13 @@ public class BlockChypClient {
 
     }
 
-    /**
-     * prompts the user to accept terms and conditions.
-     */
-    public TermsAndConditionsResponse tc(TermsAndConditionsRequest request) throws Exception {
+     /**
+      * Prompts the user to accept terms and conditions.
+      * @param request the request parameters.
+      * @return {@link TermsAndConditionsResponse}
+      * @throws Exception exception if any errors occurred processing the request.
+      */
+    public TermsAndConditionsResponse termsAndConditions(TermsAndConditionsRequest request) throws Exception {
 
         if (isTerminalRouted(request)) {
             return (TermsAndConditionsResponse) postTerminal("/api/tc", request, TermsAndConditionsResponse.class);
@@ -383,11 +419,14 @@ public class BlockChypClient {
 
     }
 
-    /**
-     * appends items to an existing transaction display Subtotal, Tax, and Total are
-     * overwritten by the request. Items with the same description are combined into
-     * groups.
-     */
+     /**
+      * Appends items to an existing transaction display Subtotal, Tax, and Total are
+      * overwritten by the request. Items with the same description are combined into
+      * groups.
+      * @param request the request parameters.
+      * @return {@link Acknowledgement}
+      * @throws Exception exception if any errors occurred processing the request.
+      */
     public Acknowledgement updateTransactionDisplay(TransactionDisplayRequest request) throws Exception {
 
         if (isTerminalRouted(request)) {
@@ -398,9 +437,12 @@ public class BlockChypClient {
 
     }
 
-    /**
-     * displays a new transaction on the terminal.
-     */
+     /**
+      * Displays a new transaction on the terminal.
+      * @param request the request parameters.
+      * @return {@link Acknowledgement}
+      * @throws Exception exception if any errors occurred processing the request.
+      */
     public Acknowledgement newTransactionDisplay(TransactionDisplayRequest request) throws Exception {
 
         if (isTerminalRouted(request)) {
@@ -411,9 +453,12 @@ public class BlockChypClient {
 
     }
 
-    /**
-     * asks the consumer text based question.
-     */
+     /**
+      * Asks the consumer text based question.
+      * @param request the request parameters.
+      * @return {@link TextPromptResponse}
+      * @throws Exception exception if any errors occurred processing the request.
+      */
     public TextPromptResponse textPrompt(TextPromptRequest request) throws Exception {
 
         if (isTerminalRouted(request)) {
@@ -424,9 +469,12 @@ public class BlockChypClient {
 
     }
 
-    /**
-     * asks the consumer a yes/no question.
-     */
+     /**
+      * Asks the consumer a yes/no question.
+      * @param request the request parameters.
+      * @return {@link BooleanPromptResponse}
+      * @throws Exception exception if any errors occurred processing the request.
+      */
     public BooleanPromptResponse booleanPrompt(BooleanPromptRequest request) throws Exception {
 
         if (isTerminalRouted(request)) {
@@ -437,9 +485,12 @@ public class BlockChypClient {
 
     }
 
-    /**
-     * displays a short message on the terminal.
-     */
+     /**
+      * Displays a short message on the terminal.
+      * @param request the request parameters.
+      * @return {@link Acknowledgement}
+      * @throws Exception exception if any errors occurred processing the request.
+      */
     public Acknowledgement message(MessageRequest request) throws Exception {
 
         if (isTerminalRouted(request)) {
@@ -450,9 +501,12 @@ public class BlockChypClient {
 
     }
 
-    /**
-     * executes a refund.
-     */
+     /**
+      * Executes a refund.
+      * @param request the request parameters.
+      * @return {@link AuthorizationResponse}
+      * @throws Exception exception if any errors occurred processing the request.
+      */
     public AuthorizationResponse refund(RefundRequest request) throws Exception {
 
         if (isTerminalRouted(request)) {
@@ -463,9 +517,12 @@ public class BlockChypClient {
 
     }
 
-    /**
-     * adds a new payment method to the token vault.
-     */
+     /**
+      * Adds a new payment method to the token vault.
+      * @param request the request parameters.
+      * @return {@link EnrollResponse}
+      * @throws Exception exception if any errors occurred processing the request.
+      */
     public EnrollResponse enroll(EnrollRequest request) throws Exception {
 
         if (isTerminalRouted(request)) {
@@ -476,9 +533,12 @@ public class BlockChypClient {
 
     }
 
-    /**
-     * activates or recharges a gift card.
-     */
+     /**
+      * Activates or recharges a gift card.
+      * @param request the request parameters.
+      * @return {@link GiftActivateResponse}
+      * @throws Exception exception if any errors occurred processing the request.
+      */
     public GiftActivateResponse giftActivate(GiftActivateRequest request) throws Exception {
 
         if (isTerminalRouted(request)) {

@@ -1,3 +1,10 @@
+/**
+ * Copyright 2019 BlockChyp, Inc. All rights reserved. Use of this code is governed by a
+ * license that can be found in the LICENSE file.
+ *
+ * This file was generated automatically. Changes to this file will be lost every time the
+ * code is regenerated.
+ */
 package com.blockchyp.client.itest;
 
 import java.util.ArrayList;
@@ -10,10 +17,10 @@ import org.junit.experimental.categories.Category;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.IntegrationTest;
 import com.blockchyp.client.IntegrationTestConfiguration;
-import com.blockchyp.client.dto.AuthorizationRequest;
-import com.blockchyp.client.dto.AuthorizationResponse;
+import com.blockchyp.client.dto.EnrollRequest;
+import com.blockchyp.client.dto.EnrollResponse;
 
-public class PanPreauthTest {
+public class PANEnrollTest {
 
     @Test
     @Category(IntegrationTest.class)
@@ -24,12 +31,11 @@ public class PanPreauthTest {
 
 
          // setup request object
-         AuthorizationRequest request = new AuthorizationRequest();
+         EnrollRequest request = new EnrollRequest();
          request.setPAN("4111111111111111");
-         request.setAmount("25.55");
          request.setTest(true);
 
-         AuthorizationResponse response = client.preauth(request);
+         EnrollResponse response = client.enroll(request);
 
 
          // response assertions
@@ -49,8 +55,9 @@ public class PanPreauthTest {
          Assert.assertTrue(response.getMaskedPAN().trim().length() > 0);
          Assert.assertNotNull(response.getEntryMethod());
          Assert.assertTrue(response.getEntryMethod().trim().length() > 0);
-         Assert.assertEquals("25.55", response.getAuthorizedAmount());
          Assert.assertEquals("KEYED", response.getEntryMethod());
+         Assert.assertNotNull(response.getToken());
+         Assert.assertTrue(response.getToken().trim().length() > 0);
 
     }
 

@@ -1,4 +1,3 @@
-
 # BlockChyp Java SDK
 
 Javadocs: [https://docs.blockchyp.com/sdks/java/latest/index.html](https://docs.blockchyp.com/sdks/java/latest/index.html).
@@ -256,19 +255,15 @@ jD1XNpXvgH2k91jjsK67khN+4bWoFBsfrMYt6vgjtXyv0kf12y0=
 ```
 
 
-
 ## Transaction Code Examples
 
-You don't want to read words.  You want examples.  Here's a quick rundown of the stuff you can do with the BlockChyp Java SDK and a few basic examples.
-
-
+You don't want to read words. You want examples. Here's a quick rundown of the
+stuff you can do with the BlockChyp Java SDK and a few basic examples.
 #### Charge
 
 Executes a standard direct preauth and capture.
 
-
-```
-
+```java
 package com.blockchyp.client.examples;
 
 import java.util.ArrayList;
@@ -282,45 +277,43 @@ import com.blockchyp.client.dto.AuthorizationResponse;
 
 public class ChargeExample {
 
-  public void runSampleTransaction() throws Exception {
+    public void runSampleTransaction() throws Exception {
 
-    APICredentials creds = new APICredentials();
-    creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
-    creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
-    creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+        APICredentials creds = new APICredentials();
+        creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
+        creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
+        creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
 
-    BlockChypClient client = new BlockChypClient(creds);
+        BlockChypClient client = new BlockChypClient(creds);
 
-    // setup request object
-    AuthorizationRequest request = new AuthorizationRequest();
-    request.setTest(true);
-    request.setTerminalName("Test Terminal");
-    request.setAmount("55.00");
+        // setup request object
+        AuthorizationRequest request = new AuthorizationRequest();
+        request.setTest(true);
+        request.setTerminalName("Test Terminal");
+        request.setAmount("55.00");
 
-    AuthorizationResponse response = client.charge(request);
+        AuthorizationResponse response = client.charge(request);
 
-    //process the result
-    
-    if (response.isApproved()) {
-      System.out.println("Approved");
-    }
+        //process the result
+
+        if (response.isApproved()) {
+            System.out.println("Approved");
+        }
 
     System.out.println(response.getAuthCode());
     System.out.println(response.getAuthorizedAmount());
-  }
+    }
 
 
 }
+
+
 ```
-
-
 #### Preauthorization
 
 Executes a preauthorization intended to be captured later.
 
-
-```
-
+```java
 package com.blockchyp.client.examples;
 
 import java.util.ArrayList;
@@ -334,45 +327,43 @@ import com.blockchyp.client.dto.AuthorizationResponse;
 
 public class PreauthExample {
 
-  public void runSampleTransaction() throws Exception {
+    public void runSampleTransaction() throws Exception {
 
-    APICredentials creds = new APICredentials();
-    creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
-    creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
-    creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+        APICredentials creds = new APICredentials();
+        creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
+        creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
+        creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
 
-    BlockChypClient client = new BlockChypClient(creds);
+        BlockChypClient client = new BlockChypClient(creds);
 
-    // setup request object
-    AuthorizationRequest request = new AuthorizationRequest();
-    request.setTest(true);
-    request.setTerminalName("Test Terminal");
-    request.setAmount("27.00");
+        // setup request object
+        AuthorizationRequest request = new AuthorizationRequest();
+        request.setTest(true);
+        request.setTerminalName("Test Terminal");
+        request.setAmount("27.00");
 
-    AuthorizationResponse response = client.preauth(request);
+        AuthorizationResponse response = client.preauth(request);
 
-    //process the result
-    
-    if (response.isApproved()) {
-      System.out.println("Approved");
-    }
+        //process the result
+
+        if (response.isApproved()) {
+            System.out.println("Approved");
+        }
 
     System.out.println(response.getAuthCode());
     System.out.println(response.getAuthorizedAmount());
-  }
+    }
 
 
 }
+
+
 ```
-
-
 #### Terminal Ping
 
 Tests connectivity with a payment terminal.
 
-
-```
-
+```java
 package com.blockchyp.client.examples;
 
 import java.util.ArrayList;
@@ -386,41 +377,39 @@ import com.blockchyp.client.dto.PingResponse;
 
 public class PingExample {
 
-  public void runSampleTransaction() throws Exception {
+    public void runSampleTransaction() throws Exception {
 
-    APICredentials creds = new APICredentials();
-    creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
-    creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
-    creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+        APICredentials creds = new APICredentials();
+        creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
+        creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
+        creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
 
-    BlockChypClient client = new BlockChypClient(creds);
+        BlockChypClient client = new BlockChypClient(creds);
 
-    // setup request object
-    PingRequest request = new PingRequest();
-    request.setTerminalName("Test Terminal");
+        // setup request object
+        PingRequest request = new PingRequest();
+        request.setTerminalName("Test Terminal");
 
-    PingResponse response = client.ping(request);
+        PingResponse response = client.ping(request);
 
-    //process the result
-    
-    if (response.isSuccess()) {
-      System.out.println("Success");
+        //process the result
+
+        if (response.isSuccess()) {
+            System.out.println("Success");
+        }
+
     }
-
-  }
 
 
 }
+
+
 ```
-
-
 #### Balance
 
 Checks the remaining balance on a payment method.
 
-
-```
-
+```java
 package com.blockchyp.client.examples;
 
 import java.util.ArrayList;
@@ -434,43 +423,41 @@ import com.blockchyp.client.dto.BalanceResponse;
 
 public class BalanceExample {
 
-  public void runSampleTransaction() throws Exception {
+    public void runSampleTransaction() throws Exception {
 
-    APICredentials creds = new APICredentials();
-    creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
-    creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
-    creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+        APICredentials creds = new APICredentials();
+        creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
+        creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
+        creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
 
-    BlockChypClient client = new BlockChypClient(creds);
+        BlockChypClient client = new BlockChypClient(creds);
 
-    // setup request object
-    BalanceRequest request = new BalanceRequest();
-    request.setTest(true);
-    request.setTerminalName("Test Terminal");
-    request.setCardType(3);
+        // setup request object
+        BalanceRequest request = new BalanceRequest();
+        request.setTest(true);
+        request.setTerminalName("Test Terminal");
+        request.setCardType(2);
 
-    BalanceResponse response = client.balance(request);
+        BalanceResponse response = client.balance(request);
 
-    //process the result
-    
-    if (response.isSuccess()) {
-      System.out.println("Success");
+        //process the result
+
+        if (response.isSuccess()) {
+            System.out.println("Success");
+        }
+
     }
-
-  }
 
 
 }
+
+
 ```
-
-
 #### Terminal Clear
 
 Clears the line item display and any in progress transaction.
 
-
-```
-
+```java
 package com.blockchyp.client.examples;
 
 import java.util.ArrayList;
@@ -484,42 +471,40 @@ import com.blockchyp.client.dto.Acknowledgement;
 
 public class ClearExample {
 
-  public void runSampleTransaction() throws Exception {
+    public void runSampleTransaction() throws Exception {
 
-    APICredentials creds = new APICredentials();
-    creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
-    creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
-    creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+        APICredentials creds = new APICredentials();
+        creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
+        creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
+        creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
 
-    BlockChypClient client = new BlockChypClient(creds);
+        BlockChypClient client = new BlockChypClient(creds);
 
-    // setup request object
-    ClearTerminalRequest request = new ClearTerminalRequest();
-    request.setTest(true);
-    request.setTerminalName("Test Terminal");
+        // setup request object
+        ClearTerminalRequest request = new ClearTerminalRequest();
+        request.setTest(true);
+        request.setTerminalName("Test Terminal");
 
-    Acknowledgement response = client.clear(request);
+        Acknowledgement response = client.clear(request);
 
-    //process the result
-    
-    if (response.isSuccess()) {
-      System.out.println("Success");
+        //process the result
+
+        if (response.isSuccess()) {
+            System.out.println("Success");
+        }
+
     }
-
-  }
 
 
 }
+
+
 ```
-
-
 #### Terms & Conditions Capture
 
 Prompts the user to accept terms and conditions.
 
-
-```
-
+```java
 package com.blockchyp.client.examples;
 
 import java.util.ArrayList;
@@ -531,52 +516,52 @@ import com.blockchyp.client.dto.TermsAndConditionsRequest;
 import com.blockchyp.client.dto.TermsAndConditionsResponse;
 
 
-public class TCExample {
+public class TermsAndConditionsExample {
 
-  public void runSampleTransaction() throws Exception {
+    public void runSampleTransaction() throws Exception {
 
-    APICredentials creds = new APICredentials();
-    creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
-    creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
-    creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+        APICredentials creds = new APICredentials();
+        creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
+        creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
+        creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
 
-    BlockChypClient client = new BlockChypClient(creds);
+        BlockChypClient client = new BlockChypClient(creds);
 
-    // setup request object
-    TermsAndConditionsRequest request = new TermsAndConditionsRequest();
-    request.setTest(true);
-    request.setTerminalName("Test Terminal");
-    request.setTCAlias("hippa");// Alias for a T&C template configured in blockchyp
-    request.setTCName("HIPPA Disclosure");// Name of the contract or document if not using an alias
-    request.setTCContent("Full contract text");// Full text of the contract or disclosure if not using an alias
-    request.setSigFormat("png");// file format for the signature image, if desired can be PNG or JPG
-    request.setSigWidth(200);// width of the signature image in pixels
-    request.setSigRequired(true);// Whether or not a signature is required.  Defaults to true.
+        // setup request object
+        TermsAndConditionsRequest request = new TermsAndConditionsRequest();
+        request.setTest(true);
+        request.setTerminalName("Test Terminal");
+        request.setTCAlias("hippa"); // Alias for a T&C template configured in blockchyp.
+        request.setTCName("HIPPA Disclosure"); // Name of the contract or document if not using an alias.
+        request.setTCContent("Full contract text"); // Full text of the contract or disclosure if not using an alias.
+        request.setSigFormat("png"); // file format for the signature image, if desired can be PNG or JPG.
+        request.setSigWidth(200); // width of the signature image in pixels.
+        request.setSigRequired(true); // Whether or not a signature is required. Defaults to true.
 
-    TermsAndConditionsResponse response = client.tc(request);
+        TermsAndConditionsResponse response = client.termsAndConditions(request);
 
-    //process the result
-    
-    if (response.isSuccess()) {
-      System.out.println("Success");
-    }
+        //process the result
+
+        if (response.isSuccess()) {
+            System.out.println("Success");
+        }
 
     System.out.println(response.getSig());
     System.out.println(response.getSigFile());
-  }
+    }
 
 
 }
+
+
 ```
-
-
 #### Update Transaction Display
 
-Appends items to an existing transaction display Subtotal, Tax, and Total are overwritten by the request. Items with the same description are combined into groups.
+Appends items to an existing transaction display Subtotal, Tax, and Total are
+overwritten by the request. Items with the same description are combined into
+groups.
 
-
-```
-
+```java
 package com.blockchyp.client.examples;
 
 import java.util.ArrayList;
@@ -593,30 +578,30 @@ import com.blockchyp.client.dto.TransactionDisplayDiscount;
 
 public class UpdateTransactionDisplayExample {
 
-  public void runSampleTransaction() throws Exception {
+    public void runSampleTransaction() throws Exception {
 
-    APICredentials creds = new APICredentials();
-    creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
-    creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
-    creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+        APICredentials creds = new APICredentials();
+        creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
+        creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
+        creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
 
-    BlockChypClient client = new BlockChypClient(creds);
+        BlockChypClient client = new BlockChypClient(creds);
 
-    // setup request object
-    TransactionDisplayRequest request = new TransactionDisplayRequest();
-    request.setTest(true);
-    request.setTerminalName("Test Terminal");
-    request.setTransaction(newTransactionDisplayTransaction());
+        // setup request object
+        TransactionDisplayRequest request = new TransactionDisplayRequest();
+        request.setTest(true);
+        request.setTerminalName("Test Terminal");
+        request.setTransaction(newTransactionDisplayTransaction());
 
-    Acknowledgement response = client.updateTransactionDisplay(request);
+        Acknowledgement response = client.updateTransactionDisplay(request);
 
-    //process the result
-    
-    if (response.isSuccess()) {
-      System.out.println("Succeded");
+        //process the result
+
+        if (response.isSuccess()) {
+            System.out.println("Succeded");
+        }
+
     }
-
-  }
 
     private TransactionDisplayTransaction newTransactionDisplayTransaction() {
          TransactionDisplayTransaction val = new TransactionDisplayTransaction();
@@ -655,16 +640,14 @@ public class UpdateTransactionDisplayExample {
     }
 
 }
+
+
 ```
-
-
 #### New Transaction Display
 
 Displays a new transaction on the terminal.
 
-
-```
-
+```java
 package com.blockchyp.client.examples;
 
 import java.util.ArrayList;
@@ -681,30 +664,30 @@ import com.blockchyp.client.dto.TransactionDisplayDiscount;
 
 public class NewTransactionDisplayExample {
 
-  public void runSampleTransaction() throws Exception {
+    public void runSampleTransaction() throws Exception {
 
-    APICredentials creds = new APICredentials();
-    creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
-    creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
-    creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+        APICredentials creds = new APICredentials();
+        creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
+        creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
+        creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
 
-    BlockChypClient client = new BlockChypClient(creds);
+        BlockChypClient client = new BlockChypClient(creds);
 
-    // setup request object
-    TransactionDisplayRequest request = new TransactionDisplayRequest();
-    request.setTest(true);
-    request.setTerminalName("Test Terminal");
-    request.setTransaction(newTransactionDisplayTransaction());
+        // setup request object
+        TransactionDisplayRequest request = new TransactionDisplayRequest();
+        request.setTest(true);
+        request.setTerminalName("Test Terminal");
+        request.setTransaction(newTransactionDisplayTransaction());
 
-    Acknowledgement response = client.newTransactionDisplay(request);
+        Acknowledgement response = client.newTransactionDisplay(request);
 
-    //process the result
-    
-    if (response.isSuccess()) {
-      System.out.println("Succeded");
+        //process the result
+
+        if (response.isSuccess()) {
+            System.out.println("Succeded");
+        }
+
     }
-
-  }
 
     private TransactionDisplayTransaction newTransactionDisplayTransaction() {
          TransactionDisplayTransaction val = new TransactionDisplayTransaction();
@@ -743,16 +726,14 @@ public class NewTransactionDisplayExample {
     }
 
 }
+
+
 ```
-
-
 #### Text Prompt
 
 Asks the consumer text based question.
 
-
-```
-
+```java
 package com.blockchyp.client.examples;
 
 import java.util.ArrayList;
@@ -766,44 +747,42 @@ import com.blockchyp.client.dto.TextPromptResponse;
 
 public class TextPromptExample {
 
-  public void runSampleTransaction() throws Exception {
+    public void runSampleTransaction() throws Exception {
 
-    APICredentials creds = new APICredentials();
-    creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
-    creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
-    creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+        APICredentials creds = new APICredentials();
+        creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
+        creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
+        creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
 
-    BlockChypClient client = new BlockChypClient(creds);
+        BlockChypClient client = new BlockChypClient(creds);
 
-    // setup request object
-    TextPromptRequest request = new TextPromptRequest();
-    request.setTest(true);
-    request.setTerminalName("Test Terminal");
-    request.setPromptType("email");//  Type of prompt.  Can be 'email', 'phone', 'customer-number', or 'rewards-number'
+        // setup request object
+        TextPromptRequest request = new TextPromptRequest();
+        request.setTest(true);
+        request.setTerminalName("Test Terminal");
+        request.setPromptType("email"); // Type of prompt. Can be 'email', 'phone', 'customer-number', or 'rewards-number'.
 
-    TextPromptResponse response = client.textPrompt(request);
+        TextPromptResponse response = client.textPrompt(request);
 
-    //process the result
-    
-    if (response.isSuccess()) {
-      System.out.println("Success");
-    }
+        //process the result
+
+        if (response.isSuccess()) {
+            System.out.println("Success");
+        }
 
     System.out.println(response.getResponse());
-  }
+    }
 
 
 }
+
+
 ```
-
-
 #### Boolean Prompt
 
 Asks the consumer a yes/no question.
 
-
-```
-
+```java
 package com.blockchyp.client.examples;
 
 import java.util.ArrayList;
@@ -817,46 +796,44 @@ import com.blockchyp.client.dto.BooleanPromptResponse;
 
 public class BooleanPromptExample {
 
-  public void runSampleTransaction() throws Exception {
+    public void runSampleTransaction() throws Exception {
 
-    APICredentials creds = new APICredentials();
-    creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
-    creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
-    creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+        APICredentials creds = new APICredentials();
+        creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
+        creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
+        creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
 
-    BlockChypClient client = new BlockChypClient(creds);
+        BlockChypClient client = new BlockChypClient(creds);
 
-    // setup request object
-    BooleanPromptRequest request = new BooleanPromptRequest();
-    request.setTest(true);
-    request.setTerminalName("Test Terminal");
-    request.setPrompt("Would you like to become a member?");
-    request.setYesCaption("Yes");
-    request.setNoCaption("No");
+        // setup request object
+        BooleanPromptRequest request = new BooleanPromptRequest();
+        request.setTest(true);
+        request.setTerminalName("Test Terminal");
+        request.setPrompt("Would you like to become a member?");
+        request.setYesCaption("Yes");
+        request.setNoCaption("No");
 
-    BooleanPromptResponse response = client.booleanPrompt(request);
+        BooleanPromptResponse response = client.booleanPrompt(request);
 
-    //process the result
-    
-    if (response.isSuccess()) {
-      System.out.println("Success");
-    }
+        //process the result
+
+        if (response.isSuccess()) {
+            System.out.println("Success");
+        }
 
     System.out.println(response.isResponse());
-  }
+    }
 
 
 }
+
+
 ```
-
-
 #### Display Message
 
 Displays a short message on the terminal.
 
-
-```
-
+```java
 package com.blockchyp.client.examples;
 
 import java.util.ArrayList;
@@ -870,43 +847,41 @@ import com.blockchyp.client.dto.Acknowledgement;
 
 public class MessageExample {
 
-  public void runSampleTransaction() throws Exception {
+    public void runSampleTransaction() throws Exception {
 
-    APICredentials creds = new APICredentials();
-    creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
-    creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
-    creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+        APICredentials creds = new APICredentials();
+        creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
+        creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
+        creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
 
-    BlockChypClient client = new BlockChypClient(creds);
+        BlockChypClient client = new BlockChypClient(creds);
 
-    // setup request object
-    MessageRequest request = new MessageRequest();
-    request.setTest(true);
-    request.setTerminalName("Test Terminal");
-    request.setMessage("Thank you for your business.");
+        // setup request object
+        MessageRequest request = new MessageRequest();
+        request.setTest(true);
+        request.setTerminalName("Test Terminal");
+        request.setMessage("Thank you for your business.");
 
-    Acknowledgement response = client.message(request);
+        Acknowledgement response = client.message(request);
 
-    //process the result
-    
-    if (response.isSuccess()) {
-      System.out.println("Success");
+        //process the result
+
+        if (response.isSuccess()) {
+            System.out.println("Success");
+        }
+
     }
-
-  }
 
 
 }
+
+
 ```
-
-
 #### Refund
 
 Executes a refund.
 
-
-```
-
+```java
 package com.blockchyp.client.examples;
 
 import java.util.ArrayList;
@@ -920,43 +895,41 @@ import com.blockchyp.client.dto.AuthorizationResponse;
 
 public class RefundExample {
 
-  public void runSampleTransaction() throws Exception {
+    public void runSampleTransaction() throws Exception {
 
-    APICredentials creds = new APICredentials();
-    creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
-    creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
-    creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+        APICredentials creds = new APICredentials();
+        creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
+        creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
+        creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
 
-    BlockChypClient client = new BlockChypClient(creds);
+        BlockChypClient client = new BlockChypClient(creds);
 
-    // setup request object
-    RefundRequest request = new RefundRequest();
-    request.setTerminalName("Test Terminal");
-    request.setTransactionID("PREVIOUS_TRANSACTION_ID");
-    request.setAmount("5.00");// Optional amount for partial refunds.
+        // setup request object
+        RefundRequest request = new RefundRequest();
+        request.setTerminalName("Test Terminal");
+        request.setTransactionID("<PREVIOUS TRANSACTION ID>");
+        request.setAmount("5.00"); // Optional amount for partial refunds.
 
-    AuthorizationResponse response = client.refund(request);
+        AuthorizationResponse response = client.refund(request);
 
-    //process the result
-    
-    if (response.isApproved()) {
-      System.out.println("Approved");
+        //process the result
+
+        if (response.isApproved()) {
+            System.out.println("Approved");
+        }
+
     }
-
-  }
 
 
 }
+
+
 ```
-
-
 #### Enroll
 
 Adds a new payment method to the token vault.
 
-
-```
-
+```java
 package com.blockchyp.client.examples;
 
 import java.util.ArrayList;
@@ -970,43 +943,41 @@ import com.blockchyp.client.dto.EnrollResponse;
 
 public class EnrollExample {
 
-  public void runSampleTransaction() throws Exception {
+    public void runSampleTransaction() throws Exception {
 
-    APICredentials creds = new APICredentials();
-    creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
-    creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
-    creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+        APICredentials creds = new APICredentials();
+        creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
+        creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
+        creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
 
-    BlockChypClient client = new BlockChypClient(creds);
+        BlockChypClient client = new BlockChypClient(creds);
 
-    // setup request object
-    EnrollRequest request = new EnrollRequest();
-    request.setTest(true);
-    request.setTerminalName("Test Terminal");
+        // setup request object
+        EnrollRequest request = new EnrollRequest();
+        request.setTest(true);
+        request.setTerminalName("Test Terminal");
 
-    EnrollResponse response = client.enroll(request);
+        EnrollResponse response = client.enroll(request);
 
-    //process the result
-    
-    if (response.isApproved()) {
-      System.out.println("Approved");
-    }
+        //process the result
+
+        if (response.isApproved()) {
+            System.out.println("Approved");
+        }
 
     System.out.println(response.getToken());
-  }
+    }
 
 
 }
+
+
 ```
-
-
 #### Gift Card Activation
 
 Activates or recharges a gift card.
 
-
-```
-
+```java
 package com.blockchyp.client.examples;
 
 import java.util.ArrayList;
@@ -1020,48 +991,52 @@ import com.blockchyp.client.dto.GiftActivateResponse;
 
 public class GiftActivateExample {
 
-  public void runSampleTransaction() throws Exception {
+    public void runSampleTransaction() throws Exception {
 
-    APICredentials creds = new APICredentials();
-    creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
-    creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
-    creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+        APICredentials creds = new APICredentials();
+        creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
+        creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
+        creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
 
-    BlockChypClient client = new BlockChypClient(creds);
+        BlockChypClient client = new BlockChypClient(creds);
 
-    // setup request object
-    GiftActivateRequest request = new GiftActivateRequest();
-    request.setTest(true);
-    request.setTerminalName("Test Terminal");
-    request.setAmount("50.00");
+        // setup request object
+        GiftActivateRequest request = new GiftActivateRequest();
+        request.setTest(true);
+        request.setTerminalName("Test Terminal");
+        request.setAmount("50.00");
 
-    GiftActivateResponse response = client.giftActivate(request);
+        GiftActivateResponse response = client.giftActivate(request);
 
-    //process the result
-    
-    if (response.isApproved()) {
-      System.out.println("Approved");
-    }
+        //process the result
+
+        if (response.isApproved()) {
+            System.out.println("Approved");
+        }
 
     System.out.println(response.getAmount());
     System.out.println(response.getCurrentBalance());
     System.out.println(response.getPublicKey());
-  }
+    }
 
 
 }
+
+
 ```
-
-
 #### Time Out Reversal
 
 Executes a manual time out reversal.
 
-We love time out reversals. Don't be afraid to use them whenever a request to a BlockChyp terminal times out. You have up to two minutes to reverse any transaction. The only caveat is that you must assign transactionRef values when you build the original request. Otherwise, we have no real way of knowing which transaction you're trying to reverse because we may not have assigned it an id yet. And if we did assign it an id, you wouldn't know what it is because your request to the terminal timed out before you got a response.
+We love time out reversals. Don't be afraid to use them whenever a request to a
+BlockChyp terminal times out. You have up to two minutes to reverse any
+transaction. The only caveat is that you must assign transactionRef values when
+you build the original request. Otherwise, we have no real way of knowing which
+transaction you're trying to reverse because we may not have assigned it an id
+yet. And if we did assign it an id, you wouldn't know what it is because your
+request to the terminal timed out before you got a response.
 
-
-```
-
+```java
 package com.blockchyp.client.examples;
 
 import java.util.ArrayList;
@@ -1075,42 +1050,40 @@ import com.blockchyp.client.dto.AuthorizationResponse;
 
 public class ReverseExample {
 
-  public void runSampleTransaction() throws Exception {
+    public void runSampleTransaction() throws Exception {
 
-    APICredentials creds = new APICredentials();
-    creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
-    creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
-    creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+        APICredentials creds = new APICredentials();
+        creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
+        creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
+        creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
 
-    BlockChypClient client = new BlockChypClient(creds);
+        BlockChypClient client = new BlockChypClient(creds);
 
-    // setup request object
-    AuthorizationRequest request = new AuthorizationRequest();
-    request.setTerminalName("Test Terminal");
-    request.setTransactionRef("LAST TRANSACTION REF");
+        // setup request object
+        AuthorizationRequest request = new AuthorizationRequest();
+        request.setTerminalName("Test Terminal");
+        request.setTransactionRef("<LAST TRANSACTION REF>");
 
-    AuthorizationResponse response = client.reverse(request);
+        AuthorizationResponse response = client.reverse(request);
 
-    //process the result
-    
-    if (response.isApproved()) {
-      System.out.println("Approved");
+        //process the result
+
+        if (response.isApproved()) {
+            System.out.println("Approved");
+        }
+
     }
-
-  }
 
 
 }
+
+
 ```
-
-
 #### Capture Preauthorization
 
 Captures a preauthorization.
 
-
-```
-
+```java
 package com.blockchyp.client.examples;
 
 import java.util.ArrayList;
@@ -1124,42 +1097,40 @@ import com.blockchyp.client.dto.CaptureResponse;
 
 public class CaptureExample {
 
-  public void runSampleTransaction() throws Exception {
+    public void runSampleTransaction() throws Exception {
 
-    APICredentials creds = new APICredentials();
-    creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
-    creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
-    creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+        APICredentials creds = new APICredentials();
+        creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
+        creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
+        creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
 
-    BlockChypClient client = new BlockChypClient(creds);
+        BlockChypClient client = new BlockChypClient(creds);
 
-    // setup request object
-    CaptureRequest request = new CaptureRequest();
-    request.setTest(true);
-    request.setTransactionID("PREAUTH TRANSACTION ID");
+        // setup request object
+        CaptureRequest request = new CaptureRequest();
+        request.setTest(true);
+        request.setTransactionID("<PREAUTH TRANSACTION ID>");
 
-    CaptureResponse response = client.capture(request);
+        CaptureResponse response = client.capture(request);
 
-    //process the result
-    
-    if (response.isApproved()) {
-      System.out.println("Approved");
+        //process the result
+
+        if (response.isApproved()) {
+            System.out.println("Approved");
+        }
+
     }
-
-  }
 
 
 }
+
+
 ```
-
-
 #### Close Batch
 
 Closes the current credit card batch.
 
-
-```
-
+```java
 package com.blockchyp.client.examples;
 
 import java.util.ArrayList;
@@ -1173,43 +1144,41 @@ import com.blockchyp.client.dto.CloseBatchResponse;
 
 public class CloseBatchExample {
 
-  public void runSampleTransaction() throws Exception {
+    public void runSampleTransaction() throws Exception {
 
-    APICredentials creds = new APICredentials();
-    creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
-    creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
-    creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+        APICredentials creds = new APICredentials();
+        creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
+        creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
+        creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
 
-    BlockChypClient client = new BlockChypClient(creds);
+        BlockChypClient client = new BlockChypClient(creds);
 
-    // setup request object
-    CloseBatchRequest request = new CloseBatchRequest();
-    request.setTest(true);
+        // setup request object
+        CloseBatchRequest request = new CloseBatchRequest();
+        request.setTest(true);
 
-    CloseBatchResponse response = client.closeBatch(request);
+        CloseBatchResponse response = client.closeBatch(request);
 
-    //process the result
-    
-    if (response.isSuccess()) {
-      System.out.println("Success");
-    }
+        //process the result
+
+        if (response.isSuccess()) {
+            System.out.println("Success");
+        }
 
     System.out.println(response.getCapturedTotal());
     System.out.println(response.getOpenPreauths());
-  }
+    }
 
 
 }
+
+
 ```
-
-
 #### Void Transaction
 
 Discards a previous preauth transaction.
 
-
-```
-
+```java
 package com.blockchyp.client.examples;
 
 import java.util.ArrayList;
@@ -1223,30 +1192,40 @@ import com.blockchyp.client.dto.VoidResponse;
 
 public class VoidExample {
 
-  public void runSampleTransaction() throws Exception {
+    public void runSampleTransaction() throws Exception {
 
-    APICredentials creds = new APICredentials();
-    creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
-    creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
-    creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+        APICredentials creds = new APICredentials();
+        creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
+        creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
+        creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
 
-    BlockChypClient client = new BlockChypClient(creds);
+        BlockChypClient client = new BlockChypClient(creds);
 
-    // setup request object
-    VoidRequest request = new VoidRequest();
-    request.setTest(true);
-    request.setTransactionID("PREVIOUS TRANSACTION ID");
+        // setup request object
+        VoidRequest request = new VoidRequest();
+        request.setTest(true);
+        request.setTransactionID("<PREVIOUS TRANSACTION ID>");
 
-    VoidResponse response = client.voidTx(request);
+        VoidResponse response = client.voidTx(request);
 
-    //process the result
-    
-    if (response.isApproved()) {
-      System.out.println("Approved");
+        //process the result
+
+        if (response.isApproved()) {
+            System.out.println("Approved");
+        }
+
     }
-
-  }
 
 
 }
+
+
 ```
+
+## License
+
+Copyright BlockChyp, Inc., 2019
+
+Distributed under the terms of the [MIT] license, blockchyp-java is free and open source software.
+
+[MIT]: https://github.com/blockchyp/blockchyp-java/blob/master/LICENSE

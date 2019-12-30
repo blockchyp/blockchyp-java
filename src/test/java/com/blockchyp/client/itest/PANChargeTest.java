@@ -1,3 +1,10 @@
+/**
+ * Copyright 2019 BlockChyp, Inc. All rights reserved. Use of this code is governed by a
+ * license that can be found in the LICENSE file.
+ *
+ * This file was generated automatically. Changes to this file will be lost every time the
+ * code is regenerated.
+ */
 package com.blockchyp.client.itest;
 
 import java.util.ArrayList;
@@ -13,7 +20,7 @@ import com.blockchyp.client.IntegrationTestConfiguration;
 import com.blockchyp.client.dto.AuthorizationRequest;
 import com.blockchyp.client.dto.AuthorizationResponse;
 
-public class PanChargeTest {
+public class PANChargeTest {
 
     @Test
     @Category(IntegrationTest.class)
@@ -28,6 +35,7 @@ public class PanChargeTest {
          request.setPAN("4111111111111111");
          request.setAmount("25.55");
          request.setTest(true);
+         request.setTransactionRef(setupResponse.getTransactionRef());
 
          AuthorizationResponse response = client.charge(request);
 

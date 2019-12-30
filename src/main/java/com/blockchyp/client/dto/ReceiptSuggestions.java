@@ -1,275 +1,361 @@
+/**
+ * Copyright 2019 BlockChyp, Inc. All rights reserved. Use of this code is governed by a
+ * license that can be found in the LICENSE file.
+ *
+ * This file was generated automatically. Changes to this file will be lost every time the
+ * code is regenerated.
+ */
 package com.blockchyp.client.dto;
 
 
-
-
-
-
-
-
 /**
- * models EMV fields we recommend developers put on their receipts.
+ * EMV fields we recommend developers put on their receipts.
  */
-
 public class ReceiptSuggestions {
-  
-     // AID is the EMV Application Identifier. 
+
      private String aid;
-  
-     // ARQC is the EMV Application Request Cryptogram. 
+
      private String arqc;
-  
-     // IAD is EMV Issuer Application Data. 
+
      private String iad;
-  
-     // ARC is the EMV Authorization Response Code. 
+
      private String arc;
-  
-     // TC is the EMV Transaction Certificate. 
+
      private String tc;
-  
-     // TVR is the EMV Terminal Verification Response. 
+
      private String tvr;
-  
-     // TSI is the EMV Transaction Status Indicator. 
+
      private String tsi;
-  
-     
+
      private String terminalId;
-  
-     
+
      private String merchantName;
-  
-     
+
      private String merchantId;
-  
-     
+
      private String merchantKey;
-  
-     
+
      private String applicationLabel;
-  
-     
+
      private boolean requestSignature;
-  
-     
+
      private String maskedPan;
-  
-     
+
      private String authorizedAmount;
-  
-     
+
      private String transactionType;
-  
-     
+
      private String entryMethod;
-  
-     
+
      private boolean pinVerified;
-  
-     
+
      private String cashBackAmount;
-  
-  
+
      /**
-      * is the EMV Application Identifier.
+      * Sets the EMV Application Identifier.
+      * @param value the EMV Application Identifier.
       */
      public void setAID(String value) {
           this.aid = value;
      }
+
      /**
-      * is the EMV Application Identifier.
+      * Gets the EMV Application Identifier.
+      * @return the EMV Application Identifier.
       */
      public String getAID() {
           return this.aid;
      }
-  
+
      /**
-      * is the EMV Application Request Cryptogram.
+      * Sets the EMV Application Request Cryptogram.
+      * @param value the EMV Application Request Cryptogram.
       */
      public void setARQC(String value) {
           this.arqc = value;
      }
+
      /**
-      * is the EMV Application Request Cryptogram.
+      * Gets the EMV Application Request Cryptogram.
+      * @return the EMV Application Request Cryptogram.
       */
      public String getARQC() {
           return this.arqc;
      }
-  
+
      /**
-      * is EMV Issuer Application Data.
+      * Sets the EMV Issuer Application Data.
+      * @param value the EMV Issuer Application Data.
       */
      public void setIAD(String value) {
           this.iad = value;
      }
+
      /**
-      * is EMV Issuer Application Data.
+      * Gets the EMV Issuer Application Data.
+      * @return the EMV Issuer Application Data.
       */
      public String getIAD() {
           return this.iad;
      }
-  
+
      /**
-      * is the EMV Authorization Response Code.
+      * Sets the EMV Authorization Response Code.
+      * @param value the EMV Authorization Response Code.
       */
      public void setARC(String value) {
           this.arc = value;
      }
+
      /**
-      * is the EMV Authorization Response Code.
+      * Gets the EMV Authorization Response Code.
+      * @return the EMV Authorization Response Code.
       */
      public String getARC() {
           return this.arc;
      }
-  
+
      /**
-      * is the EMV Transaction Certificate.
+      * Sets the EMV Transaction Certificate.
+      * @param value the EMV Transaction Certificate.
       */
      public void setTC(String value) {
           this.tc = value;
      }
+
      /**
-      * is the EMV Transaction Certificate.
+      * Gets the EMV Transaction Certificate.
+      * @return the EMV Transaction Certificate.
       */
      public String getTC() {
           return this.tc;
      }
-  
+
      /**
-      * is the EMV Terminal Verification Response.
+      * Sets the EMV Terminal Verification Response.
+      * @param value the EMV Terminal Verification Response.
       */
      public void setTVR(String value) {
           this.tvr = value;
      }
+
      /**
-      * is the EMV Terminal Verification Response.
+      * Gets the EMV Terminal Verification Response.
+      * @return the EMV Terminal Verification Response.
       */
      public String getTVR() {
           return this.tvr;
      }
-  
+
      /**
-      * is the EMV Transaction Status Indicator.
+      * Sets the EMV Transaction Status Indicator.
+      * @param value the EMV Transaction Status Indicator.
       */
      public void setTSI(String value) {
           this.tsi = value;
      }
+
      /**
-      * is the EMV Transaction Status Indicator.
+      * Gets the EMV Transaction Status Indicator.
+      * @return the EMV Transaction Status Indicator.
       */
      public String getTSI() {
           return this.tsi;
      }
-  
-     
+
+     /**
+      * Sets the ID of the payment terminal.
+      * @param value the ID of the payment terminal.
+      */
      public void setTerminalID(String value) {
           this.terminalId = value;
      }
-     
+
+     /**
+      * Gets the ID of the payment terminal.
+      * @return the ID of the payment terminal.
+      */
      public String getTerminalID() {
           return this.terminalId;
      }
-  
-     
+
+     /**
+      * Sets the name of the merchant's business.
+      * @param value the name of the merchant's business.
+      */
      public void setMerchantName(String value) {
           this.merchantName = value;
      }
-     
+
+     /**
+      * Gets the name of the merchant's business.
+      * @return the name of the merchant's business.
+      */
      public String getMerchantName() {
           return this.merchantName;
      }
-  
-     
+
+     /**
+      * Sets the ID of the merchant.
+      * @param value the ID of the merchant.
+      */
      public void setMerchantID(String value) {
           this.merchantId = value;
      }
-     
+
+     /**
+      * Gets the ID of the merchant.
+      * @return the ID of the merchant.
+      */
      public String getMerchantID() {
           return this.merchantId;
      }
-  
-     
+
+     /**
+      * Sets the partially masked merchant key required on EMV receipts.
+      * @param value the partially masked merchant key required on EMV receipts.
+      */
      public void setMerchantKey(String value) {
           this.merchantKey = value;
      }
-     
+
+     /**
+      * Gets the partially masked merchant key required on EMV receipts.
+      * @return the partially masked merchant key required on EMV receipts.
+      */
      public String getMerchantKey() {
           return this.merchantKey;
      }
-  
-     
+
+     /**
+      * Sets a description of the selected AID.
+      * @param value a description of the selected AID.
+      */
      public void setApplicationLabel(String value) {
           this.applicationLabel = value;
      }
-     
+
+     /**
+      * Gets a description of the selected AID.
+      * @return a description of the selected AID.
+      */
      public String getApplicationLabel() {
           return this.applicationLabel;
      }
-  
-     
+
+     /**
+      * Sets that the receipt should contain a signature line.
+      * @param value that the receipt should contain a signature line.
+      */
      public void setRequestSignature(boolean value) {
           this.requestSignature = value;
      }
-     
+
+     /**
+      * Gets that the receipt should contain a signature line.
+      * @return that the receipt should contain a signature line.
+      */
      public boolean isRequestSignature() {
           return this.requestSignature;
      }
-  
-     
+
+     /**
+      * Sets the masked primary account number of the payment card, as required.
+      * @param value the masked primary account number of the payment card, as required.
+      */
      public void setMaskedPAN(String value) {
           this.maskedPan = value;
      }
-     
+
+     /**
+      * Gets the masked primary account number of the payment card, as required.
+      * @return the masked primary account number of the payment card, as required.
+      */
      public String getMaskedPAN() {
           return this.maskedPan;
      }
-  
-     
+
+     /**
+      * Sets the amount authorized by the payment network.
+      * @param value the amount authorized by the payment network. Could be less than the
+      * requested amount for partial auth.
+      */
      public void setAuthorizedAmount(String value) {
           this.authorizedAmount = value;
      }
-     
+
+     /**
+      * Gets the amount authorized by the payment network.
+      * @return the amount authorized by the payment network. Could be less than the
+      * requested amount for partial auth.
+      */
      public String getAuthorizedAmount() {
           return this.authorizedAmount;
      }
-  
-     
+
+     /**
+      * Sets the type of transaction performed (CHARGE, PREAUTH, REFUND, etc).
+      * @param value the type of transaction performed (CHARGE, PREAUTH, REFUND, etc).
+      */
      public void setTransactionType(String value) {
           this.transactionType = value;
      }
-     
+
+     /**
+      * Gets the type of transaction performed (CHARGE, PREAUTH, REFUND, etc).
+      * @return the type of transaction performed (CHARGE, PREAUTH, REFUND, etc).
+      */
      public String getTransactionType() {
           return this.transactionType;
      }
-  
-     
+
+     /**
+      * Sets the method by which the payment card was entered (MSR, CHIP, KEYED, etc.
+      * @param value the method by which the payment card was entered (MSR, CHIP, KEYED,
+      * etc.).
+      */
      public void setEntryMethod(String value) {
           this.entryMethod = value;
      }
-     
+
+     /**
+      * Gets the method by which the payment card was entered (MSR, CHIP, KEYED, etc.
+      * @return the method by which the payment card was entered (MSR, CHIP, KEYED, etc.).
+      */
      public String getEntryMethod() {
           return this.entryMethod;
      }
-  
-     
+
+     /**
+      * Sets that PIN verification was performed.
+      * @param value that PIN verification was performed.
+      */
      public void setPINVerified(boolean value) {
           this.pinVerified = value;
      }
-     
+
+     /**
+      * Gets that PIN verification was performed.
+      * @return that PIN verification was performed.
+      */
      public boolean isPINVerified() {
           return this.pinVerified;
      }
-  
-     
+
+     /**
+      * Sets the amount of cash back that was approved.
+      * @param value the amount of cash back that was approved.
+      */
      public void setCashBackAmount(String value) {
           this.cashBackAmount = value;
      }
-     
+
+     /**
+      * Gets the amount of cash back that was approved.
+      * @return the amount of cash back that was approved.
+      */
      public String getCashBackAmount() {
           return this.cashBackAmount;
      }
-  
 
-  
 }

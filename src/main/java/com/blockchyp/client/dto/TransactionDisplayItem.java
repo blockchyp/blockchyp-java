@@ -1,110 +1,149 @@
+/**
+ * Copyright 2019 BlockChyp, Inc. All rights reserved. Use of this code is governed by a
+ * license that can be found in the LICENSE file.
+ *
+ * This file was generated automatically. Changes to this file will be lost every time the
+ * code is regenerated.
+ */
 package com.blockchyp.client.dto;
-
-
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-
-
 /**
- * is an item category in a transaction display. Groups combine if their descriptions match. Calculated subtotal amounts are rounded to two decimal places of precision. Quantity is a floating point number that is not rounded at all.
+ * An item category in a transaction display. Groups combine if their descriptions match.
+ * Calculated subtotal amounts are rounded to two decimal places of precision. Quantity
+ * is a floating point number that is not rounded at all.
  */
+
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class TransactionDisplayItem {
-  
-     // ID is not required, but recommended since it is required to update or delete line items. 
+
      private String id;
-  
-     
+
      private String description;
-  
-     
+
      private String price;
-  
-     
+
      private float quantity;
-  
-     // Extended is an item category in a transaction display. Groups combine if their descriptions match. Calculated subtotal amounts are rounded to two decimal places of precision. Quantity is a floating point number that is not rounded at all. 
+
      private String extended;
-  
-     // Discounts are displayed under their corresponding item. 
+
      private Collection discounts;
-  
-  
+
      /**
-      * is not required, but recommended since it is required to update or delete line items.
+      * Sets a unique value identifying the item.
+      * @param value a unique value identifying the item. This is not required, but
+      * recommended since it is required to update or delete line items.
       */
      public void setID(String value) {
           this.id = value;
      }
+
      /**
-      * is not required, but recommended since it is required to update or delete line items.
+      * Gets a unique value identifying the item.
+      * @return a unique value identifying the item. This is not required, but
+      * recommended since it is required to update or delete line items.
       */
      public String getID() {
           return this.id;
      }
-  
-     
+
+     /**
+      * Sets a description of the line item.
+      * @param value a description of the line item.
+      */
      public void setDescription(String value) {
           this.description = value;
      }
-     
+
+     /**
+      * Gets a description of the line item.
+      * @return a description of the line item.
+      */
      public String getDescription() {
           return this.description;
      }
-  
-     
+
+     /**
+      * Sets the price of the line item.
+      * @param value the price of the line item.
+      */
      public void setPrice(String value) {
           this.price = value;
      }
-     
+
+     /**
+      * Gets the price of the line item.
+      * @return the price of the line item.
+      */
      public String getPrice() {
           return this.price;
      }
-  
-     
+
+     /**
+      * Sets the quantity of the line item.
+      * @param value the quantity of the line item.
+      */
      public void setQuantity(float value) {
           this.quantity = value;
      }
-     
+
+     /**
+      * Gets the quantity of the line item.
+      * @return the quantity of the line item.
+      */
      public float getQuantity() {
           return this.quantity;
      }
-  
+
      /**
-      * is an item category in a transaction display. Groups combine if their descriptions match. Calculated subtotal amounts are rounded to two decimal places of precision. Quantity is a floating point number that is not rounded at all.
+      * Sets an item category in a transaction display.
+      * @param value an item category in a transaction display. Groups combine if their
+      * descriptions match. Calculated subtotal amounts are rounded to two decimal
+      * places of precision. Quantity is a floating point number that is not rounded at
+      * all.
       */
      public void setExtended(String value) {
           this.extended = value;
      }
+
      /**
-      * is an item category in a transaction display. Groups combine if their descriptions match. Calculated subtotal amounts are rounded to two decimal places of precision. Quantity is a floating point number that is not rounded at all.
+      * Gets an item category in a transaction display.
+      * @return an item category in a transaction display. Groups combine if their
+      * descriptions match. Calculated subtotal amounts are rounded to two decimal
+      * places of precision. Quantity is a floating point number that is not rounded at
+      * all.
       */
      public String getExtended() {
           return this.extended;
      }
-  
+
      /**
-      * are displayed under their corresponding item.
+      * Sets are displayed under their corresponding item.
+      * @param value are displayed under their corresponding item.
       */
      public void setDiscounts(Collection value) {
           this.discounts = value;
      }
+
      /**
-      * are displayed under their corresponding item.
+      * Gets are displayed under their corresponding item.
+      * @return are displayed under their corresponding item.
       */
      public Collection getDiscounts() {
           return this.discounts;
      }
-  
 
-  
+     /**
+      * Adds a are displayed under their corresponding item.
+      * @param value are displayed under their corresponding item.
+      */
      public void addDiscount(TransactionDisplayDiscount value) {
           if (this.discounts == null) {
                this.discounts = new ArrayList();
           }
           this.discounts.add(value);
      }
-  
+
 }

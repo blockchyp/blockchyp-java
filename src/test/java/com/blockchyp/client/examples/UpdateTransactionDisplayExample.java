@@ -14,30 +14,30 @@ import com.blockchyp.client.dto.TransactionDisplayDiscount;
 
 public class UpdateTransactionDisplayExample {
 
-  public void runSampleTransaction() throws Exception {
+    public void runSampleTransaction() throws Exception {
 
-    APICredentials creds = new APICredentials();
-    creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
-    creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
-    creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+        APICredentials creds = new APICredentials();
+        creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
+        creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
+        creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
 
-    BlockChypClient client = new BlockChypClient(creds);
+        BlockChypClient client = new BlockChypClient(creds);
 
-    // setup request object
-    TransactionDisplayRequest request = new TransactionDisplayRequest();
-    request.setTest(true);
-    request.setTerminalName("Test Terminal");
-    request.setTransaction(newTransactionDisplayTransaction());
+        // setup request object
+        TransactionDisplayRequest request = new TransactionDisplayRequest();
+        request.setTest(true);
+        request.setTerminalName("Test Terminal");
+        request.setTransaction(newTransactionDisplayTransaction());
 
-    Acknowledgement response = client.updateTransactionDisplay(request);
+        Acknowledgement response = client.updateTransactionDisplay(request);
 
-    //process the result
-    
-    if (response.isSuccess()) {
-      System.out.println("Succeded");
+        //process the result
+
+        if (response.isSuccess()) {
+            System.out.println("Succeded");
+        }
+
     }
-
-  }
 
     private TransactionDisplayTransaction newTransactionDisplayTransaction() {
          TransactionDisplayTransaction val = new TransactionDisplayTransaction();

@@ -1,283 +1,420 @@
+/**
+ * Copyright 2019 BlockChyp, Inc. All rights reserved. Use of this code is governed by a
+ * license that can be found in the LICENSE file.
+ *
+ * This file was generated automatically. Changes to this file will be lost every time the
+ * code is regenerated.
+ */
 package com.blockchyp.client.dto;
 
 
-
-
-
-
-
-
 /**
- * models the response to an enroll request.
+ * The response to an enroll request.
  */
+public class EnrollResponse implements IAcknowledgement, ICoreResponse, IPaymentMethodResponse, IApprovalResponse {
 
-public class EnrollResponse implements ICoreResponse, IPaymentMethodResponse, IApprovalResponse {
-  
-     
      private boolean success;
-  
-     
+
      private String error;
-  
-     
+
      private String responseDescription;
-  
-     
+
      private String transactionId;
-  
-     
+
      private String batchId;
-  
-     
+
      private String transactionRef;
-  
-     
+
      private String transactionType;
-  
-     
+
      private String timestamp;
-  
-     
+
      private String tickBlock;
-  
-     
+
      private boolean test;
-  
-     
+
      private String sig;
-  
-     
+
      private String token;
-  
-     
+
      private String entryMethod;
-  
-     
+
      private String paymentType;
-  
-     
+
      private String maskedPan;
-  
-     
+
      private String publicKey;
-  
-     
+
      private boolean ScopeAlert;
-  
-     
+
      private String cardHolder;
-  
-     
+
      private ReceiptSuggestions receiptSuggestions;
-  
-     
+
      private boolean approved;
-  
-     
+
      private String authCode;
-  
-     
+
      private String sigFile;
-  
-  
-     
+
+     /**
+      * Sets whether or not the request succeeded.
+      * @param value whether or not the request succeeded.
+      */
      public void setSuccess(boolean value) {
           this.success = value;
      }
-     
+
+     /**
+      * Gets whether or not the request succeeded.
+      * @return whether or not the request succeeded.
+      */
      public boolean isSuccess() {
           return this.success;
      }
-  
-     
+
+     /**
+      * Sets the error, if an error occurred.
+      * @param value the error, if an error occurred.
+      */
      public void setError(String value) {
           this.error = value;
      }
-     
+
+     /**
+      * Gets the error, if an error occurred.
+      * @return the error, if an error occurred.
+      */
      public String getError() {
           return this.error;
      }
-  
-     
+
+     /**
+      * Sets a narrative description of the transaction result.
+      * @param value a narrative description of the transaction result.
+      */
      public void setResponseDescription(String value) {
           this.responseDescription = value;
      }
-     
+
+     /**
+      * Gets a narrative description of the transaction result.
+      * @return a narrative description of the transaction result.
+      */
      public String getResponseDescription() {
           return this.responseDescription;
      }
-  
-     
+
+     /**
+      * Sets the ID assigned to the transaction.
+      * @param value the ID assigned to the transaction.
+      */
      public void setTransactionID(String value) {
           this.transactionId = value;
      }
-     
+
+     /**
+      * Gets the ID assigned to the transaction.
+      * @return the ID assigned to the transaction.
+      */
      public String getTransactionID() {
           return this.transactionId;
      }
-  
-     
+
+     /**
+      * Sets the ID assigned to the batch.
+      * @param value the ID assigned to the batch.
+      */
      public void setBatchID(String value) {
           this.batchId = value;
      }
-     
+
+     /**
+      * Gets the ID assigned to the batch.
+      * @return the ID assigned to the batch.
+      */
      public String getBatchID() {
           return this.batchId;
      }
-  
-     
+
+     /**
+      * Sets the transaction reference string assigned to the transaction request.
+      * @param value the transaction reference string assigned to the transaction
+      * request. If no transaction ref was assiged on the request, then the gateway will
+      * randomly generate one.
+      */
      public void setTransactionRef(String value) {
           this.transactionRef = value;
      }
-     
+
+     /**
+      * Gets the transaction reference string assigned to the transaction request.
+      * @return the transaction reference string assigned to the transaction request.
+      * If no transaction ref was assiged on the request, then the gateway will randomly
+      * generate one.
+      */
      public String getTransactionRef() {
           return this.transactionRef;
      }
-  
-     
+
+     /**
+      * Sets the type of transaction.
+      * @param value the type of transaction.
+      */
      public void setTransactionType(String value) {
           this.transactionType = value;
      }
-     
+
+     /**
+      * Gets the type of transaction.
+      * @return the type of transaction.
+      */
      public String getTransactionType() {
           return this.transactionType;
      }
-  
-     
+
+     /**
+      * Sets the timestamp of the transaction.
+      * @param value the timestamp of the transaction.
+      */
      public void setTimestamp(String value) {
           this.timestamp = value;
      }
-     
+
+     /**
+      * Gets the timestamp of the transaction.
+      * @return the timestamp of the transaction.
+      */
      public String getTimestamp() {
           return this.timestamp;
      }
-  
-     
+
+     /**
+      * Sets the hash of the last tick block.
+      * @param value the hash of the last tick block.
+      */
      public void setTickBlock(String value) {
           this.tickBlock = value;
      }
-     
+
+     /**
+      * Gets the hash of the last tick block.
+      * @return the hash of the last tick block.
+      */
      public String getTickBlock() {
           return this.tickBlock;
      }
-  
-     
+
+     /**
+      * Sets that the transaction was processed on the test gateway.
+      * @param value that the transaction was processed on the test gateway.
+      */
      public void setTest(boolean value) {
           this.test = value;
      }
-     
+
+     /**
+      * Gets that the transaction was processed on the test gateway.
+      * @return that the transaction was processed on the test gateway.
+      */
      public boolean isTest() {
           return this.test;
      }
-  
-     
+
+     /**
+      * Sets the ECC signature of the response.
+      * @param value the ECC signature of the response. Can be used to ensure that it was
+      * signed by the terminal and detect man-in-the middle attacks.
+      */
      public void setSig(String value) {
           this.sig = value;
      }
-     
+
+     /**
+      * Gets the ECC signature of the response.
+      * @return the ECC signature of the response. Can be used to ensure that it was signed
+      * by the terminal and detect man-in-the middle attacks.
+      */
      public String getSig() {
           return this.sig;
      }
-  
-     
+
+     /**
+      * Sets the payment token, if the payment was enrolled in the vault.
+      * @param value the payment token, if the payment was enrolled in the vault.
+      */
      public void setToken(String value) {
           this.token = value;
      }
-     
+
+     /**
+      * Gets the payment token, if the payment was enrolled in the vault.
+      * @return the payment token, if the payment was enrolled in the vault.
+      */
      public String getToken() {
           return this.token;
      }
-  
-     
+
+     /**
+      * Sets the entry method for the transaction (CHIP, MSR, KEYED, etc).
+      * @param value the entry method for the transaction (CHIP, MSR, KEYED, etc).
+      */
      public void setEntryMethod(String value) {
           this.entryMethod = value;
      }
-     
+
+     /**
+      * Gets the entry method for the transaction (CHIP, MSR, KEYED, etc).
+      * @return the entry method for the transaction (CHIP, MSR, KEYED, etc).
+      */
      public String getEntryMethod() {
           return this.entryMethod;
      }
-  
-     
+
+     /**
+      * Sets the card brand (VISA, MC, AMEX, etc).
+      * @param value the card brand (VISA, MC, AMEX, etc).
+      */
      public void setPaymentType(String value) {
           this.paymentType = value;
      }
-     
+
+     /**
+      * Gets the card brand (VISA, MC, AMEX, etc).
+      * @return the card brand (VISA, MC, AMEX, etc).
+      */
      public String getPaymentType() {
           return this.paymentType;
      }
-  
-     
+
+     /**
+      * Sets the masked primary account number.
+      * @param value the masked primary account number.
+      */
      public void setMaskedPAN(String value) {
           this.maskedPan = value;
      }
-     
+
+     /**
+      * Gets the masked primary account number.
+      * @return the masked primary account number.
+      */
      public String getMaskedPAN() {
           return this.maskedPan;
      }
-  
-     
+
+     /**
+      * Sets the BlockChyp public key if the user presented a BlockChyp payment card.
+      * @param value the BlockChyp public key if the user presented a BlockChyp payment
+      * card.
+      */
      public void setPublicKey(String value) {
           this.publicKey = value;
      }
-     
+
+     /**
+      * Gets the BlockChyp public key if the user presented a BlockChyp payment card.
+      * @return the BlockChyp public key if the user presented a BlockChyp payment card.
+      */
      public String getPublicKey() {
           return this.publicKey;
      }
-  
-     
+
+     /**
+      * Sets that the transaction did something that would put the system in PCI scope.
+      * @param value that the transaction did something that would put the system in PCI
+      * scope.
+      */
      public void setScopeAlert(boolean value) {
           this.ScopeAlert = value;
      }
-     
+
+     /**
+      * Gets that the transaction did something that would put the system in PCI scope.
+      * @return that the transaction did something that would put the system in PCI scope.
+      */
      public boolean isScopeAlert() {
           return this.ScopeAlert;
      }
-  
-     
+
+     /**
+      * Sets the cardholder name.
+      * @param value the cardholder name.
+      */
      public void setCardHolder(String value) {
           this.cardHolder = value;
      }
-     
+
+     /**
+      * Gets the cardholder name.
+      * @return the cardholder name.
+      */
      public String getCardHolder() {
           return this.cardHolder;
      }
-  
-     
+
+     /**
+      * Sets suggested receipt fields.
+      * @param value suggested receipt fields.
+      */
      public void setReceiptSuggestions(ReceiptSuggestions value) {
           this.receiptSuggestions = value;
      }
-     
+
+     /**
+      * Gets suggested receipt fields.
+      * @return suggested receipt fields.
+      */
      public ReceiptSuggestions getReceiptSuggestions() {
           return this.receiptSuggestions;
      }
-  
-     
+
+     /**
+      * Sets that the transaction was approved.
+      * @param value that the transaction was approved.
+      */
      public void setApproved(boolean value) {
           this.approved = value;
      }
-     
+
+     /**
+      * Gets that the transaction was approved.
+      * @return that the transaction was approved.
+      */
      public boolean isApproved() {
           return this.approved;
      }
-  
-     
+
+     /**
+      * Sets the auth code from the payment network.
+      * @param value the auth code from the payment network.
+      */
      public void setAuthCode(String value) {
           this.authCode = value;
      }
-     
+
+     /**
+      * Gets the auth code from the payment network.
+      * @return the auth code from the payment network.
+      */
      public String getAuthCode() {
           return this.authCode;
      }
-  
-     
+
+     /**
+      * Sets the hex encoded signature data.
+      * @param value the hex encoded signature data.
+      */
      public void setSigFile(String value) {
           this.sigFile = value;
      }
-     
+
+     /**
+      * Gets the hex encoded signature data.
+      * @return the hex encoded signature data.
+      */
      public String getSigFile() {
           return this.sigFile;
      }
-  
 
-  
 }

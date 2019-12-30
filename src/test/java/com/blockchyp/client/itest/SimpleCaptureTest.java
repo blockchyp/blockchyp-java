@@ -1,3 +1,10 @@
+/**
+ * Copyright 2019 BlockChyp, Inc. All rights reserved. Use of this code is governed by a
+ * license that can be found in the LICENSE file.
+ *
+ * This file was generated automatically. Changes to this file will be lost every time the
+ * code is regenerated.
+ */
 package com.blockchyp.client.itest;
 
 import java.util.ArrayList;
@@ -26,13 +33,13 @@ public class SimpleCaptureTest {
 
 	     // setup request object
          AuthorizationRequest setupRequest = new AuthorizationRequest();
-    
+
          setupRequest.setPAN("4111111111111111");
-    
+
          setupRequest.setAmount("25.55");
-    
+
          setupRequest.setTest(true);
-    
+
          AuthorizationResponse setupResponse = client.preauth(setupRequest);
 
 
