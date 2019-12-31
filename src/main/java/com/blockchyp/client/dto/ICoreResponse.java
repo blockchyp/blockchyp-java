@@ -7,9 +7,9 @@ package com.blockchyp.client.dto;
 
 public interface ICoreResponse {
 
-     String getTransactionID();
+     String getTransactionId();
 
-     String getBatchID();
+     String getBatchId();
 
      String getTransactionRef();
 

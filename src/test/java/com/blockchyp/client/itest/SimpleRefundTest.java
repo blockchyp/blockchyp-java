@@ -20,9 +20,8 @@ import com.blockchyp.client.IntegrationTestConfiguration;
 import com.blockchyp.client.dto.RefundRequest;
 import com.blockchyp.client.dto.AuthorizationResponse;
 import com.blockchyp.client.dto.AuthorizationRequest;
-import com.blockchyp.client.dto.AuthorizationResponse;
 
-public class SimpleRefundTest {
+public class SimpleRefundTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
@@ -30,17 +29,19 @@ public class SimpleRefundTest {
 
          BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
+         processTestDelay(client, "SimpleRefundTest");
+
 
 	     // setup request object
          AuthorizationRequest setupRequest = new AuthorizationRequest();
 
-         setupRequest.setPAN("4111111111111111");
+         setupRequest.setPan("4111111111111111");
 
          setupRequest.setAmount("25.55");
 
          setupRequest.setTest(true);
 
-         setupRequest.setTransactionRef();
+         setupRequest.setTransactionRef(getUUID());
 
          AuthorizationResponse setupResponse = client.charge(setupRequest);
 
@@ -48,7 +49,7 @@ public class SimpleRefundTest {
 
          // setup request object
          RefundRequest request = new RefundRequest();
-         request.setTransactionID(setupResponse.getTransactionID());
+         request.setTransactionId(setupResponse.getTransactionId());
          request.setTest(true);
 
          AuthorizationResponse response = client.refund(request);

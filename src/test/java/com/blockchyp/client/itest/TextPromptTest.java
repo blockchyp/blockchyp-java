@@ -19,14 +19,17 @@ import com.blockchyp.client.IntegrationTest;
 import com.blockchyp.client.IntegrationTestConfiguration;
 import com.blockchyp.client.dto.TextPromptRequest;
 import com.blockchyp.client.dto.TextPromptResponse;
+import com.blockchyp.client.dto.PromptType;
 
-public class TextPromptTest {
+public class TextPromptTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
     public void testTransaction() throws Exception {
 
          BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+
+         processTestDelay(client, "TextPromptTest");
 
 
 

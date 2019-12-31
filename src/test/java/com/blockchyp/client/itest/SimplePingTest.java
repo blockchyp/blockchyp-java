@@ -20,13 +20,15 @@ import com.blockchyp.client.IntegrationTestConfiguration;
 import com.blockchyp.client.dto.PingRequest;
 import com.blockchyp.client.dto.PingResponse;
 
-public class SimplePingTest {
+public class SimplePingTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
     public void testTransaction() throws Exception {
 
          BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+
+         processTestDelay(client, "SimplePingTest");
 
 
 

@@ -35,7 +35,7 @@ public class TransactionDisplayItem {
       * @param value a unique value identifying the item. This is not required, but
       * recommended since it is required to update or delete line items.
       */
-     public void setID(String value) {
+     public void setId(String value) {
           this.id = value;
      }
 
@@ -44,7 +44,7 @@ public class TransactionDisplayItem {
       * @return a unique value identifying the item. This is not required, but
       * recommended since it is required to update or delete line items.
       */
-     public String getID() {
+     public String getId() {
           return this.id;
      }
 

@@ -7,7 +7,7 @@
  */
 package com.blockchyp.client.dto;
 
-import com.blockchyp.client.CardType;
+import com.blockchyp.client.dto.CardType;
 
 /**
  * The information needed to enroll a new payment method in the token vault.
@@ -214,7 +214,7 @@ public class EnrollRequest implements ICoreRequest, ITerminalReference, IPayment
       * e-commerce tokenization libraries instead of passing account numbers in
       * directly, as this would put your application in PCI scope.
       */
-     public void setPAN(String value) {
+     public void setPan(String value) {
           this.pan = value;
      }
 
@@ -224,7 +224,7 @@ public class EnrollRequest implements ICoreRequest, ITerminalReference, IPayment
       * e-commerce tokenization libraries instead of passing account numbers in
       * directly, as this would put your application in PCI scope.
       */
-     public String getPAN() {
+     public String getPan() {
           return this.pan;
      }
 
@@ -298,7 +298,7 @@ public class EnrollRequest implements ICoreRequest, ITerminalReference, IPayment
       * Sets the card CVV for use with PAN based transactions.
       * @param value the card CVV for use with PAN based transactions.
       */
-     public void setCVV(String value) {
+     public void setCvv(String value) {
           this.cvv = value;
      }
 
@@ -306,7 +306,7 @@ public class EnrollRequest implements ICoreRequest, ITerminalReference, IPayment
       * Gets the card CVV for use with PAN based transactions.
       * @return the card CVV for use with PAN based transactions.
       */
-     public String getCVV() {
+     public String getCvv() {
           return this.cvv;
      }
 
@@ -364,7 +364,7 @@ public class EnrollRequest implements ICoreRequest, ITerminalReference, IPayment
       * Sets the key serial number used for DUKPT encryption.
       * @param value the key serial number used for DUKPT encryption.
       */
-     public void setKSN(String value) {
+     public void setKsn(String value) {
           this.ksn = value;
      }
 
@@ -372,7 +372,7 @@ public class EnrollRequest implements ICoreRequest, ITerminalReference, IPayment
       * Gets the key serial number used for DUKPT encryption.
       * @return the key serial number used for DUKPT encryption.
       */
-     public String getKSN() {
+     public String getKsn() {
           return this.ksn;
      }
 
@@ -380,7 +380,7 @@ public class EnrollRequest implements ICoreRequest, ITerminalReference, IPayment
       * Sets the encrypted pin block.
       * @param value the encrypted pin block.
       */
-     public void setPINBlock(String value) {
+     public void setPinBlock(String value) {
           this.pinBlock = value;
      }
 
@@ -388,7 +388,7 @@ public class EnrollRequest implements ICoreRequest, ITerminalReference, IPayment
       * Gets the encrypted pin block.
       * @return the encrypted pin block.
       */
-     public String getPINBlock() {
+     public String getPinBlock() {
           return this.pinBlock;
      }
 

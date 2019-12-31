@@ -7,7 +7,7 @@
  */
 package com.blockchyp.client.dto;
 
-import com.blockchyp.client.CardType;
+import com.blockchyp.client.dto.CardType;
 
 /**
  * Balance requests.
@@ -198,7 +198,7 @@ public class BalanceRequest implements ICoreRequest, IPaymentMethod, ITerminalRe
       * e-commerce tokenization libraries instead of passing account numbers in
       * directly, as this would put your application in PCI scope.
       */
-     public void setPAN(String value) {
+     public void setPan(String value) {
           this.pan = value;
      }
 
@@ -208,7 +208,7 @@ public class BalanceRequest implements ICoreRequest, IPaymentMethod, ITerminalRe
       * e-commerce tokenization libraries instead of passing account numbers in
       * directly, as this would put your application in PCI scope.
       */
-     public String getPAN() {
+     public String getPan() {
           return this.pan;
      }
 
@@ -282,7 +282,7 @@ public class BalanceRequest implements ICoreRequest, IPaymentMethod, ITerminalRe
       * Sets the card CVV for use with PAN based transactions.
       * @param value the card CVV for use with PAN based transactions.
       */
-     public void setCVV(String value) {
+     public void setCvv(String value) {
           this.cvv = value;
      }
 
@@ -290,7 +290,7 @@ public class BalanceRequest implements ICoreRequest, IPaymentMethod, ITerminalRe
       * Gets the card CVV for use with PAN based transactions.
       * @return the card CVV for use with PAN based transactions.
       */
-     public String getCVV() {
+     public String getCvv() {
           return this.cvv;
      }
 
@@ -348,7 +348,7 @@ public class BalanceRequest implements ICoreRequest, IPaymentMethod, ITerminalRe
       * Sets the key serial number used for DUKPT encryption.
       * @param value the key serial number used for DUKPT encryption.
       */
-     public void setKSN(String value) {
+     public void setKsn(String value) {
           this.ksn = value;
      }
 
@@ -356,7 +356,7 @@ public class BalanceRequest implements ICoreRequest, IPaymentMethod, ITerminalRe
       * Gets the key serial number used for DUKPT encryption.
       * @return the key serial number used for DUKPT encryption.
       */
-     public String getKSN() {
+     public String getKsn() {
           return this.ksn;
      }
 
@@ -364,7 +364,7 @@ public class BalanceRequest implements ICoreRequest, IPaymentMethod, ITerminalRe
       * Sets the encrypted pin block.
       * @param value the encrypted pin block.
       */
-     public void setPINBlock(String value) {
+     public void setPinBlock(String value) {
           this.pinBlock = value;
      }
 
@@ -372,7 +372,7 @@ public class BalanceRequest implements ICoreRequest, IPaymentMethod, ITerminalRe
       * Gets the encrypted pin block.
       * @return the encrypted pin block.
       */
-     public String getPINBlock() {
+     public String getPinBlock() {
           return this.pinBlock;
      }
 

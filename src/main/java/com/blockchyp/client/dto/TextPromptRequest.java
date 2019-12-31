@@ -7,7 +7,7 @@
  */
 package com.blockchyp.client.dto;
 
-import com.blockchyp.client.PromptType;
+import com.blockchyp.client.dto.PromptType;
 
 /**
  * A text prompt request.

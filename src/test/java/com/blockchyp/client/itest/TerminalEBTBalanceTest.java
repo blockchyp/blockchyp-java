@@ -19,14 +19,17 @@ import com.blockchyp.client.IntegrationTest;
 import com.blockchyp.client.IntegrationTestConfiguration;
 import com.blockchyp.client.dto.BalanceRequest;
 import com.blockchyp.client.dto.BalanceResponse;
+import com.blockchyp.client.dto.CardType;
 
-public class TerminalEBTBalanceTest {
+public class TerminalEBTBalanceTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
     public void testTransaction() throws Exception {
 
          BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+
+         processTestDelay(client, "TerminalEBTBalanceTest");
 
 
 

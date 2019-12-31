@@ -73,7 +73,7 @@ public class WhiteListedCard {
       * Sets the card primary account number.
       * @param value the card primary account number.
       */
-     public void setPAN(String value) {
+     public void setPan(String value) {
           this.pan = value;
      }
 
@@ -81,7 +81,7 @@ public class WhiteListedCard {
       * Gets the card primary account number.
       * @return the card primary account number.
       */
-     public String getPAN() {
+     public String getPan() {
           return this.pan;
      }
 

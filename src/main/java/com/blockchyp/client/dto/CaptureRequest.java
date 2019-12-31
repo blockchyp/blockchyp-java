@@ -232,7 +232,7 @@ public class CaptureRequest implements ICoreRequest, IRequestAmount, ISubtotals,
       * will be charged if an FSA card is presented. If the FSA amount is paid on an FSA card,
       * then the FSA amount authorized will be indicated on the response.
       */
-     public void setFSAEligibleAmount(String value) {
+     public void setFsaEligibleAmount(String value) {
           this.fsaEligibleAmount = value;
      }
 
@@ -243,7 +243,7 @@ public class CaptureRequest implements ICoreRequest, IRequestAmount, ISubtotals,
       * be charged if an FSA card is presented. If the FSA amount is paid on an FSA card, then
       * the FSA amount authorized will be indicated on the response.
       */
-     public String getFSAEligibleAmount() {
+     public String getFsaEligibleAmount() {
           return this.fsaEligibleAmount;
      }
 
@@ -251,7 +251,7 @@ public class CaptureRequest implements ICoreRequest, IRequestAmount, ISubtotals,
       * Sets the amount of the transaction that should be charged to an HSA card.
       * @param value the amount of the transaction that should be charged to an HSA card.
       */
-     public void setHSAEligibleAmount(String value) {
+     public void setHsaEligibleAmount(String value) {
           this.hsaEligibleAmount = value;
      }
 
@@ -259,7 +259,7 @@ public class CaptureRequest implements ICoreRequest, IRequestAmount, ISubtotals,
       * Gets the amount of the transaction that should be charged to an HSA card.
       * @return the amount of the transaction that should be charged to an HSA card.
       */
-     public String getHSAEligibleAmount() {
+     public String getHsaEligibleAmount() {
           return this.hsaEligibleAmount;
      }
 
@@ -267,7 +267,7 @@ public class CaptureRequest implements ICoreRequest, IRequestAmount, ISubtotals,
       * Sets the amount of the transaction that should be charged to an EBT card.
       * @param value the amount of the transaction that should be charged to an EBT card.
       */
-     public void setEBTEligibleAmount(String value) {
+     public void setEbtEligibleAmount(String value) {
           this.ebtEligibleAmount = value;
      }
 
@@ -275,7 +275,7 @@ public class CaptureRequest implements ICoreRequest, IRequestAmount, ISubtotals,
       * Gets the amount of the transaction that should be charged to an EBT card.
       * @return the amount of the transaction that should be charged to an EBT card.
       */
-     public String getEBTEligibleAmount() {
+     public String getEbtEligibleAmount() {
           return this.ebtEligibleAmount;
      }
 
@@ -283,7 +283,7 @@ public class CaptureRequest implements ICoreRequest, IRequestAmount, ISubtotals,
       * Sets the ID of the previous transaction being referenced.
       * @param value the ID of the previous transaction being referenced.
       */
-     public void setTransactionID(String value) {
+     public void setTransactionId(String value) {
           this.transactionId = value;
      }
 
@@ -291,7 +291,7 @@ public class CaptureRequest implements ICoreRequest, IRequestAmount, ISubtotals,
       * Gets the ID of the previous transaction being referenced.
       * @return the ID of the previous transaction being referenced.
       */
-     public String getTransactionID() {
+     public String getTransactionId() {
           return this.transactionId;
      }
 

@@ -20,13 +20,15 @@ import com.blockchyp.client.IntegrationTestConfiguration;
 import com.blockchyp.client.dto.BalanceRequest;
 import com.blockchyp.client.dto.BalanceResponse;
 
-public class TerminalGiftCardBalanceTest {
+public class TerminalGiftCardBalanceTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
     public void testTransaction() throws Exception {
 
          BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+
+         processTestDelay(client, "TerminalGiftCardBalanceTest");
 
 
 

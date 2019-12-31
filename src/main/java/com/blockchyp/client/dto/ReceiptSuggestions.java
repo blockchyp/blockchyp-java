@@ -55,7 +55,7 @@ public class ReceiptSuggestions {
       * Sets the EMV Application Identifier.
       * @param value the EMV Application Identifier.
       */
-     public void setAID(String value) {
+     public void setAid(String value) {
           this.aid = value;
      }
 
@@ -63,7 +63,7 @@ public class ReceiptSuggestions {
       * Gets the EMV Application Identifier.
       * @return the EMV Application Identifier.
       */
-     public String getAID() {
+     public String getAid() {
           return this.aid;
      }
 
@@ -71,7 +71,7 @@ public class ReceiptSuggestions {
       * Sets the EMV Application Request Cryptogram.
       * @param value the EMV Application Request Cryptogram.
       */
-     public void setARQC(String value) {
+     public void setArqc(String value) {
           this.arqc = value;
      }
 
@@ -79,7 +79,7 @@ public class ReceiptSuggestions {
       * Gets the EMV Application Request Cryptogram.
       * @return the EMV Application Request Cryptogram.
       */
-     public String getARQC() {
+     public String getArqc() {
           return this.arqc;
      }
 
@@ -87,7 +87,7 @@ public class ReceiptSuggestions {
       * Sets the EMV Issuer Application Data.
       * @param value the EMV Issuer Application Data.
       */
-     public void setIAD(String value) {
+     public void setIad(String value) {
           this.iad = value;
      }
 
@@ -95,7 +95,7 @@ public class ReceiptSuggestions {
       * Gets the EMV Issuer Application Data.
       * @return the EMV Issuer Application Data.
       */
-     public String getIAD() {
+     public String getIad() {
           return this.iad;
      }
 
@@ -103,7 +103,7 @@ public class ReceiptSuggestions {
       * Sets the EMV Authorization Response Code.
       * @param value the EMV Authorization Response Code.
       */
-     public void setARC(String value) {
+     public void setArc(String value) {
           this.arc = value;
      }
 
@@ -111,7 +111,7 @@ public class ReceiptSuggestions {
       * Gets the EMV Authorization Response Code.
       * @return the EMV Authorization Response Code.
       */
-     public String getARC() {
+     public String getArc() {
           return this.arc;
      }
 
@@ -119,7 +119,7 @@ public class ReceiptSuggestions {
       * Sets the EMV Transaction Certificate.
       * @param value the EMV Transaction Certificate.
       */
-     public void setTC(String value) {
+     public void setTc(String value) {
           this.tc = value;
      }
 
@@ -127,7 +127,7 @@ public class ReceiptSuggestions {
       * Gets the EMV Transaction Certificate.
       * @return the EMV Transaction Certificate.
       */
-     public String getTC() {
+     public String getTc() {
           return this.tc;
      }
 
@@ -135,7 +135,7 @@ public class ReceiptSuggestions {
       * Sets the EMV Terminal Verification Response.
       * @param value the EMV Terminal Verification Response.
       */
-     public void setTVR(String value) {
+     public void setTvr(String value) {
           this.tvr = value;
      }
 
@@ -143,7 +143,7 @@ public class ReceiptSuggestions {
       * Gets the EMV Terminal Verification Response.
       * @return the EMV Terminal Verification Response.
       */
-     public String getTVR() {
+     public String getTvr() {
           return this.tvr;
      }
 
@@ -151,7 +151,7 @@ public class ReceiptSuggestions {
       * Sets the EMV Transaction Status Indicator.
       * @param value the EMV Transaction Status Indicator.
       */
-     public void setTSI(String value) {
+     public void setTsi(String value) {
           this.tsi = value;
      }
 
@@ -159,7 +159,7 @@ public class ReceiptSuggestions {
       * Gets the EMV Transaction Status Indicator.
       * @return the EMV Transaction Status Indicator.
       */
-     public String getTSI() {
+     public String getTsi() {
           return this.tsi;
      }
 
@@ -167,7 +167,7 @@ public class ReceiptSuggestions {
       * Sets the ID of the payment terminal.
       * @param value the ID of the payment terminal.
       */
-     public void setTerminalID(String value) {
+     public void setTerminalId(String value) {
           this.terminalId = value;
      }
 
@@ -175,7 +175,7 @@ public class ReceiptSuggestions {
       * Gets the ID of the payment terminal.
       * @return the ID of the payment terminal.
       */
-     public String getTerminalID() {
+     public String getTerminalId() {
           return this.terminalId;
      }
 
@@ -199,7 +199,7 @@ public class ReceiptSuggestions {
       * Sets the ID of the merchant.
       * @param value the ID of the merchant.
       */
-     public void setMerchantID(String value) {
+     public void setMerchantId(String value) {
           this.merchantId = value;
      }
 
@@ -207,7 +207,7 @@ public class ReceiptSuggestions {
       * Gets the ID of the merchant.
       * @return the ID of the merchant.
       */
-     public String getMerchantID() {
+     public String getMerchantId() {
           return this.merchantId;
      }
 
@@ -263,7 +263,7 @@ public class ReceiptSuggestions {
       * Sets the masked primary account number of the payment card, as required.
       * @param value the masked primary account number of the payment card, as required.
       */
-     public void setMaskedPAN(String value) {
+     public void setMaskedPan(String value) {
           this.maskedPan = value;
      }
 
@@ -271,7 +271,7 @@ public class ReceiptSuggestions {
       * Gets the masked primary account number of the payment card, as required.
       * @return the masked primary account number of the payment card, as required.
       */
-     public String getMaskedPAN() {
+     public String getMaskedPan() {
           return this.maskedPan;
      }
 
@@ -330,7 +330,7 @@ public class ReceiptSuggestions {
       * Sets that PIN verification was performed.
       * @param value that PIN verification was performed.
       */
-     public void setPINVerified(boolean value) {
+     public void setPinVerified(boolean value) {
           this.pinVerified = value;
      }
 
@@ -338,7 +338,7 @@ public class ReceiptSuggestions {
       * Gets that PIN verification was performed.
       * @return that PIN verification was performed.
       */
-     public boolean isPINVerified() {
+     public boolean isPinVerified() {
           return this.pinVerified;
      }
 

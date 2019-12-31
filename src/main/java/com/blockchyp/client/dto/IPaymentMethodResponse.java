@@ -13,7 +13,7 @@ public interface IPaymentMethodResponse {
 
      String getPaymentType();
 
-     String getMaskedPAN();
+     String getMaskedPan();
 
      String getPublicKey();
 

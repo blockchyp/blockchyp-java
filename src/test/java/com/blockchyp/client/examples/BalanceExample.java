@@ -7,6 +7,7 @@ import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.dto.BalanceRequest;
 import com.blockchyp.client.dto.BalanceResponse;
+import com.blockchyp.client.dto.CardType;
 
 
 public class BalanceExample {

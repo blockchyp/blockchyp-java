@@ -1,6 +1,6 @@
 package com.blockchyp.client.dto;
 
-import com.blockchyp.client.CardType;
+import com.blockchyp.client.dto.CardType;
 
 /**
  * 
@@ -14,7 +14,7 @@ public interface IPaymentMethod {
 
      String getTrack2();
 
-     String getPAN();
+     String getPan();
 
      String getRoutingNumber();
 
@@ -24,7 +24,7 @@ public interface IPaymentMethod {
 
      String getExpYear();
 
-     String getCVV();
+     String getCvv();
 
      String getAddress();
 
@@ -32,9 +32,9 @@ public interface IPaymentMethod {
 
      boolean isManualEntry();
 
-     String getKSN();
+     String getKsn();
 
-     String getPINBlock();
+     String getPinBlock();
 
      CardType getCardType();
 

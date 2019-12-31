@@ -135,7 +135,7 @@ public class AuthorizationResponse implements ICoreResponse, IApprovalResponse, 
       * Sets the ID assigned to the transaction.
       * @param value the ID assigned to the transaction.
       */
-     public void setTransactionID(String value) {
+     public void setTransactionId(String value) {
           this.transactionId = value;
      }
 
@@ -143,7 +143,7 @@ public class AuthorizationResponse implements ICoreResponse, IApprovalResponse, 
       * Gets the ID assigned to the transaction.
       * @return the ID assigned to the transaction.
       */
-     public String getTransactionID() {
+     public String getTransactionId() {
           return this.transactionId;
      }
 
@@ -151,7 +151,7 @@ public class AuthorizationResponse implements ICoreResponse, IApprovalResponse, 
       * Sets the ID assigned to the batch.
       * @param value the ID assigned to the batch.
       */
-     public void setBatchID(String value) {
+     public void setBatchId(String value) {
           this.batchId = value;
      }
 
@@ -159,7 +159,7 @@ public class AuthorizationResponse implements ICoreResponse, IApprovalResponse, 
       * Gets the ID assigned to the batch.
       * @return the ID assigned to the batch.
       */
-     public String getBatchID() {
+     public String getBatchId() {
           return this.batchId;
      }
 
@@ -365,7 +365,7 @@ public class AuthorizationResponse implements ICoreResponse, IApprovalResponse, 
       * Sets the masked primary account number.
       * @param value the masked primary account number.
       */
-     public void setMaskedPAN(String value) {
+     public void setMaskedPan(String value) {
           this.maskedPan = value;
      }
 
@@ -373,7 +373,7 @@ public class AuthorizationResponse implements ICoreResponse, IApprovalResponse, 
       * Gets the masked primary account number.
       * @return the masked primary account number.
       */
-     public String getMaskedPAN() {
+     public String getMaskedPan() {
           return this.maskedPan;
      }
 
@@ -479,7 +479,7 @@ public class AuthorizationResponse implements ICoreResponse, IApprovalResponse, 
       * Sets whether or not a request was settled on an FSA card.
       * @param value whether or not a request was settled on an FSA card.
       */
-     public void setFSAAuth(boolean value) {
+     public void setFsaAuth(boolean value) {
           this.fsaAuth = value;
      }
 
@@ -487,7 +487,7 @@ public class AuthorizationResponse implements ICoreResponse, IApprovalResponse, 
       * Gets whether or not a request was settled on an FSA card.
       * @return whether or not a request was settled on an FSA card.
       */
-     public boolean isFSAAuth() {
+     public boolean isFsaAuth() {
           return this.fsaAuth;
      }
 

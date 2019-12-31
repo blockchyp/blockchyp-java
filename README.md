@@ -12,14 +12,6 @@ commons-httpclient-3.1 and we also use commons-lang, commons-io, and commons-cod
 JCE provider for encryption services, but we don't use any Bouncy Castle specific classes so if you exclude this
 dependency you should still be fine with the standard Java stuff.
 
-## Getting a Developer Terminal
-
-If you don't already have a test terminal, login to the BlockChyp dashboard and order a developer terminal
-kit.  You'll get a swanky new Equinox Luxe 8500i terminal and a set of test cards.
-
-If you don't have BlockChyp dashboard access, contact us at support@blockchyp.com to get setup.  Right now, developer
-accounts are available by invitation only.  Just ping us and if we deem you worthy, we'll set you up with a developer account.
-Don't worry.  We're pretty lenient when it comes to deeming.
 
 ## Getting the SDK
 
@@ -433,6 +425,7 @@ import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.dto.BalanceRequest;
 import com.blockchyp.client.dto.BalanceResponse;
+import com.blockchyp.client.dto.CardType;
 
 
 public class BalanceExample {
@@ -528,6 +521,7 @@ import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.dto.TermsAndConditionsRequest;
 import com.blockchyp.client.dto.TermsAndConditionsResponse;
+import com.blockchyp.client.dto.SignatureFormat;
 
 
 public class TermsAndConditionsExample {
@@ -545,9 +539,9 @@ public class TermsAndConditionsExample {
         TermsAndConditionsRequest request = new TermsAndConditionsRequest();
         request.setTest(true);
         request.setTerminalName("Test Terminal");
-        request.setTCAlias("hippa"); // Alias for a T&C template configured in blockchyp.
-        request.setTCName("HIPPA Disclosure"); // Name of the contract or document if not using an alias.
-        request.setTCContent("Full contract text"); // Full text of the contract or disclosure if not using an alias.
+        request.setTcAlias("hippa"); // Alias for a T&C template configured in blockchyp.
+        request.setTcName("HIPPA Disclosure"); // Name of the contract or document if not using an alias.
+        request.setTcContent("Full contract text"); // Full text of the contract or disclosure if not using an alias.
         request.setSigFormat(SignatureFormat.PNG); // file format for the signature image.
         request.setSigWidth(200); // width of the signature image in pixels.
         request.setSigRequired(true); // Whether or not a signature is required. Defaults to true.
@@ -757,6 +751,7 @@ import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.dto.TextPromptRequest;
 import com.blockchyp.client.dto.TextPromptResponse;
+import com.blockchyp.client.dto.PromptType;
 
 
 public class TextPromptExample {
@@ -921,7 +916,7 @@ public class RefundExample {
         // setup request object
         RefundRequest request = new RefundRequest();
         request.setTerminalName("Test Terminal");
-        request.setTransactionID("<PREVIOUS TRANSACTION ID>");
+        request.setTransactionId("<PREVIOUS TRANSACTION ID>");
         request.setAmount("5.00"); // Optional amount for partial refunds.
 
         AuthorizationResponse response = client.refund(request);
@@ -1123,7 +1118,7 @@ public class CaptureExample {
         // setup request object
         CaptureRequest request = new CaptureRequest();
         request.setTest(true);
-        request.setTransactionID("<PREAUTH TRANSACTION ID>");
+        request.setTransactionId("<PREAUTH TRANSACTION ID>");
 
         CaptureResponse response = client.capture(request);
 
@@ -1218,7 +1213,7 @@ public class VoidExample {
         // setup request object
         VoidRequest request = new VoidRequest();
         request.setTest(true);
-        request.setTransactionID("<PREVIOUS TRANSACTION ID>");
+        request.setTransactionId("<PREVIOUS TRANSACTION ID>");
 
         VoidResponse response = client.voidTx(request);
 

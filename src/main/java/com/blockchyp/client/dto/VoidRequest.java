@@ -113,7 +113,7 @@ public class VoidRequest implements ICoreRequest, IPreviousTransaction {
       * Sets the ID of the previous transaction being referenced.
       * @param value the ID of the previous transaction being referenced.
       */
-     public void setTransactionID(String value) {
+     public void setTransactionId(String value) {
           this.transactionId = value;
      }
 
@@ -121,7 +121,7 @@ public class VoidRequest implements ICoreRequest, IPreviousTransaction {
       * Gets the ID of the previous transaction being referenced.
       * @return the ID of the previous transaction being referenced.
       */
-     public String getTransactionID() {
+     public String getTransactionId() {
           return this.transactionId;
      }
 

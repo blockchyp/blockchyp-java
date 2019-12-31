@@ -23,13 +23,15 @@ import com.blockchyp.client.dto.TransactionDisplayTransaction;
 import com.blockchyp.client.dto.TransactionDisplayItem;
 import com.blockchyp.client.dto.TransactionDisplayDiscount;
 
-public class NewTransactionDisplayTest {
+public class NewTransactionDisplayTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
     public void testTransaction() throws Exception {
 
          BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+
+         processTestDelay(client, "NewTransactionDisplayTest");
 
 
 

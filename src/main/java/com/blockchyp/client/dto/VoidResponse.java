@@ -109,7 +109,7 @@ public class VoidResponse implements ICoreResponse, IApprovalResponse, IPaymentM
       * Sets the ID assigned to the transaction.
       * @param value the ID assigned to the transaction.
       */
-     public void setTransactionID(String value) {
+     public void setTransactionId(String value) {
           this.transactionId = value;
      }
 
@@ -117,7 +117,7 @@ public class VoidResponse implements ICoreResponse, IApprovalResponse, IPaymentM
       * Gets the ID assigned to the transaction.
       * @return the ID assigned to the transaction.
       */
-     public String getTransactionID() {
+     public String getTransactionId() {
           return this.transactionId;
      }
 
@@ -125,7 +125,7 @@ public class VoidResponse implements ICoreResponse, IApprovalResponse, IPaymentM
       * Sets the ID assigned to the batch.
       * @param value the ID assigned to the batch.
       */
-     public void setBatchID(String value) {
+     public void setBatchId(String value) {
           this.batchId = value;
      }
 
@@ -133,7 +133,7 @@ public class VoidResponse implements ICoreResponse, IApprovalResponse, IPaymentM
       * Gets the ID assigned to the batch.
       * @return the ID assigned to the batch.
       */
-     public String getBatchID() {
+     public String getBatchId() {
           return this.batchId;
      }
 
@@ -339,7 +339,7 @@ public class VoidResponse implements ICoreResponse, IApprovalResponse, IPaymentM
       * Sets the masked primary account number.
       * @param value the masked primary account number.
       */
-     public void setMaskedPAN(String value) {
+     public void setMaskedPan(String value) {
           this.maskedPan = value;
      }
 
@@ -347,7 +347,7 @@ public class VoidResponse implements ICoreResponse, IApprovalResponse, IPaymentM
       * Gets the masked primary account number.
       * @return the masked primary account number.
       */
-     public String getMaskedPAN() {
+     public String getMaskedPan() {
           return this.maskedPan;
      }
 

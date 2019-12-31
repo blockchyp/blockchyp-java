@@ -20,13 +20,15 @@ import com.blockchyp.client.IntegrationTestConfiguration;
 import com.blockchyp.client.dto.GiftActivateRequest;
 import com.blockchyp.client.dto.GiftActivateResponse;
 
-public class SimpleGiftActivateTest {
+public class SimpleGiftActivateTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
     public void testTransaction() throws Exception {
 
          BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+
+         processTestDelay(client, "SimpleGiftActivateTest");
 
 
 

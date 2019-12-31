@@ -23,7 +23,7 @@ public class VoidExample {
         // setup request object
         VoidRequest request = new VoidRequest();
         request.setTest(true);
-        request.setTransactionID("<PREVIOUS TRANSACTION ID>");
+        request.setTransactionId("<PREVIOUS TRANSACTION ID>");
 
         VoidResponse response = client.voidTx(request);
 

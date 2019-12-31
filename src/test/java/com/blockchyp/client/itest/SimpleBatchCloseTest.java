@@ -19,14 +19,32 @@ import com.blockchyp.client.IntegrationTest;
 import com.blockchyp.client.IntegrationTestConfiguration;
 import com.blockchyp.client.dto.CloseBatchRequest;
 import com.blockchyp.client.dto.CloseBatchResponse;
+import com.blockchyp.client.dto.AuthorizationRequest;
+import com.blockchyp.client.dto.AuthorizationResponse;
 
-public class SimpleBatchCloseTest {
+public class SimpleBatchCloseTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
     public void testTransaction() throws Exception {
 
          BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+
+         processTestDelay(client, "SimpleBatchCloseTest");
+
+
+	     // setup request object
+         AuthorizationRequest setupRequest = new AuthorizationRequest();
+
+         setupRequest.setPan("4111111111111111");
+
+         setupRequest.setAmount("25.55");
+
+         setupRequest.setTest(true);
+
+         setupRequest.setTransactionRef(getUUID());
+
+         AuthorizationResponse setupResponse = client.charge(setupRequest);
 
 
 

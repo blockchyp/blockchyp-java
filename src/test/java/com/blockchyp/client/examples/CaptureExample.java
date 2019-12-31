@@ -23,7 +23,7 @@ public class CaptureExample {
         // setup request object
         CaptureRequest request = new CaptureRequest();
         request.setTest(true);
-        request.setTransactionID("<PREAUTH TRANSACTION ID>");
+        request.setTransactionId("<PREAUTH TRANSACTION ID>");
 
         CaptureResponse response = client.capture(request);
 

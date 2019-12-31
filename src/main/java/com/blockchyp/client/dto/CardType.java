@@ -1,4 +1,6 @@
-package com.blockchyp.client;
+package com.blockchyp.client.dto;
+
+import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum CardType {
 
@@ -14,8 +16,11 @@ public enum CardType {
         this.code = code;
     }
     
+    @JsonValue
     public int getCode() {
         return this.code;
     }
+   
+    
     
 }

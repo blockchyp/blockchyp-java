@@ -1,7 +1,6 @@
 package com.blockchyp.client.crypto;
 
 import java.security.SecureRandom;
-
 import java.security.spec.AlgorithmParameterSpec;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -41,10 +40,16 @@ public final class CryptoUtils {
 
     private static CryptoUtils instance;
 
-    private SecureRandom rand;
+    private static Random rand;
 
     private CryptoUtils() {
-        rand = new SecureRandom();
+    	if (rand == null) {
+    		try {
+    			rand = new SecureRandom();
+    		} catch (Exception e) {
+    			e.printStackTrace();
+    		}
+    	}
     }
 
     /**
@@ -184,11 +189,11 @@ public final class CryptoUtils {
     public byte[] randomBytes(int len) {
 
         byte[] results = new byte[len];
-
-        rand.nextBytes(results);
-
+        byte[] buf = new byte[len * 2];
+        int offset = rand.nextInt(len);
+        rand.nextBytes(buf);
+        System.arraycopy(buf, offset, results, 0, len);
         return results;
-
     }
 
 }

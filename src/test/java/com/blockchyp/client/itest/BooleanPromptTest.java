@@ -20,13 +20,15 @@ import com.blockchyp.client.IntegrationTestConfiguration;
 import com.blockchyp.client.dto.BooleanPromptRequest;
 import com.blockchyp.client.dto.BooleanPromptResponse;
 
-public class BooleanPromptTest {
+public class BooleanPromptTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
     public void testTransaction() throws Exception {
 
          BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+
+         processTestDelay(client, "BooleanPromptTest");
 
 
 

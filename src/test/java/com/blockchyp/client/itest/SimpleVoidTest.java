@@ -22,7 +22,7 @@ import com.blockchyp.client.dto.VoidResponse;
 import com.blockchyp.client.dto.AuthorizationRequest;
 import com.blockchyp.client.dto.AuthorizationResponse;
 
-public class SimpleVoidTest {
+public class SimpleVoidTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
@@ -30,17 +30,19 @@ public class SimpleVoidTest {
 
          BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
+         processTestDelay(client, "SimpleVoidTest");
+
 
 	     // setup request object
          AuthorizationRequest setupRequest = new AuthorizationRequest();
 
-         setupRequest.setPAN("4111111111111111");
+         setupRequest.setPan("4111111111111111");
 
          setupRequest.setAmount("25.55");
 
          setupRequest.setTest(true);
 
-         setupRequest.setTransactionRef();
+         setupRequest.setTransactionRef(getUUID());
 
          AuthorizationResponse setupResponse = client.charge(setupRequest);
 
@@ -48,7 +50,7 @@ public class SimpleVoidTest {
 
          // setup request object
          VoidRequest request = new VoidRequest();
-         request.setTransactionID(setupResponse.getTransactionID());
+         request.setTransactionId(setupResponse.getTransactionId());
          request.setTest(true);
 
          VoidResponse response = client.voidTx(request);

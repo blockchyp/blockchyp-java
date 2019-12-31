@@ -23,7 +23,7 @@ public class RefundExample {
         // setup request object
         RefundRequest request = new RefundRequest();
         request.setTerminalName("Test Terminal");
-        request.setTransactionID("<PREVIOUS TRANSACTION ID>");
+        request.setTransactionId("<PREVIOUS TRANSACTION ID>");
         request.setAmount("5.00"); // Optional amount for partial refunds.
 
         AuthorizationResponse response = client.refund(request);

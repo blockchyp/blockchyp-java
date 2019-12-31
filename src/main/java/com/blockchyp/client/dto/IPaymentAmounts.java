@@ -11,7 +11,7 @@ public interface IPaymentAmounts {
 
      boolean isAltCurrency();
 
-     boolean isFSAAuth();
+     boolean isFsaAuth();
 
      String getCurrencyCode();
 

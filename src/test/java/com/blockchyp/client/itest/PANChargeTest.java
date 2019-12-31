@@ -20,7 +20,7 @@ import com.blockchyp.client.IntegrationTestConfiguration;
 import com.blockchyp.client.dto.AuthorizationRequest;
 import com.blockchyp.client.dto.AuthorizationResponse;
 
-public class PANChargeTest {
+public class PANChargeTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
@@ -28,13 +28,16 @@ public class PANChargeTest {
 
          BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
+         processTestDelay(client, "PANChargeTest");
+
 
 
          // setup request object
          AuthorizationRequest request = new AuthorizationRequest();
-         request.setPAN("4111111111111111");
+         request.setPan("4111111111111111");
          request.setAmount("25.55");
          request.setTest(true);
+         request.setTransactionRef(getUUID());
 
          AuthorizationResponse response = client.charge(request);
 
@@ -43,8 +46,8 @@ public class PANChargeTest {
          Assert.assertTrue(response.isApproved());
          Assert.assertTrue(response.isTest());
          Assert.assertTrue(response.getAuthCode().length() == 6);
-         Assert.assertNotNull(response.getTransactionID());
-         Assert.assertTrue(response.getTransactionID().trim().length() > 0);
+         Assert.assertNotNull(response.getTransactionId());
+         Assert.assertTrue(response.getTransactionId().trim().length() > 0);
          Assert.assertNotNull(response.getTimestamp());
          Assert.assertTrue(response.getTimestamp().trim().length() > 0);
          Assert.assertNotNull(response.getTickBlock());
@@ -52,8 +55,8 @@ public class PANChargeTest {
          Assert.assertEquals("Approved", response.getResponseDescription());
          Assert.assertNotNull(response.getPaymentType());
          Assert.assertTrue(response.getPaymentType().trim().length() > 0);
-         Assert.assertNotNull(response.getMaskedPAN());
-         Assert.assertTrue(response.getMaskedPAN().trim().length() > 0);
+         Assert.assertNotNull(response.getMaskedPan());
+         Assert.assertTrue(response.getMaskedPan().trim().length() > 0);
          Assert.assertNotNull(response.getEntryMethod());
          Assert.assertTrue(response.getEntryMethod().trim().length() > 0);
          Assert.assertEquals("25.55", response.getAuthorizedAmount());

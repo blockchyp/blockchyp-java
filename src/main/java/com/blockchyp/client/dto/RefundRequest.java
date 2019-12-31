@@ -7,8 +7,8 @@
  */
 package com.blockchyp.client.dto;
 
-import com.blockchyp.client.CardType;
-import com.blockchyp.client.SignatureFormat;
+import com.blockchyp.client.dto.CardType;
+import com.blockchyp.client.dto.SignatureFormat;
 
 /**
  * Refund requests.
@@ -241,7 +241,7 @@ public class RefundRequest implements ICoreRequest, ITerminalReference, IPayment
       * e-commerce tokenization libraries instead of passing account numbers in
       * directly, as this would put your application in PCI scope.
       */
-     public void setPAN(String value) {
+     public void setPan(String value) {
           this.pan = value;
      }
 
@@ -251,7 +251,7 @@ public class RefundRequest implements ICoreRequest, ITerminalReference, IPayment
       * e-commerce tokenization libraries instead of passing account numbers in
       * directly, as this would put your application in PCI scope.
       */
-     public String getPAN() {
+     public String getPan() {
           return this.pan;
      }
 
@@ -325,7 +325,7 @@ public class RefundRequest implements ICoreRequest, ITerminalReference, IPayment
       * Sets the card CVV for use with PAN based transactions.
       * @param value the card CVV for use with PAN based transactions.
       */
-     public void setCVV(String value) {
+     public void setCvv(String value) {
           this.cvv = value;
      }
 
@@ -333,7 +333,7 @@ public class RefundRequest implements ICoreRequest, ITerminalReference, IPayment
       * Gets the card CVV for use with PAN based transactions.
       * @return the card CVV for use with PAN based transactions.
       */
-     public String getCVV() {
+     public String getCvv() {
           return this.cvv;
      }
 
@@ -391,7 +391,7 @@ public class RefundRequest implements ICoreRequest, ITerminalReference, IPayment
       * Sets the key serial number used for DUKPT encryption.
       * @param value the key serial number used for DUKPT encryption.
       */
-     public void setKSN(String value) {
+     public void setKsn(String value) {
           this.ksn = value;
      }
 
@@ -399,7 +399,7 @@ public class RefundRequest implements ICoreRequest, ITerminalReference, IPayment
       * Gets the key serial number used for DUKPT encryption.
       * @return the key serial number used for DUKPT encryption.
       */
-     public String getKSN() {
+     public String getKsn() {
           return this.ksn;
      }
 
@@ -407,7 +407,7 @@ public class RefundRequest implements ICoreRequest, ITerminalReference, IPayment
       * Sets the encrypted pin block.
       * @param value the encrypted pin block.
       */
-     public void setPINBlock(String value) {
+     public void setPinBlock(String value) {
           this.pinBlock = value;
      }
 
@@ -415,7 +415,7 @@ public class RefundRequest implements ICoreRequest, ITerminalReference, IPayment
       * Gets the encrypted pin block.
       * @return the encrypted pin block.
       */
-     public String getPINBlock() {
+     public String getPinBlock() {
           return this.pinBlock;
      }
 
@@ -556,7 +556,7 @@ public class RefundRequest implements ICoreRequest, ITerminalReference, IPayment
       * will be charged if an FSA card is presented. If the FSA amount is paid on an FSA card,
       * then the FSA amount authorized will be indicated on the response.
       */
-     public void setFSAEligibleAmount(String value) {
+     public void setFsaEligibleAmount(String value) {
           this.fsaEligibleAmount = value;
      }
 
@@ -567,7 +567,7 @@ public class RefundRequest implements ICoreRequest, ITerminalReference, IPayment
       * be charged if an FSA card is presented. If the FSA amount is paid on an FSA card, then
       * the FSA amount authorized will be indicated on the response.
       */
-     public String getFSAEligibleAmount() {
+     public String getFsaEligibleAmount() {
           return this.fsaEligibleAmount;
      }
 
@@ -575,7 +575,7 @@ public class RefundRequest implements ICoreRequest, ITerminalReference, IPayment
       * Sets the amount of the transaction that should be charged to an HSA card.
       * @param value the amount of the transaction that should be charged to an HSA card.
       */
-     public void setHSAEligibleAmount(String value) {
+     public void setHsaEligibleAmount(String value) {
           this.hsaEligibleAmount = value;
      }
 
@@ -583,7 +583,7 @@ public class RefundRequest implements ICoreRequest, ITerminalReference, IPayment
       * Gets the amount of the transaction that should be charged to an HSA card.
       * @return the amount of the transaction that should be charged to an HSA card.
       */
-     public String getHSAEligibleAmount() {
+     public String getHsaEligibleAmount() {
           return this.hsaEligibleAmount;
      }
 
@@ -591,7 +591,7 @@ public class RefundRequest implements ICoreRequest, ITerminalReference, IPayment
       * Sets the amount of the transaction that should be charged to an EBT card.
       * @param value the amount of the transaction that should be charged to an EBT card.
       */
-     public void setEBTEligibleAmount(String value) {
+     public void setEbtEligibleAmount(String value) {
           this.ebtEligibleAmount = value;
      }
 
@@ -599,7 +599,7 @@ public class RefundRequest implements ICoreRequest, ITerminalReference, IPayment
       * Gets the amount of the transaction that should be charged to an EBT card.
       * @return the amount of the transaction that should be charged to an EBT card.
       */
-     public String getEBTEligibleAmount() {
+     public String getEbtEligibleAmount() {
           return this.ebtEligibleAmount;
      }
 
@@ -663,7 +663,7 @@ public class RefundRequest implements ICoreRequest, ITerminalReference, IPayment
       * Sets the ID of the previous transaction being referenced.
       * @param value the ID of the previous transaction being referenced.
       */
-     public void setTransactionID(String value) {
+     public void setTransactionId(String value) {
           this.transactionId = value;
      }
 
@@ -671,7 +671,7 @@ public class RefundRequest implements ICoreRequest, ITerminalReference, IPayment
       * Gets the ID of the previous transaction being referenced.
       * @return the ID of the previous transaction being referenced.
       */
-     public String getTransactionID() {
+     public String getTransactionId() {
           return this.transactionId;
      }
 

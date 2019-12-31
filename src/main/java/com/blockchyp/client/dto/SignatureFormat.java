@@ -1,4 +1,6 @@
-package com.blockchyp.client;
+package com.blockchyp.client.dto;
+
+import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum SignatureFormat {
 
@@ -13,6 +15,7 @@ public enum SignatureFormat {
         this.code = code;
     }
 
+    @JsonValue
     public String getCode() {
         return this.code;
     }

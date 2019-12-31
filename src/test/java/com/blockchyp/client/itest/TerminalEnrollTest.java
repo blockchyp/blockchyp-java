@@ -20,13 +20,15 @@ import com.blockchyp.client.IntegrationTestConfiguration;
 import com.blockchyp.client.dto.EnrollRequest;
 import com.blockchyp.client.dto.EnrollResponse;
 
-public class TerminalEnrollTest {
+public class TerminalEnrollTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
     public void testTransaction() throws Exception {
 
          BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+
+         processTestDelay(client, "TerminalEnrollTest");
 
 
 
@@ -42,8 +44,8 @@ public class TerminalEnrollTest {
          Assert.assertTrue(response.isApproved());
          Assert.assertTrue(response.isTest());
          Assert.assertTrue(response.getAuthCode().length() == 6);
-         Assert.assertNotNull(response.getTransactionID());
-         Assert.assertTrue(response.getTransactionID().trim().length() > 0);
+         Assert.assertNotNull(response.getTransactionId());
+         Assert.assertTrue(response.getTransactionId().trim().length() > 0);
          Assert.assertNotNull(response.getTimestamp());
          Assert.assertTrue(response.getTimestamp().trim().length() > 0);
          Assert.assertNotNull(response.getTickBlock());
@@ -51,8 +53,8 @@ public class TerminalEnrollTest {
          Assert.assertEquals("Approved", response.getResponseDescription());
          Assert.assertNotNull(response.getPaymentType());
          Assert.assertTrue(response.getPaymentType().trim().length() > 0);
-         Assert.assertNotNull(response.getMaskedPAN());
-         Assert.assertTrue(response.getMaskedPAN().trim().length() > 0);
+         Assert.assertNotNull(response.getMaskedPan());
+         Assert.assertTrue(response.getMaskedPan().trim().length() > 0);
          Assert.assertNotNull(response.getEntryMethod());
          Assert.assertTrue(response.getEntryMethod().trim().length() > 0);
          Assert.assertNotNull(response.getToken());

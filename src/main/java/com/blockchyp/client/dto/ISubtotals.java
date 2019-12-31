@@ -13,11 +13,11 @@ public interface ISubtotals {
 
      String getCashBackAmount();
 
-     String getFSAEligibleAmount();
+     String getFsaEligibleAmount();
 
-     String getHSAEligibleAmount();
+     String getHsaEligibleAmount();
 
-     String getEBTEligibleAmount();
+     String getEbtEligibleAmount();
 
 
 }

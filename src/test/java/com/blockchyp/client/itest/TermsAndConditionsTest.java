@@ -19,8 +19,9 @@ import com.blockchyp.client.IntegrationTest;
 import com.blockchyp.client.IntegrationTestConfiguration;
 import com.blockchyp.client.dto.TermsAndConditionsRequest;
 import com.blockchyp.client.dto.TermsAndConditionsResponse;
+import com.blockchyp.client.dto.SignatureFormat;
 
-public class TermsAndConditionsTest {
+public class TermsAndConditionsTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
@@ -28,14 +29,16 @@ public class TermsAndConditionsTest {
 
          BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
+         processTestDelay(client, "TermsAndConditionsTest");
+
 
 
          // setup request object
          TermsAndConditionsRequest request = new TermsAndConditionsRequest();
          request.setTest(true);
          request.setTerminalName("Test Terminal");
-         request.setTCName("HIPPA Disclosure");
-         request.setTCContent("Full contract text");
+         request.setTcName("HIPPA Disclosure");
+         request.setTcContent("Full contract text");
          request.setSigFormat(SignatureFormat.PNG);
          request.setSigWidth(200);
          request.setSigRequired(true);

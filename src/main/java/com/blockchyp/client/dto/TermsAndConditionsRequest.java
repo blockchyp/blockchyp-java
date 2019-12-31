@@ -7,7 +7,7 @@
  */
 package com.blockchyp.client.dto;
 
-import com.blockchyp.client.SignatureFormat;
+import com.blockchyp.client.dto.SignatureFormat;
 
 /**
  * The fields needed for custom T&C prompts.
@@ -146,7 +146,7 @@ public class TermsAndConditionsRequest implements ICoreRequest, ITerminalReferen
       * Sets the ID of the previous transaction being referenced.
       * @param value the ID of the previous transaction being referenced.
       */
-     public void setTransactionID(String value) {
+     public void setTransactionId(String value) {
           this.transactionId = value;
      }
 
@@ -154,7 +154,7 @@ public class TermsAndConditionsRequest implements ICoreRequest, ITerminalReferen
       * Gets the ID of the previous transaction being referenced.
       * @return the ID of the previous transaction being referenced.
       */
-     public String getTransactionID() {
+     public String getTransactionId() {
           return this.transactionId;
      }
 
@@ -218,7 +218,7 @@ public class TermsAndConditionsRequest implements ICoreRequest, ITerminalReferen
       * Sets a reference to a T&C assembled in the dashboard.
       * @param value a reference to a T&C assembled in the dashboard.
       */
-     public void setTCAlias(String value) {
+     public void setTcAlias(String value) {
           this.tcAlias = value;
      }
 
@@ -226,7 +226,7 @@ public class TermsAndConditionsRequest implements ICoreRequest, ITerminalReferen
       * Gets a reference to a T&C assembled in the dashboard.
       * @return a reference to a T&C assembled in the dashboard.
       */
-     public String getTCAlias() {
+     public String getTcAlias() {
           return this.tcAlias;
      }
 
@@ -234,7 +234,7 @@ public class TermsAndConditionsRequest implements ICoreRequest, ITerminalReferen
       * Sets the name of the T&Cs the user is accepting.
       * @param value the name of the T&Cs the user is accepting.
       */
-     public void setTCName(String value) {
+     public void setTcName(String value) {
           this.tcName = value;
      }
 
@@ -242,7 +242,7 @@ public class TermsAndConditionsRequest implements ICoreRequest, ITerminalReferen
       * Gets the name of the T&Cs the user is accepting.
       * @return the name of the T&Cs the user is accepting.
       */
-     public String getTCName() {
+     public String getTcName() {
           return this.tcName;
      }
 
@@ -251,7 +251,7 @@ public class TermsAndConditionsRequest implements ICoreRequest, ITerminalReferen
       * @param value the content of the terms and conditions that will be presented to the
       * user.
       */
-     public void setTCContent(String value) {
+     public void setTcContent(String value) {
           this.tcContent = value;
      }
 
@@ -259,7 +259,7 @@ public class TermsAndConditionsRequest implements ICoreRequest, ITerminalReferen
       * Gets the content of the terms and conditions that will be presented to the user.
       * @return the content of the terms and conditions that will be presented to the user.
       */
-     public String getTCContent() {
+     public String getTcContent() {
           return this.tcContent;
      }
 

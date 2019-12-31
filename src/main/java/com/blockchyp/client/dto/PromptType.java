@@ -1,4 +1,6 @@
-package com.blockchyp.client;
+package com.blockchyp.client.dto;
+
+import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum PromptType {
 
@@ -14,6 +16,7 @@ public enum PromptType {
         this.code = code;
     }
 
+    @JsonValue
     public String getCode() {
         return this.code;
     }

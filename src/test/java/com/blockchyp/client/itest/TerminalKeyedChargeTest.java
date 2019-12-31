@@ -20,13 +20,15 @@ import com.blockchyp.client.IntegrationTestConfiguration;
 import com.blockchyp.client.dto.AuthorizationRequest;
 import com.blockchyp.client.dto.AuthorizationResponse;
 
-public class TerminalKeyedChargeTest {
+public class TerminalKeyedChargeTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
     public void testTransaction() throws Exception {
 
          BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+
+         processTestDelay(client, "TerminalKeyedChargeTest");
 
 
 
@@ -44,8 +46,8 @@ public class TerminalKeyedChargeTest {
          Assert.assertTrue(response.isApproved());
          Assert.assertTrue(response.isTest());
          Assert.assertTrue(response.getAuthCode().length() == 6);
-         Assert.assertNotNull(response.getTransactionID());
-         Assert.assertTrue(response.getTransactionID().trim().length() > 0);
+         Assert.assertNotNull(response.getTransactionId());
+         Assert.assertTrue(response.getTransactionId().trim().length() > 0);
          Assert.assertNotNull(response.getTimestamp());
          Assert.assertTrue(response.getTimestamp().trim().length() > 0);
          Assert.assertNotNull(response.getTickBlock());
@@ -53,8 +55,8 @@ public class TerminalKeyedChargeTest {
          Assert.assertEquals("Approved", response.getResponseDescription());
          Assert.assertNotNull(response.getPaymentType());
          Assert.assertTrue(response.getPaymentType().trim().length() > 0);
-         Assert.assertNotNull(response.getMaskedPAN());
-         Assert.assertTrue(response.getMaskedPAN().trim().length() > 0);
+         Assert.assertNotNull(response.getMaskedPan());
+         Assert.assertTrue(response.getMaskedPan().trim().length() > 0);
          Assert.assertNotNull(response.getEntryMethod());
          Assert.assertTrue(response.getEntryMethod().trim().length() > 0);
          Assert.assertEquals("11.11", response.getAuthorizedAmount());

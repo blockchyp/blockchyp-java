@@ -20,13 +20,15 @@ import com.blockchyp.client.IntegrationTestConfiguration;
 import com.blockchyp.client.dto.MessageRequest;
 import com.blockchyp.client.dto.Acknowledgement;
 
-public class SimpleMessageTest {
+public class SimpleMessageTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
     public void testTransaction() throws Exception {
 
          BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+
+         processTestDelay(client, "SimpleMessageTest");
 
 
 

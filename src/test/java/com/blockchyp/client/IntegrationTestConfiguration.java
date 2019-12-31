@@ -1,6 +1,7 @@
 package com.blockchyp.client;
 
 import java.io.File;
+import java.util.UUID;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.SystemUtils;
@@ -79,8 +80,7 @@ public class IntegrationTestConfiguration {
     
     protected static String getDefaultTerminalName() {
         return getSettings().getDefaultTerminalName();
-    }
-    
+    }   
     
     public static String getGatewayHost() {
         return getSettings().getGatewayHost();

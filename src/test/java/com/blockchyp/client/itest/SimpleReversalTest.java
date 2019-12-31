@@ -19,10 +19,8 @@ import com.blockchyp.client.IntegrationTest;
 import com.blockchyp.client.IntegrationTestConfiguration;
 import com.blockchyp.client.dto.AuthorizationRequest;
 import com.blockchyp.client.dto.AuthorizationResponse;
-import com.blockchyp.client.dto.AuthorizationRequest;
-import com.blockchyp.client.dto.AuthorizationResponse;
 
-public class SimpleReversalTest {
+public class SimpleReversalTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
@@ -30,17 +28,19 @@ public class SimpleReversalTest {
 
          BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
+         processTestDelay(client, "SimpleReversalTest");
+
 
 	     // setup request object
          AuthorizationRequest setupRequest = new AuthorizationRequest();
 
-         setupRequest.setPAN("4111111111111111");
+         setupRequest.setPan("4111111111111111");
 
          setupRequest.setAmount("25.55");
 
          setupRequest.setTest(true);
 
-         setupRequest.setTransactionRef();
+         setupRequest.setTransactionRef(getUUID());
 
          AuthorizationResponse setupResponse = client.charge(setupRequest);
 

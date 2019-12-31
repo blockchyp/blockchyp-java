@@ -1,6 +1,6 @@
 package com.blockchyp.client.dto;
 
-import com.blockchyp.client.SignatureFormat;
+import com.blockchyp.client.dto.SignatureFormat;
 
 /**
  * 

@@ -7,6 +7,7 @@ import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.dto.TextPromptRequest;
 import com.blockchyp.client.dto.TextPromptResponse;
+import com.blockchyp.client.dto.PromptType;
 
 
 public class TextPromptExample {
