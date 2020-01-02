@@ -11,7 +11,7 @@ import com.blockchyp.client.dto.CardType;
 import com.blockchyp.client.dto.SignatureFormat;
 
 /**
- * Refund requests.
+ * A refund request.
  */
 public class RefundRequest implements ICoreRequest, ITerminalReference, IPaymentMethod, IRequestAmount, ISubtotals, ISignatureRequest, IPreviousTransaction {
 

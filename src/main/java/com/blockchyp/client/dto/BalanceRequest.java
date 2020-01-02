@@ -10,7 +10,7 @@ package com.blockchyp.client.dto;
 import com.blockchyp.client.dto.CardType;
 
 /**
- * Balance requests.
+ * A request for the remaining balance on a payment type.
  */
 public class BalanceRequest implements ICoreRequest, IPaymentMethod, ITerminalReference {
 

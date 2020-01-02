@@ -12,7 +12,7 @@ import com.blockchyp.client.dto.SignatureFormat;
 import java.util.Map;
 
 /**
- * Auth requests for charge, preauth, and reverse transaction types.
+ * An authorization request for a charge, preauth, or reverse transaction.
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class AuthorizationRequest implements ICoreRequest, ITerminalReference, IPaymentMethod, IRequestAmount, ISubtotals, ISignatureRequest, IPreviousTransaction {

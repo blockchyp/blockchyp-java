@@ -10,7 +10,7 @@ package com.blockchyp.client.dto;
 import com.blockchyp.client.dto.SignatureFormat;
 
 /**
- * The fields needed for custom T&C prompts.
+ * The fields needed for custom Terms and Conditions prompts.
  */
 public class TermsAndConditionsRequest implements ICoreRequest, ITerminalReference, IPreviousTransaction, ISignatureRequest {
 
@@ -215,32 +215,36 @@ public class TermsAndConditionsRequest implements ICoreRequest, ITerminalReferen
      }
 
      /**
-      * Sets a reference to a T&C assembled in the dashboard.
-      * @param value a reference to a T&C assembled in the dashboard.
+      * Sets an alias for a Terms and Conditions template configured in the BlockChyp
+      * dashboard.
+      * @param value an alias for a Terms and Conditions template configured in the
+      * BlockChyp dashboard.
       */
      public void setTcAlias(String value) {
           this.tcAlias = value;
      }
 
      /**
-      * Gets a reference to a T&C assembled in the dashboard.
-      * @return a reference to a T&C assembled in the dashboard.
+      * Gets an alias for a Terms and Conditions template configured in the BlockChyp
+      * dashboard.
+      * @return an alias for a Terms and Conditions template configured in the BlockChyp
+      * dashboard.
       */
      public String getTcAlias() {
           return this.tcAlias;
      }
 
      /**
-      * Sets the name of the T&Cs the user is accepting.
-      * @param value the name of the T&Cs the user is accepting.
+      * Sets the name of the Terms and Conditions the user is accepting.
+      * @param value the name of the Terms and Conditions the user is accepting.
       */
      public void setTcName(String value) {
           this.tcName = value;
      }
 
      /**
-      * Gets the name of the T&Cs the user is accepting.
-      * @return the name of the T&Cs the user is accepting.
+      * Gets the name of the Terms and Conditions the user is accepting.
+      * @return the name of the Terms and Conditions the user is accepting.
       */
      public String getTcName() {
           return this.tcName;

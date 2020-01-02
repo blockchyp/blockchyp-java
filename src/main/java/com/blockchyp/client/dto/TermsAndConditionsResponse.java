@@ -9,7 +9,7 @@ package com.blockchyp.client.dto;
 
 
 /**
- * A T&C signature capture response.
+ * A signature capture response for Terms and Conditions.
  */
 public class TermsAndConditionsResponse implements ICoreResponse, ISignatureResponse {
 

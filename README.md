@@ -539,7 +539,7 @@ public class TermsAndConditionsExample {
         TermsAndConditionsRequest request = new TermsAndConditionsRequest();
         request.setTest(true);
         request.setTerminalName("Test Terminal");
-        request.setTcAlias("hippa"); // Alias for a T&C template configured in blockchyp.
+        request.setTcAlias("hippa"); // Alias for a Terms and Conditions template configured in the BlockChyp dashboard.
         request.setTcName("HIPPA Disclosure"); // Name of the contract or document if not using an alias.
         request.setTcContent("Full contract text"); // Full text of the contract or disclosure if not using an alias.
         request.setSigFormat(SignatureFormat.PNG); // file format for the signature image.
