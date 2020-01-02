@@ -11,7 +11,7 @@ package com.blockchyp.client.dto;
 /**
  * A basic api acknowledgement.
  */
-public class Acknowledgement {
+public class Acknowledgement implements IAbstractAcknowledgement {
 
      private boolean success;
 

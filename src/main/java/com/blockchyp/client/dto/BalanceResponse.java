@@ -11,7 +11,7 @@ package com.blockchyp.client.dto;
 /**
  * The response to a balance request.
  */
-public class BalanceResponse implements ICoreResponse, IPaymentMethodResponse {
+public class BalanceResponse implements IAbstractAcknowledgement, ICoreResponse, IPaymentMethodResponse {
 
      private boolean success;
 

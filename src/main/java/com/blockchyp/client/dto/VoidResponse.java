@@ -11,13 +11,17 @@ package com.blockchyp.client.dto;
 /**
  * The response to a void request.
  */
-public class VoidResponse implements ICoreResponse, IApprovalResponse, IPaymentMethodResponse {
+public class VoidResponse implements IAbstractAcknowledgement, IApprovalResponse, ICoreResponse, IPaymentMethodResponse, ISignatureResponse {
 
      private boolean success;
 
      private String error;
 
      private String responseDescription;
+
+     private boolean approved;
+
+     private String authCode;
 
      private String transactionId;
 
@@ -35,12 +39,6 @@ public class VoidResponse implements ICoreResponse, IApprovalResponse, IPaymentM
 
      private String sig;
 
-     private boolean approved;
-
-     private String authCode;
-
-     private String sigFile;
-
      private String token;
 
      private String entryMethod;
@@ -56,6 +54,8 @@ public class VoidResponse implements ICoreResponse, IApprovalResponse, IPaymentM
      private String cardHolder;
 
      private ReceiptSuggestions receiptSuggestions;
+
+     private String sigFile;
 
      /**
       * Sets whether or not the request succeeded.
@@ -103,6 +103,38 @@ public class VoidResponse implements ICoreResponse, IApprovalResponse, IPaymentM
       */
      public String getResponseDescription() {
           return this.responseDescription;
+     }
+
+     /**
+      * Sets that the transaction was approved.
+      * @param value that the transaction was approved.
+      */
+     public void setApproved(boolean value) {
+          this.approved = value;
+     }
+
+     /**
+      * Gets that the transaction was approved.
+      * @return that the transaction was approved.
+      */
+     public boolean isApproved() {
+          return this.approved;
+     }
+
+     /**
+      * Sets the auth code from the payment network.
+      * @param value the auth code from the payment network.
+      */
+     public void setAuthCode(String value) {
+          this.authCode = value;
+     }
+
+     /**
+      * Gets the auth code from the payment network.
+      * @return the auth code from the payment network.
+      */
+     public String getAuthCode() {
+          return this.authCode;
      }
 
      /**
@@ -240,54 +272,6 @@ public class VoidResponse implements ICoreResponse, IApprovalResponse, IPaymentM
      }
 
      /**
-      * Sets that the transaction was approved.
-      * @param value that the transaction was approved.
-      */
-     public void setApproved(boolean value) {
-          this.approved = value;
-     }
-
-     /**
-      * Gets that the transaction was approved.
-      * @return that the transaction was approved.
-      */
-     public boolean isApproved() {
-          return this.approved;
-     }
-
-     /**
-      * Sets the auth code from the payment network.
-      * @param value the auth code from the payment network.
-      */
-     public void setAuthCode(String value) {
-          this.authCode = value;
-     }
-
-     /**
-      * Gets the auth code from the payment network.
-      * @return the auth code from the payment network.
-      */
-     public String getAuthCode() {
-          return this.authCode;
-     }
-
-     /**
-      * Sets the hex encoded signature data.
-      * @param value the hex encoded signature data.
-      */
-     public void setSigFile(String value) {
-          this.sigFile = value;
-     }
-
-     /**
-      * Gets the hex encoded signature data.
-      * @return the hex encoded signature data.
-      */
-     public String getSigFile() {
-          return this.sigFile;
-     }
-
-     /**
       * Sets the payment token, if the payment was enrolled in the vault.
       * @param value the payment token, if the payment was enrolled in the vault.
       */
@@ -415,6 +399,22 @@ public class VoidResponse implements ICoreResponse, IApprovalResponse, IPaymentM
       */
      public ReceiptSuggestions getReceiptSuggestions() {
           return this.receiptSuggestions;
+     }
+
+     /**
+      * Sets the hex encoded signature data.
+      * @param value the hex encoded signature data.
+      */
+     public void setSigFile(String value) {
+          this.sigFile = value;
+     }
+
+     /**
+      * Gets the hex encoded signature data.
+      * @return the hex encoded signature data.
+      */
+     public String getSigFile() {
+          return this.sigFile;
      }
 
 }

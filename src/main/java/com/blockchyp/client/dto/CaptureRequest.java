@@ -11,7 +11,7 @@ package com.blockchyp.client.dto;
 /**
  * The information needed to capture a preauth.
  */
-public class CaptureRequest implements ICoreRequest, IRequestAmount, ISubtotals, IPreviousTransaction {
+public class CaptureRequest implements ICoreRequest, IPreviousTransaction, IRequestAmount, ISubtotals {
 
      private String transactionRef;
 
@@ -22,6 +22,8 @@ public class CaptureRequest implements ICoreRequest, IRequestAmount, ISubtotals,
      private boolean test;
 
      private int timeout;
+
+     private String transactionId;
 
      private String currencyCode;
 
@@ -40,8 +42,6 @@ public class CaptureRequest implements ICoreRequest, IRequestAmount, ISubtotals,
      private String hsaEligibleAmount;
 
      private String ebtEligibleAmount;
-
-     private String transactionId;
 
      /**
       * Sets the transaction reference string assigned to the transaction request.
@@ -125,6 +125,22 @@ public class CaptureRequest implements ICoreRequest, IRequestAmount, ISubtotals,
       */
      public int getTimeout() {
           return this.timeout;
+     }
+
+     /**
+      * Sets the ID of the previous transaction being referenced.
+      * @param value the ID of the previous transaction being referenced.
+      */
+     public void setTransactionId(String value) {
+          this.transactionId = value;
+     }
+
+     /**
+      * Gets the ID of the previous transaction being referenced.
+      * @return the ID of the previous transaction being referenced.
+      */
+     public String getTransactionId() {
+          return this.transactionId;
      }
 
      /**
@@ -277,22 +293,6 @@ public class CaptureRequest implements ICoreRequest, IRequestAmount, ISubtotals,
       */
      public String getEbtEligibleAmount() {
           return this.ebtEligibleAmount;
-     }
-
-     /**
-      * Sets the ID of the previous transaction being referenced.
-      * @param value the ID of the previous transaction being referenced.
-      */
-     public void setTransactionId(String value) {
-          this.transactionId = value;
-     }
-
-     /**
-      * Gets the ID of the previous transaction being referenced.
-      * @return the ID of the previous transaction being referenced.
-      */
-     public String getTransactionId() {
-          return this.transactionId;
      }
 
 }

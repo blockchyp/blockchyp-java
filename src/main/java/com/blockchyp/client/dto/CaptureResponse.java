@@ -11,13 +11,17 @@ package com.blockchyp.client.dto;
 /**
  * The response to a capture request.
  */
-public class CaptureResponse implements ICoreResponse, IApprovalResponse, IPaymentMethodResponse, IPaymentAmounts {
+public class CaptureResponse implements IAbstractAcknowledgement, IApprovalResponse, ICoreResponse, IPaymentAmounts, IPaymentMethodResponse {
 
      private boolean success;
 
      private String error;
 
      private String responseDescription;
+
+     private boolean approved;
+
+     private String authCode;
 
      private String transactionId;
 
@@ -34,28 +38,6 @@ public class CaptureResponse implements ICoreResponse, IApprovalResponse, IPayme
      private boolean test;
 
      private String sig;
-
-     private boolean approved;
-
-     private String authCode;
-
-     private String sigFile;
-
-     private String token;
-
-     private String entryMethod;
-
-     private String paymentType;
-
-     private String maskedPan;
-
-     private String publicKey;
-
-     private boolean ScopeAlert;
-
-     private String cardHolder;
-
-     private ReceiptSuggestions receiptSuggestions;
 
      private boolean partialAuth;
 
@@ -78,6 +60,22 @@ public class CaptureResponse implements ICoreResponse, IApprovalResponse, IPayme
      private String requestedCashBackAmount;
 
      private String authorizedCashBackAmount;
+
+     private String token;
+
+     private String entryMethod;
+
+     private String paymentType;
+
+     private String maskedPan;
+
+     private String publicKey;
+
+     private boolean ScopeAlert;
+
+     private String cardHolder;
+
+     private ReceiptSuggestions receiptSuggestions;
 
      /**
       * Sets whether or not the request succeeded.
@@ -125,6 +123,38 @@ public class CaptureResponse implements ICoreResponse, IApprovalResponse, IPayme
       */
      public String getResponseDescription() {
           return this.responseDescription;
+     }
+
+     /**
+      * Sets that the transaction was approved.
+      * @param value that the transaction was approved.
+      */
+     public void setApproved(boolean value) {
+          this.approved = value;
+     }
+
+     /**
+      * Gets that the transaction was approved.
+      * @return that the transaction was approved.
+      */
+     public boolean isApproved() {
+          return this.approved;
+     }
+
+     /**
+      * Sets the auth code from the payment network.
+      * @param value the auth code from the payment network.
+      */
+     public void setAuthCode(String value) {
+          this.authCode = value;
+     }
+
+     /**
+      * Gets the auth code from the payment network.
+      * @return the auth code from the payment network.
+      */
+     public String getAuthCode() {
+          return this.authCode;
      }
 
      /**
@@ -259,184 +289,6 @@ public class CaptureResponse implements ICoreResponse, IApprovalResponse, IPayme
       */
      public String getSig() {
           return this.sig;
-     }
-
-     /**
-      * Sets that the transaction was approved.
-      * @param value that the transaction was approved.
-      */
-     public void setApproved(boolean value) {
-          this.approved = value;
-     }
-
-     /**
-      * Gets that the transaction was approved.
-      * @return that the transaction was approved.
-      */
-     public boolean isApproved() {
-          return this.approved;
-     }
-
-     /**
-      * Sets the auth code from the payment network.
-      * @param value the auth code from the payment network.
-      */
-     public void setAuthCode(String value) {
-          this.authCode = value;
-     }
-
-     /**
-      * Gets the auth code from the payment network.
-      * @return the auth code from the payment network.
-      */
-     public String getAuthCode() {
-          return this.authCode;
-     }
-
-     /**
-      * Sets the hex encoded signature data.
-      * @param value the hex encoded signature data.
-      */
-     public void setSigFile(String value) {
-          this.sigFile = value;
-     }
-
-     /**
-      * Gets the hex encoded signature data.
-      * @return the hex encoded signature data.
-      */
-     public String getSigFile() {
-          return this.sigFile;
-     }
-
-     /**
-      * Sets the payment token, if the payment was enrolled in the vault.
-      * @param value the payment token, if the payment was enrolled in the vault.
-      */
-     public void setToken(String value) {
-          this.token = value;
-     }
-
-     /**
-      * Gets the payment token, if the payment was enrolled in the vault.
-      * @return the payment token, if the payment was enrolled in the vault.
-      */
-     public String getToken() {
-          return this.token;
-     }
-
-     /**
-      * Sets the entry method for the transaction (CHIP, MSR, KEYED, etc).
-      * @param value the entry method for the transaction (CHIP, MSR, KEYED, etc).
-      */
-     public void setEntryMethod(String value) {
-          this.entryMethod = value;
-     }
-
-     /**
-      * Gets the entry method for the transaction (CHIP, MSR, KEYED, etc).
-      * @return the entry method for the transaction (CHIP, MSR, KEYED, etc).
-      */
-     public String getEntryMethod() {
-          return this.entryMethod;
-     }
-
-     /**
-      * Sets the card brand (VISA, MC, AMEX, etc).
-      * @param value the card brand (VISA, MC, AMEX, etc).
-      */
-     public void setPaymentType(String value) {
-          this.paymentType = value;
-     }
-
-     /**
-      * Gets the card brand (VISA, MC, AMEX, etc).
-      * @return the card brand (VISA, MC, AMEX, etc).
-      */
-     public String getPaymentType() {
-          return this.paymentType;
-     }
-
-     /**
-      * Sets the masked primary account number.
-      * @param value the masked primary account number.
-      */
-     public void setMaskedPan(String value) {
-          this.maskedPan = value;
-     }
-
-     /**
-      * Gets the masked primary account number.
-      * @return the masked primary account number.
-      */
-     public String getMaskedPan() {
-          return this.maskedPan;
-     }
-
-     /**
-      * Sets the BlockChyp public key if the user presented a BlockChyp payment card.
-      * @param value the BlockChyp public key if the user presented a BlockChyp payment
-      * card.
-      */
-     public void setPublicKey(String value) {
-          this.publicKey = value;
-     }
-
-     /**
-      * Gets the BlockChyp public key if the user presented a BlockChyp payment card.
-      * @return the BlockChyp public key if the user presented a BlockChyp payment card.
-      */
-     public String getPublicKey() {
-          return this.publicKey;
-     }
-
-     /**
-      * Sets that the transaction did something that would put the system in PCI scope.
-      * @param value that the transaction did something that would put the system in PCI
-      * scope.
-      */
-     public void setScopeAlert(boolean value) {
-          this.ScopeAlert = value;
-     }
-
-     /**
-      * Gets that the transaction did something that would put the system in PCI scope.
-      * @return that the transaction did something that would put the system in PCI scope.
-      */
-     public boolean isScopeAlert() {
-          return this.ScopeAlert;
-     }
-
-     /**
-      * Sets the cardholder name.
-      * @param value the cardholder name.
-      */
-     public void setCardHolder(String value) {
-          this.cardHolder = value;
-     }
-
-     /**
-      * Gets the cardholder name.
-      * @return the cardholder name.
-      */
-     public String getCardHolder() {
-          return this.cardHolder;
-     }
-
-     /**
-      * Sets suggested receipt fields.
-      * @param value suggested receipt fields.
-      */
-     public void setReceiptSuggestions(ReceiptSuggestions value) {
-          this.receiptSuggestions = value;
-     }
-
-     /**
-      * Gets suggested receipt fields.
-      * @return suggested receipt fields.
-      */
-     public ReceiptSuggestions getReceiptSuggestions() {
-          return this.receiptSuggestions;
      }
 
      /**
@@ -617,6 +469,136 @@ public class CaptureResponse implements ICoreResponse, IApprovalResponse, IPayme
       */
      public String getAuthorizedCashBackAmount() {
           return this.authorizedCashBackAmount;
+     }
+
+     /**
+      * Sets the payment token, if the payment was enrolled in the vault.
+      * @param value the payment token, if the payment was enrolled in the vault.
+      */
+     public void setToken(String value) {
+          this.token = value;
+     }
+
+     /**
+      * Gets the payment token, if the payment was enrolled in the vault.
+      * @return the payment token, if the payment was enrolled in the vault.
+      */
+     public String getToken() {
+          return this.token;
+     }
+
+     /**
+      * Sets the entry method for the transaction (CHIP, MSR, KEYED, etc).
+      * @param value the entry method for the transaction (CHIP, MSR, KEYED, etc).
+      */
+     public void setEntryMethod(String value) {
+          this.entryMethod = value;
+     }
+
+     /**
+      * Gets the entry method for the transaction (CHIP, MSR, KEYED, etc).
+      * @return the entry method for the transaction (CHIP, MSR, KEYED, etc).
+      */
+     public String getEntryMethod() {
+          return this.entryMethod;
+     }
+
+     /**
+      * Sets the card brand (VISA, MC, AMEX, etc).
+      * @param value the card brand (VISA, MC, AMEX, etc).
+      */
+     public void setPaymentType(String value) {
+          this.paymentType = value;
+     }
+
+     /**
+      * Gets the card brand (VISA, MC, AMEX, etc).
+      * @return the card brand (VISA, MC, AMEX, etc).
+      */
+     public String getPaymentType() {
+          return this.paymentType;
+     }
+
+     /**
+      * Sets the masked primary account number.
+      * @param value the masked primary account number.
+      */
+     public void setMaskedPan(String value) {
+          this.maskedPan = value;
+     }
+
+     /**
+      * Gets the masked primary account number.
+      * @return the masked primary account number.
+      */
+     public String getMaskedPan() {
+          return this.maskedPan;
+     }
+
+     /**
+      * Sets the BlockChyp public key if the user presented a BlockChyp payment card.
+      * @param value the BlockChyp public key if the user presented a BlockChyp payment
+      * card.
+      */
+     public void setPublicKey(String value) {
+          this.publicKey = value;
+     }
+
+     /**
+      * Gets the BlockChyp public key if the user presented a BlockChyp payment card.
+      * @return the BlockChyp public key if the user presented a BlockChyp payment card.
+      */
+     public String getPublicKey() {
+          return this.publicKey;
+     }
+
+     /**
+      * Sets that the transaction did something that would put the system in PCI scope.
+      * @param value that the transaction did something that would put the system in PCI
+      * scope.
+      */
+     public void setScopeAlert(boolean value) {
+          this.ScopeAlert = value;
+     }
+
+     /**
+      * Gets that the transaction did something that would put the system in PCI scope.
+      * @return that the transaction did something that would put the system in PCI scope.
+      */
+     public boolean isScopeAlert() {
+          return this.ScopeAlert;
+     }
+
+     /**
+      * Sets the cardholder name.
+      * @param value the cardholder name.
+      */
+     public void setCardHolder(String value) {
+          this.cardHolder = value;
+     }
+
+     /**
+      * Gets the cardholder name.
+      * @return the cardholder name.
+      */
+     public String getCardHolder() {
+          return this.cardHolder;
+     }
+
+     /**
+      * Sets suggested receipt fields.
+      * @param value suggested receipt fields.
+      */
+     public void setReceiptSuggestions(ReceiptSuggestions value) {
+          this.receiptSuggestions = value;
+     }
+
+     /**
+      * Gets suggested receipt fields.
+      * @return suggested receipt fields.
+      */
+     public ReceiptSuggestions getReceiptSuggestions() {
+          return this.receiptSuggestions;
      }
 
 }

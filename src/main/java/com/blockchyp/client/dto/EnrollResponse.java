@@ -11,13 +11,17 @@ package com.blockchyp.client.dto;
 /**
  * The response to an enroll request.
  */
-public class EnrollResponse implements ICoreResponse, IPaymentMethodResponse, IApprovalResponse {
+public class EnrollResponse implements IAbstractAcknowledgement, IApprovalResponse, ICoreResponse, IPaymentMethodResponse, ISignatureResponse {
 
      private boolean success;
 
      private String error;
 
      private String responseDescription;
+
+     private boolean approved;
+
+     private String authCode;
 
      private String transactionId;
 
@@ -50,10 +54,6 @@ public class EnrollResponse implements ICoreResponse, IPaymentMethodResponse, IA
      private String cardHolder;
 
      private ReceiptSuggestions receiptSuggestions;
-
-     private boolean approved;
-
-     private String authCode;
 
      private String sigFile;
 
@@ -103,6 +103,38 @@ public class EnrollResponse implements ICoreResponse, IPaymentMethodResponse, IA
       */
      public String getResponseDescription() {
           return this.responseDescription;
+     }
+
+     /**
+      * Sets that the transaction was approved.
+      * @param value that the transaction was approved.
+      */
+     public void setApproved(boolean value) {
+          this.approved = value;
+     }
+
+     /**
+      * Gets that the transaction was approved.
+      * @return that the transaction was approved.
+      */
+     public boolean isApproved() {
+          return this.approved;
+     }
+
+     /**
+      * Sets the auth code from the payment network.
+      * @param value the auth code from the payment network.
+      */
+     public void setAuthCode(String value) {
+          this.authCode = value;
+     }
+
+     /**
+      * Gets the auth code from the payment network.
+      * @return the auth code from the payment network.
+      */
+     public String getAuthCode() {
+          return this.authCode;
      }
 
      /**
@@ -367,38 +399,6 @@ public class EnrollResponse implements ICoreResponse, IPaymentMethodResponse, IA
       */
      public ReceiptSuggestions getReceiptSuggestions() {
           return this.receiptSuggestions;
-     }
-
-     /**
-      * Sets that the transaction was approved.
-      * @param value that the transaction was approved.
-      */
-     public void setApproved(boolean value) {
-          this.approved = value;
-     }
-
-     /**
-      * Gets that the transaction was approved.
-      * @return that the transaction was approved.
-      */
-     public boolean isApproved() {
-          return this.approved;
-     }
-
-     /**
-      * Sets the auth code from the payment network.
-      * @param value the auth code from the payment network.
-      */
-     public void setAuthCode(String value) {
-          this.authCode = value;
-     }
-
-     /**
-      * Gets the auth code from the payment network.
-      * @return the auth code from the payment network.
-      */
-     public String getAuthCode() {
-          return this.authCode;
      }
 
      /**

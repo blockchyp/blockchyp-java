@@ -12,7 +12,7 @@ import com.blockchyp.client.dto.SignatureFormat;
 /**
  * The fields needed for custom Terms and Conditions prompts.
  */
-public class TermsAndConditionsRequest implements ICoreRequest, ITerminalReference, IPreviousTransaction, ISignatureRequest {
+public class TermsAndConditionsRequest implements ICoreRequest, IPreviousTransaction, ISignatureRequest, ITerminalReference {
 
      private String transactionRef;
 
@@ -24,8 +24,6 @@ public class TermsAndConditionsRequest implements ICoreRequest, ITerminalReferen
 
      private int timeout;
 
-     private String terminalName;
-
      private String transactionId;
 
      private String sigFile;
@@ -33,6 +31,8 @@ public class TermsAndConditionsRequest implements ICoreRequest, ITerminalReferen
      private SignatureFormat sigFormat;
 
      private int sigWidth;
+
+     private String terminalName;
 
      private String tcAlias;
 
@@ -127,22 +127,6 @@ public class TermsAndConditionsRequest implements ICoreRequest, ITerminalReferen
      }
 
      /**
-      * Sets the name of the target payment terminal.
-      * @param value the name of the target payment terminal.
-      */
-     public void setTerminalName(String value) {
-          this.terminalName = value;
-     }
-
-     /**
-      * Gets the name of the target payment terminal.
-      * @return the name of the target payment terminal.
-      */
-     public String getTerminalName() {
-          return this.terminalName;
-     }
-
-     /**
       * Sets the ID of the previous transaction being referenced.
       * @param value the ID of the previous transaction being referenced.
       */
@@ -212,6 +196,22 @@ public class TermsAndConditionsRequest implements ICoreRequest, ITerminalReferen
       */
      public int getSigWidth() {
           return this.sigWidth;
+     }
+
+     /**
+      * Sets the name of the target payment terminal.
+      * @param value the name of the target payment terminal.
+      */
+     public void setTerminalName(String value) {
+          this.terminalName = value;
+     }
+
+     /**
+      * Gets the name of the target payment terminal.
+      * @return the name of the target payment terminal.
+      */
+     public String getTerminalName() {
+          return this.terminalName;
      }
 
      /**

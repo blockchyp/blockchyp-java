@@ -11,7 +11,7 @@ package com.blockchyp.client.dto;
 /**
  * The response to a gift activate request.
  */
-public class GiftActivateResponse implements ICoreResponse {
+public class GiftActivateResponse implements IAbstractAcknowledgement, ICoreResponse {
 
      private boolean success;
 

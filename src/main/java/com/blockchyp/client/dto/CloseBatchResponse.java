@@ -13,7 +13,7 @@ import java.util.Map;
  * The response to a close batch request.
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
-public class CloseBatchResponse implements ICoreResponse {
+public class CloseBatchResponse implements IAbstractAcknowledgement, ICoreResponse {
 
      private boolean success;
 

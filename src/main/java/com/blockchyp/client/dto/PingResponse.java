@@ -11,7 +11,7 @@ package com.blockchyp.client.dto;
 /**
  * The response to a ping request.
  */
-public class PingResponse implements ICoreResponse {
+public class PingResponse implements IAbstractAcknowledgement, ICoreResponse {
 
      private boolean success;
 

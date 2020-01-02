@@ -13,7 +13,7 @@ import com.blockchyp.client.dto.SignatureFormat;
 /**
  * A refund request.
  */
-public class RefundRequest implements ICoreRequest, ITerminalReference, IPaymentMethod, IRequestAmount, ISubtotals, ISignatureRequest, IPreviousTransaction {
+public class RefundRequest implements ICoreRequest, IPaymentMethod, IPreviousTransaction, IRequestAmount, ISignatureRequest, ISubtotals, ITerminalReference {
 
      private String transactionRef;
 
@@ -24,8 +24,6 @@ public class RefundRequest implements ICoreRequest, ITerminalReference, IPayment
      private boolean test;
 
      private int timeout;
-
-     private String terminalName;
 
      private String token;
 
@@ -59,11 +57,19 @@ public class RefundRequest implements ICoreRequest, ITerminalReference, IPayment
 
      private String paymentType;
 
+     private String transactionId;
+
      private String currencyCode;
 
      private String amount;
 
      private boolean taxExempt;
+
+     private String sigFile;
+
+     private SignatureFormat sigFormat;
+
+     private int sigWidth;
 
      private String tipAmount;
 
@@ -77,13 +83,7 @@ public class RefundRequest implements ICoreRequest, ITerminalReference, IPayment
 
      private String ebtEligibleAmount;
 
-     private String sigFile;
-
-     private SignatureFormat sigFormat;
-
-     private int sigWidth;
-
-     private String transactionId;
+     private String terminalName;
 
      /**
       * Sets the transaction reference string assigned to the transaction request.
@@ -167,22 +167,6 @@ public class RefundRequest implements ICoreRequest, ITerminalReference, IPayment
       */
      public int getTimeout() {
           return this.timeout;
-     }
-
-     /**
-      * Sets the name of the target payment terminal.
-      * @param value the name of the target payment terminal.
-      */
-     public void setTerminalName(String value) {
-          this.terminalName = value;
-     }
-
-     /**
-      * Gets the name of the target payment terminal.
-      * @return the name of the target payment terminal.
-      */
-     public String getTerminalName() {
-          return this.terminalName;
      }
 
      /**
@@ -452,6 +436,22 @@ public class RefundRequest implements ICoreRequest, ITerminalReference, IPayment
      }
 
      /**
+      * Sets the ID of the previous transaction being referenced.
+      * @param value the ID of the previous transaction being referenced.
+      */
+     public void setTransactionId(String value) {
+          this.transactionId = value;
+     }
+
+     /**
+      * Gets the ID of the previous transaction being referenced.
+      * @return the ID of the previous transaction being referenced.
+      */
+     public String getTransactionId() {
+          return this.transactionId;
+     }
+
+     /**
       * Sets the transaction currency code.
       * @param value the transaction currency code.
       */
@@ -499,6 +499,62 @@ public class RefundRequest implements ICoreRequest, ITerminalReference, IPayment
       */
      public boolean isTaxExempt() {
           return this.taxExempt;
+     }
+
+     /**
+      * Sets a location on the filesystem which a customer signature should be written to.
+      * @param value a location on the filesystem which a customer signature should be
+      * written to.
+      */
+     public void setSigFile(String value) {
+          this.sigFile = value;
+     }
+
+     /**
+      * Gets a location on the filesystem which a customer signature should be written to.
+      * @return a location on the filesystem which a customer signature should be written
+      * to.
+      */
+     public String getSigFile() {
+          return this.sigFile;
+     }
+
+     /**
+      * Sets the image format to be used for returning signatures.
+      * @param value the image format to be used for returning signatures.
+      */
+     public void setSigFormat(SignatureFormat value) {
+          this.sigFormat = value;
+     }
+
+     /**
+      * Gets the image format to be used for returning signatures.
+      * @return the image format to be used for returning signatures.
+      */
+     public SignatureFormat getSigFormat() {
+          return this.sigFormat;
+     }
+
+     /**
+      * Sets the width that the signature image should be scaled to, preserving the aspect
+      * ratio.
+      * @param value the width that the signature image should be scaled to, preserving
+      * the aspect ratio. If not provided, the signature is returned in the terminal's max
+      * resolution.
+      */
+     public void setSigWidth(int value) {
+          this.sigWidth = value;
+     }
+
+     /**
+      * Gets the width that the signature image should be scaled to, preserving the aspect
+      * ratio.
+      * @return the width that the signature image should be scaled to, preserving the
+      * aspect ratio. If not provided, the signature is returned in the terminal's max
+      * resolution.
+      */
+     public int getSigWidth() {
+          return this.sigWidth;
      }
 
      /**
@@ -604,75 +660,19 @@ public class RefundRequest implements ICoreRequest, ITerminalReference, IPayment
      }
 
      /**
-      * Sets a location on the filesystem which a customer signature should be written to.
-      * @param value a location on the filesystem which a customer signature should be
-      * written to.
+      * Sets the name of the target payment terminal.
+      * @param value the name of the target payment terminal.
       */
-     public void setSigFile(String value) {
-          this.sigFile = value;
+     public void setTerminalName(String value) {
+          this.terminalName = value;
      }
 
      /**
-      * Gets a location on the filesystem which a customer signature should be written to.
-      * @return a location on the filesystem which a customer signature should be written
-      * to.
+      * Gets the name of the target payment terminal.
+      * @return the name of the target payment terminal.
       */
-     public String getSigFile() {
-          return this.sigFile;
-     }
-
-     /**
-      * Sets the image format to be used for returning signatures.
-      * @param value the image format to be used for returning signatures.
-      */
-     public void setSigFormat(SignatureFormat value) {
-          this.sigFormat = value;
-     }
-
-     /**
-      * Gets the image format to be used for returning signatures.
-      * @return the image format to be used for returning signatures.
-      */
-     public SignatureFormat getSigFormat() {
-          return this.sigFormat;
-     }
-
-     /**
-      * Sets the width that the signature image should be scaled to, preserving the aspect
-      * ratio.
-      * @param value the width that the signature image should be scaled to, preserving
-      * the aspect ratio. If not provided, the signature is returned in the terminal's max
-      * resolution.
-      */
-     public void setSigWidth(int value) {
-          this.sigWidth = value;
-     }
-
-     /**
-      * Gets the width that the signature image should be scaled to, preserving the aspect
-      * ratio.
-      * @return the width that the signature image should be scaled to, preserving the
-      * aspect ratio. If not provided, the signature is returned in the terminal's max
-      * resolution.
-      */
-     public int getSigWidth() {
-          return this.sigWidth;
-     }
-
-     /**
-      * Sets the ID of the previous transaction being referenced.
-      * @param value the ID of the previous transaction being referenced.
-      */
-     public void setTransactionId(String value) {
-          this.transactionId = value;
-     }
-
-     /**
-      * Gets the ID of the previous transaction being referenced.
-      * @return the ID of the previous transaction being referenced.
-      */
-     public String getTransactionId() {
-          return this.transactionId;
+     public String getTerminalName() {
+          return this.terminalName;
      }
 
 }

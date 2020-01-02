@@ -11,7 +11,7 @@ package com.blockchyp.client.dto;
 /**
  * The response to a text prompt request.
  */
-public class TextPromptResponse {
+public class TextPromptResponse implements IAbstractAcknowledgement {
 
      private boolean success;
 

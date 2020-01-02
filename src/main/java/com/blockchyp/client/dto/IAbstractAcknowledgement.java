@@ -9,14 +9,16 @@ package com.blockchyp.client.dto;
 
 
 /**
- * Response fields for an approved transaction.
+ * Fields which should be returned with standard requests.
  */
 
-public interface IApprovalResponse {
+public interface IAbstractAcknowledgement {
 
-     boolean isApproved();
+     boolean isSuccess();
 
-     String getAuthCode();
+     String getError();
+
+     String getResponseDescription();
 
 
 }

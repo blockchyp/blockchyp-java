@@ -36,6 +36,7 @@ import org.bouncycastle.util.encoders.Hex;
 import com.blockchyp.client.crypto.CryptoUtils;
 import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.TerminalRequest;
+import com.blockchyp.client.dto.IAbstractAcknowledgement;
 import com.blockchyp.client.dto.ITerminalReference;
 import com.blockchyp.client.dto.ISignatureResponse;
 import com.blockchyp.client.dto.ISignatureRequest;

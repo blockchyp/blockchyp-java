@@ -12,7 +12,7 @@ import com.blockchyp.client.dto.CardType;
 /**
  * The information needed to enroll a new payment method in the token vault.
  */
-public class EnrollRequest implements ICoreRequest, ITerminalReference, IPaymentMethod {
+public class EnrollRequest implements ICoreRequest, IPaymentMethod, ITerminalReference {
 
      private String transactionRef;
 
@@ -23,8 +23,6 @@ public class EnrollRequest implements ICoreRequest, ITerminalReference, IPayment
      private boolean test;
 
      private int timeout;
-
-     private String terminalName;
 
      private String token;
 
@@ -57,6 +55,8 @@ public class EnrollRequest implements ICoreRequest, ITerminalReference, IPayment
      private CardType cardType;
 
      private String paymentType;
+
+     private String terminalName;
 
      /**
       * Sets the transaction reference string assigned to the transaction request.
@@ -140,22 +140,6 @@ public class EnrollRequest implements ICoreRequest, ITerminalReference, IPayment
       */
      public int getTimeout() {
           return this.timeout;
-     }
-
-     /**
-      * Sets the name of the target payment terminal.
-      * @param value the name of the target payment terminal.
-      */
-     public void setTerminalName(String value) {
-          this.terminalName = value;
-     }
-
-     /**
-      * Gets the name of the target payment terminal.
-      * @return the name of the target payment terminal.
-      */
-     public String getTerminalName() {
-          return this.terminalName;
      }
 
      /**
@@ -422,6 +406,22 @@ public class EnrollRequest implements ICoreRequest, ITerminalReference, IPayment
       */
      public String getPaymentType() {
           return this.paymentType;
+     }
+
+     /**
+      * Sets the name of the target payment terminal.
+      * @param value the name of the target payment terminal.
+      */
+     public void setTerminalName(String value) {
+          this.terminalName = value;
+     }
+
+     /**
+      * Gets the name of the target payment terminal.
+      * @return the name of the target payment terminal.
+      */
+     public String getTerminalName() {
+          return this.terminalName;
      }
 
 }
