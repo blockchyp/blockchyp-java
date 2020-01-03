@@ -676,8 +676,8 @@ public class BlockChypClient {
      * requested it. Notice this does not throw exceptions in order to prevent
      * the calling application from losing track of the authorization.
      *
-     * @param request {@link PaymentRequest}
-     * @param response {@link AuthorizationResponse}
+     * @param request {@link ISignatureRequest}
+     * @param response {@link ISignatureResponse}
      */
     protected void dumpSignatureFile(Object request, Object response) {
 
