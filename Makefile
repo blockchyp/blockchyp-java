@@ -25,12 +25,12 @@ build:
 # Runs unit tests
 .PHONY: test
 test:
-	$(MVN) test
+	$(MVN) test -P unit-test
 
 # Runs integration tests
 .PHONY: integration
 integration:
-	$(MVN) test -Dgroups=com.blockchyp.client.itest.IntegrationTest
+	BC_TEST_DELAY=5 $(MVN) test -P integration
 
 # Performs any tasks necessary before a release build
 .PHONY: stage
