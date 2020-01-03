@@ -265,6 +265,7 @@ You can also view a number of long form demos and learn more about us on our [Yo
 
 You don't want to read words. You want examples. Here's a quick rundown of the
 stuff you can do with the BlockChyp Java SDK and a few basic examples.
+
 #### Charge
 
 Executes a standard direct preauth and capture.
@@ -315,6 +316,7 @@ public class ChargeExample {
 
 
 ```
+
 #### Preauthorization
 
 Executes a preauthorization intended to be captured later.
@@ -365,6 +367,7 @@ public class PreauthExample {
 
 
 ```
+
 #### Terminal Ping
 
 Tests connectivity with a payment terminal.
@@ -411,6 +414,7 @@ public class PingExample {
 
 
 ```
+
 #### Balance
 
 Checks the remaining balance on a payment method.
@@ -460,6 +464,7 @@ public class BalanceExample {
 
 
 ```
+
 #### Terminal Clear
 
 Clears the line item display and any in progress transaction.
@@ -507,6 +512,7 @@ public class ClearExample {
 
 
 ```
+
 #### Terms & Conditions Capture
 
 Prompts the user to accept terms and conditions.
@@ -563,6 +569,7 @@ public class TermsAndConditionsExample {
 
 
 ```
+
 #### Update Transaction Display
 
 Appends items to an existing transaction display Subtotal, Tax, and Total are
@@ -651,6 +658,7 @@ public class UpdateTransactionDisplayExample {
 
 
 ```
+
 #### New Transaction Display
 
 Displays a new transaction on the terminal.
@@ -737,6 +745,7 @@ public class NewTransactionDisplayExample {
 
 
 ```
+
 #### Text Prompt
 
 Asks the consumer text based question.
@@ -787,6 +796,7 @@ public class TextPromptExample {
 
 
 ```
+
 #### Boolean Prompt
 
 Asks the consumer a yes/no question.
@@ -838,6 +848,7 @@ public class BooleanPromptExample {
 
 
 ```
+
 #### Display Message
 
 Displays a short message on the terminal.
@@ -886,6 +897,7 @@ public class MessageExample {
 
 
 ```
+
 #### Refund
 
 Executes a refund.
@@ -934,6 +946,7 @@ public class RefundExample {
 
 
 ```
+
 #### Enroll
 
 Adds a new payment method to the token vault.
@@ -982,6 +995,7 @@ public class EnrollExample {
 
 
 ```
+
 #### Gift Card Activation
 
 Activates or recharges a gift card.
@@ -1033,6 +1047,7 @@ public class GiftActivateExample {
 
 
 ```
+
 #### Time Out Reversal
 
 Executes a manual time out reversal.
@@ -1088,6 +1103,7 @@ public class ReverseExample {
 
 
 ```
+
 #### Capture Preauthorization
 
 Captures a preauthorization.
@@ -1135,6 +1151,7 @@ public class CaptureExample {
 
 
 ```
+
 #### Close Batch
 
 Closes the current credit card batch.
@@ -1183,6 +1200,7 @@ public class CloseBatchExample {
 
 
 ```
+
 #### Void Transaction
 
 Discards a previous preauth transaction.
@@ -1230,6 +1248,7 @@ public class VoidExample {
 
 
 ```
+
 ## Running Integration Tests
 
 If you'd like to run the integration tests, create a new file on your system
