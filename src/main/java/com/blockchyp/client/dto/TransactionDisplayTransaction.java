@@ -7,6 +7,8 @@
  */
 package com.blockchyp.client.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -36,6 +38,7 @@ public class TransactionDisplayTransaction {
       * Gets the subtotal to display.
       * @return the subtotal to display.
       */
+     @JsonProperty("subtotal")
      public String getSubtotal() {
           return this.subtotal;
      }
@@ -52,6 +55,7 @@ public class TransactionDisplayTransaction {
       * Gets the tax to display.
       * @return the tax to display.
       */
+     @JsonProperty("tax")
      public String getTax() {
           return this.tax;
      }
@@ -68,6 +72,7 @@ public class TransactionDisplayTransaction {
       * Gets the total to display.
       * @return the total to display.
       */
+     @JsonProperty("total")
      public String getTotal() {
           return this.total;
      }
@@ -86,6 +91,7 @@ public class TransactionDisplayTransaction {
       * @return an item to display. Can be overwritten or appended, based on the request
       * type.
       */
+     @JsonProperty("items")
      public Collection getItems() {
           return this.items;
      }

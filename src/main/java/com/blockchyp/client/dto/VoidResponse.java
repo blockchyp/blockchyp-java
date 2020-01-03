@@ -7,6 +7,8 @@
  */
 package com.blockchyp.client.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 /**
  * The response to a void request.
@@ -69,6 +71,7 @@ public class VoidResponse implements IAbstractAcknowledgement, IApprovalResponse
       * Gets whether or not the request succeeded.
       * @return whether or not the request succeeded.
       */
+     @JsonProperty("success")
      public boolean isSuccess() {
           return this.success;
      }
@@ -85,6 +88,7 @@ public class VoidResponse implements IAbstractAcknowledgement, IApprovalResponse
       * Gets the error, if an error occurred.
       * @return the error, if an error occurred.
       */
+     @JsonProperty("error")
      public String getError() {
           return this.error;
      }
@@ -101,6 +105,7 @@ public class VoidResponse implements IAbstractAcknowledgement, IApprovalResponse
       * Gets a narrative description of the transaction result.
       * @return a narrative description of the transaction result.
       */
+     @JsonProperty("responseDescription")
      public String getResponseDescription() {
           return this.responseDescription;
      }
@@ -117,6 +122,7 @@ public class VoidResponse implements IAbstractAcknowledgement, IApprovalResponse
       * Gets that the transaction was approved.
       * @return that the transaction was approved.
       */
+     @JsonProperty("approved")
      public boolean isApproved() {
           return this.approved;
      }
@@ -133,6 +139,7 @@ public class VoidResponse implements IAbstractAcknowledgement, IApprovalResponse
       * Gets the auth code from the payment network.
       * @return the auth code from the payment network.
       */
+     @JsonProperty("authCode")
      public String getAuthCode() {
           return this.authCode;
      }
@@ -149,6 +156,7 @@ public class VoidResponse implements IAbstractAcknowledgement, IApprovalResponse
       * Gets the ID assigned to the transaction.
       * @return the ID assigned to the transaction.
       */
+     @JsonProperty("transactionId")
      public String getTransactionId() {
           return this.transactionId;
      }
@@ -165,6 +173,7 @@ public class VoidResponse implements IAbstractAcknowledgement, IApprovalResponse
       * Gets the ID assigned to the batch.
       * @return the ID assigned to the batch.
       */
+     @JsonProperty("batchId")
      public String getBatchId() {
           return this.batchId;
      }
@@ -185,6 +194,7 @@ public class VoidResponse implements IAbstractAcknowledgement, IApprovalResponse
       * If no transaction ref was assiged on the request, then the gateway will randomly
       * generate one.
       */
+     @JsonProperty("transactionRef")
      public String getTransactionRef() {
           return this.transactionRef;
      }
@@ -201,6 +211,7 @@ public class VoidResponse implements IAbstractAcknowledgement, IApprovalResponse
       * Gets the type of transaction.
       * @return the type of transaction.
       */
+     @JsonProperty("transactionType")
      public String getTransactionType() {
           return this.transactionType;
      }
@@ -217,6 +228,7 @@ public class VoidResponse implements IAbstractAcknowledgement, IApprovalResponse
       * Gets the timestamp of the transaction.
       * @return the timestamp of the transaction.
       */
+     @JsonProperty("timestamp")
      public String getTimestamp() {
           return this.timestamp;
      }
@@ -233,6 +245,7 @@ public class VoidResponse implements IAbstractAcknowledgement, IApprovalResponse
       * Gets the hash of the last tick block.
       * @return the hash of the last tick block.
       */
+     @JsonProperty("tickBlock")
      public String getTickBlock() {
           return this.tickBlock;
      }
@@ -249,6 +262,7 @@ public class VoidResponse implements IAbstractAcknowledgement, IApprovalResponse
       * Gets that the transaction was processed on the test gateway.
       * @return that the transaction was processed on the test gateway.
       */
+     @JsonProperty("test")
      public boolean isTest() {
           return this.test;
      }
@@ -267,6 +281,7 @@ public class VoidResponse implements IAbstractAcknowledgement, IApprovalResponse
       * @return the ECC signature of the response. Can be used to ensure that it was signed
       * by the terminal and detect man-in-the middle attacks.
       */
+     @JsonProperty("sig")
      public String getSig() {
           return this.sig;
      }
@@ -283,6 +298,7 @@ public class VoidResponse implements IAbstractAcknowledgement, IApprovalResponse
       * Gets the payment token, if the payment was enrolled in the vault.
       * @return the payment token, if the payment was enrolled in the vault.
       */
+     @JsonProperty("token")
      public String getToken() {
           return this.token;
      }
@@ -299,6 +315,7 @@ public class VoidResponse implements IAbstractAcknowledgement, IApprovalResponse
       * Gets the entry method for the transaction (CHIP, MSR, KEYED, etc).
       * @return the entry method for the transaction (CHIP, MSR, KEYED, etc).
       */
+     @JsonProperty("entryMethod")
      public String getEntryMethod() {
           return this.entryMethod;
      }
@@ -315,6 +332,7 @@ public class VoidResponse implements IAbstractAcknowledgement, IApprovalResponse
       * Gets the card brand (VISA, MC, AMEX, etc).
       * @return the card brand (VISA, MC, AMEX, etc).
       */
+     @JsonProperty("paymentType")
      public String getPaymentType() {
           return this.paymentType;
      }
@@ -331,6 +349,7 @@ public class VoidResponse implements IAbstractAcknowledgement, IApprovalResponse
       * Gets the masked primary account number.
       * @return the masked primary account number.
       */
+     @JsonProperty("maskedPan")
      public String getMaskedPan() {
           return this.maskedPan;
      }
@@ -348,6 +367,7 @@ public class VoidResponse implements IAbstractAcknowledgement, IApprovalResponse
       * Gets the BlockChyp public key if the user presented a BlockChyp payment card.
       * @return the BlockChyp public key if the user presented a BlockChyp payment card.
       */
+     @JsonProperty("publicKey")
      public String getPublicKey() {
           return this.publicKey;
      }
@@ -365,6 +385,7 @@ public class VoidResponse implements IAbstractAcknowledgement, IApprovalResponse
       * Gets that the transaction did something that would put the system in PCI scope.
       * @return that the transaction did something that would put the system in PCI scope.
       */
+     @JsonProperty("ScopeAlert")
      public boolean isScopeAlert() {
           return this.ScopeAlert;
      }
@@ -381,6 +402,7 @@ public class VoidResponse implements IAbstractAcknowledgement, IApprovalResponse
       * Gets the cardholder name.
       * @return the cardholder name.
       */
+     @JsonProperty("cardHolder")
      public String getCardHolder() {
           return this.cardHolder;
      }
@@ -397,6 +419,7 @@ public class VoidResponse implements IAbstractAcknowledgement, IApprovalResponse
       * Gets suggested receipt fields.
       * @return suggested receipt fields.
       */
+     @JsonProperty("receiptSuggestions")
      public ReceiptSuggestions getReceiptSuggestions() {
           return this.receiptSuggestions;
      }
@@ -413,6 +436,7 @@ public class VoidResponse implements IAbstractAcknowledgement, IApprovalResponse
       * Gets the hex encoded signature data.
       * @return the hex encoded signature data.
       */
+     @JsonProperty("sigFile")
      public String getSigFile() {
           return this.sigFile;
      }

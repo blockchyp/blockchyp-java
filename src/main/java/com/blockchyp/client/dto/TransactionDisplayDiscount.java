@@ -7,6 +7,8 @@
  */
 package com.blockchyp.client.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 /**
  * An item level discount for transaction display. Discounts never combine.
@@ -29,6 +31,7 @@ public class TransactionDisplayDiscount {
       * Gets the discount description.
       * @return the discount description.
       */
+     @JsonProperty("description")
      public String getDescription() {
           return this.description;
      }
@@ -45,6 +48,7 @@ public class TransactionDisplayDiscount {
       * Gets the amount of the discount.
       * @return the amount of the discount.
       */
+     @JsonProperty("amount")
      public String getAmount() {
           return this.amount;
      }

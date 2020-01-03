@@ -7,6 +7,8 @@
  */
 package com.blockchyp.client.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.blockchyp.client.dto.CardType;
 import com.blockchyp.client.dto.SignatureFormat;
 import java.util.Map;
@@ -115,6 +117,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * If no transaction ref was assiged on the request, then the gateway will randomly
       * generate one.
       */
+     @JsonProperty("transactionRef")
      public String getTransactionRef() {
           return this.transactionRef;
      }
@@ -131,6 +134,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * Gets an identifier from an external point of sale system.
       * @return an identifier from an external point of sale system.
       */
+     @JsonProperty("orderRef")
      public String getOrderRef() {
           return this.orderRef;
      }
@@ -147,6 +151,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * Gets the settlement account for merchants with split settlements.
       * @return the settlement account for merchants with split settlements.
       */
+     @JsonProperty("destinationAccount")
      public String getDestinationAccount() {
           return this.destinationAccount;
      }
@@ -163,6 +168,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * Gets whether or not to route transaction to the test gateway.
       * @return whether or not to route transaction to the test gateway.
       */
+     @JsonProperty("test")
      public boolean isTest() {
           return this.test;
      }
@@ -179,6 +185,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * Gets the request timeout in milliseconds.
       * @return the request timeout in milliseconds.
       */
+     @JsonProperty("timeout")
      public int getTimeout() {
           return this.timeout;
      }
@@ -197,6 +204,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * @return the payment token to be used for this transaction. This should be used for
       * recurring transactions.
       */
+     @JsonProperty("token")
      public String getToken() {
           return this.token;
      }
@@ -213,6 +221,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * Gets track 1 magnetic stripe data.
       * @return track 1 magnetic stripe data.
       */
+     @JsonProperty("track1")
      public String getTrack1() {
           return this.track1;
      }
@@ -229,6 +238,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * Gets track 2 magnetic stripe data.
       * @return track 2 magnetic stripe data.
       */
+     @JsonProperty("track2")
      public String getTrack2() {
           return this.track2;
      }
@@ -249,6 +259,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * e-commerce tokenization libraries instead of passing account numbers in
       * directly, as this would put your application in PCI scope.
       */
+     @JsonProperty("pan")
      public String getPan() {
           return this.pan;
      }
@@ -265,6 +276,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * Gets the ACH routing number for ACH transactions.
       * @return the ACH routing number for ACH transactions.
       */
+     @JsonProperty("routingNumber")
      public String getRoutingNumber() {
           return this.routingNumber;
      }
@@ -283,6 +295,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * @return the cardholder name. Only required if the request includes a primary
       * account number or track data.
       */
+     @JsonProperty("cardholderName")
      public String getCardholderName() {
           return this.cardholderName;
      }
@@ -299,6 +312,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * Gets the card expiration month for use with PAN based transactions.
       * @return the card expiration month for use with PAN based transactions.
       */
+     @JsonProperty("expMonth")
      public String getExpMonth() {
           return this.expMonth;
      }
@@ -315,6 +329,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * Gets the card expiration year for use with PAN based transactions.
       * @return the card expiration year for use with PAN based transactions.
       */
+     @JsonProperty("expYear")
      public String getExpYear() {
           return this.expYear;
      }
@@ -331,6 +346,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * Gets the card CVV for use with PAN based transactions.
       * @return the card CVV for use with PAN based transactions.
       */
+     @JsonProperty("cvv")
      public String getCvv() {
           return this.cvv;
      }
@@ -347,6 +363,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * Gets the cardholder address for use with address verification.
       * @return the cardholder address for use with address verification.
       */
+     @JsonProperty("address")
      public String getAddress() {
           return this.address;
      }
@@ -363,6 +380,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * Gets the cardholder postal code for use with address verification.
       * @return the cardholder postal code for use with address verification.
       */
+     @JsonProperty("postalCode")
      public String getPostalCode() {
           return this.postalCode;
      }
@@ -381,6 +399,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * @return that the payment entry method is a manual keyed transaction. If this is
       * true, no other payment method will be accepted.
       */
+     @JsonProperty("manualEntry")
      public boolean isManualEntry() {
           return this.manualEntry;
      }
@@ -397,6 +416,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * Gets the key serial number used for DUKPT encryption.
       * @return the key serial number used for DUKPT encryption.
       */
+     @JsonProperty("ksn")
      public String getKsn() {
           return this.ksn;
      }
@@ -413,6 +433,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * Gets the encrypted pin block.
       * @return the encrypted pin block.
       */
+     @JsonProperty("pinBlock")
      public String getPinBlock() {
           return this.pinBlock;
      }
@@ -429,6 +450,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * Gets designates categories of cards: credit, debit, EBT.
       * @return designates categories of cards: credit, debit, EBT.
       */
+     @JsonProperty("cardType")
      public CardType getCardType() {
           return this.cardType;
      }
@@ -445,6 +467,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * Gets designates brands of payment methods: Visa, Discover, etc.
       * @return designates brands of payment methods: Visa, Discover, etc.
       */
+     @JsonProperty("paymentType")
      public String getPaymentType() {
           return this.paymentType;
      }
@@ -461,6 +484,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * Gets the ID of the previous transaction being referenced.
       * @return the ID of the previous transaction being referenced.
       */
+     @JsonProperty("transactionId")
      public String getTransactionId() {
           return this.transactionId;
      }
@@ -477,6 +501,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * Gets the transaction currency code.
       * @return the transaction currency code.
       */
+     @JsonProperty("currencyCode")
      public String getCurrencyCode() {
           return this.currencyCode;
      }
@@ -493,6 +518,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * Gets the requested amount.
       * @return the requested amount.
       */
+     @JsonProperty("amount")
      public String getAmount() {
           return this.amount;
      }
@@ -511,6 +537,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * @return that the request is tax exempt. Only required for tax exempt level 2
       * processing.
       */
+     @JsonProperty("taxExempt")
      public boolean isTaxExempt() {
           return this.taxExempt;
      }
@@ -529,6 +556,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * @return a location on the filesystem which a customer signature should be written
       * to.
       */
+     @JsonProperty("sigFile")
      public String getSigFile() {
           return this.sigFile;
      }
@@ -545,6 +573,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * Gets the image format to be used for returning signatures.
       * @return the image format to be used for returning signatures.
       */
+     @JsonProperty("sigFormat")
      public SignatureFormat getSigFormat() {
           return this.sigFormat;
      }
@@ -567,6 +596,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * aspect ratio. If not provided, the signature is returned in the terminal's max
       * resolution.
       */
+     @JsonProperty("sigWidth")
      public int getSigWidth() {
           return this.sigWidth;
      }
@@ -583,6 +613,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * Gets the tip amount.
       * @return the tip amount.
       */
+     @JsonProperty("tipAmount")
      public String getTipAmount() {
           return this.tipAmount;
      }
@@ -599,6 +630,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * Gets the tax amount.
       * @return the tax amount.
       */
+     @JsonProperty("taxAmount")
      public String getTaxAmount() {
           return this.taxAmount;
      }
@@ -615,6 +647,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * Gets the amount of cash back requested.
       * @return the amount of cash back requested.
       */
+     @JsonProperty("cashBackAmount")
      public String getCashBackAmount() {
           return this.cashBackAmount;
      }
@@ -637,6 +670,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * be charged if an FSA card is presented. If the FSA amount is paid on an FSA card, then
       * the FSA amount authorized will be indicated on the response.
       */
+     @JsonProperty("fsaEligibleAmount")
      public String getFsaEligibleAmount() {
           return this.fsaEligibleAmount;
      }
@@ -653,6 +687,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * Gets the amount of the transaction that should be charged to an HSA card.
       * @return the amount of the transaction that should be charged to an HSA card.
       */
+     @JsonProperty("hsaEligibleAmount")
      public String getHsaEligibleAmount() {
           return this.hsaEligibleAmount;
      }
@@ -669,6 +704,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * Gets the amount of the transaction that should be charged to an EBT card.
       * @return the amount of the transaction that should be charged to an EBT card.
       */
+     @JsonProperty("ebtEligibleAmount")
      public String getEbtEligibleAmount() {
           return this.ebtEligibleAmount;
      }
@@ -685,6 +721,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * Gets the name of the target payment terminal.
       * @return the name of the target payment terminal.
       */
+     @JsonProperty("terminalName")
      public String getTerminalName() {
           return this.terminalName;
      }
@@ -701,6 +738,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * Gets used to validate online gift card authorizations.
       * @return used to validate online gift card authorizations.
       */
+     @JsonProperty("onlineAuthCode")
      public String getOnlineAuthCode() {
           return this.onlineAuthCode;
      }
@@ -721,6 +759,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * @return that the payment method should be added to the token vault alongside the
       * authorization.
       */
+     @JsonProperty("enroll")
      public boolean isEnroll() {
           return this.enroll;
      }
@@ -737,6 +776,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * Gets a narrative description of the transaction.
       * @return a narrative description of the transaction.
       */
+     @JsonProperty("description")
      public String getDescription() {
           return this.description;
      }
@@ -757,6 +797,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * @return that the terminal should request a tip from the user before starting the
       * transaction.
       */
+     @JsonProperty("promptForTip")
      public boolean isPromptForTip() {
           return this.promptForTip;
      }
@@ -773,6 +814,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * Gets that cash back should be enabled for supported cards.
       * @return that cash back should be enabled for supported cards.
       */
+     @JsonProperty("cashBackEnabled")
      public boolean isCashBackEnabled() {
           return this.cashBackEnabled;
      }
@@ -789,6 +831,7 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
       * Gets a map of alternate currencies and the price in each currency.
       * @return a map of alternate currencies and the price in each currency.
       */
+     @JsonProperty("altPrices")
      public Map getAltPrices() {
           return this.altPrices;
      }

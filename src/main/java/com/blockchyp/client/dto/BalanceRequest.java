@@ -7,6 +7,8 @@
  */
 package com.blockchyp.client.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.blockchyp.client.dto.CardType;
 
 /**
@@ -74,6 +76,7 @@ public class BalanceRequest implements ICoreRequest, IPaymentMethod, ITerminalRe
       * If no transaction ref was assiged on the request, then the gateway will randomly
       * generate one.
       */
+     @JsonProperty("transactionRef")
      public String getTransactionRef() {
           return this.transactionRef;
      }
@@ -90,6 +93,7 @@ public class BalanceRequest implements ICoreRequest, IPaymentMethod, ITerminalRe
       * Gets an identifier from an external point of sale system.
       * @return an identifier from an external point of sale system.
       */
+     @JsonProperty("orderRef")
      public String getOrderRef() {
           return this.orderRef;
      }
@@ -106,6 +110,7 @@ public class BalanceRequest implements ICoreRequest, IPaymentMethod, ITerminalRe
       * Gets the settlement account for merchants with split settlements.
       * @return the settlement account for merchants with split settlements.
       */
+     @JsonProperty("destinationAccount")
      public String getDestinationAccount() {
           return this.destinationAccount;
      }
@@ -122,6 +127,7 @@ public class BalanceRequest implements ICoreRequest, IPaymentMethod, ITerminalRe
       * Gets whether or not to route transaction to the test gateway.
       * @return whether or not to route transaction to the test gateway.
       */
+     @JsonProperty("test")
      public boolean isTest() {
           return this.test;
      }
@@ -138,6 +144,7 @@ public class BalanceRequest implements ICoreRequest, IPaymentMethod, ITerminalRe
       * Gets the request timeout in milliseconds.
       * @return the request timeout in milliseconds.
       */
+     @JsonProperty("timeout")
      public int getTimeout() {
           return this.timeout;
      }
@@ -156,6 +163,7 @@ public class BalanceRequest implements ICoreRequest, IPaymentMethod, ITerminalRe
       * @return the payment token to be used for this transaction. This should be used for
       * recurring transactions.
       */
+     @JsonProperty("token")
      public String getToken() {
           return this.token;
      }
@@ -172,6 +180,7 @@ public class BalanceRequest implements ICoreRequest, IPaymentMethod, ITerminalRe
       * Gets track 1 magnetic stripe data.
       * @return track 1 magnetic stripe data.
       */
+     @JsonProperty("track1")
      public String getTrack1() {
           return this.track1;
      }
@@ -188,6 +197,7 @@ public class BalanceRequest implements ICoreRequest, IPaymentMethod, ITerminalRe
       * Gets track 2 magnetic stripe data.
       * @return track 2 magnetic stripe data.
       */
+     @JsonProperty("track2")
      public String getTrack2() {
           return this.track2;
      }
@@ -208,6 +218,7 @@ public class BalanceRequest implements ICoreRequest, IPaymentMethod, ITerminalRe
       * e-commerce tokenization libraries instead of passing account numbers in
       * directly, as this would put your application in PCI scope.
       */
+     @JsonProperty("pan")
      public String getPan() {
           return this.pan;
      }
@@ -224,6 +235,7 @@ public class BalanceRequest implements ICoreRequest, IPaymentMethod, ITerminalRe
       * Gets the ACH routing number for ACH transactions.
       * @return the ACH routing number for ACH transactions.
       */
+     @JsonProperty("routingNumber")
      public String getRoutingNumber() {
           return this.routingNumber;
      }
@@ -242,6 +254,7 @@ public class BalanceRequest implements ICoreRequest, IPaymentMethod, ITerminalRe
       * @return the cardholder name. Only required if the request includes a primary
       * account number or track data.
       */
+     @JsonProperty("cardholderName")
      public String getCardholderName() {
           return this.cardholderName;
      }
@@ -258,6 +271,7 @@ public class BalanceRequest implements ICoreRequest, IPaymentMethod, ITerminalRe
       * Gets the card expiration month for use with PAN based transactions.
       * @return the card expiration month for use with PAN based transactions.
       */
+     @JsonProperty("expMonth")
      public String getExpMonth() {
           return this.expMonth;
      }
@@ -274,6 +288,7 @@ public class BalanceRequest implements ICoreRequest, IPaymentMethod, ITerminalRe
       * Gets the card expiration year for use with PAN based transactions.
       * @return the card expiration year for use with PAN based transactions.
       */
+     @JsonProperty("expYear")
      public String getExpYear() {
           return this.expYear;
      }
@@ -290,6 +305,7 @@ public class BalanceRequest implements ICoreRequest, IPaymentMethod, ITerminalRe
       * Gets the card CVV for use with PAN based transactions.
       * @return the card CVV for use with PAN based transactions.
       */
+     @JsonProperty("cvv")
      public String getCvv() {
           return this.cvv;
      }
@@ -306,6 +322,7 @@ public class BalanceRequest implements ICoreRequest, IPaymentMethod, ITerminalRe
       * Gets the cardholder address for use with address verification.
       * @return the cardholder address for use with address verification.
       */
+     @JsonProperty("address")
      public String getAddress() {
           return this.address;
      }
@@ -322,6 +339,7 @@ public class BalanceRequest implements ICoreRequest, IPaymentMethod, ITerminalRe
       * Gets the cardholder postal code for use with address verification.
       * @return the cardholder postal code for use with address verification.
       */
+     @JsonProperty("postalCode")
      public String getPostalCode() {
           return this.postalCode;
      }
@@ -340,6 +358,7 @@ public class BalanceRequest implements ICoreRequest, IPaymentMethod, ITerminalRe
       * @return that the payment entry method is a manual keyed transaction. If this is
       * true, no other payment method will be accepted.
       */
+     @JsonProperty("manualEntry")
      public boolean isManualEntry() {
           return this.manualEntry;
      }
@@ -356,6 +375,7 @@ public class BalanceRequest implements ICoreRequest, IPaymentMethod, ITerminalRe
       * Gets the key serial number used for DUKPT encryption.
       * @return the key serial number used for DUKPT encryption.
       */
+     @JsonProperty("ksn")
      public String getKsn() {
           return this.ksn;
      }
@@ -372,6 +392,7 @@ public class BalanceRequest implements ICoreRequest, IPaymentMethod, ITerminalRe
       * Gets the encrypted pin block.
       * @return the encrypted pin block.
       */
+     @JsonProperty("pinBlock")
      public String getPinBlock() {
           return this.pinBlock;
      }
@@ -388,6 +409,7 @@ public class BalanceRequest implements ICoreRequest, IPaymentMethod, ITerminalRe
       * Gets designates categories of cards: credit, debit, EBT.
       * @return designates categories of cards: credit, debit, EBT.
       */
+     @JsonProperty("cardType")
      public CardType getCardType() {
           return this.cardType;
      }
@@ -404,6 +426,7 @@ public class BalanceRequest implements ICoreRequest, IPaymentMethod, ITerminalRe
       * Gets designates brands of payment methods: Visa, Discover, etc.
       * @return designates brands of payment methods: Visa, Discover, etc.
       */
+     @JsonProperty("paymentType")
      public String getPaymentType() {
           return this.paymentType;
      }
@@ -420,6 +443,7 @@ public class BalanceRequest implements ICoreRequest, IPaymentMethod, ITerminalRe
       * Gets the name of the target payment terminal.
       * @return the name of the target payment terminal.
       */
+     @JsonProperty("terminalName")
      public String getTerminalName() {
           return this.terminalName;
      }

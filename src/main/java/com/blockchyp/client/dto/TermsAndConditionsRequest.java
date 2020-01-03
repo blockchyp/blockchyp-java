@@ -7,6 +7,8 @@
  */
 package com.blockchyp.client.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.blockchyp.client.dto.SignatureFormat;
 
 /**
@@ -58,6 +60,7 @@ public class TermsAndConditionsRequest implements ICoreRequest, IPreviousTransac
       * If no transaction ref was assiged on the request, then the gateway will randomly
       * generate one.
       */
+     @JsonProperty("transactionRef")
      public String getTransactionRef() {
           return this.transactionRef;
      }
@@ -74,6 +77,7 @@ public class TermsAndConditionsRequest implements ICoreRequest, IPreviousTransac
       * Gets an identifier from an external point of sale system.
       * @return an identifier from an external point of sale system.
       */
+     @JsonProperty("orderRef")
      public String getOrderRef() {
           return this.orderRef;
      }
@@ -90,6 +94,7 @@ public class TermsAndConditionsRequest implements ICoreRequest, IPreviousTransac
       * Gets the settlement account for merchants with split settlements.
       * @return the settlement account for merchants with split settlements.
       */
+     @JsonProperty("destinationAccount")
      public String getDestinationAccount() {
           return this.destinationAccount;
      }
@@ -106,6 +111,7 @@ public class TermsAndConditionsRequest implements ICoreRequest, IPreviousTransac
       * Gets whether or not to route transaction to the test gateway.
       * @return whether or not to route transaction to the test gateway.
       */
+     @JsonProperty("test")
      public boolean isTest() {
           return this.test;
      }
@@ -122,6 +128,7 @@ public class TermsAndConditionsRequest implements ICoreRequest, IPreviousTransac
       * Gets the request timeout in milliseconds.
       * @return the request timeout in milliseconds.
       */
+     @JsonProperty("timeout")
      public int getTimeout() {
           return this.timeout;
      }
@@ -138,6 +145,7 @@ public class TermsAndConditionsRequest implements ICoreRequest, IPreviousTransac
       * Gets the ID of the previous transaction being referenced.
       * @return the ID of the previous transaction being referenced.
       */
+     @JsonProperty("transactionId")
      public String getTransactionId() {
           return this.transactionId;
      }
@@ -156,6 +164,7 @@ public class TermsAndConditionsRequest implements ICoreRequest, IPreviousTransac
       * @return a location on the filesystem which a customer signature should be written
       * to.
       */
+     @JsonProperty("sigFile")
      public String getSigFile() {
           return this.sigFile;
      }
@@ -172,6 +181,7 @@ public class TermsAndConditionsRequest implements ICoreRequest, IPreviousTransac
       * Gets the image format to be used for returning signatures.
       * @return the image format to be used for returning signatures.
       */
+     @JsonProperty("sigFormat")
      public SignatureFormat getSigFormat() {
           return this.sigFormat;
      }
@@ -194,6 +204,7 @@ public class TermsAndConditionsRequest implements ICoreRequest, IPreviousTransac
       * aspect ratio. If not provided, the signature is returned in the terminal's max
       * resolution.
       */
+     @JsonProperty("sigWidth")
      public int getSigWidth() {
           return this.sigWidth;
      }
@@ -210,6 +221,7 @@ public class TermsAndConditionsRequest implements ICoreRequest, IPreviousTransac
       * Gets the name of the target payment terminal.
       * @return the name of the target payment terminal.
       */
+     @JsonProperty("terminalName")
      public String getTerminalName() {
           return this.terminalName;
      }
@@ -230,6 +242,7 @@ public class TermsAndConditionsRequest implements ICoreRequest, IPreviousTransac
       * @return an alias for a Terms and Conditions template configured in the BlockChyp
       * dashboard.
       */
+     @JsonProperty("tcAlias")
      public String getTcAlias() {
           return this.tcAlias;
      }
@@ -246,6 +259,7 @@ public class TermsAndConditionsRequest implements ICoreRequest, IPreviousTransac
       * Gets the name of the Terms and Conditions the user is accepting.
       * @return the name of the Terms and Conditions the user is accepting.
       */
+     @JsonProperty("tcName")
      public String getTcName() {
           return this.tcName;
      }
@@ -263,6 +277,7 @@ public class TermsAndConditionsRequest implements ICoreRequest, IPreviousTransac
       * Gets the content of the terms and conditions that will be presented to the user.
       * @return the content of the terms and conditions that will be presented to the user.
       */
+     @JsonProperty("tcContent")
      public String getTcContent() {
           return this.tcContent;
      }
@@ -279,6 +294,7 @@ public class TermsAndConditionsRequest implements ICoreRequest, IPreviousTransac
       * Gets that a signature should be requested.
       * @return that a signature should be requested.
       */
+     @JsonProperty("sigRequired")
      public boolean isSigRequired() {
           return this.sigRequired;
      }

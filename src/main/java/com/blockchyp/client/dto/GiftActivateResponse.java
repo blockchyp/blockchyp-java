@@ -7,6 +7,8 @@
  */
 package com.blockchyp.client.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 /**
  * The response to a gift activate request.
@@ -57,6 +59,7 @@ public class GiftActivateResponse implements IAbstractAcknowledgement, ICoreResp
       * Gets whether or not the request succeeded.
       * @return whether or not the request succeeded.
       */
+     @JsonProperty("success")
      public boolean isSuccess() {
           return this.success;
      }
@@ -73,6 +76,7 @@ public class GiftActivateResponse implements IAbstractAcknowledgement, ICoreResp
       * Gets the error, if an error occurred.
       * @return the error, if an error occurred.
       */
+     @JsonProperty("error")
      public String getError() {
           return this.error;
      }
@@ -89,6 +93,7 @@ public class GiftActivateResponse implements IAbstractAcknowledgement, ICoreResp
       * Gets a narrative description of the transaction result.
       * @return a narrative description of the transaction result.
       */
+     @JsonProperty("responseDescription")
      public String getResponseDescription() {
           return this.responseDescription;
      }
@@ -105,6 +110,7 @@ public class GiftActivateResponse implements IAbstractAcknowledgement, ICoreResp
       * Gets the ID assigned to the transaction.
       * @return the ID assigned to the transaction.
       */
+     @JsonProperty("transactionId")
      public String getTransactionId() {
           return this.transactionId;
      }
@@ -121,6 +127,7 @@ public class GiftActivateResponse implements IAbstractAcknowledgement, ICoreResp
       * Gets the ID assigned to the batch.
       * @return the ID assigned to the batch.
       */
+     @JsonProperty("batchId")
      public String getBatchId() {
           return this.batchId;
      }
@@ -141,6 +148,7 @@ public class GiftActivateResponse implements IAbstractAcknowledgement, ICoreResp
       * If no transaction ref was assiged on the request, then the gateway will randomly
       * generate one.
       */
+     @JsonProperty("transactionRef")
      public String getTransactionRef() {
           return this.transactionRef;
      }
@@ -157,6 +165,7 @@ public class GiftActivateResponse implements IAbstractAcknowledgement, ICoreResp
       * Gets the type of transaction.
       * @return the type of transaction.
       */
+     @JsonProperty("transactionType")
      public String getTransactionType() {
           return this.transactionType;
      }
@@ -173,6 +182,7 @@ public class GiftActivateResponse implements IAbstractAcknowledgement, ICoreResp
       * Gets the timestamp of the transaction.
       * @return the timestamp of the transaction.
       */
+     @JsonProperty("timestamp")
      public String getTimestamp() {
           return this.timestamp;
      }
@@ -189,6 +199,7 @@ public class GiftActivateResponse implements IAbstractAcknowledgement, ICoreResp
       * Gets the hash of the last tick block.
       * @return the hash of the last tick block.
       */
+     @JsonProperty("tickBlock")
      public String getTickBlock() {
           return this.tickBlock;
      }
@@ -205,6 +216,7 @@ public class GiftActivateResponse implements IAbstractAcknowledgement, ICoreResp
       * Gets that the transaction was processed on the test gateway.
       * @return that the transaction was processed on the test gateway.
       */
+     @JsonProperty("test")
      public boolean isTest() {
           return this.test;
      }
@@ -223,6 +235,7 @@ public class GiftActivateResponse implements IAbstractAcknowledgement, ICoreResp
       * @return the ECC signature of the response. Can be used to ensure that it was signed
       * by the terminal and detect man-in-the middle attacks.
       */
+     @JsonProperty("sig")
      public String getSig() {
           return this.sig;
      }
@@ -239,6 +252,7 @@ public class GiftActivateResponse implements IAbstractAcknowledgement, ICoreResp
       * Gets that the card was activated.
       * @return that the card was activated.
       */
+     @JsonProperty("approved")
      public boolean isApproved() {
           return this.approved;
      }
@@ -255,6 +269,7 @@ public class GiftActivateResponse implements IAbstractAcknowledgement, ICoreResp
       * Gets the amount of the transaction.
       * @return the amount of the transaction.
       */
+     @JsonProperty("amount")
      public String getAmount() {
           return this.amount;
      }
@@ -271,6 +286,7 @@ public class GiftActivateResponse implements IAbstractAcknowledgement, ICoreResp
       * Gets the current balance of the gift card.
       * @return the current balance of the gift card.
       */
+     @JsonProperty("currentBalance")
      public String getCurrentBalance() {
           return this.currentBalance;
      }
@@ -287,6 +303,7 @@ public class GiftActivateResponse implements IAbstractAcknowledgement, ICoreResp
       * Gets the currency code used for the transaction.
       * @return the currency code used for the transaction.
       */
+     @JsonProperty("currencyCode")
      public String getCurrencyCode() {
           return this.currencyCode;
      }
@@ -303,6 +320,7 @@ public class GiftActivateResponse implements IAbstractAcknowledgement, ICoreResp
       * Gets the public key of the activated card.
       * @return the public key of the activated card.
       */
+     @JsonProperty("publicKey")
      public String getPublicKey() {
           return this.publicKey;
      }

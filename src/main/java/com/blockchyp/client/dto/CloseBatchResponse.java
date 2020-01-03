@@ -7,6 +7,8 @@
  */
 package com.blockchyp.client.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Map;
 
 /**
@@ -57,6 +59,7 @@ public class CloseBatchResponse implements IAbstractAcknowledgement, ICoreRespon
       * Gets whether or not the request succeeded.
       * @return whether or not the request succeeded.
       */
+     @JsonProperty("success")
      public boolean isSuccess() {
           return this.success;
      }
@@ -73,6 +76,7 @@ public class CloseBatchResponse implements IAbstractAcknowledgement, ICoreRespon
       * Gets the error, if an error occurred.
       * @return the error, if an error occurred.
       */
+     @JsonProperty("error")
      public String getError() {
           return this.error;
      }
@@ -89,6 +93,7 @@ public class CloseBatchResponse implements IAbstractAcknowledgement, ICoreRespon
       * Gets a narrative description of the transaction result.
       * @return a narrative description of the transaction result.
       */
+     @JsonProperty("responseDescription")
      public String getResponseDescription() {
           return this.responseDescription;
      }
@@ -105,6 +110,7 @@ public class CloseBatchResponse implements IAbstractAcknowledgement, ICoreRespon
       * Gets the ID assigned to the transaction.
       * @return the ID assigned to the transaction.
       */
+     @JsonProperty("transactionId")
      public String getTransactionId() {
           return this.transactionId;
      }
@@ -121,6 +127,7 @@ public class CloseBatchResponse implements IAbstractAcknowledgement, ICoreRespon
       * Gets the ID assigned to the batch.
       * @return the ID assigned to the batch.
       */
+     @JsonProperty("batchId")
      public String getBatchId() {
           return this.batchId;
      }
@@ -141,6 +148,7 @@ public class CloseBatchResponse implements IAbstractAcknowledgement, ICoreRespon
       * If no transaction ref was assiged on the request, then the gateway will randomly
       * generate one.
       */
+     @JsonProperty("transactionRef")
      public String getTransactionRef() {
           return this.transactionRef;
      }
@@ -157,6 +165,7 @@ public class CloseBatchResponse implements IAbstractAcknowledgement, ICoreRespon
       * Gets the type of transaction.
       * @return the type of transaction.
       */
+     @JsonProperty("transactionType")
      public String getTransactionType() {
           return this.transactionType;
      }
@@ -173,6 +182,7 @@ public class CloseBatchResponse implements IAbstractAcknowledgement, ICoreRespon
       * Gets the timestamp of the transaction.
       * @return the timestamp of the transaction.
       */
+     @JsonProperty("timestamp")
      public String getTimestamp() {
           return this.timestamp;
      }
@@ -189,6 +199,7 @@ public class CloseBatchResponse implements IAbstractAcknowledgement, ICoreRespon
       * Gets the hash of the last tick block.
       * @return the hash of the last tick block.
       */
+     @JsonProperty("tickBlock")
      public String getTickBlock() {
           return this.tickBlock;
      }
@@ -205,6 +216,7 @@ public class CloseBatchResponse implements IAbstractAcknowledgement, ICoreRespon
       * Gets that the transaction was processed on the test gateway.
       * @return that the transaction was processed on the test gateway.
       */
+     @JsonProperty("test")
      public boolean isTest() {
           return this.test;
      }
@@ -223,6 +235,7 @@ public class CloseBatchResponse implements IAbstractAcknowledgement, ICoreRespon
       * @return the ECC signature of the response. Can be used to ensure that it was signed
       * by the terminal and detect man-in-the middle attacks.
       */
+     @JsonProperty("sig")
      public String getSig() {
           return this.sig;
      }
@@ -239,6 +252,7 @@ public class CloseBatchResponse implements IAbstractAcknowledgement, ICoreRespon
       * Gets the currency code of amounts indicated.
       * @return the currency code of amounts indicated.
       */
+     @JsonProperty("currencyCode")
      public String getCurrencyCode() {
           return this.currencyCode;
      }
@@ -257,6 +271,7 @@ public class CloseBatchResponse implements IAbstractAcknowledgement, ICoreRespon
       * @return the total captured amount for this batch. Should be the expected deposit
       * amount.
       */
+     @JsonProperty("capturedTotal")
      public String getCapturedTotal() {
           return this.capturedTotal;
      }
@@ -275,6 +290,7 @@ public class CloseBatchResponse implements IAbstractAcknowledgement, ICoreRespon
       * @return the total amount of preauths opened during the batch that weren't
       * captured.
       */
+     @JsonProperty("openPreauths")
      public String getOpenPreauths() {
           return this.openPreauths;
      }
@@ -291,6 +307,7 @@ public class CloseBatchResponse implements IAbstractAcknowledgement, ICoreRespon
       * Gets the captured totals by card brand.
       * @return the captured totals by card brand.
       */
+     @JsonProperty("cardBrands")
      public Map getCardBrands() {
           return this.cardBrands;
      }

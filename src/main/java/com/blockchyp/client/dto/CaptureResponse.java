@@ -7,6 +7,8 @@
  */
 package com.blockchyp.client.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 /**
  * The response to a capture request.
@@ -89,6 +91,7 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
       * Gets whether or not the request succeeded.
       * @return whether or not the request succeeded.
       */
+     @JsonProperty("success")
      public boolean isSuccess() {
           return this.success;
      }
@@ -105,6 +108,7 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
       * Gets the error, if an error occurred.
       * @return the error, if an error occurred.
       */
+     @JsonProperty("error")
      public String getError() {
           return this.error;
      }
@@ -121,6 +125,7 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
       * Gets a narrative description of the transaction result.
       * @return a narrative description of the transaction result.
       */
+     @JsonProperty("responseDescription")
      public String getResponseDescription() {
           return this.responseDescription;
      }
@@ -137,6 +142,7 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
       * Gets that the transaction was approved.
       * @return that the transaction was approved.
       */
+     @JsonProperty("approved")
      public boolean isApproved() {
           return this.approved;
      }
@@ -153,6 +159,7 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
       * Gets the auth code from the payment network.
       * @return the auth code from the payment network.
       */
+     @JsonProperty("authCode")
      public String getAuthCode() {
           return this.authCode;
      }
@@ -169,6 +176,7 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
       * Gets the ID assigned to the transaction.
       * @return the ID assigned to the transaction.
       */
+     @JsonProperty("transactionId")
      public String getTransactionId() {
           return this.transactionId;
      }
@@ -185,6 +193,7 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
       * Gets the ID assigned to the batch.
       * @return the ID assigned to the batch.
       */
+     @JsonProperty("batchId")
      public String getBatchId() {
           return this.batchId;
      }
@@ -205,6 +214,7 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
       * If no transaction ref was assiged on the request, then the gateway will randomly
       * generate one.
       */
+     @JsonProperty("transactionRef")
      public String getTransactionRef() {
           return this.transactionRef;
      }
@@ -221,6 +231,7 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
       * Gets the type of transaction.
       * @return the type of transaction.
       */
+     @JsonProperty("transactionType")
      public String getTransactionType() {
           return this.transactionType;
      }
@@ -237,6 +248,7 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
       * Gets the timestamp of the transaction.
       * @return the timestamp of the transaction.
       */
+     @JsonProperty("timestamp")
      public String getTimestamp() {
           return this.timestamp;
      }
@@ -253,6 +265,7 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
       * Gets the hash of the last tick block.
       * @return the hash of the last tick block.
       */
+     @JsonProperty("tickBlock")
      public String getTickBlock() {
           return this.tickBlock;
      }
@@ -269,6 +282,7 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
       * Gets that the transaction was processed on the test gateway.
       * @return that the transaction was processed on the test gateway.
       */
+     @JsonProperty("test")
      public boolean isTest() {
           return this.test;
      }
@@ -287,6 +301,7 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
       * @return the ECC signature of the response. Can be used to ensure that it was signed
       * by the terminal and detect man-in-the middle attacks.
       */
+     @JsonProperty("sig")
      public String getSig() {
           return this.sig;
      }
@@ -303,6 +318,7 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
       * Gets whether or not the transaction was approved for a partial amount.
       * @return whether or not the transaction was approved for a partial amount.
       */
+     @JsonProperty("partialAuth")
      public boolean isPartialAuth() {
           return this.partialAuth;
      }
@@ -319,6 +335,7 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
       * Gets whether or not an alternate currency was used.
       * @return whether or not an alternate currency was used.
       */
+     @JsonProperty("altCurrency")
      public boolean isAltCurrency() {
           return this.altCurrency;
      }
@@ -335,6 +352,7 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
       * Gets whether or not a request was settled on an FSA card.
       * @return whether or not a request was settled on an FSA card.
       */
+     @JsonProperty("fsaAuth")
      public boolean isFsaAuth() {
           return this.fsaAuth;
      }
@@ -351,6 +369,7 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
       * Gets the currency code used for the transaction.
       * @return the currency code used for the transaction.
       */
+     @JsonProperty("currencyCode")
      public String getCurrencyCode() {
           return this.currencyCode;
      }
@@ -367,6 +386,7 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
       * Gets the requested amount.
       * @return the requested amount.
       */
+     @JsonProperty("requestedAmount")
      public String getRequestedAmount() {
           return this.requestedAmount;
      }
@@ -385,6 +405,7 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
       * @return the authorized amount. May not match the requested amount in the event of a
       * partial auth.
       */
+     @JsonProperty("authorizedAmount")
      public String getAuthorizedAmount() {
           return this.authorizedAmount;
      }
@@ -401,6 +422,7 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
       * Gets the remaining balance on the payment method.
       * @return the remaining balance on the payment method.
       */
+     @JsonProperty("remainingBalance")
      public String getRemainingBalance() {
           return this.remainingBalance;
      }
@@ -417,6 +439,7 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
       * Gets the tip amount.
       * @return the tip amount.
       */
+     @JsonProperty("tipAmount")
      public String getTipAmount() {
           return this.tipAmount;
      }
@@ -433,6 +456,7 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
       * Gets the tax amount.
       * @return the tax amount.
       */
+     @JsonProperty("taxAmount")
      public String getTaxAmount() {
           return this.taxAmount;
      }
@@ -449,6 +473,7 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
       * Gets the cash back amount the customer requested during the transaction.
       * @return the cash back amount the customer requested during the transaction.
       */
+     @JsonProperty("requestedCashBackAmount")
      public String getRequestedCashBackAmount() {
           return this.requestedCashBackAmount;
      }
@@ -467,6 +492,7 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
       * @return the amount of cash back authorized by the gateway. This amount will be the
       * entire amount requested, or zero.
       */
+     @JsonProperty("authorizedCashBackAmount")
      public String getAuthorizedCashBackAmount() {
           return this.authorizedCashBackAmount;
      }
@@ -483,6 +509,7 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
       * Gets the payment token, if the payment was enrolled in the vault.
       * @return the payment token, if the payment was enrolled in the vault.
       */
+     @JsonProperty("token")
      public String getToken() {
           return this.token;
      }
@@ -499,6 +526,7 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
       * Gets the entry method for the transaction (CHIP, MSR, KEYED, etc).
       * @return the entry method for the transaction (CHIP, MSR, KEYED, etc).
       */
+     @JsonProperty("entryMethod")
      public String getEntryMethod() {
           return this.entryMethod;
      }
@@ -515,6 +543,7 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
       * Gets the card brand (VISA, MC, AMEX, etc).
       * @return the card brand (VISA, MC, AMEX, etc).
       */
+     @JsonProperty("paymentType")
      public String getPaymentType() {
           return this.paymentType;
      }
@@ -531,6 +560,7 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
       * Gets the masked primary account number.
       * @return the masked primary account number.
       */
+     @JsonProperty("maskedPan")
      public String getMaskedPan() {
           return this.maskedPan;
      }
@@ -548,6 +578,7 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
       * Gets the BlockChyp public key if the user presented a BlockChyp payment card.
       * @return the BlockChyp public key if the user presented a BlockChyp payment card.
       */
+     @JsonProperty("publicKey")
      public String getPublicKey() {
           return this.publicKey;
      }
@@ -565,6 +596,7 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
       * Gets that the transaction did something that would put the system in PCI scope.
       * @return that the transaction did something that would put the system in PCI scope.
       */
+     @JsonProperty("ScopeAlert")
      public boolean isScopeAlert() {
           return this.ScopeAlert;
      }
@@ -581,6 +613,7 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
       * Gets the cardholder name.
       * @return the cardholder name.
       */
+     @JsonProperty("cardHolder")
      public String getCardHolder() {
           return this.cardHolder;
      }
@@ -597,6 +630,7 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
       * Gets suggested receipt fields.
       * @return suggested receipt fields.
       */
+     @JsonProperty("receiptSuggestions")
      public ReceiptSuggestions getReceiptSuggestions() {
           return this.receiptSuggestions;
      }

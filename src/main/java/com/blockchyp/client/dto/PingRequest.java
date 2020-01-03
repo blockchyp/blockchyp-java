@@ -7,6 +7,8 @@
  */
 package com.blockchyp.client.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 /**
  * Information needed to test connectivity with a terminal.
@@ -41,6 +43,7 @@ public class PingRequest implements ICoreRequest, ITerminalReference {
       * If no transaction ref was assiged on the request, then the gateway will randomly
       * generate one.
       */
+     @JsonProperty("transactionRef")
      public String getTransactionRef() {
           return this.transactionRef;
      }
@@ -57,6 +60,7 @@ public class PingRequest implements ICoreRequest, ITerminalReference {
       * Gets an identifier from an external point of sale system.
       * @return an identifier from an external point of sale system.
       */
+     @JsonProperty("orderRef")
      public String getOrderRef() {
           return this.orderRef;
      }
@@ -73,6 +77,7 @@ public class PingRequest implements ICoreRequest, ITerminalReference {
       * Gets the settlement account for merchants with split settlements.
       * @return the settlement account for merchants with split settlements.
       */
+     @JsonProperty("destinationAccount")
      public String getDestinationAccount() {
           return this.destinationAccount;
      }
@@ -89,6 +94,7 @@ public class PingRequest implements ICoreRequest, ITerminalReference {
       * Gets whether or not to route transaction to the test gateway.
       * @return whether or not to route transaction to the test gateway.
       */
+     @JsonProperty("test")
      public boolean isTest() {
           return this.test;
      }
@@ -105,6 +111,7 @@ public class PingRequest implements ICoreRequest, ITerminalReference {
       * Gets the request timeout in milliseconds.
       * @return the request timeout in milliseconds.
       */
+     @JsonProperty("timeout")
      public int getTimeout() {
           return this.timeout;
      }
@@ -121,6 +128,7 @@ public class PingRequest implements ICoreRequest, ITerminalReference {
       * Gets the name of the target payment terminal.
       * @return the name of the target payment terminal.
       */
+     @JsonProperty("terminalName")
      public String getTerminalName() {
           return this.terminalName;
      }

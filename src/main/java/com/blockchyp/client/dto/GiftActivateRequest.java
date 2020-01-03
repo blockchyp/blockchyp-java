@@ -7,6 +7,8 @@
  */
 package com.blockchyp.client.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 /**
  * The information needed to activate or recharge a gift card.
@@ -47,6 +49,7 @@ public class GiftActivateRequest implements ICoreRequest, IRequestAmount, ITermi
       * If no transaction ref was assiged on the request, then the gateway will randomly
       * generate one.
       */
+     @JsonProperty("transactionRef")
      public String getTransactionRef() {
           return this.transactionRef;
      }
@@ -63,6 +66,7 @@ public class GiftActivateRequest implements ICoreRequest, IRequestAmount, ITermi
       * Gets an identifier from an external point of sale system.
       * @return an identifier from an external point of sale system.
       */
+     @JsonProperty("orderRef")
      public String getOrderRef() {
           return this.orderRef;
      }
@@ -79,6 +83,7 @@ public class GiftActivateRequest implements ICoreRequest, IRequestAmount, ITermi
       * Gets the settlement account for merchants with split settlements.
       * @return the settlement account for merchants with split settlements.
       */
+     @JsonProperty("destinationAccount")
      public String getDestinationAccount() {
           return this.destinationAccount;
      }
@@ -95,6 +100,7 @@ public class GiftActivateRequest implements ICoreRequest, IRequestAmount, ITermi
       * Gets whether or not to route transaction to the test gateway.
       * @return whether or not to route transaction to the test gateway.
       */
+     @JsonProperty("test")
      public boolean isTest() {
           return this.test;
      }
@@ -111,6 +117,7 @@ public class GiftActivateRequest implements ICoreRequest, IRequestAmount, ITermi
       * Gets the request timeout in milliseconds.
       * @return the request timeout in milliseconds.
       */
+     @JsonProperty("timeout")
      public int getTimeout() {
           return this.timeout;
      }
@@ -127,6 +134,7 @@ public class GiftActivateRequest implements ICoreRequest, IRequestAmount, ITermi
       * Gets the transaction currency code.
       * @return the transaction currency code.
       */
+     @JsonProperty("currencyCode")
      public String getCurrencyCode() {
           return this.currencyCode;
      }
@@ -143,6 +151,7 @@ public class GiftActivateRequest implements ICoreRequest, IRequestAmount, ITermi
       * Gets the requested amount.
       * @return the requested amount.
       */
+     @JsonProperty("amount")
      public String getAmount() {
           return this.amount;
      }
@@ -161,6 +170,7 @@ public class GiftActivateRequest implements ICoreRequest, IRequestAmount, ITermi
       * @return that the request is tax exempt. Only required for tax exempt level 2
       * processing.
       */
+     @JsonProperty("taxExempt")
      public boolean isTaxExempt() {
           return this.taxExempt;
      }
@@ -177,6 +187,7 @@ public class GiftActivateRequest implements ICoreRequest, IRequestAmount, ITermi
       * Gets the name of the target payment terminal.
       * @return the name of the target payment terminal.
       */
+     @JsonProperty("terminalName")
      public String getTerminalName() {
           return this.terminalName;
      }

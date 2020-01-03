@@ -7,6 +7,8 @@
  */
 package com.blockchyp.client.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -44,6 +46,7 @@ public class TransactionDisplayItem {
       * @return a unique value identifying the item. This is not required, but
       * recommended since it is required to update or delete line items.
       */
+     @JsonProperty("id")
      public String getId() {
           return this.id;
      }
@@ -60,6 +63,7 @@ public class TransactionDisplayItem {
       * Gets a description of the line item.
       * @return a description of the line item.
       */
+     @JsonProperty("description")
      public String getDescription() {
           return this.description;
      }
@@ -76,6 +80,7 @@ public class TransactionDisplayItem {
       * Gets the price of the line item.
       * @return the price of the line item.
       */
+     @JsonProperty("price")
      public String getPrice() {
           return this.price;
      }
@@ -92,6 +97,7 @@ public class TransactionDisplayItem {
       * Gets the quantity of the line item.
       * @return the quantity of the line item.
       */
+     @JsonProperty("quantity")
      public float getQuantity() {
           return this.quantity;
      }
@@ -114,6 +120,7 @@ public class TransactionDisplayItem {
       * places of precision. Quantity is a floating point number that is not rounded at
       * all.
       */
+     @JsonProperty("extended")
      public String getExtended() {
           return this.extended;
      }
@@ -130,6 +137,7 @@ public class TransactionDisplayItem {
       * Gets are displayed under their corresponding item.
       * @return are displayed under their corresponding item.
       */
+     @JsonProperty("discounts")
      public Collection getDiscounts() {
           return this.discounts;
      }

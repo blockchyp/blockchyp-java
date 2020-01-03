@@ -7,6 +7,8 @@
  */
 package com.blockchyp.client.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 /**
  * The information needed to capture a preauth.
@@ -59,6 +61,7 @@ public class CaptureRequest implements ICoreRequest, IPreviousTransaction, IRequ
       * If no transaction ref was assiged on the request, then the gateway will randomly
       * generate one.
       */
+     @JsonProperty("transactionRef")
      public String getTransactionRef() {
           return this.transactionRef;
      }
@@ -75,6 +78,7 @@ public class CaptureRequest implements ICoreRequest, IPreviousTransaction, IRequ
       * Gets an identifier from an external point of sale system.
       * @return an identifier from an external point of sale system.
       */
+     @JsonProperty("orderRef")
      public String getOrderRef() {
           return this.orderRef;
      }
@@ -91,6 +95,7 @@ public class CaptureRequest implements ICoreRequest, IPreviousTransaction, IRequ
       * Gets the settlement account for merchants with split settlements.
       * @return the settlement account for merchants with split settlements.
       */
+     @JsonProperty("destinationAccount")
      public String getDestinationAccount() {
           return this.destinationAccount;
      }
@@ -107,6 +112,7 @@ public class CaptureRequest implements ICoreRequest, IPreviousTransaction, IRequ
       * Gets whether or not to route transaction to the test gateway.
       * @return whether or not to route transaction to the test gateway.
       */
+     @JsonProperty("test")
      public boolean isTest() {
           return this.test;
      }
@@ -123,6 +129,7 @@ public class CaptureRequest implements ICoreRequest, IPreviousTransaction, IRequ
       * Gets the request timeout in milliseconds.
       * @return the request timeout in milliseconds.
       */
+     @JsonProperty("timeout")
      public int getTimeout() {
           return this.timeout;
      }
@@ -139,6 +146,7 @@ public class CaptureRequest implements ICoreRequest, IPreviousTransaction, IRequ
       * Gets the ID of the previous transaction being referenced.
       * @return the ID of the previous transaction being referenced.
       */
+     @JsonProperty("transactionId")
      public String getTransactionId() {
           return this.transactionId;
      }
@@ -155,6 +163,7 @@ public class CaptureRequest implements ICoreRequest, IPreviousTransaction, IRequ
       * Gets the transaction currency code.
       * @return the transaction currency code.
       */
+     @JsonProperty("currencyCode")
      public String getCurrencyCode() {
           return this.currencyCode;
      }
@@ -171,6 +180,7 @@ public class CaptureRequest implements ICoreRequest, IPreviousTransaction, IRequ
       * Gets the requested amount.
       * @return the requested amount.
       */
+     @JsonProperty("amount")
      public String getAmount() {
           return this.amount;
      }
@@ -189,6 +199,7 @@ public class CaptureRequest implements ICoreRequest, IPreviousTransaction, IRequ
       * @return that the request is tax exempt. Only required for tax exempt level 2
       * processing.
       */
+     @JsonProperty("taxExempt")
      public boolean isTaxExempt() {
           return this.taxExempt;
      }
@@ -205,6 +216,7 @@ public class CaptureRequest implements ICoreRequest, IPreviousTransaction, IRequ
       * Gets the tip amount.
       * @return the tip amount.
       */
+     @JsonProperty("tipAmount")
      public String getTipAmount() {
           return this.tipAmount;
      }
@@ -221,6 +233,7 @@ public class CaptureRequest implements ICoreRequest, IPreviousTransaction, IRequ
       * Gets the tax amount.
       * @return the tax amount.
       */
+     @JsonProperty("taxAmount")
      public String getTaxAmount() {
           return this.taxAmount;
      }
@@ -237,6 +250,7 @@ public class CaptureRequest implements ICoreRequest, IPreviousTransaction, IRequ
       * Gets the amount of cash back requested.
       * @return the amount of cash back requested.
       */
+     @JsonProperty("cashBackAmount")
      public String getCashBackAmount() {
           return this.cashBackAmount;
      }
@@ -259,6 +273,7 @@ public class CaptureRequest implements ICoreRequest, IPreviousTransaction, IRequ
       * be charged if an FSA card is presented. If the FSA amount is paid on an FSA card, then
       * the FSA amount authorized will be indicated on the response.
       */
+     @JsonProperty("fsaEligibleAmount")
      public String getFsaEligibleAmount() {
           return this.fsaEligibleAmount;
      }
@@ -275,6 +290,7 @@ public class CaptureRequest implements ICoreRequest, IPreviousTransaction, IRequ
       * Gets the amount of the transaction that should be charged to an HSA card.
       * @return the amount of the transaction that should be charged to an HSA card.
       */
+     @JsonProperty("hsaEligibleAmount")
      public String getHsaEligibleAmount() {
           return this.hsaEligibleAmount;
      }
@@ -291,6 +307,7 @@ public class CaptureRequest implements ICoreRequest, IPreviousTransaction, IRequ
       * Gets the amount of the transaction that should be charged to an EBT card.
       * @return the amount of the transaction that should be charged to an EBT card.
       */
+     @JsonProperty("ebtEligibleAmount")
      public String getEbtEligibleAmount() {
           return this.ebtEligibleAmount;
      }
