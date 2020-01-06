@@ -67,4 +67,4 @@ stage:
 # Publishes package
 .PHONY: publish
 publish:
-	$(MVN) -Prelease nexus-staging:release -DstagingRepositoryId=comblockchyp-1001
+	$(MVN) -s settings.xml -Prelease nexus-staging:release -DstagingRepositoryId=comblockchyp-1001
