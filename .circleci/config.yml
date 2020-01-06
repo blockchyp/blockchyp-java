@@ -30,19 +30,19 @@ jobs:
           path: target/surefire-reports
 
       - persist_to_workspace:
-          root: ./
+          root: ./target
           paths:
-            - ./target/*
-            - ./Makefile
-            - ./.circleci/*
+            - ./*
 
   publish:
     docker:
       - image: circleci/openjdk:8-jdk-stretch
 
     steps:
+      - checkout
+
       - attach_workspace:
-          at: ./
+          at: ./target
 
       - run: ./.circleci/import-gpg-key.sh
 
