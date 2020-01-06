@@ -34,7 +34,7 @@ jobs:
           paths:
             - ./target/*
             - ./Makefile
-            - ./circleci/*
+            - ./.circleci/*
 
   publish:
     docker:

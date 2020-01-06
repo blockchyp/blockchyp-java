@@ -3,7 +3,7 @@
 [![Build Status](https://circleci.com/gh/blockchyp/blockchyp-java/tree/master.svg?style=shield)](https://circleci.com/gh/blockchyp/blockchyp-java/tree/master)
 [![Maven Central](https://img.shields.io/maven-central/v/com.blockchyp/blockchyp-java.svg)](https://search.maven.org/artifact/com.blockchyp/blockchyp-java)
 [![Javadocs](https://img.shields.io/badge/javadocs-latest-blueviolet)](https://docs.blockchyp.com/sdks/java/latest/index.html)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/blockchyp/blockchyp-java/blob/master/LICENSE)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/blockchyp/blockchyp-java/blob/master/LICENSE)
 
 This is the recommended means for Java developers to access the BlockChyp gateway and BlockChyp terminals.
 This SDK was designed to be compatible with the broadest possible range of Java point-of-sale systems.  We've
