@@ -5,20 +5,14 @@
       <username>${env.OSSRH_USERNAME}</username>
       <password>${env.OSSRH_PASSWORD}</password>
     </server>
-    <server>
-      <id>${env.GPG_KEYNAME}</id>
-      <passphrase>${env.GPG_PASSPHRASE}</passphrase>
-    </server>
   </servers>
 
   <profiles>
     <profile>
-      <id>ossrh</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
+      <id>release</id>
       <properties>
         <gpg.keyname>${env.GPG_KEYNAME}</gpg.keyname>
+        <gpg.passphrase>${env.GPG_PASSPHRASE}</gpg.passphrase>
       </properties>
     </profile>
   </profiles>

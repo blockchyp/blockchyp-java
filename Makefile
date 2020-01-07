@@ -63,8 +63,9 @@ integration:
 .PHONY: stage
 stage:
 	$(MVN) versions:set -DnewVersion=$(VERSION)
+	$(MVN) versions:commit
 
 # Publishes package
 .PHONY: publish
 publish:
-	$(MVN) -s settings.xml -Prelease nexus-staging:release -DstagingRepositoryId=comblockchyp-1001
+	$(MVN) deploy -s settings.xml -DskipTests=true -B -U -Prelease

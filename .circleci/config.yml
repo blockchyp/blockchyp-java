@@ -41,6 +41,10 @@ jobs:
     steps:
       - checkout
 
+      - restore_cache:
+          keys:
+            - mvn-{{ checksum "pom.xml" }}
+
       - attach_workspace:
           at: ./target
 
