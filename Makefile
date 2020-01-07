@@ -8,6 +8,7 @@ VERSION := $(or $(TAG:v%=%),$(LASTTAG:v%=%))-$(or $(BUILD_NUMBER), 1)$(if $(TAG)
 # Executables
 DOCKER = docker
 MVN = mvn
+SED = sed
 
 # Integration test config
 export BC_TEST_DELAY := 5
@@ -62,8 +63,8 @@ integration:
 # Performs any tasks necessary before a release build
 .PHONY: stage
 stage:
-	$(MVN) versions:set -DnewVersion=$(VERSION)
-	$(MVN) versions:commit
+	# Significant whitespace used to match specific indent level. Sue me.
+	$(SED) -i 's|^  <version>.*</version>|  <version>$(VERSION)</version>|' pom.xml
 
 # Publishes package
 .PHONY: publish
