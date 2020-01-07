@@ -6,24 +6,24 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/blockchyp/blockchyp-java/blob/master/LICENSE)
 
 This is the recommended means for Java developers to access the BlockChyp gateway and BlockChyp terminals.
-This SDK was designed to be compatible with the broadest possible range of Java point-of-sale systems.  We've
+This SDK was designed to be compatible with the broadest possible range of Java point-of-sale systems. We've
 avoided some of the newer Java features we love like streams and generics in order to maintain compatibility
 all the way back to Java 1.6.
 
-We've tried to avoid introducing classpath problems for you whenever possible.  HTTP interaction is done using
-commons-httpclient-3.1 and we also use commons-lang, commons-io, and commons-codec.  We're using the Bouncy Castle
+We've tried to avoid introducing classpath problems for you whenever possible. HTTP interaction is done using
+commons-httpclient-3.1 and we also use commons-lang, commons-io, and commons-codec. We're using the Bouncy Castle
 JCE provider for encryption services, but we don't use any Bouncy Castle specific classes so if you exclude this
 dependency you should still be fine with the standard Java stuff.
 
 
 ## Getting the SDK
 
-There are several techniques for getting your hands on the SDK.  Most developers use a dependency management system like
+There are several techniques for getting your hands on the SDK. Most developers use a dependency management system like
 Maven.
 
 #### Maven
 
-The BlockChyp SDK is in Maven's Central Repository.  Just add this snippet to your pom:
+The BlockChyp SDK is in Maven's Central Repository. Just add this snippet to your pom:
 
 ```
 	<dependency>
@@ -41,7 +41,7 @@ For the hipsters among you who've moved up to Gradle, try adding this snippet un
 	compile group: 'com.blockchyp', name: 'blockchyp-java', version:'1.0.0'
 ```
 
-You'll also need the Maven plugin turned on.  Make sure your Gradle build has something like this in it:
+You'll also need the Maven plugin turned on. Make sure your Gradle build has something like this in it:
 
 ```
 	apply plugin: 'maven'
@@ -49,7 +49,7 @@ You'll also need the Maven plugin turned on.  Make sure your Gradle build has so
 
 #### Building From Source
 
-The BlockChyp SDK has a pretty conventional Maven build with a single pom.xml and no weird repository dependencies.  Just clone this repository
+The BlockChyp SDK has a pretty conventional Maven build with a single pom.xml and no weird repository dependencies. Just clone this repository
 and run `mvn package` to build a jar.
 
 #### Download a Jar
@@ -60,9 +60,9 @@ Github from releases.
 
 ## Using the SDK
 
-Once the BlockChyp SDK is in your classpath, you can start using it to run transactions.  All interaction with BlockChyp is done via the BlockChypClient class.
+Once the BlockChyp SDK is in your classpath, you can start using it to run transactions. All interaction with BlockChyp is done via the BlockChypClient class.
 
-Just instantiate the BlockChypClient class, add your credentials and start charging.  Here's an example..
+Just instantiate the BlockChypClient class, add your credentials and start charging. Here's an example..
 
 ```
 package com.blockchyp.examples;
@@ -99,12 +99,12 @@ public class HelloBlockChyp {
 }
 ```
 
-The above code is sufficient for running a basic charge transaction against a terminal.  You don't need to keep track of terminal IP addresses or anything like that.
+The above code is sufficient for running a basic charge transaction against a terminal. You don't need to keep track of terminal IP addresses or anything like that.
 Our terminal routing system, which is essentially a DNS system for payment terminals on private networks, handles everything for you.
 
 #### What About Spring?
 
-Don't worry.  We've got you covered.  The BlockChypClient was designed to be easy to use with Spring or other dependency injection frameworks.  We're former Spring developers ourselves.
+Don't worry. We've got you covered. The BlockChypClient was designed to be easy to use with Spring or other dependency injection frameworks. We're former Spring developers ourselves.
 
 If you're still using XML based configuration for Spring, you'll need a snippet like this...
 
@@ -136,7 +136,7 @@ If you're still using XML based configuration for Spring, you'll need a snippet 
 </beans>
 ```
 
-This is pretty conventional Spring dependency injection.  The example below shows the Java code behind the above example.
+This is pretty conventional Spring dependency injection. The example below shows the Java code behind the above example.
 If you're autowiring wherever possible, you can probably leave out the last bean definition from the XML sample above.
 Also note that APICredentials and BlockChypClient can also be initialized via constructors if you prefer constructor
 based dependency injection.
@@ -173,7 +173,7 @@ public class SpringExample {
 
 #### Spring Boot or Configuration Without XML
 
-We get it.  You're over XML.  We think XML's been unfairly maligned as a format for configuration, but we know we can't fight progress
+We get it. You're over XML. We think XML's been unfairly maligned as a format for configuration, but we know we can't fight progress
 and we've stopped using it too.
 
 Here's an example of how to do all of the above without XML.
@@ -208,11 +208,11 @@ public class SpringConfigExample {
 We designed this SDK to work out of the box with no special configuration for those developers who never read this
 (most developers, we assume), but there are a few recommended best practices for production use.
 
-By default, the Java SDK communicates with terminals without SSL or TLS.  (Gateway communication is always TLS.)  The reason for
+By default, the Java SDK communicates with terminals without SSL or TLS. (Gateway communication is always TLS.)  The reason for
 this is that BlockChyp terminals
 run on private networks where the standard root certificate authorities cannot be used and it's difficult, if not impossible,
-to add new root CA's in Java programmatically.  We recommend you install our terminal root CA as a trusted CA and turn
-https on in your client.  In order to provide some extra protection in situations where developers choose not to do this,
+to add new root CA's in Java programmatically. We recommend you install our terminal root CA as a trusted CA and turn
+https on in your client. In order to provide some extra protection in situations where developers choose not to do this,
 the SDK uses transient credentials when communicating with terminals in order to prevent exposing real merchant credentials.
 
 
@@ -284,10 +284,10 @@ Here's the full list with links to their GitHub repositories.
 ## Getting a Developer Kit
 
 In order to test your integration with real terminals, you'll need a BlockChyp
-Developer Kit.  Our kits include a fully functioning payment terminal with
-test pin encryption keys.  Every kit includes a comprehensive set of test
+Developer Kit. Our kits include a fully functioning payment terminal with
+test pin encryption keys. Every kit includes a comprehensive set of test
 cards with test cards for every major card brand and entry method, including
-Contactless and Contact EMV and mag stripe cards.  Each kit also includes
+Contactless and Contact EMV and mag stripe cards. Each kit also includes
 test gift cards for our blockchain gift card system.
 
 Access to BlockChyp's developer program is currently invite only, but you
@@ -1300,7 +1300,7 @@ shown in the example below.
 ```
 
 This file can be located in a few different places, but is usually located
-at `<USER_HOME>/.config/blockchyp/sdk-itest-config.json`.  All BlockChyp SDK's
+at `<USER_HOME>/.config/blockchyp/sdk-itest-config.json`. All BlockChyp SDKs
 use the same configuration file.
 
 To run the integration test suite via `make`, type the following command:
@@ -1325,7 +1325,7 @@ Java IDE.
 ## Contributions
 
 BlockChyp welcomes contributions from the open source community, but bear in mind
-that this repository has been generated by our internal SDK Generator tool.  If
+that this repository has been generated by our internal SDK Generator tool. If
 we choose to accept a PR or contribution, your code will be moved into our SDK
 Generator project, which is a private repository.
 
