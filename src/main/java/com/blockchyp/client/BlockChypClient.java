@@ -113,6 +113,8 @@ public class BlockChypClient {
     public static final String OFFLINE_FIXED_KEY = "cb22789c9d5c344a10e0474f134db39e25eb3bbf5a1b1a5e89b507f15ea9519c";
     public static final long MS_PER_HOUR = 3600000;
 
+    private static final String USER_AGENT = getUserAgent();
+
     private String gatewayHost = "https://api.blockchyp.com";
     private String testGatewayHost = "https://test.blockchyp.com";
     private APICredentials defaultCredentials;
@@ -849,6 +851,7 @@ public class BlockChypClient {
                 "application/json", "UTF-8");
 
         method.setRequestEntity(requestEntity);
+        method.setRequestHeader("User-Agent", USER_AGENT);
 
         paymentLogger.debug("Terminal: " + method.getURI().toString());
 
@@ -995,6 +998,8 @@ public class BlockChypClient {
     protected Object finishGatewayRequest(HttpMethod method, Class responseType) throws Exception {
 
         HttpClient client = getGatewayClient();
+
+        method.setRequestHeader("User-Agent", USER_AGENT);
 
         Map headers = new HashMap();
         if (defaultCredentials != null) {
@@ -1179,6 +1184,14 @@ public class BlockChypClient {
      */
     public void setTerminalHttps(boolean terminalHttps) {
         this.terminalHttps = terminalHttps;
+    }
+
+    /**
+     * Gets a user agent for HTTP requests.
+     */
+    private static String getUserAgent() {
+        String version = BlockChypClient.class.getPackage().getSpecificationVersion();
+        return String.format("BlockChyp-Java/%s", version);
     }
 
 }
