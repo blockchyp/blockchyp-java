@@ -34,7 +34,7 @@ public class NewTransactionDisplayExample {
         //process the result
 
         if (response.isSuccess()) {
-            System.out.println("Succeded");
+            System.out.println("Success");
         }
 
     }
