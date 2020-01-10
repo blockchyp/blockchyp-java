@@ -11,6 +11,7 @@ package com.blockchyp.client.itest;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import java.io.IOException;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -19,37 +20,29 @@ import org.junit.experimental.categories.Category;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.IntegrationTest;
 import com.blockchyp.client.IntegrationTestConfiguration;
-import com.blockchyp.client.dto.RefundRequest;
-import com.blockchyp.client.dto.AuthorizationResponse;
 import com.blockchyp.client.dto.AuthorizationRequest;
+import com.blockchyp.client.dto.AuthorizationResponse;
 
-public class SimpleRefundTest extends BaseTestCase {
+public class TerminalTimeoutTest extends BaseTestCase {
 
-    @Test
+    @Test(expected = java.io.IOException.class)
     @Category(IntegrationTest.class)
     public void testTransaction() throws Exception {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "SimpleRefundTest");
-
-         // setup request object
-         AuthorizationRequest setupRequest = new AuthorizationRequest();
-         setupRequest.setPan("4111111111111111");
-         setupRequest.setAmount("25.55");
-         setupRequest.setTest(true);
-         setupRequest.setTransactionRef(getUUID());
-         AuthorizationResponse setupResponse = client.charge(setupRequest);
+        processTestDelay(client, "TerminalTimeoutTest");
 
         // setup request object
-        RefundRequest request = new RefundRequest();
-        request.setTransactionId(setupResponse.getTransactionId());
+        AuthorizationRequest request = new AuthorizationRequest();
+        request.setTimeout(1);
+        request.setTerminalName("Test Terminal");
+        request.setAmount("25.15");
         request.setTest(true);
 
-        AuthorizationResponse response = client.refund(request);
+        AuthorizationResponse response = client.charge(request);
 
         // response assertions
-        Assert.assertTrue(response.isApproved());
 
     }
 

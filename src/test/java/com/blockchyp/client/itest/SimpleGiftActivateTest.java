@@ -5,10 +5,12 @@
  * This file was generated automatically. Changes to this file will be lost every time the
  * code is regenerated.
  */
+
 package com.blockchyp.client.itest;
 
 import java.util.ArrayList;
 import java.util.Collection;
+
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -26,25 +28,22 @@ public class SimpleGiftActivateTest extends BaseTestCase {
     @Category(IntegrationTest.class)
     public void testTransaction() throws Exception {
 
-         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-         processTestDelay(client, "SimpleGiftActivateTest");
+        processTestDelay(client, "SimpleGiftActivateTest");
 
+        // setup request object
+        GiftActivateRequest request = new GiftActivateRequest();
+        request.setTest(true);
+        request.setTerminalName("Test Terminal");
+        request.setAmount("50.00");
 
+        GiftActivateResponse response = client.giftActivate(request);
 
-         // setup request object
-         GiftActivateRequest request = new GiftActivateRequest();
-         request.setTest(true);
-         request.setTerminalName("Test Terminal");
-         request.setAmount("50.00");
-
-         GiftActivateResponse response = client.giftActivate(request);
-
-
-         // response assertions
-         Assert.assertTrue(response.isApproved());
-         Assert.assertNotNull(response.getPublicKey());
-         Assert.assertTrue(response.getPublicKey().trim().length() > 0);
+        // response assertions
+        Assert.assertTrue(response.isApproved());
+        Assert.assertNotNull(response.getPublicKey());
+        Assert.assertTrue(response.getPublicKey().trim().length() > 0);
 
     }
 

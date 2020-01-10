@@ -5,10 +5,12 @@
  * This file was generated automatically. Changes to this file will be lost every time the
  * code is regenerated.
  */
+
 package com.blockchyp.client.itest;
 
 import java.util.ArrayList;
 import java.util.Collection;
+
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -26,26 +28,23 @@ public class BooleanPromptTest extends BaseTestCase {
     @Category(IntegrationTest.class)
     public void testTransaction() throws Exception {
 
-         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-         processTestDelay(client, "BooleanPromptTest");
+        processTestDelay(client, "BooleanPromptTest");
 
+        // setup request object
+        BooleanPromptRequest request = new BooleanPromptRequest();
+        request.setTest(true);
+        request.setTerminalName("Test Terminal");
+        request.setPrompt("Would you like to become a member?");
+        request.setYesCaption("Yes");
+        request.setNoCaption("No");
 
+        BooleanPromptResponse response = client.booleanPrompt(request);
 
-         // setup request object
-         BooleanPromptRequest request = new BooleanPromptRequest();
-         request.setTest(true);
-         request.setTerminalName("Test Terminal");
-         request.setPrompt("Would you like to become a member?");
-         request.setYesCaption("Yes");
-         request.setNoCaption("No");
-
-         BooleanPromptResponse response = client.booleanPrompt(request);
-
-
-         // response assertions
-         Assert.assertTrue(response.isSuccess());
-         Assert.assertTrue(response.isResponse());
+        // response assertions
+        Assert.assertTrue(response.isSuccess());
+        Assert.assertTrue(response.isResponse());
 
     }
 

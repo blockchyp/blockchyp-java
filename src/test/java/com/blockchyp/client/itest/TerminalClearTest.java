@@ -5,10 +5,12 @@
  * This file was generated automatically. Changes to this file will be lost every time the
  * code is regenerated.
  */
+
 package com.blockchyp.client.itest;
 
 import java.util.ArrayList;
 import java.util.Collection;
+
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -26,22 +28,19 @@ public class TerminalClearTest extends BaseTestCase {
     @Category(IntegrationTest.class)
     public void testTransaction() throws Exception {
 
-         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-         processTestDelay(client, "TerminalClearTest");
+        processTestDelay(client, "TerminalClearTest");
 
+        // setup request object
+        ClearTerminalRequest request = new ClearTerminalRequest();
+        request.setTest(true);
+        request.setTerminalName("Test Terminal");
 
+        Acknowledgement response = client.clear(request);
 
-         // setup request object
-         ClearTerminalRequest request = new ClearTerminalRequest();
-         request.setTest(true);
-         request.setTerminalName("Test Terminal");
-
-         Acknowledgement response = client.clear(request);
-
-
-         // response assertions
-         Assert.assertTrue(response.isSuccess());
+        // response assertions
+        Assert.assertTrue(response.isSuccess());
 
     }
 

@@ -5,10 +5,12 @@
  * This file was generated automatically. Changes to this file will be lost every time the
  * code is regenerated.
  */
+
 package com.blockchyp.client.itest;
 
 import java.util.ArrayList;
 import java.util.Collection;
+
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -29,23 +31,20 @@ public class UpdateTransactionDisplayTest extends BaseTestCase {
     @Category(IntegrationTest.class)
     public void testTransaction() throws Exception {
 
-         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-         processTestDelay(client, "UpdateTransactionDisplayTest");
+        processTestDelay(client, "UpdateTransactionDisplayTest");
 
+        // setup request object
+        TransactionDisplayRequest request = new TransactionDisplayRequest();
+        request.setTest(true);
+        request.setTerminalName("Test Terminal");
+        request.setTransaction(newTransactionDisplayTransaction());
 
+        Acknowledgement response = client.updateTransactionDisplay(request);
 
-         // setup request object
-         TransactionDisplayRequest request = new TransactionDisplayRequest();
-         request.setTest(true);
-         request.setTerminalName("Test Terminal");
-         request.setTransaction(newTransactionDisplayTransaction());
-
-         Acknowledgement response = client.updateTransactionDisplay(request);
-
-
-         // response assertions
-         Assert.assertTrue(response.isSuccess());
+        // response assertions
+        Assert.assertTrue(response.isSuccess());
 
     }
 

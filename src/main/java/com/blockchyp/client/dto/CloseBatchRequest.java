@@ -5,6 +5,7 @@
  * This file was generated automatically. Changes to this file will be lost every time the
  * code is regenerated.
  */
+
 package com.blockchyp.client.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -98,16 +99,16 @@ public class CloseBatchRequest implements ICoreRequest {
      }
 
      /**
-      * Sets the request timeout in milliseconds.
-      * @param value the request timeout in milliseconds.
+      * Sets the request timeout in seconds.
+      * @param value the request timeout in seconds.
       */
      public void setTimeout(int value) {
           this.timeout = value;
      }
 
      /**
-      * Gets the request timeout in milliseconds.
-      * @return the request timeout in milliseconds.
+      * Gets the request timeout in seconds.
+      * @return the request timeout in seconds.
       */
      @JsonProperty("timeout")
      public int getTimeout() {

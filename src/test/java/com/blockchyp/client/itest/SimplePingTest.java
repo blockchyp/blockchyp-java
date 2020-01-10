@@ -5,10 +5,12 @@
  * This file was generated automatically. Changes to this file will be lost every time the
  * code is regenerated.
  */
+
 package com.blockchyp.client.itest;
 
 import java.util.ArrayList;
 import java.util.Collection;
+
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -26,22 +28,19 @@ public class SimplePingTest extends BaseTestCase {
     @Category(IntegrationTest.class)
     public void testTransaction() throws Exception {
 
-         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-         processTestDelay(client, "SimplePingTest");
+        processTestDelay(client, "SimplePingTest");
 
+        // setup request object
+        PingRequest request = new PingRequest();
+        request.setTest(true);
+        request.setTerminalName("Test Terminal");
 
+        PingResponse response = client.ping(request);
 
-         // setup request object
-         PingRequest request = new PingRequest();
-         request.setTest(true);
-         request.setTerminalName("Test Terminal");
-
-         PingResponse response = client.ping(request);
-
-
-         // response assertions
-         Assert.assertTrue(response.isSuccess());
+        // response assertions
+        Assert.assertTrue(response.isSuccess());
 
     }
 

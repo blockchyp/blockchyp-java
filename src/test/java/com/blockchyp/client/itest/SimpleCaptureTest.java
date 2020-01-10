@@ -5,10 +5,12 @@
  * This file was generated automatically. Changes to this file will be lost every time the
  * code is regenerated.
  */
+
 package com.blockchyp.client.itest;
 
 import java.util.ArrayList;
 import java.util.Collection;
+
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -28,34 +30,26 @@ public class SimpleCaptureTest extends BaseTestCase {
     @Category(IntegrationTest.class)
     public void testTransaction() throws Exception {
 
-         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-         processTestDelay(client, "SimpleCaptureTest");
-
-
-	     // setup request object
-         AuthorizationRequest setupRequest = new AuthorizationRequest();
-
-         setupRequest.setPan("4111111111111111");
-
-         setupRequest.setAmount("25.55");
-
-         setupRequest.setTest(true);
-
-         AuthorizationResponse setupResponse = client.preauth(setupRequest);
-
-
+        processTestDelay(client, "SimpleCaptureTest");
 
          // setup request object
-         CaptureRequest request = new CaptureRequest();
-         request.setTransactionId(setupResponse.getTransactionId());
-         request.setTest(true);
+         AuthorizationRequest setupRequest = new AuthorizationRequest();
+         setupRequest.setPan("4111111111111111");
+         setupRequest.setAmount("25.55");
+         setupRequest.setTest(true);
+         AuthorizationResponse setupResponse = client.preauth(setupRequest);
 
-         CaptureResponse response = client.capture(request);
+        // setup request object
+        CaptureRequest request = new CaptureRequest();
+        request.setTransactionId(setupResponse.getTransactionId());
+        request.setTest(true);
 
+        CaptureResponse response = client.capture(request);
 
-         // response assertions
-         Assert.assertTrue(response.isApproved());
+        // response assertions
+        Assert.assertTrue(response.isApproved());
 
     }
 

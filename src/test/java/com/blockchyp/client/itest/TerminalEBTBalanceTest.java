@@ -5,10 +5,12 @@
  * This file was generated automatically. Changes to this file will be lost every time the
  * code is regenerated.
  */
+
 package com.blockchyp.client.itest;
 
 import java.util.ArrayList;
 import java.util.Collection;
+
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -27,25 +29,22 @@ public class TerminalEBTBalanceTest extends BaseTestCase {
     @Category(IntegrationTest.class)
     public void testTransaction() throws Exception {
 
-         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-         processTestDelay(client, "TerminalEBTBalanceTest");
+        processTestDelay(client, "TerminalEBTBalanceTest");
 
+        // setup request object
+        BalanceRequest request = new BalanceRequest();
+        request.setTest(true);
+        request.setTerminalName("Test Terminal");
+        request.setCardType(CardType.EBT);
 
+        BalanceResponse response = client.balance(request);
 
-         // setup request object
-         BalanceRequest request = new BalanceRequest();
-         request.setTest(true);
-         request.setTerminalName("Test Terminal");
-         request.setCardType(CardType.EBT);
-
-         BalanceResponse response = client.balance(request);
-
-
-         // response assertions
-         Assert.assertTrue(response.isSuccess());
-         Assert.assertNotNull(response.getRemainingBalance());
-         Assert.assertTrue(response.getRemainingBalance().trim().length() > 0);
+        // response assertions
+        Assert.assertTrue(response.isSuccess());
+        Assert.assertNotNull(response.getRemainingBalance());
+        Assert.assertTrue(response.getRemainingBalance().trim().length() > 0);
 
     }
 

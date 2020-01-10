@@ -5,10 +5,12 @@
  * This file was generated automatically. Changes to this file will be lost every time the
  * code is regenerated.
  */
+
 package com.blockchyp.client.itest;
 
 import java.util.ArrayList;
 import java.util.Collection;
+
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -26,36 +28,27 @@ public class SimpleReversalTest extends BaseTestCase {
     @Category(IntegrationTest.class)
     public void testTransaction() throws Exception {
 
-         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-         processTestDelay(client, "SimpleReversalTest");
-
-
-	     // setup request object
-         AuthorizationRequest setupRequest = new AuthorizationRequest();
-
-         setupRequest.setPan("4111111111111111");
-
-         setupRequest.setAmount("25.55");
-
-         setupRequest.setTest(true);
-
-         setupRequest.setTransactionRef(getUUID());
-
-         AuthorizationResponse setupResponse = client.charge(setupRequest);
-
-
+        processTestDelay(client, "SimpleReversalTest");
 
          // setup request object
-         AuthorizationRequest request = new AuthorizationRequest();
-         request.setTransactionRef(setupResponse.getTransactionRef());
-         request.setTest(true);
+         AuthorizationRequest setupRequest = new AuthorizationRequest();
+         setupRequest.setPan("4111111111111111");
+         setupRequest.setAmount("25.55");
+         setupRequest.setTest(true);
+         setupRequest.setTransactionRef(getUUID());
+         AuthorizationResponse setupResponse = client.charge(setupRequest);
 
-         AuthorizationResponse response = client.reverse(request);
+        // setup request object
+        AuthorizationRequest request = new AuthorizationRequest();
+        request.setTransactionRef(setupResponse.getTransactionRef());
+        request.setTest(true);
 
+        AuthorizationResponse response = client.reverse(request);
 
-         // response assertions
-         Assert.assertTrue(response.isApproved());
+        // response assertions
+        Assert.assertTrue(response.isApproved());
 
     }
 

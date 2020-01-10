@@ -58,7 +58,7 @@ integration:
 		-e HOME=$(HOME) \
 		-w $(PWD) \
 		--rm -it $(IMAGE)) \
-	$(MVN) test -Dgroups=com.blockchyp.client.IntegrationTest
+	$(MVN) test $(if $(TEST),-Dtest=$(TEST),-Dgroups=com.blockchyp.client.IntegrationTest)
 
 # Performs any tasks necessary before a release build
 .PHONY: stage

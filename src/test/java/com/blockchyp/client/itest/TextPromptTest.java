@@ -5,10 +5,12 @@
  * This file was generated automatically. Changes to this file will be lost every time the
  * code is regenerated.
  */
+
 package com.blockchyp.client.itest;
 
 import java.util.ArrayList;
 import java.util.Collection;
+
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -27,25 +29,22 @@ public class TextPromptTest extends BaseTestCase {
     @Category(IntegrationTest.class)
     public void testTransaction() throws Exception {
 
-         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-         processTestDelay(client, "TextPromptTest");
+        processTestDelay(client, "TextPromptTest");
 
+        // setup request object
+        TextPromptRequest request = new TextPromptRequest();
+        request.setTest(true);
+        request.setTerminalName("Test Terminal");
+        request.setPromptType(PromptType.EMAIL);
 
+        TextPromptResponse response = client.textPrompt(request);
 
-         // setup request object
-         TextPromptRequest request = new TextPromptRequest();
-         request.setTest(true);
-         request.setTerminalName("Test Terminal");
-         request.setPromptType(PromptType.EMAIL);
-
-         TextPromptResponse response = client.textPrompt(request);
-
-
-         // response assertions
-         Assert.assertTrue(response.isSuccess());
-         Assert.assertNotNull(response.getResponse());
-         Assert.assertTrue(response.getResponse().trim().length() > 0);
+        // response assertions
+        Assert.assertTrue(response.isSuccess());
+        Assert.assertNotNull(response.getResponse());
+        Assert.assertTrue(response.getResponse().trim().length() > 0);
 
     }
 

@@ -5,10 +5,12 @@
  * This file was generated automatically. Changes to this file will be lost every time the
  * code is regenerated.
  */
+
 package com.blockchyp.client.itest;
 
 import java.util.ArrayList;
 import java.util.Collection;
+
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -27,27 +29,24 @@ public class TermsAndConditionsTest extends BaseTestCase {
     @Category(IntegrationTest.class)
     public void testTransaction() throws Exception {
 
-         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-         processTestDelay(client, "TermsAndConditionsTest");
+        processTestDelay(client, "TermsAndConditionsTest");
 
+        // setup request object
+        TermsAndConditionsRequest request = new TermsAndConditionsRequest();
+        request.setTest(true);
+        request.setTerminalName("Test Terminal");
+        request.setTcName("HIPPA Disclosure");
+        request.setTcContent("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ullamcorper id urna quis pulvinar. Pellentesque vestibulum justo ac nulla consectetur tristique. Suspendisse arcu arcu, viverra vel luctus non, dapibus vitae augue. Aenean ac volutpat purus. Curabitur in lacus nisi. Nam vel sagittis eros. Curabitur faucibus ut nisl in pulvinar. Nunc egestas, orci ut porttitor tempus, ante mauris pellentesque ex, nec feugiat purus arcu ac metus. Cras sodales ornare lobortis. Aenean lacinia ultricies purus quis pharetra. Cras vestibulum nulla et magna eleifend eleifend. Nunc nibh dolor, malesuada ut suscipit vitae, bibendum quis dolor. Phasellus ultricies ex vitae dolor malesuada, vel dignissim neque accumsan.");
+        request.setSigFormat(SignatureFormat.PNG);
+        request.setSigWidth(200);
+        request.setSigRequired(true);
 
+        TermsAndConditionsResponse response = client.termsAndConditions(request);
 
-         // setup request object
-         TermsAndConditionsRequest request = new TermsAndConditionsRequest();
-         request.setTest(true);
-         request.setTerminalName("Test Terminal");
-         request.setTcName("HIPPA Disclosure");
-         request.setTcContent("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ullamcorper id urna quis pulvinar. Pellentesque vestibulum justo ac nulla consectetur tristique. Suspendisse arcu arcu, viverra vel luctus non, dapibus vitae augue. Aenean ac volutpat purus. Curabitur in lacus nisi. Nam vel sagittis eros. Curabitur faucibus ut nisl in pulvinar. Nunc egestas, orci ut porttitor tempus, ante mauris pellentesque ex, nec feugiat purus arcu ac metus. Cras sodales ornare lobortis. Aenean lacinia ultricies purus quis pharetra. Cras vestibulum nulla et magna eleifend eleifend. Nunc nibh dolor, malesuada ut suscipit vitae, bibendum quis dolor. Phasellus ultricies ex vitae dolor malesuada, vel dignissim neque accumsan.");
-         request.setSigFormat(SignatureFormat.PNG);
-         request.setSigWidth(200);
-         request.setSigRequired(true);
-
-         TermsAndConditionsResponse response = client.termsAndConditions(request);
-
-
-         // response assertions
-         Assert.assertTrue(response.isSuccess());
+        // response assertions
+        Assert.assertTrue(response.isSuccess());
 
     }
 

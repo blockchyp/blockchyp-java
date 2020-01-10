@@ -5,10 +5,12 @@
  * This file was generated automatically. Changes to this file will be lost every time the
  * code is regenerated.
  */
+
 package com.blockchyp.client.itest;
 
 import java.util.ArrayList;
 import java.util.Collection;
+
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -26,39 +28,36 @@ public class TerminalEnrollTest extends BaseTestCase {
     @Category(IntegrationTest.class)
     public void testTransaction() throws Exception {
 
-         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-         processTestDelay(client, "TerminalEnrollTest");
+        processTestDelay(client, "TerminalEnrollTest");
 
+        // setup request object
+        EnrollRequest request = new EnrollRequest();
+        request.setTerminalName("Test Terminal");
+        request.setTest(true);
 
+        EnrollResponse response = client.enroll(request);
 
-         // setup request object
-         EnrollRequest request = new EnrollRequest();
-         request.setTerminalName("Test Terminal");
-         request.setTest(true);
-
-         EnrollResponse response = client.enroll(request);
-
-
-         // response assertions
-         Assert.assertTrue(response.isApproved());
-         Assert.assertTrue(response.isTest());
-         Assert.assertTrue(response.getAuthCode().length() == 6);
-         Assert.assertNotNull(response.getTransactionId());
-         Assert.assertTrue(response.getTransactionId().trim().length() > 0);
-         Assert.assertNotNull(response.getTimestamp());
-         Assert.assertTrue(response.getTimestamp().trim().length() > 0);
-         Assert.assertNotNull(response.getTickBlock());
-         Assert.assertTrue(response.getTickBlock().trim().length() > 0);
-         Assert.assertEquals("Approved", response.getResponseDescription());
-         Assert.assertNotNull(response.getPaymentType());
-         Assert.assertTrue(response.getPaymentType().trim().length() > 0);
-         Assert.assertNotNull(response.getMaskedPan());
-         Assert.assertTrue(response.getMaskedPan().trim().length() > 0);
-         Assert.assertNotNull(response.getEntryMethod());
-         Assert.assertTrue(response.getEntryMethod().trim().length() > 0);
-         Assert.assertNotNull(response.getToken());
-         Assert.assertTrue(response.getToken().trim().length() > 0);
+        // response assertions
+        Assert.assertTrue(response.isApproved());
+        Assert.assertTrue(response.isTest());
+        Assert.assertTrue(response.getAuthCode().length() == 6);
+        Assert.assertNotNull(response.getTransactionId());
+        Assert.assertTrue(response.getTransactionId().trim().length() > 0);
+        Assert.assertNotNull(response.getTimestamp());
+        Assert.assertTrue(response.getTimestamp().trim().length() > 0);
+        Assert.assertNotNull(response.getTickBlock());
+        Assert.assertTrue(response.getTickBlock().trim().length() > 0);
+        Assert.assertEquals("Approved", response.getResponseDescription());
+        Assert.assertNotNull(response.getPaymentType());
+        Assert.assertTrue(response.getPaymentType().trim().length() > 0);
+        Assert.assertNotNull(response.getMaskedPan());
+        Assert.assertTrue(response.getMaskedPan().trim().length() > 0);
+        Assert.assertNotNull(response.getEntryMethod());
+        Assert.assertTrue(response.getEntryMethod().trim().length() > 0);
+        Assert.assertNotNull(response.getToken());
+        Assert.assertTrue(response.getToken().trim().length() > 0);
 
     }
 
