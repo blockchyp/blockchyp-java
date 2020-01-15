@@ -83,6 +83,8 @@ import com.blockchyp.client.dto.TransactionDisplayItem;
 import com.blockchyp.client.dto.TransactionDisplayTransaction;
 import com.blockchyp.client.dto.TransactionDisplayRequest;
 import com.blockchyp.client.dto.HeartbeatResponse;
+import com.blockchyp.client.dto.TerminalStatusRequest;
+import com.blockchyp.client.dto.TerminalStatusResponse;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -549,6 +551,22 @@ public class BlockChypClient {
             return (GiftActivateResponse) postTerminal("/api/gift-activate", request, GiftActivateResponse.class);
         } else {
             return (GiftActivateResponse) postGateway("/api/gift-activate", request, GiftActivateResponse.class);
+        }
+
+    }
+
+     /**
+      * Returns the current status of a terminal.
+      * @param request the request parameters.
+      * @return {@link TerminalStatusResponse}
+      * @throws Exception exception if any errors occurred processing the request.
+      */
+    public TerminalStatusResponse terminalStatus(TerminalStatusRequest request) throws Exception {
+
+        if (isTerminalRouted(request)) {
+            return (TerminalStatusResponse) postTerminal("/api/terminal-status", request, TerminalStatusResponse.class);
+        } else {
+            return (TerminalStatusResponse) postGateway("/api/terminal-status", request, TerminalStatusResponse.class);
         }
 
     }
