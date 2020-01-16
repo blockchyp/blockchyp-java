@@ -3,6 +3,9 @@ package com.blockchyp.client.examples;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
 import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.dto.TermsAndConditionsRequest;
@@ -12,12 +15,12 @@ import com.blockchyp.client.dto.SignatureFormat;
 
 public class TermsAndConditionsExample {
 
-    public void runSampleTransaction() throws Exception {
+    public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
-        creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
-        creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
-        creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+        creds.setApiKey(System.getenv("BC_API_KEY"));
+        creds.setBearerToken(System.getenv("BC_BEARER_TOKEN"));
+        creds.setSigningKey(System.getenv("BC_SIGNING_KEY"));
 
         BlockChypClient client = new BlockChypClient(creds);
 
@@ -34,15 +37,20 @@ public class TermsAndConditionsExample {
 
         TermsAndConditionsResponse response = client.termsAndConditions(request);
 
-        //process the result
+        // view the result
+        System.out.println("Response: " + prettyPrint(response));
 
-        if (response.isSuccess()) {
-            System.out.println("Success");
-        }
-
-    System.out.println(response.getSig());
-    System.out.println(response.getSigFile());
     }
 
+    public static String prettyPrint(Object object) throws Exception {
 
+        ObjectWriter writer = new ObjectMapper()
+            .writer()
+            .withDefaultPrettyPrinter();
+
+        return object.getClass().getSimpleName()
+            + ": "
+            + writer.writeValueAsString(object);
+
+    }
 }

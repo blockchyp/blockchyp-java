@@ -48,21 +48,27 @@ public class UpdateTransactionDisplayTest extends BaseTestCase {
 
     }
 
-    private TransactionDisplayTransaction newTransactionDisplayTransaction() {
+    private static TransactionDisplayTransaction newTransactionDisplayTransaction() {
          TransactionDisplayTransaction val = new TransactionDisplayTransaction();
          val.setSubtotal("35.00");
          val.setTax("5.00");
          val.setTotal("70.00");
          val.setItems(newTransactionDisplayItems());
          return val;
+
     }
+
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    private Collection newTransactionDisplayItems() {
+    private static Collection newTransactionDisplayItems() {
+
          Collection results = new ArrayList();
          results.add(newTransactionDisplayItem2());
          return results;
+
     }
-    private TransactionDisplayItem newTransactionDisplayItem2() {
+
+    private static TransactionDisplayItem newTransactionDisplayItem2() {
+
          TransactionDisplayItem val = new TransactionDisplayItem();
          val.setDescription("Leki Trekking Poles");
          val.setPrice("35.00");
@@ -70,18 +76,25 @@ public class UpdateTransactionDisplayTest extends BaseTestCase {
          val.setExtended("70.00");
          val.setDiscounts(newTransactionDisplayDiscounts());
          return val;
+
     }
+
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    private Collection newTransactionDisplayDiscounts() {
+    private static Collection newTransactionDisplayDiscounts() {
+
          Collection results = new ArrayList();
          results.add(newTransactionDisplayDiscount2());
          return results;
+
     }
-    private TransactionDisplayDiscount newTransactionDisplayDiscount2() {
+
+    private static TransactionDisplayDiscount newTransactionDisplayDiscount2() {
+
          TransactionDisplayDiscount val = new TransactionDisplayDiscount();
          val.setDescription("memberDiscount");
          val.setAmount("10.00");
          return val;
+
     }
 
 }

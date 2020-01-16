@@ -310,6 +310,9 @@ package com.blockchyp.client.examples;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
 import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.dto.AuthorizationRequest;
@@ -318,12 +321,12 @@ import com.blockchyp.client.dto.AuthorizationResponse;
 
 public class ChargeExample {
 
-    public void runSampleTransaction() throws Exception {
+    public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
-        creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
-        creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
-        creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+        creds.setApiKey(System.getenv("BC_API_KEY"));
+        creds.setBearerToken(System.getenv("BC_BEARER_TOKEN"));
+        creds.setSigningKey(System.getenv("BC_SIGNING_KEY"));
 
         BlockChypClient client = new BlockChypClient(creds);
 
@@ -335,17 +338,22 @@ public class ChargeExample {
 
         AuthorizationResponse response = client.charge(request);
 
-        //process the result
+        // view the result
+        System.out.println("Response: " + prettyPrint(response));
 
-        if (response.isApproved()) {
-            System.out.println("Approved");
-        }
-
-    System.out.println(response.getAuthCode());
-    System.out.println(response.getAuthorizedAmount());
     }
 
+    public static String prettyPrint(Object object) throws Exception {
 
+        ObjectWriter writer = new ObjectMapper()
+            .writer()
+            .withDefaultPrettyPrinter();
+
+        return object.getClass().getSimpleName()
+            + ": "
+            + writer.writeValueAsString(object);
+
+    }
 }
 
 
@@ -361,6 +369,9 @@ package com.blockchyp.client.examples;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
 import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.dto.AuthorizationRequest;
@@ -369,12 +380,12 @@ import com.blockchyp.client.dto.AuthorizationResponse;
 
 public class PreauthExample {
 
-    public void runSampleTransaction() throws Exception {
+    public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
-        creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
-        creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
-        creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+        creds.setApiKey(System.getenv("BC_API_KEY"));
+        creds.setBearerToken(System.getenv("BC_BEARER_TOKEN"));
+        creds.setSigningKey(System.getenv("BC_SIGNING_KEY"));
 
         BlockChypClient client = new BlockChypClient(creds);
 
@@ -386,17 +397,22 @@ public class PreauthExample {
 
         AuthorizationResponse response = client.preauth(request);
 
-        //process the result
+        // view the result
+        System.out.println("Response: " + prettyPrint(response));
 
-        if (response.isApproved()) {
-            System.out.println("Approved");
-        }
-
-    System.out.println(response.getAuthCode());
-    System.out.println(response.getAuthorizedAmount());
     }
 
+    public static String prettyPrint(Object object) throws Exception {
 
+        ObjectWriter writer = new ObjectMapper()
+            .writer()
+            .withDefaultPrettyPrinter();
+
+        return object.getClass().getSimpleName()
+            + ": "
+            + writer.writeValueAsString(object);
+
+    }
 }
 
 
@@ -412,6 +428,9 @@ package com.blockchyp.client.examples;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
 import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.dto.PingRequest;
@@ -420,12 +439,12 @@ import com.blockchyp.client.dto.PingResponse;
 
 public class PingExample {
 
-    public void runSampleTransaction() throws Exception {
+    public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
-        creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
-        creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
-        creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+        creds.setApiKey(System.getenv("BC_API_KEY"));
+        creds.setBearerToken(System.getenv("BC_BEARER_TOKEN"));
+        creds.setSigningKey(System.getenv("BC_SIGNING_KEY"));
 
         BlockChypClient client = new BlockChypClient(creds);
 
@@ -435,15 +454,22 @@ public class PingExample {
 
         PingResponse response = client.ping(request);
 
-        //process the result
-
-        if (response.isSuccess()) {
-            System.out.println("Success");
-        }
+        // view the result
+        System.out.println("Response: " + prettyPrint(response));
 
     }
 
+    public static String prettyPrint(Object object) throws Exception {
 
+        ObjectWriter writer = new ObjectMapper()
+            .writer()
+            .withDefaultPrettyPrinter();
+
+        return object.getClass().getSimpleName()
+            + ": "
+            + writer.writeValueAsString(object);
+
+    }
 }
 
 
@@ -459,6 +485,9 @@ package com.blockchyp.client.examples;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
 import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.dto.BalanceRequest;
@@ -468,12 +497,12 @@ import com.blockchyp.client.dto.CardType;
 
 public class BalanceExample {
 
-    public void runSampleTransaction() throws Exception {
+    public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
-        creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
-        creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
-        creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+        creds.setApiKey(System.getenv("BC_API_KEY"));
+        creds.setBearerToken(System.getenv("BC_BEARER_TOKEN"));
+        creds.setSigningKey(System.getenv("BC_SIGNING_KEY"));
 
         BlockChypClient client = new BlockChypClient(creds);
 
@@ -485,15 +514,22 @@ public class BalanceExample {
 
         BalanceResponse response = client.balance(request);
 
-        //process the result
-
-        if (response.isSuccess()) {
-            System.out.println("Success");
-        }
+        // view the result
+        System.out.println("Response: " + prettyPrint(response));
 
     }
 
+    public static String prettyPrint(Object object) throws Exception {
 
+        ObjectWriter writer = new ObjectMapper()
+            .writer()
+            .withDefaultPrettyPrinter();
+
+        return object.getClass().getSimpleName()
+            + ": "
+            + writer.writeValueAsString(object);
+
+    }
 }
 
 
@@ -509,6 +545,9 @@ package com.blockchyp.client.examples;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
 import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.dto.ClearTerminalRequest;
@@ -517,12 +556,12 @@ import com.blockchyp.client.dto.Acknowledgement;
 
 public class ClearExample {
 
-    public void runSampleTransaction() throws Exception {
+    public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
-        creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
-        creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
-        creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+        creds.setApiKey(System.getenv("BC_API_KEY"));
+        creds.setBearerToken(System.getenv("BC_BEARER_TOKEN"));
+        creds.setSigningKey(System.getenv("BC_SIGNING_KEY"));
 
         BlockChypClient client = new BlockChypClient(creds);
 
@@ -533,15 +572,22 @@ public class ClearExample {
 
         Acknowledgement response = client.clear(request);
 
-        //process the result
-
-        if (response.isSuccess()) {
-            System.out.println("Success");
-        }
+        // view the result
+        System.out.println("Response: " + prettyPrint(response));
 
     }
 
+    public static String prettyPrint(Object object) throws Exception {
 
+        ObjectWriter writer = new ObjectMapper()
+            .writer()
+            .withDefaultPrettyPrinter();
+
+        return object.getClass().getSimpleName()
+            + ": "
+            + writer.writeValueAsString(object);
+
+    }
 }
 
 
@@ -557,6 +603,9 @@ package com.blockchyp.client.examples;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
 import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.dto.TermsAndConditionsRequest;
@@ -566,12 +615,12 @@ import com.blockchyp.client.dto.SignatureFormat;
 
 public class TermsAndConditionsExample {
 
-    public void runSampleTransaction() throws Exception {
+    public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
-        creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
-        creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
-        creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+        creds.setApiKey(System.getenv("BC_API_KEY"));
+        creds.setBearerToken(System.getenv("BC_BEARER_TOKEN"));
+        creds.setSigningKey(System.getenv("BC_SIGNING_KEY"));
 
         BlockChypClient client = new BlockChypClient(creds);
 
@@ -588,17 +637,22 @@ public class TermsAndConditionsExample {
 
         TermsAndConditionsResponse response = client.termsAndConditions(request);
 
-        //process the result
+        // view the result
+        System.out.println("Response: " + prettyPrint(response));
 
-        if (response.isSuccess()) {
-            System.out.println("Success");
-        }
-
-    System.out.println(response.getSig());
-    System.out.println(response.getSigFile());
     }
 
+    public static String prettyPrint(Object object) throws Exception {
 
+        ObjectWriter writer = new ObjectMapper()
+            .writer()
+            .withDefaultPrettyPrinter();
+
+        return object.getClass().getSimpleName()
+            + ": "
+            + writer.writeValueAsString(object);
+
+    }
 }
 
 
@@ -616,6 +670,9 @@ package com.blockchyp.client.examples;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
 import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.dto.TransactionDisplayRequest;
@@ -627,12 +684,12 @@ import com.blockchyp.client.dto.TransactionDisplayDiscount;
 
 public class UpdateTransactionDisplayExample {
 
-    public void runSampleTransaction() throws Exception {
+    public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
-        creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
-        creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
-        creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+        creds.setApiKey(System.getenv("BC_API_KEY"));
+        creds.setBearerToken(System.getenv("BC_BEARER_TOKEN"));
+        creds.setSigningKey(System.getenv("BC_SIGNING_KEY"));
 
         BlockChypClient client = new BlockChypClient(creds);
 
@@ -644,29 +701,45 @@ public class UpdateTransactionDisplayExample {
 
         Acknowledgement response = client.updateTransactionDisplay(request);
 
-        //process the result
-
-        if (response.isSuccess()) {
-            System.out.println("Success");
-        }
+        // view the result
+        System.out.println("Response: " + prettyPrint(response));
 
     }
 
-    private TransactionDisplayTransaction newTransactionDisplayTransaction() {
+    public static String prettyPrint(Object object) throws Exception {
+
+        ObjectWriter writer = new ObjectMapper()
+            .writer()
+            .withDefaultPrettyPrinter();
+
+        return object.getClass().getSimpleName()
+            + ": "
+            + writer.writeValueAsString(object);
+
+    }
+
+    private static TransactionDisplayTransaction newTransactionDisplayTransaction() {
+
          TransactionDisplayTransaction val = new TransactionDisplayTransaction();
          val.setSubtotal("60.00");
          val.setTax("5.00");
          val.setTotal("65.00");
          val.setItems(newTransactionDisplayItems());
          return val;
+
     }
+
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    private Collection newTransactionDisplayItems() {
+    private static Collection newTransactionDisplayItems() {
+
          Collection results = new ArrayList();
          results.add(newTransactionDisplayItem2());
          return results;
+
     }
-    private TransactionDisplayItem newTransactionDisplayItem2() {
+
+    private static TransactionDisplayItem newTransactionDisplayItem2() {
+
          TransactionDisplayItem val = new TransactionDisplayItem();
          val.setDescription("Leki Trekking Poles");
          val.setPrice("35.00");
@@ -674,20 +747,26 @@ public class UpdateTransactionDisplayExample {
          val.setExtended("70.00");
          val.setDiscounts(newTransactionDisplayDiscounts());
          return val;
+
     }
+
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    private Collection newTransactionDisplayDiscounts() {
+    private static Collection newTransactionDisplayDiscounts() {
+
          Collection results = new ArrayList();
          results.add(newTransactionDisplayDiscount2());
          return results;
+
     }
-    private TransactionDisplayDiscount newTransactionDisplayDiscount2() {
+
+    private static TransactionDisplayDiscount newTransactionDisplayDiscount2() {
+
          TransactionDisplayDiscount val = new TransactionDisplayDiscount();
          val.setDescription("memberDiscount");
          val.setAmount("10.00");
          return val;
-    }
 
+    }
 }
 
 
@@ -703,6 +782,9 @@ package com.blockchyp.client.examples;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
 import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.dto.TransactionDisplayRequest;
@@ -714,12 +796,12 @@ import com.blockchyp.client.dto.TransactionDisplayDiscount;
 
 public class NewTransactionDisplayExample {
 
-    public void runSampleTransaction() throws Exception {
+    public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
-        creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
-        creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
-        creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+        creds.setApiKey(System.getenv("BC_API_KEY"));
+        creds.setBearerToken(System.getenv("BC_BEARER_TOKEN"));
+        creds.setSigningKey(System.getenv("BC_SIGNING_KEY"));
 
         BlockChypClient client = new BlockChypClient(creds);
 
@@ -731,29 +813,45 @@ public class NewTransactionDisplayExample {
 
         Acknowledgement response = client.newTransactionDisplay(request);
 
-        //process the result
-
-        if (response.isSuccess()) {
-            System.out.println("Success");
-        }
+        // view the result
+        System.out.println("Response: " + prettyPrint(response));
 
     }
 
-    private TransactionDisplayTransaction newTransactionDisplayTransaction() {
+    public static String prettyPrint(Object object) throws Exception {
+
+        ObjectWriter writer = new ObjectMapper()
+            .writer()
+            .withDefaultPrettyPrinter();
+
+        return object.getClass().getSimpleName()
+            + ": "
+            + writer.writeValueAsString(object);
+
+    }
+
+    private static TransactionDisplayTransaction newTransactionDisplayTransaction() {
+
          TransactionDisplayTransaction val = new TransactionDisplayTransaction();
          val.setSubtotal("60.00");
          val.setTax("5.00");
          val.setTotal("65.00");
          val.setItems(newTransactionDisplayItems());
          return val;
+
     }
+
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    private Collection newTransactionDisplayItems() {
+    private static Collection newTransactionDisplayItems() {
+
          Collection results = new ArrayList();
          results.add(newTransactionDisplayItem2());
          return results;
+
     }
-    private TransactionDisplayItem newTransactionDisplayItem2() {
+
+    private static TransactionDisplayItem newTransactionDisplayItem2() {
+
          TransactionDisplayItem val = new TransactionDisplayItem();
          val.setDescription("Leki Trekking Poles");
          val.setPrice("35.00");
@@ -761,20 +859,26 @@ public class NewTransactionDisplayExample {
          val.setExtended("70.00");
          val.setDiscounts(newTransactionDisplayDiscounts());
          return val;
+
     }
+
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    private Collection newTransactionDisplayDiscounts() {
+    private static Collection newTransactionDisplayDiscounts() {
+
          Collection results = new ArrayList();
          results.add(newTransactionDisplayDiscount2());
          return results;
+
     }
-    private TransactionDisplayDiscount newTransactionDisplayDiscount2() {
+
+    private static TransactionDisplayDiscount newTransactionDisplayDiscount2() {
+
          TransactionDisplayDiscount val = new TransactionDisplayDiscount();
          val.setDescription("memberDiscount");
          val.setAmount("10.00");
          return val;
-    }
 
+    }
 }
 
 
@@ -790,6 +894,9 @@ package com.blockchyp.client.examples;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
 import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.dto.TextPromptRequest;
@@ -799,12 +906,12 @@ import com.blockchyp.client.dto.PromptType;
 
 public class TextPromptExample {
 
-    public void runSampleTransaction() throws Exception {
+    public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
-        creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
-        creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
-        creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+        creds.setApiKey(System.getenv("BC_API_KEY"));
+        creds.setBearerToken(System.getenv("BC_BEARER_TOKEN"));
+        creds.setSigningKey(System.getenv("BC_SIGNING_KEY"));
 
         BlockChypClient client = new BlockChypClient(creds);
 
@@ -816,16 +923,22 @@ public class TextPromptExample {
 
         TextPromptResponse response = client.textPrompt(request);
 
-        //process the result
+        // view the result
+        System.out.println("Response: " + prettyPrint(response));
 
-        if (response.isSuccess()) {
-            System.out.println("Success");
-        }
-
-    System.out.println(response.getResponse());
     }
 
+    public static String prettyPrint(Object object) throws Exception {
 
+        ObjectWriter writer = new ObjectMapper()
+            .writer()
+            .withDefaultPrettyPrinter();
+
+        return object.getClass().getSimpleName()
+            + ": "
+            + writer.writeValueAsString(object);
+
+    }
 }
 
 
@@ -841,6 +954,9 @@ package com.blockchyp.client.examples;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
 import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.dto.BooleanPromptRequest;
@@ -849,12 +965,12 @@ import com.blockchyp.client.dto.BooleanPromptResponse;
 
 public class BooleanPromptExample {
 
-    public void runSampleTransaction() throws Exception {
+    public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
-        creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
-        creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
-        creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+        creds.setApiKey(System.getenv("BC_API_KEY"));
+        creds.setBearerToken(System.getenv("BC_BEARER_TOKEN"));
+        creds.setSigningKey(System.getenv("BC_SIGNING_KEY"));
 
         BlockChypClient client = new BlockChypClient(creds);
 
@@ -868,16 +984,22 @@ public class BooleanPromptExample {
 
         BooleanPromptResponse response = client.booleanPrompt(request);
 
-        //process the result
+        // view the result
+        System.out.println("Response: " + prettyPrint(response));
 
-        if (response.isSuccess()) {
-            System.out.println("Success");
-        }
-
-    System.out.println(response.isResponse());
     }
 
+    public static String prettyPrint(Object object) throws Exception {
 
+        ObjectWriter writer = new ObjectMapper()
+            .writer()
+            .withDefaultPrettyPrinter();
+
+        return object.getClass().getSimpleName()
+            + ": "
+            + writer.writeValueAsString(object);
+
+    }
 }
 
 
@@ -893,6 +1015,9 @@ package com.blockchyp.client.examples;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
 import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.dto.MessageRequest;
@@ -901,12 +1026,12 @@ import com.blockchyp.client.dto.Acknowledgement;
 
 public class MessageExample {
 
-    public void runSampleTransaction() throws Exception {
+    public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
-        creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
-        creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
-        creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+        creds.setApiKey(System.getenv("BC_API_KEY"));
+        creds.setBearerToken(System.getenv("BC_BEARER_TOKEN"));
+        creds.setSigningKey(System.getenv("BC_SIGNING_KEY"));
 
         BlockChypClient client = new BlockChypClient(creds);
 
@@ -918,15 +1043,22 @@ public class MessageExample {
 
         Acknowledgement response = client.message(request);
 
-        //process the result
-
-        if (response.isSuccess()) {
-            System.out.println("Success");
-        }
+        // view the result
+        System.out.println("Response: " + prettyPrint(response));
 
     }
 
+    public static String prettyPrint(Object object) throws Exception {
 
+        ObjectWriter writer = new ObjectMapper()
+            .writer()
+            .withDefaultPrettyPrinter();
+
+        return object.getClass().getSimpleName()
+            + ": "
+            + writer.writeValueAsString(object);
+
+    }
 }
 
 
@@ -942,6 +1074,9 @@ package com.blockchyp.client.examples;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
 import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.dto.RefundRequest;
@@ -950,12 +1085,12 @@ import com.blockchyp.client.dto.AuthorizationResponse;
 
 public class RefundExample {
 
-    public void runSampleTransaction() throws Exception {
+    public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
-        creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
-        creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
-        creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+        creds.setApiKey(System.getenv("BC_API_KEY"));
+        creds.setBearerToken(System.getenv("BC_BEARER_TOKEN"));
+        creds.setSigningKey(System.getenv("BC_SIGNING_KEY"));
 
         BlockChypClient client = new BlockChypClient(creds);
 
@@ -967,15 +1102,22 @@ public class RefundExample {
 
         AuthorizationResponse response = client.refund(request);
 
-        //process the result
-
-        if (response.isApproved()) {
-            System.out.println("Approved");
-        }
+        // view the result
+        System.out.println("Response: " + prettyPrint(response));
 
     }
 
+    public static String prettyPrint(Object object) throws Exception {
 
+        ObjectWriter writer = new ObjectMapper()
+            .writer()
+            .withDefaultPrettyPrinter();
+
+        return object.getClass().getSimpleName()
+            + ": "
+            + writer.writeValueAsString(object);
+
+    }
 }
 
 
@@ -991,6 +1133,9 @@ package com.blockchyp.client.examples;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
 import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.dto.EnrollRequest;
@@ -999,12 +1144,12 @@ import com.blockchyp.client.dto.EnrollResponse;
 
 public class EnrollExample {
 
-    public void runSampleTransaction() throws Exception {
+    public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
-        creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
-        creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
-        creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+        creds.setApiKey(System.getenv("BC_API_KEY"));
+        creds.setBearerToken(System.getenv("BC_BEARER_TOKEN"));
+        creds.setSigningKey(System.getenv("BC_SIGNING_KEY"));
 
         BlockChypClient client = new BlockChypClient(creds);
 
@@ -1015,16 +1160,22 @@ public class EnrollExample {
 
         EnrollResponse response = client.enroll(request);
 
-        //process the result
+        // view the result
+        System.out.println("Response: " + prettyPrint(response));
 
-        if (response.isApproved()) {
-            System.out.println("Approved");
-        }
-
-    System.out.println(response.getToken());
     }
 
+    public static String prettyPrint(Object object) throws Exception {
 
+        ObjectWriter writer = new ObjectMapper()
+            .writer()
+            .withDefaultPrettyPrinter();
+
+        return object.getClass().getSimpleName()
+            + ": "
+            + writer.writeValueAsString(object);
+
+    }
 }
 
 
@@ -1040,6 +1191,9 @@ package com.blockchyp.client.examples;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
 import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.dto.GiftActivateRequest;
@@ -1048,12 +1202,12 @@ import com.blockchyp.client.dto.GiftActivateResponse;
 
 public class GiftActivateExample {
 
-    public void runSampleTransaction() throws Exception {
+    public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
-        creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
-        creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
-        creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+        creds.setApiKey(System.getenv("BC_API_KEY"));
+        creds.setBearerToken(System.getenv("BC_BEARER_TOKEN"));
+        creds.setSigningKey(System.getenv("BC_SIGNING_KEY"));
 
         BlockChypClient client = new BlockChypClient(creds);
 
@@ -1065,18 +1219,22 @@ public class GiftActivateExample {
 
         GiftActivateResponse response = client.giftActivate(request);
 
-        //process the result
+        // view the result
+        System.out.println("Response: " + prettyPrint(response));
 
-        if (response.isApproved()) {
-            System.out.println("Approved");
-        }
-
-    System.out.println(response.getAmount());
-    System.out.println(response.getCurrentBalance());
-    System.out.println(response.getPublicKey());
     }
 
+    public static String prettyPrint(Object object) throws Exception {
 
+        ObjectWriter writer = new ObjectMapper()
+            .writer()
+            .withDefaultPrettyPrinter();
+
+        return object.getClass().getSimpleName()
+            + ": "
+            + writer.writeValueAsString(object);
+
+    }
 }
 
 
@@ -1100,6 +1258,9 @@ package com.blockchyp.client.examples;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
 import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.dto.AuthorizationRequest;
@@ -1108,12 +1269,12 @@ import com.blockchyp.client.dto.AuthorizationResponse;
 
 public class ReverseExample {
 
-    public void runSampleTransaction() throws Exception {
+    public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
-        creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
-        creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
-        creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+        creds.setApiKey(System.getenv("BC_API_KEY"));
+        creds.setBearerToken(System.getenv("BC_BEARER_TOKEN"));
+        creds.setSigningKey(System.getenv("BC_SIGNING_KEY"));
 
         BlockChypClient client = new BlockChypClient(creds);
 
@@ -1124,15 +1285,22 @@ public class ReverseExample {
 
         AuthorizationResponse response = client.reverse(request);
 
-        //process the result
-
-        if (response.isApproved()) {
-            System.out.println("Approved");
-        }
+        // view the result
+        System.out.println("Response: " + prettyPrint(response));
 
     }
 
+    public static String prettyPrint(Object object) throws Exception {
 
+        ObjectWriter writer = new ObjectMapper()
+            .writer()
+            .withDefaultPrettyPrinter();
+
+        return object.getClass().getSimpleName()
+            + ": "
+            + writer.writeValueAsString(object);
+
+    }
 }
 
 
@@ -1148,6 +1316,9 @@ package com.blockchyp.client.examples;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
 import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.dto.CaptureRequest;
@@ -1156,12 +1327,12 @@ import com.blockchyp.client.dto.CaptureResponse;
 
 public class CaptureExample {
 
-    public void runSampleTransaction() throws Exception {
+    public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
-        creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
-        creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
-        creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+        creds.setApiKey(System.getenv("BC_API_KEY"));
+        creds.setBearerToken(System.getenv("BC_BEARER_TOKEN"));
+        creds.setSigningKey(System.getenv("BC_SIGNING_KEY"));
 
         BlockChypClient client = new BlockChypClient(creds);
 
@@ -1172,15 +1343,22 @@ public class CaptureExample {
 
         CaptureResponse response = client.capture(request);
 
-        //process the result
-
-        if (response.isApproved()) {
-            System.out.println("Approved");
-        }
+        // view the result
+        System.out.println("Response: " + prettyPrint(response));
 
     }
 
+    public static String prettyPrint(Object object) throws Exception {
 
+        ObjectWriter writer = new ObjectMapper()
+            .writer()
+            .withDefaultPrettyPrinter();
+
+        return object.getClass().getSimpleName()
+            + ": "
+            + writer.writeValueAsString(object);
+
+    }
 }
 
 
@@ -1196,6 +1374,9 @@ package com.blockchyp.client.examples;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
 import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.dto.CloseBatchRequest;
@@ -1204,12 +1385,12 @@ import com.blockchyp.client.dto.CloseBatchResponse;
 
 public class CloseBatchExample {
 
-    public void runSampleTransaction() throws Exception {
+    public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
-        creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
-        creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
-        creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+        creds.setApiKey(System.getenv("BC_API_KEY"));
+        creds.setBearerToken(System.getenv("BC_BEARER_TOKEN"));
+        creds.setSigningKey(System.getenv("BC_SIGNING_KEY"));
 
         BlockChypClient client = new BlockChypClient(creds);
 
@@ -1219,17 +1400,22 @@ public class CloseBatchExample {
 
         CloseBatchResponse response = client.closeBatch(request);
 
-        //process the result
+        // view the result
+        System.out.println("Response: " + prettyPrint(response));
 
-        if (response.isSuccess()) {
-            System.out.println("Success");
-        }
-
-    System.out.println(response.getCapturedTotal());
-    System.out.println(response.getOpenPreauths());
     }
 
+    public static String prettyPrint(Object object) throws Exception {
 
+        ObjectWriter writer = new ObjectMapper()
+            .writer()
+            .withDefaultPrettyPrinter();
+
+        return object.getClass().getSimpleName()
+            + ": "
+            + writer.writeValueAsString(object);
+
+    }
 }
 
 
@@ -1245,6 +1431,9 @@ package com.blockchyp.client.examples;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
 import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.dto.VoidRequest;
@@ -1253,12 +1442,12 @@ import com.blockchyp.client.dto.VoidResponse;
 
 public class VoidExample {
 
-    public void runSampleTransaction() throws Exception {
+    public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
-        creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
-        creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
-        creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+        creds.setApiKey(System.getenv("BC_API_KEY"));
+        creds.setBearerToken(System.getenv("BC_BEARER_TOKEN"));
+        creds.setSigningKey(System.getenv("BC_SIGNING_KEY"));
 
         BlockChypClient client = new BlockChypClient(creds);
 
@@ -1269,15 +1458,22 @@ public class VoidExample {
 
         VoidResponse response = client.voidTx(request);
 
-        //process the result
-
-        if (response.isApproved()) {
-            System.out.println("Approved");
-        }
+        // view the result
+        System.out.println("Response: " + prettyPrint(response));
 
     }
 
+    public static String prettyPrint(Object object) throws Exception {
 
+        ObjectWriter writer = new ObjectMapper()
+            .writer()
+            .withDefaultPrettyPrinter();
+
+        return object.getClass().getSimpleName()
+            + ": "
+            + writer.writeValueAsString(object);
+
+    }
 }
 
 
@@ -1293,6 +1489,9 @@ package com.blockchyp.client.examples;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
 import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.dto.TerminalStatusRequest;
@@ -1301,12 +1500,12 @@ import com.blockchyp.client.dto.TerminalStatusResponse;
 
 public class TerminalStatusExample {
 
-    public void runSampleTransaction() throws Exception {
+    public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
-        creds.setApiKey("ZDSMMZLGRPBPRTJUBTAFBYZ33Q");
-        creds.setBearerToken("ZLBW5NR4U5PKD5PNP3ZP3OZS5U");
-        creds.setSigningKey("9c6a5e8e763df1c9256e3d72bd7f53dfbd07312938131c75b3bfd254da787947");
+        creds.setApiKey(System.getenv("BC_API_KEY"));
+        creds.setBearerToken(System.getenv("BC_BEARER_TOKEN"));
+        creds.setSigningKey(System.getenv("BC_SIGNING_KEY"));
 
         BlockChypClient client = new BlockChypClient(creds);
 
@@ -1316,17 +1515,22 @@ public class TerminalStatusExample {
 
         TerminalStatusResponse response = client.terminalStatus(request);
 
-        //process the result
+        // view the result
+        System.out.println("Response: " + prettyPrint(response));
 
-        if (response.isSuccess()) {
-            System.out.println("Success");
-        }
-
-    System.out.println(response.isIdle());
-    System.out.println(response.getStatus());
     }
 
+    public static String prettyPrint(Object object) throws Exception {
 
+        ObjectWriter writer = new ObjectMapper()
+            .writer()
+            .withDefaultPrettyPrinter();
+
+        return object.getClass().getSimpleName()
+            + ": "
+            + writer.writeValueAsString(object);
+
+    }
 }
 
 
