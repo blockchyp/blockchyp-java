@@ -41,6 +41,7 @@ public class PANPreauthTest extends BaseTestCase {
         AuthorizationResponse response = client.preauth(request);
 
         // response assertions
+        Assert.assertTrue(response.isSuccess());
         Assert.assertTrue(response.isApproved());
         Assert.assertTrue(response.isTest());
         Assert.assertTrue(response.getAuthCode().length() == 6);

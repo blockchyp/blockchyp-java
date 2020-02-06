@@ -304,6 +304,7 @@ stuff you can do with the BlockChyp Java SDK and a few basic examples.
 
 Executes a standard direct preauth and capture.
 
+
 ```java
 package com.blockchyp.client.examples;
 
@@ -362,6 +363,7 @@ public class ChargeExample {
 #### Preauthorization
 
 Executes a preauthorization intended to be captured later.
+
 
 ```java
 package com.blockchyp.client.examples;
@@ -422,6 +424,7 @@ public class PreauthExample {
 
 Tests connectivity with a payment terminal.
 
+
 ```java
 package com.blockchyp.client.examples;
 
@@ -478,6 +481,7 @@ public class PingExample {
 #### Balance
 
 Checks the remaining balance on a payment method.
+
 
 ```java
 package com.blockchyp.client.examples;
@@ -539,6 +543,7 @@ public class BalanceExample {
 
 Clears the line item display and any in progress transaction.
 
+
 ```java
 package com.blockchyp.client.examples;
 
@@ -596,6 +601,7 @@ public class ClearExample {
 #### Terms & Conditions Capture
 
 Prompts the user to accept terms and conditions.
+
 
 ```java
 package com.blockchyp.client.examples;
@@ -660,9 +666,10 @@ public class TermsAndConditionsExample {
 
 #### Update Transaction Display
 
-Appends items to an existing transaction display Subtotal, Tax, and Total are
+Appends items to an existing transaction display.  Subtotal, Tax, and Total are
 overwritten by the request. Items with the same description are combined into
 groups.
+
 
 ```java
 package com.blockchyp.client.examples;
@@ -776,6 +783,7 @@ public class UpdateTransactionDisplayExample {
 
 Displays a new transaction on the terminal.
 
+
 ```java
 package com.blockchyp.client.examples;
 
@@ -886,7 +894,8 @@ public class NewTransactionDisplayExample {
 
 #### Text Prompt
 
-Asks the consumer text based question.
+Asks the consumer a text based question.
+
 
 ```java
 package com.blockchyp.client.examples;
@@ -947,6 +956,7 @@ public class TextPromptExample {
 #### Boolean Prompt
 
 Asks the consumer a yes/no question.
+
 
 ```java
 package com.blockchyp.client.examples;
@@ -1009,6 +1019,7 @@ public class BooleanPromptExample {
 
 Displays a short message on the terminal.
 
+
 ```java
 package com.blockchyp.client.examples;
 
@@ -1067,6 +1078,7 @@ public class MessageExample {
 #### Refund
 
 Executes a refund.
+
 
 ```java
 package com.blockchyp.client.examples;
@@ -1127,6 +1139,7 @@ public class RefundExample {
 
 Adds a new payment method to the token vault.
 
+
 ```java
 package com.blockchyp.client.examples;
 
@@ -1184,6 +1197,7 @@ public class EnrollExample {
 #### Gift Card Activation
 
 Activates or recharges a gift card.
+
 
 ```java
 package com.blockchyp.client.examples;
@@ -1252,6 +1266,7 @@ transaction you're trying to reverse because we may not have assigned it an id
 yet. And if we did assign it an id, you wouldn't know what it is because your
 request to the terminal timed out before you got a response.
 
+
 ```java
 package com.blockchyp.client.examples;
 
@@ -1309,6 +1324,7 @@ public class ReverseExample {
 #### Capture Preauthorization
 
 Captures a preauthorization.
+
 
 ```java
 package com.blockchyp.client.examples;
@@ -1368,6 +1384,7 @@ public class CaptureExample {
 
 Closes the current credit card batch.
 
+
 ```java
 package com.blockchyp.client.examples;
 
@@ -1424,6 +1441,7 @@ public class CloseBatchExample {
 #### Void Transaction
 
 Discards a previous preauth transaction.
+
 
 ```java
 package com.blockchyp.client.examples;
@@ -1482,6 +1500,7 @@ public class VoidExample {
 #### Terminal Status
 
 Returns the current status of a terminal.
+
 
 ```java
 package com.blockchyp.client.examples;

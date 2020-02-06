@@ -426,7 +426,7 @@ public class BlockChypClient {
     }
 
      /**
-      * Appends items to an existing transaction display Subtotal, Tax, and Total are
+      * Appends items to an existing transaction display. Subtotal, Tax, and Total are
       * overwritten by the request. Items with the same description are combined into
       * groups.
       * @param request the request parameters.
@@ -460,7 +460,7 @@ public class BlockChypClient {
     }
 
      /**
-      * Asks the consumer text based question.
+      * Asks the consumer a text based question.
       * @param request the request parameters.
       * @return {@link TextPromptResponse}
       * @throws Exception exception if any errors occurred processing the request.

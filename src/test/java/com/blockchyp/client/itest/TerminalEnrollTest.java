@@ -40,6 +40,7 @@ public class TerminalEnrollTest extends BaseTestCase {
         EnrollResponse response = client.enroll(request);
 
         // response assertions
+        Assert.assertTrue(response.isSuccess());
         Assert.assertTrue(response.isApproved());
         Assert.assertTrue(response.isTest());
         Assert.assertTrue(response.getAuthCode().length() == 6);

@@ -42,6 +42,7 @@ public class TerminalKeyedChargeTest extends BaseTestCase {
         AuthorizationResponse response = client.charge(request);
 
         // response assertions
+        Assert.assertTrue(response.isSuccess());
         Assert.assertTrue(response.isApproved());
         Assert.assertTrue(response.isTest());
         Assert.assertTrue(response.getAuthCode().length() == 6);
