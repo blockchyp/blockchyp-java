@@ -48,6 +48,7 @@ public class SimpleReversalTest extends BaseTestCase {
         AuthorizationResponse response = client.reverse(request);
 
         // response assertions
+        Assert.assertTrue(response.isSuccess());
         Assert.assertTrue(response.isApproved());
 
     }

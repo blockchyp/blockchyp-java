@@ -50,6 +50,7 @@ public class SimpleVoidTest extends BaseTestCase {
         VoidResponse response = client.voidTx(request);
 
         // response assertions
+        Assert.assertTrue(response.isSuccess());
         Assert.assertTrue(response.isApproved());
 
     }

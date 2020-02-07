@@ -41,6 +41,7 @@ public class SimpleGiftActivateTest extends BaseTestCase {
         GiftActivateResponse response = client.giftActivate(request);
 
         // response assertions
+        Assert.assertTrue(response.isSuccess());
         Assert.assertTrue(response.isApproved());
         Assert.assertNotNull(response.getPublicKey());
         Assert.assertTrue(response.getPublicKey().trim().length() > 0);

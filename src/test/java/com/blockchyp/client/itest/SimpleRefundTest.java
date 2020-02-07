@@ -49,6 +49,7 @@ public class SimpleRefundTest extends BaseTestCase {
         AuthorizationResponse response = client.refund(request);
 
         // response assertions
+        Assert.assertTrue(response.isSuccess());
         Assert.assertTrue(response.isApproved());
 
     }

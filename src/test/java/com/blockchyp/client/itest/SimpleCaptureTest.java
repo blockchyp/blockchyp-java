@@ -49,6 +49,7 @@ public class SimpleCaptureTest extends BaseTestCase {
         CaptureResponse response = client.capture(request);
 
         // response assertions
+        Assert.assertTrue(response.isSuccess());
         Assert.assertTrue(response.isApproved());
 
     }
