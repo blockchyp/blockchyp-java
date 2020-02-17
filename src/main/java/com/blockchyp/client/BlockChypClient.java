@@ -52,6 +52,8 @@ import com.blockchyp.client.dto.IPreviousTransaction;
 import com.blockchyp.client.dto.ICoreResponse;
 import com.blockchyp.client.dto.ReceiptSuggestions;
 import com.blockchyp.client.dto.Acknowledgement;
+import com.blockchyp.client.dto.CaptureSignatureRequest;
+import com.blockchyp.client.dto.CaptureSignatureResponse;
 import com.blockchyp.client.dto.PingRequest;
 import com.blockchyp.client.dto.PingResponse;
 import com.blockchyp.client.dto.MessageRequest;
@@ -567,6 +569,22 @@ public class BlockChypClient {
             return (TerminalStatusResponse) postTerminal("/api/terminal-status", request, TerminalStatusResponse.class);
         } else {
             return (TerminalStatusResponse) postGateway("/api/terminal-status", request, TerminalStatusResponse.class);
+        }
+
+    }
+
+     /**
+      * Captures and returns a signature.
+      * @param request the request parameters.
+      * @return {@link CaptureSignatureResponse}
+      * @throws Exception exception if any errors occurred processing the request.
+      */
+    public CaptureSignatureResponse captureSignature(CaptureSignatureRequest request) throws Exception {
+
+        if (isTerminalRouted(request)) {
+            return (CaptureSignatureResponse) postTerminal("/api/capture-signature", request, CaptureSignatureResponse.class);
+        } else {
+            return (CaptureSignatureResponse) postGateway("/api/capture-signature", request, CaptureSignatureResponse.class);
         }
 
     }
