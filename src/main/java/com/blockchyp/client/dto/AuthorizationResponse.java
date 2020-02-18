@@ -10,6 +10,7 @@ package com.blockchyp.client.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import com.blockchyp.client.dto.AvsResponse;
 
 /**
  * The response to an authorization request.
@@ -77,6 +78,8 @@ public class AuthorizationResponse implements IAbstractAcknowledgement, IApprova
      private boolean ScopeAlert;
 
      private String cardHolder;
+
+     private AvsResponse avsResponse;
 
      private ReceiptSuggestions receiptSuggestions;
 
@@ -623,6 +626,24 @@ public class AuthorizationResponse implements IAbstractAcknowledgement, IApprova
      @JsonProperty("cardHolder")
      public String getCardHolder() {
           return this.cardHolder;
+     }
+
+     /**
+      * Sets address verification results if address information was submitted.
+      * @param value address verification results if address information was
+      * submitted.
+      */
+     public void setAvsResponse(AvsResponse value) {
+          this.avsResponse = value;
+     }
+
+     /**
+      * Gets address verification results if address information was submitted.
+      * @return address verification results if address information was submitted.
+      */
+     @JsonProperty("avsResponse")
+     public AvsResponse getAvsResponse() {
+          return this.avsResponse;
      }
 
      /**

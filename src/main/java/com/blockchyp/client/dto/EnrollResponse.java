@@ -10,6 +10,7 @@ package com.blockchyp.client.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import com.blockchyp.client.dto.AvsResponse;
 
 /**
  * The response to an enroll request.
@@ -55,6 +56,8 @@ public class EnrollResponse implements IAbstractAcknowledgement, IApprovalRespon
      private boolean ScopeAlert;
 
      private String cardHolder;
+
+     private AvsResponse avsResponse;
 
      private ReceiptSuggestions receiptSuggestions;
 
@@ -406,6 +409,24 @@ public class EnrollResponse implements IAbstractAcknowledgement, IApprovalRespon
      @JsonProperty("cardHolder")
      public String getCardHolder() {
           return this.cardHolder;
+     }
+
+     /**
+      * Sets address verification results if address information was submitted.
+      * @param value address verification results if address information was
+      * submitted.
+      */
+     public void setAvsResponse(AvsResponse value) {
+          this.avsResponse = value;
+     }
+
+     /**
+      * Gets address verification results if address information was submitted.
+      * @return address verification results if address information was submitted.
+      */
+     @JsonProperty("avsResponse")
+     public AvsResponse getAvsResponse() {
+          return this.avsResponse;
      }
 
      /**

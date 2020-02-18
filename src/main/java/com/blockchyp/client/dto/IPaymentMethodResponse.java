@@ -8,6 +8,7 @@
 
 package com.blockchyp.client.dto;
 
+import com.blockchyp.client.dto.AvsResponse;
 
 /**
  * Response details about a payment method.
@@ -28,6 +29,8 @@ public interface IPaymentMethodResponse {
      boolean isScopeAlert();
 
      String getCardHolder();
+
+     AvsResponse getAvsResponse();
 
      ReceiptSuggestions getReceiptSuggestions();
 
