@@ -74,6 +74,8 @@ public class RefundRequest implements ICoreRequest, IPaymentMethod, IPreviousTra
 
      private int sigWidth;
 
+     private boolean disableSignature;
+
      private String tipAmount;
 
      private String taxAmount;
@@ -586,6 +588,27 @@ public class RefundRequest implements ICoreRequest, IPaymentMethod, IPreviousTra
      @JsonProperty("sigWidth")
      public int getSigWidth() {
           return this.sigWidth;
+     }
+
+     /**
+      * Sets whether or not signature prompt should be skipped on the terminal.
+      * @param value whether or not signature prompt should be skipped on the terminal.
+      * The terminal will indicate whether or not a signature is required by the card in the
+      * receipt suggestions response.
+      */
+     public void setDisableSignature(boolean value) {
+          this.disableSignature = value;
+     }
+
+     /**
+      * Gets whether or not signature prompt should be skipped on the terminal.
+      * @return whether or not signature prompt should be skipped on the terminal. The
+      * terminal will indicate whether or not a signature is required by the card in the
+      * receipt suggestions response.
+      */
+     @JsonProperty("disableSignature")
+     public boolean isDisableSignature() {
+          return this.disableSignature;
      }
 
      /**

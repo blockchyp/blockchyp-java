@@ -22,6 +22,8 @@ public interface ISignatureRequest {
 
      int getSigWidth();
 
+     boolean isDisableSignature();
+
 
 }
 
