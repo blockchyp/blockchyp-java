@@ -9,6 +9,8 @@ public enum PromptType {
     PHONE_NUMBER("phone"),
     CUSTOMER_NUMBER("customer-number"),
     REWARDS_NUMBER("rewards-number");
+    FIRST_NAME("first-name");
+    LAST_NAME("last-name");
 
     private final String code;
 
