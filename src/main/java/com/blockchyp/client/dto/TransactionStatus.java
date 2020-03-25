@@ -13,9 +13,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.blockchyp.client.dto.AvsResponse;
 
 /**
- * The response to a capture request.
+ * Models the status of a transaction.
  */
-public class CaptureResponse implements IAbstractAcknowledgement, IApprovalResponse, ICoreResponse, IPaymentAmounts, IPaymentMethodResponse {
+public class TransactionStatus implements IAbstractAcknowledgement, IApprovalResponse, ICoreResponse, IPaymentAmounts, IPaymentMethodResponse, ISignatureResponse {
 
      private boolean success;
 
@@ -84,6 +84,10 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
      private ReceiptSuggestions receiptSuggestions;
 
      private Customer customer;
+
+     private String sigFile;
+
+     private boolean storeAndForward;
 
      /**
       * Sets whether or not the request succeeded.
@@ -674,6 +678,44 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
      @JsonProperty("customer")
      public Customer getCustomer() {
           return this.customer;
+     }
+
+     /**
+      * Sets the hex encoded signature data.
+      * @param value the hex encoded signature data.
+      */
+     public void setSigFile(String value) {
+          this.sigFile = value;
+     }
+
+     /**
+      * Gets the hex encoded signature data.
+      * @return the hex encoded signature data.
+      */
+     @JsonProperty("sigFile")
+     public String getSigFile() {
+          return this.sigFile;
+     }
+
+     /**
+      * Sets that the transaction was flagged for store and forward due to network
+      * problems.
+      * @param value that the transaction was flagged for store and forward due to network
+      * problems.
+      */
+     public void setStoreAndForward(boolean value) {
+          this.storeAndForward = value;
+     }
+
+     /**
+      * Gets that the transaction was flagged for store and forward due to network
+      * problems.
+      * @return that the transaction was flagged for store and forward due to network
+      * problems.
+      */
+     @JsonProperty("storeAndForward")
+     public boolean isStoreAndForward() {
+          return this.storeAndForward;
      }
 
 }

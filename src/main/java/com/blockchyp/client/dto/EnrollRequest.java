@@ -61,6 +61,8 @@ public class EnrollRequest implements ICoreRequest, IPaymentMethod, ITerminalRef
 
      private String terminalName;
 
+     private Customer customer;
+
      /**
       * Sets the transaction reference string assigned to the transaction request.
       * @param value the transaction reference string assigned to the transaction
@@ -447,6 +449,23 @@ public class EnrollRequest implements ICoreRequest, IPaymentMethod, ITerminalRef
      @JsonProperty("terminalName")
      public String getTerminalName() {
           return this.terminalName;
+     }
+
+     /**
+      * Sets customer with which the new token should be associated.
+      * @param value customer with which the new token should be associated.
+      */
+     public void setCustomer(Customer value) {
+          this.customer = value;
+     }
+
+     /**
+      * Gets customer with which the new token should be associated.
+      * @return customer with which the new token should be associated.
+      */
+     @JsonProperty("customer")
+     public Customer getCustomer() {
+          return this.customer;
      }
 
 }

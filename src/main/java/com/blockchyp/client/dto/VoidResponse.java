@@ -61,6 +61,8 @@ public class VoidResponse implements IAbstractAcknowledgement, IApprovalResponse
 
      private ReceiptSuggestions receiptSuggestions;
 
+     private Customer customer;
+
      private String sigFile;
 
      /**
@@ -444,6 +446,23 @@ public class VoidResponse implements IAbstractAcknowledgement, IApprovalResponse
      @JsonProperty("receiptSuggestions")
      public ReceiptSuggestions getReceiptSuggestions() {
           return this.receiptSuggestions;
+     }
+
+     /**
+      * Sets customer data, if any.
+      * @param value customer data, if any.
+      */
+     public void setCustomer(Customer value) {
+          this.customer = value;
+     }
+
+     /**
+      * Gets customer data, if any.
+      * @return customer data, if any.
+      */
+     @JsonProperty("customer")
+     public Customer getCustomer() {
+          return this.customer;
      }
 
      /**

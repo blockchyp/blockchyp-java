@@ -83,6 +83,8 @@ public class AuthorizationResponse implements IAbstractAcknowledgement, IApprova
 
      private ReceiptSuggestions receiptSuggestions;
 
+     private Customer customer;
+
      private String sigFile;
 
      private WhiteListedCard whiteListedCard;
@@ -661,6 +663,23 @@ public class AuthorizationResponse implements IAbstractAcknowledgement, IApprova
      @JsonProperty("receiptSuggestions")
      public ReceiptSuggestions getReceiptSuggestions() {
           return this.receiptSuggestions;
+     }
+
+     /**
+      * Sets customer data, if any.
+      * @param value customer data, if any.
+      */
+     public void setCustomer(Customer value) {
+          this.customer = value;
+     }
+
+     /**
+      * Gets customer data, if any.
+      * @return customer data, if any.
+      */
+     @JsonProperty("customer")
+     public Customer getCustomer() {
+          return this.customer;
      }
 
      /**

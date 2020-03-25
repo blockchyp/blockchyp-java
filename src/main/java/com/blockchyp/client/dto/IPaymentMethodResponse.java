@@ -34,6 +34,8 @@ public interface IPaymentMethodResponse {
 
      ReceiptSuggestions getReceiptSuggestions();
 
+     Customer getCustomer();
+
 
 }
 

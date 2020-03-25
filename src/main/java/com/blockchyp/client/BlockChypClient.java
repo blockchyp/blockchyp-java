@@ -59,6 +59,13 @@ import com.blockchyp.client.dto.PingResponse;
 import com.blockchyp.client.dto.MessageRequest;
 import com.blockchyp.client.dto.BooleanPromptRequest;
 import com.blockchyp.client.dto.TextPromptRequest;
+import com.blockchyp.client.dto.CustomerRequest;
+import com.blockchyp.client.dto.CustomerResponse;
+import com.blockchyp.client.dto.CustomerSearchRequest;
+import com.blockchyp.client.dto.UpdateCustomerRequest;
+import com.blockchyp.client.dto.CustomerSearchResponse;
+import com.blockchyp.client.dto.Customer;
+import com.blockchyp.client.dto.CustomerToken;
 import com.blockchyp.client.dto.TextPromptResponse;
 import com.blockchyp.client.dto.BooleanPromptResponse;
 import com.blockchyp.client.dto.WhiteListedCard;
@@ -80,6 +87,8 @@ import com.blockchyp.client.dto.CloseBatchResponse;
 import com.blockchyp.client.dto.TermsAndConditionsRequest;
 import com.blockchyp.client.dto.TermsAndConditionsResponse;
 import com.blockchyp.client.dto.AuthorizationResponse;
+import com.blockchyp.client.dto.TransactionStatusRequest;
+import com.blockchyp.client.dto.TransactionStatus;
 import com.blockchyp.client.dto.TransactionDisplayDiscount;
 import com.blockchyp.client.dto.TransactionDisplayItem;
 import com.blockchyp.client.dto.TransactionDisplayTransaction;
@@ -87,6 +96,8 @@ import com.blockchyp.client.dto.TransactionDisplayRequest;
 import com.blockchyp.client.dto.HeartbeatResponse;
 import com.blockchyp.client.dto.TerminalStatusRequest;
 import com.blockchyp.client.dto.TerminalStatusResponse;
+import com.blockchyp.client.dto.PaymentLinkRequest;
+import com.blockchyp.client.dto.PaymentLinkResponse;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -325,6 +336,66 @@ public class BlockChypClient {
     public VoidResponse voidTx(VoidRequest request) throws Exception {
 
         return (VoidResponse) postGateway("/api/void", request, VoidResponse.class);
+
+    }
+
+     /**
+      * Updates or creates a customer record.
+      * @param request the request parameters.
+      * @return {@link CustomerResponse}
+      * @throws Exception exception if any errors occurred processing the request.
+      */
+    public CustomerResponse updateCustomer(UpdateCustomerRequest request) throws Exception {
+
+        return (CustomerResponse) postGateway("/api/update-customer", request, CustomerResponse.class);
+
+    }
+
+     /**
+      * Retrieves a customer by id.
+      * @param request the request parameters.
+      * @return {@link CustomerResponse}
+      * @throws Exception exception if any errors occurred processing the request.
+      */
+    public CustomerResponse customer(CustomerRequest request) throws Exception {
+
+        return (CustomerResponse) postGateway("/api/customer", request, CustomerResponse.class);
+
+    }
+
+     /**
+      * Searches the customer database.
+      * @param request the request parameters.
+      * @return {@link CustomerSearchResponse}
+      * @throws Exception exception if any errors occurred processing the request.
+      */
+    public CustomerSearchResponse customerSearch(CustomerSearchRequest request) throws Exception {
+
+        return (CustomerSearchResponse) postGateway("/api/customer-search", request, CustomerSearchResponse.class);
+
+    }
+
+     /**
+      * Retrieves the current status of a transaction.
+      * @param request the request parameters.
+      * @return {@link AuthorizationResponse}
+      * @throws Exception exception if any errors occurred processing the request.
+      */
+    public AuthorizationResponse transactionStatus(TransactionStatusRequest request) throws Exception {
+
+        return (AuthorizationResponse) postGateway("/api/tx-status", request, AuthorizationResponse.class);
+
+    }
+
+     /**
+      * Creates and send a payment link to a customer.
+      * @param request the request parameters.
+      * @return {@link PaymentLinkResponse}
+      * @throws Exception exception if any errors occurred processing the request.
+      */
+    public PaymentLinkResponse sendPaymentLink(PaymentLinkRequest request) throws Exception {
+
+        return (PaymentLinkResponse) postGateway("/api/send-payment-link", request, PaymentLinkResponse.class);
 
     }
 

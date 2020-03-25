@@ -104,6 +104,8 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
 
      private Map altPrices;
 
+     private Customer customer;
+
      /**
       * Sets the transaction reference string assigned to the transaction request.
       * @param value the transaction reference string assigned to the transaction
@@ -858,6 +860,23 @@ public class AuthorizationRequest implements ICoreRequest, IPaymentMethod, IPrev
      @JsonProperty("altPrices")
      public Map getAltPrices() {
           return this.altPrices;
+     }
+
+     /**
+      * Sets suggested receipt fields.
+      * @param value suggested receipt fields.
+      */
+     public void setCustomer(Customer value) {
+          this.customer = value;
+     }
+
+     /**
+      * Gets suggested receipt fields.
+      * @return suggested receipt fields.
+      */
+     @JsonProperty("customer")
+     public Customer getCustomer() {
+          return this.customer;
      }
 
 }
