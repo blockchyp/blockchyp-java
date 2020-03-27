@@ -44,6 +44,8 @@ public class PaymentLinkRequest implements ICoreRequest, IRequestAmount, ITermin
 
      private Customer customer;
 
+     private String callbackUrl;
+
      /**
       * Sets the transaction reference string assigned to the transaction request.
       * @param value the transaction reference string assigned to the transaction
@@ -286,6 +288,27 @@ public class PaymentLinkRequest implements ICoreRequest, IRequestAmount, ITermin
      @JsonProperty("customer")
      public Customer getCustomer() {
           return this.customer;
+     }
+
+     /**
+      * Sets optional callback url to which transaction responses for this link will be
+      * posted.
+      * @param value optional callback url to which transaction responses for this link
+      * will be posted.
+      */
+     public void setCallbackUrl(String value) {
+          this.callbackUrl = value;
+     }
+
+     /**
+      * Gets optional callback url to which transaction responses for this link will be
+      * posted.
+      * @return optional callback url to which transaction responses for this link will
+      * be posted.
+      */
+     @JsonProperty("callbackUrl")
+     public String getCallbackUrl() {
+          return this.callbackUrl;
      }
 
 }
