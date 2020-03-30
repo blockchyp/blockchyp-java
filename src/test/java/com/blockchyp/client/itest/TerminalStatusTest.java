@@ -26,23 +26,23 @@ public class TerminalStatusTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public void testTransaction() throws Exception {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
         processTestDelay(client, "TerminalStatusTest");
 
-        // setup request object
+        // Set request parameters
         TerminalStatusRequest request = new TerminalStatusRequest();
         request.setTerminalName("Test Terminal");
 
         TerminalStatusResponse response = client.terminalStatus(request);
 
-        // response assertions
+        // Response assertions
         Assert.assertTrue(response.isSuccess());
         Assert.assertTrue(response.isIdle());
 
     }
-
 
 }

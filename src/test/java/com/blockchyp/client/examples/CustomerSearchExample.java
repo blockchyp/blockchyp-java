@@ -14,6 +14,7 @@ import com.blockchyp.client.dto.CustomerSearchResponse;
 
 public class CustomerSearchExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -23,13 +24,14 @@ public class CustomerSearchExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         CustomerSearchRequest request = new CustomerSearchRequest();
         request.setQuery("(123) 123-1234");
 
+        // Send the request
         CustomerSearchResponse response = client.customerSearch(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }

@@ -14,6 +14,7 @@ import com.blockchyp.client.dto.CaptureResponse;
 
 public class CaptureExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -23,14 +24,15 @@ public class CaptureExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         CaptureRequest request = new CaptureRequest();
         request.setTest(true);
         request.setTransactionId("<PREAUTH TRANSACTION ID>");
 
+        // Send the request
         CaptureResponse response = client.capture(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }

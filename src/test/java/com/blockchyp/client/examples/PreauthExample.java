@@ -14,6 +14,7 @@ import com.blockchyp.client.dto.AuthorizationResponse;
 
 public class PreauthExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -23,15 +24,16 @@ public class PreauthExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         AuthorizationRequest request = new AuthorizationRequest();
         request.setTest(true);
         request.setTerminalName("Test Terminal");
         request.setAmount("27.00");
 
+        // Send the request
         AuthorizationResponse response = client.preauth(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }

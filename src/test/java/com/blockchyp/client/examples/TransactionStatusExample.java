@@ -14,6 +14,7 @@ import com.blockchyp.client.dto.AuthorizationResponse;
 
 public class TransactionStatusExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -23,13 +24,14 @@ public class TransactionStatusExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         TransactionStatusRequest request = new TransactionStatusRequest();
         request.setTransactionId("ID of transaction to retrieve");
 
+        // Send the request
         AuthorizationResponse response = client.transactionStatus(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }

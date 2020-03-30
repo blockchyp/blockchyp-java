@@ -28,31 +28,32 @@ public class SimpleCaptureTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public void testTransaction() throws Exception {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
         processTestDelay(client, "SimpleCaptureTest");
 
-         // setup request object
-         AuthorizationRequest setupRequest = new AuthorizationRequest();
-         setupRequest.setPan("4111111111111111");
-         setupRequest.setAmount("25.55");
-         setupRequest.setTest(true);
+        // Set request parameters
+        AuthorizationRequest setupRequest = new AuthorizationRequest();
+        setupRequest.setPan("4111111111111111");
+        setupRequest.setAmount("25.55");
+        setupRequest.setTest(true);
+
          AuthorizationResponse setupResponse = client.preauth(setupRequest);
 
-        // setup request object
+        // Set request parameters
         CaptureRequest request = new CaptureRequest();
         request.setTransactionId(setupResponse.getTransactionId());
         request.setTest(true);
 
         CaptureResponse response = client.capture(request);
 
-        // response assertions
+        // Response assertions
         Assert.assertTrue(response.isSuccess());
         Assert.assertTrue(response.isApproved());
 
     }
-
 
 }

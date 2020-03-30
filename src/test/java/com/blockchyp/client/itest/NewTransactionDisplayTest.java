@@ -29,71 +29,44 @@ public class NewTransactionDisplayTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public void testTransaction() throws Exception {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
         processTestDelay(client, "NewTransactionDisplayTest");
 
-        // setup request object
+        // Set request parameters
         TransactionDisplayRequest request = new TransactionDisplayRequest();
         request.setTest(true);
         request.setTerminalName("Test Terminal");
-        request.setTransaction(newTransactionDisplayTransaction());
+
+        TransactionDisplayTransaction transaction = new TransactionDisplayTransaction();
+        transaction.setSubtotal("35.00");
+        transaction.setTax("5.00");
+        transaction.setTotal("70.00");
+
+        Collection items = new ArrayList();
+        TransactionDisplayItem items0 = new TransactionDisplayItem();
+        items0.setDescription("Leki Trekking Poles");
+        items0.setPrice("35.00");
+        items0.setQuantity(2);
+        items0.setExtended("70.00");
+
+        Collection discounts = new ArrayList();
+        TransactionDisplayDiscount discounts0 = new TransactionDisplayDiscount();
+        discounts0.setDescription("memberDiscount");
+        discounts0.setAmount("10.00");
+        discounts.add(discounts0);
+        items0.setDiscounts(discounts);
+        items.add(items0);
+        transaction.setItems(items);
+        request.setTransaction(transaction);
 
         Acknowledgement response = client.newTransactionDisplay(request);
 
-        // response assertions
+        // Response assertions
         Assert.assertTrue(response.isSuccess());
-
-    }
-
-    private static TransactionDisplayTransaction newTransactionDisplayTransaction() {
-         TransactionDisplayTransaction val = new TransactionDisplayTransaction();
-         val.setSubtotal("35.00");
-         val.setTax("5.00");
-         val.setTotal("70.00");
-         val.setItems(newTransactionDisplayItems());
-         return val;
-
-    }
-
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    private static Collection newTransactionDisplayItems() {
-
-         Collection results = new ArrayList();
-         results.add(newTransactionDisplayItem2());
-         return results;
-
-    }
-
-    private static TransactionDisplayItem newTransactionDisplayItem2() {
-
-         TransactionDisplayItem val = new TransactionDisplayItem();
-         val.setDescription("Leki Trekking Poles");
-         val.setPrice("35.00");
-         val.setQuantity(2);
-         val.setExtended("70.00");
-         val.setDiscounts(newTransactionDisplayDiscounts());
-         return val;
-
-    }
-
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    private static Collection newTransactionDisplayDiscounts() {
-
-         Collection results = new ArrayList();
-         results.add(newTransactionDisplayDiscount2());
-         return results;
-
-    }
-
-    private static TransactionDisplayDiscount newTransactionDisplayDiscount2() {
-
-         TransactionDisplayDiscount val = new TransactionDisplayDiscount();
-         val.setDescription("memberDiscount");
-         val.setAmount("10.00");
-         return val;
 
     }
 

@@ -19,11 +19,11 @@ import org.junit.experimental.categories.Category;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.IntegrationTest;
 import com.blockchyp.client.IntegrationTestConfiguration;
-import com.blockchyp.client.dto.TextPromptRequest;
-import com.blockchyp.client.dto.TextPromptResponse;
-import com.blockchyp.client.dto.PromptType;
+import com.blockchyp.client.dto.UpdateCustomerRequest;
+import com.blockchyp.client.dto.CustomerResponse;
+import com.blockchyp.client.dto.Customer;
 
-public class TextPromptTest extends BaseTestCase {
+public class UpdateCustomerTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
@@ -32,20 +32,23 @@ public class TextPromptTest extends BaseTestCase {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "TextPromptTest");
+        processTestDelay(client, "UpdateCustomerTest");
 
         // Set request parameters
-        TextPromptRequest request = new TextPromptRequest();
-        request.setTest(true);
-        request.setTerminalName("Test Terminal");
-        request.setPromptType(PromptType.EMAIL);
+        UpdateCustomerRequest request = new UpdateCustomerRequest();
 
-        TextPromptResponse response = client.textPrompt(request);
+        Customer customer = new Customer();
+        customer.setFirstName("Test");
+        customer.setLastName("Customer");
+        customer.setCompanyName("Test Company");
+        customer.setEmailAddress("support@blockchyp.com");
+        customer.setSmsNumber("(123) 123-1234");
+        request.setCustomer(customer);
+
+        CustomerResponse response = client.updateCustomer(request);
 
         // Response assertions
         Assert.assertTrue(response.isSuccess());
-        Assert.assertNotNull(response.getResponse());
-        Assert.assertTrue(response.getResponse().trim().length() > 0);
 
     }
 

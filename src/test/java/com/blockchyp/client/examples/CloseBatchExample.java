@@ -14,6 +14,7 @@ import com.blockchyp.client.dto.CloseBatchResponse;
 
 public class CloseBatchExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -23,13 +24,14 @@ public class CloseBatchExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         CloseBatchRequest request = new CloseBatchRequest();
         request.setTest(true);
 
+        // Send the request
         CloseBatchResponse response = client.closeBatch(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }

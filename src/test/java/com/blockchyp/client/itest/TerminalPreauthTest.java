@@ -26,13 +26,14 @@ public class TerminalPreauthTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public void testTransaction() throws Exception {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
         processTestDelay(client, "TerminalPreauthTest");
 
-        // setup request object
+        // Set request parameters
         AuthorizationRequest request = new AuthorizationRequest();
         request.setTerminalName("Test Terminal");
         request.setAmount("15.15");
@@ -40,7 +41,7 @@ public class TerminalPreauthTest extends BaseTestCase {
 
         AuthorizationResponse response = client.preauth(request);
 
-        // response assertions
+        // Response assertions
         Assert.assertTrue(response.isSuccess());
         Assert.assertTrue(response.isApproved());
         Assert.assertTrue(response.isTest());
@@ -61,6 +62,5 @@ public class TerminalPreauthTest extends BaseTestCase {
         Assert.assertEquals("15.15", response.getAuthorizedAmount());
 
     }
-
 
 }

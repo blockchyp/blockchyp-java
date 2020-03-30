@@ -27,32 +27,33 @@ public class SimpleRefundTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public void testTransaction() throws Exception {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
         processTestDelay(client, "SimpleRefundTest");
 
-         // setup request object
-         AuthorizationRequest setupRequest = new AuthorizationRequest();
-         setupRequest.setPan("4111111111111111");
-         setupRequest.setAmount("25.55");
-         setupRequest.setTest(true);
-         setupRequest.setTransactionRef(getUUID());
+        // Set request parameters
+        AuthorizationRequest setupRequest = new AuthorizationRequest();
+        setupRequest.setPan("4111111111111111");
+        setupRequest.setAmount("25.55");
+        setupRequest.setTest(true);
+        setupRequest.setTransactionRef(getUUID());
+
          AuthorizationResponse setupResponse = client.charge(setupRequest);
 
-        // setup request object
+        // Set request parameters
         RefundRequest request = new RefundRequest();
         request.setTransactionId(setupResponse.getTransactionId());
         request.setTest(true);
 
         AuthorizationResponse response = client.refund(request);
 
-        // response assertions
+        // Response assertions
         Assert.assertTrue(response.isSuccess());
         Assert.assertTrue(response.isApproved());
 
     }
-
 
 }

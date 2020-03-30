@@ -283,116 +283,116 @@ public class BlockChypClient {
     }
 
 
-     /**
-      * Executes a manual time out reversal.
-      *
-      * We love time out reversals. Don't be afraid to use them whenever a request to a
-      * BlockChyp terminal times out. You have up to two minutes to reverse any
-      * transaction. The only caveat is that you must assign transactionRef values when
-      * you build the original request. Otherwise, we have no real way of knowing which
-      * transaction you're trying to reverse because we may not have assigned it an id yet.
-      * And if we did assign it an id, you wouldn't know what it is because your request to the
-      * terminal timed out before you got a response.
-      * @param request the request parameters.
-      * @return {@link AuthorizationResponse}
-      * @throws Exception exception if any errors occurred processing the request.
-      */
+    /**
+     * Executes a manual time out reversal.
+     *
+     * We love time out reversals. Don't be afraid to use them whenever a request to a
+     * BlockChyp terminal times out. You have up to two minutes to reverse any
+     * transaction. The only caveat is that you must assign transactionRef values when
+     * you build the original request. Otherwise, we have no real way of knowing which
+     * transaction you're trying to reverse because we may not have assigned it an id yet.
+     * And if we did assign it an id, you wouldn't know what it is because your request to the
+     * terminal timed out before you got a response.
+     * @param request the request parameters.
+     * @return {@link AuthorizationResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
     public AuthorizationResponse reverse(AuthorizationRequest request) throws Exception {
 
         return (AuthorizationResponse) postGateway("/api/reverse", request, AuthorizationResponse.class);
 
     }
 
-     /**
-      * Captures a preauthorization.
-      * @param request the request parameters.
-      * @return {@link CaptureResponse}
-      * @throws Exception exception if any errors occurred processing the request.
-      */
+    /**
+     * Captures a preauthorization.
+     * @param request the request parameters.
+     * @return {@link CaptureResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
     public CaptureResponse capture(CaptureRequest request) throws Exception {
 
         return (CaptureResponse) postGateway("/api/capture", request, CaptureResponse.class);
 
     }
 
-     /**
-      * Closes the current credit card batch.
-      * @param request the request parameters.
-      * @return {@link CloseBatchResponse}
-      * @throws Exception exception if any errors occurred processing the request.
-      */
+    /**
+     * Closes the current credit card batch.
+     * @param request the request parameters.
+     * @return {@link CloseBatchResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
     public CloseBatchResponse closeBatch(CloseBatchRequest request) throws Exception {
 
         return (CloseBatchResponse) postGateway("/api/close-batch", request, CloseBatchResponse.class);
 
     }
 
-     /**
-      * Discards a previous preauth transaction.
-      * @param request the request parameters.
-      * @return {@link VoidResponse}
-      * @throws Exception exception if any errors occurred processing the request.
-      */
+    /**
+     * Discards a previous preauth transaction.
+     * @param request the request parameters.
+     * @return {@link VoidResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
     public VoidResponse voidTx(VoidRequest request) throws Exception {
 
         return (VoidResponse) postGateway("/api/void", request, VoidResponse.class);
 
     }
 
-     /**
-      * Updates or creates a customer record.
-      * @param request the request parameters.
-      * @return {@link CustomerResponse}
-      * @throws Exception exception if any errors occurred processing the request.
-      */
+    /**
+     * Updates or creates a customer record.
+     * @param request the request parameters.
+     * @return {@link CustomerResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
     public CustomerResponse updateCustomer(UpdateCustomerRequest request) throws Exception {
 
         return (CustomerResponse) postGateway("/api/update-customer", request, CustomerResponse.class);
 
     }
 
-     /**
-      * Retrieves a customer by id.
-      * @param request the request parameters.
-      * @return {@link CustomerResponse}
-      * @throws Exception exception if any errors occurred processing the request.
-      */
+    /**
+     * Retrieves a customer by id.
+     * @param request the request parameters.
+     * @return {@link CustomerResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
     public CustomerResponse customer(CustomerRequest request) throws Exception {
 
         return (CustomerResponse) postGateway("/api/customer", request, CustomerResponse.class);
 
     }
 
-     /**
-      * Searches the customer database.
-      * @param request the request parameters.
-      * @return {@link CustomerSearchResponse}
-      * @throws Exception exception if any errors occurred processing the request.
-      */
+    /**
+     * Searches the customer database.
+     * @param request the request parameters.
+     * @return {@link CustomerSearchResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
     public CustomerSearchResponse customerSearch(CustomerSearchRequest request) throws Exception {
 
         return (CustomerSearchResponse) postGateway("/api/customer-search", request, CustomerSearchResponse.class);
 
     }
 
-     /**
-      * Retrieves the current status of a transaction.
-      * @param request the request parameters.
-      * @return {@link AuthorizationResponse}
-      * @throws Exception exception if any errors occurred processing the request.
-      */
+    /**
+     * Retrieves the current status of a transaction.
+     * @param request the request parameters.
+     * @return {@link AuthorizationResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
     public AuthorizationResponse transactionStatus(TransactionStatusRequest request) throws Exception {
 
         return (AuthorizationResponse) postGateway("/api/tx-status", request, AuthorizationResponse.class);
 
     }
 
-     /**
-      * Creates and send a payment link to a customer.
-      * @param request the request parameters.
-      * @return {@link PaymentLinkResponse}
-      * @throws Exception exception if any errors occurred processing the request.
-      */
+    /**
+     * Creates and send a payment link to a customer.
+     * @param request the request parameters.
+     * @return {@link PaymentLinkResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
     public PaymentLinkResponse sendPaymentLink(PaymentLinkRequest request) throws Exception {
 
         return (PaymentLinkResponse) postGateway("/api/send-payment-link", request, PaymentLinkResponse.class);
@@ -402,12 +402,12 @@ public class BlockChypClient {
 
 
 
-     /**
-      * Executes a standard direct preauth and capture.
-      * @param request the request parameters.
-      * @return {@link AuthorizationResponse}
-      * @throws Exception exception if any errors occurred processing the request.
-      */
+    /**
+     * Executes a standard direct preauth and capture.
+     * @param request the request parameters.
+     * @return {@link AuthorizationResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
     public AuthorizationResponse charge(AuthorizationRequest request) throws Exception {
 
         if (isTerminalRouted(request)) {
@@ -418,12 +418,12 @@ public class BlockChypClient {
 
     }
 
-     /**
-      * Executes a preauthorization intended to be captured later.
-      * @param request the request parameters.
-      * @return {@link AuthorizationResponse}
-      * @throws Exception exception if any errors occurred processing the request.
-      */
+    /**
+     * Executes a preauthorization intended to be captured later.
+     * @param request the request parameters.
+     * @return {@link AuthorizationResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
     public AuthorizationResponse preauth(AuthorizationRequest request) throws Exception {
 
         if (isTerminalRouted(request)) {
@@ -434,12 +434,12 @@ public class BlockChypClient {
 
     }
 
-     /**
-      * Tests connectivity with a payment terminal.
-      * @param request the request parameters.
-      * @return {@link PingResponse}
-      * @throws Exception exception if any errors occurred processing the request.
-      */
+    /**
+     * Tests connectivity with a payment terminal.
+     * @param request the request parameters.
+     * @return {@link PingResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
     public PingResponse ping(PingRequest request) throws Exception {
 
         if (isTerminalRouted(request)) {
@@ -450,12 +450,12 @@ public class BlockChypClient {
 
     }
 
-     /**
-      * Checks the remaining balance on a payment method.
-      * @param request the request parameters.
-      * @return {@link BalanceResponse}
-      * @throws Exception exception if any errors occurred processing the request.
-      */
+    /**
+     * Checks the remaining balance on a payment method.
+     * @param request the request parameters.
+     * @return {@link BalanceResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
     public BalanceResponse balance(BalanceRequest request) throws Exception {
 
         if (isTerminalRouted(request)) {
@@ -466,12 +466,12 @@ public class BlockChypClient {
 
     }
 
-     /**
-      * Clears the line item display and any in progress transaction.
-      * @param request the request parameters.
-      * @return {@link Acknowledgement}
-      * @throws Exception exception if any errors occurred processing the request.
-      */
+    /**
+     * Clears the line item display and any in progress transaction.
+     * @param request the request parameters.
+     * @return {@link Acknowledgement}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
     public Acknowledgement clear(ClearTerminalRequest request) throws Exception {
 
         if (isTerminalRouted(request)) {
@@ -482,12 +482,12 @@ public class BlockChypClient {
 
     }
 
-     /**
-      * Prompts the user to accept terms and conditions.
-      * @param request the request parameters.
-      * @return {@link TermsAndConditionsResponse}
-      * @throws Exception exception if any errors occurred processing the request.
-      */
+    /**
+     * Prompts the user to accept terms and conditions.
+     * @param request the request parameters.
+     * @return {@link TermsAndConditionsResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
     public TermsAndConditionsResponse termsAndConditions(TermsAndConditionsRequest request) throws Exception {
 
         if (isTerminalRouted(request)) {
@@ -498,14 +498,14 @@ public class BlockChypClient {
 
     }
 
-     /**
-      * Appends items to an existing transaction display. Subtotal, Tax, and Total are
-      * overwritten by the request. Items with the same description are combined into
-      * groups.
-      * @param request the request parameters.
-      * @return {@link Acknowledgement}
-      * @throws Exception exception if any errors occurred processing the request.
-      */
+    /**
+     * Appends items to an existing transaction display. Subtotal, Tax, and Total are
+     * overwritten by the request. Items with the same description are combined into
+     * groups.
+     * @param request the request parameters.
+     * @return {@link Acknowledgement}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
     public Acknowledgement updateTransactionDisplay(TransactionDisplayRequest request) throws Exception {
 
         if (isTerminalRouted(request)) {
@@ -516,12 +516,12 @@ public class BlockChypClient {
 
     }
 
-     /**
-      * Displays a new transaction on the terminal.
-      * @param request the request parameters.
-      * @return {@link Acknowledgement}
-      * @throws Exception exception if any errors occurred processing the request.
-      */
+    /**
+     * Displays a new transaction on the terminal.
+     * @param request the request parameters.
+     * @return {@link Acknowledgement}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
     public Acknowledgement newTransactionDisplay(TransactionDisplayRequest request) throws Exception {
 
         if (isTerminalRouted(request)) {
@@ -532,12 +532,12 @@ public class BlockChypClient {
 
     }
 
-     /**
-      * Asks the consumer a text based question.
-      * @param request the request parameters.
-      * @return {@link TextPromptResponse}
-      * @throws Exception exception if any errors occurred processing the request.
-      */
+    /**
+     * Asks the consumer a text based question.
+     * @param request the request parameters.
+     * @return {@link TextPromptResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
     public TextPromptResponse textPrompt(TextPromptRequest request) throws Exception {
 
         if (isTerminalRouted(request)) {
@@ -548,12 +548,12 @@ public class BlockChypClient {
 
     }
 
-     /**
-      * Asks the consumer a yes/no question.
-      * @param request the request parameters.
-      * @return {@link BooleanPromptResponse}
-      * @throws Exception exception if any errors occurred processing the request.
-      */
+    /**
+     * Asks the consumer a yes/no question.
+     * @param request the request parameters.
+     * @return {@link BooleanPromptResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
     public BooleanPromptResponse booleanPrompt(BooleanPromptRequest request) throws Exception {
 
         if (isTerminalRouted(request)) {
@@ -564,12 +564,12 @@ public class BlockChypClient {
 
     }
 
-     /**
-      * Displays a short message on the terminal.
-      * @param request the request parameters.
-      * @return {@link Acknowledgement}
-      * @throws Exception exception if any errors occurred processing the request.
-      */
+    /**
+     * Displays a short message on the terminal.
+     * @param request the request parameters.
+     * @return {@link Acknowledgement}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
     public Acknowledgement message(MessageRequest request) throws Exception {
 
         if (isTerminalRouted(request)) {
@@ -580,12 +580,12 @@ public class BlockChypClient {
 
     }
 
-     /**
-      * Executes a refund.
-      * @param request the request parameters.
-      * @return {@link AuthorizationResponse}
-      * @throws Exception exception if any errors occurred processing the request.
-      */
+    /**
+     * Executes a refund.
+     * @param request the request parameters.
+     * @return {@link AuthorizationResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
     public AuthorizationResponse refund(RefundRequest request) throws Exception {
 
         if (isTerminalRouted(request)) {
@@ -596,12 +596,12 @@ public class BlockChypClient {
 
     }
 
-     /**
-      * Adds a new payment method to the token vault.
-      * @param request the request parameters.
-      * @return {@link EnrollResponse}
-      * @throws Exception exception if any errors occurred processing the request.
-      */
+    /**
+     * Adds a new payment method to the token vault.
+     * @param request the request parameters.
+     * @return {@link EnrollResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
     public EnrollResponse enroll(EnrollRequest request) throws Exception {
 
         if (isTerminalRouted(request)) {
@@ -612,12 +612,12 @@ public class BlockChypClient {
 
     }
 
-     /**
-      * Activates or recharges a gift card.
-      * @param request the request parameters.
-      * @return {@link GiftActivateResponse}
-      * @throws Exception exception if any errors occurred processing the request.
-      */
+    /**
+     * Activates or recharges a gift card.
+     * @param request the request parameters.
+     * @return {@link GiftActivateResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
     public GiftActivateResponse giftActivate(GiftActivateRequest request) throws Exception {
 
         if (isTerminalRouted(request)) {
@@ -628,12 +628,12 @@ public class BlockChypClient {
 
     }
 
-     /**
-      * Returns the current status of a terminal.
-      * @param request the request parameters.
-      * @return {@link TerminalStatusResponse}
-      * @throws Exception exception if any errors occurred processing the request.
-      */
+    /**
+     * Returns the current status of a terminal.
+     * @param request the request parameters.
+     * @return {@link TerminalStatusResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
     public TerminalStatusResponse terminalStatus(TerminalStatusRequest request) throws Exception {
 
         if (isTerminalRouted(request)) {
@@ -644,12 +644,12 @@ public class BlockChypClient {
 
     }
 
-     /**
-      * Captures and returns a signature.
-      * @param request the request parameters.
-      * @return {@link CaptureSignatureResponse}
-      * @throws Exception exception if any errors occurred processing the request.
-      */
+    /**
+     * Captures and returns a signature.
+     * @param request the request parameters.
+     * @return {@link CaptureSignatureResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
     public CaptureSignatureResponse captureSignature(CaptureSignatureRequest request) throws Exception {
 
         if (isTerminalRouted(request)) {

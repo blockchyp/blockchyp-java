@@ -26,13 +26,14 @@ public class BooleanPromptTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public void testTransaction() throws Exception {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
         processTestDelay(client, "BooleanPromptTest");
 
-        // setup request object
+        // Set request parameters
         BooleanPromptRequest request = new BooleanPromptRequest();
         request.setTest(true);
         request.setTerminalName("Test Terminal");
@@ -42,11 +43,10 @@ public class BooleanPromptTest extends BaseTestCase {
 
         BooleanPromptResponse response = client.booleanPrompt(request);
 
-        // response assertions
+        // Response assertions
         Assert.assertTrue(response.isSuccess());
         Assert.assertTrue(response.isResponse());
 
     }
-
 
 }

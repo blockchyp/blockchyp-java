@@ -28,27 +28,29 @@ public class SimpleBatchCloseTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public void testTransaction() throws Exception {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
         processTestDelay(client, "SimpleBatchCloseTest");
 
-         // setup request object
-         AuthorizationRequest setupRequest = new AuthorizationRequest();
-         setupRequest.setPan("4111111111111111");
-         setupRequest.setAmount("25.55");
-         setupRequest.setTest(true);
-         setupRequest.setTransactionRef(getUUID());
+        // Set request parameters
+        AuthorizationRequest setupRequest = new AuthorizationRequest();
+        setupRequest.setPan("4111111111111111");
+        setupRequest.setAmount("25.55");
+        setupRequest.setTest(true);
+        setupRequest.setTransactionRef(getUUID());
+
          AuthorizationResponse setupResponse = client.charge(setupRequest);
 
-        // setup request object
+        // Set request parameters
         CloseBatchRequest request = new CloseBatchRequest();
         request.setTest(true);
 
         CloseBatchResponse response = client.closeBatch(request);
 
-        // response assertions
+        // Response assertions
         Assert.assertTrue(response.isSuccess());
         Assert.assertNotNull(response.getCapturedTotal());
         Assert.assertTrue(response.getCapturedTotal().trim().length() > 0);
@@ -56,6 +58,5 @@ public class SimpleBatchCloseTest extends BaseTestCase {
         Assert.assertTrue(response.getOpenPreauths().trim().length() > 0);
 
     }
-
 
 }

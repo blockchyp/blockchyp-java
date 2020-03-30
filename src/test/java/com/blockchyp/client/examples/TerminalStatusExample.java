@@ -14,6 +14,7 @@ import com.blockchyp.client.dto.TerminalStatusResponse;
 
 public class TerminalStatusExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -23,13 +24,14 @@ public class TerminalStatusExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         TerminalStatusRequest request = new TerminalStatusRequest();
         request.setTerminalName("Test Terminal");
 
+        // Send the request
         TerminalStatusResponse response = client.terminalStatus(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }

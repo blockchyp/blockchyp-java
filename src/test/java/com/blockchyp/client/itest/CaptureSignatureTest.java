@@ -27,13 +27,14 @@ public class CaptureSignatureTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public void testTransaction() throws Exception {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
         processTestDelay(client, "CaptureSignatureTest");
 
-        // setup request object
+        // Set request parameters
         CaptureSignatureRequest request = new CaptureSignatureRequest();
         request.setTerminalName("Test Terminal");
         request.setSigFormat(SignatureFormat.PNG);
@@ -41,10 +42,9 @@ public class CaptureSignatureTest extends BaseTestCase {
 
         CaptureSignatureResponse response = client.captureSignature(request);
 
-        // response assertions
+        // Response assertions
         Assert.assertTrue(response.isSuccess());
 
     }
-
 
 }

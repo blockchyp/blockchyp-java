@@ -14,6 +14,7 @@ import com.blockchyp.client.dto.AuthorizationResponse;
 
 public class RefundExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -23,15 +24,16 @@ public class RefundExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         RefundRequest request = new RefundRequest();
         request.setTerminalName("Test Terminal");
         request.setTransactionId("<PREVIOUS TRANSACTION ID>");
-        request.setAmount("5.00"); // Optional amount for partial refunds.
+        request.setAmount("5.00");
 
+        // Send the request
         AuthorizationResponse response = client.refund(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }

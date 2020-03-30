@@ -27,13 +27,14 @@ public class TerminalTimeoutTest extends BaseTestCase {
 
     @Test(expected = java.io.IOException.class)
     @Category(IntegrationTest.class)
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public void testTransaction() throws Exception {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
         processTestDelay(client, "TerminalTimeoutTest");
 
-        // setup request object
+        // Set request parameters
         AuthorizationRequest request = new AuthorizationRequest();
         request.setTimeout(1);
         request.setTerminalName("Test Terminal");
@@ -42,9 +43,8 @@ public class TerminalTimeoutTest extends BaseTestCase {
 
         AuthorizationResponse response = client.charge(request);
 
-        // response assertions
+        // Response assertions
 
     }
-
 
 }

@@ -14,6 +14,7 @@ import com.blockchyp.client.dto.AuthorizationResponse;
 
 public class ReverseExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -23,14 +24,15 @@ public class ReverseExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         AuthorizationRequest request = new AuthorizationRequest();
         request.setTerminalName("Test Terminal");
         request.setTransactionRef("<LAST TRANSACTION REF>");
 
+        // Send the request
         AuthorizationResponse response = client.reverse(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }

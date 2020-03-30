@@ -1,31 +1,40 @@
-package com.blockchyp.client.examples;
+/**
+ * Copyright 2019 BlockChyp, Inc. All rights reserved. Use of this code is governed by a
+ * license that can be found in the LICENSE file.
+ *
+ * This file was generated automatically. Changes to this file will be lost every time the
+ * code is regenerated.
+ */
+
+package com.blockchyp.client.itest;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
 
-import com.blockchyp.client.APICredentials;
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.experimental.categories.Category;
+
 import com.blockchyp.client.BlockChypClient;
+import com.blockchyp.client.IntegrationTest;
+import com.blockchyp.client.IntegrationTestConfiguration;
 import com.blockchyp.client.dto.PaymentLinkRequest;
 import com.blockchyp.client.dto.PaymentLinkResponse;
 import com.blockchyp.client.dto.TransactionDisplayTransaction;
 import com.blockchyp.client.dto.TransactionDisplayItem;
 import com.blockchyp.client.dto.Customer;
 
+public class SendPaymentLinkTest extends BaseTestCase {
 
-public class SendPaymentLinkExample {
-
+    @Test
+    @Category(IntegrationTest.class)
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public static void main(String[] args) throws Exception {
+    public void testTransaction() throws Exception {
 
-        APICredentials creds = new APICredentials();
-        creds.setApiKey(System.getenv("BC_API_KEY"));
-        creds.setBearerToken(System.getenv("BC_BEARER_TOKEN"));
-        creds.setSigningKey(System.getenv("BC_SIGNING_KEY"));
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        BlockChypClient client = new BlockChypClient(creds);
+        processTestDelay(client, "SendPaymentLinkTest");
 
         // Set request parameters
         PaymentLinkRequest request = new PaymentLinkRequest();
@@ -57,23 +66,13 @@ public class SendPaymentLinkExample {
         customer.setSmsNumber("(123) 123-1231");
         request.setCustomer(customer);
 
-        // Send the request
         PaymentLinkResponse response = client.sendPaymentLink(request);
 
-        // View the result
-        System.out.println("Response: " + prettyPrint(response));
+        // Response assertions
+        Assert.assertTrue(response.isSuccess());
+        Assert.assertNotNull(response.getUrl());
+        Assert.assertTrue(response.getUrl().trim().length() > 0);
 
     }
 
-    public static String prettyPrint(Object object) throws Exception {
-
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
-
-    }
 }

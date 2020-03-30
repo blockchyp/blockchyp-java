@@ -322,6 +322,7 @@ import com.blockchyp.client.dto.AuthorizationResponse;
 
 public class ChargeExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -331,15 +332,16 @@ public class ChargeExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         AuthorizationRequest request = new AuthorizationRequest();
         request.setTest(true);
         request.setTerminalName("Test Terminal");
         request.setAmount("55.00");
 
+        // Send the request
         AuthorizationResponse response = client.charge(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }
@@ -382,6 +384,7 @@ import com.blockchyp.client.dto.AuthorizationResponse;
 
 public class PreauthExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -391,15 +394,16 @@ public class PreauthExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         AuthorizationRequest request = new AuthorizationRequest();
         request.setTest(true);
         request.setTerminalName("Test Terminal");
         request.setAmount("27.00");
 
+        // Send the request
         AuthorizationResponse response = client.preauth(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }
@@ -442,6 +446,7 @@ import com.blockchyp.client.dto.PingResponse;
 
 public class PingExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -451,13 +456,14 @@ public class PingExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         PingRequest request = new PingRequest();
         request.setTerminalName("Test Terminal");
 
+        // Send the request
         PingResponse response = client.ping(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }
@@ -501,6 +507,7 @@ import com.blockchyp.client.dto.CardType;
 
 public class BalanceExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -510,15 +517,16 @@ public class BalanceExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         BalanceRequest request = new BalanceRequest();
         request.setTest(true);
         request.setTerminalName("Test Terminal");
         request.setCardType(CardType.EBT);
 
+        // Send the request
         BalanceResponse response = client.balance(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }
@@ -561,6 +569,7 @@ import com.blockchyp.client.dto.Acknowledgement;
 
 public class ClearExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -570,14 +579,15 @@ public class ClearExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         ClearTerminalRequest request = new ClearTerminalRequest();
         request.setTest(true);
         request.setTerminalName("Test Terminal");
 
+        // Send the request
         Acknowledgement response = client.clear(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }
@@ -621,6 +631,7 @@ import com.blockchyp.client.dto.SignatureFormat;
 
 public class TermsAndConditionsExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -630,20 +641,21 @@ public class TermsAndConditionsExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         TermsAndConditionsRequest request = new TermsAndConditionsRequest();
         request.setTest(true);
         request.setTerminalName("Test Terminal");
-        request.setTcAlias("hippa"); // Alias for a Terms and Conditions template configured in the BlockChyp dashboard.
-        request.setTcName("HIPPA Disclosure"); // Name of the contract or document if not using an alias.
-        request.setTcContent("Full contract text"); // Full text of the contract or disclosure if not using an alias.
-        request.setSigFormat(SignatureFormat.PNG); // file format for the signature image.
-        request.setSigWidth(200); // width of the signature image in pixels.
-        request.setSigRequired(true); // Whether or not a signature is required. Defaults to true.
+        request.setTcAlias("hippa");
+        request.setTcName("HIPPA Disclosure");
+        request.setTcContent("Full contract text");
+        request.setSigFormat(SignatureFormat.PNG);
+        request.setSigWidth(200);
+        request.setSigRequired(true);
 
+        // Send the request
         TermsAndConditionsResponse response = client.termsAndConditions(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }
@@ -691,6 +703,7 @@ import com.blockchyp.client.dto.TransactionDisplayDiscount;
 
 public class UpdateTransactionDisplayExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -700,15 +713,37 @@ public class UpdateTransactionDisplayExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         TransactionDisplayRequest request = new TransactionDisplayRequest();
         request.setTest(true);
         request.setTerminalName("Test Terminal");
-        request.setTransaction(newTransactionDisplayTransaction());
 
+        TransactionDisplayTransaction transaction = new TransactionDisplayTransaction();
+        transaction.setSubtotal("60.00");
+        transaction.setTax("5.00");
+        transaction.setTotal("65.00");
+
+        Collection items = new ArrayList();
+        TransactionDisplayItem items0 = new TransactionDisplayItem();
+        items0.setDescription("Leki Trekking Poles");
+        items0.setPrice("35.00");
+        items0.setQuantity(2);
+        items0.setExtended("70.00");
+
+        Collection discounts = new ArrayList();
+        TransactionDisplayDiscount discounts0 = new TransactionDisplayDiscount();
+        discounts0.setDescription("memberDiscount");
+        discounts0.setAmount("10.00");
+        discounts.add(discounts0);
+        items0.setDiscounts(discounts);
+        items.add(items0);
+        transaction.setItems(items);
+        request.setTransaction(transaction);
+
+        // Send the request
         Acknowledgement response = client.updateTransactionDisplay(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }
@@ -722,56 +757,6 @@ public class UpdateTransactionDisplayExample {
         return object.getClass().getSimpleName()
             + ": "
             + writer.writeValueAsString(object);
-
-    }
-
-    private static TransactionDisplayTransaction newTransactionDisplayTransaction() {
-
-         TransactionDisplayTransaction val = new TransactionDisplayTransaction();
-         val.setSubtotal("60.00");
-         val.setTax("5.00");
-         val.setTotal("65.00");
-         val.setItems(newTransactionDisplayItems());
-         return val;
-
-    }
-
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    private static Collection newTransactionDisplayItems() {
-
-         Collection results = new ArrayList();
-         results.add(newTransactionDisplayItem2());
-         return results;
-
-    }
-
-    private static TransactionDisplayItem newTransactionDisplayItem2() {
-
-         TransactionDisplayItem val = new TransactionDisplayItem();
-         val.setDescription("Leki Trekking Poles");
-         val.setPrice("35.00");
-         val.setQuantity(2);
-         val.setExtended("70.00");
-         val.setDiscounts(newTransactionDisplayDiscounts());
-         return val;
-
-    }
-
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    private static Collection newTransactionDisplayDiscounts() {
-
-         Collection results = new ArrayList();
-         results.add(newTransactionDisplayDiscount2());
-         return results;
-
-    }
-
-    private static TransactionDisplayDiscount newTransactionDisplayDiscount2() {
-
-         TransactionDisplayDiscount val = new TransactionDisplayDiscount();
-         val.setDescription("memberDiscount");
-         val.setAmount("10.00");
-         return val;
 
     }
 }
@@ -804,6 +789,7 @@ import com.blockchyp.client.dto.TransactionDisplayDiscount;
 
 public class NewTransactionDisplayExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -813,15 +799,37 @@ public class NewTransactionDisplayExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         TransactionDisplayRequest request = new TransactionDisplayRequest();
         request.setTest(true);
         request.setTerminalName("Test Terminal");
-        request.setTransaction(newTransactionDisplayTransaction());
 
+        TransactionDisplayTransaction transaction = new TransactionDisplayTransaction();
+        transaction.setSubtotal("60.00");
+        transaction.setTax("5.00");
+        transaction.setTotal("65.00");
+
+        Collection items = new ArrayList();
+        TransactionDisplayItem items0 = new TransactionDisplayItem();
+        items0.setDescription("Leki Trekking Poles");
+        items0.setPrice("35.00");
+        items0.setQuantity(2);
+        items0.setExtended("70.00");
+
+        Collection discounts = new ArrayList();
+        TransactionDisplayDiscount discounts0 = new TransactionDisplayDiscount();
+        discounts0.setDescription("memberDiscount");
+        discounts0.setAmount("10.00");
+        discounts.add(discounts0);
+        items0.setDiscounts(discounts);
+        items.add(items0);
+        transaction.setItems(items);
+        request.setTransaction(transaction);
+
+        // Send the request
         Acknowledgement response = client.newTransactionDisplay(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }
@@ -835,56 +843,6 @@ public class NewTransactionDisplayExample {
         return object.getClass().getSimpleName()
             + ": "
             + writer.writeValueAsString(object);
-
-    }
-
-    private static TransactionDisplayTransaction newTransactionDisplayTransaction() {
-
-         TransactionDisplayTransaction val = new TransactionDisplayTransaction();
-         val.setSubtotal("60.00");
-         val.setTax("5.00");
-         val.setTotal("65.00");
-         val.setItems(newTransactionDisplayItems());
-         return val;
-
-    }
-
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    private static Collection newTransactionDisplayItems() {
-
-         Collection results = new ArrayList();
-         results.add(newTransactionDisplayItem2());
-         return results;
-
-    }
-
-    private static TransactionDisplayItem newTransactionDisplayItem2() {
-
-         TransactionDisplayItem val = new TransactionDisplayItem();
-         val.setDescription("Leki Trekking Poles");
-         val.setPrice("35.00");
-         val.setQuantity(2);
-         val.setExtended("70.00");
-         val.setDiscounts(newTransactionDisplayDiscounts());
-         return val;
-
-    }
-
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    private static Collection newTransactionDisplayDiscounts() {
-
-         Collection results = new ArrayList();
-         results.add(newTransactionDisplayDiscount2());
-         return results;
-
-    }
-
-    private static TransactionDisplayDiscount newTransactionDisplayDiscount2() {
-
-         TransactionDisplayDiscount val = new TransactionDisplayDiscount();
-         val.setDescription("memberDiscount");
-         val.setAmount("10.00");
-         return val;
 
     }
 }
@@ -915,6 +873,7 @@ import com.blockchyp.client.dto.PromptType;
 
 public class TextPromptExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -924,15 +883,16 @@ public class TextPromptExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         TextPromptRequest request = new TextPromptRequest();
         request.setTest(true);
         request.setTerminalName("Test Terminal");
-        request.setPromptType(PromptType.EMAIL); // Type of prompt. Can be 'email', 'phone', 'customer-number', or 'rewards-number'.
+        request.setPromptType(PromptType.EMAIL);
 
+        // Send the request
         TextPromptResponse response = client.textPrompt(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }
@@ -975,6 +935,7 @@ import com.blockchyp.client.dto.BooleanPromptResponse;
 
 public class BooleanPromptExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -984,7 +945,7 @@ public class BooleanPromptExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         BooleanPromptRequest request = new BooleanPromptRequest();
         request.setTest(true);
         request.setTerminalName("Test Terminal");
@@ -992,9 +953,10 @@ public class BooleanPromptExample {
         request.setYesCaption("Yes");
         request.setNoCaption("No");
 
+        // Send the request
         BooleanPromptResponse response = client.booleanPrompt(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }
@@ -1037,6 +999,7 @@ import com.blockchyp.client.dto.Acknowledgement;
 
 public class MessageExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -1046,15 +1009,16 @@ public class MessageExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         MessageRequest request = new MessageRequest();
         request.setTest(true);
         request.setTerminalName("Test Terminal");
         request.setMessage("Thank you for your business.");
 
+        // Send the request
         Acknowledgement response = client.message(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }
@@ -1097,6 +1061,7 @@ import com.blockchyp.client.dto.AuthorizationResponse;
 
 public class RefundExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -1106,15 +1071,16 @@ public class RefundExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         RefundRequest request = new RefundRequest();
         request.setTerminalName("Test Terminal");
         request.setTransactionId("<PREVIOUS TRANSACTION ID>");
-        request.setAmount("5.00"); // Optional amount for partial refunds.
+        request.setAmount("5.00");
 
+        // Send the request
         AuthorizationResponse response = client.refund(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }
@@ -1157,6 +1123,7 @@ import com.blockchyp.client.dto.EnrollResponse;
 
 public class EnrollExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -1166,14 +1133,15 @@ public class EnrollExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         EnrollRequest request = new EnrollRequest();
         request.setTest(true);
         request.setTerminalName("Test Terminal");
 
+        // Send the request
         EnrollResponse response = client.enroll(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }
@@ -1216,6 +1184,7 @@ import com.blockchyp.client.dto.GiftActivateResponse;
 
 public class GiftActivateExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -1225,15 +1194,16 @@ public class GiftActivateExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         GiftActivateRequest request = new GiftActivateRequest();
         request.setTest(true);
         request.setTerminalName("Test Terminal");
         request.setAmount("50.00");
 
+        // Send the request
         GiftActivateResponse response = client.giftActivate(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }
@@ -1284,6 +1254,7 @@ import com.blockchyp.client.dto.AuthorizationResponse;
 
 public class ReverseExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -1293,14 +1264,15 @@ public class ReverseExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         AuthorizationRequest request = new AuthorizationRequest();
         request.setTerminalName("Test Terminal");
         request.setTransactionRef("<LAST TRANSACTION REF>");
 
+        // Send the request
         AuthorizationResponse response = client.reverse(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }
@@ -1343,6 +1315,7 @@ import com.blockchyp.client.dto.CaptureResponse;
 
 public class CaptureExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -1352,14 +1325,15 @@ public class CaptureExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         CaptureRequest request = new CaptureRequest();
         request.setTest(true);
         request.setTransactionId("<PREAUTH TRANSACTION ID>");
 
+        // Send the request
         CaptureResponse response = client.capture(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }
@@ -1402,6 +1376,7 @@ import com.blockchyp.client.dto.CloseBatchResponse;
 
 public class CloseBatchExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -1411,13 +1386,14 @@ public class CloseBatchExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         CloseBatchRequest request = new CloseBatchRequest();
         request.setTest(true);
 
+        // Send the request
         CloseBatchResponse response = client.closeBatch(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }
@@ -1460,6 +1436,7 @@ import com.blockchyp.client.dto.VoidResponse;
 
 public class VoidExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -1469,14 +1446,15 @@ public class VoidExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         VoidRequest request = new VoidRequest();
         request.setTest(true);
         request.setTransactionId("<PREVIOUS TRANSACTION ID>");
 
+        // Send the request
         VoidResponse response = client.voidTx(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }
@@ -1519,6 +1497,7 @@ import com.blockchyp.client.dto.TerminalStatusResponse;
 
 public class TerminalStatusExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -1528,13 +1507,14 @@ public class TerminalStatusExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         TerminalStatusRequest request = new TerminalStatusRequest();
         request.setTerminalName("Test Terminal");
 
+        // Send the request
         TerminalStatusResponse response = client.terminalStatus(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }
@@ -1578,6 +1558,7 @@ import com.blockchyp.client.dto.SignatureFormat;
 
 public class CaptureSignatureExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -1587,15 +1568,16 @@ public class CaptureSignatureExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         CaptureSignatureRequest request = new CaptureSignatureRequest();
         request.setTerminalName("Test Terminal");
-        request.setSigFormat(SignatureFormat.PNG); // file format for the signature image.
-        request.setSigWidth(200); // width of the signature image in pixels.
+        request.setSigFormat(SignatureFormat.PNG);
+        request.setSigWidth(200);
 
+        // Send the request
         CaptureSignatureResponse response = client.captureSignature(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }
@@ -1639,6 +1621,7 @@ import com.blockchyp.client.dto.Customer;
 
 public class UpdateCustomerExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -1648,13 +1631,23 @@ public class UpdateCustomerExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         UpdateCustomerRequest request = new UpdateCustomerRequest();
-        request.setCustomer(newCustomer());
 
+        Customer customer = new Customer();
+        customer.setId("ID of the customer to update");
+        customer.setCustomerRef("Customer reference string");
+        customer.setFirstName("FirstName");
+        customer.setLastName("LastName");
+        customer.setCompanyName("Company Name");
+        customer.setEmailAddress("support@blockchyp.com");
+        customer.setSmsNumber("(123) 123-1231");
+        request.setCustomer(customer);
+
+        // Send the request
         CustomerResponse response = client.updateCustomer(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }
@@ -1668,20 +1661,6 @@ public class UpdateCustomerExample {
         return object.getClass().getSimpleName()
             + ": "
             + writer.writeValueAsString(object);
-
-    }
-
-    private static Customer newCustomer() {
-
-         Customer val = new Customer();
-         val.setId("ID of the customer to update");
-         val.setCustomerRef("Customer reference string");
-         val.setFirstName("FirstName");
-         val.setLastName("LastName");
-         val.setCompanyName("Company Name");
-         val.setEmailAddress("support@blockchyp.com");
-         val.setSmsNumber("(123) 123-1231");
-         return val;
 
     }
 }
@@ -1711,6 +1690,7 @@ import com.blockchyp.client.dto.CustomerResponse;
 
 public class CustomerExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -1720,13 +1700,14 @@ public class CustomerExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         CustomerRequest request = new CustomerRequest();
         request.setCustomerId("ID of the customer to retrieve");
 
+        // Send the request
         CustomerResponse response = client.customer(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }
@@ -1769,6 +1750,7 @@ import com.blockchyp.client.dto.CustomerSearchResponse;
 
 public class CustomerSearchExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -1778,13 +1760,14 @@ public class CustomerSearchExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         CustomerSearchRequest request = new CustomerSearchRequest();
         request.setQuery("(123) 123-1234");
 
+        // Send the request
         CustomerSearchResponse response = client.customerSearch(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }
@@ -1827,6 +1810,7 @@ import com.blockchyp.client.dto.AuthorizationResponse;
 
 public class TransactionStatusExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -1836,13 +1820,14 @@ public class TransactionStatusExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         TransactionStatusRequest request = new TransactionStatusRequest();
         request.setTransactionId("ID of transaction to retrieve");
 
+        // Send the request
         AuthorizationResponse response = client.transactionStatus(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }
@@ -1888,6 +1873,7 @@ import com.blockchyp.client.dto.Customer;
 
 public class SendPaymentLinkExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -1897,18 +1883,40 @@ public class SendPaymentLinkExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         PaymentLinkRequest request = new PaymentLinkRequest();
         request.setAmount("199.99");
         request.setDescription("Widget");
         request.setSubject("Widget invoice");
-        request.setTransaction(newTransactionDisplayTransaction());
-        request.setAutoSend(true);
-        request.setCustomer(newCustomer());
 
+        TransactionDisplayTransaction transaction = new TransactionDisplayTransaction();
+        transaction.setSubtotal("195.00");
+        transaction.setTax("4.99");
+        transaction.setTotal("199.99");
+
+        Collection items = new ArrayList();
+        TransactionDisplayItem items0 = new TransactionDisplayItem();
+        items0.setDescription("Widget");
+        items0.setPrice("195.00");
+        items0.setQuantity(1);
+        items.add(items0);
+        transaction.setItems(items);
+        request.setTransaction(transaction);
+        request.setAutoSend(true);
+
+        Customer customer = new Customer();
+        customer.setCustomerRef("Customer reference string");
+        customer.setFirstName("FirstName");
+        customer.setLastName("LastName");
+        customer.setCompanyName("Company Name");
+        customer.setEmailAddress("support@blockchyp.com");
+        customer.setSmsNumber("(123) 123-1231");
+        request.setCustomer(customer);
+
+        // Send the request
         PaymentLinkResponse response = client.sendPaymentLink(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }
@@ -1922,49 +1930,6 @@ public class SendPaymentLinkExample {
         return object.getClass().getSimpleName()
             + ": "
             + writer.writeValueAsString(object);
-
-    }
-
-    private static TransactionDisplayTransaction newTransactionDisplayTransaction() {
-
-         TransactionDisplayTransaction val = new TransactionDisplayTransaction();
-         val.setSubtotal("195.00");
-         val.setTax("4.99");
-         val.setTotal("199.99");
-         val.setItems(newTransactionDisplayItems());
-         return val;
-
-    }
-
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    private static Collection newTransactionDisplayItems() {
-
-         Collection results = new ArrayList();
-         results.add(newTransactionDisplayItem2());
-         return results;
-
-    }
-
-    private static TransactionDisplayItem newTransactionDisplayItem2() {
-
-         TransactionDisplayItem val = new TransactionDisplayItem();
-         val.setDescription("Widget");
-         val.setPrice("195.00");
-         val.setQuantity(1);
-         return val;
-
-    }
-
-    private static Customer newCustomer() {
-
-         Customer val = new Customer();
-         val.setCustomerRef("Customer reference string");
-         val.setFirstName("FirstName");
-         val.setLastName("LastName");
-         val.setCompanyName("Company Name");
-         val.setEmailAddress("support@blockchyp.com");
-         val.setSmsNumber("(123) 123-1231");
-         return val;
 
     }
 }

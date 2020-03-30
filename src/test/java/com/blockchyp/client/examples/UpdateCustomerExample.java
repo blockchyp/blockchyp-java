@@ -15,6 +15,7 @@ import com.blockchyp.client.dto.Customer;
 
 public class UpdateCustomerExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -24,13 +25,23 @@ public class UpdateCustomerExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         UpdateCustomerRequest request = new UpdateCustomerRequest();
-        request.setCustomer(newCustomer());
 
+        Customer customer = new Customer();
+        customer.setId("ID of the customer to update");
+        customer.setCustomerRef("Customer reference string");
+        customer.setFirstName("FirstName");
+        customer.setLastName("LastName");
+        customer.setCompanyName("Company Name");
+        customer.setEmailAddress("support@blockchyp.com");
+        customer.setSmsNumber("(123) 123-1231");
+        request.setCustomer(customer);
+
+        // Send the request
         CustomerResponse response = client.updateCustomer(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }
@@ -44,20 +55,6 @@ public class UpdateCustomerExample {
         return object.getClass().getSimpleName()
             + ": "
             + writer.writeValueAsString(object);
-
-    }
-
-    private static Customer newCustomer() {
-
-         Customer val = new Customer();
-         val.setId("ID of the customer to update");
-         val.setCustomerRef("Customer reference string");
-         val.setFirstName("FirstName");
-         val.setLastName("LastName");
-         val.setCompanyName("Company Name");
-         val.setEmailAddress("support@blockchyp.com");
-         val.setSmsNumber("(123) 123-1231");
-         return val;
 
     }
 }

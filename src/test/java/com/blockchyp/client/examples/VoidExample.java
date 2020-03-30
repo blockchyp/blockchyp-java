@@ -14,6 +14,7 @@ import com.blockchyp.client.dto.VoidResponse;
 
 public class VoidExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -23,14 +24,15 @@ public class VoidExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         VoidRequest request = new VoidRequest();
         request.setTest(true);
         request.setTransactionId("<PREVIOUS TRANSACTION ID>");
 
+        // Send the request
         VoidResponse response = client.voidTx(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }

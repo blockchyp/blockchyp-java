@@ -15,6 +15,7 @@ import com.blockchyp.client.dto.CardType;
 
 public class BalanceExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -24,15 +25,16 @@ public class BalanceExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         BalanceRequest request = new BalanceRequest();
         request.setTest(true);
         request.setTerminalName("Test Terminal");
         request.setCardType(CardType.EBT);
 
+        // Send the request
         BalanceResponse response = client.balance(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }

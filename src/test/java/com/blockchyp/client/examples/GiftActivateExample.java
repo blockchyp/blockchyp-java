@@ -14,6 +14,7 @@ import com.blockchyp.client.dto.GiftActivateResponse;
 
 public class GiftActivateExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -23,15 +24,16 @@ public class GiftActivateExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         GiftActivateRequest request = new GiftActivateRequest();
         request.setTest(true);
         request.setTerminalName("Test Terminal");
         request.setAmount("50.00");
 
+        // Send the request
         GiftActivateResponse response = client.giftActivate(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }

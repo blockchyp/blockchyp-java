@@ -27,13 +27,14 @@ public class TerminalEBTBalanceTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public void testTransaction() throws Exception {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
         processTestDelay(client, "TerminalEBTBalanceTest");
 
-        // setup request object
+        // Set request parameters
         BalanceRequest request = new BalanceRequest();
         request.setTest(true);
         request.setTerminalName("Test Terminal");
@@ -41,12 +42,11 @@ public class TerminalEBTBalanceTest extends BaseTestCase {
 
         BalanceResponse response = client.balance(request);
 
-        // response assertions
+        // Response assertions
         Assert.assertTrue(response.isSuccess());
         Assert.assertNotNull(response.getRemainingBalance());
         Assert.assertTrue(response.getRemainingBalance().trim().length() > 0);
 
     }
-
 
 }

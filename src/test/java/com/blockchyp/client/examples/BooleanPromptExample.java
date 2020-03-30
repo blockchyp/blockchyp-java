@@ -14,6 +14,7 @@ import com.blockchyp.client.dto.BooleanPromptResponse;
 
 public class BooleanPromptExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -23,7 +24,7 @@ public class BooleanPromptExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         BooleanPromptRequest request = new BooleanPromptRequest();
         request.setTest(true);
         request.setTerminalName("Test Terminal");
@@ -31,9 +32,10 @@ public class BooleanPromptExample {
         request.setYesCaption("Yes");
         request.setNoCaption("No");
 
+        // Send the request
         BooleanPromptResponse response = client.booleanPrompt(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }

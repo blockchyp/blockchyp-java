@@ -26,13 +26,14 @@ public class SimpleGiftActivateTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public void testTransaction() throws Exception {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
         processTestDelay(client, "SimpleGiftActivateTest");
 
-        // setup request object
+        // Set request parameters
         GiftActivateRequest request = new GiftActivateRequest();
         request.setTest(true);
         request.setTerminalName("Test Terminal");
@@ -40,13 +41,12 @@ public class SimpleGiftActivateTest extends BaseTestCase {
 
         GiftActivateResponse response = client.giftActivate(request);
 
-        // response assertions
+        // Response assertions
         Assert.assertTrue(response.isSuccess());
         Assert.assertTrue(response.isApproved());
         Assert.assertNotNull(response.getPublicKey());
         Assert.assertTrue(response.getPublicKey().trim().length() > 0);
 
     }
-
 
 }

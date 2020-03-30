@@ -27,13 +27,14 @@ public class TerminalEBTChargeTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public void testTransaction() throws Exception {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
         processTestDelay(client, "TerminalEBTChargeTest");
 
-        // setup request object
+        // Set request parameters
         AuthorizationRequest request = new AuthorizationRequest();
         request.setTerminalName("Test Terminal");
         request.setAmount("25.00");
@@ -42,7 +43,7 @@ public class TerminalEBTChargeTest extends BaseTestCase {
 
         AuthorizationResponse response = client.charge(request);
 
-        // response assertions
+        // Response assertions
         Assert.assertTrue(response.isSuccess());
         Assert.assertTrue(response.isApproved());
         Assert.assertTrue(response.isTest());
@@ -64,6 +65,5 @@ public class TerminalEBTChargeTest extends BaseTestCase {
         Assert.assertEquals("75.00", response.getRemainingBalance());
 
     }
-
 
 }

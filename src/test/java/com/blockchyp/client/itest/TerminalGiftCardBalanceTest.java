@@ -26,25 +26,25 @@ public class TerminalGiftCardBalanceTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public void testTransaction() throws Exception {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
         processTestDelay(client, "TerminalGiftCardBalanceTest");
 
-        // setup request object
+        // Set request parameters
         BalanceRequest request = new BalanceRequest();
         request.setTest(true);
         request.setTerminalName("Test Terminal");
 
         BalanceResponse response = client.balance(request);
 
-        // response assertions
+        // Response assertions
         Assert.assertTrue(response.isSuccess());
         Assert.assertNotNull(response.getRemainingBalance());
         Assert.assertTrue(response.getRemainingBalance().trim().length() > 0);
 
     }
-
 
 }

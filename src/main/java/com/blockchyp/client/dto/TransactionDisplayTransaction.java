@@ -27,81 +27,81 @@ public class TransactionDisplayTransaction {
 
      private Collection items;
 
-     /**
-      * Sets the subtotal to display.
-      * @param value the subtotal to display.
-      */
+    /**
+     * Sets the subtotal to display.
+     * @param value the subtotal to display.
+     */
      public void setSubtotal(String value) {
           this.subtotal = value;
      }
 
-     /**
-      * Gets the subtotal to display.
-      * @return the subtotal to display.
-      */
+    /**
+     * Gets the subtotal to display.
+     * @return the subtotal to display.
+     */
      @JsonProperty("subtotal")
      public String getSubtotal() {
           return this.subtotal;
      }
 
-     /**
-      * Sets the tax to display.
-      * @param value the tax to display.
-      */
+    /**
+     * Sets the tax to display.
+     * @param value the tax to display.
+     */
      public void setTax(String value) {
           this.tax = value;
      }
 
-     /**
-      * Gets the tax to display.
-      * @return the tax to display.
-      */
+    /**
+     * Gets the tax to display.
+     * @return the tax to display.
+     */
      @JsonProperty("tax")
      public String getTax() {
           return this.tax;
      }
 
-     /**
-      * Sets the total to display.
-      * @param value the total to display.
-      */
+    /**
+     * Sets the total to display.
+     * @param value the total to display.
+     */
      public void setTotal(String value) {
           this.total = value;
      }
 
-     /**
-      * Gets the total to display.
-      * @return the total to display.
-      */
+    /**
+     * Gets the total to display.
+     * @return the total to display.
+     */
      @JsonProperty("total")
      public String getTotal() {
           return this.total;
      }
 
-     /**
-      * Sets an item to display.
-      * @param value an item to display. Can be overwritten or appended, based on the
-      * request type.
-      */
+    /**
+     * Sets an item to display.
+     * @param value an item to display. Can be overwritten or appended, based on the
+     * request type.
+     */
      public void setItems(Collection value) {
           this.items = value;
      }
 
-     /**
-      * Gets an item to display.
-      * @return an item to display. Can be overwritten or appended, based on the request
-      * type.
-      */
+    /**
+     * Gets an item to display.
+     * @return an item to display. Can be overwritten or appended, based on the request
+     * type.
+     */
      @JsonProperty("items")
      public Collection getItems() {
           return this.items;
      }
 
-     /**
-      * Adds a an item to display.
-      * @param value an item to display. Can be overwritten or appended, based on the
-      * request type.
-      */
+    /**
+     * Adds a an item to display.
+     * @param value an item to display. Can be overwritten or appended, based on the
+     * request type.
+     */
      public void addItem(TransactionDisplayItem value) {
           if (this.items == null) {
                this.items = new ArrayList();

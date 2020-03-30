@@ -19,10 +19,12 @@ import org.junit.experimental.categories.Category;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.IntegrationTest;
 import com.blockchyp.client.IntegrationTestConfiguration;
-import com.blockchyp.client.dto.AuthorizationRequest;
-import com.blockchyp.client.dto.AuthorizationResponse;
+import com.blockchyp.client.dto.CustomerRequest;
+import com.blockchyp.client.dto.CustomerResponse;
+import com.blockchyp.client.dto.UpdateCustomerRequest;
+import com.blockchyp.client.dto.Customer;
 
-public class SimpleReversalTest extends BaseTestCase {
+public class GetCustomerTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
@@ -31,27 +33,29 @@ public class SimpleReversalTest extends BaseTestCase {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "SimpleReversalTest");
+        processTestDelay(client, "GetCustomerTest");
 
         // Set request parameters
-        AuthorizationRequest setupRequest = new AuthorizationRequest();
-        setupRequest.setPan("4111111111111111");
-        setupRequest.setAmount("25.55");
-        setupRequest.setTest(true);
-        setupRequest.setTransactionRef(getUUID());
+        UpdateCustomerRequest setupRequest = new UpdateCustomerRequest();
 
-         AuthorizationResponse setupResponse = client.charge(setupRequest);
+        Customer customer = new Customer();
+        customer.setFirstName("Test");
+        customer.setLastName("Customer");
+        customer.setCompanyName("Test Company");
+        customer.setEmailAddress("support@blockchyp.com");
+        customer.setSmsNumber("(123) 123-1234");
+        setupRequest.setCustomer(customer);
+
+         CustomerResponse setupResponse = client.updateCustomer(setupRequest);
 
         // Set request parameters
-        AuthorizationRequest request = new AuthorizationRequest();
-        request.setTransactionRef(setupResponse.getTransactionRef());
-        request.setTest(true);
+        CustomerRequest request = new CustomerRequest();
+        request.setCustomerId(setupResponse.getCustomer().getId());
 
-        AuthorizationResponse response = client.reverse(request);
+        CustomerResponse response = client.customer(request);
 
         // Response assertions
         Assert.assertTrue(response.isSuccess());
-        Assert.assertTrue(response.isApproved());
 
     }
 

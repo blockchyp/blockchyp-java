@@ -14,6 +14,7 @@ import com.blockchyp.client.dto.EnrollResponse;
 
 public class EnrollExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -23,14 +24,15 @@ public class EnrollExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         EnrollRequest request = new EnrollRequest();
         request.setTest(true);
         request.setTerminalName("Test Terminal");
 
+        // Send the request
         EnrollResponse response = client.enroll(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }

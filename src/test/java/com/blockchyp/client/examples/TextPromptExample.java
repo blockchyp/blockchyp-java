@@ -15,6 +15,7 @@ import com.blockchyp.client.dto.PromptType;
 
 public class TextPromptExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -24,15 +25,16 @@ public class TextPromptExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         TextPromptRequest request = new TextPromptRequest();
         request.setTest(true);
         request.setTerminalName("Test Terminal");
-        request.setPromptType(PromptType.EMAIL); // Type of prompt. Can be 'email', 'phone', 'customer-number', or 'rewards-number'.
+        request.setPromptType(PromptType.EMAIL);
 
+        // Send the request
         TextPromptResponse response = client.textPrompt(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }

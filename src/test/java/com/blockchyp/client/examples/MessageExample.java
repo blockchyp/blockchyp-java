@@ -14,6 +14,7 @@ import com.blockchyp.client.dto.Acknowledgement;
 
 public class MessageExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -23,15 +24,16 @@ public class MessageExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         MessageRequest request = new MessageRequest();
         request.setTest(true);
         request.setTerminalName("Test Terminal");
         request.setMessage("Thank you for your business.");
 
+        // Send the request
         Acknowledgement response = client.message(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }

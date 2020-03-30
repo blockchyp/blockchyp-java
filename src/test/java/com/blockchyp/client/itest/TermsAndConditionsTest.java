@@ -27,13 +27,14 @@ public class TermsAndConditionsTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public void testTransaction() throws Exception {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
         processTestDelay(client, "TermsAndConditionsTest");
 
-        // setup request object
+        // Set request parameters
         TermsAndConditionsRequest request = new TermsAndConditionsRequest();
         request.setTest(true);
         request.setTerminalName("Test Terminal");
@@ -45,10 +46,9 @@ public class TermsAndConditionsTest extends BaseTestCase {
 
         TermsAndConditionsResponse response = client.termsAndConditions(request);
 
-        // response assertions
+        // Response assertions
         Assert.assertTrue(response.isSuccess());
 
     }
-
 
 }

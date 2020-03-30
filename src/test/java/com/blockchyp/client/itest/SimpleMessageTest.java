@@ -26,13 +26,14 @@ public class SimpleMessageTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public void testTransaction() throws Exception {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
         processTestDelay(client, "SimpleMessageTest");
 
-        // setup request object
+        // Set request parameters
         MessageRequest request = new MessageRequest();
         request.setTest(true);
         request.setTerminalName("Test Terminal");
@@ -40,10 +41,9 @@ public class SimpleMessageTest extends BaseTestCase {
 
         Acknowledgement response = client.message(request);
 
-        // response assertions
+        // Response assertions
         Assert.assertTrue(response.isSuccess());
 
     }
-
 
 }

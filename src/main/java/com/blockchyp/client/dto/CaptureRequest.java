@@ -46,268 +46,268 @@ public class CaptureRequest implements ICoreRequest, IPreviousTransaction, IRequ
 
      private String ebtEligibleAmount;
 
-     /**
-      * Sets the transaction reference string assigned to the transaction request.
-      * @param value the transaction reference string assigned to the transaction
-      * request. If no transaction ref was assiged on the request, then the gateway will
-      * randomly generate one.
-      */
+    /**
+     * Sets the transaction reference string assigned to the transaction request.
+     * @param value the transaction reference string assigned to the transaction
+     * request. If no transaction ref was assiged on the request, then the gateway will
+     * randomly generate one.
+     */
      public void setTransactionRef(String value) {
           this.transactionRef = value;
      }
 
-     /**
-      * Gets the transaction reference string assigned to the transaction request.
-      * @return the transaction reference string assigned to the transaction request.
-      * If no transaction ref was assiged on the request, then the gateway will randomly
-      * generate one.
-      */
+    /**
+     * Gets the transaction reference string assigned to the transaction request.
+     * @return the transaction reference string assigned to the transaction request. If
+     * no transaction ref was assiged on the request, then the gateway will randomly
+     * generate one.
+     */
      @JsonProperty("transactionRef")
      public String getTransactionRef() {
           return this.transactionRef;
      }
 
-     /**
-      * Sets an identifier from an external point of sale system.
-      * @param value an identifier from an external point of sale system.
-      */
+    /**
+     * Sets an identifier from an external point of sale system.
+     * @param value an identifier from an external point of sale system.
+     */
      public void setOrderRef(String value) {
           this.orderRef = value;
      }
 
-     /**
-      * Gets an identifier from an external point of sale system.
-      * @return an identifier from an external point of sale system.
-      */
+    /**
+     * Gets an identifier from an external point of sale system.
+     * @return an identifier from an external point of sale system.
+     */
      @JsonProperty("orderRef")
      public String getOrderRef() {
           return this.orderRef;
      }
 
-     /**
-      * Sets the settlement account for merchants with split settlements.
-      * @param value the settlement account for merchants with split settlements.
-      */
+    /**
+     * Sets the settlement account for merchants with split settlements.
+     * @param value the settlement account for merchants with split settlements.
+     */
      public void setDestinationAccount(String value) {
           this.destinationAccount = value;
      }
 
-     /**
-      * Gets the settlement account for merchants with split settlements.
-      * @return the settlement account for merchants with split settlements.
-      */
+    /**
+     * Gets the settlement account for merchants with split settlements.
+     * @return the settlement account for merchants with split settlements.
+     */
      @JsonProperty("destinationAccount")
      public String getDestinationAccount() {
           return this.destinationAccount;
      }
 
-     /**
-      * Sets whether or not to route transaction to the test gateway.
-      * @param value whether or not to route transaction to the test gateway.
-      */
+    /**
+     * Sets whether or not to route transaction to the test gateway.
+     * @param value whether or not to route transaction to the test gateway.
+     */
      public void setTest(boolean value) {
           this.test = value;
      }
 
-     /**
-      * Gets whether or not to route transaction to the test gateway.
-      * @return whether or not to route transaction to the test gateway.
-      */
+    /**
+     * Gets whether or not to route transaction to the test gateway.
+     * @return whether or not to route transaction to the test gateway.
+     */
      @JsonProperty("test")
      public boolean isTest() {
           return this.test;
      }
 
-     /**
-      * Sets the request timeout in seconds.
-      * @param value the request timeout in seconds.
-      */
+    /**
+     * Sets the request timeout in seconds.
+     * @param value the request timeout in seconds.
+     */
      public void setTimeout(int value) {
           this.timeout = value;
      }
 
-     /**
-      * Gets the request timeout in seconds.
-      * @return the request timeout in seconds.
-      */
+    /**
+     * Gets the request timeout in seconds.
+     * @return the request timeout in seconds.
+     */
      @JsonProperty("timeout")
      public int getTimeout() {
           return this.timeout;
      }
 
-     /**
-      * Sets the ID of the previous transaction being referenced.
-      * @param value the ID of the previous transaction being referenced.
-      */
+    /**
+     * Sets the ID of the previous transaction being referenced.
+     * @param value the ID of the previous transaction being referenced.
+     */
      public void setTransactionId(String value) {
           this.transactionId = value;
      }
 
-     /**
-      * Gets the ID of the previous transaction being referenced.
-      * @return the ID of the previous transaction being referenced.
-      */
+    /**
+     * Gets the ID of the previous transaction being referenced.
+     * @return the ID of the previous transaction being referenced.
+     */
      @JsonProperty("transactionId")
      public String getTransactionId() {
           return this.transactionId;
      }
 
-     /**
-      * Sets the transaction currency code.
-      * @param value the transaction currency code.
-      */
+    /**
+     * Sets the transaction currency code.
+     * @param value the transaction currency code.
+     */
      public void setCurrencyCode(String value) {
           this.currencyCode = value;
      }
 
-     /**
-      * Gets the transaction currency code.
-      * @return the transaction currency code.
-      */
+    /**
+     * Gets the transaction currency code.
+     * @return the transaction currency code.
+     */
      @JsonProperty("currencyCode")
      public String getCurrencyCode() {
           return this.currencyCode;
      }
 
-     /**
-      * Sets the requested amount.
-      * @param value the requested amount.
-      */
+    /**
+     * Sets the requested amount.
+     * @param value the requested amount.
+     */
      public void setAmount(String value) {
           this.amount = value;
      }
 
-     /**
-      * Gets the requested amount.
-      * @return the requested amount.
-      */
+    /**
+     * Gets the requested amount.
+     * @return the requested amount.
+     */
      @JsonProperty("amount")
      public String getAmount() {
           return this.amount;
      }
 
-     /**
-      * Sets that the request is tax exempt.
-      * @param value that the request is tax exempt. Only required for tax exempt level 2
-      * processing.
-      */
+    /**
+     * Sets that the request is tax exempt.
+     * @param value that the request is tax exempt. Only required for tax exempt level 2
+     * processing.
+     */
      public void setTaxExempt(boolean value) {
           this.taxExempt = value;
      }
 
-     /**
-      * Gets that the request is tax exempt.
-      * @return that the request is tax exempt. Only required for tax exempt level 2
-      * processing.
-      */
+    /**
+     * Gets that the request is tax exempt.
+     * @return that the request is tax exempt. Only required for tax exempt level 2
+     * processing.
+     */
      @JsonProperty("taxExempt")
      public boolean isTaxExempt() {
           return this.taxExempt;
      }
 
-     /**
-      * Sets the tip amount.
-      * @param value the tip amount.
-      */
+    /**
+     * Sets the tip amount.
+     * @param value the tip amount.
+     */
      public void setTipAmount(String value) {
           this.tipAmount = value;
      }
 
-     /**
-      * Gets the tip amount.
-      * @return the tip amount.
-      */
+    /**
+     * Gets the tip amount.
+     * @return the tip amount.
+     */
      @JsonProperty("tipAmount")
      public String getTipAmount() {
           return this.tipAmount;
      }
 
-     /**
-      * Sets the tax amount.
-      * @param value the tax amount.
-      */
+    /**
+     * Sets the tax amount.
+     * @param value the tax amount.
+     */
      public void setTaxAmount(String value) {
           this.taxAmount = value;
      }
 
-     /**
-      * Gets the tax amount.
-      * @return the tax amount.
-      */
+    /**
+     * Gets the tax amount.
+     * @return the tax amount.
+     */
      @JsonProperty("taxAmount")
      public String getTaxAmount() {
           return this.taxAmount;
      }
 
-     /**
-      * Sets the amount of cash back requested.
-      * @param value the amount of cash back requested.
-      */
+    /**
+     * Sets the amount of cash back requested.
+     * @param value the amount of cash back requested.
+     */
      public void setCashBackAmount(String value) {
           this.cashBackAmount = value;
      }
 
-     /**
-      * Gets the amount of cash back requested.
-      * @return the amount of cash back requested.
-      */
+    /**
+     * Gets the amount of cash back requested.
+     * @return the amount of cash back requested.
+     */
      @JsonProperty("cashBackAmount")
      public String getCashBackAmount() {
           return this.cashBackAmount;
      }
 
-     /**
-      * Sets the amount of the transaction that should be charged to an FSA card.
-      * @param value the amount of the transaction that should be charged to an FSA card.
-      * This amount may be less than the transaction total, in which case only this amount
-      * will be charged if an FSA card is presented. If the FSA amount is paid on an FSA card,
-      * then the FSA amount authorized will be indicated on the response.
-      */
+    /**
+     * Sets the amount of the transaction that should be charged to an FSA card.
+     * @param value the amount of the transaction that should be charged to an FSA card.
+     * This amount may be less than the transaction total, in which case only this amount
+     * will be charged if an FSA card is presented. If the FSA amount is paid on an FSA card,
+     * then the FSA amount authorized will be indicated on the response.
+     */
      public void setFsaEligibleAmount(String value) {
           this.fsaEligibleAmount = value;
      }
 
-     /**
-      * Gets the amount of the transaction that should be charged to an FSA card.
-      * @return the amount of the transaction that should be charged to an FSA card. This
-      * amount may be less than the transaction total, in which case only this amount will
-      * be charged if an FSA card is presented. If the FSA amount is paid on an FSA card, then
-      * the FSA amount authorized will be indicated on the response.
-      */
+    /**
+     * Gets the amount of the transaction that should be charged to an FSA card.
+     * @return the amount of the transaction that should be charged to an FSA card. This
+     * amount may be less than the transaction total, in which case only this amount will be
+     * charged if an FSA card is presented. If the FSA amount is paid on an FSA card, then the
+     * FSA amount authorized will be indicated on the response.
+     */
      @JsonProperty("fsaEligibleAmount")
      public String getFsaEligibleAmount() {
           return this.fsaEligibleAmount;
      }
 
-     /**
-      * Sets the amount of the transaction that should be charged to an HSA card.
-      * @param value the amount of the transaction that should be charged to an HSA card.
-      */
+    /**
+     * Sets the amount of the transaction that should be charged to an HSA card.
+     * @param value the amount of the transaction that should be charged to an HSA card.
+     */
      public void setHsaEligibleAmount(String value) {
           this.hsaEligibleAmount = value;
      }
 
-     /**
-      * Gets the amount of the transaction that should be charged to an HSA card.
-      * @return the amount of the transaction that should be charged to an HSA card.
-      */
+    /**
+     * Gets the amount of the transaction that should be charged to an HSA card.
+     * @return the amount of the transaction that should be charged to an HSA card.
+     */
      @JsonProperty("hsaEligibleAmount")
      public String getHsaEligibleAmount() {
           return this.hsaEligibleAmount;
      }
 
-     /**
-      * Sets the amount of the transaction that should be charged to an EBT card.
-      * @param value the amount of the transaction that should be charged to an EBT card.
-      */
+    /**
+     * Sets the amount of the transaction that should be charged to an EBT card.
+     * @param value the amount of the transaction that should be charged to an EBT card.
+     */
      public void setEbtEligibleAmount(String value) {
           this.ebtEligibleAmount = value;
      }
 
-     /**
-      * Gets the amount of the transaction that should be charged to an EBT card.
-      * @return the amount of the transaction that should be charged to an EBT card.
-      */
+    /**
+     * Gets the amount of the transaction that should be charged to an EBT card.
+     * @return the amount of the transaction that should be charged to an EBT card.
+     */
      @JsonProperty("ebtEligibleAmount")
      public String getEbtEligibleAmount() {
           return this.ebtEligibleAmount;

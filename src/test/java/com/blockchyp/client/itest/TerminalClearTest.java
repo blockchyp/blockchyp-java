@@ -26,23 +26,23 @@ public class TerminalClearTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public void testTransaction() throws Exception {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
         processTestDelay(client, "TerminalClearTest");
 
-        // setup request object
+        // Set request parameters
         ClearTerminalRequest request = new ClearTerminalRequest();
         request.setTest(true);
         request.setTerminalName("Test Terminal");
 
         Acknowledgement response = client.clear(request);
 
-        // response assertions
+        // Response assertions
         Assert.assertTrue(response.isSuccess());
 
     }
-
 
 }

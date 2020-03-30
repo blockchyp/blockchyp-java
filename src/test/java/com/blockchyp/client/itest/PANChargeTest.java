@@ -26,13 +26,14 @@ public class PANChargeTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public void testTransaction() throws Exception {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
         processTestDelay(client, "PANChargeTest");
 
-        // setup request object
+        // Set request parameters
         AuthorizationRequest request = new AuthorizationRequest();
         request.setPan("4111111111111111");
         request.setAmount("25.55");
@@ -41,7 +42,7 @@ public class PANChargeTest extends BaseTestCase {
 
         AuthorizationResponse response = client.charge(request);
 
-        // response assertions
+        // Response assertions
         Assert.assertTrue(response.isSuccess());
         Assert.assertTrue(response.isApproved());
         Assert.assertTrue(response.isTest());
@@ -63,6 +64,5 @@ public class PANChargeTest extends BaseTestCase {
         Assert.assertEquals("KEYED", response.getEntryMethod());
 
     }
-
 
 }

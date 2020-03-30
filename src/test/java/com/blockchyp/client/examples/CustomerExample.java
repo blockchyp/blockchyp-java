@@ -14,6 +14,7 @@ import com.blockchyp.client.dto.CustomerResponse;
 
 public class CustomerExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -23,13 +24,14 @@ public class CustomerExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         CustomerRequest request = new CustomerRequest();
         request.setCustomerId("ID of the customer to retrieve");
 
+        // Send the request
         CustomerResponse response = client.customer(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }

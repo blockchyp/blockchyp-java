@@ -15,6 +15,7 @@ import com.blockchyp.client.dto.SignatureFormat;
 
 public class CaptureSignatureExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -24,15 +25,16 @@ public class CaptureSignatureExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         CaptureSignatureRequest request = new CaptureSignatureRequest();
         request.setTerminalName("Test Terminal");
-        request.setSigFormat(SignatureFormat.PNG); // file format for the signature image.
-        request.setSigWidth(200); // width of the signature image in pixels.
+        request.setSigFormat(SignatureFormat.PNG);
+        request.setSigWidth(200);
 
+        // Send the request
         CaptureSignatureResponse response = client.captureSignature(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }

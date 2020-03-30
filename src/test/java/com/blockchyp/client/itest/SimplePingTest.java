@@ -26,23 +26,23 @@ public class SimplePingTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public void testTransaction() throws Exception {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
         processTestDelay(client, "SimplePingTest");
 
-        // setup request object
+        // Set request parameters
         PingRequest request = new PingRequest();
         request.setTest(true);
         request.setTerminalName("Test Terminal");
 
         PingResponse response = client.ping(request);
 
-        // response assertions
+        // Response assertions
         Assert.assertTrue(response.isSuccess());
 
     }
-
 
 }

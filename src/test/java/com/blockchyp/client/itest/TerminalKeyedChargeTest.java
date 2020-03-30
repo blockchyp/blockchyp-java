@@ -26,13 +26,14 @@ public class TerminalKeyedChargeTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public void testTransaction() throws Exception {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
         processTestDelay(client, "TerminalKeyedChargeTest");
 
-        // setup request object
+        // Set request parameters
         AuthorizationRequest request = new AuthorizationRequest();
         request.setTerminalName("Test Terminal");
         request.setAmount("11.11");
@@ -41,7 +42,7 @@ public class TerminalKeyedChargeTest extends BaseTestCase {
 
         AuthorizationResponse response = client.charge(request);
 
-        // response assertions
+        // Response assertions
         Assert.assertTrue(response.isSuccess());
         Assert.assertTrue(response.isApproved());
         Assert.assertTrue(response.isTest());
@@ -62,6 +63,5 @@ public class TerminalKeyedChargeTest extends BaseTestCase {
         Assert.assertEquals("11.11", response.getAuthorizedAmount());
 
     }
-
 
 }

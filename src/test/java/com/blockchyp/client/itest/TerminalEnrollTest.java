@@ -26,20 +26,21 @@ public class TerminalEnrollTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public void testTransaction() throws Exception {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
         processTestDelay(client, "TerminalEnrollTest");
 
-        // setup request object
+        // Set request parameters
         EnrollRequest request = new EnrollRequest();
         request.setTerminalName("Test Terminal");
         request.setTest(true);
 
         EnrollResponse response = client.enroll(request);
 
-        // response assertions
+        // Response assertions
         Assert.assertTrue(response.isSuccess());
         Assert.assertTrue(response.isApproved());
         Assert.assertTrue(response.isTest());
@@ -61,6 +62,5 @@ public class TerminalEnrollTest extends BaseTestCase {
         Assert.assertTrue(response.getToken().trim().length() > 0);
 
     }
-
 
 }

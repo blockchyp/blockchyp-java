@@ -26,20 +26,21 @@ public class PANEnrollTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public void testTransaction() throws Exception {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
         processTestDelay(client, "PANEnrollTest");
 
-        // setup request object
+        // Set request parameters
         EnrollRequest request = new EnrollRequest();
         request.setPan("4111111111111111");
         request.setTest(true);
 
         EnrollResponse response = client.enroll(request);
 
-        // response assertions
+        // Response assertions
         Assert.assertTrue(response.isSuccess());
         Assert.assertTrue(response.isApproved());
         Assert.assertTrue(response.isTest());
@@ -62,6 +63,5 @@ public class PANEnrollTest extends BaseTestCase {
         Assert.assertTrue(response.getToken().trim().length() > 0);
 
     }
-
 
 }

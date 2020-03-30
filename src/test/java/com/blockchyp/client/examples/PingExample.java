@@ -14,6 +14,7 @@ import com.blockchyp.client.dto.PingResponse;
 
 public class PingExample {
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
 
         APICredentials creds = new APICredentials();
@@ -23,13 +24,14 @@ public class PingExample {
 
         BlockChypClient client = new BlockChypClient(creds);
 
-        // setup request object
+        // Set request parameters
         PingRequest request = new PingRequest();
         request.setTerminalName("Test Terminal");
 
+        // Send the request
         PingResponse response = client.ping(request);
 
-        // view the result
+        // View the result
         System.out.println("Response: " + prettyPrint(response));
 
     }
