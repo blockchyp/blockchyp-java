@@ -46,6 +46,12 @@ public class PaymentLinkRequest implements ICoreRequest, IRequestAmount, ITermin
 
      private String callbackUrl;
 
+     private String tcAlias;
+
+     private String tcName;
+
+     private String tcContent;
+
     /**
      * Sets the transaction reference string assigned to the transaction request.
      * @param value the transaction reference string assigned to the transaction
@@ -309,6 +315,62 @@ public class PaymentLinkRequest implements ICoreRequest, IRequestAmount, ITermin
      @JsonProperty("callbackUrl")
      public String getCallbackUrl() {
           return this.callbackUrl;
+     }
+
+    /**
+     * Sets an alias for a Terms and Conditions template configured in the BlockChyp
+     * dashboard.
+     * @param value an alias for a Terms and Conditions template configured in the
+     * BlockChyp dashboard.
+     */
+     public void setTcAlias(String value) {
+          this.tcAlias = value;
+     }
+
+    /**
+     * Gets an alias for a Terms and Conditions template configured in the BlockChyp
+     * dashboard.
+     * @return an alias for a Terms and Conditions template configured in the BlockChyp
+     * dashboard.
+     */
+     @JsonProperty("tcAlias")
+     public String getTcAlias() {
+          return this.tcAlias;
+     }
+
+    /**
+     * Sets the name of the Terms and Conditions the user is accepting.
+     * @param value the name of the Terms and Conditions the user is accepting.
+     */
+     public void setTcName(String value) {
+          this.tcName = value;
+     }
+
+    /**
+     * Gets the name of the Terms and Conditions the user is accepting.
+     * @return the name of the Terms and Conditions the user is accepting.
+     */
+     @JsonProperty("tcName")
+     public String getTcName() {
+          return this.tcName;
+     }
+
+    /**
+     * Sets the content of the terms and conditions that will be presented to the user.
+     * @param value the content of the terms and conditions that will be presented to the
+     * user.
+     */
+     public void setTcContent(String value) {
+          this.tcContent = value;
+     }
+
+    /**
+     * Gets the content of the terms and conditions that will be presented to the user.
+     * @return the content of the terms and conditions that will be presented to the user.
+     */
+     @JsonProperty("tcContent")
+     public String getTcContent() {
+          return this.tcContent;
      }
 
 }
