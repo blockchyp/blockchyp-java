@@ -54,6 +54,10 @@ public class ReceiptSuggestions {
 
      private String cashBackAmount;
 
+     private String surcharge;
+
+     private String cashDiscount;
+
     /**
      * Sets the EMV Application Identifier.
      * @param value the EMV Application Identifier.
@@ -378,6 +382,45 @@ public class ReceiptSuggestions {
      @JsonProperty("cashBackAmount")
      public String getCashBackAmount() {
           return this.cashBackAmount;
+     }
+
+    /**
+     * Sets the amount added to the transaction to cover eligible credit card fees.
+     * @param value the amount added to the transaction to cover eligible credit card
+     * fees.
+     */
+     public void setSurcharge(String value) {
+          this.surcharge = value;
+     }
+
+    /**
+     * Gets the amount added to the transaction to cover eligible credit card fees.
+     * @return the amount added to the transaction to cover eligible credit card fees.
+     */
+     @JsonProperty("surcharge")
+     public String getSurcharge() {
+          return this.surcharge;
+     }
+
+    /**
+     * Sets the discount applied to the transaction for payment methods ineligible for
+     * surcharges.
+     * @param value the discount applied to the transaction for payment methods
+     * ineligible for surcharges.
+     */
+     public void setCashDiscount(String value) {
+          this.cashDiscount = value;
+     }
+
+    /**
+     * Gets the discount applied to the transaction for payment methods ineligible for
+     * surcharges.
+     * @return the discount applied to the transaction for payment methods ineligible
+     * for surcharges.
+     */
+     @JsonProperty("cashDiscount")
+     public String getCashDiscount() {
+          return this.cashDiscount;
      }
 
 }

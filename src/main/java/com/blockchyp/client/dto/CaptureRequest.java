@@ -34,6 +34,10 @@ public class CaptureRequest implements ICoreRequest, IPreviousTransaction, IRequ
 
      private boolean taxExempt;
 
+     private boolean surcharge;
+
+     private boolean cashDiscount;
+
      private String tipAmount;
 
      private String taxAmount;
@@ -203,6 +207,48 @@ public class CaptureRequest implements ICoreRequest, IPreviousTransaction, IRequ
      @JsonProperty("taxExempt")
      public boolean isTaxExempt() {
           return this.taxExempt;
+     }
+
+    /**
+     * Sets a flag to add a surcharge to the transaction to cover credit card fees, if
+     * permitted.
+     * @param value a flag to add a surcharge to the transaction to cover credit card fees,
+     * if permitted.
+     */
+     public void setSurcharge(boolean value) {
+          this.surcharge = value;
+     }
+
+    /**
+     * Gets a flag to add a surcharge to the transaction to cover credit card fees, if
+     * permitted.
+     * @return a flag to add a surcharge to the transaction to cover credit card fees, if
+     * permitted.
+     */
+     @JsonProperty("surcharge")
+     public boolean isSurcharge() {
+          return this.surcharge;
+     }
+
+    /**
+     * Sets a flag that applies a discount to negate the surcharge for debit transactions
+     * or other surcharge ineligible payment methods.
+     * @param value a flag that applies a discount to negate the surcharge for debit
+     * transactions or other surcharge ineligible payment methods.
+     */
+     public void setCashDiscount(boolean value) {
+          this.cashDiscount = value;
+     }
+
+    /**
+     * Gets a flag that applies a discount to negate the surcharge for debit transactions
+     * or other surcharge ineligible payment methods.
+     * @return a flag that applies a discount to negate the surcharge for debit
+     * transactions or other surcharge ineligible payment methods.
+     */
+     @JsonProperty("cashDiscount")
+     public boolean isCashDiscount() {
+          return this.cashDiscount;
      }
 
     /**

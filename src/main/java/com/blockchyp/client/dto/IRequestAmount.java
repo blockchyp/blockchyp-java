@@ -21,6 +21,10 @@ public interface IRequestAmount {
 
      boolean isTaxExempt();
 
+     boolean isSurcharge();
+
+     boolean isCashDiscount();
+
 
 }
 
