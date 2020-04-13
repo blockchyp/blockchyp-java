@@ -28,6 +28,8 @@ public class CashDiscountResponse implements IAbstractAcknowledgement {
 
      private boolean taxExempt;
 
+     private String surcharge;
+
      private String cashDiscount;
 
     /**
@@ -135,16 +137,35 @@ public class CashDiscountResponse implements IAbstractAcknowledgement {
      }
 
     /**
-     * Sets the cash discount, if necessary.
-     * @param value the cash discount, if necessary.
+     * Sets the normal surcharge for a transaction.
+     * @param value the normal surcharge for a transaction. Will only be returned if an
+     * offsetting cash discount is also returned.
+     */
+     public void setSurcharge(String value) {
+          this.surcharge = value;
+     }
+
+    /**
+     * Gets the normal surcharge for a transaction.
+     * @return the normal surcharge for a transaction. Will only be returned if an
+     * offsetting cash discount is also returned.
+     */
+     @JsonProperty("surcharge")
+     public String getSurcharge() {
+          return this.surcharge;
+     }
+
+    /**
+     * Sets the cash discount.
+     * @param value the cash discount. Will not be returned in surcharge only mode.
      */
      public void setCashDiscount(String value) {
           this.cashDiscount = value;
      }
 
     /**
-     * Gets the cash discount, if necessary.
-     * @return the cash discount, if necessary.
+     * Gets the cash discount.
+     * @return the cash discount. Will not be returned in surcharge only mode.
      */
      @JsonProperty("cashDiscount")
      public String getCashDiscount() {
