@@ -98,6 +98,8 @@ import com.blockchyp.client.dto.TerminalStatusRequest;
 import com.blockchyp.client.dto.TerminalStatusResponse;
 import com.blockchyp.client.dto.PaymentLinkRequest;
 import com.blockchyp.client.dto.PaymentLinkResponse;
+import com.blockchyp.client.dto.CashDiscountRequest;
+import com.blockchyp.client.dto.CashDiscountResponse;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -372,6 +374,18 @@ public class BlockChypClient {
     public CustomerSearchResponse customerSearch(CustomerSearchRequest request) throws Exception {
 
         return (CustomerSearchResponse) postGateway("/api/customer-search", request, CustomerSearchResponse.class);
+
+    }
+
+    /**
+     * Calculates the discount for actual cash transactions.
+     * @param request the request parameters.
+     * @return {@link CashDiscountResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public CashDiscountResponse cashDiscount(CashDiscountRequest request) throws Exception {
+
+        return (CashDiscountResponse) postGateway("/api/cash-discount", request, CashDiscountResponse.class);
 
     }
 
