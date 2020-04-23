@@ -48,6 +48,8 @@ public class GiftActivateResponse implements IAbstractAcknowledgement, ICoreResp
 
      private String publicKey;
 
+     private String maskedPan;
+
     /**
      * Sets whether or not the request succeeded.
      * @param value whether or not the request succeeded.
@@ -324,6 +326,23 @@ public class GiftActivateResponse implements IAbstractAcknowledgement, ICoreResp
      @JsonProperty("publicKey")
      public String getPublicKey() {
           return this.publicKey;
+     }
+
+    /**
+     * Sets the masked card identifier.
+     * @param value the masked card identifier.
+     */
+     public void setMaskedPan(String value) {
+          this.maskedPan = value;
+     }
+
+    /**
+     * Gets the masked card identifier.
+     * @return the masked card identifier.
+     */
+     @JsonProperty("maskedPan")
+     public String getMaskedPan() {
+          return this.maskedPan;
      }
 
 }
