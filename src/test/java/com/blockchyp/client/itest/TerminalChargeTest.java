@@ -52,7 +52,7 @@ public class TerminalChargeTest extends BaseTestCase {
         Assert.assertTrue(response.getTimestamp().trim().length() > 0);
         Assert.assertNotNull(response.getTickBlock());
         Assert.assertTrue(response.getTickBlock().trim().length() > 0);
-        Assert.assertEquals("Approved", response.getResponseDescription());
+        Assert.assertEquals("approved", response.getResponseDescription());
         Assert.assertNotNull(response.getPaymentType());
         Assert.assertTrue(response.getPaymentType().trim().length() > 0);
         Assert.assertNotNull(response.getMaskedPan());
