@@ -26,11 +26,11 @@ Maven.
 The BlockChyp SDK is in Maven's Central Repository. Just add this snippet to your pom:
 
 ```
-	<dependency>
-	    <groupId>com.blockchyp</groupId>
-	    <artifactId>blockchyp-java</artifactId>
-	    <version>1.0.0</version>
-	</dependency>
+<dependency>
+    <groupId>com.blockchyp</groupId>
+    <artifactId>blockchyp-java</artifactId>
+    <version>1.0.0</version>
+</dependency>
 ```
 
 #### Gradle
@@ -38,13 +38,13 @@ The BlockChyp SDK is in Maven's Central Repository. Just add this snippet to you
 For the hipsters among you who've moved up to Gradle, try adding this snippet under dependencies in your Gradle build file.
 
 ```
-	compile group: 'com.blockchyp', name: 'blockchyp-java', version:'1.0.0'
+compile group: 'com.blockchyp', name: 'blockchyp-java', version:'1.0.0'
 ```
 
 You'll also need the Maven plugin turned on. Make sure your Gradle build has something like this in it:
 
 ```
-	apply plugin: 'maven'
+apply plugin: 'maven'
 ```
 
 #### Building From Source
@@ -64,7 +64,7 @@ Once the BlockChyp SDK is in your classpath, you can start using it to run trans
 
 Just instantiate the BlockChypClient class, add your credentials and start charging. Here's an example..
 
-```
+```java
 package com.blockchyp.examples;
 
 import com.blockchyp.client.BlockChypClient;
@@ -74,9 +74,7 @@ import com.blockchyp.client.dto.AuthorizationResponse;
 
 public class HelloBlockChyp {
 
-
     public static void main(String[] args) throws Exception {
-
 
         APICredentials creds = new APICredentials("APIKEY", "BEARER TOKEN", "SIGNING_KEY");
 
@@ -92,7 +90,6 @@ public class HelloBlockChyp {
         if (response.isApproved()) {
             System.out.println("Approved!  Auth Code: " + response.getAuthCode());
         }
-
 
     }
 
@@ -141,7 +138,7 @@ If you're autowiring wherever possible, you can probably leave out the last bean
 Also note that APICredentials and BlockChypClient can also be initialized via constructors if you prefer constructor
 based dependency injection.
 
-```
+```java
 package com.blockchyp.examples;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -178,7 +175,7 @@ and we've stopped using it too.
 
 Here's an example of how to do all of the above without XML.
 
-```
+```java
 package com.blockchyp.examples;
 
 import org.springframework.context.annotation.Bean;

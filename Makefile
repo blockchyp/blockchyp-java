@@ -65,6 +65,8 @@ integration:
 stage:
 	# Significant whitespace used to match specific indent level. Sue me.
 	$(SED) -i 's|^  <version>.*</version>|  <version>$(VERSION)</version>|' pom.xml
+	$(SED) -i 's|^    <version>.*</version>|    <version>$(VERSION)</version>|' README.md
+	$(SED) -i "s|version:'.*'|version:'$(VERSION)'|" README.md
 
 # Publishes package
 .PHONY: publish
