@@ -26,7 +26,6 @@ public class ReverseExample {
 
         // Set request parameters
         AuthorizationRequest request = new AuthorizationRequest();
-        request.setTerminalName("Test Terminal");
         request.setTransactionRef("<LAST TRANSACTION REF>");
 
         // Send the request

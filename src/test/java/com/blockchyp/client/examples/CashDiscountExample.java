@@ -27,6 +27,8 @@ public class CashDiscountExample {
         // Set request parameters
         CashDiscountRequest request = new CashDiscountRequest();
         request.setAmount("100.00");
+        request.setCashDiscount(true);
+        request.setSurcharge(true);
 
         // Send the request
         CashDiscountResponse response = client.cashDiscount(request);

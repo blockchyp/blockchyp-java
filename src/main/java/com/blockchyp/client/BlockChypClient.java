@@ -286,6 +286,30 @@ public class BlockChypClient {
 
 
     /**
+     * Captures a preauthorization.
+     * @param request the request parameters.
+     * @return {@link CaptureResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public CaptureResponse capture(CaptureRequest request) throws Exception {
+
+        return (CaptureResponse) postGateway("/api/capture", request, CaptureResponse.class);
+
+    }
+
+    /**
+     * Discards a previous preauth transaction.
+     * @param request the request parameters.
+     * @return {@link VoidResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public VoidResponse voidTx(VoidRequest request) throws Exception {
+
+        return (VoidResponse) postGateway("/api/void", request, VoidResponse.class);
+
+    }
+
+    /**
      * Executes a manual time out reversal.
      *
      * We love time out reversals. Don't be afraid to use them whenever a request to a
@@ -306,18 +330,6 @@ public class BlockChypClient {
     }
 
     /**
-     * Captures a preauthorization.
-     * @param request the request parameters.
-     * @return {@link CaptureResponse}
-     * @throws Exception exception if any errors occurred processing the request.
-     */
-    public CaptureResponse capture(CaptureRequest request) throws Exception {
-
-        return (CaptureResponse) postGateway("/api/capture", request, CaptureResponse.class);
-
-    }
-
-    /**
      * Closes the current credit card batch.
      * @param request the request parameters.
      * @return {@link CloseBatchResponse}
@@ -330,14 +342,26 @@ public class BlockChypClient {
     }
 
     /**
-     * Discards a previous preauth transaction.
+     * Creates and send a payment link to a customer.
      * @param request the request parameters.
-     * @return {@link VoidResponse}
+     * @return {@link PaymentLinkResponse}
      * @throws Exception exception if any errors occurred processing the request.
      */
-    public VoidResponse voidTx(VoidRequest request) throws Exception {
+    public PaymentLinkResponse sendPaymentLink(PaymentLinkRequest request) throws Exception {
 
-        return (VoidResponse) postGateway("/api/void", request, VoidResponse.class);
+        return (PaymentLinkResponse) postGateway("/api/send-payment-link", request, PaymentLinkResponse.class);
+
+    }
+
+    /**
+     * Retrieves the current status of a transaction.
+     * @param request the request parameters.
+     * @return {@link AuthorizationResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public AuthorizationResponse transactionStatus(TransactionStatusRequest request) throws Exception {
+
+        return (AuthorizationResponse) postGateway("/api/tx-status", request, AuthorizationResponse.class);
 
     }
 
@@ -389,32 +413,24 @@ public class BlockChypClient {
 
     }
 
-    /**
-     * Retrieves the current status of a transaction.
-     * @param request the request parameters.
-     * @return {@link AuthorizationResponse}
-     * @throws Exception exception if any errors occurred processing the request.
-     */
-    public AuthorizationResponse transactionStatus(TransactionStatusRequest request) throws Exception {
 
-        return (AuthorizationResponse) postGateway("/api/tx-status", request, AuthorizationResponse.class);
 
-    }
 
     /**
-     * Creates and send a payment link to a customer.
+     * Tests connectivity with a payment terminal.
      * @param request the request parameters.
-     * @return {@link PaymentLinkResponse}
+     * @return {@link PingResponse}
      * @throws Exception exception if any errors occurred processing the request.
      */
-    public PaymentLinkResponse sendPaymentLink(PaymentLinkRequest request) throws Exception {
+    public PingResponse ping(PingRequest request) throws Exception {
 
-        return (PaymentLinkResponse) postGateway("/api/send-payment-link", request, PaymentLinkResponse.class);
+        if (isTerminalRouted(request)) {
+            return (PingResponse) postTerminal("/api/test", request, PingResponse.class);
+        } else {
+            return (PingResponse) postGateway("/api/terminal-test", request, PingResponse.class);
+        }
 
     }
-
-
-
 
     /**
      * Executes a standard direct preauth and capture.
@@ -444,152 +460,6 @@ public class BlockChypClient {
             return (AuthorizationResponse) postTerminal("/api/preauth", request, AuthorizationResponse.class);
         } else {
             return (AuthorizationResponse) postGateway("/api/preauth", request, AuthorizationResponse.class);
-        }
-
-    }
-
-    /**
-     * Tests connectivity with a payment terminal.
-     * @param request the request parameters.
-     * @return {@link PingResponse}
-     * @throws Exception exception if any errors occurred processing the request.
-     */
-    public PingResponse ping(PingRequest request) throws Exception {
-
-        if (isTerminalRouted(request)) {
-            return (PingResponse) postTerminal("/api/test", request, PingResponse.class);
-        } else {
-            return (PingResponse) postGateway("/api/terminal-test", request, PingResponse.class);
-        }
-
-    }
-
-    /**
-     * Checks the remaining balance on a payment method.
-     * @param request the request parameters.
-     * @return {@link BalanceResponse}
-     * @throws Exception exception if any errors occurred processing the request.
-     */
-    public BalanceResponse balance(BalanceRequest request) throws Exception {
-
-        if (isTerminalRouted(request)) {
-            return (BalanceResponse) postTerminal("/api/balance", request, BalanceResponse.class);
-        } else {
-            return (BalanceResponse) postGateway("/api/balance", request, BalanceResponse.class);
-        }
-
-    }
-
-    /**
-     * Clears the line item display and any in progress transaction.
-     * @param request the request parameters.
-     * @return {@link Acknowledgement}
-     * @throws Exception exception if any errors occurred processing the request.
-     */
-    public Acknowledgement clear(ClearTerminalRequest request) throws Exception {
-
-        if (isTerminalRouted(request)) {
-            return (Acknowledgement) postTerminal("/api/clear", request, Acknowledgement.class);
-        } else {
-            return (Acknowledgement) postGateway("/api/terminal-clear", request, Acknowledgement.class);
-        }
-
-    }
-
-    /**
-     * Prompts the user to accept terms and conditions.
-     * @param request the request parameters.
-     * @return {@link TermsAndConditionsResponse}
-     * @throws Exception exception if any errors occurred processing the request.
-     */
-    public TermsAndConditionsResponse termsAndConditions(TermsAndConditionsRequest request) throws Exception {
-
-        if (isTerminalRouted(request)) {
-            return (TermsAndConditionsResponse) postTerminal("/api/tc", request, TermsAndConditionsResponse.class);
-        } else {
-            return (TermsAndConditionsResponse) postGateway("/api/terminal-tc", request, TermsAndConditionsResponse.class);
-        }
-
-    }
-
-    /**
-     * Appends items to an existing transaction display. Subtotal, Tax, and Total are
-     * overwritten by the request. Items with the same description are combined into
-     * groups.
-     * @param request the request parameters.
-     * @return {@link Acknowledgement}
-     * @throws Exception exception if any errors occurred processing the request.
-     */
-    public Acknowledgement updateTransactionDisplay(TransactionDisplayRequest request) throws Exception {
-
-        if (isTerminalRouted(request)) {
-            return (Acknowledgement) postTerminal("/api/txdisplay", request, Acknowledgement.class);
-        } else {
-            return (Acknowledgement) postGateway("/api/terminal-txdisplay", request, Acknowledgement.class);
-        }
-
-    }
-
-    /**
-     * Displays a new transaction on the terminal.
-     * @param request the request parameters.
-     * @return {@link Acknowledgement}
-     * @throws Exception exception if any errors occurred processing the request.
-     */
-    public Acknowledgement newTransactionDisplay(TransactionDisplayRequest request) throws Exception {
-
-        if (isTerminalRouted(request)) {
-            return (Acknowledgement) postTerminal("/api/txdisplay", request, Acknowledgement.class);
-        } else {
-            return (Acknowledgement) postGateway("/api/terminal-txdisplay", request, Acknowledgement.class);
-        }
-
-    }
-
-    /**
-     * Asks the consumer a text based question.
-     * @param request the request parameters.
-     * @return {@link TextPromptResponse}
-     * @throws Exception exception if any errors occurred processing the request.
-     */
-    public TextPromptResponse textPrompt(TextPromptRequest request) throws Exception {
-
-        if (isTerminalRouted(request)) {
-            return (TextPromptResponse) postTerminal("/api/text-prompt", request, TextPromptResponse.class);
-        } else {
-            return (TextPromptResponse) postGateway("/api/text-prompt", request, TextPromptResponse.class);
-        }
-
-    }
-
-    /**
-     * Asks the consumer a yes/no question.
-     * @param request the request parameters.
-     * @return {@link BooleanPromptResponse}
-     * @throws Exception exception if any errors occurred processing the request.
-     */
-    public BooleanPromptResponse booleanPrompt(BooleanPromptRequest request) throws Exception {
-
-        if (isTerminalRouted(request)) {
-            return (BooleanPromptResponse) postTerminal("/api/boolean-prompt", request, BooleanPromptResponse.class);
-        } else {
-            return (BooleanPromptResponse) postGateway("/api/boolean-prompt", request, BooleanPromptResponse.class);
-        }
-
-    }
-
-    /**
-     * Displays a short message on the terminal.
-     * @param request the request parameters.
-     * @return {@link Acknowledgement}
-     * @throws Exception exception if any errors occurred processing the request.
-     */
-    public Acknowledgement message(MessageRequest request) throws Exception {
-
-        if (isTerminalRouted(request)) {
-            return (Acknowledgement) postTerminal("/api/message", request, Acknowledgement.class);
-        } else {
-            return (Acknowledgement) postGateway("/api/message", request, Acknowledgement.class);
         }
 
     }
@@ -643,6 +513,38 @@ public class BlockChypClient {
     }
 
     /**
+     * Checks the remaining balance on a payment method.
+     * @param request the request parameters.
+     * @return {@link BalanceResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public BalanceResponse balance(BalanceRequest request) throws Exception {
+
+        if (isTerminalRouted(request)) {
+            return (BalanceResponse) postTerminal("/api/balance", request, BalanceResponse.class);
+        } else {
+            return (BalanceResponse) postGateway("/api/balance", request, BalanceResponse.class);
+        }
+
+    }
+
+    /**
+     * Clears the line item display and any in progress transaction.
+     * @param request the request parameters.
+     * @return {@link Acknowledgement}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public Acknowledgement clear(ClearTerminalRequest request) throws Exception {
+
+        if (isTerminalRouted(request)) {
+            return (Acknowledgement) postTerminal("/api/clear", request, Acknowledgement.class);
+        } else {
+            return (Acknowledgement) postGateway("/api/terminal-clear", request, Acknowledgement.class);
+        }
+
+    }
+
+    /**
      * Returns the current status of a terminal.
      * @param request the request parameters.
      * @return {@link TerminalStatusResponse}
@@ -659,6 +561,22 @@ public class BlockChypClient {
     }
 
     /**
+     * Prompts the user to accept terms and conditions.
+     * @param request the request parameters.
+     * @return {@link TermsAndConditionsResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public TermsAndConditionsResponse termsAndConditions(TermsAndConditionsRequest request) throws Exception {
+
+        if (isTerminalRouted(request)) {
+            return (TermsAndConditionsResponse) postTerminal("/api/tc", request, TermsAndConditionsResponse.class);
+        } else {
+            return (TermsAndConditionsResponse) postGateway("/api/terminal-tc", request, TermsAndConditionsResponse.class);
+        }
+
+    }
+
+    /**
      * Captures and returns a signature.
      * @param request the request parameters.
      * @return {@link CaptureSignatureResponse}
@@ -670,6 +588,88 @@ public class BlockChypClient {
             return (CaptureSignatureResponse) postTerminal("/api/capture-signature", request, CaptureSignatureResponse.class);
         } else {
             return (CaptureSignatureResponse) postGateway("/api/capture-signature", request, CaptureSignatureResponse.class);
+        }
+
+    }
+
+    /**
+     * Displays a new transaction on the terminal.
+     * @param request the request parameters.
+     * @return {@link Acknowledgement}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public Acknowledgement newTransactionDisplay(TransactionDisplayRequest request) throws Exception {
+
+        if (isTerminalRouted(request)) {
+            return (Acknowledgement) postTerminal("/api/txdisplay", request, Acknowledgement.class);
+        } else {
+            return (Acknowledgement) postGateway("/api/terminal-txdisplay", request, Acknowledgement.class);
+        }
+
+    }
+
+    /**
+     * Appends items to an existing transaction display. Subtotal, Tax, and Total are
+     * overwritten by the request. Items with the same description are combined into
+     * groups.
+     * @param request the request parameters.
+     * @return {@link Acknowledgement}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public Acknowledgement updateTransactionDisplay(TransactionDisplayRequest request) throws Exception {
+
+        if (isTerminalRouted(request)) {
+            return (Acknowledgement) postTerminal("/api/txdisplay", request, Acknowledgement.class);
+        } else {
+            return (Acknowledgement) postGateway("/api/terminal-txdisplay", request, Acknowledgement.class);
+        }
+
+    }
+
+    /**
+     * Displays a short message on the terminal.
+     * @param request the request parameters.
+     * @return {@link Acknowledgement}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public Acknowledgement message(MessageRequest request) throws Exception {
+
+        if (isTerminalRouted(request)) {
+            return (Acknowledgement) postTerminal("/api/message", request, Acknowledgement.class);
+        } else {
+            return (Acknowledgement) postGateway("/api/message", request, Acknowledgement.class);
+        }
+
+    }
+
+    /**
+     * Asks the consumer a yes/no question.
+     * @param request the request parameters.
+     * @return {@link BooleanPromptResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public BooleanPromptResponse booleanPrompt(BooleanPromptRequest request) throws Exception {
+
+        if (isTerminalRouted(request)) {
+            return (BooleanPromptResponse) postTerminal("/api/boolean-prompt", request, BooleanPromptResponse.class);
+        } else {
+            return (BooleanPromptResponse) postGateway("/api/boolean-prompt", request, BooleanPromptResponse.class);
+        }
+
+    }
+
+    /**
+     * Asks the consumer a text based question.
+     * @param request the request parameters.
+     * @return {@link TextPromptResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public TextPromptResponse textPrompt(TextPromptRequest request) throws Exception {
+
+        if (isTerminalRouted(request)) {
+            return (TextPromptResponse) postTerminal("/api/text-prompt", request, TextPromptResponse.class);
+        } else {
+            return (TextPromptResponse) postGateway("/api/text-prompt", request, TextPromptResponse.class);
         }
 
     }
