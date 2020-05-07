@@ -40,6 +40,8 @@ public class PaymentLinkRequest implements ICoreRequest, IRequestAmount, ITermin
 
      private boolean autoSend;
 
+     private boolean cashier;
+
      private String description;
 
      private String subject;
@@ -272,6 +274,23 @@ public class PaymentLinkRequest implements ICoreRequest, IRequestAmount, ITermin
      @JsonProperty("autoSend")
      public boolean isAutoSend() {
           return this.autoSend;
+     }
+
+    /**
+     * Sets flags the payment link as cashier facing.
+     * @param value flags the payment link as cashier facing.
+     */
+     public void setCashier(boolean value) {
+          this.cashier = value;
+     }
+
+    /**
+     * Gets flags the payment link as cashier facing.
+     * @return flags the payment link as cashier facing.
+     */
+     @JsonProperty("cashier")
+     public boolean isCashier() {
+          return this.cashier;
      }
 
     /**

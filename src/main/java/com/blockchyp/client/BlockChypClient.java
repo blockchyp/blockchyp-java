@@ -25,6 +25,7 @@ import org.apache.commons.httpclient.ConnectTimeoutException;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.HttpStatus;
+import org.apache.commons.httpclient.MultiThreadedHttpConnectionManager;
 import org.apache.commons.httpclient.methods.EntityEnclosingMethod;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
@@ -154,6 +155,10 @@ public class BlockChypClient {
     private HttpClient gatewayClient;
 
     private HttpClient terminalClient;
+
+    private MultiThreadedHttpConnectionManager gatewayManager;
+
+    private MultiThreadedHttpConnectionManager terminalManager;
 
     private boolean terminalHttps = false;
 
@@ -885,7 +890,8 @@ public class BlockChypClient {
      */
     protected HttpClient getGatewayClient() {
         if (gatewayClient == null) {
-            gatewayClient = new HttpClient();
+            gatewayManager = new MultiThreadedHttpConnectionManager();
+            gatewayClient = new HttpClient(gatewayManager);
             if (connectionTimeout > 0) {
                 gatewayClient.getHttpConnectionManager().getParams().setConnectionTimeout(connectionTimeout);
             }
@@ -902,7 +908,8 @@ public class BlockChypClient {
      */
     protected HttpClient getTerminalClient() {
         if (terminalClient == null) {
-            terminalClient = new HttpClient();
+            terminalManager = new MultiThreadedHttpConnectionManager();
+            terminalClient = new HttpClient(terminalManager);
             if (connectionTimeout > 0) {
                 terminalClient.getHttpConnectionManager().getParams().setConnectionTimeout(connectionTimeout);
             }
