@@ -8,11 +8,11 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 
 import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
-import com.blockchyp.client.dto.RefundRequest;
-import com.blockchyp.client.dto.AuthorizationResponse;
+import com.blockchyp.client.dto.BatchHistoryRequest;
+import com.blockchyp.client.dto.BatchHistoryResponse;
 
 
-public class RefundExample {
+public class BatchHistoryExample {
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
@@ -25,12 +25,12 @@ public class RefundExample {
         BlockChypClient client = new BlockChypClient(creds);
 
         // Set request parameters
-        RefundRequest request = new RefundRequest();
-        request.setTransactionId("<PREVIOUS TRANSACTION ID>");
-        request.setAmount("5.00");
+        BatchHistoryRequest request = new BatchHistoryRequest();
+        request.setMaxResults(250);
+        request.setStartIndex(1);
 
         // Send the request
-        AuthorizationResponse response = client.refund(request);
+        BatchHistoryResponse response = client.batchHistory(request);
 
         // View the result
         System.out.println("Response: " + prettyPrint(response));

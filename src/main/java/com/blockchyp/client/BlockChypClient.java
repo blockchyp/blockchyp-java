@@ -101,6 +101,14 @@ import com.blockchyp.client.dto.PaymentLinkRequest;
 import com.blockchyp.client.dto.PaymentLinkResponse;
 import com.blockchyp.client.dto.CashDiscountRequest;
 import com.blockchyp.client.dto.CashDiscountResponse;
+import com.blockchyp.client.dto.TransactionHistoryRequest;
+import com.blockchyp.client.dto.TransactionHistoryResponse;
+import com.blockchyp.client.dto.BatchHistoryRequest;
+import com.blockchyp.client.dto.BatchHistoryResponse;
+import com.blockchyp.client.dto.BatchSummary;
+import com.blockchyp.client.dto.BatchDetailsRequest;
+import com.blockchyp.client.dto.BatchDetailsResponse;
+import com.blockchyp.client.dto.TerminalVolume;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -415,6 +423,42 @@ public class BlockChypClient {
     public CashDiscountResponse cashDiscount(CashDiscountRequest request) throws Exception {
 
         return (CashDiscountResponse) postGateway("/api/cash-discount", request, CashDiscountResponse.class);
+
+    }
+
+    /**
+     * Returns the batch history for a merchant.
+     * @param request the request parameters.
+     * @return {@link BatchHistoryResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public BatchHistoryResponse batchHistory(BatchHistoryRequest request) throws Exception {
+
+        return (BatchHistoryResponse) postGateway("/api/batch-history", request, BatchHistoryResponse.class);
+
+    }
+
+    /**
+     * Returns the batch details for a single batch.
+     * @param request the request parameters.
+     * @return {@link BatchDetailsResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public BatchDetailsResponse batchDetails(BatchDetailsRequest request) throws Exception {
+
+        return (BatchDetailsResponse) postGateway("/api/batch-details", request, BatchDetailsResponse.class);
+
+    }
+
+    /**
+     * Returns the transaction history for a merchant.
+     * @param request the request parameters.
+     * @return {@link TransactionHistoryResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public TransactionHistoryResponse transactionHistory(TransactionHistoryRequest request) throws Exception {
+
+        return (TransactionHistoryResponse) postGateway("/api/tx-history", request, TransactionHistoryResponse.class);
 
     }
 
