@@ -31,7 +31,7 @@ public class TransactionDisplayItem {
 
      private String extended;
 
-     private Collection discounts;
+     private Collection<TransactionDisplayDiscount> discounts;
 
     /**
      * Sets a unique value identifying the item.
@@ -128,7 +128,7 @@ public class TransactionDisplayItem {
      * Sets are displayed under their corresponding item.
      * @param value are displayed under their corresponding item.
      */
-     public void setDiscounts(Collection value) {
+     public void setDiscounts(Collection<TransactionDisplayDiscount> value) {
           this.discounts = value;
      }
 
@@ -137,7 +137,7 @@ public class TransactionDisplayItem {
      * @return are displayed under their corresponding item.
      */
      @JsonProperty("discounts")
-     public Collection getDiscounts() {
+     public Collection<TransactionDisplayDiscount> getDiscounts() {
           return this.discounts;
      }
 

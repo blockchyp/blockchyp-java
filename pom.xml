@@ -63,9 +63,9 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.1</version>
         <configuration>
-          <!-- This is for maximum backward compatibility with java versions.  We'd love to use at least 1.7, but it was not to be. -->
-          <source>1.6</source>
-          <target>1.6</target>
+          <!-- This is for maximum backward compatibility with java versions.  -->
+          <source>1.7</source>
+          <target>1.7</target>
         </configuration>
       </plugin>
       <!--
@@ -173,7 +173,7 @@
     </dependency>
   </dependencies>
 
-  <profiles>    
+  <profiles>
     <profile>
       <id>unit-test</id>
       <build>

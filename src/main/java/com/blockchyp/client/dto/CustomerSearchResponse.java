@@ -25,7 +25,7 @@ public class CustomerSearchResponse implements IAbstractAcknowledgement {
 
      private String responseDescription;
 
-     private Collection customers;
+     private Collection<Customer> customers;
 
     /**
      * Sets whether or not the request succeeded.
@@ -82,7 +82,7 @@ public class CustomerSearchResponse implements IAbstractAcknowledgement {
      * Sets the customer results matching the search query.
      * @param value the customer results matching the search query.
      */
-     public void setCustomers(Collection value) {
+     public void setCustomers(Collection<Customer> value) {
           this.customers = value;
      }
 
@@ -91,7 +91,7 @@ public class CustomerSearchResponse implements IAbstractAcknowledgement {
      * @return the customer results matching the search query.
      */
      @JsonProperty("customers")
-     public Collection getCustomers() {
+     public Collection<Customer> getCustomers() {
           return this.customers;
      }
 

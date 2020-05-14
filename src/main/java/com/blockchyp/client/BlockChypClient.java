@@ -111,6 +111,8 @@ import com.blockchyp.client.dto.BatchDetailsResponse;
 import com.blockchyp.client.dto.TerminalVolume;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.util.StdDateFormat;
 
 /**
  * This is the main class Java developers will interact with. You can
@@ -282,6 +284,8 @@ public class BlockChypClient {
     protected void initObjectMapper() {
         objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        objectMapper.setDateFormat(new StdDateFormat().withColonInTimeZone(true));
     }
 
     /**

@@ -48,7 +48,7 @@ public class BatchDetailsResponse implements IAbstractAcknowledgement {
 
      private Date closeDate;
 
-     private Collection volumeByTerminal;
+     private Collection<TerminalVolume> volumeByTerminal;
 
     /**
      * Sets whether or not the request succeeded.
@@ -296,7 +296,7 @@ public class BatchDetailsResponse implements IAbstractAcknowledgement {
      * Sets merchant's batch history in descending order.
      * @param value merchant's batch history in descending order.
      */
-     public void setVolumeByTerminal(Collection value) {
+     public void setVolumeByTerminal(Collection<TerminalVolume> value) {
           this.volumeByTerminal = value;
      }
 
@@ -305,7 +305,7 @@ public class BatchDetailsResponse implements IAbstractAcknowledgement {
      * @return merchant's batch history in descending order.
      */
      @JsonProperty("volumeByTerminal")
-     public Collection getVolumeByTerminal() {
+     public Collection<TerminalVolume> getVolumeByTerminal() {
           return this.volumeByTerminal;
      }
 

@@ -30,7 +30,7 @@ public class BatchHistoryResponse implements IAbstractAcknowledgement {
 
      private Date endDate;
 
-     private Collection batches;
+     private Collection<BatchSummary> batches;
 
      private int maxResults;
 
@@ -127,7 +127,7 @@ public class BatchHistoryResponse implements IAbstractAcknowledgement {
      * Sets merchant's batch history in descending order.
      * @param value merchant's batch history in descending order.
      */
-     public void setBatches(Collection value) {
+     public void setBatches(Collection<BatchSummary> value) {
           this.batches = value;
      }
 
@@ -136,7 +136,7 @@ public class BatchHistoryResponse implements IAbstractAcknowledgement {
      * @return merchant's batch history in descending order.
      */
      @JsonProperty("batches")
-     public Collection getBatches() {
+     public Collection<BatchSummary> getBatches() {
           return this.batches;
      }
 

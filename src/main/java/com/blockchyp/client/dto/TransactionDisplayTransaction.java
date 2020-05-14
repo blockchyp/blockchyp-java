@@ -25,7 +25,7 @@ public class TransactionDisplayTransaction {
 
      private String total;
 
-     private Collection items;
+     private Collection<TransactionDisplayItem> items;
 
     /**
      * Sets the subtotal to display.
@@ -83,7 +83,7 @@ public class TransactionDisplayTransaction {
      * @param value an item to display. Can be overwritten or appended, based on the
      * request type.
      */
-     public void setItems(Collection value) {
+     public void setItems(Collection<TransactionDisplayItem> value) {
           this.items = value;
      }
 
@@ -93,7 +93,7 @@ public class TransactionDisplayTransaction {
      * type.
      */
      @JsonProperty("items")
-     public Collection getItems() {
+     public Collection<TransactionDisplayItem> getItems() {
           return this.items;
      }
 

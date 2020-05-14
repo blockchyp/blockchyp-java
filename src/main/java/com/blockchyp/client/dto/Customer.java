@@ -33,7 +33,7 @@ public class Customer {
 
      private String smsNumber;
 
-     private Collection paymentMethods;
+     private Collection<CustomerToken> paymentMethods;
 
     /**
      * Sets BlockChyp assigned customer id.
@@ -160,7 +160,7 @@ public class Customer {
      * Sets model saved payment methods associated with a customer.
      * @param value model saved payment methods associated with a customer.
      */
-     public void setPaymentMethods(Collection value) {
+     public void setPaymentMethods(Collection<CustomerToken> value) {
           this.paymentMethods = value;
      }
 
@@ -169,7 +169,7 @@ public class Customer {
      * @return model saved payment methods associated with a customer.
      */
      @JsonProperty("paymentMethods")
-     public Collection getPaymentMethods() {
+     public Collection<CustomerToken> getPaymentMethods() {
           return this.paymentMethods;
      }
 

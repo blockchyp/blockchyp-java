@@ -40,7 +40,7 @@ public class TransactionHistoryResponse implements IAbstractAcknowledgement {
 
      private int totalResultCount;
 
-     private Collection transactions;
+     private Collection<AuthorizationResponse> transactions;
 
     /**
      * Sets whether or not the request succeeded.
@@ -218,7 +218,7 @@ public class TransactionHistoryResponse implements IAbstractAcknowledgement {
      * Sets matching transaction history.
      * @param value matching transaction history.
      */
-     public void setTransactions(Collection value) {
+     public void setTransactions(Collection<AuthorizationResponse> value) {
           this.transactions = value;
      }
 
@@ -227,7 +227,7 @@ public class TransactionHistoryResponse implements IAbstractAcknowledgement {
      * @return matching transaction history.
      */
      @JsonProperty("transactions")
-     public Collection getTransactions() {
+     public Collection<AuthorizationResponse> getTransactions() {
           return this.transactions;
      }
 
