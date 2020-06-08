@@ -26,6 +26,8 @@ public class BatchDetailsResponse implements IAbstractAcknowledgement {
 
      private String responseDescription;
 
+     private boolean test;
+
      private String batchId;
 
      private String capturedAmount;
@@ -99,6 +101,23 @@ public class BatchDetailsResponse implements IAbstractAcknowledgement {
      @JsonProperty("responseDescription")
      public String getResponseDescription() {
           return this.responseDescription;
+     }
+
+    /**
+     * Sets that the response came from the test gateway.
+     * @param value that the response came from the test gateway.
+     */
+     public void setTest(boolean value) {
+          this.test = value;
+     }
+
+    /**
+     * Gets that the response came from the test gateway.
+     * @return that the response came from the test gateway.
+     */
+     @JsonProperty("test")
+     public boolean isTest() {
+          return this.test;
      }
 
     /**
