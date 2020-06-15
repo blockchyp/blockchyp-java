@@ -21,6 +21,10 @@ public class BatchSummary {
 
      private String capturedAmount;
 
+     private String openPreauths;
+
+     private String currencyCode;
+
      private boolean open;
 
      private Date openDate;
@@ -59,6 +63,41 @@ public class BatchSummary {
      @JsonProperty("capturedAmount")
      public String getCapturedAmount() {
           return this.capturedAmount;
+     }
+
+    /**
+     * Sets the amount of preauths opend during the batch that have not been captured.
+     * @param value the amount of preauths opend during the batch that have not been
+     * captured.
+     */
+     public void setOpenPreauths(String value) {
+          this.openPreauths = value;
+     }
+
+    /**
+     * Gets the amount of preauths opend during the batch that have not been captured.
+     * @return the amount of preauths opend during the batch that have not been captured.
+     */
+     @JsonProperty("openPreauths")
+     public String getOpenPreauths() {
+          return this.openPreauths;
+     }
+
+    /**
+     * Sets the currency the batch was settled in.
+     * @param value the currency the batch was settled in.
+     */
+     public void setCurrencyCode(String value) {
+          this.currencyCode = value;
+     }
+
+    /**
+     * Gets the currency the batch was settled in.
+     * @return the currency the batch was settled in.
+     */
+     @JsonProperty("currencyCode")
+     public String getCurrencyCode() {
+          return this.currencyCode;
      }
 
     /**
