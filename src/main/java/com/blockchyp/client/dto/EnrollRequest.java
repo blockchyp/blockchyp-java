@@ -61,6 +61,8 @@ public class EnrollRequest implements ICoreRequest, IPaymentMethod, ITerminalRef
 
      private String terminalName;
 
+     private String entryMethod;
+
      private Customer customer;
 
     /**
@@ -449,6 +451,24 @@ public class EnrollRequest implements ICoreRequest, IPaymentMethod, ITerminalRef
      @JsonProperty("terminalName")
      public String getTerminalName() {
           return this.terminalName;
+     }
+
+    /**
+     * Sets the method by which the payment card was entered (MSR, CHIP, KEYED, etc.
+     * @param value the method by which the payment card was entered (MSR, CHIP, KEYED,
+     * etc.).
+     */
+     public void setEntryMethod(String value) {
+          this.entryMethod = value;
+     }
+
+    /**
+     * Gets the method by which the payment card was entered (MSR, CHIP, KEYED, etc.
+     * @return the method by which the payment card was entered (MSR, CHIP, KEYED, etc.).
+     */
+     @JsonProperty("entryMethod")
+     public String getEntryMethod() {
+          return this.entryMethod;
      }
 
     /**
