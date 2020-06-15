@@ -26,6 +26,8 @@ public class CloseBatchRequest implements ICoreRequest {
 
      private int timeout;
 
+     private String batchId;
+
     /**
      * Sets the transaction reference string assigned to the transaction request.
      * @param value the transaction reference string assigned to the transaction
@@ -113,6 +115,23 @@ public class CloseBatchRequest implements ICoreRequest {
      @JsonProperty("timeout")
      public int getTimeout() {
           return this.timeout;
+     }
+
+    /**
+     * Sets optional batch id.
+     * @param value optional batch id.
+     */
+     public void setBatchId(String value) {
+          this.batchId = value;
+     }
+
+    /**
+     * Gets optional batch id.
+     * @return optional batch id.
+     */
+     @JsonProperty("batchId")
+     public String getBatchId() {
+          return this.batchId;
      }
 
 }

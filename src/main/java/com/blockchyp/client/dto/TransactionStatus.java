@@ -41,6 +41,8 @@ public class TransactionStatus implements IAbstractAcknowledgement, IApprovalRes
 
      private boolean test;
 
+     private String destinationAccount;
+
      private String sig;
 
      private boolean partialAuth;
@@ -295,6 +297,23 @@ public class TransactionStatus implements IAbstractAcknowledgement, IApprovalRes
      @JsonProperty("test")
      public boolean isTest() {
           return this.test;
+     }
+
+    /**
+     * Sets the settlement account for merchants with split settlements.
+     * @param value the settlement account for merchants with split settlements.
+     */
+     public void setDestinationAccount(String value) {
+          this.destinationAccount = value;
+     }
+
+    /**
+     * Gets the settlement account for merchants with split settlements.
+     * @return the settlement account for merchants with split settlements.
+     */
+     @JsonProperty("destinationAccount")
+     public String getDestinationAccount() {
+          return this.destinationAccount;
      }
 
     /**

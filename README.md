@@ -2255,7 +2255,7 @@ public class TextPromptExample {
 Adds or updates a customer record.
 
 If you pass in customer information including `firstName`, `lastName`, `email`,
-`email`, or `sms` without any Customer ID or Customer Ref, a new record will
+or `sms` without any Customer ID or Customer Ref, a new record will
 be created.
 
 If you pass in `customerRef` and `customerId`, the customer record will be updated
