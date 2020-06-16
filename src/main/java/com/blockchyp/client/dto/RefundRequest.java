@@ -20,6 +20,10 @@ public class RefundRequest implements ICoreRequest, IPaymentMethod, IPreviousTra
 
      private String transactionRef;
 
+     private boolean async;
+
+     private boolean queue;
+
      private String orderRef;
 
      private String destinationAccount;
@@ -113,6 +117,44 @@ public class RefundRequest implements ICoreRequest, IPaymentMethod, IPreviousTra
      @JsonProperty("transactionRef")
      public String getTransactionRef() {
           return this.transactionRef;
+     }
+
+    /**
+     * Sets defers the response to the transaction and returns immediately.
+     * @param value defers the response to the transaction and returns immediately.
+     * Callers should retrive the transaction result using the Transaction Status API.
+     */
+     public void setAsync(boolean value) {
+          this.async = value;
+     }
+
+    /**
+     * Gets defers the response to the transaction and returns immediately.
+     * @return defers the response to the transaction and returns immediately. Callers
+     * should retrive the transaction result using the Transaction Status API.
+     */
+     @JsonProperty("async")
+     public boolean isAsync() {
+          return this.async;
+     }
+
+    /**
+     * Sets adds the transaction to the queue and returns immediately.
+     * @param value adds the transaction to the queue and returns immediately. Callers
+     * should retrive the transaction result using the Transaction Status API.
+     */
+     public void setQueue(boolean value) {
+          this.queue = value;
+     }
+
+    /**
+     * Gets adds the transaction to the queue and returns immediately.
+     * @return adds the transaction to the queue and returns immediately. Callers should
+     * retrive the transaction result using the Transaction Status API.
+     */
+     @JsonProperty("queue")
+     public boolean isQueue() {
+          return this.queue;
      }
 
     /**
