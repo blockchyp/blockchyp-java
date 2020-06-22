@@ -39,6 +39,8 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
 
      private String batchCloseTime;
 
+     private String terminalUpdateTime;
+
      private boolean autoBatchClose;
 
      private boolean pinEnabled;
@@ -47,7 +49,15 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
 
      private boolean storeAndForwardEnabled;
 
+     private boolean partialAuthEnabled;
+
+     private boolean splitBankAccountsEnabled;
+
      private String storeAndForwardFloorLimit;
+
+     private String publicKey;
+
+     private String status;
 
      private Collection<BankAccount> bankAccounts;
 
@@ -120,16 +130,16 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      }
 
     /**
-     * Sets merchant id.
-     * @param value merchant id.
+     * Sets the merchant id.
+     * @param value the merchant id.
      */
      public void setMerchantId(String value) {
           this.merchantId = value;
      }
 
     /**
-     * Gets merchant id.
-     * @return merchant id.
+     * Gets the merchant id.
+     * @return the merchant id.
      */
      @JsonProperty("merchantId")
      public String getMerchantId() {
@@ -137,16 +147,16 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      }
 
     /**
-     * Sets company name.
-     * @param value company name.
+     * Sets the merchant's company name.
+     * @param value the merchant's company name.
      */
      public void setCompanyName(String value) {
           this.companyName = value;
      }
 
     /**
-     * Gets company name.
-     * @return company name.
+     * Gets the merchant's company name.
+     * @return the merchant's company name.
      */
      @JsonProperty("companyName")
      public String getCompanyName() {
@@ -154,16 +164,16 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      }
 
     /**
-     * Sets location name.
-     * @param value location name.
+     * Sets the location name.
+     * @param value the location name.
      */
      public void setLocationName(String value) {
           this.locationName = value;
      }
 
     /**
-     * Gets location name.
-     * @return location name.
+     * Gets the location name.
+     * @return the location name.
      */
      @JsonProperty("locationName")
      public String getLocationName() {
@@ -171,16 +181,16 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      }
 
     /**
-     * Sets store number.
-     * @param value store number.
+     * Sets the store number.
+     * @param value the store number.
      */
      public void setStoreNumber(String value) {
           this.storeNumber = value;
      }
 
     /**
-     * Gets store number.
-     * @return store number.
+     * Gets the store number.
+     * @return the store number.
      */
      @JsonProperty("storeNumber")
      public String getStoreNumber() {
@@ -188,16 +198,16 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      }
 
     /**
-     * Sets merchant's local time zone.
-     * @param value merchant's local time zone.
+     * Sets the merchant's local time zone.
+     * @param value the merchant's local time zone.
      */
      public void setTimeZone(String value) {
           this.timeZone = value;
      }
 
     /**
-     * Gets merchant's local time zone.
-     * @return merchant's local time zone.
+     * Gets the merchant's local time zone.
+     * @return the merchant's local time zone.
      */
      @JsonProperty("timeZone")
      public String getTimeZone() {
@@ -205,20 +215,37 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      }
 
     /**
-     * Sets batch close time in the merchant's time zone.
-     * @param value batch close time in the merchant's time zone.
+     * Sets the batch close time in the merchant's time zone.
+     * @param value the batch close time in the merchant's time zone.
      */
      public void setBatchCloseTime(String value) {
           this.batchCloseTime = value;
      }
 
     /**
-     * Gets batch close time in the merchant's time zone.
-     * @return batch close time in the merchant's time zone.
+     * Gets the batch close time in the merchant's time zone.
+     * @return the batch close time in the merchant's time zone.
      */
      @JsonProperty("batchCloseTime")
      public String getBatchCloseTime() {
           return this.batchCloseTime;
+     }
+
+    /**
+     * Sets the terminal firmware update time.
+     * @param value the terminal firmware update time.
+     */
+     public void setTerminalUpdateTime(String value) {
+          this.terminalUpdateTime = value;
+     }
+
+    /**
+     * Gets the terminal firmware update time.
+     * @return the terminal firmware update time.
+     */
+     @JsonProperty("terminalUpdateTime")
+     public String getTerminalUpdateTime() {
+          return this.terminalUpdateTime;
      }
 
     /**
@@ -290,6 +317,45 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      }
 
     /**
+     * Sets flag indicating whether or not partial authorizations are supported for this
+     * merchant.
+     * @param value flag indicating whether or not partial authorizations are supported
+     * for this merchant.
+     */
+     public void setPartialAuthEnabled(boolean value) {
+          this.partialAuthEnabled = value;
+     }
+
+    /**
+     * Gets flag indicating whether or not partial authorizations are supported for this
+     * merchant.
+     * @return flag indicating whether or not partial authorizations are supported for
+     * this merchant.
+     */
+     @JsonProperty("partialAuthEnabled")
+     public boolean isPartialAuthEnabled() {
+          return this.partialAuthEnabled;
+     }
+
+    /**
+     * Sets flag indicating whether or not this merchant support split settlement.
+     * @param value flag indicating whether or not this merchant support split
+     * settlement.
+     */
+     public void setSplitBankAccountsEnabled(boolean value) {
+          this.splitBankAccountsEnabled = value;
+     }
+
+    /**
+     * Gets flag indicating whether or not this merchant support split settlement.
+     * @return flag indicating whether or not this merchant support split settlement.
+     */
+     @JsonProperty("splitBankAccountsEnabled")
+     public boolean isSplitBankAccountsEnabled() {
+          return this.splitBankAccountsEnabled;
+     }
+
+    /**
      * Sets floor limit for store and forward transactions.
      * @param value floor limit for store and forward transactions.
      */
@@ -304,6 +370,40 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      @JsonProperty("storeAndForwardFloorLimit")
      public String getStoreAndForwardFloorLimit() {
           return this.storeAndForwardFloorLimit;
+     }
+
+    /**
+     * Sets the blockchyp public key for this merchant.
+     * @param value the blockchyp public key for this merchant.
+     */
+     public void setPublicKey(String value) {
+          this.publicKey = value;
+     }
+
+    /**
+     * Gets the blockchyp public key for this merchant.
+     * @return the blockchyp public key for this merchant.
+     */
+     @JsonProperty("publicKey")
+     public String getPublicKey() {
+          return this.publicKey;
+     }
+
+    /**
+     * Sets the undwriting/processing status for the the merchant.
+     * @param value the undwriting/processing status for the the merchant.
+     */
+     public void setStatus(String value) {
+          this.status = value;
+     }
+
+    /**
+     * Gets the undwriting/processing status for the the merchant.
+     * @return the undwriting/processing status for the the merchant.
+     */
+     @JsonProperty("status")
+     public String getStatus() {
+          return this.status;
      }
 
     /**
