@@ -2803,6 +2803,72 @@ public class TransactionHistoryExample {
 
 ```
 
+#### Merchant Profile
+
+
+
+Returns detailed metadata about the merchant's configuraton, including
+basic identity information, terminal settings, store and forward settings,
+and bank account information for merchants that support split settlement.
+
+
+
+
+```java
+package com.blockchyp.client.examples;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
+import com.blockchyp.client.APICredentials;
+import com.blockchyp.client.BlockChypClient;
+import com.blockchyp.client.dto.MerchantProfileRequest;
+import com.blockchyp.client.dto.MerchantProfileResponse;
+
+
+public class MerchantProfileExample {
+
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    public static void main(String[] args) throws Exception {
+
+        APICredentials creds = new APICredentials();
+        creds.setApiKey(System.getenv("BC_API_KEY"));
+        creds.setBearerToken(System.getenv("BC_BEARER_TOKEN"));
+        creds.setSigningKey(System.getenv("BC_SIGNING_KEY"));
+
+        BlockChypClient client = new BlockChypClient(creds);
+
+        // Set request parameters
+        MerchantProfileRequest request = new MerchantProfileRequest();
+
+
+        // Send the request
+        MerchantProfileResponse response = client.merchantProfile(request);
+
+        // View the result
+        System.out.println("Response: " + prettyPrint(response));
+
+    }
+
+    public static String prettyPrint(Object object) throws Exception {
+
+        ObjectWriter writer = new ObjectMapper()
+            .writer()
+            .withDefaultPrettyPrinter();
+
+        return object.getClass().getSimpleName()
+            + ": "
+            + writer.writeValueAsString(object);
+
+    }
+}
+
+
+```
+
 ## Running Integration Tests
 
 If you'd like to run the integration tests, create a new file on your system

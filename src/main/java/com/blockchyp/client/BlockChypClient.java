@@ -109,6 +109,9 @@ import com.blockchyp.client.dto.BatchSummary;
 import com.blockchyp.client.dto.BatchDetailsRequest;
 import com.blockchyp.client.dto.BatchDetailsResponse;
 import com.blockchyp.client.dto.TerminalVolume;
+import com.blockchyp.client.dto.MerchantProfileRequest;
+import com.blockchyp.client.dto.MerchantProfileResponse;
+import com.blockchyp.client.dto.BankAccount;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -463,6 +466,18 @@ public class BlockChypClient {
     public TransactionHistoryResponse transactionHistory(TransactionHistoryRequest request) throws Exception {
 
         return (TransactionHistoryResponse) postGateway("/api/tx-history", request, TransactionHistoryResponse.class);
+
+    }
+
+    /**
+     * Returns profile information for a merchant.
+     * @param request the request parameters.
+     * @return {@link MerchantProfileResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public MerchantProfileResponse merchantProfile(MerchantProfileRequest request) throws Exception {
+
+        return (MerchantProfileResponse) postGateway("/api/public-merchant-profile", request, MerchantProfileResponse.class);
 
     }
 

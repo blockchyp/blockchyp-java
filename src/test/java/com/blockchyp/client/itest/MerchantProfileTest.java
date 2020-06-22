@@ -19,12 +19,10 @@ import org.junit.experimental.categories.Category;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.IntegrationTest;
 import com.blockchyp.client.IntegrationTestConfiguration;
-import com.blockchyp.client.dto.CloseBatchRequest;
-import com.blockchyp.client.dto.CloseBatchResponse;
-import com.blockchyp.client.dto.AuthorizationRequest;
-import com.blockchyp.client.dto.AuthorizationResponse;
+import com.blockchyp.client.dto.MerchantProfileRequest;
+import com.blockchyp.client.dto.MerchantProfileResponse;
 
-public class SimpleBatchCloseTest extends BaseTestCase {
+public class MerchantProfileTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
@@ -33,22 +31,13 @@ public class SimpleBatchCloseTest extends BaseTestCase {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "SimpleBatchCloseTest");
+        processTestDelay(client, "MerchantProfileTest");
 
         // Set request parameters
-        AuthorizationRequest setupRequest = new AuthorizationRequest();
-        setupRequest.setPan("4111111111111111");
-        setupRequest.setAmount("25.55");
-        setupRequest.setTest(true);
-        setupRequest.setTransactionRef(getUUID());
+        MerchantProfileRequest request = new MerchantProfileRequest();
 
-         AuthorizationResponse setupResponse = client.charge(setupRequest);
 
-        // Set request parameters
-        CloseBatchRequest request = new CloseBatchRequest();
-        request.setTest(true);
-
-        CloseBatchResponse response = client.closeBatch(request);
+        MerchantProfileResponse response = client.merchantProfile(request);
 
         // Response assertions
         Assert.assertTrue(response.isSuccess());

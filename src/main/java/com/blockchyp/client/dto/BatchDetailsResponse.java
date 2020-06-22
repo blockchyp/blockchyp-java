@@ -30,6 +30,10 @@ public class BatchDetailsResponse implements IAbstractAcknowledgement {
 
      private String batchId;
 
+     private String entryMethod;
+
+     private String destinationAccountId;
+
      private String capturedAmount;
 
      private String openPreauths;
@@ -135,6 +139,40 @@ public class BatchDetailsResponse implements IAbstractAcknowledgement {
      @JsonProperty("batchId")
      public String getBatchId() {
           return this.batchId;
+     }
+
+    /**
+     * Sets entry method for the batch, if any.
+     * @param value entry method for the batch, if any.
+     */
+     public void setEntryMethod(String value) {
+          this.entryMethod = value;
+     }
+
+    /**
+     * Gets entry method for the batch, if any.
+     * @return entry method for the batch, if any.
+     */
+     @JsonProperty("entryMethod")
+     public String getEntryMethod() {
+          return this.entryMethod;
+     }
+
+    /**
+     * Sets merchant deposit account into which proceeds should be deposited.
+     * @param value merchant deposit account into which proceeds should be deposited.
+     */
+     public void setDestinationAccountId(String value) {
+          this.destinationAccountId = value;
+     }
+
+    /**
+     * Gets merchant deposit account into which proceeds should be deposited.
+     * @return merchant deposit account into which proceeds should be deposited.
+     */
+     @JsonProperty("destinationAccountId")
+     public String getDestinationAccountId() {
+          return this.destinationAccountId;
      }
 
     /**
