@@ -17,6 +17,10 @@ public interface ICoreRequest {
 
      String getTransactionRef();
 
+     boolean isAsync();
+
+     boolean isQueue();
+
      String getOrderRef();
 
      String getDestinationAccount();

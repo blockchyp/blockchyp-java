@@ -12,9 +12,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 /**
- * Models a customer data search request.
+ * Models a request for information about the merchant profile.
  */
-public class CustomerSearchRequest implements ICoreRequest {
+public class MerchantProfileRequest implements ICoreRequest {
 
      private String transactionRef;
 
@@ -29,8 +29,6 @@ public class CustomerSearchRequest implements ICoreRequest {
      private boolean test;
 
      private int timeout;
-
-     private String query;
 
     /**
      * Sets the transaction reference string assigned to the transaction request.
@@ -157,23 +155,6 @@ public class CustomerSearchRequest implements ICoreRequest {
      @JsonProperty("timeout")
      public int getTimeout() {
           return this.timeout;
-     }
-
-    /**
-     * Sets search query for customer searches.
-     * @param value search query for customer searches.
-     */
-     public void setQuery(String value) {
-          this.query = value;
-     }
-
-    /**
-     * Gets search query for customer searches.
-     * @return search query for customer searches.
-     */
-     @JsonProperty("query")
-     public String getQuery() {
-          return this.query;
      }
 
 }

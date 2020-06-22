@@ -10,7 +10,8 @@ package com.blockchyp.client.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * The response to a close batch request.
@@ -38,15 +39,11 @@ public class CloseBatchResponse implements IAbstractAcknowledgement, ICoreRespon
 
      private boolean test;
 
+     private String destinationAccount;
+
      private String sig;
 
-     private String currencyCode;
-
-     private String capturedTotal;
-
-     private String openPreauths;
-
-     private Map cardBrands;
+     private Collection<BatchSummary> batches;
 
     /**
      * Sets whether or not the request succeeded.
@@ -223,6 +220,23 @@ public class CloseBatchResponse implements IAbstractAcknowledgement, ICoreRespon
      }
 
     /**
+     * Sets the settlement account for merchants with split settlements.
+     * @param value the settlement account for merchants with split settlements.
+     */
+     public void setDestinationAccount(String value) {
+          this.destinationAccount = value;
+     }
+
+    /**
+     * Gets the settlement account for merchants with split settlements.
+     * @return the settlement account for merchants with split settlements.
+     */
+     @JsonProperty("destinationAccount")
+     public String getDestinationAccount() {
+          return this.destinationAccount;
+     }
+
+    /**
      * Sets the ECC signature of the response.
      * @param value the ECC signature of the response. Can be used to ensure that it was
      * signed by the terminal and detect man-in-the middle attacks.
@@ -242,75 +256,31 @@ public class CloseBatchResponse implements IAbstractAcknowledgement, ICoreRespon
      }
 
     /**
-     * Sets the currency code of amounts indicated.
-     * @param value the currency code of amounts indicated.
+     * Sets a collection of batches closed during the batch close operation.
+     * @param value a collection of batches closed during the batch close operation.
      */
-     public void setCurrencyCode(String value) {
-          this.currencyCode = value;
+     public void setBatches(Collection<BatchSummary> value) {
+          this.batches = value;
      }
 
     /**
-     * Gets the currency code of amounts indicated.
-     * @return the currency code of amounts indicated.
+     * Gets a collection of batches closed during the batch close operation.
+     * @return a collection of batches closed during the batch close operation.
      */
-     @JsonProperty("currencyCode")
-     public String getCurrencyCode() {
-          return this.currencyCode;
+     @JsonProperty("batches")
+     public Collection<BatchSummary> getBatches() {
+          return this.batches;
      }
 
     /**
-     * Sets the total captured amount for this batch.
-     * @param value the total captured amount for this batch. Should be the expected
-     * deposit amount.
+     * Adds a a collection of batches closed during the batch close operation.
+     * @param value a collection of batches closed during the batch close operation.
      */
-     public void setCapturedTotal(String value) {
-          this.capturedTotal = value;
-     }
-
-    /**
-     * Gets the total captured amount for this batch.
-     * @return the total captured amount for this batch. Should be the expected deposit
-     * amount.
-     */
-     @JsonProperty("capturedTotal")
-     public String getCapturedTotal() {
-          return this.capturedTotal;
-     }
-
-    /**
-     * Sets the total amount of preauths opened during the batch that weren't captured.
-     * @param value the total amount of preauths opened during the batch that weren't
-     * captured.
-     */
-     public void setOpenPreauths(String value) {
-          this.openPreauths = value;
-     }
-
-    /**
-     * Gets the total amount of preauths opened during the batch that weren't captured.
-     * @return the total amount of preauths opened during the batch that weren't
-     * captured.
-     */
-     @JsonProperty("openPreauths")
-     public String getOpenPreauths() {
-          return this.openPreauths;
-     }
-
-    /**
-     * Sets the captured totals by card brand.
-     * @param value the captured totals by card brand.
-     */
-     public void setCardBrands(Map value) {
-          this.cardBrands = value;
-     }
-
-    /**
-     * Gets the captured totals by card brand.
-     * @return the captured totals by card brand.
-     */
-     @JsonProperty("cardBrands")
-     public Map getCardBrands() {
-          return this.cardBrands;
+     public void addBatche(BatchSummary value) {
+          if (this.batches == null) {
+               this.batches = new ArrayList();
+          }
+          this.batches.add(value);
      }
 
 }

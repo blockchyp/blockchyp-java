@@ -2255,7 +2255,7 @@ public class TextPromptExample {
 Adds or updates a customer record.
 
 If you pass in customer information including `firstName`, `lastName`, `email`,
-`email`, or `sms` without any Customer ID or Customer Ref, a new record will
+or `sms` without any Customer ID or Customer Ref, a new record will
 be created.
 
 If you pass in `customerRef` and `customerId`, the customer record will be updated
@@ -2781,6 +2781,72 @@ public class TransactionHistoryExample {
 
         // Send the request
         TransactionHistoryResponse response = client.transactionHistory(request);
+
+        // View the result
+        System.out.println("Response: " + prettyPrint(response));
+
+    }
+
+    public static String prettyPrint(Object object) throws Exception {
+
+        ObjectWriter writer = new ObjectMapper()
+            .writer()
+            .withDefaultPrettyPrinter();
+
+        return object.getClass().getSimpleName()
+            + ": "
+            + writer.writeValueAsString(object);
+
+    }
+}
+
+
+```
+
+#### Merchant Profile
+
+
+
+Returns detailed metadata about the merchant's configuraton, including
+basic identity information, terminal settings, store and forward settings,
+and bank account information for merchants that support split settlement.
+
+
+
+
+```java
+package com.blockchyp.client.examples;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
+import com.blockchyp.client.APICredentials;
+import com.blockchyp.client.BlockChypClient;
+import com.blockchyp.client.dto.MerchantProfileRequest;
+import com.blockchyp.client.dto.MerchantProfileResponse;
+
+
+public class MerchantProfileExample {
+
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    public static void main(String[] args) throws Exception {
+
+        APICredentials creds = new APICredentials();
+        creds.setApiKey(System.getenv("BC_API_KEY"));
+        creds.setBearerToken(System.getenv("BC_BEARER_TOKEN"));
+        creds.setSigningKey(System.getenv("BC_SIGNING_KEY"));
+
+        BlockChypClient client = new BlockChypClient(creds);
+
+        // Set request parameters
+        MerchantProfileRequest request = new MerchantProfileRequest();
+
+
+        // Send the request
+        MerchantProfileResponse response = client.merchantProfile(request);
 
         // View the result
         System.out.println("Response: " + prettyPrint(response));

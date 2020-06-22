@@ -26,7 +26,13 @@ public class BatchDetailsResponse implements IAbstractAcknowledgement {
 
      private String responseDescription;
 
+     private boolean test;
+
      private String batchId;
+
+     private String entryMethod;
+
+     private String destinationAccountId;
 
      private String capturedAmount;
 
@@ -102,6 +108,23 @@ public class BatchDetailsResponse implements IAbstractAcknowledgement {
      }
 
     /**
+     * Sets that the response came from the test gateway.
+     * @param value that the response came from the test gateway.
+     */
+     public void setTest(boolean value) {
+          this.test = value;
+     }
+
+    /**
+     * Gets that the response came from the test gateway.
+     * @return that the response came from the test gateway.
+     */
+     @JsonProperty("test")
+     public boolean isTest() {
+          return this.test;
+     }
+
+    /**
      * Sets batch identifier.
      * @param value batch identifier.
      */
@@ -116,6 +139,40 @@ public class BatchDetailsResponse implements IAbstractAcknowledgement {
      @JsonProperty("batchId")
      public String getBatchId() {
           return this.batchId;
+     }
+
+    /**
+     * Sets entry method for the batch, if any.
+     * @param value entry method for the batch, if any.
+     */
+     public void setEntryMethod(String value) {
+          this.entryMethod = value;
+     }
+
+    /**
+     * Gets entry method for the batch, if any.
+     * @return entry method for the batch, if any.
+     */
+     @JsonProperty("entryMethod")
+     public String getEntryMethod() {
+          return this.entryMethod;
+     }
+
+    /**
+     * Sets merchant deposit account into which proceeds should be deposited.
+     * @param value merchant deposit account into which proceeds should be deposited.
+     */
+     public void setDestinationAccountId(String value) {
+          this.destinationAccountId = value;
+     }
+
+    /**
+     * Gets merchant deposit account into which proceeds should be deposited.
+     * @return merchant deposit account into which proceeds should be deposited.
+     */
+     @JsonProperty("destinationAccountId")
+     public String getDestinationAccountId() {
+          return this.destinationAccountId;
      }
 
     /**

@@ -29,6 +29,8 @@ public interface ICoreResponse {
 
      boolean isTest();
 
+     String getDestinationAccount();
+
      String getSig();
 
 

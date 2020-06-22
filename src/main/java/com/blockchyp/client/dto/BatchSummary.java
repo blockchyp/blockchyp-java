@@ -19,7 +19,15 @@ public class BatchSummary {
 
      private String batchId;
 
+     private String entryMethod;
+
+     private String destinationAccountId;
+
      private String capturedAmount;
+
+     private String openPreauths;
+
+     private String currencyCode;
 
      private boolean open;
 
@@ -45,6 +53,40 @@ public class BatchSummary {
      }
 
     /**
+     * Sets entry method for the batch, if any.
+     * @param value entry method for the batch, if any.
+     */
+     public void setEntryMethod(String value) {
+          this.entryMethod = value;
+     }
+
+    /**
+     * Gets entry method for the batch, if any.
+     * @return entry method for the batch, if any.
+     */
+     @JsonProperty("entryMethod")
+     public String getEntryMethod() {
+          return this.entryMethod;
+     }
+
+    /**
+     * Sets merchant deposit account into which proceeds should be deposited.
+     * @param value merchant deposit account into which proceeds should be deposited.
+     */
+     public void setDestinationAccountId(String value) {
+          this.destinationAccountId = value;
+     }
+
+    /**
+     * Gets merchant deposit account into which proceeds should be deposited.
+     * @return merchant deposit account into which proceeds should be deposited.
+     */
+     @JsonProperty("destinationAccountId")
+     public String getDestinationAccountId() {
+          return this.destinationAccountId;
+     }
+
+    /**
      * Sets the new captured amount.
      * @param value the new captured amount.
      */
@@ -59,6 +101,41 @@ public class BatchSummary {
      @JsonProperty("capturedAmount")
      public String getCapturedAmount() {
           return this.capturedAmount;
+     }
+
+    /**
+     * Sets the amount of preauths opened during the batch that have not been captured.
+     * @param value the amount of preauths opened during the batch that have not been
+     * captured.
+     */
+     public void setOpenPreauths(String value) {
+          this.openPreauths = value;
+     }
+
+    /**
+     * Gets the amount of preauths opened during the batch that have not been captured.
+     * @return the amount of preauths opened during the batch that have not been captured.
+     */
+     @JsonProperty("openPreauths")
+     public String getOpenPreauths() {
+          return this.openPreauths;
+     }
+
+    /**
+     * Sets the currency the batch was settled in.
+     * @param value the currency the batch was settled in.
+     */
+     public void setCurrencyCode(String value) {
+          this.currencyCode = value;
+     }
+
+    /**
+     * Gets the currency the batch was settled in.
+     * @return the currency the batch was settled in.
+     */
+     @JsonProperty("currencyCode")
+     public String getCurrencyCode() {
+          return this.currencyCode;
      }
 
     /**
