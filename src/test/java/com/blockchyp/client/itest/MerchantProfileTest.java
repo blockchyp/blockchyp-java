@@ -35,7 +35,7 @@ public class MerchantProfileTest extends BaseTestCase {
 
         // Set request parameters
         MerchantProfileRequest request = new MerchantProfileRequest();
-
+        request.setTest(true);
 
         MerchantProfileResponse response = client.merchantProfile(request);
 
