@@ -44,6 +44,8 @@ public class PaymentLinkRequest implements ICoreRequest, IRequestAmount, ITermin
 
      private boolean autoSend;
 
+     private boolean enroll;
+
      private boolean cashier;
 
      private String description;
@@ -316,6 +318,27 @@ public class PaymentLinkRequest implements ICoreRequest, IRequestAmount, ITermin
      @JsonProperty("autoSend")
      public boolean isAutoSend() {
           return this.autoSend;
+     }
+
+    /**
+     * Sets that the payment method should be added to the token vault alongside the
+     * authorization.
+     * @param value that the payment method should be added to the token vault alongside
+     * the authorization.
+     */
+     public void setEnroll(boolean value) {
+          this.enroll = value;
+     }
+
+    /**
+     * Gets that the payment method should be added to the token vault alongside the
+     * authorization.
+     * @return that the payment method should be added to the token vault alongside the
+     * authorization.
+     */
+     @JsonProperty("enroll")
+     public boolean isEnroll() {
+          return this.enroll;
      }
 
     /**
