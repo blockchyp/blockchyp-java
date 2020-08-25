@@ -42,20 +42,18 @@ public class CaptureSignatureRequest implements ICoreRequest, ISignatureRequest,
      private String terminalName;
 
     /**
-     * Sets the transaction reference string assigned to the transaction request.
-     * @param value the transaction reference string assigned to the transaction
-     * request. If no transaction ref was assiged on the request, then the gateway will
-     * randomly generate one.
+     * Sets a user-assigned reference that can be used to recall or reverse transactions.
+     * @param value a user-assigned reference that can be used to recall or reverse
+     * transactions.
      */
      public void setTransactionRef(String value) {
           this.transactionRef = value;
      }
 
     /**
-     * Gets the transaction reference string assigned to the transaction request.
-     * @return the transaction reference string assigned to the transaction request. If
-     * no transaction ref was assiged on the request, then the gateway will randomly
-     * generate one.
+     * Gets a user-assigned reference that can be used to recall or reverse transactions.
+     * @return a user-assigned reference that can be used to recall or reverse
+     * transactions.
      */
      @JsonProperty("transactionRef")
      public String getTransactionRef() {
