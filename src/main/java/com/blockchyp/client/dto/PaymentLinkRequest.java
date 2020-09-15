@@ -46,6 +46,8 @@ public class PaymentLinkRequest implements ICoreRequest, IRequestAmount, ITermin
 
      private boolean enroll;
 
+     private boolean enrollOnly;
+
      private boolean cashier;
 
      private String description;
@@ -337,6 +339,25 @@ public class PaymentLinkRequest implements ICoreRequest, IRequestAmount, ITermin
      @JsonProperty("enroll")
      public boolean isEnroll() {
           return this.enroll;
+     }
+
+    /**
+     * Sets that the link should be used to enroll a token only.
+     * @param value that the link should be used to enroll a token only. Can only be used in
+     * cashier mode.
+     */
+     public void setEnrollOnly(boolean value) {
+          this.enrollOnly = value;
+     }
+
+    /**
+     * Gets that the link should be used to enroll a token only.
+     * @return that the link should be used to enroll a token only. Can only be used in
+     * cashier mode.
+     */
+     @JsonProperty("enrollOnly")
+     public boolean isEnrollOnly() {
+          return this.enrollOnly;
      }
 
     /**
