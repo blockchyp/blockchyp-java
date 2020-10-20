@@ -49,6 +49,8 @@ public class TermsAndConditionsRequest implements ICoreRequest, IPreviousTransac
 
      private String tcContent;
 
+     private String contentHash;
+
      private boolean sigRequired;
 
     /**
@@ -344,6 +346,23 @@ public class TermsAndConditionsRequest implements ICoreRequest, IPreviousTransac
      @JsonProperty("tcContent")
      public String getTcContent() {
           return this.tcContent;
+     }
+
+    /**
+     * Sets a hash of the terms and conditions content that can be used for caching.
+     * @param value a hash of the terms and conditions content that can be used for caching.
+     */
+     public void setContentHash(String value) {
+          this.contentHash = value;
+     }
+
+    /**
+     * Gets a hash of the terms and conditions content that can be used for caching.
+     * @return a hash of the terms and conditions content that can be used for caching.
+     */
+     @JsonProperty("contentHash")
+     public String getContentHash() {
+          return this.contentHash;
      }
 
     /**
