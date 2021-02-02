@@ -31,6 +31,12 @@ public class TransactionDisplayItem {
 
      private String extended;
 
+     private String unitCode;
+
+     private String commodityCode;
+
+     private String productCode;
+
      private Collection<TransactionDisplayDiscount> discounts;
 
     /**
@@ -122,6 +128,59 @@ public class TransactionDisplayItem {
      @JsonProperty("extended")
      public String getExtended() {
           return this.extended;
+     }
+
+    /**
+     * Sets an alphanumeric code for units of measurement as used in international trade.
+     * @param value an alphanumeric code for units of measurement as used in
+     * international trade.
+     */
+     public void setUnitCode(String value) {
+          this.unitCode = value;
+     }
+
+    /**
+     * Gets an alphanumeric code for units of measurement as used in international trade.
+     * @return an alphanumeric code for units of measurement as used in international
+     * trade.
+     */
+     @JsonProperty("unitCode")
+     public String getUnitCode() {
+          return this.unitCode;
+     }
+
+    /**
+     * Sets an international description code of the item.
+     * @param value an international description code of the item.
+     */
+     public void setCommodityCode(String value) {
+          this.commodityCode = value;
+     }
+
+    /**
+     * Gets an international description code of the item.
+     * @return an international description code of the item.
+     */
+     @JsonProperty("commodityCode")
+     public String getCommodityCode() {
+          return this.commodityCode;
+     }
+
+    /**
+     * Sets a merchant-defined description code of the item.
+     * @param value a merchant-defined description code of the item.
+     */
+     public void setProductCode(String value) {
+          this.productCode = value;
+     }
+
+    /**
+     * Gets a merchant-defined description code of the item.
+     * @return a merchant-defined description code of the item.
+     */
+     @JsonProperty("productCode")
+     public String getProductCode() {
+          return this.productCode;
      }
 
     /**
