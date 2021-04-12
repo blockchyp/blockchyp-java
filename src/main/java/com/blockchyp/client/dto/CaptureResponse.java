@@ -81,6 +81,10 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
 
      private String cardHolder;
 
+     private String expMonth;
+
+     private String expYear;
+
      private AvsResponse avsResponse;
 
      private ReceiptSuggestions receiptSuggestions;
@@ -641,6 +645,40 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
      @JsonProperty("cardHolder")
      public String getCardHolder() {
           return this.cardHolder;
+     }
+
+    /**
+     * Sets the card expiration month in MM format.
+     * @param value the card expiration month in MM format.
+     */
+     public void setExpMonth(String value) {
+          this.expMonth = value;
+     }
+
+    /**
+     * Gets the card expiration month in MM format.
+     * @return the card expiration month in MM format.
+     */
+     @JsonProperty("expMonth")
+     public String getExpMonth() {
+          return this.expMonth;
+     }
+
+    /**
+     * Sets the card expiration year in YY format.
+     * @param value the card expiration year in YY format.
+     */
+     public void setExpYear(String value) {
+          this.expYear = value;
+     }
+
+    /**
+     * Gets the card expiration year in YY format.
+     * @return the card expiration year in YY format.
+     */
+     @JsonProperty("expYear")
+     public String getExpYear() {
+          return this.expYear;
      }
 
     /**

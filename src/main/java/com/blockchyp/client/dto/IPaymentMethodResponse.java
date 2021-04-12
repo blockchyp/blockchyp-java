@@ -30,6 +30,10 @@ public interface IPaymentMethodResponse {
 
      String getCardHolder();
 
+     String getExpMonth();
+
+     String getExpYear();
+
      AvsResponse getAvsResponse();
 
      ReceiptSuggestions getReceiptSuggestions();
