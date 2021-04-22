@@ -36,6 +36,8 @@ public class PANPreauthTest extends BaseTestCase {
         // Set request parameters
         AuthorizationRequest request = new AuthorizationRequest();
         request.setPan("4111111111111111");
+        request.setExpMonth("12");
+        request.setExpYear("2025");
         request.setAmount("25.55");
         request.setTest(true);
 

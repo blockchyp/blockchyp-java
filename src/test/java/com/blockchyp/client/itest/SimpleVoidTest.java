@@ -38,6 +38,8 @@ public class SimpleVoidTest extends BaseTestCase {
         // Set request parameters
         AuthorizationRequest setupRequest = new AuthorizationRequest();
         setupRequest.setPan("4111111111111111");
+        setupRequest.setExpMonth("12");
+        setupRequest.setExpYear("2025");
         setupRequest.setAmount("25.55");
         setupRequest.setTest(true);
         setupRequest.setTransactionRef(getUUID());

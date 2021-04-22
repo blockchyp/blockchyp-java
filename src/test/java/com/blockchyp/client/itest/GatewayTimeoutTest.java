@@ -38,6 +38,8 @@ public class GatewayTimeoutTest extends BaseTestCase {
         AuthorizationRequest request = new AuthorizationRequest();
         request.setTimeout(1);
         request.setPan("5555555555554444");
+        request.setExpMonth("12");
+        request.setExpYear("2025");
         request.setAmount("25.55");
         request.setTest(true);
         request.setTransactionRef(getUUID());
