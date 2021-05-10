@@ -21,6 +21,8 @@ public interface ICoreRequest {
 
      boolean isQueue();
 
+     boolean isWaitForRemovedCard();
+
      String getOrderRef();
 
      String getDestinationAccount();

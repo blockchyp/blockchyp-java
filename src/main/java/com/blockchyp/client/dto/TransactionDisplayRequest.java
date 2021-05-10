@@ -22,6 +22,8 @@ public class TransactionDisplayRequest implements ICoreRequest, ITerminalReferen
 
      private boolean queue;
 
+     private boolean waitForRemovedCard;
+
      private String orderRef;
 
      private String destinationAccount;
@@ -89,6 +91,27 @@ public class TransactionDisplayRequest implements ICoreRequest, ITerminalReferen
      @JsonProperty("queue")
      public boolean isQueue() {
           return this.queue;
+     }
+
+    /**
+     * Sets whether or not the request should block until all cards have been removed from
+     * the card reader.
+     * @param value whether or not the request should block until all cards have been
+     * removed from the card reader.
+     */
+     public void setWaitForRemovedCard(boolean value) {
+          this.waitForRemovedCard = value;
+     }
+
+    /**
+     * Gets whether or not the request should block until all cards have been removed from
+     * the card reader.
+     * @return whether or not the request should block until all cards have been removed
+     * from the card reader.
+     */
+     @JsonProperty("waitForRemovedCard")
+     public boolean isWaitForRemovedCard() {
+          return this.waitForRemovedCard;
      }
 
     /**
