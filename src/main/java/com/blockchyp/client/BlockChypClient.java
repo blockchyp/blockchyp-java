@@ -318,7 +318,7 @@ public class BlockChypClient {
     }
 
     /**
-     * Discards a previous preauth transaction.
+     * Discards a previous transaction.
      * @param request the request parameters.
      * @return {@link VoidResponse}
      * @throws Exception exception if any errors occurred processing the request.
