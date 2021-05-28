@@ -52,6 +52,12 @@ public class ReceiptSuggestions {
 
      private boolean pinVerified;
 
+     private CvmType cvmUsed;
+
+     private boolean fallback;
+
+     private int batchSequence;
+
      private String cashBackAmount;
 
      private String surcharge;
@@ -365,6 +371,59 @@ public class ReceiptSuggestions {
      @JsonProperty("pinVerified")
      public boolean isPinVerified() {
           return this.pinVerified;
+     }
+
+    /**
+     * Sets the customer verification method used for the transaction.
+     * @param value the customer verification method used for the transaction.
+     */
+     public void setCvmUsed(CvmType value) {
+          this.cvmUsed = value;
+     }
+
+    /**
+     * Gets the customer verification method used for the transaction.
+     * @return the customer verification method used for the transaction.
+     */
+     @JsonProperty("cvmUsed")
+     public CvmType getCvmUsed() {
+          return this.cvmUsed;
+     }
+
+    /**
+     * Sets that a chip read failure caused the transaction to fall back to the magstripe.
+     * @param value that a chip read failure caused the transaction to fall back to the
+     * magstripe.
+     */
+     public void setFallback(boolean value) {
+          this.fallback = value;
+     }
+
+    /**
+     * Gets that a chip read failure caused the transaction to fall back to the magstripe.
+     * @return that a chip read failure caused the transaction to fall back to the
+     * magstripe.
+     */
+     @JsonProperty("fallback")
+     public boolean isFallback() {
+          return this.fallback;
+     }
+
+    /**
+     * Sets the sequence of the transaction in the batch.
+     * @param value the sequence of the transaction in the batch.
+     */
+     public void setBatchSequence(int value) {
+          this.batchSequence = value;
+     }
+
+    /**
+     * Gets the sequence of the transaction in the batch.
+     * @return the sequence of the transaction in the batch.
+     */
+     @JsonProperty("batchSequence")
+     public int getBatchSequence() {
+          return this.batchSequence;
      }
 
     /**

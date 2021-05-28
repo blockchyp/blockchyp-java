@@ -19,6 +19,8 @@ public interface IApprovalResponse {
 
      String getAuthCode();
 
+     String getAuthResponseCode();
+
 
 }
 

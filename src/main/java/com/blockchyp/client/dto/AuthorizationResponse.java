@@ -27,6 +27,8 @@ public class AuthorizationResponse implements IAbstractAcknowledgement, IApprova
 
      private String authCode;
 
+     private String authResponseCode;
+
      private String transactionId;
 
      private String batchId;
@@ -180,6 +182,27 @@ public class AuthorizationResponse implements IAbstractAcknowledgement, IApprova
      @JsonProperty("authCode")
      public String getAuthCode() {
           return this.authCode;
+     }
+
+    /**
+     * Sets the code returned by the terminal or the card issuer to indicate the
+     * disposition of the message.
+     * @param value the code returned by the terminal or the card issuer to indicate the
+     * disposition of the message.
+     */
+     public void setAuthResponseCode(String value) {
+          this.authResponseCode = value;
+     }
+
+    /**
+     * Gets the code returned by the terminal or the card issuer to indicate the
+     * disposition of the message.
+     * @return the code returned by the terminal or the card issuer to indicate the
+     * disposition of the message.
+     */
+     @JsonProperty("authResponseCode")
+     public String getAuthResponseCode() {
+          return this.authResponseCode;
      }
 
     /**
