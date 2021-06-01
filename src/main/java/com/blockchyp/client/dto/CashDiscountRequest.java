@@ -24,6 +24,8 @@ public class CashDiscountRequest implements ICoreRequest {
 
      private boolean waitForRemovedCard;
 
+     private boolean force;
+
      private String orderRef;
 
      private String destinationAccount;
@@ -118,6 +120,23 @@ public class CashDiscountRequest implements ICoreRequest {
      @JsonProperty("waitForRemovedCard")
      public boolean isWaitForRemovedCard() {
           return this.waitForRemovedCard;
+     }
+
+    /**
+     * Sets override any in-progress transactions.
+     * @param value override any in-progress transactions.
+     */
+     public void setForce(boolean value) {
+          this.force = value;
+     }
+
+    /**
+     * Gets override any in-progress transactions.
+     * @return override any in-progress transactions.
+     */
+     @JsonProperty("force")
+     public boolean isForce() {
+          return this.force;
      }
 
     /**

@@ -23,6 +23,8 @@ public interface ICoreRequest {
 
      boolean isWaitForRemovedCard();
 
+     boolean isForce();
+
      String getOrderRef();
 
      String getDestinationAccount();
