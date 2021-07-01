@@ -92,8 +92,6 @@ public class RefundRequest implements ICoreRequest, IPaymentMethod, IPreviousTra
 
      private String taxAmount;
 
-     private String cashBackAmount;
-
      private String fsaEligibleAmount;
 
      private String hsaEligibleAmount;
@@ -771,23 +769,6 @@ public class RefundRequest implements ICoreRequest, IPaymentMethod, IPreviousTra
      @JsonProperty("taxAmount")
      public String getTaxAmount() {
           return this.taxAmount;
-     }
-
-    /**
-     * Sets the amount of cash back requested.
-     * @param value the amount of cash back requested.
-     */
-     public void setCashBackAmount(String value) {
-          this.cashBackAmount = value;
-     }
-
-    /**
-     * Gets the amount of cash back requested.
-     * @return the amount of cash back requested.
-     */
-     @JsonProperty("cashBackAmount")
-     public String getCashBackAmount() {
-          return this.cashBackAmount;
      }
 
     /**
