@@ -8,7 +8,7 @@ public enum CvmType {
     OFFLINE_PIN("Offline PIN"),
     ONLINE_PIN("Online PIN"),
     CDCVM("CDCVM"),
-    NO_CVM("No CVM"),
+    NO_CVM("No CVM");
 
     private final String code;
 
