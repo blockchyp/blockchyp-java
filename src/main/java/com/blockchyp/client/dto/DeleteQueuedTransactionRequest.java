@@ -14,31 +14,136 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Deletes one or all transactions from a terminal queue.
  */
-public class DeleteQueuedTransactionRequest implements ITerminalReference {
+public class DeleteQueuedTransactionRequest implements ICoreRequest, ITerminalReference {
 
-     private String terminalName;
+     private boolean async;
+
+     private boolean queue;
+
+     private boolean waitForRemovedCard;
+
+     private boolean force;
+
+     private String orderRef;
+
+     private String destinationAccount;
 
      private boolean test;
 
      private int timeout;
 
+     private String terminalName;
+
      private String transactionRef;
 
     /**
-     * Sets the name of the target payment terminal.
-     * @param value the name of the target payment terminal.
+     * Sets defers the response to the transaction and returns immediately.
+     * @param value defers the response to the transaction and returns immediately.
+     * Callers should retrive the transaction result using the Transaction Status API.
      */
-     public void setTerminalName(String value) {
-          this.terminalName = value;
+     public void setAsync(boolean value) {
+          this.async = value;
      }
 
     /**
-     * Gets the name of the target payment terminal.
-     * @return the name of the target payment terminal.
+     * Gets defers the response to the transaction and returns immediately.
+     * @return defers the response to the transaction and returns immediately. Callers
+     * should retrive the transaction result using the Transaction Status API.
      */
-     @JsonProperty("terminalName")
-     public String getTerminalName() {
-          return this.terminalName;
+     @JsonProperty("async")
+     public boolean isAsync() {
+          return this.async;
+     }
+
+    /**
+     * Sets adds the transaction to the queue and returns immediately.
+     * @param value adds the transaction to the queue and returns immediately. Callers
+     * should retrive the transaction result using the Transaction Status API.
+     */
+     public void setQueue(boolean value) {
+          this.queue = value;
+     }
+
+    /**
+     * Gets adds the transaction to the queue and returns immediately.
+     * @return adds the transaction to the queue and returns immediately. Callers should
+     * retrive the transaction result using the Transaction Status API.
+     */
+     @JsonProperty("queue")
+     public boolean isQueue() {
+          return this.queue;
+     }
+
+    /**
+     * Sets whether or not the request should block until all cards have been removed from
+     * the card reader.
+     * @param value whether or not the request should block until all cards have been
+     * removed from the card reader.
+     */
+     public void setWaitForRemovedCard(boolean value) {
+          this.waitForRemovedCard = value;
+     }
+
+    /**
+     * Gets whether or not the request should block until all cards have been removed from
+     * the card reader.
+     * @return whether or not the request should block until all cards have been removed
+     * from the card reader.
+     */
+     @JsonProperty("waitForRemovedCard")
+     public boolean isWaitForRemovedCard() {
+          return this.waitForRemovedCard;
+     }
+
+    /**
+     * Sets override any in-progress transactions.
+     * @param value override any in-progress transactions.
+     */
+     public void setForce(boolean value) {
+          this.force = value;
+     }
+
+    /**
+     * Gets override any in-progress transactions.
+     * @return override any in-progress transactions.
+     */
+     @JsonProperty("force")
+     public boolean isForce() {
+          return this.force;
+     }
+
+    /**
+     * Sets an identifier from an external point of sale system.
+     * @param value an identifier from an external point of sale system.
+     */
+     public void setOrderRef(String value) {
+          this.orderRef = value;
+     }
+
+    /**
+     * Gets an identifier from an external point of sale system.
+     * @return an identifier from an external point of sale system.
+     */
+     @JsonProperty("orderRef")
+     public String getOrderRef() {
+          return this.orderRef;
+     }
+
+    /**
+     * Sets the settlement account for merchants with split settlements.
+     * @param value the settlement account for merchants with split settlements.
+     */
+     public void setDestinationAccount(String value) {
+          this.destinationAccount = value;
+     }
+
+    /**
+     * Gets the settlement account for merchants with split settlements.
+     * @return the settlement account for merchants with split settlements.
+     */
+     @JsonProperty("destinationAccount")
+     public String getDestinationAccount() {
+          return this.destinationAccount;
      }
 
     /**
@@ -73,6 +178,23 @@ public class DeleteQueuedTransactionRequest implements ITerminalReference {
      @JsonProperty("timeout")
      public int getTimeout() {
           return this.timeout;
+     }
+
+    /**
+     * Sets the name of the target payment terminal.
+     * @param value the name of the target payment terminal.
+     */
+     public void setTerminalName(String value) {
+          this.terminalName = value;
+     }
+
+    /**
+     * Gets the name of the target payment terminal.
+     * @return the name of the target payment terminal.
+     */
+     @JsonProperty("terminalName")
+     public String getTerminalName() {
+          return this.terminalName;
      }
 
     /**
