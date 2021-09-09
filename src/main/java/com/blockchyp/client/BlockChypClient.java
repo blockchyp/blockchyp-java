@@ -112,6 +112,10 @@ import com.blockchyp.client.dto.TerminalVolume;
 import com.blockchyp.client.dto.MerchantProfileRequest;
 import com.blockchyp.client.dto.MerchantProfileResponse;
 import com.blockchyp.client.dto.BankAccount;
+import com.blockchyp.client.dto.ListQueuedTransactionsRequest;
+import com.blockchyp.client.dto.ListQueuedTransactionsResponse;
+import com.blockchyp.client.dto.DeleteQueuedTransactionRequest;
+import com.blockchyp.client.dto.DeleteQueuedTransactionResponse;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -738,6 +742,38 @@ public class BlockChypClient {
             return (TextPromptResponse) postTerminal("/api/text-prompt", request, TextPromptResponse.class);
         } else {
             return (TextPromptResponse) postGateway("/api/text-prompt", request, TextPromptResponse.class);
+        }
+
+    }
+
+    /**
+     * Returns a list of queued transactions on a terminal.
+     * @param request the request parameters.
+     * @return {@link ListQueuedTransactionsResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public ListQueuedTransactionsResponse listQueuedTransactions(ListQueuedTransactionsRequest request) throws Exception {
+
+        if (isTerminalRouted(request)) {
+            return (ListQueuedTransactionsResponse) postTerminal("/api/queue/list", request, ListQueuedTransactionsResponse.class);
+        } else {
+            return (ListQueuedTransactionsResponse) postGateway("/api/queue/list", request, ListQueuedTransactionsResponse.class);
+        }
+
+    }
+
+    /**
+     * Deletes a queued transaction from the terminal.
+     * @param request the request parameters.
+     * @return {@link DeleteQueuedTransactionResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public DeleteQueuedTransactionResponse deleteQueuedTransaction(DeleteQueuedTransactionRequest request) throws Exception {
+
+        if (isTerminalRouted(request)) {
+            return (DeleteQueuedTransactionResponse) postTerminal("/api/queue/delete", request, DeleteQueuedTransactionResponse.class);
+        } else {
+            return (DeleteQueuedTransactionResponse) postGateway("/api/queue/delete", request, DeleteQueuedTransactionResponse.class);
         }
 
     }
