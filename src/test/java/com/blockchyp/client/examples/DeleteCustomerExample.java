@@ -8,11 +8,11 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 
 import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
-import com.blockchyp.client.dto.DeleteQueuedTransactionsRequest;
-import com.blockchyp.client.dto.DeleteQueuedTransactionsResponse;
+import com.blockchyp.client.dto.DeleteCustomerRequest;
+import com.blockchyp.client.dto.DeleteCustomerResponse;
 
 
-public class DeleteQueuedTransactionsExample {
+public class DeleteCustomerExample {
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
@@ -25,11 +25,11 @@ public class DeleteQueuedTransactionsExample {
         BlockChypClient client = new BlockChypClient(creds);
 
         // Set request parameters
-        DeleteQueuedTransactionsRequest request = new DeleteQueuedTransactionsRequest();
-        request.setTerminalName("Test Terminal");
+        DeleteCustomerRequest request = new DeleteCustomerRequest();
+        request.setCustomerId("ID of the customer to delete");
 
         // Send the request
-        DeleteQueuedTransactionsResponse response = client.deleteQueuedTransactions(request);
+        DeleteCustomerResponse response = client.deleteCustomer(request);
 
         // View the result
         System.out.println("Response: " + prettyPrint(response));

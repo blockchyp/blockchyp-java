@@ -31,11 +31,11 @@ public class TerminalEnrollTest extends BaseTestCase {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "TerminalEnrollTest");
+        processTestDelay(client, "TerminalEnrollTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
         EnrollRequest request = new EnrollRequest();
-        request.setTerminalName("Test Terminal");
+        request.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
         request.setTest(true);
 
         EnrollResponse response = client.enroll(request);

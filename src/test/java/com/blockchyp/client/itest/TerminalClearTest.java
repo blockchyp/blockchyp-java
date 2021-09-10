@@ -31,12 +31,12 @@ public class TerminalClearTest extends BaseTestCase {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "TerminalClearTest");
+        processTestDelay(client, "TerminalClearTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
         ClearTerminalRequest request = new ClearTerminalRequest();
         request.setTest(true);
-        request.setTerminalName("Test Terminal");
+        request.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
 
         Acknowledgement response = client.clear(request);
 

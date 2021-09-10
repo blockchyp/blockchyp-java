@@ -32,11 +32,11 @@ public class CaptureSignatureTest extends BaseTestCase {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "CaptureSignatureTest");
+        processTestDelay(client, "CaptureSignatureTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
         CaptureSignatureRequest request = new CaptureSignatureRequest();
-        request.setTerminalName("Test Terminal");
+        request.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
         request.setSigFormat(SignatureFormat.PNG);
         request.setSigWidth(200);
 

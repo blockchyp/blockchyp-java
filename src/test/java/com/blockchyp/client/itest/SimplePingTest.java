@@ -31,12 +31,12 @@ public class SimplePingTest extends BaseTestCase {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "SimplePingTest");
+        processTestDelay(client, "SimplePingTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
         PingRequest request = new PingRequest();
         request.setTest(true);
-        request.setTerminalName("Test Terminal");
+        request.setTerminalName("$testTerminal");
 
         PingResponse response = client.ping(request);
 

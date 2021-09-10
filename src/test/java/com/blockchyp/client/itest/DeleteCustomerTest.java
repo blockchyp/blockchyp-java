@@ -19,13 +19,13 @@ import org.junit.experimental.categories.Category;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.IntegrationTest;
 import com.blockchyp.client.IntegrationTestConfiguration;
-import com.blockchyp.client.dto.CustomerSearchRequest;
-import com.blockchyp.client.dto.CustomerSearchResponse;
+import com.blockchyp.client.dto.DeleteCustomerRequest;
+import com.blockchyp.client.dto.DeleteCustomerResponse;
 import com.blockchyp.client.dto.UpdateCustomerRequest;
 import com.blockchyp.client.dto.CustomerResponse;
 import com.blockchyp.client.dto.Customer;
 
-public class SearchCustomerTest extends BaseTestCase {
+public class DeleteCustomerTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
@@ -34,7 +34,7 @@ public class SearchCustomerTest extends BaseTestCase {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "SearchCustomerTest", IntegrationTestConfiguration.getDefaultTerminalName());
+        processTestDelay(client, "DeleteCustomerTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
         UpdateCustomerRequest setupRequest = new UpdateCustomerRequest();
@@ -50,10 +50,10 @@ public class SearchCustomerTest extends BaseTestCase {
          CustomerResponse setupResponse = client.updateCustomer(setupRequest);
 
         // Set request parameters
-        CustomerSearchRequest request = new CustomerSearchRequest();
-        request.setQuery("123123");
+        DeleteCustomerRequest request = new DeleteCustomerRequest();
+        request.setCustomerId(setupResponse.getCustomer().getId());
 
-        CustomerSearchResponse response = client.customerSearch(request);
+        DeleteCustomerResponse response = client.deleteCustomer(request);
 
         // Response assertions
         Assert.assertTrue(response.isSuccess());

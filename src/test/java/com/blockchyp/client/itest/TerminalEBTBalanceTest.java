@@ -32,12 +32,12 @@ public class TerminalEBTBalanceTest extends BaseTestCase {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "TerminalEBTBalanceTest");
+        processTestDelay(client, "TerminalEBTBalanceTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
         BalanceRequest request = new BalanceRequest();
         request.setTest(true);
-        request.setTerminalName("Test Terminal");
+        request.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
         request.setCardType(CardType.EBT);
 
         BalanceResponse response = client.balance(request);

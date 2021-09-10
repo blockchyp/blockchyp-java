@@ -31,12 +31,12 @@ public class SimpleMessageTest extends BaseTestCase {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "SimpleMessageTest");
+        processTestDelay(client, "SimpleMessageTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
         MessageRequest request = new MessageRequest();
         request.setTest(true);
-        request.setTerminalName("Test Terminal");
+        request.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
         request.setMessage("Thank You For Your Business");
 
         Acknowledgement response = client.message(request);

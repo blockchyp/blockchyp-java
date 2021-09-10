@@ -31,12 +31,12 @@ public class SimpleGiftActivateTest extends BaseTestCase {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "SimpleGiftActivateTest");
+        processTestDelay(client, "SimpleGiftActivateTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
         GiftActivateRequest request = new GiftActivateRequest();
         request.setTest(true);
-        request.setTerminalName("Test Terminal");
+        request.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
         request.setAmount("50.00");
 
         GiftActivateResponse response = client.giftActivate(request);

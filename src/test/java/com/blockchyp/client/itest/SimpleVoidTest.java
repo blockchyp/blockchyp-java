@@ -33,7 +33,7 @@ public class SimpleVoidTest extends BaseTestCase {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "SimpleVoidTest");
+        processTestDelay(client, "SimpleVoidTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
         AuthorizationRequest setupRequest = new AuthorizationRequest();

@@ -22,7 +22,7 @@ public abstract class BaseTestCase {
     	
     }
     
-    protected void processTestDelay(BlockChypClient client, String testName) {
+    protected void processTestDelay(BlockChypClient client, String testName, String terminalName) {
     	
     	String testDelay = System.getenv("BC_TEST_DELAY");
     	
@@ -30,7 +30,7 @@ public abstract class BaseTestCase {
     		try {
 	    			
 	    		MessageRequest request = new MessageRequest();
-	    		request.setTerminalName("Test Terminal");
+	    		request.setTerminalName(terminalName);
 	    		request.setTest(true);
 	    		request.setMessage("Running " + testName + " in " + testDelay + " seconds...");
     		

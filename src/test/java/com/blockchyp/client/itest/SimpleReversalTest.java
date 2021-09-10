@@ -31,7 +31,7 @@ public class SimpleReversalTest extends BaseTestCase {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "SimpleReversalTest");
+        processTestDelay(client, "SimpleReversalTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
         AuthorizationRequest setupRequest = new AuthorizationRequest();

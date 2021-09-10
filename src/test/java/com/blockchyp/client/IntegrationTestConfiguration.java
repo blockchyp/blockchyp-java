@@ -78,7 +78,7 @@ public class IntegrationTestConfiguration {
     	
     }
     
-    protected static String getDefaultTerminalName() {
+    public static String getDefaultTerminalName() {
         return getSettings().getDefaultTerminalName();
     }   
     

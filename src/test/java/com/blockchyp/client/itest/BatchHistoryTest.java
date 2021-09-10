@@ -33,7 +33,7 @@ public class BatchHistoryTest extends BaseTestCase {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "BatchHistoryTest");
+        processTestDelay(client, "BatchHistoryTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
         AuthorizationRequest setupRequest = new AuthorizationRequest();

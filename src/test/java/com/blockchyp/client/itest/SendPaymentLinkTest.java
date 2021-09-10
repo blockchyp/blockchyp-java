@@ -34,7 +34,7 @@ public class SendPaymentLinkTest extends BaseTestCase {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "SendPaymentLinkTest");
+        processTestDelay(client, "SendPaymentLinkTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
         PaymentLinkRequest request = new PaymentLinkRequest();

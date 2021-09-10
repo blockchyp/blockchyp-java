@@ -31,7 +31,7 @@ public class PANChargeTest extends BaseTestCase {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "PANChargeTest");
+        processTestDelay(client, "PANChargeTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
         AuthorizationRequest request = new AuthorizationRequest();

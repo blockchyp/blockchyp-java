@@ -33,7 +33,7 @@ public class SimpleCaptureTest extends BaseTestCase {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "SimpleCaptureTest");
+        processTestDelay(client, "SimpleCaptureTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
         AuthorizationRequest setupRequest = new AuthorizationRequest();

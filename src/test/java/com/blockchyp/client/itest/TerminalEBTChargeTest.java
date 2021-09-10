@@ -32,11 +32,11 @@ public class TerminalEBTChargeTest extends BaseTestCase {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "TerminalEBTChargeTest");
+        processTestDelay(client, "TerminalEBTChargeTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
         AuthorizationRequest request = new AuthorizationRequest();
-        request.setTerminalName("Test Terminal");
+        request.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
         request.setAmount("25.00");
         request.setTest(true);
         request.setCardType(CardType.EBT);

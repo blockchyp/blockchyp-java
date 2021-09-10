@@ -31,11 +31,11 @@ public class TerminalPreauthTest extends BaseTestCase {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "TerminalPreauthTest");
+        processTestDelay(client, "TerminalPreauthTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
         AuthorizationRequest request = new AuthorizationRequest();
-        request.setTerminalName("Test Terminal");
+        request.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
         request.setAmount("15.15");
         request.setTest(true);
 

@@ -19,10 +19,12 @@ import org.junit.experimental.categories.Category;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.IntegrationTest;
 import com.blockchyp.client.IntegrationTestConfiguration;
-import com.blockchyp.client.dto.MerchantProfileRequest;
-import com.blockchyp.client.dto.MerchantProfileResponse;
+import com.blockchyp.client.dto.DeleteTokenRequest;
+import com.blockchyp.client.dto.DeleteTokenResponse;
+import com.blockchyp.client.dto.EnrollRequest;
+import com.blockchyp.client.dto.EnrollResponse;
 
-public class MerchantProfileTest extends BaseTestCase {
+public class DeleteTokenTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
@@ -31,13 +33,20 @@ public class MerchantProfileTest extends BaseTestCase {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "MerchantProfileTest", IntegrationTestConfiguration.getDefaultTerminalName());
+        processTestDelay(client, "DeleteTokenTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
-        MerchantProfileRequest request = new MerchantProfileRequest();
-        request.setTest(true);
+        EnrollRequest setupRequest = new EnrollRequest();
+        setupRequest.setPan("4111111111111111");
+        setupRequest.setTest(true);
 
-        MerchantProfileResponse response = client.merchantProfile(request);
+         EnrollResponse setupResponse = client.enroll(setupRequest);
+
+        // Set request parameters
+        DeleteTokenRequest request = new DeleteTokenRequest();
+        request.setToken(setupResponse.getToken());
+
+        DeleteTokenResponse response = client.deleteToken(request);
 
         // Response assertions
         Assert.assertTrue(response.isSuccess());

@@ -32,12 +32,12 @@ public class TerminalTimeoutTest extends BaseTestCase {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "TerminalTimeoutTest");
+        processTestDelay(client, "TerminalTimeoutTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
         AuthorizationRequest request = new AuthorizationRequest();
         request.setTimeout(1);
-        request.setTerminalName("Test Terminal");
+        request.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
         request.setAmount("25.15");
         request.setTest(true);
 

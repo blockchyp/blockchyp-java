@@ -32,7 +32,7 @@ public class PartialRefundTest extends BaseTestCase {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "PartialRefundTest");
+        processTestDelay(client, "PartialRefundTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
         AuthorizationRequest setupRequest = new AuthorizationRequest();

@@ -31,12 +31,12 @@ public class BooleanPromptTest extends BaseTestCase {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "BooleanPromptTest");
+        processTestDelay(client, "BooleanPromptTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
         BooleanPromptRequest request = new BooleanPromptRequest();
         request.setTest(true);
-        request.setTerminalName("Test Terminal");
+        request.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
         request.setPrompt("Would you like to become a member?");
         request.setYesCaption("Yes");
         request.setNoCaption("No");

@@ -31,12 +31,12 @@ public class TerminalGiftCardBalanceTest extends BaseTestCase {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "TerminalGiftCardBalanceTest");
+        processTestDelay(client, "TerminalGiftCardBalanceTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
         BalanceRequest request = new BalanceRequest();
         request.setTest(true);
-        request.setTerminalName("Test Terminal");
+        request.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
 
         BalanceResponse response = client.balance(request);
 

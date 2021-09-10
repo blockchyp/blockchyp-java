@@ -31,11 +31,11 @@ public class TerminalChargeTest extends BaseTestCase {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "TerminalChargeTest");
+        processTestDelay(client, "TerminalChargeTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
         AuthorizationRequest request = new AuthorizationRequest();
-        request.setTerminalName("Test Terminal");
+        request.setTerminalName("$testTerminal");
         request.setAmount("25.15");
         request.setTest(true);
 

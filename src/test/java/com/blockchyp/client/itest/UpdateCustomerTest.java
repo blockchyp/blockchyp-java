@@ -32,7 +32,7 @@ public class UpdateCustomerTest extends BaseTestCase {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "UpdateCustomerTest");
+        processTestDelay(client, "UpdateCustomerTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
         UpdateCustomerRequest request = new UpdateCustomerRequest();

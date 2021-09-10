@@ -33,7 +33,7 @@ public class SimpleBatchCloseTest extends BaseTestCase {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "SimpleBatchCloseTest");
+        processTestDelay(client, "SimpleBatchCloseTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
         AuthorizationRequest setupRequest = new AuthorizationRequest();

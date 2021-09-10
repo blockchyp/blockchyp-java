@@ -33,7 +33,7 @@ public class TransactionHistoryTest extends BaseTestCase {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "TransactionHistoryTest");
+        processTestDelay(client, "TransactionHistoryTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
         AuthorizationRequest setupRequest = new AuthorizationRequest();

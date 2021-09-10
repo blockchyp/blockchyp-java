@@ -32,12 +32,12 @@ public class TextPromptTest extends BaseTestCase {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "TextPromptTest");
+        processTestDelay(client, "TextPromptTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
         TextPromptRequest request = new TextPromptRequest();
         request.setTest(true);
-        request.setTerminalName("Test Terminal");
+        request.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
         request.setPromptType(PromptType.EMAIL);
 
         TextPromptResponse response = client.textPrompt(request);

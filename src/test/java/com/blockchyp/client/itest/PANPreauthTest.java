@@ -31,7 +31,7 @@ public class PANPreauthTest extends BaseTestCase {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "PANPreauthTest");
+        processTestDelay(client, "PANPreauthTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
         AuthorizationRequest request = new AuthorizationRequest();

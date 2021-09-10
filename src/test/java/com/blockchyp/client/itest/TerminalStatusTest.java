@@ -31,11 +31,11 @@ public class TerminalStatusTest extends BaseTestCase {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "TerminalStatusTest");
+        processTestDelay(client, "TerminalStatusTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
         TerminalStatusRequest request = new TerminalStatusRequest();
-        request.setTerminalName("Test Terminal");
+        request.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
 
         TerminalStatusResponse response = client.terminalStatus(request);
 

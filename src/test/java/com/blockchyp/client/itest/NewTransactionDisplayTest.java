@@ -34,12 +34,12 @@ public class NewTransactionDisplayTest extends BaseTestCase {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "NewTransactionDisplayTest");
+        processTestDelay(client, "NewTransactionDisplayTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
         TransactionDisplayRequest request = new TransactionDisplayRequest();
         request.setTest(true);
-        request.setTerminalName("Test Terminal");
+        request.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
 
         TransactionDisplayTransaction transaction = new TransactionDisplayTransaction();
         transaction.setSubtotal("35.00");

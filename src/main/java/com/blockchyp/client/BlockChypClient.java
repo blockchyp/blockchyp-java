@@ -29,6 +29,7 @@ import org.apache.commons.httpclient.MultiThreadedHttpConnectionManager;
 import org.apache.commons.httpclient.methods.EntityEnclosingMethod;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
+import org.apache.commons.httpclient.methods.DeleteMethod;
 import org.apache.commons.httpclient.methods.PutMethod;
 import org.apache.commons.httpclient.methods.StringRequestEntity;
 import org.apache.commons.io.FileUtils;
@@ -116,6 +117,10 @@ import com.blockchyp.client.dto.ListQueuedTransactionsRequest;
 import com.blockchyp.client.dto.ListQueuedTransactionsResponse;
 import com.blockchyp.client.dto.DeleteQueuedTransactionRequest;
 import com.blockchyp.client.dto.DeleteQueuedTransactionResponse;
+import com.blockchyp.client.dto.DeleteCustomerRequest;
+import com.blockchyp.client.dto.DeleteCustomerResponse;
+import com.blockchyp.client.dto.DeleteTokenRequest;
+import com.blockchyp.client.dto.DeleteTokenResponse;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -485,6 +490,30 @@ public class BlockChypClient {
 
     }
 
+    /**
+     * Deletes a customer record.
+     * @param request the request parameters.
+     * @return {@link DeleteCustomerResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public DeleteCustomerResponse deleteCustomer(DeleteCustomerRequest request) throws Exception {
+
+        return (DeleteCustomerResponse) deleteGateway("/api/customer/" + request.getCustomerId(), request, DeleteCustomerResponse.class);
+
+    }
+
+    /**
+     * Deletes a payment token.
+     * @param request the request parameters.
+     * @return {@link DeleteTokenResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public DeleteTokenResponse deleteToken(DeleteTokenRequest request) throws Exception {
+
+        return (DeleteTokenResponse) deleteGateway("/api/token/" + request.getToken(), request, DeleteTokenResponse.class);
+
+    }
+
 
 
 
@@ -691,9 +720,9 @@ public class BlockChypClient {
     public Acknowledgement updateTransactionDisplay(TransactionDisplayRequest request) throws Exception {
 
         if (isTerminalRouted(request)) {
-            return (Acknowledgement) postTerminal("/api/txdisplay", request, Acknowledgement.class);
+            return (Acknowledgement) putTerminal("/api/txdisplay", request, Acknowledgement.class);
         } else {
-            return (Acknowledgement) postGateway("/api/terminal-txdisplay", request, Acknowledgement.class);
+            return (Acknowledgement) putGateway("/api/terminal-txdisplay", request, Acknowledgement.class);
         }
 
     }
@@ -1068,17 +1097,22 @@ public class BlockChypClient {
      * @throws Exception exception if any errors occurred processing the request.
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    protected Object finishTerminalRequest(TerminalRouteResponse route, Object request, EntityEnclosingMethod method,
+    protected Object finishTerminalRequest(TerminalRouteResponse route, Object request, HttpMethod method,
             Class responseType) throws Exception {
 
         TerminalRequest termRequest = newTerminalRequestForRoute(route);
         termRequest.setRequest(request);
 
         HttpClient client = getGatewayClient();
-        StringRequestEntity requestEntity = new StringRequestEntity(objectMapper.writeValueAsString(termRequest),
-                "application/json", "UTF-8");
 
-        method.setRequestEntity(requestEntity);
+        if (method instanceof EntityEnclosingMethod) {
+            StringRequestEntity requestEntity = new StringRequestEntity(objectMapper.writeValueAsString(termRequest),
+                    "application/json", "UTF-8");
+
+            EntityEnclosingMethod entityMethod = (EntityEnclosingMethod) method;
+            entityMethod.setRequestEntity(requestEntity);
+        }
+
         method.setRequestHeader("User-Agent", USER_AGENT);
 
         paymentLogger.debug("Terminal: " + method.getURI().toString());
@@ -1299,6 +1333,27 @@ public class BlockChypClient {
                 "application/json", "UTF-8");
 
         method.setRequestEntity(requestEntity);
+
+        return finishGatewayRequest(method, responseClass);
+
+    }
+
+    /**
+     * Executes a delete HTTP request against the gateway.
+     * @param path API path from root (e.g. "/api/charge")
+     * @param request the request object.
+     * @param responseClass expected response type.
+     * @return a response of type specified by responseClass
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    @SuppressWarnings({ "rawtypes" })
+    protected Object deleteGateway(String path, ICoreRequest request, Class responseClass) throws Exception {
+
+        DeleteMethod method = new DeleteMethod(toFullyQualifiedGatewayPath(path, request.isTest()));
+
+        if (request.getTimeout() > 0) {
+            method.getParams().setSoTimeout(request.getTimeout());
+        }
 
         return finishGatewayRequest(method, responseClass);
 

@@ -31,7 +31,7 @@ public class PANEnrollTest extends BaseTestCase {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "PANEnrollTest");
+        processTestDelay(client, "PANEnrollTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
         EnrollRequest request = new EnrollRequest();

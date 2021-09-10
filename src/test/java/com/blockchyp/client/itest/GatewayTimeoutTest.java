@@ -32,7 +32,7 @@ public class GatewayTimeoutTest extends BaseTestCase {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "GatewayTimeoutTest");
+        processTestDelay(client, "GatewayTimeoutTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
         AuthorizationRequest request = new AuthorizationRequest();
