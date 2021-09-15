@@ -36,7 +36,7 @@ public class SimplePingTest extends BaseTestCase {
         // Set request parameters
         PingRequest request = new PingRequest();
         request.setTest(true);
-        request.setTerminalName("$testTerminal");
+        request.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
 
         PingResponse response = client.ping(request);
 

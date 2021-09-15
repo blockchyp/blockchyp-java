@@ -35,7 +35,7 @@ public class TerminalChargeTest extends BaseTestCase {
 
         // Set request parameters
         AuthorizationRequest request = new AuthorizationRequest();
-        request.setTerminalName("$testTerminal");
+        request.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
         request.setAmount("25.15");
         request.setTest(true);
 
