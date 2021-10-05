@@ -10,12 +10,11 @@ package com.blockchyp.client.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.Date;
 
 /**
- * Models a batch history request.
+ * Removes a link between a payment token with a customer record, if one exists.
  */
-public class TransactionHistoryRequest implements ICoreRequest {
+public class UnlinkTokenRequest implements ICoreRequest {
 
      private String transactionRef;
 
@@ -35,19 +34,9 @@ public class TransactionHistoryRequest implements ICoreRequest {
 
      private int timeout;
 
-     private String query;
+     private String token;
 
-     private String batchId;
-
-     private String terminalName;
-
-     private Date startDate;
-
-     private Date endDate;
-
-     private int maxResults;
-
-     private int startIndex;
+     private String customerId;
 
     /**
      * Sets a user-assigned reference that can be used to recall or reverse transactions.
@@ -213,124 +202,37 @@ public class TransactionHistoryRequest implements ICoreRequest {
      }
 
     /**
-     * Sets optional search query.
-     * @param value optional search query. Will match amount, last 4 and customer name.
-     * batchId and terminalName are not supported with this option.
+     * Sets the token to delete.
+     * @param value the token to delete.
      */
-     public void setQuery(String value) {
-          this.query = value;
+     public void setToken(String value) {
+          this.token = value;
      }
 
     /**
-     * Gets optional search query.
-     * @return optional search query. Will match amount, last 4 and customer name.
-     * batchId and terminalName are not supported with this option.
+     * Gets the token to delete.
+     * @return the token to delete.
      */
-     @JsonProperty("query")
-     public String getQuery() {
-          return this.query;
+     @JsonProperty("token")
+     public String getToken() {
+          return this.token;
      }
 
     /**
-     * Sets optional batch id.
-     * @param value optional batch id.
+     * Sets BlockChyp assigned customer id.
+     * @param value BlockChyp assigned customer id.
      */
-     public void setBatchId(String value) {
-          this.batchId = value;
+     public void setCustomerId(String value) {
+          this.customerId = value;
      }
 
     /**
-     * Gets optional batch id.
-     * @return optional batch id.
+     * Gets BlockChyp assigned customer id.
+     * @return BlockChyp assigned customer id.
      */
-     @JsonProperty("batchId")
-     public String getBatchId() {
-          return this.batchId;
-     }
-
-    /**
-     * Sets optional terminal name.
-     * @param value optional terminal name.
-     */
-     public void setTerminalName(String value) {
-          this.terminalName = value;
-     }
-
-    /**
-     * Gets optional terminal name.
-     * @return optional terminal name.
-     */
-     @JsonProperty("terminalName")
-     public String getTerminalName() {
-          return this.terminalName;
-     }
-
-    /**
-     * Sets optional start date filter for batch history.
-     * @param value optional start date filter for batch history.
-     */
-     public void setStartDate(Date value) {
-          this.startDate = value;
-     }
-
-    /**
-     * Gets optional start date filter for batch history.
-     * @return optional start date filter for batch history.
-     */
-     @JsonProperty("startDate")
-     public Date getStartDate() {
-          return this.startDate;
-     }
-
-    /**
-     * Sets optional end date filter for batch history.
-     * @param value optional end date filter for batch history.
-     */
-     public void setEndDate(Date value) {
-          this.endDate = value;
-     }
-
-    /**
-     * Gets optional end date filter for batch history.
-     * @return optional end date filter for batch history.
-     */
-     @JsonProperty("endDate")
-     public Date getEndDate() {
-          return this.endDate;
-     }
-
-    /**
-     * Sets max results to be returned by this request.
-     * @param value max results to be returned by this request.
-     */
-     public void setMaxResults(int value) {
-          this.maxResults = value;
-     }
-
-    /**
-     * Gets max results to be returned by this request.
-     * @return max results to be returned by this request.
-     */
-     @JsonProperty("maxResults")
-     public int getMaxResults() {
-          return this.maxResults;
-     }
-
-    /**
-     * Sets starting index for results to be returned.
-     * @param value starting index for results to be returned.
-     */
-     public void setStartIndex(int value) {
-          this.startIndex = value;
-     }
-
-    /**
-     * Gets starting index for results to be returned.
-     * @return starting index for results to be returned.
-     */
-     @JsonProperty("startIndex")
-     public int getStartIndex() {
-          return this.startIndex;
+     @JsonProperty("customerId")
+     public String getCustomerId() {
+          return this.customerId;
      }
 
 }

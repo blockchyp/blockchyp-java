@@ -11,10 +11,13 @@ package com.blockchyp.client.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import com.blockchyp.client.dto.AvsResponse;
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * The response to a void request.
  */
+@SuppressWarnings({"rawtypes", "unchecked"})
 public class VoidResponse implements IAbstractAcknowledgement, IApprovalResponse, ICoreResponse, IPaymentMethodResponse, ISignatureResponse {
 
      private boolean success;
@@ -70,6 +73,8 @@ public class VoidResponse implements IAbstractAcknowledgement, IApprovalResponse
      private ReceiptSuggestions receiptSuggestions;
 
      private Customer customer;
+
+     private Collection<Customer> customers;
 
      private String sigFile;
 
@@ -529,7 +534,7 @@ public class VoidResponse implements IAbstractAcknowledgement, IApprovalResponse
 
     /**
      * Sets customer data, if any.
-     * @param value customer data, if any.
+     * @param value customer data, if any. Preserved for reverse compatibility.
      */
      public void setCustomer(Customer value) {
           this.customer = value;
@@ -537,11 +542,28 @@ public class VoidResponse implements IAbstractAcknowledgement, IApprovalResponse
 
     /**
      * Gets customer data, if any.
-     * @return customer data, if any.
+     * @return customer data, if any. Preserved for reverse compatibility.
      */
      @JsonProperty("customer")
      public Customer getCustomer() {
           return this.customer;
+     }
+
+    /**
+     * Sets customer data, if any.
+     * @param value customer data, if any.
+     */
+     public void setCustomers(Collection<Customer> value) {
+          this.customers = value;
+     }
+
+    /**
+     * Gets customer data, if any.
+     * @return customer data, if any.
+     */
+     @JsonProperty("customers")
+     public Collection<Customer> getCustomers() {
+          return this.customers;
      }
 
     /**
@@ -559,6 +581,17 @@ public class VoidResponse implements IAbstractAcknowledgement, IApprovalResponse
      @JsonProperty("sigFile")
      public String getSigFile() {
           return this.sigFile;
+     }
+
+    /**
+     * Adds a customer data, if any.
+     * @param value customer data, if any.
+     */
+     public void addCustomer(Customer value) {
+          if (this.customers == null) {
+               this.customers = new ArrayList();
+          }
+          this.customers.add(value);
      }
 
 }

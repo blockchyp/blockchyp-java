@@ -67,6 +67,8 @@ import com.blockchyp.client.dto.CustomerSearchRequest;
 import com.blockchyp.client.dto.UpdateCustomerRequest;
 import com.blockchyp.client.dto.CustomerSearchResponse;
 import com.blockchyp.client.dto.Customer;
+import com.blockchyp.client.dto.TokenMetadataRequest;
+import com.blockchyp.client.dto.TokenMetadataResponse;
 import com.blockchyp.client.dto.CustomerToken;
 import com.blockchyp.client.dto.TextPromptResponse;
 import com.blockchyp.client.dto.BooleanPromptResponse;
@@ -123,6 +125,8 @@ import com.blockchyp.client.dto.DeleteCustomerRequest;
 import com.blockchyp.client.dto.DeleteCustomerResponse;
 import com.blockchyp.client.dto.DeleteTokenRequest;
 import com.blockchyp.client.dto.DeleteTokenResponse;
+import com.blockchyp.client.dto.LinkTokenRequest;
+import com.blockchyp.client.dto.UnlinkTokenRequest;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -525,6 +529,42 @@ public class BlockChypClient {
     public DeleteTokenResponse deleteToken(DeleteTokenRequest request) throws Exception {
 
         return (DeleteTokenResponse) deleteGateway("/api/token/" + request.getToken(), request, DeleteTokenResponse.class);
+
+    }
+
+    /**
+     * Retrieves payment token metadata.
+     * @param request the request parameters.
+     * @return {@link TokenMetadataResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public TokenMetadataResponse tokenMetadata(TokenMetadataRequest request) throws Exception {
+
+        return (TokenMetadataResponse) getGateway("/api/token/" + request.getToken(), request.isTest(), TokenMetadataResponse.class);
+
+    }
+
+    /**
+     * Links a token to a customer record.
+     * @param request the request parameters.
+     * @return {@link Acknowledgement}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public Acknowledgement linkToken(LinkTokenRequest request) throws Exception {
+
+        return (Acknowledgement) postGateway("/api/link-token", request, Acknowledgement.class);
+
+    }
+
+    /**
+     * Removes a link between a customer and a token.
+     * @param request the request parameters.
+     * @return {@link Acknowledgement}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public Acknowledgement unlinkToken(UnlinkTokenRequest request) throws Exception {
+
+        return (Acknowledgement) postGateway("/api/unlink-token", request, Acknowledgement.class);
 
     }
 

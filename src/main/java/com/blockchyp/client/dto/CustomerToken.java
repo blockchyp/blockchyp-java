@@ -10,10 +10,13 @@ package com.blockchyp.client.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * Models a customer token.
  */
+@SuppressWarnings({"rawtypes", "unchecked"})
 public class CustomerToken {
 
      private String token;
@@ -25,6 +28,8 @@ public class CustomerToken {
      private String expiryYear;
 
      private String paymentType;
+
+     private Collection<Customer> customers;
 
     /**
      * Sets BlockChyp assigned customer id.
@@ -109,6 +114,34 @@ public class CustomerToken {
      @JsonProperty("paymentType")
      public String getPaymentType() {
           return this.paymentType;
+     }
+
+    /**
+     * Sets models customer records associated with a payment token.
+     * @param value models customer records associated with a payment token.
+     */
+     public void setCustomers(Collection<Customer> value) {
+          this.customers = value;
+     }
+
+    /**
+     * Gets models customer records associated with a payment token.
+     * @return models customer records associated with a payment token.
+     */
+     @JsonProperty("customers")
+     public Collection<Customer> getCustomers() {
+          return this.customers;
+     }
+
+    /**
+     * Adds a models customer records associated with a payment token.
+     * @param value models customer records associated with a payment token.
+     */
+     public void addCustomer(Customer value) {
+          if (this.customers == null) {
+               this.customers = new ArrayList();
+          }
+          this.customers.add(value);
      }
 
 }

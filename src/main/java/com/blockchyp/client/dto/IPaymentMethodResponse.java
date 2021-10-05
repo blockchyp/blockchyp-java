@@ -9,11 +9,13 @@
 package com.blockchyp.client.dto;
 
 import com.blockchyp.client.dto.AvsResponse;
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * Response details about a payment method.
  */
-
+@SuppressWarnings({"rawtypes", "unchecked"})
 public interface IPaymentMethodResponse {
 
      String getToken();
@@ -39,6 +41,8 @@ public interface IPaymentMethodResponse {
      ReceiptSuggestions getReceiptSuggestions();
 
      Customer getCustomer();
+
+     Collection getCustomers();
 
 
 }
