@@ -23,6 +23,7 @@ import com.blockchyp.client.dto.UnlinkTokenRequest;
 import com.blockchyp.client.dto.Acknowledgement;
 import com.blockchyp.client.dto.EnrollRequest;
 import com.blockchyp.client.dto.EnrollResponse;
+import com.blockchyp.client.dto.Customer;
 
 public class UnlinkTokenTest extends BaseTestCase {
 
@@ -40,12 +41,18 @@ public class UnlinkTokenTest extends BaseTestCase {
         setupRequest.setPan("4111111111111111");
         setupRequest.setTest(true);
 
+        Customer customer = new Customer();
+        customer.setCustomerRef("TESTCUSTOMER");
+        customer.setFirstName("Test");
+        customer.setLastName("Customer");
+        setupRequest.setCustomer(customer);
+
          EnrollResponse setupResponse = client.enroll(setupRequest);
 
         // Set request parameters
         UnlinkTokenRequest request = new UnlinkTokenRequest();
         request.setToken(setupResponse.getToken());
-        request.setCustomerId("$customerId");
+        request.setCustomerId(setupResponse.getCustomer().getId());
 
         Acknowledgement response = client.unlinkToken(request);
 

@@ -23,6 +23,7 @@ import com.blockchyp.client.dto.TokenMetadataRequest;
 import com.blockchyp.client.dto.TokenMetadataResponse;
 import com.blockchyp.client.dto.EnrollRequest;
 import com.blockchyp.client.dto.EnrollResponse;
+import com.blockchyp.client.dto.Customer;
 
 public class TokenMetadataTest extends BaseTestCase {
 
@@ -39,6 +40,12 @@ public class TokenMetadataTest extends BaseTestCase {
         EnrollRequest setupRequest = new EnrollRequest();
         setupRequest.setPan("4111111111111111");
         setupRequest.setTest(true);
+
+        Customer customer = new Customer();
+        customer.setCustomerRef("TESTCUSTOMER");
+        customer.setFirstName("Test");
+        customer.setLastName("Customer");
+        setupRequest.setCustomer(customer);
 
          EnrollResponse setupResponse = client.enroll(setupRequest);
 

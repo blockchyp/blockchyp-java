@@ -21,6 +21,7 @@ import com.blockchyp.client.IntegrationTest;
 import com.blockchyp.client.IntegrationTestConfiguration;
 import com.blockchyp.client.dto.EnrollRequest;
 import com.blockchyp.client.dto.EnrollResponse;
+import com.blockchyp.client.dto.Customer;
 
 public class PANEnrollTest extends BaseTestCase {
 
@@ -37,6 +38,12 @@ public class PANEnrollTest extends BaseTestCase {
         EnrollRequest request = new EnrollRequest();
         request.setPan("4111111111111111");
         request.setTest(true);
+
+        Customer customer = new Customer();
+        customer.setCustomerRef("TESTCUSTOMER");
+        customer.setFirstName("Test");
+        customer.setLastName("Customer");
+        request.setCustomer(customer);
 
         EnrollResponse response = client.enroll(request);
 
