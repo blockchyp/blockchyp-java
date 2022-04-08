@@ -58,6 +58,8 @@ import com.blockchyp.client.dto.CaptureSignatureRequest;
 import com.blockchyp.client.dto.CaptureSignatureResponse;
 import com.blockchyp.client.dto.PingRequest;
 import com.blockchyp.client.dto.PingResponse;
+import com.blockchyp.client.dto.LocateRequest;
+import com.blockchyp.client.dto.LocateResponse;
 import com.blockchyp.client.dto.MessageRequest;
 import com.blockchyp.client.dto.BooleanPromptRequest;
 import com.blockchyp.client.dto.TextPromptRequest;
@@ -319,6 +321,18 @@ public class BlockChypClient {
 
     }
 
+
+    /**
+     * Returns routing and location data for a payment terminal.
+     * @param request the request parameters.
+     * @return {@link LocateResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public LocateResponse locate(LocateRequest request) throws Exception {
+
+        return (LocateResponse) postGateway("/api/terminal-locate", request, LocateResponse.class);
+
+    }
 
     /**
      * Captures a preauthorization.
