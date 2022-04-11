@@ -46,6 +46,7 @@ import com.blockchyp.client.dto.ISignatureRequest;
 import com.blockchyp.client.dto.IApprovalResponse;
 import com.blockchyp.client.dto.ICoreRequest;
 import com.blockchyp.client.dto.IPaymentMethodResponse;
+import com.blockchyp.client.dto.ICryptocurrencyResponse;
 import com.blockchyp.client.dto.IPaymentAmounts;
 import com.blockchyp.client.dto.IPaymentMethod;
 import com.blockchyp.client.dto.IRequestAmount;

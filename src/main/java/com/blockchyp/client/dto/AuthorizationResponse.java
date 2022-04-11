@@ -18,7 +18,7 @@ import java.util.Collection;
  * The response to an authorization request.
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
-public class AuthorizationResponse implements IAbstractAcknowledgement, IApprovalResponse, ICoreResponse, IPaymentAmounts, IPaymentMethodResponse, ISignatureResponse {
+public class AuthorizationResponse implements IAbstractAcknowledgement, IApprovalResponse, ICoreResponse, IPaymentAmounts, ICryptocurrencyResponse, IPaymentMethodResponse, ISignatureResponse {
 
      private boolean success;
 
@@ -71,6 +71,26 @@ public class AuthorizationResponse implements IAbstractAcknowledgement, IApprova
      private String requestedCashBackAmount;
 
      private String authorizedCashBackAmount;
+
+     private boolean confirmed;
+
+     private String cryptoAuthorizedAmount;
+
+     private String cryptoNetworkFee;
+
+     private String cryptocurrency;
+
+     private String cryptoNetwork;
+
+     private String cryptoReceiveAddress;
+
+     private String cryptoBlock;
+
+     private String cryptoTransactionId;
+
+     private String cryptoPaymentRequest;
+
+     private String cryptoStatus;
 
      private String token;
 
@@ -558,6 +578,199 @@ public class AuthorizationResponse implements IAbstractAcknowledgement, IApprova
      @JsonProperty("authorizedCashBackAmount")
      public String getAuthorizedCashBackAmount() {
           return this.authorizedCashBackAmount;
+     }
+
+    /**
+     * Sets that the transaction has met the standard criteria for confirmation on the
+     * network.
+     * @param value that the transaction has met the standard criteria for confirmation
+     * on the network. (For example, 6 confirmations for level one bitcoin.)
+     */
+     public void setConfirmed(boolean value) {
+          this.confirmed = value;
+     }
+
+    /**
+     * Gets that the transaction has met the standard criteria for confirmation on the
+     * network.
+     * @return that the transaction has met the standard criteria for confirmation on the
+     * network. (For example, 6 confirmations for level one bitcoin.)
+     */
+     @JsonProperty("confirmed")
+     public boolean isConfirmed() {
+          return this.confirmed;
+     }
+
+    /**
+     * Sets the amount submitted to the blockchain.
+     * @param value the amount submitted to the blockchain.
+     */
+     public void setCryptoAuthorizedAmount(String value) {
+          this.cryptoAuthorizedAmount = value;
+     }
+
+    /**
+     * Gets the amount submitted to the blockchain.
+     * @return the amount submitted to the blockchain.
+     */
+     @JsonProperty("cryptoAuthorizedAmount")
+     public String getCryptoAuthorizedAmount() {
+          return this.cryptoAuthorizedAmount;
+     }
+
+    /**
+     * Sets the network level fee assessed for the transaction denominated in
+     * cryptocurrency.
+     * @param value the network level fee assessed for the transaction denominated in
+     * cryptocurrency. This fee goes to channel operators and crypto miners, not
+     * BlockChyp.
+     */
+     public void setCryptoNetworkFee(String value) {
+          this.cryptoNetworkFee = value;
+     }
+
+    /**
+     * Gets the network level fee assessed for the transaction denominated in
+     * cryptocurrency.
+     * @return the network level fee assessed for the transaction denominated in
+     * cryptocurrency. This fee goes to channel operators and crypto miners, not
+     * BlockChyp.
+     */
+     @JsonProperty("cryptoNetworkFee")
+     public String getCryptoNetworkFee() {
+          return this.cryptoNetworkFee;
+     }
+
+    /**
+     * Sets the three letter cryptocurrency code used for the transactions.
+     * @param value the three letter cryptocurrency code used for the transactions.
+     */
+     public void setCryptocurrency(String value) {
+          this.cryptocurrency = value;
+     }
+
+    /**
+     * Gets the three letter cryptocurrency code used for the transactions.
+     * @return the three letter cryptocurrency code used for the transactions.
+     */
+     @JsonProperty("cryptocurrency")
+     public String getCryptocurrency() {
+          return this.cryptocurrency;
+     }
+
+    /**
+     * Sets whether or not the transaction was processed on the level one or level two
+     * network.
+     * @param value whether or not the transaction was processed on the level one or level
+     * two network.
+     */
+     public void setCryptoNetwork(String value) {
+          this.cryptoNetwork = value;
+     }
+
+    /**
+     * Gets whether or not the transaction was processed on the level one or level two
+     * network.
+     * @return whether or not the transaction was processed on the level one or level two
+     * network.
+     */
+     @JsonProperty("cryptoNetwork")
+     public String getCryptoNetwork() {
+          return this.cryptoNetwork;
+     }
+
+    /**
+     * Sets the address on the crypto network the transaction was sent to.
+     * @param value the address on the crypto network the transaction was sent to.
+     */
+     public void setCryptoReceiveAddress(String value) {
+          this.cryptoReceiveAddress = value;
+     }
+
+    /**
+     * Gets the address on the crypto network the transaction was sent to.
+     * @return the address on the crypto network the transaction was sent to.
+     */
+     @JsonProperty("cryptoReceiveAddress")
+     public String getCryptoReceiveAddress() {
+          return this.cryptoReceiveAddress;
+     }
+
+    /**
+     * Sets hash or other identifier that identifies the block on the cryptocurrency
+     * network, if available or relevant.
+     * @param value hash or other identifier that identifies the block on the
+     * cryptocurrency network, if available or relevant.
+     */
+     public void setCryptoBlock(String value) {
+          this.cryptoBlock = value;
+     }
+
+    /**
+     * Gets hash or other identifier that identifies the block on the cryptocurrency
+     * network, if available or relevant.
+     * @return hash or other identifier that identifies the block on the cryptocurrency
+     * network, if available or relevant.
+     */
+     @JsonProperty("cryptoBlock")
+     public String getCryptoBlock() {
+          return this.cryptoBlock;
+     }
+
+    /**
+     * Sets hash or other transaction identifier that identifies the transaction on the
+     * cryptocurrency network, if available or relevant.
+     * @param value hash or other transaction identifier that identifies the
+     * transaction on the cryptocurrency network, if available or relevant.
+     */
+     public void setCryptoTransactionId(String value) {
+          this.cryptoTransactionId = value;
+     }
+
+    /**
+     * Gets hash or other transaction identifier that identifies the transaction on the
+     * cryptocurrency network, if available or relevant.
+     * @return hash or other transaction identifier that identifies the transaction on
+     * the cryptocurrency network, if available or relevant.
+     */
+     @JsonProperty("cryptoTransactionId")
+     public String getCryptoTransactionId() {
+          return this.cryptoTransactionId;
+     }
+
+    /**
+     * Sets the payment request URI used for the transaction, if available.
+     * @param value the payment request URI used for the transaction, if available.
+     */
+     public void setCryptoPaymentRequest(String value) {
+          this.cryptoPaymentRequest = value;
+     }
+
+    /**
+     * Gets the payment request URI used for the transaction, if available.
+     * @return the payment request URI used for the transaction, if available.
+     */
+     @JsonProperty("cryptoPaymentRequest")
+     public String getCryptoPaymentRequest() {
+          return this.cryptoPaymentRequest;
+     }
+
+    /**
+     * Sets used for additional status information related to crypto transactions.
+     * @param value used for additional status information related to crypto
+     * transactions.
+     */
+     public void setCryptoStatus(String value) {
+          this.cryptoStatus = value;
+     }
+
+    /**
+     * Gets used for additional status information related to crypto transactions.
+     * @return used for additional status information related to crypto transactions.
+     */
+     @JsonProperty("cryptoStatus")
+     public String getCryptoStatus() {
+          return this.cryptoStatus;
      }
 
     /**
