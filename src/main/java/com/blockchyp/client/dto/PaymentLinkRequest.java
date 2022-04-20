@@ -70,6 +70,16 @@ public class PaymentLinkRequest implements ICoreRequest, IRequestAmount, ITermin
 
      private String tcContent;
 
+     private String cryptocurrency;
+
+     private String cryptoNetwork;
+
+     private String cryptoReceiveAddress;
+
+     private String paymentRequestLabel;
+
+     private String paymentRequestMessage;
+
     /**
      * Sets a user-assigned reference that can be used to recall or reverse transactions.
      * @param value a user-assigned reference that can be used to recall or reverse
@@ -562,6 +572,111 @@ public class PaymentLinkRequest implements ICoreRequest, IRequestAmount, ITermin
      @JsonProperty("tcContent")
      public String getTcContent() {
           return this.tcContent;
+     }
+
+    /**
+     * Sets that the transaction should be a cryptocurrency transaction.
+     * @param value that the transaction should be a cryptocurrency transaction. Value
+     * should be a crypto currency code (ETH, BTC) or ANY to prompt the user to choose from
+     * supported cryptocurrencies.
+     */
+     public void setCryptocurrency(String value) {
+          this.cryptocurrency = value;
+     }
+
+    /**
+     * Gets that the transaction should be a cryptocurrency transaction.
+     * @return that the transaction should be a cryptocurrency transaction. Value
+     * should be a crypto currency code (ETH, BTC) or ANY to prompt the user to choose from
+     * supported cryptocurrencies.
+     */
+     @JsonProperty("cryptocurrency")
+     public String getCryptocurrency() {
+          return this.cryptocurrency;
+     }
+
+    /**
+     * Sets an optional parameter that can be used to force a crypto transaction onto a
+     * level one or level two network.
+     * @param value an optional parameter that can be used to force a crypto transaction
+     * onto a level one or level two network. Valid values are L1 and L2. Defaults to L1.
+     */
+     public void setCryptoNetwork(String value) {
+          this.cryptoNetwork = value;
+     }
+
+    /**
+     * Gets an optional parameter that can be used to force a crypto transaction onto a
+     * level one or level two network.
+     * @return an optional parameter that can be used to force a crypto transaction onto a
+     * level one or level two network. Valid values are L1 and L2. Defaults to L1.
+     */
+     @JsonProperty("cryptoNetwork")
+     public String getCryptoNetwork() {
+          return this.cryptoNetwork;
+     }
+
+    /**
+     * Sets can be used to specify a specific receive address for a crypto transaction.
+     * @param value can be used to specify a specific receive address for a crypto
+     * transaction. Disabled by default. This should only be used by sophisticated users
+     * with access to properly configured hot wallets.
+     */
+     public void setCryptoReceiveAddress(String value) {
+          this.cryptoReceiveAddress = value;
+     }
+
+    /**
+     * Gets can be used to specify a specific receive address for a crypto transaction.
+     * @return can be used to specify a specific receive address for a crypto transaction.
+     * Disabled by default. This should only be used by sophisticated users with access to
+     * properly configured hot wallets.
+     */
+     @JsonProperty("cryptoReceiveAddress")
+     public String getCryptoReceiveAddress() {
+          return this.cryptoReceiveAddress;
+     }
+
+    /**
+     * Sets can optionally add a label to the payment request if the target cryptocurrency
+     * supports labels.
+     * @param value can optionally add a label to the payment request if the target
+     * cryptocurrency supports labels. Defaults to the merchant's DBA Name.
+     */
+     public void setPaymentRequestLabel(String value) {
+          this.paymentRequestLabel = value;
+     }
+
+    /**
+     * Gets can optionally add a label to the payment request if the target cryptocurrency
+     * supports labels.
+     * @return can optionally add a label to the payment request if the target
+     * cryptocurrency supports labels. Defaults to the merchant's DBA Name.
+     */
+     @JsonProperty("paymentRequestLabel")
+     public String getPaymentRequestLabel() {
+          return this.paymentRequestLabel;
+     }
+
+    /**
+     * Sets can optionally add a message to the payment request if the target
+     * cryptocurrency supports labels.
+     * @param value can optionally add a message to the payment request if the target
+     * cryptocurrency supports labels. Defaults to empty.
+     */
+     public void setPaymentRequestMessage(String value) {
+          this.paymentRequestMessage = value;
+     }
+
+    /**
+     * Gets can optionally add a message to the payment request if the target
+     * cryptocurrency supports labels.
+     * @return can optionally add a message to the payment request if the target
+     * cryptocurrency supports labels. Defaults to empty.
+     */
+     @JsonProperty("paymentRequestMessage")
+     public String getPaymentRequestMessage() {
+          return this.paymentRequestMessage;
      }
 
 }
