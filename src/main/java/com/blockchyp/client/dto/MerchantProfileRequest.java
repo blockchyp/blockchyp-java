@@ -34,6 +34,8 @@ public class MerchantProfileRequest implements ICoreRequest {
 
      private int timeout;
 
+     private String merchantId;
+
     /**
      * Sets a user-assigned reference that can be used to recall or reverse transactions.
      * @param value a user-assigned reference that can be used to recall or reverse
@@ -195,6 +197,23 @@ public class MerchantProfileRequest implements ICoreRequest {
      @JsonProperty("timeout")
      public int getTimeout() {
           return this.timeout;
+     }
+
+    /**
+     * Sets the merchant id.
+     * @param value the merchant id. Optional for merchant scoped requests.
+     */
+     public void setMerchantId(String value) {
+          this.merchantId = value;
+     }
+
+    /**
+     * Gets the merchant id.
+     * @return the merchant id. Optional for merchant scoped requests.
+     */
+     @JsonProperty("merchantId")
+     public String getMerchantId() {
+          return this.merchantId;
      }
 
 }

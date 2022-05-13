@@ -10,7 +10,7 @@ package com.blockchyp.client.dto;
 
 
 /**
- * 
+ * Response details for a cryptocurrency transaction.
  */
 
 public interface ICryptocurrencyResponse {
