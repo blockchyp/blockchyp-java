@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 /**
- * Models information needed to process a fail upload.
+ * Models information needed to process a file upload.
  */
 public class UploadMetadata {
 
