@@ -14,10 +14,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * The results for a merchant list request.
+ * The results for a merchant platforms inquiry.
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
-public class GetMerchantsResponse implements IAbstractAcknowledgement {
+public class MerchantPlatformsResponse implements IAbstractAcknowledgement {
 
      private boolean success;
 
@@ -27,13 +27,7 @@ public class GetMerchantsResponse implements IAbstractAcknowledgement {
 
      private boolean test;
 
-     private int maxResults;
-
-     private int startIndex;
-
-     private int resultCount;
-
-     private Collection<MerchantProfileResponse> merchants;
+     private Collection<MerchantPlatform> results;
 
     /**
      * Sets whether or not the request succeeded.
@@ -104,82 +98,31 @@ public class GetMerchantsResponse implements IAbstractAcknowledgement {
      }
 
     /**
-     * Sets max to be returned in a single page.
-     * @param value max to be returned in a single page. Defaults to the system max of 250.
+     * Sets enumerates merchant platform settings.
+     * @param value enumerates merchant platform settings.
      */
-     public void setMaxResults(int value) {
-          this.maxResults = value;
+     public void setResults(Collection<MerchantPlatform> value) {
+          this.results = value;
      }
 
     /**
-     * Gets max to be returned in a single page.
-     * @return max to be returned in a single page. Defaults to the system max of 250.
+     * Gets enumerates merchant platform settings.
+     * @return enumerates merchant platform settings.
      */
-     @JsonProperty("maxResults")
-     public int getMaxResults() {
-          return this.maxResults;
+     @JsonProperty("results")
+     public Collection<MerchantPlatform> getResults() {
+          return this.results;
      }
 
     /**
-     * Sets starting index for paged results.
-     * @param value starting index for paged results. Defaults to zero.
+     * Adds a enumerates merchant platform settings.
+     * @param value enumerates merchant platform settings.
      */
-     public void setStartIndex(int value) {
-          this.startIndex = value;
-     }
-
-    /**
-     * Gets starting index for paged results.
-     * @return starting index for paged results. Defaults to zero.
-     */
-     @JsonProperty("startIndex")
-     public int getStartIndex() {
-          return this.startIndex;
-     }
-
-    /**
-     * Sets total number of results accessible through paging.
-     * @param value total number of results accessible through paging.
-     */
-     public void setResultCount(int value) {
-          this.resultCount = value;
-     }
-
-    /**
-     * Gets total number of results accessible through paging.
-     * @return total number of results accessible through paging.
-     */
-     @JsonProperty("resultCount")
-     public int getResultCount() {
-          return this.resultCount;
-     }
-
-    /**
-     * Sets merchants in the current page of results.
-     * @param value merchants in the current page of results.
-     */
-     public void setMerchants(Collection<MerchantProfileResponse> value) {
-          this.merchants = value;
-     }
-
-    /**
-     * Gets merchants in the current page of results.
-     * @return merchants in the current page of results.
-     */
-     @JsonProperty("merchants")
-     public Collection<MerchantProfileResponse> getMerchants() {
-          return this.merchants;
-     }
-
-    /**
-     * Adds a merchants in the current page of results.
-     * @param value merchants in the current page of results.
-     */
-     public void addMerchant(MerchantProfileResponse value) {
-          if (this.merchants == null) {
-               this.merchants = new ArrayList();
+     public void addResult(MerchantPlatform value) {
+          if (this.results == null) {
+               this.results = new ArrayList();
           }
-          this.merchants.add(value);
+          this.results.add(value);
      }
 
 }

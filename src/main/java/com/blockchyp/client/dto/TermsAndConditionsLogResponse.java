@@ -14,10 +14,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * The results for a merchant list request.
+ * Models a Terms and Conditions history request.
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
-public class GetMerchantsResponse implements IAbstractAcknowledgement {
+public class TermsAndConditionsLogResponse implements IAbstractAcknowledgement {
 
      private boolean success;
 
@@ -25,7 +25,7 @@ public class GetMerchantsResponse implements IAbstractAcknowledgement {
 
      private String responseDescription;
 
-     private boolean test;
+     private String transactionId;
 
      private int maxResults;
 
@@ -33,7 +33,7 @@ public class GetMerchantsResponse implements IAbstractAcknowledgement {
 
      private int resultCount;
 
-     private Collection<MerchantProfileResponse> merchants;
+     private Collection<TermsAndConditionsLogEntry> results;
 
     /**
      * Sets whether or not the request succeeded.
@@ -87,20 +87,24 @@ public class GetMerchantsResponse implements IAbstractAcknowledgement {
      }
 
     /**
-     * Sets whether or not these results are for test or live merchants.
-     * @param value whether or not these results are for test or live merchants.
+     * Sets optional transaction id if only log entries related to a transaction should be
+     * returned.
+     * @param value optional transaction id if only log entries related to a transaction
+     * should be returned.
      */
-     public void setTest(boolean value) {
-          this.test = value;
+     public void setTransactionId(String value) {
+          this.transactionId = value;
      }
 
     /**
-     * Gets whether or not these results are for test or live merchants.
-     * @return whether or not these results are for test or live merchants.
+     * Gets optional transaction id if only log entries related to a transaction should be
+     * returned.
+     * @return optional transaction id if only log entries related to a transaction
+     * should be returned.
      */
-     @JsonProperty("test")
-     public boolean isTest() {
-          return this.test;
+     @JsonProperty("transactionId")
+     public String getTransactionId() {
+          return this.transactionId;
      }
 
     /**
@@ -155,31 +159,37 @@ public class GetMerchantsResponse implements IAbstractAcknowledgement {
      }
 
     /**
-     * Sets merchants in the current page of results.
-     * @param value merchants in the current page of results.
+     * Sets the full result set responsive to the original request, subject to pagination
+     * limits.
+     * @param value the full result set responsive to the original request, subject to
+     * pagination limits.
      */
-     public void setMerchants(Collection<MerchantProfileResponse> value) {
-          this.merchants = value;
+     public void setResults(Collection<TermsAndConditionsLogEntry> value) {
+          this.results = value;
      }
 
     /**
-     * Gets merchants in the current page of results.
-     * @return merchants in the current page of results.
+     * Gets the full result set responsive to the original request, subject to pagination
+     * limits.
+     * @return the full result set responsive to the original request, subject to
+     * pagination limits.
      */
-     @JsonProperty("merchants")
-     public Collection<MerchantProfileResponse> getMerchants() {
-          return this.merchants;
+     @JsonProperty("results")
+     public Collection<TermsAndConditionsLogEntry> getResults() {
+          return this.results;
      }
 
     /**
-     * Adds a merchants in the current page of results.
-     * @param value merchants in the current page of results.
+     * Adds a the full result set responsive to the original request, subject to
+     * pagination limits.
+     * @param value the full result set responsive to the original request, subject to
+     * pagination limits.
      */
-     public void addMerchant(MerchantProfileResponse value) {
-          if (this.merchants == null) {
-               this.merchants = new ArrayList();
+     public void addResult(TermsAndConditionsLogEntry value) {
+          if (this.results == null) {
+               this.results = new ArrayList();
           }
-          this.merchants.add(value);
+          this.results.add(value);
      }
 
 }

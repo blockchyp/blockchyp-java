@@ -19,10 +19,10 @@ import org.junit.experimental.categories.Category;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.IntegrationTest;
 import com.blockchyp.client.IntegrationTestConfiguration;
-import com.blockchyp.client.dto.CreateTestMerchantRequest;
-import com.blockchyp.client.dto.MerchantProfileResponse;
+import com.blockchyp.client.dto.SurveyQuestionRequest;
+import com.blockchyp.client.dto.Acknowledgement;
 
-public class CreateTestMerchantTest extends BaseTestCase {
+public class DeleteSurveyQuestionTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
@@ -31,14 +31,13 @@ public class CreateTestMerchantTest extends BaseTestCase {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "CreateTestMerchantTest", IntegrationTestConfiguration.getDefaultTerminalName());
+        processTestDelay(client, "DeleteSurveyQuestionTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
-        CreateTestMerchantRequest request = new CreateTestMerchantRequest();
-        request.setDbaName("Test Merchant");
-        request.setCompanyName("Test Merchant");
+        SurveyQuestionRequest request = new SurveyQuestionRequest();
 
-        MerchantProfileResponse response = client.createTestMerchant(request);
+
+        Acknowledgement response = client.deleteSurveyQuestion(request);
 
         // Response assertions
         Assert.assertTrue(response.isSuccess());
