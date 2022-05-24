@@ -1,9 +1,9 @@
 /**
- * Copyright 2019 BlockChyp, Inc. All rights reserved. Use of this code is governed by a
- * license that can be found in the LICENSE file.
+ * Copyright 2019-2022 BlockChyp, Inc. All rights reserved. Use of this code is governed
+ * by a license that can be found in the LICENSE file.
  *
- * This file was generated automatically. Changes to this file will be lost every time the
- * code is regenerated.
+ * This file was generated automatically by the BlockChyp SDK Generator. Changes to this
+ * file will be lost every time the code is regenerated.
  */
 
 package com.blockchyp.client.itest;
@@ -34,13 +34,23 @@ public class TCTemplateTest extends BaseTestCase {
         processTestDelay(client, "TCTemplateTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
-        TermsAndConditionsTemplateRequest request = new TermsAndConditionsTemplateRequest();
+        TermsAndConditionsTemplate setupRequest = new TermsAndConditionsTemplate();
+        setupRequest.setAlias(getUUID());
+        setupRequest.setName("HIPPA Disclosure");
+        setupRequest.setContent("Lorem ipsum dolor sit amet.");
 
+         TermsAndConditionsTemplate setupResponse = client.tcUpdateTemplate(setupRequest);
+
+        // Set request parameters
+        TermsAndConditionsTemplateRequest request = new TermsAndConditionsTemplateRequest();
+        request.setTemplateId();
 
         TermsAndConditionsTemplate response = client.tcTemplate(request);
 
         // Response assertions
         Assert.assertTrue(response.isSuccess());
+        Assert.assertEquals("HIPPA Disclosure", response.getName());
+        Assert.assertEquals("Lorem ipsum dolor sit amet.", response.getContent());
 
     }
 

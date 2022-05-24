@@ -19,10 +19,10 @@ import org.junit.experimental.categories.Category;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.IntegrationTest;
 import com.blockchyp.client.IntegrationTestConfiguration;
-import com.blockchyp.client.dto.BrandingAsset;
-import com.blockchyp.client.dto.Acknowledgement;
+import com.blockchyp.client.dto.AuthorizationRequest;
+import com.blockchyp.client.dto.AuthorizationResponse;
 
-public class UpdateBrandingAssetTest extends BaseTestCase {
+public class TerminalQueuedTransactionTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
@@ -31,16 +31,23 @@ public class UpdateBrandingAssetTest extends BaseTestCase {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "UpdateBrandingAssetTest", IntegrationTestConfiguration.getDefaultTerminalName());
+        processTestDelay(client, "TerminalQueuedTransactionTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
-        BrandingAsset request = new BrandingAsset();
+        AuthorizationRequest request = new AuthorizationRequest();
+        request.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
+        request.setTransactionRef(getUUID());
+        request.setDescription("1060 West Addison");
+        request.setAmount("25.15");
+        request.setTest(true);
+        request.setQueue(true);
 
-
-        Acknowledgement response = client.updateBrandingAsset(request);
+        AuthorizationResponse response = client.charge(request);
 
         // Response assertions
         Assert.assertTrue(response.isSuccess());
+        Assert.assertFalse(response.isApproved());
+        Assert.assertEquals("Queued", response.getResponseDescription());
 
     }
 

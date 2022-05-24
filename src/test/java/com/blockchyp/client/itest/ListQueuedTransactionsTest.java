@@ -11,7 +11,6 @@ package com.blockchyp.client.itest;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import java.io.IOException;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -20,30 +19,41 @@ import org.junit.experimental.categories.Category;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.IntegrationTest;
 import com.blockchyp.client.IntegrationTestConfiguration;
+import com.blockchyp.client.dto.ListQueuedTransactionsRequest;
+import com.blockchyp.client.dto.ListQueuedTransactionsResponse;
 import com.blockchyp.client.dto.AuthorizationRequest;
 import com.blockchyp.client.dto.AuthorizationResponse;
 
-public class TerminalTimeoutTest extends BaseTestCase {
+public class ListQueuedTransactionsTest extends BaseTestCase {
 
-    @Test(expected = java.io.IOException.class)
+    @Test
     @Category(IntegrationTest.class)
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public void testTransaction() throws Exception {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "TerminalTimeoutTest", IntegrationTestConfiguration.getDefaultTerminalName());
+        processTestDelay(client, "ListQueuedTransactionsTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
-        AuthorizationRequest request = new AuthorizationRequest();
-        request.setTimeout(1);
-        request.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
-        request.setAmount("25.15");
-        request.setTest(true);
+        AuthorizationRequest setupRequest = new AuthorizationRequest();
+        setupRequest.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
+        setupRequest.setTransactionRef(getUUID());
+        setupRequest.setDescription("1060 West Addison");
+        setupRequest.setAmount("25.15");
+        setupRequest.setTest(true);
+        setupRequest.setQueue(true);
 
-        AuthorizationResponse response = client.charge(request);
+         AuthorizationResponse setupResponse = client.charge(setupRequest);
+
+        // Set request parameters
+        ListQueuedTransactionsRequest request = new ListQueuedTransactionsRequest();
+        request.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
+
+        ListQueuedTransactionsResponse response = client.listQueuedTransactions(request);
 
         // Response assertions
+        Assert.assertTrue(response.isSuccess());
 
     }
 

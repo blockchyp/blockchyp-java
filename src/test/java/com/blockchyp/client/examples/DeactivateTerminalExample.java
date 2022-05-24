@@ -26,7 +26,7 @@ public class DeactivateTerminalExample {
 
         // Set request parameters
         TerminalDeactivationRequest request = new TerminalDeactivationRequest();
-        request.setTerminalId("XXXXXXX");
+        request.setTerminalId(getUUID());
         request.setTimeout(120);
 
         // Send the request

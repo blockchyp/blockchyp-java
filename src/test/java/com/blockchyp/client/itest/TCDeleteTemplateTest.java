@@ -1,9 +1,9 @@
 /**
- * Copyright 2019 BlockChyp, Inc. All rights reserved. Use of this code is governed by a
- * license that can be found in the LICENSE file.
+ * Copyright 2019-2022 BlockChyp, Inc. All rights reserved. Use of this code is governed
+ * by a license that can be found in the LICENSE file.
  *
- * This file was generated automatically. Changes to this file will be lost every time the
- * code is regenerated.
+ * This file was generated automatically by the BlockChyp SDK Generator. Changes to this
+ * file will be lost every time the code is regenerated.
  */
 
 package com.blockchyp.client.itest;
@@ -21,6 +21,7 @@ import com.blockchyp.client.IntegrationTest;
 import com.blockchyp.client.IntegrationTestConfiguration;
 import com.blockchyp.client.dto.TermsAndConditionsTemplateRequest;
 import com.blockchyp.client.dto.Acknowledgement;
+import com.blockchyp.client.dto.TermsAndConditionsTemplate;
 
 public class TCDeleteTemplateTest extends BaseTestCase {
 
@@ -34,8 +35,16 @@ public class TCDeleteTemplateTest extends BaseTestCase {
         processTestDelay(client, "TCDeleteTemplateTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
-        TermsAndConditionsTemplateRequest request = new TermsAndConditionsTemplateRequest();
+        TermsAndConditionsTemplate setupRequest = new TermsAndConditionsTemplate();
+        setupRequest.setAlias(getUUID());
+        setupRequest.setName("HIPPA Disclosure");
+        setupRequest.setContent("Lorem ipsum dolor sit amet.");
 
+         TermsAndConditionsTemplate setupResponse = client.tcUpdateTemplate(setupRequest);
+
+        // Set request parameters
+        TermsAndConditionsTemplateRequest request = new TermsAndConditionsTemplateRequest();
+        request.setTemplateId();
 
         Acknowledgement response = client.tcDeleteTemplate(request);
 

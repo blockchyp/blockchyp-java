@@ -1,9 +1,9 @@
 /**
- * Copyright 2019 BlockChyp, Inc. All rights reserved. Use of this code is governed by a
- * license that can be found in the LICENSE file.
+ * Copyright 2019-2022 BlockChyp, Inc. All rights reserved. Use of this code is governed
+ * by a license that can be found in the LICENSE file.
  *
- * This file was generated automatically. Changes to this file will be lost every time the
- * code is regenerated.
+ * This file was generated automatically by the BlockChyp SDK Generator. Changes to this
+ * file will be lost every time the code is regenerated.
  */
 
 package com.blockchyp.client.dto;
@@ -23,6 +23,10 @@ public class TermsAndConditionsLogRequest {
      private int maxResults;
 
      private int startIndex;
+
+     private String startDate;
+
+     private String endDate;
 
      private int timeout;
 
@@ -97,6 +101,40 @@ public class TermsAndConditionsLogRequest {
      @JsonProperty("startIndex")
      public int getStartIndex() {
           return this.startIndex;
+     }
+
+    /**
+     * Sets an optional start date for filtering response data.
+     * @param value an optional start date for filtering response data.
+     */
+     public void setStartDate(String value) {
+          this.startDate = value;
+     }
+
+    /**
+     * Gets an optional start date for filtering response data.
+     * @return an optional start date for filtering response data.
+     */
+     @JsonProperty("startDate")
+     public String getStartDate() {
+          return this.startDate;
+     }
+
+    /**
+     * Sets an optional end date for filtering response data.
+     * @param value an optional end date for filtering response data.
+     */
+     public void setEndDate(String value) {
+          this.endDate = value;
+     }
+
+    /**
+     * Gets an optional end date for filtering response data.
+     * @return an optional end date for filtering response data.
+     */
+     @JsonProperty("endDate")
+     public String getEndDate() {
+          return this.endDate;
      }
 
     /**

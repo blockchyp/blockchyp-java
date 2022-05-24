@@ -1,9 +1,9 @@
 /**
- * Copyright 2019 BlockChyp, Inc. All rights reserved. Use of this code is governed by a
- * license that can be found in the LICENSE file.
+ * Copyright 2019-2022 BlockChyp, Inc. All rights reserved. Use of this code is governed
+ * by a license that can be found in the LICENSE file.
  *
- * This file was generated automatically. Changes to this file will be lost every time the
- * code is regenerated.
+ * This file was generated automatically by the BlockChyp SDK Generator. Changes to this
+ * file will be lost every time the code is regenerated.
  */
 
 package com.blockchyp.client.itest;
@@ -21,6 +21,7 @@ import com.blockchyp.client.IntegrationTest;
 import com.blockchyp.client.IntegrationTestConfiguration;
 import com.blockchyp.client.dto.TermsAndConditionsLogRequest;
 import com.blockchyp.client.dto.TermsAndConditionsLogEntry;
+import com.blockchyp.client.dto.TermsAndConditionsLogResponse;
 
 public class TCEntryTest extends BaseTestCase {
 
@@ -34,13 +35,34 @@ public class TCEntryTest extends BaseTestCase {
         processTestDelay(client, "TCEntryTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
-        TermsAndConditionsLogRequest request = new TermsAndConditionsLogRequest();
+        TermsAndConditionsLogRequest setupRequest = new TermsAndConditionsLogRequest();
 
+
+         TermsAndConditionsLogResponse setupResponse = client.tcLog(setupRequest);
+
+        // Set request parameters
+        TermsAndConditionsLogRequest request = new TermsAndConditionsLogRequest();
+        request.setLogEntryId();
 
         TermsAndConditionsLogEntry response = client.tcEntry(request);
 
         // Response assertions
         Assert.assertTrue(response.isSuccess());
+        Assert.assertNotNull(response.getId());
+        Assert.assertTrue(response.getId().trim().length() > 0);
+        Assert.assertNotNull(response.getTerminalId());
+        Assert.assertTrue(response.getTerminalId().trim().length() > 0);
+        Assert.assertNotNull(response.getTerminalName());
+        Assert.assertTrue(response.getTerminalName().trim().length() > 0);
+        Assert.assertNotNull(response.getTimestamp());
+        Assert.assertTrue(response.getTimestamp().trim().length() > 0);
+        Assert.assertNotNull(response.getName());
+        Assert.assertTrue(response.getName().trim().length() > 0);
+        Assert.assertNotNull(response.getContent());
+        Assert.assertTrue(response.getContent().trim().length() > 0);
+        Assert.assertTrue(response.isHasSignature());
+        Assert.assertNotNull(response.getSignature());
+        Assert.assertTrue(response.getSignature().trim().length() > 0);
 
     }
 

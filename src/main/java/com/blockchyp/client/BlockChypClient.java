@@ -1,9 +1,9 @@
 /**
- * Copyright 2019 BlockChyp, Inc. All rights reserved. Use of this code is governed by a
- * license that can be found in the LICENSE file.
+ * Copyright 2019-2022 BlockChyp, Inc. All rights reserved. Use of this code is governed
+ * by a license that can be found in the LICENSE file.
  *
- * This file was generated automatically. Changes to this file will be lost every time the
- * code is regenerated.
+ * This file was generated automatically by the BlockChyp SDK Generator. Changes to this
+ * file will be lost every time the code is regenerated.
  */
 
 package com.blockchyp.client;
@@ -576,18 +576,6 @@ public class BlockChypClient {
     }
 
     /**
-     * Deletes a payment token.
-     * @param request the request parameters.
-     * @return {@link DeleteTokenResponse}
-     * @throws Exception exception if any errors occurred processing the request.
-     */
-    public DeleteTokenResponse deleteToken(DeleteTokenRequest request) throws Exception {
-
-        return (DeleteTokenResponse) deleteGateway("/api/token/" + request.getToken(), request, DeleteTokenResponse.class);
-
-    }
-
-    /**
      * Retrieves payment token metadata.
      * @param request the request parameters.
      * @return {@link TokenMetadataResponse}
@@ -620,6 +608,18 @@ public class BlockChypClient {
     public Acknowledgement unlinkToken(UnlinkTokenRequest request) throws Exception {
 
         return (Acknowledgement) postGateway("/api/unlink-token", request, Acknowledgement.class);
+
+    }
+
+    /**
+     * Deletes a payment token.
+     * @param request the request parameters.
+     * @return {@link DeleteTokenResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public DeleteTokenResponse deleteToken(DeleteTokenRequest request) throws Exception {
+
+        return (DeleteTokenResponse) deleteGateway("/api/token/" + request.getToken(), request, DeleteTokenResponse.class);
 
     }
 
