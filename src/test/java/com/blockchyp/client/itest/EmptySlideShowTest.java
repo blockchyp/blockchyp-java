@@ -19,11 +19,9 @@ import org.junit.experimental.categories.Category;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.IntegrationTest;
 import com.blockchyp.client.IntegrationTestConfiguration;
-import com.blockchyp.client.dto.SlideShowRequest;
-import com.blockchyp.client.dto.SlideShowResponse;
 import com.blockchyp.client.dto.SlideShow;
 
-public class SlideShowsTest extends BaseTestCase {
+public class EmptySlideShowTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
@@ -32,20 +30,14 @@ public class SlideShowsTest extends BaseTestCase {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "SlideShowsTest", IntegrationTestConfiguration.getDefaultTerminalName());
+        processTestDelay(client, "EmptySlideShowTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
-        SlideShow setupRequest = new SlideShow();
-        setupRequest.setName("Test Slide Show");
-        setupRequest.setDelay(5);
+        SlideShow request = new SlideShow();
+        request.setName("Test Slide Show");
+        request.setDelay(5);
 
-         SlideShow setupResponse = client.updateSlideShow(setupRequest);
-
-        // Set request parameters
-        SlideShowRequest request = new SlideShowRequest();
-
-
-        SlideShowResponse response = client.slideShows(request);
+        SlideShow response = client.updateSlideShow(request);
 
         // Response assertions
         Assert.assertTrue(response.isSuccess());
