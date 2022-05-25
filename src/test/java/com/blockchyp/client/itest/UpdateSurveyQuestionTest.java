@@ -20,7 +20,6 @@ import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.IntegrationTest;
 import com.blockchyp.client.IntegrationTestConfiguration;
 import com.blockchyp.client.dto.SurveyQuestion;
-import com.blockchyp.client.dto.Acknowledgement;
 
 public class UpdateSurveyQuestionTest extends BaseTestCase {
 
@@ -35,12 +34,16 @@ public class UpdateSurveyQuestionTest extends BaseTestCase {
 
         // Set request parameters
         SurveyQuestion request = new SurveyQuestion();
+        request.setOrdinal(1);
+        request.setQuestionText("Would you shop here again?");
+        request.setQuestionType("yes_no");
 
-
-        Acknowledgement response = client.updateSurveyQuestion(request);
+        SurveyQuestion response = client.updateSurveyQuestion(request);
 
         // Response assertions
         Assert.assertTrue(response.isSuccess());
+        Assert.assertEquals("Would you shop here again?", response.getQuestionText());
+        Assert.assertEquals("yes_no", response.getQuestionType());
 
     }
 

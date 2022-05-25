@@ -35,12 +35,21 @@ public class MediaUploadTest extends BaseTestCase {
 
         // Set request parameters
         UploadMetadata request = new UploadMetadata();
-
+        request.setFileName("aviato.png");
+        request.setFileSize(18843);
+        request.setUploadId(getUUID());
 
         MediaMetadata response = client.uploadMedia(request);
 
         // Response assertions
         Assert.assertTrue(response.isSuccess());
+        Assert.assertNotNull(response.getId());
+        Assert.assertTrue(response.getId().trim().length() > 0);
+        Assert.assertEquals("aviato.png", response.getOriginalFile());
+        Assert.assertNotNull(response.getFileUrl());
+        Assert.assertTrue(response.getFileUrl().trim().length() > 0);
+        Assert.assertNotNull(response.getThumbnailUrl());
+        Assert.assertTrue(response.getThumbnailUrl().trim().length() > 0);
 
     }
 

@@ -10,6 +10,7 @@ import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.dto.SlideShow;
 import com.blockchyp.client.dto.SlideShow;
+import com.blockchyp.client.dto.Slide;
 
 
 public class UpdateSlideShowExample {
@@ -26,7 +27,14 @@ public class UpdateSlideShowExample {
 
         // Set request parameters
         SlideShow request = new SlideShow();
-        request.setTimeout(120);
+        request.setName("Test Slide Show");
+        request.setDelay(5);
+
+        Collection slides = new ArrayList();
+        Slide slides0 = new Slide();
+        slides0.setMediaId();
+        slides.add(slides0);
+        request.setSlides(slides);
 
         // Send the request
         SlideShow response = client.updateSlideShow(request);

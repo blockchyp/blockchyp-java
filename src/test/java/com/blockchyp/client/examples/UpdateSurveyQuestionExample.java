@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.dto.SurveyQuestion;
-import com.blockchyp.client.dto.Acknowledgement;
+import com.blockchyp.client.dto.SurveyQuestion;
 
 
 public class UpdateSurveyQuestionExample {
@@ -26,10 +26,13 @@ public class UpdateSurveyQuestionExample {
 
         // Set request parameters
         SurveyQuestion request = new SurveyQuestion();
-        request.setTimeout(120);
+        request.setOrdinal(1);
+        request.setQuestionText("Would you shop here again?");
+        request.setQuestionType("yes_no");
+        request.setEnabled(true);
 
         // Send the request
-        Acknowledgement response = client.updateSurveyQuestion(request);
+        SurveyQuestion response = client.updateSurveyQuestion(request);
 
         // View the result
         System.out.println("Response: " + prettyPrint(response));

@@ -21,6 +21,8 @@ import com.blockchyp.client.IntegrationTest;
 import com.blockchyp.client.IntegrationTestConfiguration;
 import com.blockchyp.client.dto.MediaRequest;
 import com.blockchyp.client.dto.Acknowledgement;
+import com.blockchyp.client.dto.UploadMetadata;
+import com.blockchyp.client.dto.MediaMetadata;
 
 public class DeleteMediaAssetTest extends BaseTestCase {
 
@@ -34,8 +36,16 @@ public class DeleteMediaAssetTest extends BaseTestCase {
         processTestDelay(client, "DeleteMediaAssetTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
-        MediaRequest request = new MediaRequest();
+        UploadMetadata setupRequest = new UploadMetadata();
+        setupRequest.setFileName("aviato.png");
+        setupRequest.setFileSize(18843);
+        setupRequest.setUploadId(getUUID());
 
+         MediaMetadata setupResponse = client.uploadMedia(setupRequest);
+
+        // Set request parameters
+        MediaRequest request = new MediaRequest();
+        request.setMediaId();
 
         Acknowledgement response = client.deleteMediaAsset(request);
 

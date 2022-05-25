@@ -26,7 +26,9 @@ public class UploadMediaExample {
 
         // Set request parameters
         UploadMetadata request = new UploadMetadata();
-        request.setTimeout(120);
+        request.setFileName("aviato.png");
+        request.setFileSize(18843);
+        request.setUploadId("<RANDOM ID>");
 
         // Send the request
         MediaMetadata response = client.uploadMedia(request);

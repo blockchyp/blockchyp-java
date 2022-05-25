@@ -20,6 +20,9 @@ import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.IntegrationTest;
 import com.blockchyp.client.IntegrationTestConfiguration;
 import com.blockchyp.client.dto.SlideShow;
+import com.blockchyp.client.dto.Slide;
+import com.blockchyp.client.dto.UploadMetadata;
+import com.blockchyp.client.dto.MediaMetadata;
 
 public class UpdateSlideShowTest extends BaseTestCase {
 
@@ -33,8 +36,23 @@ public class UpdateSlideShowTest extends BaseTestCase {
         processTestDelay(client, "UpdateSlideShowTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
-        SlideShow request = new SlideShow();
+        UploadMetadata setupRequest = new UploadMetadata();
+        setupRequest.setFileName("aviato.png");
+        setupRequest.setFileSize(18843);
+        setupRequest.setUploadId(getUUID());
 
+         MediaMetadata setupResponse = client.uploadMedia(setupRequest);
+
+        // Set request parameters
+        SlideShow request = new SlideShow();
+        request.setName("Test Slide Show");
+        request.setDelay(5);
+
+        Collection slides = new ArrayList();
+        Slide slides0 = new Slide();
+        slides0.setMediaId();
+        slides.add(slides0);
+        request.setSlides(slides);
 
         SlideShow response = client.updateSlideShow(request);
 

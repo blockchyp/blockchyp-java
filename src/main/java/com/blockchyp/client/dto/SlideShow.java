@@ -31,8 +31,6 @@ public class SlideShow implements IAbstractAcknowledgement {
 
      private int delay;
 
-     private boolean enabled;
-
      private Collection<Slide> slides;
 
      private int timeout;
@@ -137,27 +135,6 @@ public class SlideShow implements IAbstractAcknowledgement {
      @JsonProperty("delay")
      public int getDelay() {
           return this.delay;
-     }
-
-    /**
-     * Sets whether or not the slide show is enabled and can be included in the terminal
-     * branding stack.
-     * @param value whether or not the slide show is enabled and can be included in the
-     * terminal branding stack.
-     */
-     public void setEnabled(boolean value) {
-          this.enabled = value;
-     }
-
-    /**
-     * Gets whether or not the slide show is enabled and can be included in the terminal
-     * branding stack.
-     * @return whether or not the slide show is enabled and can be included in the terminal
-     * branding stack.
-     */
-     @JsonProperty("enabled")
-     public boolean isEnabled() {
-          return this.enabled;
      }
 
     /**

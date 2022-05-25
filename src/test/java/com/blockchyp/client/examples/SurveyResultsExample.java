@@ -26,7 +26,7 @@ public class SurveyResultsExample {
 
         // Set request parameters
         SurveyResultsRequest request = new SurveyResultsRequest();
-        request.setTimeout(120);
+        request.setQuestionId("<SURVEY QUESTION ID>");
 
         // Send the request
         SurveyQuestion response = client.surveyResults(request);

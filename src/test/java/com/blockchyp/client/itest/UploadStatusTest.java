@@ -21,6 +21,8 @@ import com.blockchyp.client.IntegrationTest;
 import com.blockchyp.client.IntegrationTestConfiguration;
 import com.blockchyp.client.dto.UploadStatusRequest;
 import com.blockchyp.client.dto.UploadStatus;
+import com.blockchyp.client.dto.UploadMetadata;
+import com.blockchyp.client.dto.MediaMetadata;
 
 public class UploadStatusTest extends BaseTestCase {
 
@@ -34,8 +36,16 @@ public class UploadStatusTest extends BaseTestCase {
         processTestDelay(client, "UploadStatusTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
-        UploadStatusRequest request = new UploadStatusRequest();
+        UploadMetadata setupRequest = new UploadMetadata();
+        setupRequest.setFileName("aviato.png");
+        setupRequest.setFileSize(18843);
+        setupRequest.setUploadId(getUUID());
 
+         MediaMetadata setupResponse = client.uploadMedia(setupRequest);
+
+        // Set request parameters
+        UploadStatusRequest request = new UploadStatusRequest();
+        request.setUploadId();
 
         UploadStatus response = client.uploadStatus(request);
 

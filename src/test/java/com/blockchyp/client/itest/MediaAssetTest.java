@@ -21,6 +21,7 @@ import com.blockchyp.client.IntegrationTest;
 import com.blockchyp.client.IntegrationTestConfiguration;
 import com.blockchyp.client.dto.MediaRequest;
 import com.blockchyp.client.dto.MediaMetadata;
+import com.blockchyp.client.dto.UploadMetadata;
 
 public class MediaAssetTest extends BaseTestCase {
 
@@ -34,13 +35,28 @@ public class MediaAssetTest extends BaseTestCase {
         processTestDelay(client, "MediaAssetTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
-        MediaRequest request = new MediaRequest();
+        UploadMetadata setupRequest = new UploadMetadata();
+        setupRequest.setFileName("aviato.png");
+        setupRequest.setFileSize(18843);
+        setupRequest.setUploadId(getUUID());
 
+         MediaMetadata setupResponse = client.uploadMedia(setupRequest);
+
+        // Set request parameters
+        MediaRequest request = new MediaRequest();
+        request.setMediaId();
 
         MediaMetadata response = client.mediaAsset(request);
 
         // Response assertions
         Assert.assertTrue(response.isSuccess());
+        Assert.assertNotNull(response.getId());
+        Assert.assertTrue(response.getId().trim().length() > 0);
+        Assert.assertEquals("aviato.png", response.getOriginalFile());
+        Assert.assertNotNull(response.getFileUrl());
+        Assert.assertTrue(response.getFileUrl().trim().length() > 0);
+        Assert.assertNotNull(response.getThumbnailUrl());
+        Assert.assertTrue(response.getThumbnailUrl().trim().length() > 0);
 
     }
 

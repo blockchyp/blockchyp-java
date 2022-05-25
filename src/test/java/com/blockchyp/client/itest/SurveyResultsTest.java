@@ -21,6 +21,8 @@ import com.blockchyp.client.IntegrationTest;
 import com.blockchyp.client.IntegrationTestConfiguration;
 import com.blockchyp.client.dto.SurveyResultsRequest;
 import com.blockchyp.client.dto.SurveyQuestion;
+import com.blockchyp.client.dto.SurveyQuestionRequest;
+import com.blockchyp.client.dto.SurveyQuestionResponse;
 
 public class SurveyResultsTest extends BaseTestCase {
 
@@ -32,6 +34,12 @@ public class SurveyResultsTest extends BaseTestCase {
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
         processTestDelay(client, "SurveyResultsTest", IntegrationTestConfiguration.getDefaultTerminalName());
+
+        // Set request parameters
+        SurveyQuestionRequest setupRequest = new SurveyQuestionRequest();
+
+
+         SurveyQuestionResponse setupResponse = client.surveyQuestions(setupRequest);
 
         // Set request parameters
         SurveyResultsRequest request = new SurveyResultsRequest();
