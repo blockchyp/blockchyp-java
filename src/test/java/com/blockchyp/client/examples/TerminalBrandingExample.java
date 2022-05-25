@@ -26,7 +26,7 @@ public class TerminalBrandingExample {
 
         // Set request parameters
         BrandingAssetRequest request = new BrandingAssetRequest();
-        request.setTimeout(120);
+
 
         // Send the request
         BrandingAssetResponse response = client.terminalBranding(request);

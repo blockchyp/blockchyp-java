@@ -21,10 +21,8 @@ import com.blockchyp.client.IntegrationTest;
 import com.blockchyp.client.IntegrationTestConfiguration;
 import com.blockchyp.client.dto.BrandingAsset;
 import com.blockchyp.client.dto.Acknowledgement;
-import com.blockchyp.client.dto.UploadMetadata;
-import com.blockchyp.client.dto.MediaMetadata;
 
-public class UpdateBrandingAssetTest extends BaseTestCase {
+public class EmptyBrandingAssetTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
@@ -33,28 +31,12 @@ public class UpdateBrandingAssetTest extends BaseTestCase {
 
         BlockChypClient client = IntegrationTestConfiguration.getTestClient();
 
-        processTestDelay(client, "UpdateBrandingAssetTest", IntegrationTestConfiguration.getDefaultTerminalName());
-
-        // Set request parameters
-        UploadMetadata setupRequest = new UploadMetadata();
-        setupRequest.setFileName("aviato.png");
-        setupRequest.setFileSize(18843);
-        setupRequest.setUploadId(getUUID());
-
-         MediaMetadata setupResponse = client.uploadMedia(setupRequest);
+        processTestDelay(client, "EmptyBrandingAssetTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
         BrandingAsset request = new BrandingAsset();
-        request.setMediaId();
-        request.setPadded(true);
-        request.setOrdinal(10);
-        request.setStartDate("01/06/2021");
-        request.setStartTime("14:00");
-        request.setEndDate("11/05/2024");
-        request.setEndTime("16:00");
-        request.setNotes("Test Branding Asset");
-        request.setPreview(false);
-        request.setEnabled(true);
+        request.setNotes("Empty Asset");
+        request.setEnabled(false);
 
         Acknowledgement response = client.updateBrandingAsset(request);
 

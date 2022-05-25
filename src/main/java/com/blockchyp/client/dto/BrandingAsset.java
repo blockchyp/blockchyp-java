@@ -17,7 +17,13 @@ import java.util.Collection;
  * Models the priority and display settings for terminal media.
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
-public class BrandingAsset {
+public class BrandingAsset implements IAbstractAcknowledgement {
+
+     private boolean success;
+
+     private String error;
+
+     private String responseDescription;
 
      private String id;
 
@@ -82,6 +88,57 @@ public class BrandingAsset {
      private String narrativeDisplayPeriod;
 
      private int timeout;
+
+    /**
+     * Sets whether or not the request succeeded.
+     * @param value whether or not the request succeeded.
+     */
+     public void setSuccess(boolean value) {
+          this.success = value;
+     }
+
+    /**
+     * Gets whether or not the request succeeded.
+     * @return whether or not the request succeeded.
+     */
+     @JsonProperty("success")
+     public boolean isSuccess() {
+          return this.success;
+     }
+
+    /**
+     * Sets the error, if an error occurred.
+     * @param value the error, if an error occurred.
+     */
+     public void setError(String value) {
+          this.error = value;
+     }
+
+    /**
+     * Gets the error, if an error occurred.
+     * @return the error, if an error occurred.
+     */
+     @JsonProperty("error")
+     public String getError() {
+          return this.error;
+     }
+
+    /**
+     * Sets a narrative description of the transaction result.
+     * @param value a narrative description of the transaction result.
+     */
+     public void setResponseDescription(String value) {
+          this.responseDescription = value;
+     }
+
+    /**
+     * Gets a narrative description of the transaction result.
+     * @return a narrative description of the transaction result.
+     */
+     @JsonProperty("responseDescription")
+     public String getResponseDescription() {
+          return this.responseDescription;
+     }
 
     /**
      * Sets id used to track a branding asset.

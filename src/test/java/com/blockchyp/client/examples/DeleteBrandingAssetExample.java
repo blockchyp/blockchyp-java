@@ -26,7 +26,7 @@ public class DeleteBrandingAssetExample {
 
         // Set request parameters
         BrandingAssetRequest request = new BrandingAssetRequest();
-        request.setTimeout(120);
+        request.setAssetId("<BRANDING ASSET ID>");
 
         // Send the request
         Acknowledgement response = client.deleteBrandingAsset(request);

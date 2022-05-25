@@ -5170,7 +5170,16 @@ public class DeleteSlideShowExample {
 
 
 
-This API returns the terminal branding stack for a given API scope.
+This API returns the full branding stack for a given API scope in the order of priority.
+
+Consumers of this API should pay special attention to the `editable` field.  This field indicates whether or
+not a branding asset is read only from the perspective of a particular API Credential scope.
+
+The `thumbnail` and `previewImage` attributes can be used to support building user interfaces for
+managing the branding stack. `previewImage` differs from `thumbnail` in that the preview image is 
+intended to show how an asset would actually look when displayed on the terminal.
+
+`activeAsset` returns the asset that is currently visible on the terminal.
 
 
 
@@ -5204,7 +5213,7 @@ public class TerminalBrandingExample {
 
         // Set request parameters
         BrandingAssetRequest request = new BrandingAssetRequest();
-        request.setTimeout(120);
+
 
         // Send the request
         BrandingAssetResponse response = client.terminalBranding(request);
@@ -5332,7 +5341,7 @@ public class DeleteBrandingAssetExample {
 
         // Set request parameters
         BrandingAssetRequest request = new BrandingAssetRequest();
-        request.setTimeout(120);
+        request.setAssetId("<BRANDING ASSET ID>");
 
         // Send the request
         Acknowledgement response = client.deleteBrandingAsset(request);
