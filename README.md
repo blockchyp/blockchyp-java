@@ -4960,7 +4960,10 @@ public class SlideShowsExample {
 
 
 
-This API returns a single slide show.
+This API returns a single slide show.  Slide level detail is returned with the fully qualified thumbnail URL
+for each slide.
+
+`slideShowId` is the only required parameter.
 
 
 
@@ -4994,7 +4997,7 @@ public class SlideShowExample {
 
         // Set request parameters
         SlideShowRequest request = new SlideShowRequest();
-        request.setTimeout(120);
+        request.setSlideShowId("<SLIDE SHOW ID>");
 
         // Send the request
         SlideShow response = client.slideShow(request);
@@ -5103,7 +5106,7 @@ public class UpdateSlideShowExample {
 
 
 
-This API deletes a single slide show.
+This API deletes a slide show  `slideShowId` is the only required parameter.
 
 
 
@@ -5137,7 +5140,7 @@ public class DeleteSlideShowExample {
 
         // Set request parameters
         SlideShowRequest request = new SlideShowRequest();
-        request.setTimeout(120);
+        request.setSlideShowId("<SLIDE SHOW ID>");
 
         // Send the request
         Acknowledgement response = client.deleteSlideShow(request);

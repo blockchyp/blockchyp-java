@@ -21,6 +21,7 @@ import com.blockchyp.client.IntegrationTest;
 import com.blockchyp.client.IntegrationTestConfiguration;
 import com.blockchyp.client.dto.SlideShowRequest;
 import com.blockchyp.client.dto.Acknowledgement;
+import com.blockchyp.client.dto.SlideShow;
 
 public class DeleteSlideShowTest extends BaseTestCase {
 
@@ -34,8 +35,15 @@ public class DeleteSlideShowTest extends BaseTestCase {
         processTestDelay(client, "DeleteSlideShowTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
-        SlideShowRequest request = new SlideShowRequest();
+        SlideShow setupRequest = new SlideShow();
+        setupRequest.setName("Test Slide Show");
+        setupRequest.setDelay(5);
 
+         SlideShow setupResponse = client.updateSlideShow(setupRequest);
+
+        // Set request parameters
+        SlideShowRequest request = new SlideShowRequest();
+        request.setSlideShowId();
 
         Acknowledgement response = client.deleteSlideShow(request);
 

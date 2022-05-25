@@ -43,7 +43,7 @@ public class BrandingAsset {
 
      private String endDate;
 
-     private Collection<int> daysOfWeek;
+     private Collection<Weekday> daysOfWeek;
 
      private String startTime;
 
@@ -306,7 +306,7 @@ public class BrandingAsset {
      * enabled. Days of the week are coded as integers starting with Sunday (0) and ending
      * with Saturday (6).
      */
-     public void setDaysOfWeek(Collection<int> value) {
+     public void setDaysOfWeek(Collection<Weekday> value) {
           this.daysOfWeek = value;
      }
 
@@ -317,7 +317,7 @@ public class BrandingAsset {
      * Saturday (6).
      */
      @JsonProperty("daysOfWeek")
-     public Collection<int> getDaysOfWeek() {
+     public Collection<Weekday> getDaysOfWeek() {
           return this.daysOfWeek;
      }
 
@@ -681,7 +681,7 @@ public class BrandingAsset {
      * enabled. Days of the week are coded as integers starting with Sunday (0) and ending
      * with Saturday (6).
      */
-     public void addDaysOfWeek(int value) {
+     public void addDaysOfWeek(Weekday value) {
           if (this.daysOfWeek == null) {
                this.daysOfWeek = new ArrayList();
           }

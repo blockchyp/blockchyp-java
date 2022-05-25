@@ -26,7 +26,7 @@ public class SlideShowExample {
 
         // Set request parameters
         SlideShowRequest request = new SlideShowRequest();
-        request.setTimeout(120);
+        request.setSlideShowId("<SLIDE SHOW ID>");
 
         // Send the request
         SlideShow response = client.slideShow(request);

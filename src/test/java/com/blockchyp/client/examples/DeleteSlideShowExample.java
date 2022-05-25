@@ -26,7 +26,7 @@ public class DeleteSlideShowExample {
 
         // Set request parameters
         SlideShowRequest request = new SlideShowRequest();
-        request.setTimeout(120);
+        request.setSlideShowId("<SLIDE SHOW ID>");
 
         // Send the request
         Acknowledgement response = client.deleteSlideShow(request);

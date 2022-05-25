@@ -34,13 +34,21 @@ public class SlideShowTest extends BaseTestCase {
         processTestDelay(client, "SlideShowTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
-        SlideShowRequest request = new SlideShowRequest();
+        SlideShow setupRequest = new SlideShow();
+        setupRequest.setName("Test Slide Show");
+        setupRequest.setDelay(5);
 
+         SlideShow setupResponse = client.updateSlideShow(setupRequest);
+
+        // Set request parameters
+        SlideShowRequest request = new SlideShowRequest();
+        request.setSlideShowId();
 
         SlideShow response = client.slideShow(request);
 
         // Response assertions
         Assert.assertTrue(response.isSuccess());
+        Assert.assertEquals("Test Slide Show", response.getName());
 
     }
 

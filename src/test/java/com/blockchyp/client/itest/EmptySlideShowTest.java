@@ -41,6 +41,7 @@ public class EmptySlideShowTest extends BaseTestCase {
 
         // Response assertions
         Assert.assertTrue(response.isSuccess());
+        Assert.assertEquals("Test Slide Show", response.getName());
 
     }
 
