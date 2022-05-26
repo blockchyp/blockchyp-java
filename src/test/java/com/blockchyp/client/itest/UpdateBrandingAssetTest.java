@@ -20,7 +20,6 @@ import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.IntegrationTest;
 import com.blockchyp.client.IntegrationTestConfiguration;
 import com.blockchyp.client.dto.BrandingAsset;
-import com.blockchyp.client.dto.Acknowledgement;
 import com.blockchyp.client.dto.UploadMetadata;
 import com.blockchyp.client.dto.MediaMetadata;
 
@@ -56,7 +55,7 @@ public class UpdateBrandingAssetTest extends BaseTestCase {
         request.setPreview(false);
         request.setEnabled(true);
 
-        Acknowledgement response = client.updateBrandingAsset(request);
+        BrandingAsset response = client.updateBrandingAsset(request);
 
         // Response assertions
         Assert.assertTrue(response.isSuccess());

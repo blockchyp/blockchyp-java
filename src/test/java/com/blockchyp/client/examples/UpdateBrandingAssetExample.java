@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.dto.BrandingAsset;
-import com.blockchyp.client.dto.Acknowledgement;
+import com.blockchyp.client.dto.BrandingAsset;
 
 
 public class UpdateBrandingAssetExample {
@@ -29,7 +29,7 @@ public class UpdateBrandingAssetExample {
         request.setTimeout(120);
 
         // Send the request
-        Acknowledgement response = client.updateBrandingAsset(request);
+        BrandingAsset response = client.updateBrandingAsset(request);
 
         // View the result
         System.out.println("Response: " + prettyPrint(response));

@@ -20,7 +20,6 @@ import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.IntegrationTest;
 import com.blockchyp.client.IntegrationTestConfiguration;
 import com.blockchyp.client.dto.BrandingAsset;
-import com.blockchyp.client.dto.Acknowledgement;
 
 public class EmptyBrandingAssetTest extends BaseTestCase {
 
@@ -38,7 +37,7 @@ public class EmptyBrandingAssetTest extends BaseTestCase {
         request.setNotes("Empty Asset");
         request.setEnabled(false);
 
-        Acknowledgement response = client.updateBrandingAsset(request);
+        BrandingAsset response = client.updateBrandingAsset(request);
 
         // Response assertions
         Assert.assertTrue(response.isSuccess());

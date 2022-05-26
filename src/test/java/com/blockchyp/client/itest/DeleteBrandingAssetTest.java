@@ -39,7 +39,7 @@ public class DeleteBrandingAssetTest extends BaseTestCase {
         setupRequest.setNotes("Empty Asset");
         setupRequest.setEnabled(false);
 
-         Acknowledgement setupResponse = client.updateBrandingAsset(setupRequest);
+         BrandingAsset setupResponse = client.updateBrandingAsset(setupRequest);
 
         // Set request parameters
         BrandingAssetRequest request = new BrandingAssetRequest();

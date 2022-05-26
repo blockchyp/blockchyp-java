@@ -42,6 +42,9 @@ public class AddTestMerchantTest extends BaseTestCase {
 
         // Response assertions
         Assert.assertTrue(response.isSuccess());
+        Assert.assertEquals("Test Merchant", response.getDbaName());
+        Assert.assertEquals("Test Merchant", response.getCompanyName());
+        Assert.assertTrue(response.isVisa());
 
     }
 

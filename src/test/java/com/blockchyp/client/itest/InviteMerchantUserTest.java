@@ -35,7 +35,9 @@ public class InviteMerchantUserTest extends BaseTestCase {
 
         // Set request parameters
         InviteMerchantUserRequest request = new InviteMerchantUserRequest();
-
+        request.setEmail("doublea@blockchypteam.m8r.co");
+        request.setFirstName("Aaron");
+        request.setLastName("Anderson");
 
         Acknowledgement response = client.inviteMerchantUser(request);
 
