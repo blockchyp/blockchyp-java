@@ -21,6 +21,8 @@ import com.blockchyp.client.IntegrationTest;
 import com.blockchyp.client.IntegrationTestConfiguration;
 import com.blockchyp.client.dto.MerchantPlatform;
 import com.blockchyp.client.dto.Acknowledgement;
+import com.blockchyp.client.dto.AddTestMerchantRequest;
+import com.blockchyp.client.dto.MerchantProfileResponse;
 
 public class UpdateMerchantPlatformsTest extends BaseTestCase {
 
@@ -34,8 +36,17 @@ public class UpdateMerchantPlatformsTest extends BaseTestCase {
         processTestDelay(client, "UpdateMerchantPlatformsTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
-        MerchantPlatform request = new MerchantPlatform();
+        AddTestMerchantRequest setupRequest = new AddTestMerchantRequest();
+        setupRequest.setDbaName("Test Merchant");
+        setupRequest.setCompanyName("Test Merchant");
 
+         MerchantProfileResponse setupResponse = client.addTestMerchant(setupRequest);
+
+        // Set request parameters
+        MerchantPlatform request = new MerchantPlatform();
+        request.setMerchantId();
+        request.setPlatformCode("SIM");
+        request.setNotes("platform simulator");
 
         Acknowledgement response = client.updateMerchantPlatforms(request);
 

@@ -21,6 +21,8 @@ import com.blockchyp.client.IntegrationTest;
 import com.blockchyp.client.IntegrationTestConfiguration;
 import com.blockchyp.client.dto.MerchantProfileRequest;
 import com.blockchyp.client.dto.MerchantPlatformsResponse;
+import com.blockchyp.client.dto.AddTestMerchantRequest;
+import com.blockchyp.client.dto.MerchantProfileResponse;
 
 public class MerchantPlatformsTest extends BaseTestCase {
 
@@ -34,8 +36,15 @@ public class MerchantPlatformsTest extends BaseTestCase {
         processTestDelay(client, "MerchantPlatformsTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
         // Set request parameters
-        MerchantProfileRequest request = new MerchantProfileRequest();
+        AddTestMerchantRequest setupRequest = new AddTestMerchantRequest();
+        setupRequest.setDbaName("Test Merchant");
+        setupRequest.setCompanyName("Test Merchant");
 
+         MerchantProfileResponse setupResponse = client.addTestMerchant(setupRequest);
+
+        // Set request parameters
+        MerchantProfileRequest request = new MerchantProfileRequest();
+        request.setMerchantId();
 
         MerchantPlatformsResponse response = client.merchantPlatforms(request);
 
