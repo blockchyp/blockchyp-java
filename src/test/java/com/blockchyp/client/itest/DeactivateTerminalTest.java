@@ -8,9 +8,9 @@
 
 package com.blockchyp.client.itest;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -27,21 +27,25 @@ public class DeactivateTerminalTest extends BaseTestCase {
     @Test
     @Category(IntegrationTest.class)
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void testTransaction() throws Exception {
+    public void testEndpoint() throws Exception {
 
-        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient("");
 
-        processTestDelay(client, "DeactivateTerminalTest", IntegrationTestConfiguration.getDefaultTerminalName());
-
+        
         // Set request parameters
         TerminalDeactivationRequest request = new TerminalDeactivationRequest();
         request.setTerminalId(getUUID());
 
-        Acknowledgement response = client.deactivateTerminal(request);
+        Exception ex = null;
+        try {
+            Acknowledgement response = client.deactivateTerminal(request);
+            // Response assertions
+            Assert.assertFalse(response.isSuccess());
+        } catch (Exception e) {
+            ex = e;
+        }
 
-        // Response assertions
-        Assert.assertFalse(response.isSuccess());
-
+    Assert.assertNotNull(ex);
     }
 
 }

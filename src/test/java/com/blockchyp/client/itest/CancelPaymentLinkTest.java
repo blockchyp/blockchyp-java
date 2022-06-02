@@ -8,9 +8,9 @@
 
 package com.blockchyp.client.itest;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -32,12 +32,11 @@ public class CancelPaymentLinkTest extends BaseTestCase {
     @Test
     @Category(IntegrationTest.class)
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void testTransaction() throws Exception {
+    public void testEndpoint() throws Exception {
 
-        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient("");
 
-        processTestDelay(client, "CancelPaymentLinkTest", IntegrationTestConfiguration.getDefaultTerminalName());
-
+        
         // Set request parameters
         PaymentLinkRequest setupRequest = new PaymentLinkRequest();
         setupRequest.setAmount("199.99");
@@ -68,17 +67,23 @@ public class CancelPaymentLinkTest extends BaseTestCase {
         customer.setSmsNumber("(123) 123-1231");
         setupRequest.setCustomer(customer);
 
-         PaymentLinkResponse setupResponse = client.sendPaymentLink(setupRequest);
+        PaymentLinkResponse setupResponse = client.sendPaymentLink(setupRequest);
+
 
         // Set request parameters
         CancelPaymentLinkRequest request = new CancelPaymentLinkRequest();
         request.setLinkCode(setupResponse.getLinkCode());
 
-        CancelPaymentLinkResponse response = client.cancelPaymentLink(request);
+        Exception ex = null;
+        try {
+            CancelPaymentLinkResponse response = client.cancelPaymentLink(request);
+            // Response assertions
+            Assert.assertTrue(response.isSuccess());
+        } catch (Exception e) {
+            ex = e;
+        }
 
-        // Response assertions
-        Assert.assertTrue(response.isSuccess());
-
+    Assert.assertNull(ex);
     }
 
 }

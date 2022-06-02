@@ -8,9 +8,9 @@
 
 package com.blockchyp.client.itest;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -28,29 +28,34 @@ public class SurveyQuestionsTest extends BaseTestCase {
     @Test
     @Category(IntegrationTest.class)
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void testTransaction() throws Exception {
+    public void testEndpoint() throws Exception {
 
-        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient("");
 
-        processTestDelay(client, "SurveyQuestionsTest", IntegrationTestConfiguration.getDefaultTerminalName());
-
+        
         // Set request parameters
         SurveyQuestion setupRequest = new SurveyQuestion();
         setupRequest.setOrdinal(1);
         setupRequest.setQuestionText("Would you shop here again?");
         setupRequest.setQuestionType("yes_no");
 
-         SurveyQuestion setupResponse = client.updateSurveyQuestion(setupRequest);
+        SurveyQuestion setupResponse = client.updateSurveyQuestion(setupRequest);
+
 
         // Set request parameters
         SurveyQuestionRequest request = new SurveyQuestionRequest();
 
 
-        SurveyQuestionResponse response = client.surveyQuestions(request);
+        Exception ex = null;
+        try {
+            SurveyQuestionResponse response = client.surveyQuestions(request);
+            // Response assertions
+            Assert.assertTrue(response.isSuccess());
+        } catch (Exception e) {
+            ex = e;
+        }
 
-        // Response assertions
-        Assert.assertTrue(response.isSuccess());
-
+    Assert.assertNull(ex);
     }
 
 }

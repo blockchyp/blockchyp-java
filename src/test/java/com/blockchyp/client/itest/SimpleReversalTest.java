@@ -8,9 +8,9 @@
 
 package com.blockchyp.client.itest;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -27,12 +27,11 @@ public class SimpleReversalTest extends BaseTestCase {
     @Test
     @Category(IntegrationTest.class)
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void testTransaction() throws Exception {
+    public void testEndpoint() throws Exception {
 
-        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient("");
 
-        processTestDelay(client, "SimpleReversalTest", IntegrationTestConfiguration.getDefaultTerminalName());
-
+        
         // Set request parameters
         AuthorizationRequest setupRequest = new AuthorizationRequest();
         setupRequest.setPan("4111111111111111");
@@ -42,19 +41,25 @@ public class SimpleReversalTest extends BaseTestCase {
         setupRequest.setTest(true);
         setupRequest.setTransactionRef(getUUID());
 
-         AuthorizationResponse setupResponse = client.charge(setupRequest);
+        AuthorizationResponse setupResponse = client.charge(setupRequest);
+
 
         // Set request parameters
         AuthorizationRequest request = new AuthorizationRequest();
         request.setTransactionRef(setupResponse.getTransactionRef());
         request.setTest(true);
 
-        AuthorizationResponse response = client.reverse(request);
+        Exception ex = null;
+        try {
+            AuthorizationResponse response = client.reverse(request);
+            // Response assertions
+            Assert.assertTrue(response.isSuccess());
+            Assert.assertTrue(response.isApproved());
+        } catch (Exception e) {
+            ex = e;
+        }
 
-        // Response assertions
-        Assert.assertTrue(response.isSuccess());
-        Assert.assertTrue(response.isApproved());
-
+    Assert.assertNull(ex);
     }
 
 }

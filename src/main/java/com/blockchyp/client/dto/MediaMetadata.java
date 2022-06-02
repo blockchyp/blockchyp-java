@@ -152,16 +152,16 @@ public class MediaMetadata implements IAbstractAcknowledgement {
      }
 
     /**
-     * Sets an identifier used to flag video files
-     * @param value an identifier used to flag video files
+     * Sets an identifier used to flag video files.
+     * @param value an identifier used to flag video files.
      */
      public void setVideo(boolean value) {
           this.video = value;
      }
 
     /**
-     * Gets an identifier used to flag video files
-     * @return an identifier used to flag video files
+     * Gets an identifier used to flag video files.
+     * @return an identifier used to flag video files.
      */
      @JsonProperty("video")
      public boolean isVideo() {

@@ -8,9 +8,9 @@
 
 package com.blockchyp.client.itest;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -27,24 +27,30 @@ public class TerminalGiftCardBalanceTest extends BaseTestCase {
     @Test
     @Category(IntegrationTest.class)
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void testTransaction() throws Exception {
+    public void testEndpoint() throws Exception {
 
-        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient("");
 
-        processTestDelay(client, "TerminalGiftCardBalanceTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
+        processTestDelay(IntegrationTestConfiguration.getTestClient(), "TerminalGiftCardBalanceTest", IntegrationTestConfiguration.getDefaultTerminalName());
+        
         // Set request parameters
         BalanceRequest request = new BalanceRequest();
         request.setTest(true);
         request.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
 
-        BalanceResponse response = client.balance(request);
+        Exception ex = null;
+        try {
+            BalanceResponse response = client.balance(request);
+            // Response assertions
+            Assert.assertTrue(response.isSuccess());
+            Assert.assertNotNull(response.getRemainingBalance());
+            Assert.assertTrue(response.getRemainingBalance().trim().length() > 0);
+        } catch (Exception e) {
+            ex = e;
+        }
 
-        // Response assertions
-        Assert.assertTrue(response.isSuccess());
-        Assert.assertNotNull(response.getRemainingBalance());
-        Assert.assertTrue(response.getRemainingBalance().trim().length() > 0);
-
+    Assert.assertNull(ex);
     }
 
 }

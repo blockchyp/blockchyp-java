@@ -210,16 +210,16 @@ public class TerminalProfile {
      }
 
     /**
-     * Sets whether or not the terminal is currently online
-     * @param value whether or not the terminal is currently online
+     * Sets whether or not the terminal is currently online.
+     * @param value whether or not the terminal is currently online.
      */
      public void setOnline(boolean value) {
           this.online = value;
      }
 
     /**
-     * Gets whether or not the terminal is currently online
-     * @return whether or not the terminal is currently online
+     * Gets whether or not the terminal is currently online.
+     * @return whether or not the terminal is currently online.
      */
      @JsonProperty("online")
      public boolean isOnline() {

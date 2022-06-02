@@ -12,27 +12,46 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 /**
- * 
+ * Models a terminal profile request.
  */
-public class TerminalProfileRequest {
+public class TerminalProfileRequest implements ITimeoutRequest {
 
      private int timeout;
 
+     private boolean test;
+
     /**
-     * Sets the optional timeout override for a terminal profile request.
-     * @param value the optional timeout override for a terminal profile request.
+     * Sets the request timeout in seconds.
+     * @param value the request timeout in seconds.
      */
      public void setTimeout(int value) {
           this.timeout = value;
      }
 
     /**
-     * Gets the optional timeout override for a terminal profile request.
-     * @return the optional timeout override for a terminal profile request.
+     * Gets the request timeout in seconds.
+     * @return the request timeout in seconds.
      */
      @JsonProperty("timeout")
      public int getTimeout() {
           return this.timeout;
+     }
+
+    /**
+     * Sets whether or not to route transaction to the test gateway.
+     * @param value whether or not to route transaction to the test gateway.
+     */
+     public void setTest(boolean value) {
+          this.test = value;
+     }
+
+    /**
+     * Gets whether or not to route transaction to the test gateway.
+     * @return whether or not to route transaction to the test gateway.
+     */
+     @JsonProperty("test")
+     public boolean isTest() {
+          return this.test;
      }
 
 }

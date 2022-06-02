@@ -8,9 +8,9 @@
 
 package com.blockchyp.client.itest;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -29,12 +29,13 @@ public class DeleteQueuedTransactionTest extends BaseTestCase {
     @Test
     @Category(IntegrationTest.class)
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void testTransaction() throws Exception {
+    public void testEndpoint() throws Exception {
 
-        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient("");
 
-        processTestDelay(client, "DeleteQueuedTransactionTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
+        processTestDelay(IntegrationTestConfiguration.getTestClient(), "DeleteQueuedTransactionTest", IntegrationTestConfiguration.getDefaultTerminalName());
+        
         // Set request parameters
         AuthorizationRequest setupRequest = new AuthorizationRequest();
         setupRequest.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
@@ -44,18 +45,24 @@ public class DeleteQueuedTransactionTest extends BaseTestCase {
         setupRequest.setTest(true);
         setupRequest.setQueue(true);
 
-         AuthorizationResponse setupResponse = client.charge(setupRequest);
+        AuthorizationResponse setupResponse = client.charge(setupRequest);
+
 
         // Set request parameters
         DeleteQueuedTransactionRequest request = new DeleteQueuedTransactionRequest();
         request.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
         request.setTransactionRef("*");
 
-        DeleteQueuedTransactionResponse response = client.deleteQueuedTransaction(request);
+        Exception ex = null;
+        try {
+            DeleteQueuedTransactionResponse response = client.deleteQueuedTransaction(request);
+            // Response assertions
+            Assert.assertTrue(response.isSuccess());
+        } catch (Exception e) {
+            ex = e;
+        }
 
-        // Response assertions
-        Assert.assertTrue(response.isSuccess());
-
+    Assert.assertNull(ex);
     }
 
 }

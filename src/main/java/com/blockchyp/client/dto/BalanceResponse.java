@@ -10,7 +10,6 @@ package com.blockchyp.client.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import com.blockchyp.client.dto.AvsResponse;
 import java.util.ArrayList;
 import java.util.Collection;
 

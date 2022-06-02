@@ -12,9 +12,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 /**
- * 
+ * Models a terminal activation request.
  */
-public class TerminalActivationRequest {
+public class TerminalActivationRequest implements ITimeoutRequest {
+
+     private int timeout;
+
+     private boolean test;
 
      private String merchantId;
 
@@ -24,7 +28,39 @@ public class TerminalActivationRequest {
 
      private boolean cloudRelay;
 
-     private int timeout;
+    /**
+     * Sets the request timeout in seconds.
+     * @param value the request timeout in seconds.
+     */
+     public void setTimeout(int value) {
+          this.timeout = value;
+     }
+
+    /**
+     * Gets the request timeout in seconds.
+     * @return the request timeout in seconds.
+     */
+     @JsonProperty("timeout")
+     public int getTimeout() {
+          return this.timeout;
+     }
+
+    /**
+     * Sets whether or not to route transaction to the test gateway.
+     * @param value whether or not to route transaction to the test gateway.
+     */
+     public void setTest(boolean value) {
+          this.test = value;
+     }
+
+    /**
+     * Gets whether or not to route transaction to the test gateway.
+     * @return whether or not to route transaction to the test gateway.
+     */
+     @JsonProperty("test")
+     public boolean isTest() {
+          return this.test;
+     }
 
     /**
      * Sets the optional merchant id.
@@ -44,16 +80,16 @@ public class TerminalActivationRequest {
      }
 
     /**
-     * Sets the terminal activation code displayed on the terminal
-     * @param value the terminal activation code displayed on the terminal
+     * Sets the terminal activation code displayed on the terminal.
+     * @param value the terminal activation code displayed on the terminal.
      */
      public void setActivationCode(String value) {
           this.activationCode = value;
      }
 
     /**
-     * Gets the terminal activation code displayed on the terminal
-     * @return the terminal activation code displayed on the terminal
+     * Gets the terminal activation code displayed on the terminal.
+     * @return the terminal activation code displayed on the terminal.
      */
      @JsonProperty("activationCode")
      public String getActivationCode() {
@@ -94,23 +130,6 @@ public class TerminalActivationRequest {
      @JsonProperty("cloudRelay")
      public boolean isCloudRelay() {
           return this.cloudRelay;
-     }
-
-    /**
-     * Sets the optional timeout override for a terminal profile request.
-     * @param value the optional timeout override for a terminal profile request.
-     */
-     public void setTimeout(int value) {
-          this.timeout = value;
-     }
-
-    /**
-     * Gets the optional timeout override for a terminal profile request.
-     * @return the optional timeout override for a terminal profile request.
-     */
-     @JsonProperty("timeout")
-     public int getTimeout() {
-          return this.timeout;
      }
 
 }

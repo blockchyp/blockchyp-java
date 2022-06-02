@@ -1,5 +1,7 @@
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -56,7 +58,6 @@ public class UpdateTransactionDisplayExample {
 
         // Send the request
         Acknowledgement response = client.updateTransactionDisplay(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 

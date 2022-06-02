@@ -8,9 +8,9 @@
 
 package com.blockchyp.client.itest;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -29,29 +29,36 @@ public class DeleteMediaAssetTest extends BaseTestCase {
     @Test
     @Category(IntegrationTest.class)
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void testTransaction() throws Exception {
+    public void testEndpoint() throws Exception {
 
-        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient("");
 
-        processTestDelay(client, "DeleteMediaAssetTest", IntegrationTestConfiguration.getDefaultTerminalName());
-
+        
         // Set request parameters
         UploadMetadata setupRequest = new UploadMetadata();
         setupRequest.setFileName("aviato.png");
         setupRequest.setFileSize(18843);
         setupRequest.setUploadId(getUUID());
 
-         MediaMetadata setupResponse = client.uploadMedia(setupRequest);
+        InputStream inStream = this.getClass().getClassLoader().getResourceAsStream("aviato.png");
+        MediaMetadata setupResponse = client.uploadMedia(setupRequest, inStream);
+
+
 
         // Set request parameters
         MediaRequest request = new MediaRequest();
-        request.setMediaId();
+        request.setMediaId(setupResponse.getId());
 
-        Acknowledgement response = client.deleteMediaAsset(request);
+        Exception ex = null;
+        try {
+            Acknowledgement response = client.deleteMediaAsset(request);
+            // Response assertions
+            Assert.assertTrue(response.isSuccess());
+        } catch (Exception e) {
+            ex = e;
+        }
 
-        // Response assertions
-        Assert.assertTrue(response.isSuccess());
-
+    Assert.assertNull(ex);
     }
 
 }

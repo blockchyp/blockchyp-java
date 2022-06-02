@@ -17,7 +17,11 @@ import java.util.Collection;
  * Models a media library response.
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
-public class SlideShow implements IAbstractAcknowledgement {
+public class SlideShow implements ITimeoutRequest, IAbstractAcknowledgement {
+
+     private int timeout;
+
+     private boolean test;
 
      private boolean success;
 
@@ -33,7 +37,39 @@ public class SlideShow implements IAbstractAcknowledgement {
 
      private Collection<Slide> slides;
 
-     private int timeout;
+    /**
+     * Sets the request timeout in seconds.
+     * @param value the request timeout in seconds.
+     */
+     public void setTimeout(int value) {
+          this.timeout = value;
+     }
+
+    /**
+     * Gets the request timeout in seconds.
+     * @return the request timeout in seconds.
+     */
+     @JsonProperty("timeout")
+     public int getTimeout() {
+          return this.timeout;
+     }
+
+    /**
+     * Sets whether or not to route transaction to the test gateway.
+     * @param value whether or not to route transaction to the test gateway.
+     */
+     public void setTest(boolean value) {
+          this.test = value;
+     }
+
+    /**
+     * Gets whether or not to route transaction to the test gateway.
+     * @return whether or not to route transaction to the test gateway.
+     */
+     @JsonProperty("test")
+     public boolean isTest() {
+          return this.test;
+     }
 
     /**
      * Sets whether or not the request succeeded.
@@ -152,23 +188,6 @@ public class SlideShow implements IAbstractAcknowledgement {
      @JsonProperty("slides")
      public Collection<Slide> getSlides() {
           return this.slides;
-     }
-
-    /**
-     * Sets an optional timeout override.
-     * @param value an optional timeout override.
-     */
-     public void setTimeout(int value) {
-          this.timeout = value;
-     }
-
-    /**
-     * Gets an optional timeout override.
-     * @return an optional timeout override.
-     */
-     @JsonProperty("timeout")
-     public int getTimeout() {
-          return this.timeout;
      }
 
     /**

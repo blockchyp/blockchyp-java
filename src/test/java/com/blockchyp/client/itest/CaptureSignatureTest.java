@@ -8,9 +8,9 @@
 
 package com.blockchyp.client.itest;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -28,23 +28,29 @@ public class CaptureSignatureTest extends BaseTestCase {
     @Test
     @Category(IntegrationTest.class)
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void testTransaction() throws Exception {
+    public void testEndpoint() throws Exception {
 
-        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient("");
 
-        processTestDelay(client, "CaptureSignatureTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
+        processTestDelay(IntegrationTestConfiguration.getTestClient(), "CaptureSignatureTest", IntegrationTestConfiguration.getDefaultTerminalName());
+        
         // Set request parameters
         CaptureSignatureRequest request = new CaptureSignatureRequest();
         request.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
         request.setSigFormat(SignatureFormat.PNG);
         request.setSigWidth(200);
 
-        CaptureSignatureResponse response = client.captureSignature(request);
+        Exception ex = null;
+        try {
+            CaptureSignatureResponse response = client.captureSignature(request);
+            // Response assertions
+            Assert.assertTrue(response.isSuccess());
+        } catch (Exception e) {
+            ex = e;
+        }
 
-        // Response assertions
-        Assert.assertTrue(response.isSuccess());
-
+    Assert.assertNull(ex);
     }
 
 }

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * 
+ * Models a terminal profile response.
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class TerminalProfileResponse implements IAbstractAcknowledgement {

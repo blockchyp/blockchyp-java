@@ -1,5 +1,7 @@
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -30,7 +32,6 @@ public class TcLogExample {
 
         // Send the request
         TermsAndConditionsLogResponse response = client.tcLog(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 

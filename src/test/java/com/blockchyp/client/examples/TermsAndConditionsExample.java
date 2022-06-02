@@ -1,5 +1,7 @@
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -38,7 +40,6 @@ public class TermsAndConditionsExample {
 
         // Send the request
         TermsAndConditionsResponse response = client.termsAndConditions(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 

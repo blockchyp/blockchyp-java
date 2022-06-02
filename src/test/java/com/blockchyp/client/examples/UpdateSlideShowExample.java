@@ -1,5 +1,7 @@
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -32,13 +34,12 @@ public class UpdateSlideShowExample {
 
         Collection slides = new ArrayList();
         Slide slides0 = new Slide();
-        slides0.setMediaId();
+        slides0.setMediaId("<MEDIA ID>");
         slides.add(slides0);
         request.setSlides(slides);
 
         // Send the request
         SlideShow response = client.updateSlideShow(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 

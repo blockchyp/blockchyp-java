@@ -14,13 +14,32 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Models basic information needed to create a test merchant.
  */
-public class AddTestMerchantRequest {
+public class AddTestMerchantRequest implements ITimeoutRequest {
+
+     private boolean test;
 
      private String dbaName;
 
      private String companyName;
 
      private int timeout;
+
+    /**
+     * Sets whether or not to route transaction to the test gateway.
+     * @param value whether or not to route transaction to the test gateway.
+     */
+     public void setTest(boolean value) {
+          this.test = value;
+     }
+
+    /**
+     * Gets whether or not to route transaction to the test gateway.
+     * @return whether or not to route transaction to the test gateway.
+     */
+     @JsonProperty("test")
+     public boolean isTest() {
+          return this.test;
+     }
 
     /**
      * Sets the DBA name for the test merchant.

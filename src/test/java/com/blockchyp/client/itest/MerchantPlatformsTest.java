@@ -8,9 +8,9 @@
 
 package com.blockchyp.client.itest;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -29,28 +29,33 @@ public class MerchantPlatformsTest extends BaseTestCase {
     @Test
     @Category(IntegrationTest.class)
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void testTransaction() throws Exception {
+    public void testEndpoint() throws Exception {
 
-        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient("partner");
 
-        processTestDelay(client, "MerchantPlatformsTest", IntegrationTestConfiguration.getDefaultTerminalName());
-
+        
         // Set request parameters
         AddTestMerchantRequest setupRequest = new AddTestMerchantRequest();
         setupRequest.setDbaName("Test Merchant");
         setupRequest.setCompanyName("Test Merchant");
 
-         MerchantProfileResponse setupResponse = client.addTestMerchant(setupRequest);
+        MerchantProfileResponse setupResponse = client.addTestMerchant(setupRequest);
+
 
         // Set request parameters
         MerchantProfileRequest request = new MerchantProfileRequest();
-        request.setMerchantId();
+        request.setMerchantId(setupResponse.getMerchantId());
 
-        MerchantPlatformsResponse response = client.merchantPlatforms(request);
+        Exception ex = null;
+        try {
+            MerchantPlatformsResponse response = client.merchantPlatforms(request);
+            // Response assertions
+            Assert.assertTrue(response.isSuccess());
+        } catch (Exception e) {
+            ex = e;
+        }
 
-        // Response assertions
-        Assert.assertTrue(response.isSuccess());
-
+    Assert.assertNull(ex);
     }
 
 }

@@ -1,5 +1,7 @@
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -34,7 +36,6 @@ public class BooleanPromptExample {
 
         // Send the request
         BooleanPromptResponse response = client.booleanPrompt(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 

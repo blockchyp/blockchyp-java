@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Models a request for merchant information.
  */
-public class GetMerchantsRequest {
+public class GetMerchantsRequest implements ITimeoutRequest {
 
      private int timeout;
 
@@ -25,16 +25,16 @@ public class GetMerchantsRequest {
      private int startIndex;
 
     /**
-     * Sets allows developers to override the default timeout.
-     * @param value allows developers to override the default timeout.
+     * Sets the request timeout in seconds.
+     * @param value the request timeout in seconds.
      */
      public void setTimeout(int value) {
           this.timeout = value;
      }
 
     /**
-     * Gets allows developers to override the default timeout.
-     * @return allows developers to override the default timeout.
+     * Gets the request timeout in seconds.
+     * @return the request timeout in seconds.
      */
      @JsonProperty("timeout")
      public int getTimeout() {

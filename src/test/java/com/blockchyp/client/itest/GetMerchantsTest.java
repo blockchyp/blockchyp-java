@@ -8,9 +8,9 @@
 
 package com.blockchyp.client.itest;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -27,21 +27,25 @@ public class GetMerchantsTest extends BaseTestCase {
     @Test
     @Category(IntegrationTest.class)
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void testTransaction() throws Exception {
+    public void testEndpoint() throws Exception {
 
-        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient("partner");
 
-        processTestDelay(client, "GetMerchantsTest", IntegrationTestConfiguration.getDefaultTerminalName());
-
+        
         // Set request parameters
         GetMerchantsRequest request = new GetMerchantsRequest();
         request.setTest(true);
 
-        GetMerchantsResponse response = client.getMerchants(request);
+        Exception ex = null;
+        try {
+            GetMerchantsResponse response = client.getMerchants(request);
+            // Response assertions
+            Assert.assertTrue(response.isSuccess());
+        } catch (Exception e) {
+            ex = e;
+        }
 
-        // Response assertions
-        Assert.assertTrue(response.isSuccess());
-
+    Assert.assertNull(ex);
     }
 
 }

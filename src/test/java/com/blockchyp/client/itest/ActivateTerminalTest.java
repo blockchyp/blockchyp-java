@@ -8,9 +8,9 @@
 
 package com.blockchyp.client.itest;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -27,23 +27,27 @@ public class ActivateTerminalTest extends BaseTestCase {
     @Test
     @Category(IntegrationTest.class)
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void testTransaction() throws Exception {
+    public void testEndpoint() throws Exception {
 
-        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient("");
 
-        processTestDelay(client, "ActivateTerminalTest", IntegrationTestConfiguration.getDefaultTerminalName());
-
+        
         // Set request parameters
         TerminalActivationRequest request = new TerminalActivationRequest();
         request.setTerminalName("Bad Terminal Code");
         request.setActivationCode("XXXXXX");
 
-        Acknowledgement response = client.activateTerminal(request);
+        Exception ex = null;
+        try {
+            Acknowledgement response = client.activateTerminal(request);
+            // Response assertions
+            Assert.assertFalse(response.isSuccess());
+            Assert.assertEquals("Invalid Activation Code", response.getError());
+        } catch (Exception e) {
+            ex = e;
+        }
 
-        // Response assertions
-        Assert.assertFalse(response.isSuccess());
-        Assert.assertEquals("Invalid Activation Code", response.getError());
-
+    Assert.assertNull(ex);
     }
 
 }

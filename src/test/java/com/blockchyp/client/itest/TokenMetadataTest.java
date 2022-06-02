@@ -8,9 +8,9 @@
 
 package com.blockchyp.client.itest;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -30,12 +30,11 @@ public class TokenMetadataTest extends BaseTestCase {
     @Test
     @Category(IntegrationTest.class)
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void testTransaction() throws Exception {
+    public void testEndpoint() throws Exception {
 
-        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient("");
 
-        processTestDelay(client, "TokenMetadataTest", IntegrationTestConfiguration.getDefaultTerminalName());
-
+        
         // Set request parameters
         EnrollRequest setupRequest = new EnrollRequest();
         setupRequest.setPan("4111111111111111");
@@ -47,17 +46,23 @@ public class TokenMetadataTest extends BaseTestCase {
         customer.setLastName("Customer");
         setupRequest.setCustomer(customer);
 
-         EnrollResponse setupResponse = client.enroll(setupRequest);
+        EnrollResponse setupResponse = client.enroll(setupRequest);
+
 
         // Set request parameters
         TokenMetadataRequest request = new TokenMetadataRequest();
         request.setToken(setupResponse.getToken());
 
-        TokenMetadataResponse response = client.tokenMetadata(request);
+        Exception ex = null;
+        try {
+            TokenMetadataResponse response = client.tokenMetadata(request);
+            // Response assertions
+            Assert.assertTrue(response.isSuccess());
+        } catch (Exception e) {
+            ex = e;
+        }
 
-        // Response assertions
-        Assert.assertTrue(response.isSuccess());
-
+    Assert.assertNull(ex);
     }
 
 }

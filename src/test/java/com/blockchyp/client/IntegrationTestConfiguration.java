@@ -9,6 +9,7 @@ import org.apache.commons.lang.SystemUtils;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.IntegrationTestSettings;
+import com.blockchyp.client.IntegrationTestSettings.TestAPICredentials;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /*
@@ -82,6 +83,10 @@ public class IntegrationTestConfiguration {
         return getSettings().getDefaultTerminalName();
     }   
     
+    public static String getDashboardHost() {
+        return getSettings().getDashboardHost();
+    }
+    
     public static String getGatewayHost() {
         return getSettings().getGatewayHost();
     }
@@ -101,11 +106,30 @@ public class IntegrationTestConfiguration {
         return creds;
     }
     
+    public static APICredentials getTestCredentials(String profile) {
+    	
+    	TestAPICredentials testCreds = getSettings().getProfile(profile);
+    	
+    	return new APICredentials(testCreds.getApiKey(), testCreds.getBearerToken(), testCreds.getSigningKey());
+
+    }
+    
+    
     public static BlockChypClient getTestClient() {
 		return new BlockChypClient(
+				IntegrationTestConfiguration.getDashboardHost(),
 				IntegrationTestConfiguration.getGatewayHost(), 
 				IntegrationTestConfiguration.getTestGatewayHost(), 
 				IntegrationTestConfiguration.getTestCredentials()
+			);
+    }
+    
+    public static BlockChypClient getTestClient(String profile) {
+		return new BlockChypClient(
+				IntegrationTestConfiguration.getDashboardHost(),
+				IntegrationTestConfiguration.getGatewayHost(), 
+				IntegrationTestConfiguration.getTestGatewayHost(), 
+				IntegrationTestConfiguration.getTestCredentials(profile)
 			);
     }
     

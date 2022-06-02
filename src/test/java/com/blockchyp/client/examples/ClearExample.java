@@ -1,5 +1,7 @@
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -31,7 +33,6 @@ public class ClearExample {
 
         // Send the request
         Acknowledgement response = client.clear(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 

@@ -1,5 +1,7 @@
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -26,12 +28,10 @@ public class DeactivateTerminalExample {
 
         // Set request parameters
         TerminalDeactivationRequest request = new TerminalDeactivationRequest();
-        request.setTerminalId(getUUID());
-        request.setTimeout(120);
+        request.setTerminalId("<TERMINAL ID>");
 
         // Send the request
         Acknowledgement response = client.deactivateTerminal(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 

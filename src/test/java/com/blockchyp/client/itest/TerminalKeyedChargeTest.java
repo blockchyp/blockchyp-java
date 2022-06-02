@@ -8,9 +8,9 @@
 
 package com.blockchyp.client.itest;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -27,12 +27,13 @@ public class TerminalKeyedChargeTest extends BaseTestCase {
     @Test
     @Category(IntegrationTest.class)
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void testTransaction() throws Exception {
+    public void testEndpoint() throws Exception {
 
-        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient("");
 
-        processTestDelay(client, "TerminalKeyedChargeTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
+        processTestDelay(IntegrationTestConfiguration.getTestClient(), "TerminalKeyedChargeTest", IntegrationTestConfiguration.getDefaultTerminalName());
+        
         // Set request parameters
         AuthorizationRequest request = new AuthorizationRequest();
         request.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
@@ -40,28 +41,33 @@ public class TerminalKeyedChargeTest extends BaseTestCase {
         request.setManualEntry(true);
         request.setTest(true);
 
-        AuthorizationResponse response = client.charge(request);
+        Exception ex = null;
+        try {
+            AuthorizationResponse response = client.charge(request);
+            // Response assertions
+            Assert.assertTrue(response.isSuccess());
+            Assert.assertTrue(response.isApproved());
+            Assert.assertTrue(response.isTest());
+            Assert.assertTrue(response.getAuthCode().length() == 6);
+            Assert.assertNotNull(response.getTransactionId());
+            Assert.assertTrue(response.getTransactionId().trim().length() > 0);
+            Assert.assertNotNull(response.getTimestamp());
+            Assert.assertTrue(response.getTimestamp().trim().length() > 0);
+            Assert.assertNotNull(response.getTickBlock());
+            Assert.assertTrue(response.getTickBlock().trim().length() > 0);
+            Assert.assertEquals("approved", response.getResponseDescription());
+            Assert.assertNotNull(response.getPaymentType());
+            Assert.assertTrue(response.getPaymentType().trim().length() > 0);
+            Assert.assertNotNull(response.getMaskedPan());
+            Assert.assertTrue(response.getMaskedPan().trim().length() > 0);
+            Assert.assertNotNull(response.getEntryMethod());
+            Assert.assertTrue(response.getEntryMethod().trim().length() > 0);
+            Assert.assertEquals("11.11", response.getAuthorizedAmount());
+        } catch (Exception e) {
+            ex = e;
+        }
 
-        // Response assertions
-        Assert.assertTrue(response.isSuccess());
-        Assert.assertTrue(response.isApproved());
-        Assert.assertTrue(response.isTest());
-        Assert.assertTrue(response.getAuthCode().length() == 6);
-        Assert.assertNotNull(response.getTransactionId());
-        Assert.assertTrue(response.getTransactionId().trim().length() > 0);
-        Assert.assertNotNull(response.getTimestamp());
-        Assert.assertTrue(response.getTimestamp().trim().length() > 0);
-        Assert.assertNotNull(response.getTickBlock());
-        Assert.assertTrue(response.getTickBlock().trim().length() > 0);
-        Assert.assertEquals("approved", response.getResponseDescription());
-        Assert.assertNotNull(response.getPaymentType());
-        Assert.assertTrue(response.getPaymentType().trim().length() > 0);
-        Assert.assertNotNull(response.getMaskedPan());
-        Assert.assertTrue(response.getMaskedPan().trim().length() > 0);
-        Assert.assertNotNull(response.getEntryMethod());
-        Assert.assertTrue(response.getEntryMethod().trim().length() > 0);
-        Assert.assertEquals("11.11", response.getAuthorizedAmount());
-
+    Assert.assertNull(ex);
     }
 
 }

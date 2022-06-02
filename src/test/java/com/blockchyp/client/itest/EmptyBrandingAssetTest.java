@@ -8,9 +8,9 @@
 
 package com.blockchyp.client.itest;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -26,22 +26,26 @@ public class EmptyBrandingAssetTest extends BaseTestCase {
     @Test
     @Category(IntegrationTest.class)
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void testTransaction() throws Exception {
+    public void testEndpoint() throws Exception {
 
-        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient("");
 
-        processTestDelay(client, "EmptyBrandingAssetTest", IntegrationTestConfiguration.getDefaultTerminalName());
-
+        
         // Set request parameters
         BrandingAsset request = new BrandingAsset();
         request.setNotes("Empty Asset");
         request.setEnabled(false);
 
-        BrandingAsset response = client.updateBrandingAsset(request);
+        Exception ex = null;
+        try {
+            BrandingAsset response = client.updateBrandingAsset(request);
+            // Response assertions
+            Assert.assertTrue(response.isSuccess());
+        } catch (Exception e) {
+            ex = e;
+        }
 
-        // Response assertions
-        Assert.assertTrue(response.isSuccess());
-
+    Assert.assertNull(ex);
     }
 
 }

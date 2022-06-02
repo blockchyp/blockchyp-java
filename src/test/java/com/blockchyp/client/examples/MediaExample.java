@@ -1,5 +1,7 @@
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -30,7 +32,6 @@ public class MediaExample {
 
         // Send the request
         MediaLibraryResponse response = client.media(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 

@@ -17,7 +17,7 @@ import java.util.Collection;
  * Models a merchant profile.
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
-public class MerchantProfile {
+public class MerchantProfile implements ITimeoutRequest {
 
      private int timeout;
 
@@ -122,16 +122,16 @@ public class MerchantProfile {
      private Collection<BankAccount> bankAccounts;
 
     /**
-     * Sets overrides the default timeout for merchant profile updates.
-     * @param value overrides the default timeout for merchant profile updates.
+     * Sets the request timeout in seconds.
+     * @param value the request timeout in seconds.
      */
      public void setTimeout(int value) {
           this.timeout = value;
      }
 
     /**
-     * Gets overrides the default timeout for merchant profile updates.
-     * @return overrides the default timeout for merchant profile updates.
+     * Gets the request timeout in seconds.
+     * @return the request timeout in seconds.
      */
      @JsonProperty("timeout")
      public int getTimeout() {

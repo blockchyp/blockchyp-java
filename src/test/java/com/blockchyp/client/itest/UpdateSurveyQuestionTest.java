@@ -8,9 +8,9 @@
 
 package com.blockchyp.client.itest;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -26,25 +26,29 @@ public class UpdateSurveyQuestionTest extends BaseTestCase {
     @Test
     @Category(IntegrationTest.class)
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void testTransaction() throws Exception {
+    public void testEndpoint() throws Exception {
 
-        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient("");
 
-        processTestDelay(client, "UpdateSurveyQuestionTest", IntegrationTestConfiguration.getDefaultTerminalName());
-
+        
         // Set request parameters
         SurveyQuestion request = new SurveyQuestion();
         request.setOrdinal(1);
         request.setQuestionText("Would you shop here again?");
         request.setQuestionType("yes_no");
 
-        SurveyQuestion response = client.updateSurveyQuestion(request);
+        Exception ex = null;
+        try {
+            SurveyQuestion response = client.updateSurveyQuestion(request);
+            // Response assertions
+            Assert.assertTrue(response.isSuccess());
+            Assert.assertEquals("Would you shop here again?", response.getQuestionText());
+            Assert.assertEquals("yes_no", response.getQuestionType());
+        } catch (Exception e) {
+            ex = e;
+        }
 
-        // Response assertions
-        Assert.assertTrue(response.isSuccess());
-        Assert.assertEquals("Would you shop here again?", response.getQuestionText());
-        Assert.assertEquals("yes_no", response.getQuestionType());
-
+    Assert.assertNull(ex);
     }
 
 }

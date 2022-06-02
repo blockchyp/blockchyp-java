@@ -25,8 +25,6 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
 
      private String responseDescription;
 
-     private int timeout;
-
      private boolean test;
 
      private String merchantId;
@@ -176,23 +174,6 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      @JsonProperty("responseDescription")
      public String getResponseDescription() {
           return this.responseDescription;
-     }
-
-    /**
-     * Sets overrides the default timeout for merchant profile updates.
-     * @param value overrides the default timeout for merchant profile updates.
-     */
-     public void setTimeout(int value) {
-          this.timeout = value;
-     }
-
-    /**
-     * Gets overrides the default timeout for merchant profile updates.
-     * @return overrides the default timeout for merchant profile updates.
-     */
-     @JsonProperty("timeout")
-     public int getTimeout() {
-          return this.timeout;
      }
 
     /**

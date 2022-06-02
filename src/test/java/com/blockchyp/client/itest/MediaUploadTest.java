@@ -8,9 +8,9 @@
 
 package com.blockchyp.client.itest;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -27,30 +27,35 @@ public class MediaUploadTest extends BaseTestCase {
     @Test
     @Category(IntegrationTest.class)
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void testTransaction() throws Exception {
+    public void testEndpoint() throws Exception {
 
-        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient("");
 
-        processTestDelay(client, "MediaUploadTest", IntegrationTestConfiguration.getDefaultTerminalName());
-
+        
         // Set request parameters
         UploadMetadata request = new UploadMetadata();
         request.setFileName("aviato.png");
         request.setFileSize(18843);
         request.setUploadId(getUUID());
 
-        MediaMetadata response = client.uploadMedia(request);
+        Exception ex = null;
+        try {
+            InputStream inStream = this.getClass().getClassLoader().getResourceAsStream("aviato.png");
+            MediaMetadata response = client.uploadMedia(request, inStream);
+            // Response assertions
+            Assert.assertTrue(response.isSuccess());
+            Assert.assertNotNull(response.getId());
+            Assert.assertTrue(response.getId().trim().length() > 0);
+            Assert.assertEquals("aviato.png", response.getOriginalFile());
+            Assert.assertNotNull(response.getFileUrl());
+            Assert.assertTrue(response.getFileUrl().trim().length() > 0);
+            Assert.assertNotNull(response.getThumbnailUrl());
+            Assert.assertTrue(response.getThumbnailUrl().trim().length() > 0);
+        } catch (Exception e) {
+            ex = e;
+        }
 
-        // Response assertions
-        Assert.assertTrue(response.isSuccess());
-        Assert.assertNotNull(response.getId());
-        Assert.assertTrue(response.getId().trim().length() > 0);
-        Assert.assertEquals("aviato.png", response.getOriginalFile());
-        Assert.assertNotNull(response.getFileUrl());
-        Assert.assertTrue(response.getFileUrl().trim().length() > 0);
-        Assert.assertNotNull(response.getThumbnailUrl());
-        Assert.assertTrue(response.getThumbnailUrl().trim().length() > 0);
-
+    Assert.assertNull(ex);
     }
 
 }

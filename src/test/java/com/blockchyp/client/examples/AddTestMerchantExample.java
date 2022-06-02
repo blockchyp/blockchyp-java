@@ -1,5 +1,7 @@
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -31,7 +33,6 @@ public class AddTestMerchantExample {
 
         // Send the request
         MerchantProfileResponse response = client.addTestMerchant(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 

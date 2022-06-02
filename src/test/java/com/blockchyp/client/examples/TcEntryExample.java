@@ -1,5 +1,7 @@
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -8,11 +10,11 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 
 import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
-import com.blockchyp.client.dto.TermsAndConditionsTemplateRequest;
-import com.blockchyp.client.dto.TermsAndConditionsTemplate;
+import com.blockchyp.client.dto.TermsAndConditionsLogRequest;
+import com.blockchyp.client.dto.TermsAndConditionsLogEntry;
 
 
-public class TcTemplateExample {
+public class TcEntryExample {
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
@@ -25,12 +27,11 @@ public class TcTemplateExample {
         BlockChypClient client = new BlockChypClient(creds);
 
         // Set request parameters
-        TermsAndConditionsTemplateRequest request = new TermsAndConditionsTemplateRequest();
+        TermsAndConditionsLogRequest request = new TermsAndConditionsLogRequest();
         request.setTimeout(120);
 
         // Send the request
-        TermsAndConditionsTemplate response = client.tcTemplate(request);
-
+        TermsAndConditionsLogEntry response = client.tcEntry(request);
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 

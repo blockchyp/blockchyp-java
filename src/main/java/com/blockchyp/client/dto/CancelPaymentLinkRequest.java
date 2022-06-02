@@ -15,7 +15,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Cancels a pending payment link. Payment links that have already been used cannot be
  * canceled and the request will be rejected.
  */
-public class CancelPaymentLinkRequest implements ICoreRequest {
+public class CancelPaymentLinkRequest implements ITimeoutRequest, ICoreRequest {
+
+     private int timeout;
+
+     private boolean test;
 
      private String transactionRef;
 
@@ -31,11 +35,41 @@ public class CancelPaymentLinkRequest implements ICoreRequest {
 
      private String destinationAccount;
 
-     private boolean test;
-
-     private int timeout;
-
      private String linkCode;
+
+    /**
+     * Sets the request timeout in seconds.
+     * @param value the request timeout in seconds.
+     */
+     public void setTimeout(int value) {
+          this.timeout = value;
+     }
+
+    /**
+     * Gets the request timeout in seconds.
+     * @return the request timeout in seconds.
+     */
+     @JsonProperty("timeout")
+     public int getTimeout() {
+          return this.timeout;
+     }
+
+    /**
+     * Sets whether or not to route transaction to the test gateway.
+     * @param value whether or not to route transaction to the test gateway.
+     */
+     public void setTest(boolean value) {
+          this.test = value;
+     }
+
+    /**
+     * Gets whether or not to route transaction to the test gateway.
+     * @return whether or not to route transaction to the test gateway.
+     */
+     @JsonProperty("test")
+     public boolean isTest() {
+          return this.test;
+     }
 
     /**
      * Sets a user-assigned reference that can be used to recall or reverse transactions.
@@ -164,40 +198,6 @@ public class CancelPaymentLinkRequest implements ICoreRequest {
      @JsonProperty("destinationAccount")
      public String getDestinationAccount() {
           return this.destinationAccount;
-     }
-
-    /**
-     * Sets whether or not to route transaction to the test gateway.
-     * @param value whether or not to route transaction to the test gateway.
-     */
-     public void setTest(boolean value) {
-          this.test = value;
-     }
-
-    /**
-     * Gets whether or not to route transaction to the test gateway.
-     * @return whether or not to route transaction to the test gateway.
-     */
-     @JsonProperty("test")
-     public boolean isTest() {
-          return this.test;
-     }
-
-    /**
-     * Sets the request timeout in seconds.
-     * @param value the request timeout in seconds.
-     */
-     public void setTimeout(int value) {
-          this.timeout = value;
-     }
-
-    /**
-     * Gets the request timeout in seconds.
-     * @return the request timeout in seconds.
-     */
-     @JsonProperty("timeout")
-     public int getTimeout() {
-          return this.timeout;
      }
 
     /**

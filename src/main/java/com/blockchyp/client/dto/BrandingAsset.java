@@ -17,7 +17,11 @@ import java.util.Collection;
  * Models the priority and display settings for terminal media.
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
-public class BrandingAsset implements IAbstractAcknowledgement {
+public class BrandingAsset implements ITimeoutRequest, IAbstractAcknowledgement {
+
+     private int timeout;
+
+     private boolean test;
 
      private boolean success;
 
@@ -87,7 +91,39 @@ public class BrandingAsset implements IAbstractAcknowledgement {
 
      private String narrativeDisplayPeriod;
 
-     private int timeout;
+    /**
+     * Sets the request timeout in seconds.
+     * @param value the request timeout in seconds.
+     */
+     public void setTimeout(int value) {
+          this.timeout = value;
+     }
+
+    /**
+     * Gets the request timeout in seconds.
+     * @return the request timeout in seconds.
+     */
+     @JsonProperty("timeout")
+     public int getTimeout() {
+          return this.timeout;
+     }
+
+    /**
+     * Sets whether or not to route transaction to the test gateway.
+     * @param value whether or not to route transaction to the test gateway.
+     */
+     public void setTest(boolean value) {
+          this.test = value;
+     }
+
+    /**
+     * Gets whether or not to route transaction to the test gateway.
+     * @return whether or not to route transaction to the test gateway.
+     */
+     @JsonProperty("test")
+     public boolean isTest() {
+          return this.test;
+     }
 
     /**
      * Sets whether or not the request succeeded.
@@ -322,7 +358,7 @@ public class BrandingAsset implements IAbstractAcknowledgement {
     /**
      * Sets the start date if this asset should be displayed based on a schedule.
      * @param value the start date if this asset should be displayed based on a schedule.
-     * Format: MM/DD/YYYY
+     * Format: MM/DD/YYYY.
      */
      public void setStartDate(String value) {
           this.startDate = value;
@@ -331,7 +367,7 @@ public class BrandingAsset implements IAbstractAcknowledgement {
     /**
      * Gets the start date if this asset should be displayed based on a schedule.
      * @return the start date if this asset should be displayed based on a schedule.
-     * Format: MM/DD/YYYY
+     * Format: MM/DD/YYYY.
      */
      @JsonProperty("startDate")
      public String getStartDate() {
@@ -341,7 +377,7 @@ public class BrandingAsset implements IAbstractAcknowledgement {
     /**
      * Sets the end date if this asset should be displayed based on a schedule.
      * @param value the end date if this asset should be displayed based on a schedule.
-     * Format: MM/DD/YYYY
+     * Format: MM/DD/YYYY.
      */
      public void setEndDate(String value) {
           this.endDate = value;
@@ -350,7 +386,7 @@ public class BrandingAsset implements IAbstractAcknowledgement {
     /**
      * Gets the end date if this asset should be displayed based on a schedule.
      * @return the end date if this asset should be displayed based on a schedule. Format:
-     * MM/DD/YYYY
+     * MM/DD/YYYY.
      */
      @JsonProperty("endDate")
      public String getEndDate() {
@@ -381,7 +417,7 @@ public class BrandingAsset implements IAbstractAcknowledgement {
     /**
      * Sets the start date if this asset should be displayed based on a schedule.
      * @param value the start date if this asset should be displayed based on a schedule.
-     * Format: MM/DD/YYYY
+     * Format: MM/DD/YYYY.
      */
      public void setStartTime(String value) {
           this.startTime = value;
@@ -390,7 +426,7 @@ public class BrandingAsset implements IAbstractAcknowledgement {
     /**
      * Gets the start date if this asset should be displayed based on a schedule.
      * @return the start date if this asset should be displayed based on a schedule.
-     * Format: MM/DD/YYYY
+     * Format: MM/DD/YYYY.
      */
      @JsonProperty("startTime")
      public String getStartTime() {
@@ -400,7 +436,7 @@ public class BrandingAsset implements IAbstractAcknowledgement {
     /**
      * Sets the end date if this asset should be displayed based on a schedule.
      * @param value the end date if this asset should be displayed based on a schedule.
-     * Format: MM/DD/YYYY
+     * Format: MM/DD/YYYY.
      */
      public void setEndTime(String value) {
           this.endTime = value;
@@ -409,7 +445,7 @@ public class BrandingAsset implements IAbstractAcknowledgement {
     /**
      * Gets the end date if this asset should be displayed based on a schedule.
      * @return the end date if this asset should be displayed based on a schedule. Format:
-     * MM/DD/YYYY
+     * MM/DD/YYYY.
      */
      @JsonProperty("endTime")
      public String getEndTime() {
@@ -713,23 +749,6 @@ public class BrandingAsset implements IAbstractAcknowledgement {
      @JsonProperty("narrativeDisplayPeriod")
      public String getNarrativeDisplayPeriod() {
           return this.narrativeDisplayPeriod;
-     }
-
-    /**
-     * Sets an optional timeout override.
-     * @param value an optional timeout override.
-     */
-     public void setTimeout(int value) {
-          this.timeout = value;
-     }
-
-    /**
-     * Gets an optional timeout override.
-     * @return an optional timeout override.
-     */
-     @JsonProperty("timeout")
-     public int getTimeout() {
-          return this.timeout;
      }
 
     /**

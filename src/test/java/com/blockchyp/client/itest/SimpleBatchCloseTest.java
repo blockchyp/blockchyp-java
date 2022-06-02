@@ -8,9 +8,9 @@
 
 package com.blockchyp.client.itest;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -29,12 +29,11 @@ public class SimpleBatchCloseTest extends BaseTestCase {
     @Test
     @Category(IntegrationTest.class)
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void testTransaction() throws Exception {
+    public void testEndpoint() throws Exception {
 
-        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient("");
 
-        processTestDelay(client, "SimpleBatchCloseTest", IntegrationTestConfiguration.getDefaultTerminalName());
-
+        
         // Set request parameters
         AuthorizationRequest setupRequest = new AuthorizationRequest();
         setupRequest.setPan("4111111111111111");
@@ -44,17 +43,23 @@ public class SimpleBatchCloseTest extends BaseTestCase {
         setupRequest.setTest(true);
         setupRequest.setTransactionRef(getUUID());
 
-         AuthorizationResponse setupResponse = client.charge(setupRequest);
+        AuthorizationResponse setupResponse = client.charge(setupRequest);
+
 
         // Set request parameters
         CloseBatchRequest request = new CloseBatchRequest();
         request.setTest(true);
 
-        CloseBatchResponse response = client.closeBatch(request);
+        Exception ex = null;
+        try {
+            CloseBatchResponse response = client.closeBatch(request);
+            // Response assertions
+            Assert.assertTrue(response.isSuccess());
+        } catch (Exception e) {
+            ex = e;
+        }
 
-        // Response assertions
-        Assert.assertTrue(response.isSuccess());
-
+    Assert.assertNull(ex);
     }
 
 }

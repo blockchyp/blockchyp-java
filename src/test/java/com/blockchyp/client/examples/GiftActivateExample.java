@@ -1,5 +1,7 @@
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -32,7 +34,6 @@ public class GiftActivateExample {
 
         // Send the request
         GiftActivateResponse response = client.giftActivate(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 

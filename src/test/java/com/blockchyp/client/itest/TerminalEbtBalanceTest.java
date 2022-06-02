@@ -8,9 +8,9 @@
 
 package com.blockchyp.client.itest;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -23,30 +23,36 @@ import com.blockchyp.client.dto.BalanceRequest;
 import com.blockchyp.client.dto.BalanceResponse;
 import com.blockchyp.client.dto.CardType;
 
-public class TerminalEBTBalanceTest extends BaseTestCase {
+public class TerminalEbtBalanceTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void testTransaction() throws Exception {
+    public void testEndpoint() throws Exception {
 
-        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient("");
 
-        processTestDelay(client, "TerminalEBTBalanceTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
+        processTestDelay(IntegrationTestConfiguration.getTestClient(), "TerminalEBTBalanceTest", IntegrationTestConfiguration.getDefaultTerminalName());
+        
         // Set request parameters
         BalanceRequest request = new BalanceRequest();
         request.setTest(true);
         request.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
         request.setCardType(CardType.EBT);
 
-        BalanceResponse response = client.balance(request);
+        Exception ex = null;
+        try {
+            BalanceResponse response = client.balance(request);
+            // Response assertions
+            Assert.assertTrue(response.isSuccess());
+            Assert.assertNotNull(response.getRemainingBalance());
+            Assert.assertTrue(response.getRemainingBalance().trim().length() > 0);
+        } catch (Exception e) {
+            ex = e;
+        }
 
-        // Response assertions
-        Assert.assertTrue(response.isSuccess());
-        Assert.assertNotNull(response.getRemainingBalance());
-        Assert.assertTrue(response.getRemainingBalance().trim().length() > 0);
-
+    Assert.assertNull(ex);
     }
 
 }

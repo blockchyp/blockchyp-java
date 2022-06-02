@@ -8,9 +8,9 @@
 
 package com.blockchyp.client.itest;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -27,22 +27,28 @@ public class TerminalStatusTest extends BaseTestCase {
     @Test
     @Category(IntegrationTest.class)
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void testTransaction() throws Exception {
+    public void testEndpoint() throws Exception {
 
-        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient("");
 
-        processTestDelay(client, "TerminalStatusTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
+        processTestDelay(IntegrationTestConfiguration.getTestClient(), "TerminalStatusTest", IntegrationTestConfiguration.getDefaultTerminalName());
+        
         // Set request parameters
         TerminalStatusRequest request = new TerminalStatusRequest();
         request.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
 
-        TerminalStatusResponse response = client.terminalStatus(request);
+        Exception ex = null;
+        try {
+            TerminalStatusResponse response = client.terminalStatus(request);
+            // Response assertions
+            Assert.assertTrue(response.isSuccess());
+            Assert.assertTrue(response.isIdle());
+        } catch (Exception e) {
+            ex = e;
+        }
 
-        // Response assertions
-        Assert.assertTrue(response.isSuccess());
-        Assert.assertTrue(response.isIdle());
-
+    Assert.assertNull(ex);
     }
 
 }

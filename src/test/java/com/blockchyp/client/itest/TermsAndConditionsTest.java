@@ -8,9 +8,9 @@
 
 package com.blockchyp.client.itest;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -28,12 +28,13 @@ public class TermsAndConditionsTest extends BaseTestCase {
     @Test
     @Category(IntegrationTest.class)
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void testTransaction() throws Exception {
+    public void testEndpoint() throws Exception {
 
-        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient("");
 
-        processTestDelay(client, "TermsAndConditionsTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
+        processTestDelay(IntegrationTestConfiguration.getTestClient(), "TermsAndConditionsTest", IntegrationTestConfiguration.getDefaultTerminalName());
+        
         // Set request parameters
         TermsAndConditionsRequest request = new TermsAndConditionsRequest();
         request.setTest(true);
@@ -44,11 +45,16 @@ public class TermsAndConditionsTest extends BaseTestCase {
         request.setSigWidth(200);
         request.setSigRequired(true);
 
-        TermsAndConditionsResponse response = client.termsAndConditions(request);
+        Exception ex = null;
+        try {
+            TermsAndConditionsResponse response = client.termsAndConditions(request);
+            // Response assertions
+            Assert.assertTrue(response.isSuccess());
+        } catch (Exception e) {
+            ex = e;
+        }
 
-        // Response assertions
-        Assert.assertTrue(response.isSuccess());
-
+    Assert.assertNull(ex);
     }
 
 }

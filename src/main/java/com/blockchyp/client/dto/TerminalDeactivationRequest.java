@@ -12,15 +12,51 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 /**
- * 
+ * Models a terminal deactivation request.
  */
-public class TerminalDeactivationRequest {
+public class TerminalDeactivationRequest implements ITimeoutRequest {
+
+     private int timeout;
+
+     private boolean test;
 
      private String terminalName;
 
      private String terminalId;
 
-     private int timeout;
+    /**
+     * Sets the request timeout in seconds.
+     * @param value the request timeout in seconds.
+     */
+     public void setTimeout(int value) {
+          this.timeout = value;
+     }
+
+    /**
+     * Gets the request timeout in seconds.
+     * @return the request timeout in seconds.
+     */
+     @JsonProperty("timeout")
+     public int getTimeout() {
+          return this.timeout;
+     }
+
+    /**
+     * Sets whether or not to route transaction to the test gateway.
+     * @param value whether or not to route transaction to the test gateway.
+     */
+     public void setTest(boolean value) {
+          this.test = value;
+     }
+
+    /**
+     * Gets whether or not to route transaction to the test gateway.
+     * @return whether or not to route transaction to the test gateway.
+     */
+     @JsonProperty("test")
+     public boolean isTest() {
+          return this.test;
+     }
 
     /**
      * Sets the terminal name assigned to the terminal.
@@ -54,23 +90,6 @@ public class TerminalDeactivationRequest {
      @JsonProperty("terminalId")
      public String getTerminalId() {
           return this.terminalId;
-     }
-
-    /**
-     * Sets the optional timeout override for a terminal profile request.
-     * @param value the optional timeout override for a terminal profile request.
-     */
-     public void setTimeout(int value) {
-          this.timeout = value;
-     }
-
-    /**
-     * Gets the optional timeout override for a terminal profile request.
-     * @return the optional timeout override for a terminal profile request.
-     */
-     @JsonProperty("timeout")
-     public int getTimeout() {
-          return this.timeout;
      }
 
 }

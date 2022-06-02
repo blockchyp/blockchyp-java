@@ -8,9 +8,9 @@
 
 package com.blockchyp.client.itest;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -28,23 +28,25 @@ public class UpdateBrandingAssetTest extends BaseTestCase {
     @Test
     @Category(IntegrationTest.class)
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void testTransaction() throws Exception {
+    public void testEndpoint() throws Exception {
 
-        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient("");
 
-        processTestDelay(client, "UpdateBrandingAssetTest", IntegrationTestConfiguration.getDefaultTerminalName());
-
+        
         // Set request parameters
         UploadMetadata setupRequest = new UploadMetadata();
         setupRequest.setFileName("aviato.png");
         setupRequest.setFileSize(18843);
         setupRequest.setUploadId(getUUID());
 
-         MediaMetadata setupResponse = client.uploadMedia(setupRequest);
+        InputStream inStream = this.getClass().getClassLoader().getResourceAsStream("aviato.png");
+        MediaMetadata setupResponse = client.uploadMedia(setupRequest, inStream);
+
+
 
         // Set request parameters
         BrandingAsset request = new BrandingAsset();
-        request.setMediaId();
+        request.setMediaId(setupResponse.getId());
         request.setPadded(true);
         request.setOrdinal(10);
         request.setStartDate("01/06/2021");
@@ -55,11 +57,16 @@ public class UpdateBrandingAssetTest extends BaseTestCase {
         request.setPreview(false);
         request.setEnabled(true);
 
-        BrandingAsset response = client.updateBrandingAsset(request);
+        Exception ex = null;
+        try {
+            BrandingAsset response = client.updateBrandingAsset(request);
+            // Response assertions
+            Assert.assertTrue(response.isSuccess());
+        } catch (Exception e) {
+            ex = e;
+        }
 
-        // Response assertions
-        Assert.assertTrue(response.isSuccess());
-
+    Assert.assertNull(ex);
     }
 
 }

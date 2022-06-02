@@ -16,7 +16,11 @@ import java.util.Map;
  * Details about a merchant board platform configuration.
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
-public class MerchantPlatform {
+public class MerchantPlatform implements ITimeoutRequest {
+
+     private int timeout;
+
+     private boolean test;
 
      private String id;
 
@@ -40,21 +44,53 @@ public class MerchantPlatform {
 
      private String lastChange;
 
-     private int timeout;
-
      private Map configMap;
 
     /**
-     * Sets primary identifier for a given platform configuration
-     * @param value primary identifier for a given platform configuration
+     * Sets the request timeout in seconds.
+     * @param value the request timeout in seconds.
+     */
+     public void setTimeout(int value) {
+          this.timeout = value;
+     }
+
+    /**
+     * Gets the request timeout in seconds.
+     * @return the request timeout in seconds.
+     */
+     @JsonProperty("timeout")
+     public int getTimeout() {
+          return this.timeout;
+     }
+
+    /**
+     * Sets whether or not to route transaction to the test gateway.
+     * @param value whether or not to route transaction to the test gateway.
+     */
+     public void setTest(boolean value) {
+          this.test = value;
+     }
+
+    /**
+     * Gets whether or not to route transaction to the test gateway.
+     * @return whether or not to route transaction to the test gateway.
+     */
+     @JsonProperty("test")
+     public boolean isTest() {
+          return this.test;
+     }
+
+    /**
+     * Sets primary identifier for a given platform configuration.
+     * @param value primary identifier for a given platform configuration.
      */
      public void setId(String value) {
           this.id = value;
      }
 
     /**
-     * Gets primary identifier for a given platform configuration
-     * @return primary identifier for a given platform configuration
+     * Gets primary identifier for a given platform configuration.
+     * @return primary identifier for a given platform configuration.
      */
      @JsonProperty("id")
      public String getId() {
@@ -239,23 +275,6 @@ public class MerchantPlatform {
      @JsonProperty("lastChange")
      public String getLastChange() {
           return this.lastChange;
-     }
-
-    /**
-     * Sets an optional timeout override in seconds.
-     * @param value an optional timeout override in seconds.
-     */
-     public void setTimeout(int value) {
-          this.timeout = value;
-     }
-
-    /**
-     * Gets an optional timeout override in seconds.
-     * @return an optional timeout override in seconds.
-     */
-     @JsonProperty("timeout")
-     public int getTimeout() {
-          return this.timeout;
      }
 
     /**

@@ -8,9 +8,9 @@
 
 package com.blockchyp.client.itest;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -30,12 +30,11 @@ public class LinkTokenTest extends BaseTestCase {
     @Test
     @Category(IntegrationTest.class)
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void testTransaction() throws Exception {
+    public void testEndpoint() throws Exception {
 
-        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient("");
 
-        processTestDelay(client, "LinkTokenTest", IntegrationTestConfiguration.getDefaultTerminalName());
-
+        
         // Set request parameters
         EnrollRequest setupRequest = new EnrollRequest();
         setupRequest.setPan("4111111111111111");
@@ -47,18 +46,24 @@ public class LinkTokenTest extends BaseTestCase {
         customer.setLastName("Customer");
         setupRequest.setCustomer(customer);
 
-         EnrollResponse setupResponse = client.enroll(setupRequest);
+        EnrollResponse setupResponse = client.enroll(setupRequest);
+
 
         // Set request parameters
         LinkTokenRequest request = new LinkTokenRequest();
         request.setToken(setupResponse.getToken());
         request.setCustomerId(setupResponse.getCustomer().getId());
 
-        Acknowledgement response = client.linkToken(request);
+        Exception ex = null;
+        try {
+            Acknowledgement response = client.linkToken(request);
+            // Response assertions
+            Assert.assertTrue(response.isSuccess());
+        } catch (Exception e) {
+            ex = e;
+        }
 
-        // Response assertions
-        Assert.assertTrue(response.isSuccess());
-
+    Assert.assertNull(ex);
     }
 
 }

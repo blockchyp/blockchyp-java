@@ -29,10 +29,6 @@ public interface ICoreRequest {
 
      String getDestinationAccount();
 
-     boolean isTest();
-
-     int getTimeout();
-
 
 }
 

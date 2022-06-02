@@ -1,5 +1,7 @@
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -40,7 +42,6 @@ public class UpdateCustomerExample {
 
         // Send the request
         CustomerResponse response = client.updateCustomer(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 

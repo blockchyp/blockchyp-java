@@ -78,16 +78,16 @@ public class SurveyDataPoint {
      }
 
     /**
-     * Sets response rate as a percentage of total transactions
-     * @param value response rate as a percentage of total transactions
+     * Sets response rate as a percentage of total transactions.
+     * @param value response rate as a percentage of total transactions.
      */
      public void setResponsePercentage(float value) {
           this.responsePercentage = value;
      }
 
     /**
-     * Gets response rate as a percentage of total transactions
-     * @return response rate as a percentage of total transactions
+     * Gets response rate as a percentage of total transactions.
+     * @return response rate as a percentage of total transactions.
      */
      @JsonProperty("responsePercentage")
      public float getResponsePercentage() {

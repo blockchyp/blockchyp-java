@@ -8,9 +8,9 @@
 
 package com.blockchyp.client.itest;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -28,28 +28,33 @@ public class SlideShowsTest extends BaseTestCase {
     @Test
     @Category(IntegrationTest.class)
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void testTransaction() throws Exception {
+    public void testEndpoint() throws Exception {
 
-        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient("");
 
-        processTestDelay(client, "SlideShowsTest", IntegrationTestConfiguration.getDefaultTerminalName());
-
+        
         // Set request parameters
         SlideShow setupRequest = new SlideShow();
         setupRequest.setName("Test Slide Show");
         setupRequest.setDelay(5);
 
-         SlideShow setupResponse = client.updateSlideShow(setupRequest);
+        SlideShow setupResponse = client.updateSlideShow(setupRequest);
+
 
         // Set request parameters
         SlideShowRequest request = new SlideShowRequest();
 
 
-        SlideShowResponse response = client.slideShows(request);
+        Exception ex = null;
+        try {
+            SlideShowResponse response = client.slideShows(request);
+            // Response assertions
+            Assert.assertTrue(response.isSuccess());
+        } catch (Exception e) {
+            ex = e;
+        }
 
-        // Response assertions
-        Assert.assertTrue(response.isSuccess());
-
+    Assert.assertNull(ex);
     }
 
 }

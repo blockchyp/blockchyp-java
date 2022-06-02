@@ -10,7 +10,6 @@ package com.blockchyp.client.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import com.blockchyp.client.dto.SignatureFormat;
 
 /**
  * Models a Terms and Conditions log entry.
@@ -154,16 +153,16 @@ public class TermsAndConditionsLogEntry implements IAbstractAcknowledgement {
      }
 
     /**
-     * Sets a flag indicating whether or not the terminal was a test terminal
-     * @param value a flag indicating whether or not the terminal was a test terminal
+     * Sets a flag indicating whether or not the terminal was a test terminal.
+     * @param value a flag indicating whether or not the terminal was a test terminal.
      */
      public void setTest(boolean value) {
           this.test = value;
      }
 
     /**
-     * Gets a flag indicating whether or not the terminal was a test terminal
-     * @return a flag indicating whether or not the terminal was a test terminal
+     * Gets a flag indicating whether or not the terminal was a test terminal.
+     * @return a flag indicating whether or not the terminal was a test terminal.
      */
      @JsonProperty("test")
      public boolean isTest() {

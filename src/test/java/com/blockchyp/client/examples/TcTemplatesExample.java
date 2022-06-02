@@ -1,5 +1,7 @@
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -9,10 +11,10 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.dto.TermsAndConditionsTemplateRequest;
-import com.blockchyp.client.dto.Acknowledgement;
+import com.blockchyp.client.dto.TermsAndConditionsTemplateResponse;
 
 
-public class DeleteTcTemplateExample {
+public class TcTemplatesExample {
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
@@ -29,8 +31,7 @@ public class DeleteTcTemplateExample {
         request.setTimeout(120);
 
         // Send the request
-        Acknowledgement response = client.deleteTcTemplate(request);
-
+        TermsAndConditionsTemplateResponse response = client.tcTemplates(request);
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 

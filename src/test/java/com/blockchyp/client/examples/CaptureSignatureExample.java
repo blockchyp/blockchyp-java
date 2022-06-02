@@ -1,5 +1,7 @@
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -33,7 +35,6 @@ public class CaptureSignatureExample {
 
         // Send the request
         CaptureSignatureResponse response = client.captureSignature(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 

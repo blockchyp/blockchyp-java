@@ -322,6 +322,8 @@ might be maliciously running on the point-of-sale system.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -354,7 +356,6 @@ public class ChargeExample {
 
         // Send the request
         AuthorizationResponse response = client.charge(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -422,6 +423,8 @@ Note that preauths are not supported for cryptocurrency.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -454,7 +457,6 @@ public class PreauthExample {
 
         // Send the request
         AuthorizationResponse response = client.preauth(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -494,6 +496,8 @@ reduce your interchange fees in some cases. (Level II Processing, for example.)
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -525,7 +529,6 @@ public class CaptureExample {
 
         // Send the request
         CaptureResponse response = client.capture(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -607,6 +610,8 @@ manually from your cryptocurrency wallet.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -638,7 +643,6 @@ public class RefundExample {
 
         // Send the request
         AuthorizationResponse response = client.refund(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -681,6 +685,8 @@ manually from your cryptocurrency wallet.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -712,7 +718,6 @@ public class VoidExample {
 
         // Send the request
         VoidResponse response = client.voidTx(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -766,6 +771,8 @@ manually from your cryptocurrency wallet.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -796,7 +803,6 @@ public class ReverseExample {
 
         // Send the request
         AuthorizationResponse response = client.reverse(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -878,6 +884,8 @@ support@blockchyp.com if you need to white list a BIN range.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -910,7 +918,6 @@ public class GiftActivateExample {
 
         // Send the request
         GiftActivateResponse response = client.giftActivate(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -968,6 +975,8 @@ test EBT balance checks always return a balance of $100.00.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -1001,7 +1010,6 @@ public class BalanceExample {
 
         // Send the request
         BalanceResponse response = client.balance(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -1040,6 +1048,8 @@ close the batch manually.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -1070,7 +1080,6 @@ public class CloseBatchExample {
 
         // Send the request
         CloseBatchResponse response = client.closeBatch(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -1196,6 +1205,8 @@ to constantly poll for status updates.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -1255,7 +1266,6 @@ public class SendPaymentLinkExample {
 
         // Send the request
         PaymentLinkResponse response = client.sendPaymentLink(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -1289,6 +1299,8 @@ Cancels a payment link.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -1319,7 +1331,6 @@ public class CancelPaymentLinkExample {
 
         // Send the request
         CancelPaymentLinkResponse response = client.cancelPaymentLink(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -1358,6 +1369,8 @@ Transaction Ref is returned.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -1388,7 +1401,6 @@ public class TransactionStatusExample {
 
         // Send the request
         AuthorizationResponse response = client.transactionStatus(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -1426,6 +1438,8 @@ with transactions processed by BlockChyp.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -1458,7 +1472,6 @@ public class CashDiscountExample {
 
         // Send the request
         CashDiscountResponse response = client.cashDiscount(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -1512,6 +1525,8 @@ in conjunction with `maxResults` and `startIndex`
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -1543,7 +1558,6 @@ public class BatchHistoryExample {
 
         // Send the request
         BatchHistoryResponse response = client.batchHistory(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -1583,6 +1597,8 @@ History API.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -1613,7 +1629,6 @@ public class BatchDetailsExample {
 
         // Send the request
         BatchDetailsResponse response = client.batchDetails(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -1692,6 +1707,8 @@ batch id filters are not supported.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -1722,7 +1739,6 @@ public class TransactionHistoryExample {
 
         // Send the request
         TransactionHistoryResponse response = client.transactionHistory(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -1758,6 +1774,8 @@ API.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -1788,7 +1806,6 @@ public class ListQueuedTransactionsExample {
 
         // Send the request
         ListQueuedTransactionsResponse response = client.listQueuedTransactions(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -1824,6 +1841,8 @@ returned if the passed transaction ref is not queued on the terminal.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -1855,7 +1874,6 @@ public class DeleteQueuedTransactionExample {
 
         // Send the request
         DeleteQueuedTransactionResponse response = client.deleteQueuedTransaction(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -1906,6 +1924,8 @@ If you get a positive response, you've successfully verified all of the followin
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -1936,7 +1956,6 @@ public class PingExample {
 
         // Send the request
         PingResponse response = client.ping(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -1974,6 +1993,8 @@ The terminal will also return the public key for the terminal.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -2004,7 +2025,6 @@ public class LocateExample {
 
         // Send the request
         LocateResponse response = client.locate(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -2040,6 +2060,8 @@ idle state.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -2071,7 +2093,6 @@ public class ClearExample {
 
         // Send the request
         Acknowledgement response = client.clear(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -2114,6 +2135,8 @@ transaction.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -2144,7 +2167,6 @@ public class TerminalStatusExample {
 
         // Send the request
         TerminalStatusResponse response = client.terminalStatus(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -2195,6 +2217,8 @@ width, preserving the aspect ratio of the original image.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -2228,7 +2252,6 @@ public class CaptureSignatureExample {
 
         // Send the request
         CaptureSignatureResponse response = client.captureSignature(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -2279,6 +2302,8 @@ and amount.
 
 ```java
 package com.blockchyp.client.examples;
+
+
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -2336,7 +2361,6 @@ public class NewTransactionDisplayExample {
 
         // Send the request
         Acknowledgement response = client.newTransactionDisplay(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -2396,6 +2420,8 @@ and amount.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -2452,7 +2478,6 @@ public class UpdateTransactionDisplayExample {
 
         // Send the request
         Acknowledgement response = client.updateTransactionDisplay(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -2488,6 +2513,8 @@ Just specify the target terminal and the message using the `message` parameter.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -2520,7 +2547,6 @@ public class MessageExample {
 
         // Send the request
         Acknowledgement response = client.message(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -2565,6 +2591,8 @@ using the `yesCaption` and `noCaption` request parameters.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -2599,7 +2627,6 @@ public class BooleanPromptExample {
 
         // Send the request
         BooleanPromptResponse response = client.booleanPrompt(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -2653,6 +2680,8 @@ the response is returned in the `response` field.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -2686,7 +2715,6 @@ public class TextPromptExample {
 
         // Send the request
         TextPromptResponse response = client.textPrompt(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -2723,6 +2751,8 @@ current branding image displayed on the terminal
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -2753,7 +2783,6 @@ public class TerminalsExample {
 
         // Send the request
         TerminalProfileResponse response = client.terminals(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -2790,6 +2819,8 @@ terminal inventory and the terminal will be remotely cleared and factory reset.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -2816,12 +2847,10 @@ public class DeactivateTerminalExample {
 
         // Set request parameters
         TerminalDeactivationRequest request = new TerminalDeactivationRequest();
-        request.setTerminalId(getUUID());
-        request.setTimeout(120);
+        request.setTerminalId("<TERMINAL ID>");
 
         // Send the request
         Acknowledgement response = client.deactivateTerminal(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -2865,6 +2894,8 @@ Optional Parameters
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -2896,7 +2927,6 @@ public class ActivateTerminalExample {
 
         // Send the request
         Acknowledgement response = client.activateTerminal(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -2988,6 +3018,8 @@ Transaction ID or Transaction Ref for the associated transaction.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -3026,7 +3058,6 @@ public class TermsAndConditionsExample {
 
         // Send the request
         TermsAndConditionsResponse response = client.termsAndConditions(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -3060,6 +3091,8 @@ This API returns all terms and conditions templates associated with a merchant a
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -3090,7 +3123,6 @@ public class TcTemplatesExample {
 
         // Send the request
         TermsAndConditionsTemplateResponse response = client.tcTemplates(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -3124,6 +3156,8 @@ This API returns as single terms and conditions template.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -3154,7 +3188,6 @@ public class TcTemplateExample {
 
         // Send the request
         TermsAndConditionsTemplate response = client.tcTemplate(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -3196,6 +3229,8 @@ merge behavior is supported.  Only plain text is supported.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -3229,7 +3264,6 @@ public class TcUpdateTemplateExample {
 
         // Send the request
         TermsAndConditionsTemplate response = client.tcUpdateTemplate(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -3267,6 +3301,8 @@ a complete independent copy of the agreement text.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -3297,7 +3333,6 @@ public class TcDeleteTemplateExample {
 
         // Send the request
         Acknowledgement response = client.tcDeleteTemplate(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -3341,6 +3376,8 @@ Optional parameters can be used to filter and query the data set.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -3371,7 +3408,6 @@ public class TcLogExample {
 
         // Send the request
         TermsAndConditionsLogResponse response = client.tcLog(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -3408,6 +3444,8 @@ The default format is PNG.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -3438,7 +3476,6 @@ public class TcEntryExample {
 
         // Send the request
         TermsAndConditionsLogEntry response = client.tcEntry(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -3497,6 +3534,8 @@ are the same tokens and can be used interchangeably.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -3528,7 +3567,6 @@ public class EnrollExample {
 
         // Send the request
         EnrollResponse response = client.enroll(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -3568,6 +3606,8 @@ even if those customer associations are related to other tokens.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -3598,7 +3638,6 @@ public class TokenMetadataExample {
 
         // Send the request
         TokenMetadataResponse response = client.tokenMetadata(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -3633,6 +3672,8 @@ to reverse a previous unlink operation.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -3664,7 +3705,6 @@ public class LinkTokenExample {
 
         // Send the request
         Acknowledgement response = client.linkToken(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -3701,6 +3741,8 @@ for the same underlying card.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -3732,7 +3774,6 @@ public class UnlinkTokenExample {
 
         // Send the request
         Acknowledgement response = client.unlinkToken(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -3767,6 +3808,8 @@ for a year.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -3797,7 +3840,6 @@ public class DeleteTokenExample {
 
         // Send the request
         DeleteTokenResponse response = client.deleteToken(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -3867,6 +3909,8 @@ be returned without needing to ask the customer to provide any additional inform
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -3907,7 +3951,6 @@ public class UpdateCustomerExample {
 
         // Send the request
         CustomerResponse response = client.updateCustomer(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -3944,6 +3987,8 @@ Customers can be looked up by `customerId` or `customerRef`.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -3974,7 +4019,6 @@ public class CustomerExample {
 
         // Send the request
         CustomerResponse response = client.customer(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -4011,6 +4055,8 @@ first or last names contain the query string.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -4041,7 +4087,6 @@ public class CustomerSearchExample {
 
         // Send the request
         CustomerSearchResponse response = client.customerSearch(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -4075,6 +4120,8 @@ Deletes a customer record.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -4105,7 +4152,6 @@ public class DeleteCustomerExample {
 
         // Send the request
         DeleteCustomerResponse response = client.deleteCustomer(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -4155,6 +4201,8 @@ All questions are returned, whether enabled or disabled.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -4185,7 +4233,6 @@ public class SurveyQuestionsExample {
 
         // Send the request
         SurveyQuestionResponse response = client.surveyQuestions(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -4219,6 +4266,8 @@ This API returns a single survey question with response data.  `questionId` is r
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -4249,7 +4298,6 @@ public class SurveyQuestionExample {
 
         // Send the request
         SurveyQuestion response = client.surveyQuestion(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -4292,6 +4340,8 @@ the number of questions minimal.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -4325,7 +4375,6 @@ public class UpdateSurveyQuestionExample {
 
         // Send the request
         SurveyQuestion response = client.updateSurveyQuestion(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -4359,6 +4408,8 @@ This API deletes a survey question. `questionId` is a required parameter.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -4389,7 +4440,6 @@ public class DeleteSurveyQuestionExample {
 
         // Send the request
         Acknowledgement response = client.deleteSurveyQuestion(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -4435,6 +4485,8 @@ By default, all results based on all responses are returned, but developers may 
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -4465,7 +4517,6 @@ public class SurveyResultsExample {
 
         // Send the request
         SurveyQuestion response = client.surveyResults(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -4539,6 +4590,8 @@ to reference a media asset in slide shows and branding assets along with the ful
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -4569,7 +4622,6 @@ public class MediaExample {
 
         // Send the request
         MediaLibraryResponse response = client.media(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -4634,6 +4686,11 @@ return video transcoding information.
 ```java
 package com.blockchyp.client.examples;
 
+import java.io.File;
+import java.io.InputStream;
+import java.io.FileInputStream;
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -4665,8 +4722,8 @@ public class UploadMediaExample {
         request.setUploadId("<RANDOM ID>");
 
         // Send the request
-        MediaMetadata response = client.uploadMedia(request);
-
+        InputStream inStream = new FileInputStream(new File("aviato.png"));
+        MediaMetadata response = client.uploadMedia(request, inStream);
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -4707,6 +4764,8 @@ also be returned.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -4737,7 +4796,6 @@ public class UploadStatusExample {
 
         // Send the request
         UploadStatus response = client.uploadStatus(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -4773,6 +4831,8 @@ and the thumbnail.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -4803,7 +4863,6 @@ public class MediaAssetExample {
 
         // Send the request
         MediaMetadata response = client.mediaAsset(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -4838,6 +4897,8 @@ show or in the terminal branding stack.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -4868,7 +4929,6 @@ public class DeleteMediaAssetExample {
 
         // Send the request
         Acknowledgement response = client.deleteMediaAsset(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -4904,6 +4964,8 @@ Note that slide level data is not returned with this API.   Use the Get Slide Sh
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -4934,7 +4996,6 @@ public class SlideShowsExample {
 
         // Send the request
         SlideShowResponse response = client.slideShows(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -4971,6 +5032,8 @@ for each slide.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -5001,7 +5064,6 @@ public class SlideShowExample {
 
         // Send the request
         SlideShow response = client.slideShow(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -5042,6 +5104,8 @@ parameter.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -5074,13 +5138,12 @@ public class UpdateSlideShowExample {
 
         Collection slides = new ArrayList();
         Slide slides0 = new Slide();
-        slides0.setMediaId();
+        slides0.setMediaId("<MEDIA ID>");
         slides.add(slides0);
         request.setSlides(slides);
 
         // Send the request
         SlideShow response = client.updateSlideShow(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -5114,6 +5177,8 @@ This API deletes a slide show  `slideShowId` is the only required parameter.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -5144,7 +5209,6 @@ public class DeleteSlideShowExample {
 
         // Send the request
         Acknowledgement response = client.deleteSlideShow(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -5187,6 +5251,8 @@ intended to show how an asset would actually look when displayed on the terminal
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -5217,7 +5283,6 @@ public class TerminalBrandingExample {
 
         // Send the request
         BrandingAssetResponse response = client.terminalBranding(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -5314,6 +5379,8 @@ These fields are:
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -5344,7 +5411,6 @@ public class UpdateBrandingAssetExample {
 
         // Send the request
         BrandingAsset response = client.updateBrandingAsset(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -5381,6 +5447,8 @@ show from the slide show library.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -5411,7 +5479,6 @@ public class DeleteBrandingAssetExample {
 
         // Send the request
         Acknowledgement response = client.deleteBrandingAsset(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -5522,6 +5589,8 @@ The following fields are used to control batch closure and high level terminal c
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -5552,7 +5621,6 @@ public class MerchantProfileExample {
 
         // Send the request
         MerchantProfileResponse response = client.merchantProfile(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -5592,6 +5660,8 @@ and `startIndex` field can be used to reduce the page size and page through mult
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -5622,7 +5692,6 @@ public class GetMerchantsExample {
 
         // Send the request
         GetMerchantsResponse response = client.getMerchants(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -5719,6 +5788,8 @@ The following fields are used to control batch closure and high level terminal c
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -5749,7 +5820,6 @@ public class UpdateMerchantExample {
 
         // Send the request
         MerchantProfileResponse response = client.updateMerchant(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -5783,6 +5853,8 @@ This API returns all users and pending invites associated with a merchant accoun
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -5813,7 +5885,6 @@ public class MerchantUsersExample {
 
         // Send the request
         MerchantUsersResponse response = client.merchantUsers(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -5854,6 +5925,8 @@ Otherwise, the user will be given the default merchant user role. (STDMERCHANT)
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -5884,7 +5957,6 @@ public class InviteMerchantUserExample {
 
         // Send the request
         Acknowledgement response = client.inviteMerchantUser(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -5921,6 +5993,8 @@ Settings can be changed by using the Update Merchant API.
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -5952,7 +6026,6 @@ public class AddTestMerchantExample {
 
         // Send the request
         MerchantProfileResponse response = client.addTestMerchant(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
@@ -5986,6 +6059,8 @@ This partner API can be used to deleted unused test merchant accounts. `merchant
 ```java
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -6016,7 +6091,6 @@ public class DeleteTestMerchantExample {
 
         // Send the request
         Acknowledgement response = client.deleteTestMerchant(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 

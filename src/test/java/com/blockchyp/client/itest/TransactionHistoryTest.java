@@ -8,9 +8,9 @@
 
 package com.blockchyp.client.itest;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -29,12 +29,11 @@ public class TransactionHistoryTest extends BaseTestCase {
     @Test
     @Category(IntegrationTest.class)
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void testTransaction() throws Exception {
+    public void testEndpoint() throws Exception {
 
-        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient("");
 
-        processTestDelay(client, "TransactionHistoryTest", IntegrationTestConfiguration.getDefaultTerminalName());
-
+        
         // Set request parameters
         AuthorizationRequest setupRequest = new AuthorizationRequest();
         setupRequest.setPan("4111111111111111");
@@ -44,17 +43,23 @@ public class TransactionHistoryTest extends BaseTestCase {
         setupRequest.setTest(true);
         setupRequest.setTransactionRef(getUUID());
 
-         AuthorizationResponse setupResponse = client.charge(setupRequest);
+        AuthorizationResponse setupResponse = client.charge(setupRequest);
+
 
         // Set request parameters
         TransactionHistoryRequest request = new TransactionHistoryRequest();
         request.setMaxResults(10);
 
-        TransactionHistoryResponse response = client.transactionHistory(request);
+        Exception ex = null;
+        try {
+            TransactionHistoryResponse response = client.transactionHistory(request);
+            // Response assertions
+            Assert.assertTrue(response.isSuccess());
+        } catch (Exception e) {
+            ex = e;
+        }
 
-        // Response assertions
-        Assert.assertTrue(response.isSuccess());
-
+    Assert.assertNull(ex);
     }
 
 }

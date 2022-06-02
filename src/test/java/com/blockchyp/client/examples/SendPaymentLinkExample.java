@@ -1,5 +1,7 @@
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -59,7 +61,6 @@ public class SendPaymentLinkExample {
 
         // Send the request
         PaymentLinkResponse response = client.sendPaymentLink(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 

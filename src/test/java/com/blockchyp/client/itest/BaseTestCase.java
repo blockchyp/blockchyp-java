@@ -26,26 +26,25 @@ public abstract class BaseTestCase {
     	
     	String testDelay = System.getenv("BC_TEST_DELAY");
     	
-    	if (testDelay != null) {
-    		try {
-	    			
-	    		MessageRequest request = new MessageRequest();
-	    		request.setTerminalName(terminalName);
-	    		request.setTest(true);
-	    		request.setMessage("Running " + testName + " in " + testDelay + " seconds...");
-    		
-    			Acknowledgement ack = client.message(request);
-    			Assert.assertTrue(ack.isSuccess());
-    			
-    			int testDelayInt = Integer.parseInt(testDelay);
-	    		Thread.sleep(testDelayInt * 1000);
-    		} catch (Exception e) {
-    			Assert.fail(e.getLocalizedMessage());
-    		}
+    	if (testDelay == null) {
+    		testDelay = "2";
     	}
     	
-    	
-    	
+		try {
+    			
+    		MessageRequest request = new MessageRequest();
+    		request.setTerminalName(terminalName);
+    		request.setTest(true);
+    		request.setMessage("Running " + testName + " in " + testDelay + " seconds...");
+		
+			Acknowledgement ack = client.message(request);
+			Assert.assertTrue(ack.isSuccess());
+			
+			int testDelayInt = Integer.parseInt(testDelay);
+    		Thread.sleep(testDelayInt * 1000);
+		} catch (Exception e) {
+			Assert.fail(e.getLocalizedMessage());
+		}
     	
     }
     

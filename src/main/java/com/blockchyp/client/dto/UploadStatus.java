@@ -26,9 +26,9 @@ public class UploadStatus implements IAbstractAcknowledgement {
 
      private String mediaId;
 
-     private int64 fileSize;
+     private int fileSize;
 
-     private int64 uploadedAmount;
+     private int uploadedAmount;
 
      private String status;
 
@@ -129,7 +129,7 @@ public class UploadStatus implements IAbstractAcknowledgement {
      * Sets the size of the file to be uploaded in bytes.
      * @param value the size of the file to be uploaded in bytes.
      */
-     public void setFileSize(int64 value) {
+     public void setFileSize(int value) {
           this.fileSize = value;
      }
 
@@ -138,7 +138,7 @@ public class UploadStatus implements IAbstractAcknowledgement {
      * @return the size of the file to be uploaded in bytes.
      */
      @JsonProperty("fileSize")
-     public int64 getFileSize() {
+     public int getFileSize() {
           return this.fileSize;
      }
 
@@ -146,7 +146,7 @@ public class UploadStatus implements IAbstractAcknowledgement {
      * Sets the amount of the file already uploaded.
      * @param value the amount of the file already uploaded.
      */
-     public void setUploadedAmount(int64 value) {
+     public void setUploadedAmount(int value) {
           this.uploadedAmount = value;
      }
 
@@ -155,7 +155,7 @@ public class UploadStatus implements IAbstractAcknowledgement {
      * @return the amount of the file already uploaded.
      */
      @JsonProperty("uploadedAmount")
-     public int64 getUploadedAmount() {
+     public int getUploadedAmount() {
           return this.uploadedAmount;
      }
 

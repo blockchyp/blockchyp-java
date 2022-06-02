@@ -14,7 +14,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Models a request to retrieve survey results.
  */
-public class SurveyResultsRequest {
+public class SurveyResultsRequest implements ITimeoutRequest {
+
+     private int timeout;
+
+     private boolean test;
 
      private String questionId;
 
@@ -22,7 +26,39 @@ public class SurveyResultsRequest {
 
      private String endDate;
 
-     private int timeout;
+    /**
+     * Sets the request timeout in seconds.
+     * @param value the request timeout in seconds.
+     */
+     public void setTimeout(int value) {
+          this.timeout = value;
+     }
+
+    /**
+     * Gets the request timeout in seconds.
+     * @return the request timeout in seconds.
+     */
+     @JsonProperty("timeout")
+     public int getTimeout() {
+          return this.timeout;
+     }
+
+    /**
+     * Sets whether or not to route transaction to the test gateway.
+     * @param value whether or not to route transaction to the test gateway.
+     */
+     public void setTest(boolean value) {
+          this.test = value;
+     }
+
+    /**
+     * Gets whether or not to route transaction to the test gateway.
+     * @return whether or not to route transaction to the test gateway.
+     */
+     @JsonProperty("test")
+     public boolean isTest() {
+          return this.test;
+     }
 
     /**
      * Sets id of a single question.
@@ -73,23 +109,6 @@ public class SurveyResultsRequest {
      @JsonProperty("endDate")
      public String getEndDate() {
           return this.endDate;
-     }
-
-    /**
-     * Sets an optional timeout override.
-     * @param value an optional timeout override.
-     */
-     public void setTimeout(int value) {
-          this.timeout = value;
-     }
-
-    /**
-     * Gets an optional timeout override.
-     * @return an optional timeout override.
-     */
-     @JsonProperty("timeout")
-     public int getTimeout() {
-          return this.timeout;
      }
 
 }

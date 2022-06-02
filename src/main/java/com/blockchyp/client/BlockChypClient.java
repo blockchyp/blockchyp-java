@@ -10,6 +10,7 @@ package com.blockchyp.client;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.InputStream;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.security.MessageDigest;
@@ -31,6 +32,7 @@ import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.methods.DeleteMethod;
 import org.apache.commons.httpclient.methods.PutMethod;
+import org.apache.commons.httpclient.methods.InputStreamRequestEntity;
 import org.apache.commons.httpclient.methods.StringRequestEntity;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
@@ -44,6 +46,7 @@ import com.blockchyp.client.dto.ITerminalReference;
 import com.blockchyp.client.dto.ISignatureResponse;
 import com.blockchyp.client.dto.ISignatureRequest;
 import com.blockchyp.client.dto.IApprovalResponse;
+import com.blockchyp.client.dto.ITimeoutRequest;
 import com.blockchyp.client.dto.ICoreRequest;
 import com.blockchyp.client.dto.IPaymentMethodResponse;
 import com.blockchyp.client.dto.ICryptocurrencyResponse;
@@ -207,6 +210,7 @@ public class BlockChypClient {
 
     private String gatewayHost = "https://api.blockchyp.com";
     private String testGatewayHost = "https://test.blockchyp.com";
+    private String dashboardHost = "https://dashboard.blockchyp.com";
     private APICredentials defaultCredentials;
     private PaymentLogger paymentLogger = new SystemOutPaymentLogger();
 
@@ -287,6 +291,22 @@ public class BlockChypClient {
     }
 
     /**
+     * Provided as a convenience to support constructor based dependency injection.
+     *
+     * @param dashboardHost alternate dashboard endpoint.
+     * @param gatewayHost alternate gateway endpoint.
+     * @param testGatewayHost alternate gateway endpoint.
+     * @param defaultCredentials {@link APICredentials}
+     */
+    public BlockChypClient(String dashboardHost, String gatewayHost, String testGatewayHost, APICredentials defaultCredentials) {
+        this();
+        this.dashboardHost = dashboardHost;
+        this.gatewayHost = gatewayHost;
+        this.testGatewayHost = testGatewayHost;
+        this.defaultCredentials = defaultCredentials;
+    }
+
+    /**
      * Used to override the live gateway host.  Unless you work at BlockChyp, you probably
      * won't ever need to do this.
      *
@@ -295,6 +315,17 @@ public class BlockChypClient {
 
     public void setGatewayHost(String gatewayHost) {
         this.gatewayHost = gatewayHost;
+    }
+
+    /**
+     * Used to override the dashboard host.  Unless you work at BlockChyp, you probably
+     * won't ever need to do this.
+     *
+     * @param dashboardHost alternate dashboard endpoint.
+     */
+
+    public void setDashboardHost(String dashboardHost) {
+        this.dashboardHost = dashboardHost;
     }
 
 
@@ -623,6 +654,467 @@ public class BlockChypClient {
 
     }
 
+
+
+
+    /**
+     * Adds a test merchant account.
+     * @param request the request parameters.
+     * @return {@link GetMerchantsResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+
+        public GetMerchantsResponse getMerchants(GetMerchantsRequest request) throws Exception {
+
+        return (GetMerchantsResponse) postDashboard("/api/get-merchants", request, GetMerchantsResponse.class);
+
+    }
+    
+    /**
+     * Adds or updates a merchant account. Can be used to create or update test merchants.
+     * Only gateway only partners may create new live merchants.
+     * @param request the request parameters.
+     * @return {@link MerchantProfileResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+
+        public MerchantProfileResponse updateMerchant(MerchantProfile request) throws Exception {
+
+        return (MerchantProfileResponse) postDashboard("/api/update-merchant", request, MerchantProfileResponse.class);
+
+    }
+    
+    /**
+     * List all active users and pending invites for a merchant account.
+     * @param request the request parameters.
+     * @return {@link MerchantUsersResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+
+        public MerchantUsersResponse merchantUsers(MerchantProfileRequest request) throws Exception {
+
+        return (MerchantUsersResponse) postDashboard("/api/merchant-users", request, MerchantUsersResponse.class);
+
+    }
+    
+    /**
+     * Invites a user to join a merchant account.
+     * @param request the request parameters.
+     * @return {@link Acknowledgement}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+
+        public Acknowledgement inviteMerchantUser(InviteMerchantUserRequest request) throws Exception {
+
+        return (Acknowledgement) postDashboard("/api/invite-merchant-user", request, Acknowledgement.class);
+
+    }
+    
+    /**
+     * Adds a test merchant account.
+     * @param request the request parameters.
+     * @return {@link MerchantProfileResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+
+        public MerchantProfileResponse addTestMerchant(AddTestMerchantRequest request) throws Exception {
+
+        return (MerchantProfileResponse) postDashboard("/api/add-test-merchant", request, MerchantProfileResponse.class);
+
+    }
+    
+    /**
+     * Deletes a test merchant account. Supports partner scoped API credentials only.
+     * Live merchant accounts cannot be deleted.
+     * @param request the request parameters.
+     * @return {@link Acknowledgement}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+
+        public Acknowledgement deleteTestMerchant(MerchantProfileRequest request) throws Exception {
+
+        return (Acknowledgement) deleteDashboard("/api/test-merchant/" + request.getMerchantId(), request, Acknowledgement.class);
+
+    }
+    
+    /**
+     * List all merchant platforms configured for a gateway merchant.
+     * @param request the request parameters.
+     * @return {@link MerchantPlatformsResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+
+        public MerchantPlatformsResponse merchantPlatforms(MerchantProfileRequest request) throws Exception {
+
+        return (MerchantPlatformsResponse) getDashboard("/api/plugin-configs/" + request.getMerchantId(), request, MerchantPlatformsResponse.class);
+
+    }
+    
+    /**
+     * List all merchant platforms configured for a gateway merchant.
+     * @param request the request parameters.
+     * @return {@link Acknowledgement}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+
+        public Acknowledgement updateMerchantPlatforms(MerchantPlatform request) throws Exception {
+
+        return (Acknowledgement) postDashboard("/api/plugin-configs", request, Acknowledgement.class);
+
+    }
+    
+    /**
+     * Deletes a boarding platform configuration.
+     * @param request the request parameters.
+     * @return {@link Acknowledgement}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+
+        public Acknowledgement deleteMerchantPlatforms(MerchantPlatformRequest request) throws Exception {
+
+        return (Acknowledgement) deleteDashboard("/api/plugin-config/" + request.getPlatformId(), request, Acknowledgement.class);
+
+    }
+    
+    /**
+     * Returns all terminals associated with the merchant account.
+     * @param request the request parameters.
+     * @return {@link TerminalProfileResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+
+        public TerminalProfileResponse terminals(TerminalProfileRequest request) throws Exception {
+
+        return (TerminalProfileResponse) getDashboard("/api/terminals", request, TerminalProfileResponse.class);
+
+    }
+    
+    /**
+     * Deactivates a terminal.
+     * @param request the request parameters.
+     * @return {@link Acknowledgement}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+
+        public Acknowledgement deactivateTerminal(TerminalDeactivationRequest request) throws Exception {
+
+        return (Acknowledgement) deleteDashboard("/api/terminal/" + request.getTerminalId(), request, Acknowledgement.class);
+
+    }
+    
+    /**
+     * Activates a terminal.
+     * @param request the request parameters.
+     * @return {@link Acknowledgement}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+
+        public Acknowledgement activateTerminal(TerminalActivationRequest request) throws Exception {
+
+        return (Acknowledgement) postDashboard("/api/terminal-activate", request, Acknowledgement.class);
+
+    }
+    
+    /**
+     * Returns a list of terms and conditions templates associated with a merchant
+     * account.
+     * @param request the request parameters.
+     * @return {@link TermsAndConditionsTemplateResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+
+        public TermsAndConditionsTemplateResponse tcTemplates(TermsAndConditionsTemplateRequest request) throws Exception {
+
+        return (TermsAndConditionsTemplateResponse) getDashboard("/api/tc-templates", request, TermsAndConditionsTemplateResponse.class);
+
+    }
+    
+    /**
+     * Returns a single terms and conditions template.
+     * @param request the request parameters.
+     * @return {@link TermsAndConditionsTemplate}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+
+        public TermsAndConditionsTemplate tcTemplate(TermsAndConditionsTemplateRequest request) throws Exception {
+
+        return (TermsAndConditionsTemplate) getDashboard("/api/tc-templates/" + request.getTemplateId(), request, TermsAndConditionsTemplate.class);
+
+    }
+    
+    /**
+     * Updates or creates a terms and conditions template.
+     * @param request the request parameters.
+     * @return {@link TermsAndConditionsTemplate}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+
+        public TermsAndConditionsTemplate tcUpdateTemplate(TermsAndConditionsTemplate request) throws Exception {
+
+        return (TermsAndConditionsTemplate) postDashboard("/api/tc-templates", request, TermsAndConditionsTemplate.class);
+
+    }
+    
+    /**
+     * Deletes a single terms and conditions template.
+     * @param request the request parameters.
+     * @return {@link Acknowledgement}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+
+        public Acknowledgement tcDeleteTemplate(TermsAndConditionsTemplateRequest request) throws Exception {
+
+        return (Acknowledgement) deleteDashboard("/api/tc-templates/" + request.getTemplateId(), request, Acknowledgement.class);
+
+    }
+    
+    /**
+     * Returns up to 250 entries from the Terms and Conditions log.
+     * @param request the request parameters.
+     * @return {@link TermsAndConditionsLogResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+
+        public TermsAndConditionsLogResponse tcLog(TermsAndConditionsLogRequest request) throws Exception {
+
+        return (TermsAndConditionsLogResponse) postDashboard("/api/tc-log", request, TermsAndConditionsLogResponse.class);
+
+    }
+    
+    /**
+     * Returns a single detailed Terms and Conditions entry.
+     * @param request the request parameters.
+     * @return {@link TermsAndConditionsLogEntry}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+
+        public TermsAndConditionsLogEntry tcEntry(TermsAndConditionsLogRequest request) throws Exception {
+
+        return (TermsAndConditionsLogEntry) getDashboard("/api/tc-entry/" + request.getLogEntryId(), request, TermsAndConditionsLogEntry.class);
+
+    }
+    
+    /**
+     * Returns all survey questions for a given merchant.
+     * @param request the request parameters.
+     * @return {@link SurveyQuestionResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+
+        public SurveyQuestionResponse surveyQuestions(SurveyQuestionRequest request) throws Exception {
+
+        return (SurveyQuestionResponse) getDashboard("/api/survey-questions", request, SurveyQuestionResponse.class);
+
+    }
+    
+    /**
+     * Returns a single survey question with response data.
+     * @param request the request parameters.
+     * @return {@link SurveyQuestion}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+
+        public SurveyQuestion surveyQuestion(SurveyQuestionRequest request) throws Exception {
+
+        return (SurveyQuestion) getDashboard("/api/survey-questions/" + request.getQuestionId(), request, SurveyQuestion.class);
+
+    }
+    
+    /**
+     * Updates or creates a survey question.
+     * @param request the request parameters.
+     * @return {@link SurveyQuestion}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+
+        public SurveyQuestion updateSurveyQuestion(SurveyQuestion request) throws Exception {
+
+        return (SurveyQuestion) postDashboard("/api/survey-questions", request, SurveyQuestion.class);
+
+    }
+    
+    /**
+     * Deletes a survey question.
+     * @param request the request parameters.
+     * @return {@link Acknowledgement}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+
+        public Acknowledgement deleteSurveyQuestion(SurveyQuestionRequest request) throws Exception {
+
+        return (Acknowledgement) deleteDashboard("/api/survey-questions/" + request.getQuestionId(), request, Acknowledgement.class);
+
+    }
+    
+    /**
+     * Returns results for a single survey question.
+     * @param request the request parameters.
+     * @return {@link SurveyQuestion}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+
+        public SurveyQuestion surveyResults(SurveyResultsRequest request) throws Exception {
+
+        return (SurveyQuestion) postDashboard("/api/survey-results", request, SurveyQuestion.class);
+
+    }
+    
+    /**
+     * Returns the media library for a given partner, merchant, or organization.
+     * @param request the request parameters.
+     * @return {@link MediaLibraryResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+
+        public MediaLibraryResponse media(MediaRequest request) throws Exception {
+
+        return (MediaLibraryResponse) getDashboard("/api/media", request, MediaLibraryResponse.class);
+
+    }
+    
+    /**
+     * Uploads a media asset to the media library.
+     * @param request the request parameters.
+     * @return {@link MediaMetadata}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+        public MediaMetadata uploadMedia(UploadMetadata request, InputStream inStream) throws Exception {
+
+        return (MediaMetadata) postUpload("/api/upload-media", request, inStream, MediaMetadata.class);
+
+    }
+
+    
+    /**
+     * Retrieves the current status of a file upload.
+     * @param request the request parameters.
+     * @return {@link UploadStatus}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+
+        public UploadStatus uploadStatus(UploadStatusRequest request) throws Exception {
+
+        return (UploadStatus) getDashboard("/api/media-upload/" + request.getUploadId(), request, UploadStatus.class);
+
+    }
+    
+    /**
+     * Returns the media details for a single media asset.
+     * @param request the request parameters.
+     * @return {@link MediaMetadata}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+
+        public MediaMetadata mediaAsset(MediaRequest request) throws Exception {
+
+        return (MediaMetadata) getDashboard("/api/media/" + request.getMediaId(), request, MediaMetadata.class);
+
+    }
+    
+    /**
+     * Deletes a media asset.
+     * @param request the request parameters.
+     * @return {@link Acknowledgement}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+
+        public Acknowledgement deleteMediaAsset(MediaRequest request) throws Exception {
+
+        return (Acknowledgement) deleteDashboard("/api/media/" + request.getMediaId(), request, Acknowledgement.class);
+
+    }
+    
+    /**
+     * Returns a collection of slide shows.
+     * @param request the request parameters.
+     * @return {@link SlideShowResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+
+        public SlideShowResponse slideShows(SlideShowRequest request) throws Exception {
+
+        return (SlideShowResponse) getDashboard("/api/slide-shows", request, SlideShowResponse.class);
+
+    }
+    
+    /**
+     * Returns a single slide show with slides.
+     * @param request the request parameters.
+     * @return {@link SlideShow}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+
+        public SlideShow slideShow(SlideShowRequest request) throws Exception {
+
+        return (SlideShow) getDashboard("/api/slide-shows/" + request.getSlideShowId(), request, SlideShow.class);
+
+    }
+    
+    /**
+     * Updates or creates a slide show.
+     * @param request the request parameters.
+     * @return {@link SlideShow}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+
+        public SlideShow updateSlideShow(SlideShow request) throws Exception {
+
+        return (SlideShow) postDashboard("/api/slide-shows", request, SlideShow.class);
+
+    }
+    
+    /**
+     * Deletes a single slide show.
+     * @param request the request parameters.
+     * @return {@link Acknowledgement}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+
+        public Acknowledgement deleteSlideShow(SlideShowRequest request) throws Exception {
+
+        return (Acknowledgement) deleteDashboard("/api/slide-shows/" + request.getSlideShowId(), request, Acknowledgement.class);
+
+    }
+    
+    /**
+     * Returns the terminal branding stack for a given set of API credentials.
+     * @param request the request parameters.
+     * @return {@link BrandingAssetResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+
+        public BrandingAssetResponse terminalBranding(BrandingAssetRequest request) throws Exception {
+
+        return (BrandingAssetResponse) getDashboard("/api/terminal-branding", request, BrandingAssetResponse.class);
+
+    }
+    
+    /**
+     * Updates a branding asset.
+     * @param request the request parameters.
+     * @return {@link BrandingAsset}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+
+        public BrandingAsset updateBrandingAsset(BrandingAsset request) throws Exception {
+
+        return (BrandingAsset) postDashboard("/api/terminal-branding", request, BrandingAsset.class);
+
+    }
+    
+    /**
+     * Deletes a branding asset.
+     * @param request the request parameters.
+     * @return {@link Acknowledgement}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+
+        public Acknowledgement deleteBrandingAsset(BrandingAssetRequest request) throws Exception {
+
+        return (Acknowledgement) deleteDashboard("/api/terminal-branding/" + request.getAssetId(), request, Acknowledgement.class);
+
+    }
+    
 
 
 
@@ -1274,7 +1766,7 @@ public class BlockChypClient {
         TerminalRequest termRequest = new TerminalRequest();
 
         if ((route.getTransientCredentials() != null) &&
-                StringUtils.isNotEmpty(route.getTransientCredentials().getApiKey())) {
+            StringUtils.isNotEmpty(route.getTransientCredentials().getApiKey())) {
             termRequest.setApiKey(route.getTransientCredentials().getApiKey());
             termRequest.setBearerToken(route.getTransientCredentials().getBearerToken());
             termRequest.setSigningKey(route.getTransientCredentials().getSigningKey());
@@ -1309,8 +1801,8 @@ public class BlockChypClient {
 
         PostMethod method = new PostMethod(resolveTerminalHost(route) + path);
 
-        if (request instanceof ICoreRequest) {
-            ICoreRequest coreRequest = (ICoreRequest) request;
+        if (request instanceof ITimeoutRequest) {
+            ITimeoutRequest coreRequest = (ITimeoutRequest) request;
             if (coreRequest.getTimeout() > 0) {
                 method.getParams().setSoTimeout(coreRequest.getTimeout());
             }
@@ -1352,6 +1844,25 @@ public class BlockChypClient {
         HttpMethod method = new GetMethod(toFullyQualifiedGatewayPath(path, test));
         if (requestTimeout > 0) {
             method.getParams().setSoTimeout(requestTimeout);
+        }
+        return finishGatewayRequest(method, responseType);
+
+    }
+
+    /**
+     * Executes an http get request against the gateway with a timeout override.
+     * @param path API path relative to the root (e.g. "/api/heartbeat")
+     * @param request the request object.
+     * @param responseType expected response type.
+     * @return a response of type specified by responseClass
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    @SuppressWarnings({ "rawtypes" })
+    protected Object getDashboard(String path, ITimeoutRequest request, Class responseType) throws Exception {
+
+        HttpMethod method = new GetMethod(toFullyQualifiedDashboardPath(path));
+        if (request.getTimeout() > 0) {
+            method.getParams().setSoTimeout(request.getTimeout());
         }
         return finishGatewayRequest(method, responseType);
 
@@ -1402,6 +1913,66 @@ public class BlockChypClient {
     }
 
     /**
+     * Executes a post HTTP request against the dashboard.
+     * @param path API path from root (e.g. "/api/charge")
+     * @param request the request object.
+     * @param inStream is the upload input stream
+     * @param responseClass expected response type.
+     * @return a response of type specified by responseClass
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    @SuppressWarnings({ "rawtypes" })
+    protected Object postUpload(String path, UploadMetadata request, InputStream inStream, Class responseClass) throws Exception {
+
+        PostMethod method = new PostMethod(toFullyQualifiedDashboardPath(path));
+        if (request.getFileSize() > 0) {
+            method.addRequestHeader("X-File-Size", Integer.toString(request.getFileSize(), 10));
+        }
+        if (request.getFileName() != null && !request.getFileName().equals("")) {
+            method.addRequestHeader("X-Upload-File-Name", request.getFileName());
+        }
+        if (request.getUploadId() != null && !request.getUploadId().equals("")) {
+            method.addRequestHeader("X-Upload-ID", request.getUploadId());
+        }
+
+        InputStreamRequestEntity requestEntity = new InputStreamRequestEntity(inStream);
+
+        method.setRequestEntity(requestEntity);
+
+        if (request.getTimeout() > 0) {
+            method.getParams().setSoTimeout(request.getTimeout());
+        }
+
+        return finishGatewayRequest(method, responseClass);
+
+    }
+
+    /**
+     * Executes a post HTTP request against the dashboard.
+     * @param path API path from root (e.g. "/api/charge")
+     * @param request the request object.
+     * @param responseClass expected response type.
+     * @return a response of type specified by responseClass
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    @SuppressWarnings({ "rawtypes" })
+    protected Object postDashboard(String path, ITimeoutRequest request, Class responseClass) throws Exception {
+
+        PostMethod method = new PostMethod(toFullyQualifiedDashboardPath(path));
+        StringRequestEntity requestEntity = new StringRequestEntity(objectMapper.writeValueAsString(request),
+                "application/json", "UTF-8");
+
+        method.setRequestEntity(requestEntity);
+
+        if (request.getTimeout() > 0) {
+            method.getParams().setSoTimeout(request.getTimeout());
+        }
+
+        return finishGatewayRequest(method, responseClass);
+
+    }
+
+    /**
      * Executes a post HTTP request against the gateway.
      * @param path API path from root (e.g. "/api/charge")
      * @param request the request object.
@@ -1410,7 +1981,7 @@ public class BlockChypClient {
      * @throws Exception exception if any errors occurred processing the request.
      */
     @SuppressWarnings({ "rawtypes" })
-    protected Object postGateway(String path, ICoreRequest request, Class responseClass) throws Exception {
+    protected Object postGateway(String path, ITimeoutRequest request, Class responseClass) throws Exception {
 
         PostMethod method = new PostMethod(toFullyQualifiedGatewayPath(path, request.isTest()));
         StringRequestEntity requestEntity = new StringRequestEntity(objectMapper.writeValueAsString(request),
@@ -1435,7 +2006,7 @@ public class BlockChypClient {
      * @throws Exception exception if any errors occurred processing the request.
      */
     @SuppressWarnings({ "rawtypes" })
-    protected Object putGateway(String path, ICoreRequest request, Class responseClass) throws Exception {
+    protected Object putGateway(String path, ITimeoutRequest request, Class responseClass) throws Exception {
 
         PutMethod method = new PutMethod(toFullyQualifiedGatewayPath(path, request.isTest()));
         StringRequestEntity requestEntity = new StringRequestEntity(objectMapper.writeValueAsString(request),
@@ -1456,9 +2027,30 @@ public class BlockChypClient {
      * @throws Exception exception if any errors occurred processing the request.
      */
     @SuppressWarnings({ "rawtypes" })
-    protected Object deleteGateway(String path, ICoreRequest request, Class responseClass) throws Exception {
+    protected Object deleteGateway(String path, ITimeoutRequest request, Class responseClass) throws Exception {
 
         DeleteMethod method = new DeleteMethod(toFullyQualifiedGatewayPath(path, request.isTest()));
+
+        if (request.getTimeout() > 0) {
+            method.getParams().setSoTimeout(request.getTimeout());
+        }
+
+        return finishGatewayRequest(method, responseClass);
+
+    }
+
+    /**
+     * Executes a delete HTTP request against the gateway.
+     * @param path API path from root (e.g. "/api/charge")
+     * @param request the request object.
+     * @param responseClass expected response type.
+     * @return a response of type specified by responseClass
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    @SuppressWarnings({ "rawtypes" })
+    protected Object deleteDashboard(String path, ITimeoutRequest request, Class responseClass) throws Exception {
+
+        DeleteMethod method = new DeleteMethod(toFullyQualifiedDashboardPath(path));
 
         if (request.getTimeout() > 0) {
             method.getParams().setSoTimeout(request.getTimeout());
@@ -1546,6 +2138,15 @@ public class BlockChypClient {
         } else {
             return this.gatewayHost + path;
         }
+    }
+
+    /**
+     * Converts path to the fully qualified URL for a dashboard API call.
+     * @param path path relative to the root (e.g. "/api/charge")
+     * @return fully qualified URI.
+     */
+    protected String toFullyQualifiedDashboardPath(String path) {
+        return this.dashboardHost + path;
     }
 
     /**

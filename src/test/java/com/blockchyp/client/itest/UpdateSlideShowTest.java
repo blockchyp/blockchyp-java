@@ -8,9 +8,9 @@
 
 package com.blockchyp.client.itest;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -29,19 +29,21 @@ public class UpdateSlideShowTest extends BaseTestCase {
     @Test
     @Category(IntegrationTest.class)
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void testTransaction() throws Exception {
+    public void testEndpoint() throws Exception {
 
-        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient("");
 
-        processTestDelay(client, "UpdateSlideShowTest", IntegrationTestConfiguration.getDefaultTerminalName());
-
+        
         // Set request parameters
         UploadMetadata setupRequest = new UploadMetadata();
         setupRequest.setFileName("aviato.png");
         setupRequest.setFileSize(18843);
         setupRequest.setUploadId(getUUID());
 
-         MediaMetadata setupResponse = client.uploadMedia(setupRequest);
+        InputStream inStream = this.getClass().getClassLoader().getResourceAsStream("aviato.png");
+        MediaMetadata setupResponse = client.uploadMedia(setupRequest, inStream);
+
+
 
         // Set request parameters
         SlideShow request = new SlideShow();
@@ -50,16 +52,21 @@ public class UpdateSlideShowTest extends BaseTestCase {
 
         Collection slides = new ArrayList();
         Slide slides0 = new Slide();
-        slides0.setMediaId();
+        slides0.setMediaId(setupResponse.getId());
         slides.add(slides0);
         request.setSlides(slides);
 
-        SlideShow response = client.updateSlideShow(request);
+        Exception ex = null;
+        try {
+            SlideShow response = client.updateSlideShow(request);
+            // Response assertions
+            Assert.assertTrue(response.isSuccess());
+            Assert.assertEquals("Test Slide Show", response.getName());
+        } catch (Exception e) {
+            ex = e;
+        }
 
-        // Response assertions
-        Assert.assertTrue(response.isSuccess());
-        Assert.assertEquals("Test Slide Show", response.getName());
-
+    Assert.assertNull(ex);
     }
 
 }

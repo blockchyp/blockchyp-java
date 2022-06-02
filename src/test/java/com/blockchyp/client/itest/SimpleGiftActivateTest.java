@@ -8,9 +8,9 @@
 
 package com.blockchyp.client.itest;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -27,26 +27,32 @@ public class SimpleGiftActivateTest extends BaseTestCase {
     @Test
     @Category(IntegrationTest.class)
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void testTransaction() throws Exception {
+    public void testEndpoint() throws Exception {
 
-        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient("");
 
-        processTestDelay(client, "SimpleGiftActivateTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
+        processTestDelay(IntegrationTestConfiguration.getTestClient(), "SimpleGiftActivateTest", IntegrationTestConfiguration.getDefaultTerminalName());
+        
         // Set request parameters
         GiftActivateRequest request = new GiftActivateRequest();
         request.setTest(true);
         request.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
         request.setAmount("50.00");
 
-        GiftActivateResponse response = client.giftActivate(request);
+        Exception ex = null;
+        try {
+            GiftActivateResponse response = client.giftActivate(request);
+            // Response assertions
+            Assert.assertTrue(response.isSuccess());
+            Assert.assertTrue(response.isApproved());
+            Assert.assertNotNull(response.getPublicKey());
+            Assert.assertTrue(response.getPublicKey().trim().length() > 0);
+        } catch (Exception e) {
+            ex = e;
+        }
 
-        // Response assertions
-        Assert.assertTrue(response.isSuccess());
-        Assert.assertTrue(response.isApproved());
-        Assert.assertNotNull(response.getPublicKey());
-        Assert.assertTrue(response.getPublicKey().trim().length() > 0);
-
+    Assert.assertNull(ex);
     }
 
 }

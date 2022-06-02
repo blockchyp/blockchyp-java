@@ -1,5 +1,7 @@
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -32,7 +34,6 @@ public class CashDiscountExample {
 
         // Send the request
         CashDiscountResponse response = client.cashDiscount(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 

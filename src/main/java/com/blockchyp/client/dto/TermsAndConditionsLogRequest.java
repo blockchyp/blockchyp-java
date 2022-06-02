@@ -14,7 +14,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Models a Terms and Conditions history request.
  */
-public class TermsAndConditionsLogRequest {
+public class TermsAndConditionsLogRequest implements ITimeoutRequest {
+
+     private int timeout;
+
+     private boolean test;
 
      private String logEntryId;
 
@@ -28,7 +32,39 @@ public class TermsAndConditionsLogRequest {
 
      private String endDate;
 
-     private int timeout;
+    /**
+     * Sets the request timeout in seconds.
+     * @param value the request timeout in seconds.
+     */
+     public void setTimeout(int value) {
+          this.timeout = value;
+     }
+
+    /**
+     * Gets the request timeout in seconds.
+     * @return the request timeout in seconds.
+     */
+     @JsonProperty("timeout")
+     public int getTimeout() {
+          return this.timeout;
+     }
+
+    /**
+     * Sets whether or not to route transaction to the test gateway.
+     * @param value whether or not to route transaction to the test gateway.
+     */
+     public void setTest(boolean value) {
+          this.test = value;
+     }
+
+    /**
+     * Gets whether or not to route transaction to the test gateway.
+     * @return whether or not to route transaction to the test gateway.
+     */
+     @JsonProperty("test")
+     public boolean isTest() {
+          return this.test;
+     }
 
     /**
      * Sets the identifier of the log entry to be returned for single result requests.
@@ -135,23 +171,6 @@ public class TermsAndConditionsLogRequest {
      @JsonProperty("endDate")
      public String getEndDate() {
           return this.endDate;
-     }
-
-    /**
-     * Sets an optional timeout override.
-     * @param value an optional timeout override.
-     */
-     public void setTimeout(int value) {
-          this.timeout = value;
-     }
-
-    /**
-     * Gets an optional timeout override.
-     * @return an optional timeout override.
-     */
-     @JsonProperty("timeout")
-     public int getTimeout() {
-          return this.timeout;
      }
 
 }

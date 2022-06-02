@@ -17,7 +17,11 @@ import java.util.Collection;
  * Models a survey question.
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
-public class SurveyQuestion implements IAbstractAcknowledgement {
+public class SurveyQuestion implements ITimeoutRequest, IAbstractAcknowledgement {
+
+     private int timeout;
+
+     private boolean test;
 
      private boolean success;
 
@@ -43,7 +47,39 @@ public class SurveyQuestion implements IAbstractAcknowledgement {
 
      private Collection<SurveyDataPoint> responses;
 
-     private int timeout;
+    /**
+     * Sets the request timeout in seconds.
+     * @param value the request timeout in seconds.
+     */
+     public void setTimeout(int value) {
+          this.timeout = value;
+     }
+
+    /**
+     * Gets the request timeout in seconds.
+     * @return the request timeout in seconds.
+     */
+     @JsonProperty("timeout")
+     public int getTimeout() {
+          return this.timeout;
+     }
+
+    /**
+     * Sets whether or not to route transaction to the test gateway.
+     * @param value whether or not to route transaction to the test gateway.
+     */
+     public void setTest(boolean value) {
+          this.test = value;
+     }
+
+    /**
+     * Gets whether or not to route transaction to the test gateway.
+     * @return whether or not to route transaction to the test gateway.
+     */
+     @JsonProperty("test")
+     public boolean isTest() {
+          return this.test;
+     }
 
     /**
      * Sets whether or not the request succeeded.
@@ -261,27 +297,6 @@ public class SurveyQuestion implements IAbstractAcknowledgement {
      @JsonProperty("responses")
      public Collection<SurveyDataPoint> getResponses() {
           return this.responses;
-     }
-
-    /**
-     * Sets an optional timeout override for situations where this entity is used as a
-     * request body.
-     * @param value an optional timeout override for situations where this entity is used
-     * as a request body.
-     */
-     public void setTimeout(int value) {
-          this.timeout = value;
-     }
-
-    /**
-     * Gets an optional timeout override for situations where this entity is used as a
-     * request body.
-     * @return an optional timeout override for situations where this entity is used as a
-     * request body.
-     */
-     @JsonProperty("timeout")
-     public int getTimeout() {
-          return this.timeout;
      }
 
     /**

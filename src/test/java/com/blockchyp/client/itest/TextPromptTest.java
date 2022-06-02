@@ -8,9 +8,9 @@
 
 package com.blockchyp.client.itest;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -28,25 +28,31 @@ public class TextPromptTest extends BaseTestCase {
     @Test
     @Category(IntegrationTest.class)
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void testTransaction() throws Exception {
+    public void testEndpoint() throws Exception {
 
-        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient("");
 
-        processTestDelay(client, "TextPromptTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
+        processTestDelay(IntegrationTestConfiguration.getTestClient(), "TextPromptTest", IntegrationTestConfiguration.getDefaultTerminalName());
+        
         // Set request parameters
         TextPromptRequest request = new TextPromptRequest();
         request.setTest(true);
         request.setTerminalName(IntegrationTestConfiguration.getDefaultTerminalName());
         request.setPromptType(PromptType.EMAIL);
 
-        TextPromptResponse response = client.textPrompt(request);
+        Exception ex = null;
+        try {
+            TextPromptResponse response = client.textPrompt(request);
+            // Response assertions
+            Assert.assertTrue(response.isSuccess());
+            Assert.assertNotNull(response.getResponse());
+            Assert.assertTrue(response.getResponse().trim().length() > 0);
+        } catch (Exception e) {
+            ex = e;
+        }
 
-        // Response assertions
-        Assert.assertTrue(response.isSuccess());
-        Assert.assertNotNull(response.getResponse());
-        Assert.assertTrue(response.getResponse().trim().length() > 0);
-
+    Assert.assertNull(ex);
     }
 
 }

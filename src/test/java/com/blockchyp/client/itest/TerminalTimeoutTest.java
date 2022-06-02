@@ -8,10 +8,9 @@
 
 package com.blockchyp.client.itest;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-
-import java.io.IOException;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -25,15 +24,16 @@ import com.blockchyp.client.dto.AuthorizationResponse;
 
 public class TerminalTimeoutTest extends BaseTestCase {
 
-    @Test(expected = java.io.IOException.class)
+    @Test
     @Category(IntegrationTest.class)
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void testTransaction() throws Exception {
+    public void testEndpoint() throws Exception {
 
-        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient("");
 
-        processTestDelay(client, "TerminalTimeoutTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
+        processTestDelay(IntegrationTestConfiguration.getTestClient(), "TerminalTimeoutTest", IntegrationTestConfiguration.getDefaultTerminalName());
+        
         // Set request parameters
         AuthorizationRequest request = new AuthorizationRequest();
         request.setTimeout(1);
@@ -41,10 +41,15 @@ public class TerminalTimeoutTest extends BaseTestCase {
         request.setAmount("25.15");
         request.setTest(true);
 
-        AuthorizationResponse response = client.charge(request);
+        Exception ex = null;
+        try {
+            AuthorizationResponse response = client.charge(request);
+            // Response assertions
+        } catch (Exception e) {
+            ex = e;
+        }
 
-        // Response assertions
-
+    Assert.assertNotNull(ex);
     }
 
 }

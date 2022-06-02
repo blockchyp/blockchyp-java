@@ -14,15 +14,51 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Models information needed to process a file upload.
  */
-public class UploadMetadata {
+public class UploadMetadata implements ITimeoutRequest {
+
+     private int timeout;
+
+     private boolean test;
 
      private String uploadId;
 
-     private int64 fileSize;
+     private int fileSize;
 
      private String fileName;
 
-     private int timeout;
+    /**
+     * Sets the request timeout in seconds.
+     * @param value the request timeout in seconds.
+     */
+     public void setTimeout(int value) {
+          this.timeout = value;
+     }
+
+    /**
+     * Gets the request timeout in seconds.
+     * @return the request timeout in seconds.
+     */
+     @JsonProperty("timeout")
+     public int getTimeout() {
+          return this.timeout;
+     }
+
+    /**
+     * Sets whether or not to route transaction to the test gateway.
+     * @param value whether or not to route transaction to the test gateway.
+     */
+     public void setTest(boolean value) {
+          this.test = value;
+     }
+
+    /**
+     * Gets whether or not to route transaction to the test gateway.
+     * @return whether or not to route transaction to the test gateway.
+     */
+     @JsonProperty("test")
+     public boolean isTest() {
+          return this.test;
+     }
 
     /**
      * Sets optional id used to track status and progress of an upload while in progress.
@@ -47,7 +83,7 @@ public class UploadMetadata {
      * Sets the size of the file to be uploaded in bytes.
      * @param value the size of the file to be uploaded in bytes.
      */
-     public void setFileSize(int64 value) {
+     public void setFileSize(int value) {
           this.fileSize = value;
      }
 
@@ -56,7 +92,7 @@ public class UploadMetadata {
      * @return the size of the file to be uploaded in bytes.
      */
      @JsonProperty("fileSize")
-     public int64 getFileSize() {
+     public int getFileSize() {
           return this.fileSize;
      }
 
@@ -75,23 +111,6 @@ public class UploadMetadata {
      @JsonProperty("fileName")
      public String getFileName() {
           return this.fileName;
-     }
-
-    /**
-     * Sets an optional upload timeout override.
-     * @param value an optional upload timeout override.
-     */
-     public void setTimeout(int value) {
-          this.timeout = value;
-     }
-
-    /**
-     * Gets an optional upload timeout override.
-     * @return an optional upload timeout override.
-     */
-     @JsonProperty("timeout")
-     public int getTimeout() {
-          return this.timeout;
      }
 
 }

@@ -14,7 +14,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * The information needed to capture a preauth.
  */
-public class CaptureRequest implements ICoreRequest, IPreviousTransaction, IRequestAmount, ISubtotals {
+public class CaptureRequest implements ITimeoutRequest, ICoreRequest, IPreviousTransaction, IRequestAmount, ISubtotals {
+
+     private int timeout;
+
+     private boolean test;
 
      private String transactionRef;
 
@@ -29,10 +33,6 @@ public class CaptureRequest implements ICoreRequest, IPreviousTransaction, IRequ
      private String orderRef;
 
      private String destinationAccount;
-
-     private boolean test;
-
-     private int timeout;
 
      private String transactionId;
 
@@ -55,6 +55,40 @@ public class CaptureRequest implements ICoreRequest, IPreviousTransaction, IRequ
      private String hsaEligibleAmount;
 
      private String ebtEligibleAmount;
+
+    /**
+     * Sets the request timeout in seconds.
+     * @param value the request timeout in seconds.
+     */
+     public void setTimeout(int value) {
+          this.timeout = value;
+     }
+
+    /**
+     * Gets the request timeout in seconds.
+     * @return the request timeout in seconds.
+     */
+     @JsonProperty("timeout")
+     public int getTimeout() {
+          return this.timeout;
+     }
+
+    /**
+     * Sets whether or not to route transaction to the test gateway.
+     * @param value whether or not to route transaction to the test gateway.
+     */
+     public void setTest(boolean value) {
+          this.test = value;
+     }
+
+    /**
+     * Gets whether or not to route transaction to the test gateway.
+     * @return whether or not to route transaction to the test gateway.
+     */
+     @JsonProperty("test")
+     public boolean isTest() {
+          return this.test;
+     }
 
     /**
      * Sets a user-assigned reference that can be used to recall or reverse transactions.
@@ -183,40 +217,6 @@ public class CaptureRequest implements ICoreRequest, IPreviousTransaction, IRequ
      @JsonProperty("destinationAccount")
      public String getDestinationAccount() {
           return this.destinationAccount;
-     }
-
-    /**
-     * Sets whether or not to route transaction to the test gateway.
-     * @param value whether or not to route transaction to the test gateway.
-     */
-     public void setTest(boolean value) {
-          this.test = value;
-     }
-
-    /**
-     * Gets whether or not to route transaction to the test gateway.
-     * @return whether or not to route transaction to the test gateway.
-     */
-     @JsonProperty("test")
-     public boolean isTest() {
-          return this.test;
-     }
-
-    /**
-     * Sets the request timeout in seconds.
-     * @param value the request timeout in seconds.
-     */
-     public void setTimeout(int value) {
-          this.timeout = value;
-     }
-
-    /**
-     * Gets the request timeout in seconds.
-     * @return the request timeout in seconds.
-     */
-     @JsonProperty("timeout")
-     public int getTimeout() {
-          return this.timeout;
      }
 
     /**

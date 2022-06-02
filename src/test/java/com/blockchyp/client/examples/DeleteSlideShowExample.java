@@ -1,5 +1,7 @@
 package com.blockchyp.client.examples;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -30,7 +32,6 @@ public class DeleteSlideShowExample {
 
         // Send the request
         Acknowledgement response = client.deleteSlideShow(request);
-
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 

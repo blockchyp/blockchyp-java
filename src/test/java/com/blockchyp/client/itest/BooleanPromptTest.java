@@ -8,9 +8,9 @@
 
 package com.blockchyp.client.itest;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -27,12 +27,13 @@ public class BooleanPromptTest extends BaseTestCase {
     @Test
     @Category(IntegrationTest.class)
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void testTransaction() throws Exception {
+    public void testEndpoint() throws Exception {
 
-        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient("");
 
-        processTestDelay(client, "BooleanPromptTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
+        processTestDelay(IntegrationTestConfiguration.getTestClient(), "BooleanPromptTest", IntegrationTestConfiguration.getDefaultTerminalName());
+        
         // Set request parameters
         BooleanPromptRequest request = new BooleanPromptRequest();
         request.setTest(true);
@@ -41,12 +42,17 @@ public class BooleanPromptTest extends BaseTestCase {
         request.setYesCaption("Yes");
         request.setNoCaption("No");
 
-        BooleanPromptResponse response = client.booleanPrompt(request);
+        Exception ex = null;
+        try {
+            BooleanPromptResponse response = client.booleanPrompt(request);
+            // Response assertions
+            Assert.assertTrue(response.isSuccess());
+            Assert.assertTrue(response.isResponse());
+        } catch (Exception e) {
+            ex = e;
+        }
 
-        // Response assertions
-        Assert.assertTrue(response.isSuccess());
-        Assert.assertTrue(response.isResponse());
-
+    Assert.assertNull(ex);
     }
 
 }

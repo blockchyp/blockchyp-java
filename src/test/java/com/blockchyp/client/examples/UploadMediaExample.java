@@ -1,5 +1,10 @@
 package com.blockchyp.client.examples;
 
+import java.io.File;
+import java.io.InputStream;
+import java.io.FileInputStream;
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -31,8 +36,8 @@ public class UploadMediaExample {
         request.setUploadId("<RANDOM ID>");
 
         // Send the request
-        MediaMetadata response = client.uploadMedia(request);
-
+        InputStream inStream = new FileInputStream(new File("aviato.png"));
+        MediaMetadata response = client.uploadMedia(request, inStream);
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 

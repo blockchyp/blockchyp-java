@@ -17,7 +17,11 @@ import java.util.Collection;
  * Models a request for adding a new user to a merchant account.
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
-public class InviteMerchantUserRequest implements ICoreRequest {
+public class InviteMerchantUserRequest implements ITimeoutRequest, ICoreRequest {
+
+     private int timeout;
+
+     private boolean test;
 
      private String transactionRef;
 
@@ -33,10 +37,6 @@ public class InviteMerchantUserRequest implements ICoreRequest {
 
      private String destinationAccount;
 
-     private boolean test;
-
-     private int timeout;
-
      private String merchantId;
 
      private String email;
@@ -46,6 +46,40 @@ public class InviteMerchantUserRequest implements ICoreRequest {
      private String lastName;
 
      private Collection<String> roles;
+
+    /**
+     * Sets the request timeout in seconds.
+     * @param value the request timeout in seconds.
+     */
+     public void setTimeout(int value) {
+          this.timeout = value;
+     }
+
+    /**
+     * Gets the request timeout in seconds.
+     * @return the request timeout in seconds.
+     */
+     @JsonProperty("timeout")
+     public int getTimeout() {
+          return this.timeout;
+     }
+
+    /**
+     * Sets whether or not to route transaction to the test gateway.
+     * @param value whether or not to route transaction to the test gateway.
+     */
+     public void setTest(boolean value) {
+          this.test = value;
+     }
+
+    /**
+     * Gets whether or not to route transaction to the test gateway.
+     * @return whether or not to route transaction to the test gateway.
+     */
+     @JsonProperty("test")
+     public boolean isTest() {
+          return this.test;
+     }
 
     /**
      * Sets a user-assigned reference that can be used to recall or reverse transactions.
@@ -177,40 +211,6 @@ public class InviteMerchantUserRequest implements ICoreRequest {
      }
 
     /**
-     * Sets whether or not to route transaction to the test gateway.
-     * @param value whether or not to route transaction to the test gateway.
-     */
-     public void setTest(boolean value) {
-          this.test = value;
-     }
-
-    /**
-     * Gets whether or not to route transaction to the test gateway.
-     * @return whether or not to route transaction to the test gateway.
-     */
-     @JsonProperty("test")
-     public boolean isTest() {
-          return this.test;
-     }
-
-    /**
-     * Sets the request timeout in seconds.
-     * @param value the request timeout in seconds.
-     */
-     public void setTimeout(int value) {
-          this.timeout = value;
-     }
-
-    /**
-     * Gets the request timeout in seconds.
-     * @return the request timeout in seconds.
-     */
-     @JsonProperty("timeout")
-     public int getTimeout() {
-          return this.timeout;
-     }
-
-    /**
      * Sets the merchant id.
      * @param value the merchant id. Optional for merchant scoped requests.
      */
@@ -245,16 +245,16 @@ public class InviteMerchantUserRequest implements ICoreRequest {
      }
 
     /**
-     * Sets the first name of the new user
-     * @param value the first name of the new user
+     * Sets the first name of the new user.
+     * @param value the first name of the new user.
      */
      public void setFirstName(String value) {
           this.firstName = value;
      }
 
     /**
-     * Gets the first name of the new user
-     * @return the first name of the new user
+     * Gets the first name of the new user.
+     * @return the first name of the new user.
      */
      @JsonProperty("firstName")
      public String getFirstName() {
@@ -262,16 +262,16 @@ public class InviteMerchantUserRequest implements ICoreRequest {
      }
 
     /**
-     * Sets the last name of the new user
-     * @param value the last name of the new user
+     * Sets the last name of the new user.
+     * @param value the last name of the new user.
      */
      public void setLastName(String value) {
           this.lastName = value;
      }
 
     /**
-     * Gets the last name of the new user
-     * @return the last name of the new user
+     * Gets the last name of the new user.
+     * @return the last name of the new user.
      */
      @JsonProperty("lastName")
      public String getLastName() {

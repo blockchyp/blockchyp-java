@@ -8,9 +8,9 @@
 
 package com.blockchyp.client.itest;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -30,12 +30,13 @@ public class NewTransactionDisplayTest extends BaseTestCase {
     @Test
     @Category(IntegrationTest.class)
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void testTransaction() throws Exception {
+    public void testEndpoint() throws Exception {
 
-        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient("");
 
-        processTestDelay(client, "NewTransactionDisplayTest", IntegrationTestConfiguration.getDefaultTerminalName());
 
+        processTestDelay(IntegrationTestConfiguration.getTestClient(), "NewTransactionDisplayTest", IntegrationTestConfiguration.getDefaultTerminalName());
+        
         // Set request parameters
         TransactionDisplayRequest request = new TransactionDisplayRequest();
         request.setTest(true);
@@ -63,11 +64,16 @@ public class NewTransactionDisplayTest extends BaseTestCase {
         transaction.setItems(items);
         request.setTransaction(transaction);
 
-        Acknowledgement response = client.newTransactionDisplay(request);
+        Exception ex = null;
+        try {
+            Acknowledgement response = client.newTransactionDisplay(request);
+            // Response assertions
+            Assert.assertTrue(response.isSuccess());
+        } catch (Exception e) {
+            ex = e;
+        }
 
-        // Response assertions
-        Assert.assertTrue(response.isSuccess());
-
+    Assert.assertNull(ex);
     }
 
 }

@@ -8,9 +8,9 @@
 
 package com.blockchyp.client.itest;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -29,12 +29,11 @@ public class GetCustomerTest extends BaseTestCase {
     @Test
     @Category(IntegrationTest.class)
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void testTransaction() throws Exception {
+    public void testEndpoint() throws Exception {
 
-        BlockChypClient client = IntegrationTestConfiguration.getTestClient();
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient("");
 
-        processTestDelay(client, "GetCustomerTest", IntegrationTestConfiguration.getDefaultTerminalName());
-
+        
         // Set request parameters
         UpdateCustomerRequest setupRequest = new UpdateCustomerRequest();
 
@@ -46,17 +45,23 @@ public class GetCustomerTest extends BaseTestCase {
         customer.setSmsNumber("(123) 123-1234");
         setupRequest.setCustomer(customer);
 
-         CustomerResponse setupResponse = client.updateCustomer(setupRequest);
+        CustomerResponse setupResponse = client.updateCustomer(setupRequest);
+
 
         // Set request parameters
         CustomerRequest request = new CustomerRequest();
         request.setCustomerId(setupResponse.getCustomer().getId());
 
-        CustomerResponse response = client.customer(request);
+        Exception ex = null;
+        try {
+            CustomerResponse response = client.customer(request);
+            // Response assertions
+            Assert.assertTrue(response.isSuccess());
+        } catch (Exception e) {
+            ex = e;
+        }
 
-        // Response assertions
-        Assert.assertTrue(response.isSuccess());
-
+    Assert.assertNull(ex);
     }
 
 }
