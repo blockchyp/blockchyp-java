@@ -34,7 +34,7 @@ public class MerchantUsersTest extends BaseTestCase {
         
         // Set request parameters
         MerchantProfileRequest request = new MerchantProfileRequest();
-
+        request.setTimeout(120);
 
         Exception ex = null;
         try {
