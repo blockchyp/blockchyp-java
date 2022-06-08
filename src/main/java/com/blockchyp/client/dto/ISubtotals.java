@@ -19,12 +19,6 @@ public interface ISubtotals {
 
      String getTaxAmount();
 
-     String getFsaEligibleAmount();
-
-     String getHsaEligibleAmount();
-
-     String getEbtEligibleAmount();
-
 
 }
 

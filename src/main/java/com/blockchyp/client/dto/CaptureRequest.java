@@ -50,12 +50,6 @@ public class CaptureRequest implements ITimeoutRequest, ICoreRequest, IPreviousT
 
      private String taxAmount;
 
-     private String fsaEligibleAmount;
-
-     private String hsaEligibleAmount;
-
-     private String ebtEligibleAmount;
-
     /**
      * Sets the request timeout in seconds.
      * @param value the request timeout in seconds.
@@ -363,63 +357,6 @@ public class CaptureRequest implements ITimeoutRequest, ICoreRequest, IPreviousT
      @JsonProperty("taxAmount")
      public String getTaxAmount() {
           return this.taxAmount;
-     }
-
-    /**
-     * Sets the amount of the transaction that should be charged to an FSA card.
-     * @param value the amount of the transaction that should be charged to an FSA card.
-     * This amount may be less than the transaction total, in which case only this amount
-     * will be charged if an FSA card is presented. If the FSA amount is paid on an FSA card,
-     * then the FSA amount authorized will be indicated on the response.
-     */
-     public void setFsaEligibleAmount(String value) {
-          this.fsaEligibleAmount = value;
-     }
-
-    /**
-     * Gets the amount of the transaction that should be charged to an FSA card.
-     * @return the amount of the transaction that should be charged to an FSA card. This
-     * amount may be less than the transaction total, in which case only this amount will be
-     * charged if an FSA card is presented. If the FSA amount is paid on an FSA card, then the
-     * FSA amount authorized will be indicated on the response.
-     */
-     @JsonProperty("fsaEligibleAmount")
-     public String getFsaEligibleAmount() {
-          return this.fsaEligibleAmount;
-     }
-
-    /**
-     * Sets the amount of the transaction that should be charged to an HSA card.
-     * @param value the amount of the transaction that should be charged to an HSA card.
-     */
-     public void setHsaEligibleAmount(String value) {
-          this.hsaEligibleAmount = value;
-     }
-
-    /**
-     * Gets the amount of the transaction that should be charged to an HSA card.
-     * @return the amount of the transaction that should be charged to an HSA card.
-     */
-     @JsonProperty("hsaEligibleAmount")
-     public String getHsaEligibleAmount() {
-          return this.hsaEligibleAmount;
-     }
-
-    /**
-     * Sets the amount of the transaction that should be charged to an EBT card.
-     * @param value the amount of the transaction that should be charged to an EBT card.
-     */
-     public void setEbtEligibleAmount(String value) {
-          this.ebtEligibleAmount = value;
-     }
-
-    /**
-     * Gets the amount of the transaction that should be charged to an EBT card.
-     * @return the amount of the transaction that should be charged to an EBT card.
-     */
-     @JsonProperty("ebtEligibleAmount")
-     public String getEbtEligibleAmount() {
-          return this.ebtEligibleAmount;
      }
 
 }

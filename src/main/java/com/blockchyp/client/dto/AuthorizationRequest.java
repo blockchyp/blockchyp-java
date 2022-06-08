@@ -92,12 +92,6 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
 
      private String taxAmount;
 
-     private String fsaEligibleAmount;
-
-     private String hsaEligibleAmount;
-
-     private String ebtEligibleAmount;
-
      private String terminalName;
 
      private String onlineAuthCode;
@@ -113,6 +107,8 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
      private Map altPrices;
 
      private Customer customer;
+
+     private Healthcare healthcare;
 
      private String cryptocurrency;
 
@@ -796,63 +792,6 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
      }
 
     /**
-     * Sets the amount of the transaction that should be charged to an FSA card.
-     * @param value the amount of the transaction that should be charged to an FSA card.
-     * This amount may be less than the transaction total, in which case only this amount
-     * will be charged if an FSA card is presented. If the FSA amount is paid on an FSA card,
-     * then the FSA amount authorized will be indicated on the response.
-     */
-     public void setFsaEligibleAmount(String value) {
-          this.fsaEligibleAmount = value;
-     }
-
-    /**
-     * Gets the amount of the transaction that should be charged to an FSA card.
-     * @return the amount of the transaction that should be charged to an FSA card. This
-     * amount may be less than the transaction total, in which case only this amount will be
-     * charged if an FSA card is presented. If the FSA amount is paid on an FSA card, then the
-     * FSA amount authorized will be indicated on the response.
-     */
-     @JsonProperty("fsaEligibleAmount")
-     public String getFsaEligibleAmount() {
-          return this.fsaEligibleAmount;
-     }
-
-    /**
-     * Sets the amount of the transaction that should be charged to an HSA card.
-     * @param value the amount of the transaction that should be charged to an HSA card.
-     */
-     public void setHsaEligibleAmount(String value) {
-          this.hsaEligibleAmount = value;
-     }
-
-    /**
-     * Gets the amount of the transaction that should be charged to an HSA card.
-     * @return the amount of the transaction that should be charged to an HSA card.
-     */
-     @JsonProperty("hsaEligibleAmount")
-     public String getHsaEligibleAmount() {
-          return this.hsaEligibleAmount;
-     }
-
-    /**
-     * Sets the amount of the transaction that should be charged to an EBT card.
-     * @param value the amount of the transaction that should be charged to an EBT card.
-     */
-     public void setEbtEligibleAmount(String value) {
-          this.ebtEligibleAmount = value;
-     }
-
-    /**
-     * Gets the amount of the transaction that should be charged to an EBT card.
-     * @return the amount of the transaction that should be charged to an EBT card.
-     */
-     @JsonProperty("ebtEligibleAmount")
-     public String getEbtEligibleAmount() {
-          return this.ebtEligibleAmount;
-     }
-
-    /**
      * Sets the name of the target payment terminal.
      * @param value the name of the target payment terminal.
      */
@@ -982,20 +921,37 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
      }
 
     /**
-     * Sets suggested receipt fields.
-     * @param value suggested receipt fields.
+     * Sets customer information.
+     * @param value customer information.
      */
      public void setCustomer(Customer value) {
           this.customer = value;
      }
 
     /**
-     * Gets suggested receipt fields.
-     * @return suggested receipt fields.
+     * Gets customer information.
+     * @return customer information.
      */
      @JsonProperty("customer")
      public Customer getCustomer() {
           return this.customer;
+     }
+
+    /**
+     * Sets details for HSA/FSA transactions.
+     * @param value details for HSA/FSA transactions.
+     */
+     public void setHealthcare(Healthcare value) {
+          this.healthcare = value;
+     }
+
+    /**
+     * Gets details for HSA/FSA transactions.
+     * @return details for HSA/FSA transactions.
+     */
+     @JsonProperty("healthcare")
+     public Healthcare getHealthcare() {
+          return this.healthcare;
      }
 
     /**

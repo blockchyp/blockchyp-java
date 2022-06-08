@@ -138,6 +138,8 @@ import com.blockchyp.client.dto.DeleteTokenRequest;
 import com.blockchyp.client.dto.DeleteTokenResponse;
 import com.blockchyp.client.dto.LinkTokenRequest;
 import com.blockchyp.client.dto.UnlinkTokenRequest;
+import com.blockchyp.client.dto.Healthcare;
+import com.blockchyp.client.dto.HealthcareGroup;
 import com.blockchyp.client.dto.GetMerchantsRequest;
 import com.blockchyp.client.dto.GetMerchantsResponse;
 import com.blockchyp.client.dto.MerchantUsersResponse;

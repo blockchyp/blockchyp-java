@@ -4,10 +4,11 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum CardType {
 
-    CREDIT(0),  
-    DEBIT(1),  
+    CREDIT(0),
+    DEBIT(1),
     EBT(2),
-    BLOCKCHAIN_GIFT(3);
+    BLOCKCHAIN_GIFT(3),
+    HEALTHCARE(4);
 
 
     private final int code;
