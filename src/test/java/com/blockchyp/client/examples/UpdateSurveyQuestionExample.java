@@ -28,6 +28,7 @@ public class UpdateSurveyQuestionExample {
 
         // Set request parameters
         SurveyQuestion request = new SurveyQuestion();
+        request.setId("<QUESTION ID>");
         request.setOrdinal(1);
         request.setQuestionText("Would you shop here again?");
         request.setQuestionType("yes_no");

@@ -28,8 +28,8 @@ public class AddTestMerchantExample {
 
         // Set request parameters
         AddTestMerchantRequest request = new AddTestMerchantRequest();
-        request.setDbaName("DBA name.");
-        request.setCompanyName("test merchant customer name.");
+        request.setDbaName("DBA Name");
+        request.setCompanyName("Corporate Entity Name");
 
         // Send the request
         MerchantProfileResponse response = client.addTestMerchant(request);

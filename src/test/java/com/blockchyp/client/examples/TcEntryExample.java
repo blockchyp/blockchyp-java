@@ -28,7 +28,7 @@ public class TcEntryExample {
 
         // Set request parameters
         TermsAndConditionsLogRequest request = new TermsAndConditionsLogRequest();
-        request.setTimeout(120);
+        request.setLogEntryId("<ENTRY ID>");
 
         // Send the request
         TermsAndConditionsLogEntry response = client.tcEntry(request);

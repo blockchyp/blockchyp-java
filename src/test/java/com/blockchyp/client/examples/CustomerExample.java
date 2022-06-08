@@ -28,7 +28,7 @@ public class CustomerExample {
 
         // Set request parameters
         CustomerRequest request = new CustomerRequest();
-        request.setCustomerId("ID of the customer to retrieve");
+        request.setCustomerId("<CUSTOMER ID>");
 
         // Send the request
         CustomerResponse response = client.customer(request);

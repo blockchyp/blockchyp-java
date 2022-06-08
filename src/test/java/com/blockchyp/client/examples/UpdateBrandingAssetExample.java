@@ -28,7 +28,16 @@ public class UpdateBrandingAssetExample {
 
         // Set request parameters
         BrandingAsset request = new BrandingAsset();
-        request.setTimeout(120);
+        request.setMediaId("<MEDIA ID>");
+        request.setPadded(true);
+        request.setOrdinal(10);
+        request.setStartDate("01/06/2021");
+        request.setStartTime("14:00");
+        request.setEndDate("11/05/2024");
+        request.setEndTime("16:00");
+        request.setNotes("Test Branding Asset");
+        request.setPreview(false);
+        request.setEnabled(true);
 
         // Send the request
         BrandingAsset response = client.updateBrandingAsset(request);

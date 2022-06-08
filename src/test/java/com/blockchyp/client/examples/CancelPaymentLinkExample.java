@@ -28,7 +28,7 @@ public class CancelPaymentLinkExample {
 
         // Set request parameters
         CancelPaymentLinkRequest request = new CancelPaymentLinkRequest();
-        request.setLinkCode("Payment link code to cancel");
+        request.setLinkCode("<PAYMENT LINK CODE>");
 
         // Send the request
         CancelPaymentLinkResponse response = client.cancelPaymentLink(request);

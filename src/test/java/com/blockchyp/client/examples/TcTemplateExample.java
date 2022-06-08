@@ -28,7 +28,7 @@ public class TcTemplateExample {
 
         // Set request parameters
         TermsAndConditionsTemplateRequest request = new TermsAndConditionsTemplateRequest();
-        request.setTimeout(120);
+        request.setTemplateId("<TEMPLATE ID>");
 
         // Send the request
         TermsAndConditionsTemplate response = client.tcTemplate(request);

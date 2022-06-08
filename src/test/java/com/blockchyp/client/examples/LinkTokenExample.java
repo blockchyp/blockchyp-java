@@ -28,8 +28,8 @@ public class LinkTokenExample {
 
         // Set request parameters
         LinkTokenRequest request = new LinkTokenRequest();
-        request.setToken("Token to link");
-        request.setCustomerId("Customer to link");
+        request.setToken("<TOKEN>");
+        request.setCustomerId("<CUSTOMER ID>");
 
         // Send the request
         Acknowledgement response = client.linkToken(request);

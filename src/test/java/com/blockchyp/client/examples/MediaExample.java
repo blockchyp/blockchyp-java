@@ -28,7 +28,7 @@ public class MediaExample {
 
         // Set request parameters
         MediaRequest request = new MediaRequest();
-        request.setTimeout(120);
+
 
         // Send the request
         MediaLibraryResponse response = client.media(request);

@@ -28,7 +28,7 @@ public class DeleteMediaAssetExample {
 
         // Set request parameters
         MediaRequest request = new MediaRequest();
-        request.setTimeout(120);
+        request.setMediaId("<MEDIA ASSET ID>");
 
         // Send the request
         Acknowledgement response = client.deleteMediaAsset(request);

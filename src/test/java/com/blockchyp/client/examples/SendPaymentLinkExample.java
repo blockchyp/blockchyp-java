@@ -31,6 +31,7 @@ public class SendPaymentLinkExample {
 
         // Set request parameters
         PaymentLinkRequest request = new PaymentLinkRequest();
+        request.setTransactionRef("<TX REF>");
         request.setAmount("199.99");
         request.setDescription("Widget");
         request.setSubject("Widget invoice");

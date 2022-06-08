@@ -28,7 +28,7 @@ public class SurveyQuestionExample {
 
         // Set request parameters
         SurveyQuestionRequest request = new SurveyQuestionRequest();
-        request.setQuestionId("XXXXXXXX");
+        request.setQuestionId("<QUESTION ID>");
 
         // Send the request
         SurveyQuestion response = client.surveyQuestion(request);

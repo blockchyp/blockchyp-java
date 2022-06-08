@@ -29,7 +29,7 @@ public class BatchHistoryExample {
         // Set request parameters
         BatchHistoryRequest request = new BatchHistoryRequest();
         request.setMaxResults(250);
-        request.setStartIndex(1);
+        request.setStartIndex(0);
 
         // Send the request
         BatchHistoryResponse response = client.batchHistory(request);

@@ -28,7 +28,7 @@ public class UploadStatusExample {
 
         // Set request parameters
         UploadStatusRequest request = new UploadStatusRequest();
-        request.setTimeout(120);
+        request.setUploadId("<UPLOAD ID>");
 
         // Send the request
         UploadStatus response = client.uploadStatus(request);

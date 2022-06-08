@@ -29,7 +29,7 @@ public class ActivateTerminalExample {
         // Set request parameters
         TerminalActivationRequest request = new TerminalActivationRequest();
         request.setTerminalName("Test Terminal");
-        request.setTimeout(120);
+        request.setActivationCode("<ACTIVATION CODE>");
 
         // Send the request
         Acknowledgement response = client.activateTerminal(request);

@@ -28,7 +28,7 @@ public class TokenMetadataExample {
 
         // Set request parameters
         TokenMetadataRequest request = new TokenMetadataRequest();
-        request.setToken("Token to retrieve");
+        request.setToken("<TOKEN>");
 
         // Send the request
         TokenMetadataResponse response = client.tokenMetadata(request);

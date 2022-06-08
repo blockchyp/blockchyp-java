@@ -31,7 +31,6 @@ public class TcUpdateTemplateExample {
         request.setAlias("HIPPA");
         request.setName("HIPPA Disclosure");
         request.setContent("Lorem ipsum dolor sit amet.");
-        request.setTimeout(120);
 
         // Send the request
         TermsAndConditionsTemplate response = client.tcUpdateTemplate(request);

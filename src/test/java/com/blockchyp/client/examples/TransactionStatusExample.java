@@ -28,7 +28,7 @@ public class TransactionStatusExample {
 
         // Set request parameters
         TransactionStatusRequest request = new TransactionStatusRequest();
-        request.setTransactionId("ID of transaction to retrieve");
+        request.setTransactionId("<TRANSACTION ID>");
 
         // Send the request
         AuthorizationResponse response = client.transactionStatus(request);

@@ -28,8 +28,8 @@ public class UnlinkTokenExample {
 
         // Set request parameters
         UnlinkTokenRequest request = new UnlinkTokenRequest();
-        request.setToken("Token to unlink");
-        request.setCustomerId("Customer to unlink");
+        request.setToken("<TOKEN>");
+        request.setCustomerId("<CUSTOMER ID>");
 
         // Send the request
         Acknowledgement response = client.unlinkToken(request);

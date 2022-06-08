@@ -28,7 +28,7 @@ public class DeleteCustomerExample {
 
         // Set request parameters
         DeleteCustomerRequest request = new DeleteCustomerRequest();
-        request.setCustomerId("ID of the customer to delete");
+        request.setCustomerId("<CUSTOMER ID>");
 
         // Send the request
         DeleteCustomerResponse response = client.deleteCustomer(request);

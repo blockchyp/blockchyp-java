@@ -28,7 +28,7 @@ public class DeleteTestMerchantExample {
 
         // Set request parameters
         MerchantProfileRequest request = new MerchantProfileRequest();
-        request.setMerchantId("ID for the test merchant being deleted.");
+        request.setMerchantId("<MERCHANT ID>");
 
         // Send the request
         Acknowledgement response = client.deleteTestMerchant(request);

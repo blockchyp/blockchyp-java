@@ -12,6 +12,7 @@ import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.dto.MerchantProfile;
 import com.blockchyp.client.dto.MerchantProfileResponse;
+import com.blockchyp.client.dto.Address;
 
 
 public class UpdateMerchantExample {
@@ -28,7 +29,17 @@ public class UpdateMerchantExample {
 
         // Set request parameters
         MerchantProfile request = new MerchantProfile();
+        request.setMerchantId("<MERCHANT ID>");
         request.setTest(true);
+        request.setDbaName("Test Merchant");
+        request.setCompanyName("Test Merchant");
+
+        Address billingAddress = new Address();
+        billingAddress.setAddress1("1060 West Addison");
+        billingAddress.setCity("Chicago");
+        billingAddress.setStateOrProvince("IL");
+        billingAddress.setPostalCode("60613");
+        request.setBillingAddress(billingAddress);
 
         // Send the request
         MerchantProfileResponse response = client.updateMerchant(request);

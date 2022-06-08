@@ -28,7 +28,7 @@ public class TcLogExample {
 
         // Set request parameters
         TermsAndConditionsLogRequest request = new TermsAndConditionsLogRequest();
-        request.setTimeout(120);
+        request.setLogEntryId("<LOG ENTRY ID>");
 
         // Send the request
         TermsAndConditionsLogResponse response = client.tcLog(request);

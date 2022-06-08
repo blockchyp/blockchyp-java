@@ -28,7 +28,7 @@ public class DeleteSurveyQuestionExample {
 
         // Set request parameters
         SurveyQuestionRequest request = new SurveyQuestionRequest();
-        request.setQuestionId("XXXXXXXX");
+        request.setQuestionId("<QUESTION ID>");
 
         // Send the request
         Acknowledgement response = client.deleteSurveyQuestion(request);

@@ -28,7 +28,7 @@ public class MerchantUsersExample {
 
         // Set request parameters
         MerchantProfileRequest request = new MerchantProfileRequest();
-        request.setMerchantId("XXXXXXXXXXXXX");
+        request.setMerchantId("<MERCHANT ID>");
 
         // Send the request
         MerchantUsersResponse response = client.merchantUsers(request);

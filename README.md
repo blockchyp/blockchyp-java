@@ -525,7 +525,8 @@ public class CaptureExample {
         // Set request parameters
         CaptureRequest request = new CaptureRequest();
         request.setTest(true);
-        request.setTransactionId("<PREAUTH TRANSACTION ID>");
+        request.setTransactionId("<ORIGINAL TRANSACTION ID>");
+        request.setAmount("32.00");
 
         // Send the request
         CaptureResponse response = client.capture(request);
@@ -1236,6 +1237,7 @@ public class SendPaymentLinkExample {
 
         // Set request parameters
         PaymentLinkRequest request = new PaymentLinkRequest();
+        request.setTransactionRef("<TX REF>");
         request.setAmount("199.99");
         request.setDescription("Widget");
         request.setSubject("Widget invoice");
@@ -1327,7 +1329,7 @@ public class CancelPaymentLinkExample {
 
         // Set request parameters
         CancelPaymentLinkRequest request = new CancelPaymentLinkRequest();
-        request.setLinkCode("Payment link code to cancel");
+        request.setLinkCode("<PAYMENT LINK CODE>");
 
         // Send the request
         CancelPaymentLinkResponse response = client.cancelPaymentLink(request);
@@ -1397,7 +1399,7 @@ public class TransactionStatusExample {
 
         // Set request parameters
         TransactionStatusRequest request = new TransactionStatusRequest();
-        request.setTransactionId("ID of transaction to retrieve");
+        request.setTransactionId("<TRANSACTION ID>");
 
         // Send the request
         AuthorizationResponse response = client.transactionStatus(request);
@@ -1554,7 +1556,7 @@ public class BatchHistoryExample {
         // Set request parameters
         BatchHistoryRequest request = new BatchHistoryRequest();
         request.setMaxResults(250);
-        request.setStartIndex(1);
+        request.setStartIndex(0);
 
         // Send the request
         BatchHistoryResponse response = client.batchHistory(request);
@@ -1625,7 +1627,7 @@ public class BatchDetailsExample {
 
         // Set request parameters
         BatchDetailsRequest request = new BatchDetailsRequest();
-        request.setBatchId("BATCHID");
+        request.setBatchId("<BATCH ID>");
 
         // Send the request
         BatchDetailsResponse response = client.batchDetails(request);
@@ -1736,6 +1738,7 @@ public class TransactionHistoryExample {
         // Set request parameters
         TransactionHistoryRequest request = new TransactionHistoryRequest();
         request.setMaxResults(10);
+        request.setBatchId("<BATCH ID>");
 
         // Send the request
         TransactionHistoryResponse response = client.transactionHistory(request);
@@ -2779,7 +2782,7 @@ public class TerminalsExample {
 
         // Set request parameters
         TerminalProfileRequest request = new TerminalProfileRequest();
-        request.setTimeout(120);
+
 
         // Send the request
         TerminalProfileResponse response = client.terminals(request);
@@ -2923,7 +2926,7 @@ public class ActivateTerminalExample {
         // Set request parameters
         TerminalActivationRequest request = new TerminalActivationRequest();
         request.setTerminalName("Test Terminal");
-        request.setTimeout(120);
+        request.setActivationCode("<ACTIVATION CODE>");
 
         // Send the request
         Acknowledgement response = client.activateTerminal(request);
@@ -3119,7 +3122,7 @@ public class TcTemplatesExample {
 
         // Set request parameters
         TermsAndConditionsTemplateRequest request = new TermsAndConditionsTemplateRequest();
-        request.setTimeout(120);
+
 
         // Send the request
         TermsAndConditionsTemplateResponse response = client.tcTemplates(request);
@@ -3184,7 +3187,7 @@ public class TcTemplateExample {
 
         // Set request parameters
         TermsAndConditionsTemplateRequest request = new TermsAndConditionsTemplateRequest();
-        request.setTimeout(120);
+        request.setTemplateId("<TEMPLATE ID>");
 
         // Send the request
         TermsAndConditionsTemplate response = client.tcTemplate(request);
@@ -3260,7 +3263,6 @@ public class TcUpdateTemplateExample {
         request.setAlias("HIPPA");
         request.setName("HIPPA Disclosure");
         request.setContent("Lorem ipsum dolor sit amet.");
-        request.setTimeout(120);
 
         // Send the request
         TermsAndConditionsTemplate response = client.tcUpdateTemplate(request);
@@ -3329,7 +3331,7 @@ public class TcDeleteTemplateExample {
 
         // Set request parameters
         TermsAndConditionsTemplateRequest request = new TermsAndConditionsTemplateRequest();
-        request.setTimeout(120);
+        request.setTemplateId("<TEMPLATE ID>");
 
         // Send the request
         Acknowledgement response = client.tcDeleteTemplate(request);
@@ -3404,7 +3406,7 @@ public class TcLogExample {
 
         // Set request parameters
         TermsAndConditionsLogRequest request = new TermsAndConditionsLogRequest();
-        request.setTimeout(120);
+        request.setLogEntryId("<LOG ENTRY ID>");
 
         // Send the request
         TermsAndConditionsLogResponse response = client.tcLog(request);
@@ -3472,7 +3474,7 @@ public class TcEntryExample {
 
         // Set request parameters
         TermsAndConditionsLogRequest request = new TermsAndConditionsLogRequest();
-        request.setTimeout(120);
+        request.setLogEntryId("<ENTRY ID>");
 
         // Send the request
         TermsAndConditionsLogEntry response = client.tcEntry(request);
@@ -3634,7 +3636,7 @@ public class TokenMetadataExample {
 
         // Set request parameters
         TokenMetadataRequest request = new TokenMetadataRequest();
-        request.setToken("Token to retrieve");
+        request.setToken("<TOKEN>");
 
         // Send the request
         TokenMetadataResponse response = client.tokenMetadata(request);
@@ -3700,8 +3702,8 @@ public class LinkTokenExample {
 
         // Set request parameters
         LinkTokenRequest request = new LinkTokenRequest();
-        request.setToken("Token to link");
-        request.setCustomerId("Customer to link");
+        request.setToken("<TOKEN>");
+        request.setCustomerId("<CUSTOMER ID>");
 
         // Send the request
         Acknowledgement response = client.linkToken(request);
@@ -3769,8 +3771,8 @@ public class UnlinkTokenExample {
 
         // Set request parameters
         UnlinkTokenRequest request = new UnlinkTokenRequest();
-        request.setToken("Token to unlink");
-        request.setCustomerId("Customer to unlink");
+        request.setToken("<TOKEN>");
+        request.setCustomerId("<CUSTOMER ID>");
 
         // Send the request
         Acknowledgement response = client.unlinkToken(request);
@@ -3836,7 +3838,7 @@ public class DeleteTokenExample {
 
         // Set request parameters
         DeleteTokenRequest request = new DeleteTokenRequest();
-        request.setToken("Token to delete");
+        request.setToken("<TOKEN>");
 
         // Send the request
         DeleteTokenResponse response = client.deleteToken(request);
@@ -3940,7 +3942,7 @@ public class UpdateCustomerExample {
         UpdateCustomerRequest request = new UpdateCustomerRequest();
 
         Customer customer = new Customer();
-        customer.setId("ID of the customer to update");
+        customer.setId("<CUSTOMER ID>");
         customer.setCustomerRef("Customer reference string");
         customer.setFirstName("FirstName");
         customer.setLastName("LastName");
@@ -4015,7 +4017,7 @@ public class CustomerExample {
 
         // Set request parameters
         CustomerRequest request = new CustomerRequest();
-        request.setCustomerId("ID of the customer to retrieve");
+        request.setCustomerId("<CUSTOMER ID>");
 
         // Send the request
         CustomerResponse response = client.customer(request);
@@ -4148,7 +4150,7 @@ public class DeleteCustomerExample {
 
         // Set request parameters
         DeleteCustomerRequest request = new DeleteCustomerRequest();
-        request.setCustomerId("ID of the customer to delete");
+        request.setCustomerId("<CUSTOMER ID>");
 
         // Send the request
         DeleteCustomerResponse response = client.deleteCustomer(request);
@@ -4294,7 +4296,7 @@ public class SurveyQuestionExample {
 
         // Set request parameters
         SurveyQuestionRequest request = new SurveyQuestionRequest();
-        request.setQuestionId("XXXXXXXX");
+        request.setQuestionId("<QUESTION ID>");
 
         // Send the request
         SurveyQuestion response = client.surveyQuestion(request);
@@ -4368,6 +4370,7 @@ public class UpdateSurveyQuestionExample {
 
         // Set request parameters
         SurveyQuestion request = new SurveyQuestion();
+        request.setId("<QUESTION ID>");
         request.setOrdinal(1);
         request.setQuestionText("Would you shop here again?");
         request.setQuestionType("yes_no");
@@ -4436,7 +4439,7 @@ public class DeleteSurveyQuestionExample {
 
         // Set request parameters
         SurveyQuestionRequest request = new SurveyQuestionRequest();
-        request.setQuestionId("XXXXXXXX");
+        request.setQuestionId("<QUESTION ID>");
 
         // Send the request
         Acknowledgement response = client.deleteSurveyQuestion(request);
@@ -4513,7 +4516,7 @@ public class SurveyResultsExample {
 
         // Set request parameters
         SurveyResultsRequest request = new SurveyResultsRequest();
-        request.setQuestionId("<SURVEY QUESTION ID>");
+        request.setQuestionId("<QUESTION ID>");
 
         // Send the request
         SurveyQuestion response = client.surveyResults(request);
@@ -4618,7 +4621,7 @@ public class MediaExample {
 
         // Set request parameters
         MediaRequest request = new MediaRequest();
-        request.setTimeout(120);
+
 
         // Send the request
         MediaLibraryResponse response = client.media(request);
@@ -4792,7 +4795,7 @@ public class UploadStatusExample {
 
         // Set request parameters
         UploadStatusRequest request = new UploadStatusRequest();
-        request.setTimeout(120);
+        request.setUploadId("<UPLOAD ID>");
 
         // Send the request
         UploadStatus response = client.uploadStatus(request);
@@ -4925,7 +4928,7 @@ public class DeleteMediaAssetExample {
 
         // Set request parameters
         MediaRequest request = new MediaRequest();
-        request.setTimeout(120);
+        request.setMediaId("<MEDIA ASSET ID>");
 
         // Send the request
         Acknowledgement response = client.deleteMediaAsset(request);
@@ -5407,7 +5410,16 @@ public class UpdateBrandingAssetExample {
 
         // Set request parameters
         BrandingAsset request = new BrandingAsset();
-        request.setTimeout(120);
+        request.setMediaId("<MEDIA ID>");
+        request.setPadded(true);
+        request.setOrdinal(10);
+        request.setStartDate("01/06/2021");
+        request.setStartTime("14:00");
+        request.setEndDate("11/05/2024");
+        request.setEndTime("16:00");
+        request.setNotes("Test Branding Asset");
+        request.setPreview(false);
+        request.setEnabled(true);
 
         // Send the request
         BrandingAsset response = client.updateBrandingAsset(request);
@@ -5800,6 +5812,7 @@ import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.dto.MerchantProfile;
 import com.blockchyp.client.dto.MerchantProfileResponse;
+import com.blockchyp.client.dto.Address;
 
 
 public class UpdateMerchantExample {
@@ -5816,7 +5829,17 @@ public class UpdateMerchantExample {
 
         // Set request parameters
         MerchantProfile request = new MerchantProfile();
+        request.setMerchantId("<MERCHANT ID>");
         request.setTest(true);
+        request.setDbaName("Test Merchant");
+        request.setCompanyName("Test Merchant");
+
+        Address billingAddress = new Address();
+        billingAddress.setAddress1("1060 West Addison");
+        billingAddress.setCity("Chicago");
+        billingAddress.setStateOrProvince("IL");
+        billingAddress.setPostalCode("60613");
+        request.setBillingAddress(billingAddress);
 
         // Send the request
         MerchantProfileResponse response = client.updateMerchant(request);
@@ -5881,7 +5904,7 @@ public class MerchantUsersExample {
 
         // Set request parameters
         MerchantProfileRequest request = new MerchantProfileRequest();
-        request.setMerchantId("XXXXXXXXXXXXX");
+        request.setMerchantId("<MERCHANT ID>");
 
         // Send the request
         MerchantUsersResponse response = client.merchantUsers(request);
@@ -6021,8 +6044,8 @@ public class AddTestMerchantExample {
 
         // Set request parameters
         AddTestMerchantRequest request = new AddTestMerchantRequest();
-        request.setDbaName("DBA name.");
-        request.setCompanyName("test merchant customer name.");
+        request.setDbaName("DBA Name");
+        request.setCompanyName("Corporate Entity Name");
 
         // Send the request
         MerchantProfileResponse response = client.addTestMerchant(request);
@@ -6087,7 +6110,7 @@ public class DeleteTestMerchantExample {
 
         // Set request parameters
         MerchantProfileRequest request = new MerchantProfileRequest();
-        request.setMerchantId("ID for the test merchant being deleted.");
+        request.setMerchantId("<MERCHANT ID>");
 
         // Send the request
         Acknowledgement response = client.deleteTestMerchant(request);

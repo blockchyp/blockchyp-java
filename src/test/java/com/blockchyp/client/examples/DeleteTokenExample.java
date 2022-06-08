@@ -28,7 +28,7 @@ public class DeleteTokenExample {
 
         // Set request parameters
         DeleteTokenRequest request = new DeleteTokenRequest();
-        request.setToken("Token to delete");
+        request.setToken("<TOKEN>");
 
         // Send the request
         DeleteTokenResponse response = client.deleteToken(request);

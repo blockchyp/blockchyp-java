@@ -31,7 +31,7 @@ public class UpdateCustomerExample {
         UpdateCustomerRequest request = new UpdateCustomerRequest();
 
         Customer customer = new Customer();
-        customer.setId("ID of the customer to update");
+        customer.setId("<CUSTOMER ID>");
         customer.setCustomerRef("Customer reference string");
         customer.setFirstName("FirstName");
         customer.setLastName("LastName");

@@ -28,7 +28,7 @@ public class TerminalsExample {
 
         // Set request parameters
         TerminalProfileRequest request = new TerminalProfileRequest();
-        request.setTimeout(120);
+
 
         // Send the request
         TerminalProfileResponse response = client.terminals(request);

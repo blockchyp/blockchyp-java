@@ -29,6 +29,7 @@ public class TransactionHistoryExample {
         // Set request parameters
         TransactionHistoryRequest request = new TransactionHistoryRequest();
         request.setMaxResults(10);
+        request.setBatchId("<BATCH ID>");
 
         // Send the request
         TransactionHistoryResponse response = client.transactionHistory(request);

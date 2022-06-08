@@ -28,7 +28,7 @@ public class BatchDetailsExample {
 
         // Set request parameters
         BatchDetailsRequest request = new BatchDetailsRequest();
-        request.setBatchId("BATCHID");
+        request.setBatchId("<BATCH ID>");
 
         // Send the request
         BatchDetailsResponse response = client.batchDetails(request);
