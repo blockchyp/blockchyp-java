@@ -1410,6 +1410,22 @@ public class BlockChypClient {
 
     }
 
+    /**
+     * Reboot a payment terminal.
+     * @param request the request parameters.
+     * @return {@link Acknowledgement}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public Acknowledgement reboot(PingRequest request) throws Exception {
+
+        if (isTerminalRouted(request)) {
+            return (Acknowledgement) postTerminal("/api/reboot", request, Acknowledgement.class);
+        } else {
+            return (Acknowledgement) postGateway("/api/terminal-reboot", request, Acknowledgement.class);
+        }
+
+    }
+
 
     /**
      * Decrypts API credentials using the offline cache key.
