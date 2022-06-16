@@ -674,7 +674,7 @@ public class BlockChypClient {
     
     /**
      * Adds or updates a merchant account. Can be used to create or update test merchants.
-     * Only gateway only partners may create new live merchants.
+     * Only gateway partners may create new live merchants.
      * @param request the request parameters.
      * @return {@link MerchantProfileResponse}
      * @throws Exception exception if any errors occurred processing the request.
