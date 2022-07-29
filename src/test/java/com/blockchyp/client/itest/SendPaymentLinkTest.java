@@ -61,7 +61,7 @@ public class SendPaymentLinkTest extends BaseTestCase {
         customer.setFirstName("FirstName");
         customer.setLastName("LastName");
         customer.setCompanyName("Company Name");
-        customer.setEmailAddress("support@blockchyp.com");
+        customer.setEmailAddress("notifications@blockchypteam.m8r.co");
         customer.setSmsNumber("(123) 123-1231");
         request.setCustomer(customer);
 
