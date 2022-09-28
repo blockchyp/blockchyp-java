@@ -1,235 +1,535 @@
+/**
+ * Copyright 2019-2022 BlockChyp, Inc. All rights reserved. Use of this code is governed
+ * by a license that can be found in the LICENSE file.
+ *
+ * This file was generated automatically by the BlockChyp SDK Generator. Changes to this
+ * file will be lost every time the code is regenerated.
+ */
+
 package com.blockchyp.client.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
 /**
- * The response to a balance inquiry.
- *
+ * The response to a balance request.
  */
-public class BalanceResponse extends Acknowledgement {
+@SuppressWarnings({"rawtypes", "unchecked"})
+public class BalanceResponse implements IAbstractAcknowledgement, ICoreResponse, IPaymentMethodResponse {
 
-    private String remainingBalance;
-    private String responseDescription;
-    private String transactionType;
-    private String tickBlock;
-    private boolean test;
-    private String sig;
-    private String token;
-    private String entryMethod;
-    private String paymentType;
-    private String maskedPan;
-    private String publicKey;
-    private boolean scopeAlert;
-    private String cardHolder;
-    private ReceiptSuggestions receiptSuggestions;
+     private boolean success;
 
-    /**
-     * Gets the remaining balance on the payment method.
-     * @return the remaining balance on the payment method.
-     */
-    public String getRemainingBalance() {
-        return remainingBalance;
-    }
+     private String error;
 
-    /**
-     * Sets the remaining balance on the payment method.
-     * @param remainingBalance the remaining balance on the payment method.
-     */
-    public void setRemainingBalance(String remainingBalance) {
-        this.remainingBalance = remainingBalance;
-    }
+     private String responseDescription;
 
-    /**
-     * Returns the response description. This will return extra detail if a transaction is not approved.
-     * @return response description.
-     */
-    public String getResponseDescription() {
-        return responseDescription;
-    }
+     private String transactionId;
 
-    /**
-     * Sets the response description.
-     * @param responseDescription response description.
-     */
-    public void setResponseDescription(String responseDescription) {
-        this.responseDescription = responseDescription;
-    }
+     private String batchId;
 
-    /**
-     * Echoes back the transaction type from the original request.
-     * @return transaction type.
-     */
-    public String getTransactionType() {
-        return transactionType;
-    }
+     private String transactionRef;
+
+     private String transactionType;
+
+     private String timestamp;
+
+     private String tickBlock;
+
+     private boolean test;
+
+     private String destinationAccount;
+
+     private String sig;
+
+     private String token;
+
+     private String entryMethod;
+
+     private String paymentType;
+
+     private String maskedPan;
+
+     private String publicKey;
+
+     private boolean ScopeAlert;
+
+     private String cardHolder;
+
+     private String expMonth;
+
+     private String expYear;
+
+     private AvsResponse avsResponse;
+
+     private ReceiptSuggestions receiptSuggestions;
+
+     private Customer customer;
+
+     private Collection<Customer> customers;
+
+     private String remainingBalance;
 
     /**
-     * Sets the transaction type.
-     * @param transactionType transaction type.
+     * Sets whether or not the request succeeded.
+     * @param value whether or not the request succeeded.
      */
-    public void setTransactionType(String transactionType) {
-        this.transactionType = transactionType;
-    }
+     public void setSuccess(boolean value) {
+          this.success = value;
+     }
 
     /**
-     * Returns the last tick block hash.
-     * @return tick block hash.
+     * Gets whether or not the request succeeded.
+     * @return whether or not the request succeeded.
      */
-    public String getTickBlock() {
-        return tickBlock;
-    }
+     @JsonProperty("success")
+     public boolean isSuccess() {
+          return this.success;
+     }
 
     /**
-     * Hash of the latest tick block.  This is essentially a blockchain timestamp.
-     * @param tickBlock the tick block hash.
+     * Sets the error, if an error occurred.
+     * @param value the error, if an error occurred.
      */
-    public void setTickBlock(String tickBlock) {
-        this.tickBlock = tickBlock;
-    }
+     public void setError(String value) {
+          this.error = value;
+     }
 
     /**
-     * Echoes back the test flag set on the original request.
-     * @return the test flag.
+     * Gets the error, if an error occurred.
+     * @return the error, if an error occurred.
      */
-    public boolean isTest() {
-        return test;
-    }
+     @JsonProperty("error")
+     public String getError() {
+          return this.error;
+     }
 
     /**
-     * Sets the test flag.
-     * @param test the test flag.
+     * Sets a narrative description of the transaction result.
+     * @param value a narrative description of the transaction result.
      */
-    public void setTest(boolean test) {
-        this.test = test;
-    }
+     public void setResponseDescription(String value) {
+          this.responseDescription = value;
+     }
 
     /**
-     * Returns the ECC signature of the response.  Can be used to ensure it was signed by the terminal
-     * and detect man in the middle attacks.
-     *
-     * @return ECCDSA signature in hex format.
+     * Gets a narrative description of the transaction result.
+     * @return a narrative description of the transaction result.
      */
-    public String getSig() {
-        return sig;
-    }
+     @JsonProperty("responseDescription")
+     public String getResponseDescription() {
+          return this.responseDescription;
+     }
 
     /**
-     * Sets the response signature.
-     * @param sig ECCDSA signature in hex format.
+     * Sets the ID assigned to the transaction.
+     * @param value the ID assigned to the transaction.
      */
-    public void setSig(String sig) {
-        this.sig = sig;
-    }
+     public void setTransactionId(String value) {
+          this.transactionId = value;
+     }
 
     /**
-     * Sets the token if the transaction was an enrolling transaction. 
-     * @return reusable payment token.
+     * Gets the ID assigned to the transaction.
+     * @return the ID assigned to the transaction.
      */
-    public String getToken() {
-        return token;
-    }
+     @JsonProperty("transactionId")
+     public String getTransactionId() {
+          return this.transactionId;
+     }
 
     /**
-     * Sets the token if the transaction was an enrolling transaction.
-     * @param token reusable payment token.
+     * Sets the ID assigned to the batch.
+     * @param value the ID assigned to the batch.
      */
-    public void setToken(String token) {
-        this.token = token;
-    }
+     public void setBatchId(String value) {
+          this.batchId = value;
+     }
 
     /**
-     * Returns the entry method for a transaction.  This would be things like MSR, CHIP, KEYED, etc. 
-     * @return transaction entry method code.
+     * Gets the ID assigned to the batch.
+     * @return the ID assigned to the batch.
      */
-    public String getEntryMethod() {
-        return entryMethod;
-    }
+     @JsonProperty("batchId")
+     public String getBatchId() {
+          return this.batchId;
+     }
 
     /**
-     * Sets the entry method for the transactions.
-     * @param entryMethod transaction entry method code.
+     * Sets the transaction reference string assigned to the transaction request.
+     * @param value the transaction reference string assigned to the transaction
+     * request. If no transaction ref was assiged on the request, then the gateway will
+     * randomly generate one.
      */
-    public void setEntryMethod(String entryMethod) {
-        this.entryMethod = entryMethod;
-    }
+     public void setTransactionRef(String value) {
+          this.transactionRef = value;
+     }
 
     /**
-     * Returns the masked version of the PAN.
-     * @return masked primary account number.
+     * Gets the transaction reference string assigned to the transaction request.
+     * @return the transaction reference string assigned to the transaction request. If
+     * no transaction ref was assiged on the request, then the gateway will randomly
+     * generate one.
      */
-    public String getMaskedPan() {
-        return maskedPan;
-    }
+     @JsonProperty("transactionRef")
+     public String getTransactionRef() {
+          return this.transactionRef;
+     }
 
     /**
-     * Sets the masked version of the PAN.
-     * @param maskedPan masked primary account number.
+     * Sets the type of transaction.
+     * @param value the type of transaction.
      */
-    public void setMaskedPan(String maskedPan) {
-        this.maskedPan = maskedPan;
-    }
+     public void setTransactionType(String value) {
+          this.transactionType = value;
+     }
 
     /**
-     * Returns the blockchain public key if the user presented a BlockChyp payment card.
-     * This would take the place of the PAN for BlockChyp gift cards.
-     * @return blockchain public key.
+     * Gets the type of transaction.
+     * @return the type of transaction.
      */
-    public String getPublicKey() {
-        return publicKey;
-    }
+     @JsonProperty("transactionType")
+     public String getTransactionType() {
+          return this.transactionType;
+     }
 
     /**
-     * Sets the payment method public key, if it's a blockchain method.
-     * @param publicKey blockchain public key.
+     * Sets the timestamp of the transaction.
+     * @param value the timestamp of the transaction.
      */
-    public void setPublicKey(String publicKey) {
-        this.publicKey = publicKey;
-    }
+     public void setTimestamp(String value) {
+          this.timestamp = value;
+     }
 
     /**
-     * Returns true if the transaction did something that would put the system in PCI scope.
-     * @return scope alert flag.
+     * Gets the timestamp of the transaction.
+     * @return the timestamp of the transaction.
      */
-    public boolean isScopeAlert() {
-        return scopeAlert;
-    }
+     @JsonProperty("timestamp")
+     public String getTimestamp() {
+          return this.timestamp;
+     }
 
     /**
-     * Sets the scope alert flag.
-     * @param scopeAlert scope alert flag.
+     * Sets the hash of the last tick block.
+     * @param value the hash of the last tick block.
      */
-    public void setScopeAlert(boolean scopeAlert) {
-        this.scopeAlert = scopeAlert;
-    }
+     public void setTickBlock(String value) {
+          this.tickBlock = value;
+     }
 
     /**
-     * Returns cardholder name.
-     * @return card holder's name.
+     * Gets the hash of the last tick block.
+     * @return the hash of the last tick block.
      */
-    public String getCardHolder() {
-        return cardHolder;
-    }
+     @JsonProperty("tickBlock")
+     public String getTickBlock() {
+          return this.tickBlock;
+     }
 
     /**
-     * Sets cardholder name.
-     * @param cardHolder card holder's name.
+     * Sets that the transaction was processed on the test gateway.
+     * @param value that the transaction was processed on the test gateway.
      */
-    public void setCardHolder(String cardHolder) {
-        this.cardHolder = cardHolder;
-    }
+     public void setTest(boolean value) {
+          this.test = value;
+     }
 
     /**
-     * Returns receipt suggestions.
-     * @return {@link ReceiptSuggestions}
+     * Gets that the transaction was processed on the test gateway.
+     * @return that the transaction was processed on the test gateway.
      */
-    public ReceiptSuggestions getReceiptSuggestions() {
-        return receiptSuggestions;
-    }
+     @JsonProperty("test")
+     public boolean isTest() {
+          return this.test;
+     }
 
     /**
-     * Sets receipt suggestions.
-     * @param receiptSuggestions {@link ReceiptSuggestions}
+     * Sets the settlement account for merchants with split settlements.
+     * @param value the settlement account for merchants with split settlements.
      */
-    public void setReceiptSuggestions(ReceiptSuggestions receiptSuggestions) {
-        this.receiptSuggestions = receiptSuggestions;
-    }
+     public void setDestinationAccount(String value) {
+          this.destinationAccount = value;
+     }
+
+    /**
+     * Gets the settlement account for merchants with split settlements.
+     * @return the settlement account for merchants with split settlements.
+     */
+     @JsonProperty("destinationAccount")
+     public String getDestinationAccount() {
+          return this.destinationAccount;
+     }
+
+    /**
+     * Sets the ECC signature of the response.
+     * @param value the ECC signature of the response. Can be used to ensure that it was
+     * signed by the terminal and detect man-in-the middle attacks.
+     */
+     public void setSig(String value) {
+          this.sig = value;
+     }
+
+    /**
+     * Gets the ECC signature of the response.
+     * @return the ECC signature of the response. Can be used to ensure that it was signed by
+     * the terminal and detect man-in-the middle attacks.
+     */
+     @JsonProperty("sig")
+     public String getSig() {
+          return this.sig;
+     }
+
+    /**
+     * Sets the payment token, if the payment was enrolled in the vault.
+     * @param value the payment token, if the payment was enrolled in the vault.
+     */
+     public void setToken(String value) {
+          this.token = value;
+     }
+
+    /**
+     * Gets the payment token, if the payment was enrolled in the vault.
+     * @return the payment token, if the payment was enrolled in the vault.
+     */
+     @JsonProperty("token")
+     public String getToken() {
+          return this.token;
+     }
+
+    /**
+     * Sets the entry method for the transaction (CHIP, MSR, KEYED, etc).
+     * @param value the entry method for the transaction (CHIP, MSR, KEYED, etc).
+     */
+     public void setEntryMethod(String value) {
+          this.entryMethod = value;
+     }
+
+    /**
+     * Gets the entry method for the transaction (CHIP, MSR, KEYED, etc).
+     * @return the entry method for the transaction (CHIP, MSR, KEYED, etc).
+     */
+     @JsonProperty("entryMethod")
+     public String getEntryMethod() {
+          return this.entryMethod;
+     }
+
+    /**
+     * Sets the card brand (VISA, MC, AMEX, etc).
+     * @param value the card brand (VISA, MC, AMEX, etc).
+     */
+     public void setPaymentType(String value) {
+          this.paymentType = value;
+     }
+
+    /**
+     * Gets the card brand (VISA, MC, AMEX, etc).
+     * @return the card brand (VISA, MC, AMEX, etc).
+     */
+     @JsonProperty("paymentType")
+     public String getPaymentType() {
+          return this.paymentType;
+     }
+
+    /**
+     * Sets the masked primary account number.
+     * @param value the masked primary account number.
+     */
+     public void setMaskedPan(String value) {
+          this.maskedPan = value;
+     }
+
+    /**
+     * Gets the masked primary account number.
+     * @return the masked primary account number.
+     */
+     @JsonProperty("maskedPan")
+     public String getMaskedPan() {
+          return this.maskedPan;
+     }
+
+    /**
+     * Sets the BlockChyp public key if the user presented a BlockChyp payment card.
+     * @param value the BlockChyp public key if the user presented a BlockChyp payment
+     * card.
+     */
+     public void setPublicKey(String value) {
+          this.publicKey = value;
+     }
+
+    /**
+     * Gets the BlockChyp public key if the user presented a BlockChyp payment card.
+     * @return the BlockChyp public key if the user presented a BlockChyp payment card.
+     */
+     @JsonProperty("publicKey")
+     public String getPublicKey() {
+          return this.publicKey;
+     }
+
+    /**
+     * Sets that the transaction did something that would put the system in PCI scope.
+     * @param value that the transaction did something that would put the system in PCI
+     * scope.
+     */
+     public void setScopeAlert(boolean value) {
+          this.ScopeAlert = value;
+     }
+
+    /**
+     * Gets that the transaction did something that would put the system in PCI scope.
+     * @return that the transaction did something that would put the system in PCI scope.
+     */
+     @JsonProperty("ScopeAlert")
+     public boolean isScopeAlert() {
+          return this.ScopeAlert;
+     }
+
+    /**
+     * Sets the cardholder name.
+     * @param value the cardholder name.
+     */
+     public void setCardHolder(String value) {
+          this.cardHolder = value;
+     }
+
+    /**
+     * Gets the cardholder name.
+     * @return the cardholder name.
+     */
+     @JsonProperty("cardHolder")
+     public String getCardHolder() {
+          return this.cardHolder;
+     }
+
+    /**
+     * Sets the card expiration month in MM format.
+     * @param value the card expiration month in MM format.
+     */
+     public void setExpMonth(String value) {
+          this.expMonth = value;
+     }
+
+    /**
+     * Gets the card expiration month in MM format.
+     * @return the card expiration month in MM format.
+     */
+     @JsonProperty("expMonth")
+     public String getExpMonth() {
+          return this.expMonth;
+     }
+
+    /**
+     * Sets the card expiration year in YY format.
+     * @param value the card expiration year in YY format.
+     */
+     public void setExpYear(String value) {
+          this.expYear = value;
+     }
+
+    /**
+     * Gets the card expiration year in YY format.
+     * @return the card expiration year in YY format.
+     */
+     @JsonProperty("expYear")
+     public String getExpYear() {
+          return this.expYear;
+     }
+
+    /**
+     * Sets address verification results if address information was submitted.
+     * @param value address verification results if address information was submitted.
+     */
+     public void setAvsResponse(AvsResponse value) {
+          this.avsResponse = value;
+     }
+
+    /**
+     * Gets address verification results if address information was submitted.
+     * @return address verification results if address information was submitted.
+     */
+     @JsonProperty("avsResponse")
+     public AvsResponse getAvsResponse() {
+          return this.avsResponse;
+     }
+
+    /**
+     * Sets suggested receipt fields.
+     * @param value suggested receipt fields.
+     */
+     public void setReceiptSuggestions(ReceiptSuggestions value) {
+          this.receiptSuggestions = value;
+     }
+
+    /**
+     * Gets suggested receipt fields.
+     * @return suggested receipt fields.
+     */
+     @JsonProperty("receiptSuggestions")
+     public ReceiptSuggestions getReceiptSuggestions() {
+          return this.receiptSuggestions;
+     }
+
+    /**
+     * Sets customer data, if any.
+     * @param value customer data, if any. Preserved for reverse compatibility.
+     */
+     public void setCustomer(Customer value) {
+          this.customer = value;
+     }
+
+    /**
+     * Gets customer data, if any.
+     * @return customer data, if any. Preserved for reverse compatibility.
+     */
+     @JsonProperty("customer")
+     public Customer getCustomer() {
+          return this.customer;
+     }
+
+    /**
+     * Sets customer data, if any.
+     * @param value customer data, if any.
+     */
+     public void setCustomers(Collection<Customer> value) {
+          this.customers = value;
+     }
+
+    /**
+     * Gets customer data, if any.
+     * @return customer data, if any.
+     */
+     @JsonProperty("customers")
+     public Collection<Customer> getCustomers() {
+          return this.customers;
+     }
+
+    /**
+     * Sets remaining balance on the payment method.
+     * @param value remaining balance on the payment method.
+     */
+     public void setRemainingBalance(String value) {
+          this.remainingBalance = value;
+     }
+
+    /**
+     * Gets remaining balance on the payment method.
+     * @return remaining balance on the payment method.
+     */
+     @JsonProperty("remainingBalance")
+     public String getRemainingBalance() {
+          return this.remainingBalance;
+     }
+
+    /**
+     * Adds a customer data, if any.
+     * @param value customer data, if any.
+     */
+     public void addCustomer(Customer value) {
+          if (this.customers == null) {
+               this.customers = new ArrayList();
+          }
+          this.customers.add(value);
+     }
 
 }

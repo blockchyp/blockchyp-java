@@ -1,151 +1,214 @@
+/**
+ * Copyright 2019-2022 BlockChyp, Inc. All rights reserved. Use of this code is governed
+ * by a license that can be found in the LICENSE file.
+ *
+ * This file was generated automatically by the BlockChyp SDK Generator. Changes to this
+ * file will be lost every time the code is regenerated.
+ */
+
 package com.blockchyp.client.dto;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * Models an individual item to be displayed on the terminal line item display.
+ * An item category in a transaction display. Groups combine if their descriptions match.
+ * Calculated subtotal amounts are rounded to two decimal places of precision. Quantity
+ * is a floating point number that is not rounded at all.
  */
+@SuppressWarnings({"rawtypes", "unchecked"})
 public class TransactionDisplayItem {
 
-    private String id;
-    private String description;
-    private String price;
-    private float quantity;
-    private String extended;
+     private String id;
 
-    @SuppressWarnings("rawtypes")
-    private Collection discounts;
+     private String description;
 
-    /**
-     * Returns the line item id.
-     * @return line item id.
-     */
-    public String getId() {
-        return id;
-    }
+     private String price;
 
-    /**
-     * Sets the line item id.
-     * @param id line item id.
-     */
-    public void setId(String id) {
-        this.id = id;
-    }
+     private float quantity;
+
+     private String extended;
+
+     private String unitCode;
+
+     private String commodityCode;
+
+     private String productCode;
+
+     private Collection<TransactionDisplayDiscount> discounts;
 
     /**
-     * Returns the line item description. 
-     * @return line item description.
+     * Sets a unique value identifying the item.
+     * @param value a unique value identifying the item. This is not required, but
+     * recommended since it is required to update or delete line items.
      */
-    public String getDescription() {
-        return description;
-    }
+     public void setId(String value) {
+          this.id = value;
+     }
 
     /**
-     * Sets the line item description.
-     * @param description line item description.
+     * Gets a unique value identifying the item.
+     * @return a unique value identifying the item. This is not required, but recommended
+     * since it is required to update or delete line items.
      */
-    public void setDescription(String description) {
-        this.description = description;
-    }
+     @JsonProperty("id")
+     public String getId() {
+          return this.id;
+     }
 
     /**
-     * Returns the undiscounted price per unit quantity.
-     * @return price each.
+     * Sets a description of the line item.
+     * @param value a description of the line item.
      */
-    public String getPrice() {
-        return price;
-    }
+     public void setDescription(String value) {
+          this.description = value;
+     }
 
     /**
-     * Sets the undiscounted price per unit quantity.
-     * @param price price each.
+     * Gets a description of the line item.
+     * @return a description of the line item.
      */
-    public void setPrice(String price) {
-        this.price = price;
-    }
+     @JsonProperty("description")
+     public String getDescription() {
+          return this.description;
+     }
 
     /**
-     * Returns the line item quantity.
-     * @return line item quantity.
+     * Sets the price of the line item.
+     * @param value the price of the line item.
      */
-    public float getQuantity() {
-        return quantity;
-    }
+     public void setPrice(String value) {
+          this.price = value;
+     }
 
     /**
-     * Sets the line item quantity.
-     * @param quantity line item quantity.
+     * Gets the price of the line item.
+     * @return the price of the line item.
      */
-    public void setQuantity(float quantity) {
-        this.quantity = quantity;
-    }
+     @JsonProperty("price")
+     public String getPrice() {
+          return this.price;
+     }
 
     /**
-     * Gets the extended price for a line item.
-     * @return extended amount.
+     * Sets the quantity of the line item.
+     * @param value the quantity of the line item.
      */
-    public String getExtended() {
-        return extended;
-    }
+     public void setQuantity(float value) {
+          this.quantity = value;
+     }
 
     /**
-     * Sets the extended price.
-     * @param extended extended amount.
+     * Gets the quantity of the line item.
+     * @return the quantity of the line item.
      */
-    public void setExtended(String extended) {
-        this.extended = extended;
-    }
+     @JsonProperty("quantity")
+     public float getQuantity() {
+          return this.quantity;
+     }
 
     /**
-     * Returns the discounts associated with the line item.
-     * @return a java.util.Collection of {@link TransactionDisplayDiscount} objects.
+     * Sets an item category in a transaction display.
+     * @param value an item category in a transaction display. Groups combine if their
+     * descriptions match. Calculated subtotal amounts are rounded to two decimal
+     * places of precision. Quantity is a floating point number that is not rounded at all.
      */
-    @SuppressWarnings("rawtypes")
-    public Collection getDiscounts() {
-        return discounts;
-    }
+     public void setExtended(String value) {
+          this.extended = value;
+     }
 
     /**
-     * Sets the discounts on the line item.  
-     * @param discounts a java.util.Collection of {@link TransactionDisplayDiscount} objects.
+     * Gets an item category in a transaction display.
+     * @return an item category in a transaction display. Groups combine if their
+     * descriptions match. Calculated subtotal amounts are rounded to two decimal
+     * places of precision. Quantity is a floating point number that is not rounded at all.
      */
-    @SuppressWarnings("rawtypes")
-    public void setDiscounts(Collection discounts) {
-        this.discounts = discounts;
-    }
+     @JsonProperty("extended")
+     public String getExtended() {
+          return this.extended;
+     }
 
     /**
-     * Adds a discount to the line item.
-     * @param discount {@link TransactionDisplayDiscount}
+     * Sets an alphanumeric code for units of measurement as used in international trade.
+     * @param value an alphanumeric code for units of measurement as used in
+     * international trade.
      */
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void addDiscount(TransactionDisplayDiscount discount) {
-        if (discounts == null) {
-            discounts = new ArrayList();
-        }
-        discounts.add(discount);
-    }
+     public void setUnitCode(String value) {
+          this.unitCode = value;
+     }
 
     /**
-     * Add a single discount to an existing line item.  For those developers who like the builder pattern.
-     * @param discount {@link TransactionDisplayDiscount}
-     * @return {@link TransactionDisplayItem}
+     * Gets an alphanumeric code for units of measurement as used in international trade.
+     * @return an alphanumeric code for units of measurement as used in international
+     * trade.
      */
-    public TransactionDisplayItem withDiscount(TransactionDisplayDiscount discount) {
-        this.addDiscount(discount);
-        return this;
-    }
+     @JsonProperty("unitCode")
+     public String getUnitCode() {
+          return this.unitCode;
+     }
 
     /**
-     * Adds discounts to an existing line item.  For those developers who like the builder pattern.
-     * @param newDiscounts - a java.util.Collection of TransactionDisplayDiscount object.
-     * @return {@link TransactionDisplayItem}
+     * Sets an international description code of the item.
+     * @param value an international description code of the item.
      */
-    @SuppressWarnings("rawtypes")
-    public TransactionDisplayItem withDiscounts(Collection newDiscounts) {
-        this.setDiscounts(newDiscounts);
-        return this;
-    }
+     public void setCommodityCode(String value) {
+          this.commodityCode = value;
+     }
+
+    /**
+     * Gets an international description code of the item.
+     * @return an international description code of the item.
+     */
+     @JsonProperty("commodityCode")
+     public String getCommodityCode() {
+          return this.commodityCode;
+     }
+
+    /**
+     * Sets a merchant-defined description code of the item.
+     * @param value a merchant-defined description code of the item.
+     */
+     public void setProductCode(String value) {
+          this.productCode = value;
+     }
+
+    /**
+     * Gets a merchant-defined description code of the item.
+     * @return a merchant-defined description code of the item.
+     */
+     @JsonProperty("productCode")
+     public String getProductCode() {
+          return this.productCode;
+     }
+
+    /**
+     * Sets are displayed under their corresponding item.
+     * @param value are displayed under their corresponding item.
+     */
+     public void setDiscounts(Collection<TransactionDisplayDiscount> value) {
+          this.discounts = value;
+     }
+
+    /**
+     * Gets are displayed under their corresponding item.
+     * @return are displayed under their corresponding item.
+     */
+     @JsonProperty("discounts")
+     public Collection<TransactionDisplayDiscount> getDiscounts() {
+          return this.discounts;
+     }
+
+    /**
+     * Adds a are displayed under their corresponding item.
+     * @param value are displayed under their corresponding item.
+     */
+     public void addDiscount(TransactionDisplayDiscount value) {
+          if (this.discounts == null) {
+               this.discounts = new ArrayList();
+          }
+          this.discounts.add(value);
+     }
 
 }

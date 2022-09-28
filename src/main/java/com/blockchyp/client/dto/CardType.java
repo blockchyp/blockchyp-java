@@ -2,37 +2,26 @@ package com.blockchyp.client.dto;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
-/**
- * CardType is used to differentiate between different card types.
- *
- */
 public enum CardType {
-    /**
-     * A standard credit card.
-     */
-    CREDIT,
 
-    /**
-     * A debit card.
-     */
-    DEBIT,
+    CREDIT(0),
+    DEBIT(1),
+    EBT(2),
+    BLOCKCHAIN_GIFT(3),
+    HEALTHCARE(4);
 
-    /**
-     * An EBT card.
-     */
-    EBT,
 
-    /**
-     * A blockchain-based gift card.
-     */
-    BLOCKCHAIN_GIFT;
+    private final int code;
 
-    /**
-     * Convert the enum to a number for JSON serialization.
-     * @return the enum as a number.
-     */
-    @JsonValue
-    public int toValue() {
-        return ordinal();
+    private CardType(int code) {
+        this.code = code;
     }
+    
+    @JsonValue
+    public int getCode() {
+        return this.code;
+    }
+   
+    
+    
 }

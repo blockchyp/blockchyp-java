@@ -1,47 +1,76 @@
+/**
+ * Copyright 2019-2022 BlockChyp, Inc. All rights reserved. Use of this code is governed
+ * by a license that can be found in the LICENSE file.
+ *
+ * This file was generated automatically by the BlockChyp SDK Generator. Changes to this
+ * file will be lost every time the code is regenerated.
+ */
+
 package com.blockchyp.client.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+
 /**
- * Models basic response information. This is typically used as a base class for
- * most API responses.
- * 
+ * A basic api acknowledgement.
  */
-public class Acknowledgement {
+public class Acknowledgement implements IAbstractAcknowledgement {
 
+     private boolean success;
 
-    private boolean success;
-    private String error;
+     private String error;
 
-    /**
-     * Gets the success flag.
-     * @return true if the API call succeeded.
-     */
-    public boolean isSuccess() {
-        return success;
-    }
+     private String responseDescription;
 
     /**
-     * Sets the success flag.
-     * 
-     * @param success true if the API call succeeded.
+     * Sets whether or not the request succeeded.
+     * @param value whether or not the request succeeded.
      */
-    public void setSuccess(boolean success) {
-        this.success = success;
-    }
+     public void setSuccess(boolean value) {
+          this.success = value;
+     }
 
     /**
-     * Gets a narrative description of the error, if any.
-     * @return narrative description of any error.
+     * Gets whether or not the request succeeded.
+     * @return whether or not the request succeeded.
      */
-    public String getError() {
-        return error;
-    }
+     @JsonProperty("success")
+     public boolean isSuccess() {
+          return this.success;
+     }
 
     /**
-     * Sets a narrative description of the error, if any.
-     * @param error narrative description of any error.
+     * Sets the error, if an error occurred.
+     * @param value the error, if an error occurred.
      */
-    public void setError(String error) {
-        this.error = error;
-    }
+     public void setError(String value) {
+          this.error = value;
+     }
+
+    /**
+     * Gets the error, if an error occurred.
+     * @return the error, if an error occurred.
+     */
+     @JsonProperty("error")
+     public String getError() {
+          return this.error;
+     }
+
+    /**
+     * Sets a narrative description of the transaction result.
+     * @param value a narrative description of the transaction result.
+     */
+     public void setResponseDescription(String value) {
+          this.responseDescription = value;
+     }
+
+    /**
+     * Gets a narrative description of the transaction result.
+     * @return a narrative description of the transaction result.
+     */
+     @JsonProperty("responseDescription")
+     public String getResponseDescription() {
+          return this.responseDescription;
+     }
 
 }

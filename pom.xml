@@ -8,7 +8,7 @@
 
   <groupId>com.blockchyp</groupId>
   <artifactId>blockchyp-java</artifactId>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>2.13.0</version>
   <packaging>jar</packaging>
 
   <name>${project.groupId}:${project.artifactId}</name>
@@ -63,21 +63,12 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.1</version>
         <configuration>
-          <!-- This is for maximum backward compatibility with java versions.  We'd love to use at least 1.7, but it was not to be. -->
-          <source>1.6</source>
-          <target>1.6</target>
+          <!-- This is for maximum backward compatibility with java versions.  -->
+          <source>1.7</source>
+          <target>1.7</target>
         </configuration>
       </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.0.0-M3</version>
-        <configuration>
-          <excludes>
-            <exclude>**/itest/*</exclude>
-          </excludes>
-        </configuration>
-      </plugin>
+      <!--
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
@@ -99,6 +90,7 @@
           </execution>
         </executions>
       </plugin>
+      -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
@@ -128,7 +120,6 @@
           </execution>
         </executions>
       </plugin>
-
     </plugins>
   </build>
 
@@ -161,17 +152,17 @@
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
-      <version>2.9.10</version>
+      <version>2.9.10.7</version>
     </dependency>
     <dependency>
       <groupId>commons-beanutils</groupId>
       <artifactId>commons-beanutils</artifactId>
-      <version>1.7.0</version>
+      <version>1.9.4</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.12</version>
+      <version>4.13.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -183,6 +174,36 @@
   </dependencies>
 
   <profiles>
+    <profile>
+      <id>unit-test</id>
+      <build>
+        <plugins>
+	      <plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-surefire-plugin</artifactId>
+	        <version>3.0.0-M3</version>
+	        <configuration>
+	          <excludedGroups>com.blockchyp.client.IntegrationTest</excludedGroups>
+	        </configuration>
+	      </plugin>
+        </plugins>
+      </build>
+    </profile>
+  	<profile>
+      <id>integration</id>
+      <build>
+        <plugins>
+	      <plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-surefire-plugin</artifactId>
+	        <version>3.0.0-M3</version>
+	        <configuration>
+	          <includedGroups>com.blockchyp.client.IntegrationTest</includedGroups>
+	        </configuration>
+	      </plugin>
+        </plugins>
+      </build>
+    </profile>
     <profile>
       <id>release</id>
       <build>
@@ -198,6 +219,12 @@
                 <goals>
                   <goal>sign</goal>
                 </goals>
+                <configuration>
+                  <gpgArguments>
+                    <arg>--pinentry-mode</arg>
+                    <arg>loopback</arg>
+                  </gpgArguments>
+                </configuration>
               </execution>
             </executions>
           </plugin>
@@ -209,7 +236,7 @@
             <configuration>
                 <serverId>ossrh</serverId>
                 <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                <autoReleaseAfterClose>false</autoReleaseAfterClose>
+                <autoReleaseAfterClose>true</autoReleaseAfterClose>
             </configuration>
           </plugin>
           <plugin>

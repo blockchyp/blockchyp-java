@@ -1,94 +1,160 @@
+/**
+ * Copyright 2019-2022 BlockChyp, Inc. All rights reserved. Use of this code is governed
+ * by a license that can be found in the LICENSE file.
+ *
+ * This file was generated automatically by the BlockChyp SDK Generator. Changes to this
+ * file will be lost every time the code is regenerated.
+ */
+
 package com.blockchyp.client.dto;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Date;
 
 /**
- * This class models heartbeat responses. The heartbeat API always returns a
- * response unless you provided invalid credentials. If you send no credentials,
- * you'll get a response, but without a merchant public key. The idea here is to
- * make it easy to troubleshoot and test the authentication code.
- * 
+ * The response to a basic API health check. If the security context permits it, the
+ * response may also include the public key of the current merchant.
  */
-public class HeartbeatResponse extends Acknowledgement {
+public class HeartbeatResponse implements IAbstractAcknowledgement {
+
+     private boolean success;
+
+     private String error;
+
+     private String responseDescription;
+
+     private Date timestamp;
+
+     private String clockchain;
+
+     private String latestTick;
+
+     private String merchantPublicKey;
 
     /**
-     * The current time as returned by the BlockChyp gateway.
+     * Sets whether or not the request succeeded.
+     * @param value whether or not the request succeeded.
      */
-    private Date timestamp;
-
-
-    private String clockchain;
-    private String latestTick;
-
-    private String merchantPk;
+     public void setSuccess(boolean value) {
+          this.success = value;
+     }
 
     /**
-     * Returns the timestamp on the server at the time the heartbeat request was processed.
-     * @return java.util.Date
+     * Gets whether or not the request succeeded.
+     * @return whether or not the request succeeded.
      */
-    public Date getTimestamp() {
-        return timestamp;
-    }
+     @JsonProperty("success")
+     public boolean isSuccess() {
+          return this.success;
+     }
 
     /**
-     * Sets the timestamp.
-     * @param timestamp java.util.Date
+     * Sets the error, if an error occurred.
+     * @param value the error, if an error occurred.
      */
-    public void setTimestamp(Date timestamp) {
-        this.timestamp = timestamp;
-    }
+     public void setError(String value) {
+          this.error = value;
+     }
 
     /**
-     * Gets the hash of the latest tick block on the clockchain.
-     * @return tick block hash.
+     * Gets the error, if an error occurred.
+     * @return the error, if an error occurred.
      */
-    public String getLatestTick() {
-        return latestTick;
-    }
+     @JsonProperty("error")
+     public String getError() {
+          return this.error;
+     }
 
     /**
-     * Sets the hash of the latest tick block on the clockchain.
-     * @param latestTick tick block hash.
+     * Sets a narrative description of the transaction result.
+     * @param value a narrative description of the transaction result.
      */
-    public void setLatestTick(String latestTick) {
-        this.latestTick = latestTick;
-    }
+     public void setResponseDescription(String value) {
+          this.responseDescription = value;
+     }
 
     /**
-     * Gets the public key of the clockchain. This is blockchain stuff you don't really
-     * need to worry about. This is a Base 58 encoded and compressed Elliptic Curve Public Key.
-     * 
-     * For the production clockchain this is always
-     * '3cuhsckVUd9HzMjbdUSW17aY5kCcm1d6YAphJMUwmtXRj7WLyU'.
-     * 
-     * @return Base58 encoded public key of the clock chain.
+     * Gets a narrative description of the transaction result.
+     * @return a narrative description of the transaction result.
      */
-    public String getClockchain() {
-        return clockchain;
-    }
+     @JsonProperty("responseDescription")
+     public String getResponseDescription() {
+          return this.responseDescription;
+     }
+
+    /**
+     * Sets the timestamp of the heartbeat.
+     * @param value the timestamp of the heartbeat.
+     */
+     public void setTimestamp(Date value) {
+          this.timestamp = value;
+     }
+
+    /**
+     * Gets the timestamp of the heartbeat.
+     * @return the timestamp of the heartbeat.
+     */
+     @JsonProperty("timestamp")
+     public Date getTimestamp() {
+          return this.timestamp;
+     }
 
     /**
      * Sets the public key of the clockchain.
-     * @param clockchain Base58 encoded and compressed ECC public key.
+     * @param value the public key of the clockchain. This is blockchain stuff that you
+     * don't really need to worry about. It is a base 58 encoded and compressed eliptic
+     * curve public key. For the production clockchain, this will always be:
+     * '3cuhsckVUd9HzMjbdUSW17aY5kCcm1d6YAphJMUwmtXRj7WLyU'.
      */
-    public void setClockchain(String clockchain) {
-        this.clockchain = clockchain;
-    }
+     public void setClockchain(String value) {
+          this.clockchain = value;
+     }
+
+    /**
+     * Gets the public key of the clockchain.
+     * @return the public key of the clockchain. This is blockchain stuff that you don't
+     * really need to worry about. It is a base 58 encoded and compressed eliptic curve
+     * public key. For the production clockchain, this will always be:
+     * '3cuhsckVUd9HzMjbdUSW17aY5kCcm1d6YAphJMUwmtXRj7WLyU'.
+     */
+     @JsonProperty("clockchain")
+     public String getClockchain() {
+          return this.clockchain;
+     }
+
+    /**
+     * Sets the hash of the last tick block.
+     * @param value the hash of the last tick block.
+     */
+     public void setLatestTick(String value) {
+          this.latestTick = value;
+     }
+
+    /**
+     * Gets the hash of the last tick block.
+     * @return the hash of the last tick block.
+     */
+     @JsonProperty("latestTick")
+     public String getLatestTick() {
+          return this.latestTick;
+     }
+
+    /**
+     * Sets the public key for the merchant's blockchain.
+     * @param value the public key for the merchant's blockchain.
+     */
+     public void setMerchantPublicKey(String value) {
+          this.merchantPublicKey = value;
+     }
 
     /**
      * Gets the public key for the merchant's blockchain.
-     * @return Base58 encoded and compressed ECC public key.
+     * @return the public key for the merchant's blockchain.
      */
-    public String getMerchantPk() {
-        return merchantPk;
-    }
-
-    /**
-     * Sets the public key of the merchant's blockchain.
-     * @param merchantPk Base58 encoded and compressed ECC public key.
-     */
-    public void setMerchantPk(String merchantPk) {
-        this.merchantPk = merchantPk;
-    }
+     @JsonProperty("merchantPk")
+     public String getMerchantPublicKey() {
+          return this.merchantPublicKey;
+     }
 
 }

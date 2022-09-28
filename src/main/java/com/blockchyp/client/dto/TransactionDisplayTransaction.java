@@ -1,121 +1,112 @@
+/**
+ * Copyright 2019-2022 BlockChyp, Inc. All rights reserved. Use of this code is governed
+ * by a license that can be found in the LICENSE file.
+ *
+ * This file was generated automatically by the BlockChyp SDK Generator. Changes to this
+ * file will be lost every time the code is regenerated.
+ */
+
 package com.blockchyp.client.dto;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * Models a transaction to be displayed on the terminal line item display.
- * 
+ * The items to display on a terminal.
  */
-
+@SuppressWarnings({"rawtypes", "unchecked"})
 public class TransactionDisplayTransaction {
 
-    private String subtotal;
-    private String tax;
-    private String total;
+     private String subtotal;
 
-    @SuppressWarnings("rawtypes")
-    private Collection items;
+     private String tax;
 
+     private String total;
 
-    /**
-     * Gets the pre tax subtotal for the line item display.
-     * @return pre tax subtotal for the line item display.
-     */
-    public String getSubtotal() {
-        return subtotal;
-    }
+     private Collection<TransactionDisplayItem> items;
 
     /**
-     * Sets the pre tax subtotal for the line item display.
-     * @param subtotal pre tax subtotal for the line item display.
+     * Sets the subtotal to display.
+     * @param value the subtotal to display.
      */
-    public void setSubtotal(String subtotal) {
-        this.subtotal = subtotal;
-    }
+     public void setSubtotal(String value) {
+          this.subtotal = value;
+     }
 
     /**
-     * Returns tax for the line item display. 
-     * @return tax for the line item display.
+     * Gets the subtotal to display.
+     * @return the subtotal to display.
      */
-    public String getTax() {
-        return tax;
-    }
+     @JsonProperty("subtotal")
+     public String getSubtotal() {
+          return this.subtotal;
+     }
 
     /**
-     * Sets tax for the line item display. 
-     * @param tax tax for the line item display.
+     * Sets the tax to display.
+     * @param value the tax to display.
      */
-    public void setTax(String tax) {
-        this.tax = tax;
-    }
+     public void setTax(String value) {
+          this.tax = value;
+     }
 
     /**
-     * Returns grand total for the line item display.
-     * @return grand total.
+     * Gets the tax to display.
+     * @return the tax to display.
      */
-    public String getTotal() {
-        return total;
-    }
+     @JsonProperty("tax")
+     public String getTax() {
+          return this.tax;
+     }
 
     /**
-     * Sets the grand total on the line item display.
-     * @param total grand total.
+     * Sets the total to display.
+     * @param value the total to display.
      */
-    public void setTotal(String total) {
-        this.total = total;
-    }
+     public void setTotal(String value) {
+          this.total = value;
+     }
 
     /**
-     * Returns the line items associated with the transaction.
-     * @return a java.util.Collection of {@link TransactionDisplayItem} objects.
+     * Gets the total to display.
+     * @return the total to display.
      */
-    @SuppressWarnings("rawtypes")
-    public Collection getItems() {
-        return items;
-    }
+     @JsonProperty("total")
+     public String getTotal() {
+          return this.total;
+     }
 
     /**
-     * Sets the line items on the transaction.  
-     * @param items a java.util.Collection of {@link TransactionDisplayItem} objects.
+     * Sets an item to display.
+     * @param value an item to display. Can be overwritten or appended, based on the
+     * request type.
      */
-    @SuppressWarnings("rawtypes")
-    public void setItems(Collection items) {
-        this.items = items;
-    }
+     public void setItems(Collection<TransactionDisplayItem> value) {
+          this.items = value;
+     }
 
     /**
-     * Adds a line item to the transaction.
-     * @param item {@link TransactionDisplayItem}
+     * Gets an item to display.
+     * @return an item to display. Can be overwritten or appended, based on the request
+     * type.
      */
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void addItem(TransactionDisplayItem item) {
-        if (items == null) {
-            items = new ArrayList();
-        }
-        items.add(item);
-    }
+     @JsonProperty("items")
+     public Collection<TransactionDisplayItem> getItems() {
+          return this.items;
+     }
 
     /**
-     * Add a single line item to an existing transaction for those developers who like the builder pattern.
-     * @param item {@link TransactionDisplayItem}
-     * @return {@link TransactionDisplayTransaction}
+     * Adds a an item to display.
+     * @param value an item to display. Can be overwritten or appended, based on the
+     * request type.
      */
-    public TransactionDisplayTransaction withItem(TransactionDisplayItem item) {
-        this.addItem(item);
-        return this;
-    }
-
-    /**
-     * Sets the line items for the transaction using the builder pattern.
-     * 
-     * @param newItems a java.util.Collection of TransactionDisplayItem object.
-     * @return {@link TransactionDisplayTransaction}
-     */
-    @SuppressWarnings("rawtypes")
-    public TransactionDisplayTransaction withItems(Collection newItems) {
-        this.setItems(newItems);
-        return this;
-    }
+     public void addItem(TransactionDisplayItem value) {
+          if (this.items == null) {
+               this.items = new ArrayList();
+          }
+          this.items.add(value);
+     }
 
 }

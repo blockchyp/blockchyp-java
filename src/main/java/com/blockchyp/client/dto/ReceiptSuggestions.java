@@ -1,348 +1,485 @@
+/**
+ * Copyright 2019-2022 BlockChyp, Inc. All rights reserved. Use of this code is governed
+ * by a license that can be found in the LICENSE file.
+ *
+ * This file was generated automatically by the BlockChyp SDK Generator. Changes to this
+ * file will be lost every time the code is regenerated.
+ */
+
 package com.blockchyp.client.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * This class models information we recommend you put on your receipts.
- * 
- */
 
+/**
+ * EMV fields we recommend developers put on their receipts.
+ */
 public class ReceiptSuggestions {
 
-    private String aid;
+     private String aid;
 
-    private String arqc;
+     private String arqc;
 
-    private String iad;
+     private String iad;
 
-    private String arc;
+     private String arc;
 
-    private String tc;
+     private String tc;
 
-    private String tsi;
+     private String tvr;
 
-    private String tvr;
+     private String tsi;
 
-    private String terminalId;
+     private String terminalId;
 
-    private String merchantName;
+     private String merchantName;
 
-    private String merchantKey;
+     private String merchantId;
 
-    private String applicationLabel;
+     private String merchantKey;
 
-    private boolean requestSignature;
+     private String applicationLabel;
 
-    private String maskedPan;
+     private boolean requestSignature;
 
-    private String authorizedAmount;
+     private String maskedPan;
 
-    private String transactionType;
+     private String authorizedAmount;
 
-    private String entryMethod;
+     private String transactionType;
 
-    private boolean pinVerified;
+     private String entryMethod;
 
-    private String cashBackAmount;
+     private boolean pinVerified;
 
-    /**
-     * Returns EMV issuer application data, a mysterious value the card issuer sends with every EMV transaction.
-     * @return issuer application data.
-     */
-    @JsonProperty("IAD")
-    public String getIad() {
-        return iad;
-    }
+     private CvmType cvmUsed;
 
-    /**
-     * Sets the Issuer Application Data tag.
-     * @param iad issuer application data.
-     */
-    public void setIad(String iad) {
-        this.iad = iad;
-    }
+     private boolean fallback;
+
+     private int batchSequence;
+
+     private String cashBackAmount;
+
+     private String surcharge;
+
+     private String cashDiscount;
 
     /**
-     * Gets the EMV authorization response code (Tag 8A).  This is the EMV response returned by the 
-     * payment network.
-     * 
-     * @return application response code.
+     * Sets the EMV Application Identifier.
+     * @param value the EMV Application Identifier.
      */
-    @JsonProperty("ARC")
-    public String getArc() {
-        return arc;
-    }
+     public void setAid(String value) {
+          this.aid = value;
+     }
 
     /**
-     * Sets EMV authorization response Code.
-     * @param arc authorization response code.
+     * Gets the EMV Application Identifier.
+     * @return the EMV Application Identifier.
      */
-    public void setArc(String arc) {
-        this.arc = arc;
-    }
+     @JsonProperty("aid")
+     public String getAid() {
+          return this.aid;
+     }
 
     /**
-     * Returns the EMV Transaction Status Information Tag (Tag 9B).
-     * This is a bitfield indicating what type of risk management and security checks the terminal
-     * did during the transaction.  Recommended for receipts, but not required.
-     * @return transaction status information.
+     * Sets the EMV Application Request Cryptogram.
+     * @param value the EMV Application Request Cryptogram.
      */
-    @JsonProperty("TSI")
-    public String getTsi() {
-        return tsi;
-    }
+     public void setArqc(String value) {
+          this.arqc = value;
+     }
 
     /**
-     * Sets the EMV transaction status information tag.
-     * @param tsi transaction status information.
+     * Gets the EMV Application Request Cryptogram.
+     * @return the EMV Application Request Cryptogram.
      */
-    public void setTsi(String tsi) {
-        this.tsi = tsi;
-    }
+     @JsonProperty("arqc")
+     public String getArqc() {
+          return this.arqc;
+     }
 
     /**
-     * Returns the EMV Terminal Verification Results (Tag 95).
-     * @return terminal verification reuslts.
+     * Sets the EMV Issuer Application Data.
+     * @param value the EMV Issuer Application Data.
      */
-    @JsonProperty("TVR")
-    public String getTvr() {
-        return tvr;
-    }
+     public void setIad(String value) {
+          this.iad = value;
+     }
 
     /**
-     * Sets the EMV Terminal Verification Results tag.
-     * @param tvr terminal vericiation results.
+     * Gets the EMV Issuer Application Data.
+     * @return the EMV Issuer Application Data.
      */
-    public void setTvr(String tvr) {
-        this.tvr = tvr;
-    }
+     @JsonProperty("iad")
+     public String getIad() {
+          return this.iad;
+     }
 
     /**
-     * Returns the terminal id.  Required on receipts.
-     * @return terminal identifier.
+     * Sets the EMV Authorization Response Code.
+     * @param value the EMV Authorization Response Code.
      */
-    public String getTerminalId() {
-        return terminalId;
-    }
+     public void setArc(String value) {
+          this.arc = value;
+     }
 
     /**
-     * Sets the terminal identifier.
-     * @param terminalId terminal identifier.
+     * Gets the EMV Authorization Response Code.
+     * @return the EMV Authorization Response Code.
      */
-    public void setTerminalId(String terminalId) {
-        this.terminalId = terminalId;
-    }
+     @JsonProperty("arc")
+     public String getArc() {
+          return this.arc;
+     }
 
     /**
-     * Returns the name of the merchant.  Required on receipts.
-     * @return merchant's business name.
+     * Sets the EMV Transaction Certificate.
+     * @param value the EMV Transaction Certificate.
      */
-    public String getMerchantName() {
-        return merchantName;
-    }
+     public void setTc(String value) {
+          this.tc = value;
+     }
 
     /**
-     * Sets the merchant name.
-     * @param merchantName merchant's business name.
+     * Gets the EMV Transaction Certificate.
+     * @return the EMV Transaction Certificate.
      */
-    public void setMerchantName(String merchantName) {
-        this.merchantName = merchantName;
-    }
+     @JsonProperty("tc")
+     public String getTc() {
+          return this.tc;
+     }
 
     /**
-     * Returns a partially masked merchant key in order to ensure compliance with 
-     * EMV receipt requirements.
-     * @return merchant identifier required on receipts.
+     * Sets the EMV Terminal Verification Response.
+     * @param value the EMV Terminal Verification Response.
      */
-    public String getMerchantKey() {
-        return merchantKey;
-    }
+     public void setTvr(String value) {
+          this.tvr = value;
+     }
 
     /**
-     * Sets the merchant key.
-     * @param merchantKey merchant identifier required on receipts.
+     * Gets the EMV Terminal Verification Response.
+     * @return the EMV Terminal Verification Response.
      */
-    public void setMerchantKey(String merchantKey) {
-        this.merchantKey = merchantKey;
-    }
+     @JsonProperty("tvr")
+     public String getTvr() {
+          return this.tvr;
+     }
 
     /**
-     * Returns the application label.  This is usually a description of the AID. ("US Common Debit", etc.)
-     * @return label associated with the AID.
+     * Sets the EMV Transaction Status Indicator.
+     * @param value the EMV Transaction Status Indicator.
      */
-    public String getApplicationLabel() {
-        return applicationLabel;
-    }
+     public void setTsi(String value) {
+          this.tsi = value;
+     }
 
     /**
-     * Sets the application label.
-     * @param applicationLabel label associated with the AID.
+     * Gets the EMV Transaction Status Indicator.
+     * @return the EMV Transaction Status Indicator.
      */
-    public void setApplicationLabel(String applicationLabel) {
-        this.applicationLabel = applicationLabel;
-    }
+     @JsonProperty("tsi")
+     public String getTsi() {
+          return this.tsi;
+     }
 
     /**
-     * Gets the request signature flag.
-     * @return if true, a signature is required for this transaction.
+     * Sets the ID of the payment terminal.
+     * @param value the ID of the payment terminal.
      */
-    public boolean isRequestSignature() {
-        return requestSignature;
-    }
+     public void setTerminalId(String value) {
+          this.terminalId = value;
+     }
 
     /**
-     * Sets the request signature flag.
-     * @param requestSignature if true, a signature is required for this transaction.
+     * Gets the ID of the payment terminal.
+     * @return the ID of the payment terminal.
      */
-    public void setRequestSignature(boolean requestSignature) {
-        this.requestSignature = requestSignature;
-    }
+     @JsonProperty("terminalId")
+     public String getTerminalId() {
+          return this.terminalId;
+     }
 
     /**
-     * Returns the amount authorized by the network.  Could be less than the requested amount for partial gift cards, etc.
-     * @return authorized transaction amount.
+     * Sets the name of the merchant's business.
+     * @param value the name of the merchant's business.
      */
-    public String getAuthorizedAmount() {
-        return authorizedAmount;
-    }
+     public void setMerchantName(String value) {
+          this.merchantName = value;
+     }
 
     /**
-     * Sets the authorized amount as a localized string.
-     * @param authorizedAmount authorized transaction amount.
+     * Gets the name of the merchant's business.
+     * @return the name of the merchant's business.
      */
-    public void setAuthorizedAmount(String authorizedAmount) {
-        this.authorizedAmount = authorizedAmount;
-    }
+     @JsonProperty("merchantName")
+     public String getMerchantName() {
+          return this.merchantName;
+     }
 
     /**
-     * Returns the transaction type. (CHARGE, PREAUTH, REFUND, etc.)
-     * @return the transaction type code.
+     * Sets the ID of the merchant.
+     * @param value the ID of the merchant.
      */
-    public String getTransactionType() {
-        return transactionType;
-    }
+     public void setMerchantId(String value) {
+          this.merchantId = value;
+     }
 
     /**
-     * Sets the transaction type.
-     * @param transactionType transaction type.
+     * Gets the ID of the merchant.
+     * @return the ID of the merchant.
      */
-    public void setTransactionType(String transactionType) {
-        this.transactionType = transactionType;
-    }
+     @JsonProperty("merchantId")
+     public String getMerchantId() {
+          return this.merchantId;
+     }
 
     /**
-     * Returns the entry method for a transaction.  This would be things like MSR, CHIP, KEYED, etc. 
-     * @return transaction entry method code.
+     * Sets the partially masked merchant key required on EMV receipts.
+     * @param value the partially masked merchant key required on EMV receipts.
      */
-    public String getEntryMethod() {
-        return entryMethod;
-    }
+     public void setMerchantKey(String value) {
+          this.merchantKey = value;
+     }
 
     /**
-     * Sets the entry method for the transactions.
-     * @param entryMethod transaction entry method code.
+     * Gets the partially masked merchant key required on EMV receipts.
+     * @return the partially masked merchant key required on EMV receipts.
      */
-    public void setEntryMethod(String entryMethod) {
-        this.entryMethod = entryMethod;
-    }
+     @JsonProperty("merchantKey")
+     public String getMerchantKey() {
+          return this.merchantKey;
+     }
 
     /**
-     * Returns the EMV application identifier.  This is required on receipts for all EMV transactions.
-     * @return EMV application identifier.
+     * Sets a description of the selected AID.
+     * @param value a description of the selected AID.
      */
-    @JsonProperty("AID")
-    public String getAid() {
-        return aid;
-    }
+     public void setApplicationLabel(String value) {
+          this.applicationLabel = value;
+     }
 
     /**
-     * Sets the EMV application identifier.
-     * @param aid EMV application identifier.
+     * Gets a description of the selected AID.
+     * @return a description of the selected AID.
      */
-    public void setAid(String aid) {
-        this.aid = aid;
-    }
+     @JsonProperty("applicationLabel")
+     public String getApplicationLabel() {
+          return this.applicationLabel;
+     }
 
     /**
-     * Gets the masked PAN.  This is the last four of the card number prepended with * characters.
-     * @return masked PAN.
+     * Sets that the receipt should contain a signature line.
+     * @param value that the receipt should contain a signature line.
      */
-    public String getMaskedPan() {
-        return maskedPan;
-    }
+     public void setRequestSignature(boolean value) {
+          this.requestSignature = value;
+     }
 
     /**
-     * Sets the masked primary account number. 
-     * @param maskedPan masked primary account number.
+     * Gets that the receipt should contain a signature line.
+     * @return that the receipt should contain a signature line.
      */
-    public void setMaskedPan(String maskedPan) {
-        this.maskedPan = maskedPan;
-    }
+     @JsonProperty("requestSignature")
+     public boolean isRequestSignature() {
+          return this.requestSignature;
+     }
 
     /**
-     * Gets the EMV transaction certificate.  This is another kind of digital signature typically used for offline authorizations.
-     * @return Transaction Certificate.
+     * Sets the masked primary account number of the payment card, as required.
+     * @param value the masked primary account number of the payment card, as required.
      */
-    @JsonProperty("TC")
-    public String getTc() {
-        return tc;
-    }
+     public void setMaskedPan(String value) {
+          this.maskedPan = value;
+     }
 
     /**
-     * Sets the EMV transaction certificate.
-     * @param tc Transaction Certificate.
+     * Gets the masked primary account number of the payment card, as required.
+     * @return the masked primary account number of the payment card, as required.
      */
-    public void setTc(String tc) {
-        this.tc = tc;
-    }
+     @JsonProperty("maskedPan")
+     public String getMaskedPan() {
+          return this.maskedPan;
+     }
 
     /**
-     * Gets the ARQC, the application request cryptogram.  This is a digital fingerprint for an online EMV transaction.
-     * @return Application Request Cryptogram 
+     * Sets the amount authorized by the payment network.
+     * @param value the amount authorized by the payment network. Could be less than the
+     * requested amount for partial auth.
      */
-    @JsonProperty("ARQC")
-    public String getArqc() {
-        return arqc;
-    }
+     public void setAuthorizedAmount(String value) {
+          this.authorizedAmount = value;
+     }
 
     /**
-     * Sets the ARQC.
-     * @param arqc Application Request Cryptogram 
+     * Gets the amount authorized by the payment network.
+     * @return the amount authorized by the payment network. Could be less than the
+     * requested amount for partial auth.
      */
-    public void setArqc(String arqc) {
-        this.arqc = arqc;
-    }
+     @JsonProperty("authorizedAmount")
+     public String getAuthorizedAmount() {
+          return this.authorizedAmount;
+     }
 
     /**
-     * Gets whether or not PIN verification was performed.
-     * @return whether or not PIN verification was performed
+     * Sets the type of transaction performed (CHARGE, PREAUTH, REFUND, etc).
+     * @param value the type of transaction performed (CHARGE, PREAUTH, REFUND, etc).
      */
-    public boolean isPinVerified() {
-        return pinVerified;
-    }
+     public void setTransactionType(String value) {
+          this.transactionType = value;
+     }
 
     /**
-     * Sets whether or not PIN verification was performed.
-     * @param pinVerified whether or not PIN verification was performed
+     * Gets the type of transaction performed (CHARGE, PREAUTH, REFUND, etc).
+     * @return the type of transaction performed (CHARGE, PREAUTH, REFUND, etc).
      */
-    public void setPinVerified(boolean pinVerified) {
-        this.pinVerified = pinVerified;
-    }
+     @JsonProperty("transactionType")
+     public String getTransactionType() {
+          return this.transactionType;
+     }
 
     /**
-     * Gets the authorized cash back amount.
-     * @return the authorized cash back amount.
+     * Sets the method by which the payment card was entered (MSR, CHIP, KEYED, etc.
+     * @param value the method by which the payment card was entered (MSR, CHIP, KEYED,
+     * etc.).
      */
-    public String getCashBackAmount() {
-        return cashBackAmount;
-    }
+     public void setEntryMethod(String value) {
+          this.entryMethod = value;
+     }
 
     /**
-     * Sets the authorized cash back amount.
-     * @param cashBackAmount the authorized cash back amount.
+     * Gets the method by which the payment card was entered (MSR, CHIP, KEYED, etc.
+     * @return the method by which the payment card was entered (MSR, CHIP, KEYED, etc.).
      */
-    public void setCashBackAmount(String cashBackAmount) {
-        this.cashBackAmount = cashBackAmount;
-    }
+     @JsonProperty("entryMethod")
+     public String getEntryMethod() {
+          return this.entryMethod;
+     }
+
+    /**
+     * Sets that PIN verification was performed.
+     * @param value that PIN verification was performed.
+     */
+     public void setPinVerified(boolean value) {
+          this.pinVerified = value;
+     }
+
+    /**
+     * Gets that PIN verification was performed.
+     * @return that PIN verification was performed.
+     */
+     @JsonProperty("pinVerified")
+     public boolean isPinVerified() {
+          return this.pinVerified;
+     }
+
+    /**
+     * Sets the customer verification method used for the transaction.
+     * @param value the customer verification method used for the transaction.
+     */
+     public void setCvmUsed(CvmType value) {
+          this.cvmUsed = value;
+     }
+
+    /**
+     * Gets the customer verification method used for the transaction.
+     * @return the customer verification method used for the transaction.
+     */
+     @JsonProperty("cvmUsed")
+     public CvmType getCvmUsed() {
+          return this.cvmUsed;
+     }
+
+    /**
+     * Sets that a chip read failure caused the transaction to fall back to the magstripe.
+     * @param value that a chip read failure caused the transaction to fall back to the
+     * magstripe.
+     */
+     public void setFallback(boolean value) {
+          this.fallback = value;
+     }
+
+    /**
+     * Gets that a chip read failure caused the transaction to fall back to the magstripe.
+     * @return that a chip read failure caused the transaction to fall back to the
+     * magstripe.
+     */
+     @JsonProperty("fallback")
+     public boolean isFallback() {
+          return this.fallback;
+     }
+
+    /**
+     * Sets the sequence of the transaction in the batch.
+     * @param value the sequence of the transaction in the batch.
+     */
+     public void setBatchSequence(int value) {
+          this.batchSequence = value;
+     }
+
+    /**
+     * Gets the sequence of the transaction in the batch.
+     * @return the sequence of the transaction in the batch.
+     */
+     @JsonProperty("batchSequence")
+     public int getBatchSequence() {
+          return this.batchSequence;
+     }
+
+    /**
+     * Sets the amount of cash back that was approved.
+     * @param value the amount of cash back that was approved.
+     */
+     public void setCashBackAmount(String value) {
+          this.cashBackAmount = value;
+     }
+
+    /**
+     * Gets the amount of cash back that was approved.
+     * @return the amount of cash back that was approved.
+     */
+     @JsonProperty("cashBackAmount")
+     public String getCashBackAmount() {
+          return this.cashBackAmount;
+     }
+
+    /**
+     * Sets the amount added to the transaction to cover eligible credit card fees.
+     * @param value the amount added to the transaction to cover eligible credit card
+     * fees.
+     */
+     public void setSurcharge(String value) {
+          this.surcharge = value;
+     }
+
+    /**
+     * Gets the amount added to the transaction to cover eligible credit card fees.
+     * @return the amount added to the transaction to cover eligible credit card fees.
+     */
+     @JsonProperty("surcharge")
+     public String getSurcharge() {
+          return this.surcharge;
+     }
+
+    /**
+     * Sets the discount applied to the transaction for payment methods ineligible for
+     * surcharges.
+     * @param value the discount applied to the transaction for payment methods
+     * ineligible for surcharges.
+     */
+     public void setCashDiscount(String value) {
+          this.cashDiscount = value;
+     }
+
+    /**
+     * Gets the discount applied to the transaction for payment methods ineligible for
+     * surcharges.
+     * @return the discount applied to the transaction for payment methods ineligible
+     * for surcharges.
+     */
+     @JsonProperty("cashDiscount")
+     public String getCashDiscount() {
+          return this.cashDiscount;
+     }
 
 }

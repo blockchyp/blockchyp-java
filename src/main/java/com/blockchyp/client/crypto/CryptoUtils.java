@@ -1,7 +1,6 @@
 package com.blockchyp.client.crypto;
 
 import java.security.SecureRandom;
-
 import java.security.spec.AlgorithmParameterSpec;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -41,10 +40,16 @@ public final class CryptoUtils {
 
     private static CryptoUtils instance;
 
-    private SecureRandom rand;
+    private static Random rand;
 
     private CryptoUtils() {
-        rand = new SecureRandom();
+    	if (rand == null) {
+    		try {
+    			rand = new SecureRandom();
+    		} catch (Exception e) {
+    			e.printStackTrace();
+    		}
+    	}
     }
 
     /**
@@ -61,7 +66,7 @@ public final class CryptoUtils {
 
     }
 
-
+    
     /**
      * Computes a SHA 256 hash of the given hex.
      * @param hex data to be hashed in hex format.
@@ -78,7 +83,7 @@ public final class CryptoUtils {
         }
 
     }
-
+    
     /**
      * Generates the big three API request headers based on the input credentials.
      * @param apiKey BlockChyp API Key (root or transient)
@@ -130,7 +135,7 @@ public final class CryptoUtils {
         return fmt.format(new Date());
 
     }
-
+    
     /**
      * Decrypts ciphertext previously encoded with {@link encrypt}.
      * 
@@ -152,7 +157,7 @@ public final class CryptoUtils {
         return new String(cipher.doFinal(Hex.decodeHex(tokens[1])));
 
     }
-
+    
     /**
      * Encrypts the given plain text using the given key using AES with PKCS#5 padding.
      * 
@@ -174,7 +179,7 @@ public final class CryptoUtils {
         return Hex.encodeHexString(iv) + "|" + Hex.encodeHexString(cipher.doFinal(plainText.getBytes()));
 
     }
-
+    
     /**
      * Returns an array of random bytes of the given length.
      * @param len Number of random bytes to return.
@@ -184,11 +189,11 @@ public final class CryptoUtils {
     public byte[] randomBytes(int len) {
 
         byte[] results = new byte[len];
-
-        rand.nextBytes(results);
-
+        byte[] buf = new byte[len * 2];
+        int offset = rand.nextInt(len);
+        rand.nextBytes(buf);
+        System.arraycopy(buf, offset, results, 0, len);
         return results;
-
     }
 
 }
