@@ -8,7 +8,7 @@
 
   <groupId>com.blockchyp</groupId>
   <artifactId>blockchyp-java</artifactId>
-  <version>github-migration-test-3</version>
+  <version>github-migration-test-4</version>
   <packaging>jar</packaging>
 
   <name>${project.groupId}:${project.artifactId}</name>
