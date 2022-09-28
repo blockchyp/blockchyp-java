@@ -1058,16 +1058,16 @@ public class AuthorizationResponse implements IAbstractAcknowledgement, IApprova
      }
 
     /**
-     * Sets the current status of a transaction
-     * @param value the current status of a transaction
+     * Sets the current status of a transaction.
+     * @param value the current status of a transaction.
      */
      public void setStatus(String value) {
           this.status = value;
      }
 
     /**
-     * Gets the current status of a transaction
-     * @return the current status of a transaction
+     * Gets the current status of a transaction.
+     * @return the current status of a transaction.
      */
      @JsonProperty("status")
      public String getStatus() {
