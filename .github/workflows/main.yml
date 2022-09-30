@@ -62,7 +62,8 @@ jobs:
       - run: mvn dependency:go-offline
       - name: Run Build
         run: mvn -Dmaven.test.skip=true package
-      - run: ./.circleci/import-gpg-key.sh
+      - run: openssl aes-256-cbc -d -in ./.circleci/ossrh-gpg-key -out ./.circleci/ossrh-gpg-key.asc -k "$ENCRYPTION_KEY"
+      - run: gpg --batch --import ./.circleci/ossrh-gpg-key.asc
       - name: Maven Publish
         run: mvn deploy -s settings.xml -DskipTests=true -B -U -Prelease
       - uses: act10ns/slack@v1
