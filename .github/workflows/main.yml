@@ -62,7 +62,7 @@ jobs:
       - run: mvn dependency:go-offline
       - name: Run Build
         run: mvn -Dmaven.test.skip=true package
-      - run: ./.github/import-gpg-key.sh
+      - run: ./.gpg/import-gpg-key.sh
       - name: Maven Publish
         run: mvn deploy -s settings.xml -DskipTests=true -B -U -Prelease
       - uses: act10ns/slack@v1
