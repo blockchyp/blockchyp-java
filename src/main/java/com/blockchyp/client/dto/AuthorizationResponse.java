@@ -123,6 +123,8 @@ public class AuthorizationResponse implements IAbstractAcknowledgement, IApprova
 
      private boolean storeAndForward;
 
+     private String status;
+
     /**
      * Sets whether or not the request succeeded.
      * @param value whether or not the request succeeded.
@@ -1053,6 +1055,23 @@ public class AuthorizationResponse implements IAbstractAcknowledgement, IApprova
      @JsonProperty("storeAndForward")
      public boolean isStoreAndForward() {
           return this.storeAndForward;
+     }
+
+    /**
+     * Sets the current status of a transaction.
+     * @param value the current status of a transaction.
+     */
+     public void setStatus(String value) {
+          this.status = value;
+     }
+
+    /**
+     * Gets the current status of a transaction.
+     * @return the current status of a transaction.
+     */
+     @JsonProperty("status")
+     public String getStatus() {
+          return this.status;
      }
 
     /**

@@ -9,6 +9,13 @@ VERSION := $(or $(TAG:v%=%),$(LASTTAG:v%=%))-$(or $(BUILD_NUMBER), 1)$(if $(TAG)
 DOCKER = docker
 MVN = mvn
 SED = sed
+SED_SUBST = $(SED)
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Darwin)
+	SED_SUBST += -i ''
+else
+	SED_SUBST += -i
+endif
 
 # Integration test config
 export BC_TEST_DELAY := 5
@@ -64,9 +71,9 @@ integration:
 .PHONY: stage
 stage:
 	# Significant whitespace used to match specific indent level. Sue me.
-	$(SED) -i 's|^  <version>.*</version>|  <version>$(VERSION)</version>|' pom.xml
-	$(SED) -i 's|^    <version>.*</version>|    <version>$(VERSION)</version>|' README.md
-	$(SED) -i "s|version:'.*'|version:'$(VERSION)'|" README.md
+	$(SED_SUBST) 's|^  <version>.*</version>|  <version>$(VERSION)</version>|' pom.xml
+	$(SED_SUBST) 's|^    <version>.*</version>|    <version>$(VERSION)</version>|' README.md
+	$(SED_SUBST) "s|version:'.*'|version:'$(VERSION)'|" README.md
 
 # Publishes package
 .PHONY: publish
