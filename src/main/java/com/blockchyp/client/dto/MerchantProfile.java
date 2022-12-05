@@ -29,6 +29,8 @@ public class MerchantProfile implements ITimeoutRequest {
 
      private String dbaName;
 
+     private String invoiceName;
+
      private String contactName;
 
      private String contactNumber;
@@ -204,6 +206,23 @@ public class MerchantProfile implements ITimeoutRequest {
      @JsonProperty("dbaName")
      public String getDbaName() {
           return this.dbaName;
+     }
+
+    /**
+     * Sets the name the merchant prefers on payment link invoices.
+     * @param value the name the merchant prefers on payment link invoices.
+     */
+     public void setInvoiceName(String value) {
+          this.invoiceName = value;
+     }
+
+    /**
+     * Gets the name the merchant prefers on payment link invoices.
+     * @return the name the merchant prefers on payment link invoices.
+     */
+     @JsonProperty("invoiceName")
+     public String getInvoiceName() {
+          return this.invoiceName;
      }
 
     /**
