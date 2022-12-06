@@ -102,16 +102,16 @@ public class TerminalStatusResponse implements IAbstractAcknowledgement {
      }
 
     /**
-     * Sets whether or not a card is currently in the card slot
-     * @param value whether or not a card is currently in the card slot
+     * Sets whether or not a card is currently in the card slot.
+     * @param value whether or not a card is currently in the card slot.
      */
      public void setCardInSlot(boolean value) {
           this.cardInSlot = value;
      }
 
     /**
-     * Gets whether or not a card is currently in the card slot
-     * @return whether or not a card is currently in the card slot
+     * Gets whether or not a card is currently in the card slot.
+     * @return whether or not a card is currently in the card slot.
      */
      @JsonProperty("cardInSlot")
      public boolean isCardInSlot() {
