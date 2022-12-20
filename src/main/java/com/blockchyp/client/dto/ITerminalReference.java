@@ -17,6 +17,8 @@ public interface ITerminalReference {
 
      String getTerminalName();
 
+     boolean isResetConnection();
+
 
 }
 
