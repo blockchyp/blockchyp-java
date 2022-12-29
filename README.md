@@ -29,7 +29,7 @@ The BlockChyp SDK is in Maven's Central Repository. Just add this snippet to you
 <dependency>
     <groupId>com.blockchyp</groupId>
     <artifactId>blockchyp-java</artifactId>
-    <version>2.14.0</version>
+    <version>2.15.5</version>
 </dependency>
 ```
 
@@ -38,7 +38,7 @@ The BlockChyp SDK is in Maven's Central Repository. Just add this snippet to you
 For the hipsters among you who've moved up to Gradle, try adding this snippet under dependencies in your Gradle build file.
 
 ```
-compile group: 'com.blockchyp', name: 'blockchyp-java', version:'2.14.0'
+compile group: 'com.blockchyp', name: 'blockchyp-java', version:'2.15.5'
 ```
 
 You'll also need the Maven plugin turned on. Make sure your Gradle build has something like this in it:
@@ -2203,9 +2203,32 @@ If the terminal is busy, `idle` will be false and the `status` field will return
 a short string that indicates the transaction type currently in progress.  The system
 will also return the timestamp of the last status change in the `since` field.
 
+The `cardInSlot` field in the response will indicates whether or not a card is currently in the card reader slot.
+
 If the system is running a payment transaction and you wisely passed in a
 Transaction Ref, this API will also return the Transaction Ref of the in progress
 transaction.
+
+The table below lists all possible status responses.
+
+| Status Code          | Description                                                                             |
+|----------------------|-----------------------------------------------------------------------------------------|
+| idle                 | The terminal is idle and ready for transactions.  The default branding is being displayed. |
+| activate             | The terminal is in the process of activating and pairing with the merchant account.     |
+| balance              | A balance check (EBT or Gift Card) is pending on the terminal.                          |
+| boolean-prompt       | A boolean prompt (yes/no) operation is pending on the terminal.                         |      
+| signature            | A signature capture is pending.                                                         |
+| crypto               | A cryptocurrency transaction is pending.                                                |
+| enroll               | A token vault enrollment operation is pending.                                          |
+| gift-activate        | A gift card activation operation is in progress.                                        | 
+| message              | The terminal is displaying a custom message.                                            |
+| charge               | The terminal is executing a charge transaction.                                         |
+| preauth              | The terminal is executing a preauth transaction.                                        |
+| refund               | The terminal is executing a refund transaction.                                         |
+| survey               | The terminal is displaying post transaction survey questions.                           |
+| terms-and-conditions | The terminal is pending terms and conditions acceptance and signature.                  |
+| text-prompt          | The terminal is awaiting response to a text input prompt.                               |
+| txdisplay            | The terminal is displaying transaction and/or line item level details.                  |
 
 
 

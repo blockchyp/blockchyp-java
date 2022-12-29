@@ -94,6 +94,8 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
 
      private String terminalName;
 
+     private boolean resetConnection;
+
      private String onlineAuthCode;
 
      private boolean enroll;
@@ -107,6 +109,8 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
      private Map altPrices;
 
      private Customer customer;
+
+     private RoundingMode roundingMode;
 
      private Healthcare healthcare;
 
@@ -809,6 +813,28 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
      }
 
     /**
+     * Sets forces the terminal cloud connection to be reset while a transactions is in
+     * flight.
+     * @param value forces the terminal cloud connection to be reset while a transactions
+     * is in flight. This is a diagnostic settings that can be used only for test
+     * transactions.
+     */
+     public void setResetConnection(boolean value) {
+          this.resetConnection = value;
+     }
+
+    /**
+     * Gets forces the terminal cloud connection to be reset while a transactions is in
+     * flight.
+     * @return forces the terminal cloud connection to be reset while a transactions is in
+     * flight. This is a diagnostic settings that can be used only for test transactions.
+     */
+     @JsonProperty("resetConnection")
+     public boolean isResetConnection() {
+          return this.resetConnection;
+     }
+
+    /**
      * Sets used to validate online gift card authorizations.
      * @param value used to validate online gift card authorizations.
      */
@@ -935,6 +961,25 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
      @JsonProperty("customer")
      public Customer getCustomer() {
           return this.customer;
+     }
+
+    /**
+     * Sets how partial pennies should be rounded for calculated values like surcharges.
+     * @param value how partial pennies should be rounded for calculated values like
+     * surcharges. Rounding up is the default behavior.
+     */
+     public void setRoundingMode(RoundingMode value) {
+          this.roundingMode = value;
+     }
+
+    /**
+     * Gets how partial pennies should be rounded for calculated values like surcharges.
+     * @return how partial pennies should be rounded for calculated values like
+     * surcharges. Rounding up is the default behavior.
+     */
+     @JsonProperty("roundingMode")
+     public RoundingMode getRoundingMode() {
+          return this.roundingMode;
      }
 
     /**

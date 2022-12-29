@@ -33,6 +33,8 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
 
      private String dbaName;
 
+     private String invoiceName;
+
      private String contactName;
 
      private String contactNumber;
@@ -242,6 +244,23 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      @JsonProperty("dbaName")
      public String getDbaName() {
           return this.dbaName;
+     }
+
+    /**
+     * Sets the name the merchant prefers on payment link invoices.
+     * @param value the name the merchant prefers on payment link invoices.
+     */
+     public void setInvoiceName(String value) {
+          this.invoiceName = value;
+     }
+
+    /**
+     * Gets the name the merchant prefers on payment link invoices.
+     * @return the name the merchant prefers on payment link invoices.
+     */
+     @JsonProperty("invoiceName")
+     public String getInvoiceName() {
+          return this.invoiceName;
      }
 
     /**

@@ -10,10 +10,13 @@ package com.blockchyp.client.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * Models a request to retrieve survey results.
  */
+@SuppressWarnings({"rawtypes", "unchecked"})
 public class MediaMetadata implements IAbstractAcknowledgement {
 
      private boolean success;
@@ -25,6 +28,12 @@ public class MediaMetadata implements IAbstractAcknowledgement {
      private String id;
 
      private String originalFile;
+
+     private String name;
+
+     private String description;
+
+     private Collection<String> tags;
 
      private String fileUrl;
 
@@ -118,6 +127,57 @@ public class MediaMetadata implements IAbstractAcknowledgement {
      }
 
     /**
+     * Sets the descriptive name of the media asset.
+     * @param value the descriptive name of the media asset.
+     */
+     public void setName(String value) {
+          this.name = value;
+     }
+
+    /**
+     * Gets the descriptive name of the media asset.
+     * @return the descriptive name of the media asset.
+     */
+     @JsonProperty("name")
+     public String getName() {
+          return this.name;
+     }
+
+    /**
+     * Sets a description of the media asset and its purpose.
+     * @param value a description of the media asset and its purpose.
+     */
+     public void setDescription(String value) {
+          this.description = value;
+     }
+
+    /**
+     * Gets a description of the media asset and its purpose.
+     * @return a description of the media asset and its purpose.
+     */
+     @JsonProperty("description")
+     public String getDescription() {
+          return this.description;
+     }
+
+    /**
+     * Sets an array of tags associated with a media asset.
+     * @param value an array of tags associated with a media asset.
+     */
+     public void setTags(Collection<String> value) {
+          this.tags = value;
+     }
+
+    /**
+     * Gets an array of tags associated with a media asset.
+     * @return an array of tags associated with a media asset.
+     */
+     @JsonProperty("tags")
+     public Collection<String> getTags() {
+          return this.tags;
+     }
+
+    /**
      * Sets the url for the full resolution versio of the media file.
      * @param value the url for the full resolution versio of the media file.
      */
@@ -166,6 +226,17 @@ public class MediaMetadata implements IAbstractAcknowledgement {
      @JsonProperty("video")
      public boolean isVideo() {
           return this.video;
+     }
+
+    /**
+     * Adds a an array of tags associated with a media asset.
+     * @param value an array of tags associated with a media asset.
+     */
+     public void addTag(String value) {
+          if (this.tags == null) {
+               this.tags = new ArrayList();
+          }
+          this.tags.add(value);
      }
 
 }

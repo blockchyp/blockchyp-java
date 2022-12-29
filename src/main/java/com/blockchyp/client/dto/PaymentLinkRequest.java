@@ -46,11 +46,19 @@ public class PaymentLinkRequest implements ITimeoutRequest, ICoreRequest, IReque
 
      private String terminalName;
 
+     private boolean resetConnection;
+
      private boolean autoSend;
 
      private boolean enroll;
 
      private boolean enrollOnly;
+
+     private boolean qrcodeBinary;
+
+     private int qrcodeSize;
+
+     private int daysToExpiration;
 
      private boolean cashier;
 
@@ -356,6 +364,28 @@ public class PaymentLinkRequest implements ITimeoutRequest, ICoreRequest, IReque
      }
 
     /**
+     * Sets forces the terminal cloud connection to be reset while a transactions is in
+     * flight.
+     * @param value forces the terminal cloud connection to be reset while a transactions
+     * is in flight. This is a diagnostic settings that can be used only for test
+     * transactions.
+     */
+     public void setResetConnection(boolean value) {
+          this.resetConnection = value;
+     }
+
+    /**
+     * Gets forces the terminal cloud connection to be reset while a transactions is in
+     * flight.
+     * @return forces the terminal cloud connection to be reset while a transactions is in
+     * flight. This is a diagnostic settings that can be used only for test transactions.
+     */
+     @JsonProperty("resetConnection")
+     public boolean isResetConnection() {
+          return this.resetConnection;
+     }
+
+    /**
      * Sets automatically send the link via an email.
      * @param value automatically send the link via an email.
      */
@@ -410,6 +440,57 @@ public class PaymentLinkRequest implements ITimeoutRequest, ICoreRequest, IReque
      @JsonProperty("enrollOnly")
      public boolean isEnrollOnly() {
           return this.enrollOnly;
+     }
+
+    /**
+     * Sets that the QR Code binary should be returned.
+     * @param value that the QR Code binary should be returned.
+     */
+     public void setQrcodeBinary(boolean value) {
+          this.qrcodeBinary = value;
+     }
+
+    /**
+     * Gets that the QR Code binary should be returned.
+     * @return that the QR Code binary should be returned.
+     */
+     @JsonProperty("qrcodeBinary")
+     public boolean isQrcodeBinary() {
+          return this.qrcodeBinary;
+     }
+
+    /**
+     * Sets determines the size of the qr code to be returned.
+     * @param value determines the size of the qr code to be returned.
+     */
+     public void setQrcodeSize(int value) {
+          this.qrcodeSize = value;
+     }
+
+    /**
+     * Gets determines the size of the qr code to be returned.
+     * @return determines the size of the qr code to be returned.
+     */
+     @JsonProperty("qrcodeSize")
+     public int getQrcodeSize() {
+          return this.qrcodeSize;
+     }
+
+    /**
+     * Sets number of days until the payment link expires.
+     * @param value number of days until the payment link expires.
+     */
+     public void setDaysToExpiration(int value) {
+          this.daysToExpiration = value;
+     }
+
+    /**
+     * Gets number of days until the payment link expires.
+     * @return number of days until the payment link expires.
+     */
+     @JsonProperty("daysToExpiration")
+     public int getDaysToExpiration() {
+          return this.daysToExpiration;
      }
 
     /**

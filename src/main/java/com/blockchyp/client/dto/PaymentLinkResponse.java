@@ -26,6 +26,10 @@ public class PaymentLinkResponse implements IAbstractAcknowledgement {
 
      private String url;
 
+     private String qrcodeUrl;
+
+     private String qrcodeBinary;
+
      private String customerId;
 
     /**
@@ -111,6 +115,41 @@ public class PaymentLinkResponse implements IAbstractAcknowledgement {
      @JsonProperty("url")
      public String getUrl() {
           return this.url;
+     }
+
+    /**
+     * Sets the url for a QR Code associated with this link.
+     * @param value the url for a QR Code associated with this link.
+     */
+     public void setQrcodeUrl(String value) {
+          this.qrcodeUrl = value;
+     }
+
+    /**
+     * Gets the url for a QR Code associated with this link.
+     * @return the url for a QR Code associated with this link.
+     */
+     @JsonProperty("qrcodeUrl")
+     public String getQrcodeUrl() {
+          return this.qrcodeUrl;
+     }
+
+    /**
+     * Sets the hex encoded binary for the QR Code, if requested.
+     * @param value the hex encoded binary for the QR Code, if requested. Encoded in PNG
+     * format.
+     */
+     public void setQrcodeBinary(String value) {
+          this.qrcodeBinary = value;
+     }
+
+    /**
+     * Gets the hex encoded binary for the QR Code, if requested.
+     * @return the hex encoded binary for the QR Code, if requested. Encoded in PNG format.
+     */
+     @JsonProperty("qrcodeBinary")
+     public String getQrcodeBinary() {
+          return this.qrcodeBinary;
      }
 
     /**

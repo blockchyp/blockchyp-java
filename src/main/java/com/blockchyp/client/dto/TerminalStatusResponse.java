@@ -25,6 +25,8 @@ public class TerminalStatusResponse implements IAbstractAcknowledgement {
 
      private boolean idle;
 
+     private boolean cardInSlot;
+
      private String status;
 
      private String transactionRef;
@@ -97,6 +99,23 @@ public class TerminalStatusResponse implements IAbstractAcknowledgement {
      @JsonProperty("idle")
      public boolean isIdle() {
           return this.idle;
+     }
+
+    /**
+     * Sets whether or not a card is currently in the card slot.
+     * @param value whether or not a card is currently in the card slot.
+     */
+     public void setCardInSlot(boolean value) {
+          this.cardInSlot = value;
+     }
+
+    /**
+     * Gets whether or not a card is currently in the card slot.
+     * @return whether or not a card is currently in the card slot.
+     */
+     @JsonProperty("cardInSlot")
+     public boolean isCardInSlot() {
+          return this.cardInSlot;
      }
 
     /**

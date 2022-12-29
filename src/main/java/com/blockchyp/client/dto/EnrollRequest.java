@@ -68,6 +68,8 @@ public class EnrollRequest implements ITimeoutRequest, ICoreRequest, IPaymentMet
 
      private String terminalName;
 
+     private boolean resetConnection;
+
      private String entryMethod;
 
      private Customer customer;
@@ -532,6 +534,28 @@ public class EnrollRequest implements ITimeoutRequest, ICoreRequest, IPaymentMet
      @JsonProperty("terminalName")
      public String getTerminalName() {
           return this.terminalName;
+     }
+
+    /**
+     * Sets forces the terminal cloud connection to be reset while a transactions is in
+     * flight.
+     * @param value forces the terminal cloud connection to be reset while a transactions
+     * is in flight. This is a diagnostic settings that can be used only for test
+     * transactions.
+     */
+     public void setResetConnection(boolean value) {
+          this.resetConnection = value;
+     }
+
+    /**
+     * Gets forces the terminal cloud connection to be reset while a transactions is in
+     * flight.
+     * @return forces the terminal cloud connection to be reset while a transactions is in
+     * flight. This is a diagnostic settings that can be used only for test transactions.
+     */
+     @JsonProperty("resetConnection")
+     public boolean isResetConnection() {
+          return this.resetConnection;
      }
 
     /**
