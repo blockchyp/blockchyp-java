@@ -110,6 +110,8 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
 
      private Customer customer;
 
+     private RoundingMode roundingMode;
+
      private Healthcare healthcare;
 
      private String cryptocurrency;
@@ -959,6 +961,25 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
      @JsonProperty("customer")
      public Customer getCustomer() {
           return this.customer;
+     }
+
+    /**
+     * Sets how partial pennies should be rounded for calculated values like surcharges.
+     * @param value how partial pennies should be rounded for calculated values like
+     * surcharges. Rounding up is the default behavior.
+     */
+     public void setRoundingMode(RoundingMode value) {
+          this.roundingMode = value;
+     }
+
+    /**
+     * Gets how partial pennies should be rounded for calculated values like surcharges.
+     * @return how partial pennies should be rounded for calculated values like
+     * surcharges. Rounding up is the default behavior.
+     */
+     @JsonProperty("roundingMode")
+     public RoundingMode getRoundingMode() {
+          return this.roundingMode;
      }
 
     /**
