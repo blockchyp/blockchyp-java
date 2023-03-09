@@ -44,6 +44,8 @@ public class CashDiscountRequest implements ITimeoutRequest, ICoreRequest {
 
      private boolean cashDiscount;
 
+     private RoundingMode roundingMode;
+
     /**
      * Sets the request timeout in seconds.
      * @param value the request timeout in seconds.
@@ -300,6 +302,25 @@ public class CashDiscountRequest implements ITimeoutRequest, ICoreRequest {
      @JsonProperty("cashDiscount")
      public boolean isCashDiscount() {
           return this.cashDiscount;
+     }
+
+    /**
+     * Sets how partial pennies should be rounded for calculated values like surcharges.
+     * @param value how partial pennies should be rounded for calculated values like
+     * surcharges. Rounding up is the default behavior.
+     */
+     public void setRoundingMode(RoundingMode value) {
+          this.roundingMode = value;
+     }
+
+    /**
+     * Gets how partial pennies should be rounded for calculated values like surcharges.
+     * @return how partial pennies should be rounded for calculated values like
+     * surcharges. Rounding up is the default behavior.
+     */
+     @JsonProperty("roundingMode")
+     public RoundingMode getRoundingMode() {
+          return this.roundingMode;
      }
 
 }
