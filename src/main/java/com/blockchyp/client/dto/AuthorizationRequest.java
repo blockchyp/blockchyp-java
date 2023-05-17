@@ -126,6 +126,10 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
 
      private String paymentRequestMessage;
 
+     private boolean simulateChipRejection;
+
+     private boolean simulateOutOfOrderReversal;
+
     /**
      * Sets the request timeout in seconds.
      * @param value the request timeout in seconds.
@@ -1125,6 +1129,45 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
      @JsonProperty("paymentRequestMessage")
      public String getPaymentRequestMessage() {
           return this.paymentRequestMessage;
+     }
+
+    /**
+     * Sets instructs the terminal to simulate a post auth chip rejection that would
+     * trigger an automatic reversal.
+     * @param value instructs the terminal to simulate a post auth chip rejection that
+     * would trigger an automatic reversal.
+     */
+     public void setSimulateChipRejection(boolean value) {
+          this.simulateChipRejection = value;
+     }
+
+    /**
+     * Gets instructs the terminal to simulate a post auth chip rejection that would
+     * trigger an automatic reversal.
+     * @return instructs the terminal to simulate a post auth chip rejection that would
+     * trigger an automatic reversal.
+     */
+     @JsonProperty("simulateChipRejection")
+     public boolean isSimulateChipRejection() {
+          return this.simulateChipRejection;
+     }
+
+    /**
+     * Sets instructs the terminal to simulate an out of order automatic reversal.
+     * @param value instructs the terminal to simulate an out of order automatic
+     * reversal.
+     */
+     public void setSimulateOutOfOrderReversal(boolean value) {
+          this.simulateOutOfOrderReversal = value;
+     }
+
+    /**
+     * Gets instructs the terminal to simulate an out of order automatic reversal.
+     * @return instructs the terminal to simulate an out of order automatic reversal.
+     */
+     @JsonProperty("simulateOutOfOrderReversal")
+     public boolean isSimulateOutOfOrderReversal() {
+          return this.simulateOutOfOrderReversal;
      }
 
 }
