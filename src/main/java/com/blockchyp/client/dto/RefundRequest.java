@@ -102,6 +102,8 @@ public class RefundRequest implements ITimeoutRequest, ICoreRequest, IPaymentMet
 
      private boolean simulateOutOfOrderReversal;
 
+     private boolean asyncReversals;
+
     /**
      * Sets the request timeout in seconds.
      * @param value the request timeout in seconds.
@@ -887,6 +889,25 @@ public class RefundRequest implements ITimeoutRequest, ICoreRequest, IPaymentMet
      @JsonProperty("simulateOutOfOrderReversal")
      public boolean isSimulateOutOfOrderReversal() {
           return this.simulateOutOfOrderReversal;
+     }
+
+    /**
+     * Sets causes auto-reversals on the terminal to be executed asyncronously.
+     * @param value causes auto-reversals on the terminal to be executed asyncronously.
+     * Use with caution and in conjunction with the transaction status API.
+     */
+     public void setAsyncReversals(boolean value) {
+          this.asyncReversals = value;
+     }
+
+    /**
+     * Gets causes auto-reversals on the terminal to be executed asyncronously.
+     * @return causes auto-reversals on the terminal to be executed asyncronously. Use
+     * with caution and in conjunction with the transaction status API.
+     */
+     @JsonProperty("asyncReversals")
+     public boolean isAsyncReversals() {
+          return this.asyncReversals;
      }
 
 }
