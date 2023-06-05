@@ -51,6 +51,8 @@ public class BalanceResponse implements IAbstractAcknowledgement, ICoreResponse,
 
      private String network;
 
+     private String logo;
+
      private String maskedPan;
 
      private String publicKey;
@@ -353,6 +355,27 @@ public class BalanceResponse implements IAbstractAcknowledgement, ICoreResponse,
      @JsonProperty("network")
      public String getNetwork() {
           return this.network;
+     }
+
+    /**
+     * Sets identifies the card association based on bin number.
+     * @param value identifies the card association based on bin number. Used primarily
+     * used to indicate the major logo on a card, even when debit transactions are routed on
+     * a different network.
+     */
+     public void setLogo(String value) {
+          this.logo = value;
+     }
+
+    /**
+     * Gets identifies the card association based on bin number.
+     * @return identifies the card association based on bin number. Used primarily used
+     * to indicate the major logo on a card, even when debit transactions are routed on a
+     * different network.
+     */
+     @JsonProperty("logo")
+     public String getLogo() {
+          return this.logo;
      }
 
     /**
