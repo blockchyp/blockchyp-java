@@ -24,6 +24,8 @@ public interface IPaymentMethodResponse {
 
      String getPaymentType();
 
+     String getNetwork();
+
      String getMaskedPan();
 
      String getPublicKey();

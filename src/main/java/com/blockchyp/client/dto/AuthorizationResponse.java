@@ -97,6 +97,8 @@ public class AuthorizationResponse implements IAbstractAcknowledgement, IApprova
 
      private String paymentType;
 
+     private String network;
+
      private String maskedPan;
 
      private String publicKey;
@@ -809,20 +811,41 @@ public class AuthorizationResponse implements IAbstractAcknowledgement, IApprova
      }
 
     /**
-     * Sets the card brand (VISA, MC, AMEX, etc).
-     * @param value the card brand (VISA, MC, AMEX, etc).
+     * Sets the card brand (VISA, MC, AMEX, DEBIT, etc).
+     * @param value the card brand (VISA, MC, AMEX, DEBIT, etc).
      */
      public void setPaymentType(String value) {
           this.paymentType = value;
      }
 
     /**
-     * Gets the card brand (VISA, MC, AMEX, etc).
-     * @return the card brand (VISA, MC, AMEX, etc).
+     * Gets the card brand (VISA, MC, AMEX, DEBIT, etc).
+     * @return the card brand (VISA, MC, AMEX, DEBIT, etc).
      */
      @JsonProperty("paymentType")
      public String getPaymentType() {
           return this.paymentType;
+     }
+
+    /**
+     * Sets provides network level detail on how a transaction was routed, especially for
+     * debit transactions.
+     * @param value provides network level detail on how a transaction was routed,
+     * especially for debit transactions.
+     */
+     public void setNetwork(String value) {
+          this.network = value;
+     }
+
+    /**
+     * Gets provides network level detail on how a transaction was routed, especially for
+     * debit transactions.
+     * @return provides network level detail on how a transaction was routed, especially
+     * for debit transactions.
+     */
+     @JsonProperty("network")
+     public String getNetwork() {
+          return this.network;
      }
 
     /**
