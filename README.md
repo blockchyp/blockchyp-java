@@ -1,6 +1,6 @@
 # BlockChyp Java SDK
 
-[![Build Status](https://circleci.com/gh/blockchyp/blockchyp-java/tree/master.svg?style=shield)](https://circleci.com/gh/blockchyp/blockchyp-java/tree/master)
+[![Build Status](https://github.com/blockchyp/blockchyp-java/actions/workflows/main.yml/badge.svg)](https://github.com/blockchyp/blockchyp-java/actions/workflows/main.yml)
 [![Maven Central](https://img.shields.io/maven-central/v/com.blockchyp/blockchyp-java.svg)](https://search.maven.org/artifact/com.blockchyp/blockchyp-java)
 [![Javadocs](https://img.shields.io/badge/javadocs-latest-blueviolet)](https://docs.blockchyp.com/sdks/java/latest/index.html)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/blockchyp/blockchyp-java/blob/master/LICENSE)
