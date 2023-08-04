@@ -108,6 +108,10 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
 
      private boolean cashBackEnabled;
 
+     private boolean cardOnFile;
+
+     private boolean recurring;
+
      private Map altPrices;
 
      private Customer customer;
@@ -954,6 +958,40 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
      @JsonProperty("cashBackEnabled")
      public boolean isCashBackEnabled() {
           return this.cashBackEnabled;
+     }
+
+    /**
+     * Sets that this transaction should be treated as MOTO with a card on file.
+     * @param value that this transaction should be treated as MOTO with a card on file.
+     */
+     public void setCardOnFile(boolean value) {
+          this.cardOnFile = value;
+     }
+
+    /**
+     * Gets that this transaction should be treated as MOTO with a card on file.
+     * @return that this transaction should be treated as MOTO with a card on file.
+     */
+     @JsonProperty("cardOnFile")
+     public boolean isCardOnFile() {
+          return this.cardOnFile;
+     }
+
+    /**
+     * Sets that this transaction should be treated as a recurring transaction.
+     * @param value that this transaction should be treated as a recurring transaction.
+     */
+     public void setRecurring(boolean value) {
+          this.recurring = value;
+     }
+
+    /**
+     * Gets that this transaction should be treated as a recurring transaction.
+     * @return that this transaction should be treated as a recurring transaction.
+     */
+     @JsonProperty("recurring")
+     public boolean isRecurring() {
+          return this.recurring;
      }
 
     /**

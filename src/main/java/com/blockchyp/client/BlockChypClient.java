@@ -98,6 +98,8 @@ import com.blockchyp.client.dto.TermsAndConditionsRequest;
 import com.blockchyp.client.dto.TermsAndConditionsResponse;
 import com.blockchyp.client.dto.AuthorizationResponse;
 import com.blockchyp.client.dto.TransactionStatusRequest;
+import com.blockchyp.client.dto.PaymentLinkStatusRequest;
+import com.blockchyp.client.dto.PaymentLinkStatusResponse;
 import com.blockchyp.client.dto.TransactionStatus;
 import com.blockchyp.client.dto.TransactionDisplayDiscount;
 import com.blockchyp.client.dto.TransactionDisplayItem;
@@ -485,6 +487,18 @@ public class BlockChypClient {
     public CancelPaymentLinkResponse cancelPaymentLink(CancelPaymentLinkRequest request) throws Exception {
 
         return (CancelPaymentLinkResponse) postGateway("/api/cancel-payment-link", request, CancelPaymentLinkResponse.class);
+
+    }
+
+    /**
+     * Retrieves the status of a payment link.
+     * @param request the request parameters.
+     * @return {@link PaymentLinkStatusResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public PaymentLinkStatusResponse paymentLinkStatus(PaymentLinkStatusRequest request) throws Exception {
+
+        return (PaymentLinkStatusResponse) postGateway("/api/payment-link-status", request, PaymentLinkStatusResponse.class);
 
     }
 
