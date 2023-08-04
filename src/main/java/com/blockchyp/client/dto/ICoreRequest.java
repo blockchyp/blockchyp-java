@@ -31,6 +31,8 @@ public interface ICoreRequest {
 
      String getDestinationAccount();
 
+     String getTestCase();
+
 
 }
 

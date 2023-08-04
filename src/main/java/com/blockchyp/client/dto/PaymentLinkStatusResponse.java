@@ -175,16 +175,16 @@ public class PaymentLinkStatusResponse implements IAbstractAcknowledgement {
      }
 
     /**
-     * Sets the user's internal reference for any transaction that may occur
-     * @param value the user's internal reference for any transaction that may occur
+     * Sets the user's internal reference for any transaction that may occur.
+     * @param value the user's internal reference for any transaction that may occur.
      */
      public void setTransactionRef(String value) {
           this.transactionRef = value;
      }
 
     /**
-     * Gets the user's internal reference for any transaction that may occur
-     * @return the user's internal reference for any transaction that may occur
+     * Gets the user's internal reference for any transaction that may occur.
+     * @return the user's internal reference for any transaction that may occur.
      */
      @JsonProperty("transactionRef")
      public String getTransactionRef() {

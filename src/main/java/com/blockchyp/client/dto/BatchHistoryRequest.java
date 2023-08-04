@@ -37,6 +37,8 @@ public class BatchHistoryRequest implements ITimeoutRequest, ICoreRequest {
 
      private String destinationAccount;
 
+     private String testCase;
+
      private Date startDate;
 
      private Date endDate;
@@ -227,6 +229,27 @@ public class BatchHistoryRequest implements ITimeoutRequest, ICoreRequest {
      @JsonProperty("destinationAccount")
      public String getDestinationAccount() {
           return this.destinationAccount;
+     }
+
+    /**
+     * Sets can include a code used to trigger simulated conditions for the purposes of
+     * testing and certification.
+     * @param value can include a code used to trigger simulated conditions for the
+     * purposes of testing and certification. Valid for test merchant accounts only.
+     */
+     public void setTestCase(String value) {
+          this.testCase = value;
+     }
+
+    /**
+     * Gets can include a code used to trigger simulated conditions for the purposes of
+     * testing and certification.
+     * @return can include a code used to trigger simulated conditions for the purposes of
+     * testing and certification. Valid for test merchant accounts only.
+     */
+     @JsonProperty("testCase")
+     public String getTestCase() {
+          return this.testCase;
      }
 
     /**

@@ -38,6 +38,8 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
 
      private String destinationAccount;
 
+     private String testCase;
+
      private String token;
 
      private String track1;
@@ -70,8 +72,6 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
 
      private String paymentType;
 
-     private String transactionId;
-
      private String currencyCode;
 
      private String amount;
@@ -97,6 +97,8 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
      private String terminalName;
 
      private boolean resetConnection;
+
+     private String transactionId;
 
      private String onlineAuthCode;
 
@@ -318,6 +320,27 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
      @JsonProperty("destinationAccount")
      public String getDestinationAccount() {
           return this.destinationAccount;
+     }
+
+    /**
+     * Sets can include a code used to trigger simulated conditions for the purposes of
+     * testing and certification.
+     * @param value can include a code used to trigger simulated conditions for the
+     * purposes of testing and certification. Valid for test merchant accounts only.
+     */
+     public void setTestCase(String value) {
+          this.testCase = value;
+     }
+
+    /**
+     * Gets can include a code used to trigger simulated conditions for the purposes of
+     * testing and certification.
+     * @return can include a code used to trigger simulated conditions for the purposes of
+     * testing and certification. Valid for test merchant accounts only.
+     */
+     @JsonProperty("testCase")
+     public String getTestCase() {
+          return this.testCase;
      }
 
     /**
@@ -603,23 +626,6 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
      }
 
     /**
-     * Sets the ID of the previous transaction being referenced.
-     * @param value the ID of the previous transaction being referenced.
-     */
-     public void setTransactionId(String value) {
-          this.transactionId = value;
-     }
-
-    /**
-     * Gets the ID of the previous transaction being referenced.
-     * @return the ID of the previous transaction being referenced.
-     */
-     @JsonProperty("transactionId")
-     public String getTransactionId() {
-          return this.transactionId;
-     }
-
-    /**
      * Sets the transaction currency code.
      * @param value the transaction currency code.
      */
@@ -865,6 +871,27 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
      @JsonProperty("resetConnection")
      public boolean isResetConnection() {
           return this.resetConnection;
+     }
+
+    /**
+     * Sets can be used to update a pre-auth to a new amount, sometimes called incremental
+     * auth.
+     * @param value can be used to update a pre-auth to a new amount, sometimes called
+     * incremental auth.
+     */
+     public void setTransactionId(String value) {
+          this.transactionId = value;
+     }
+
+    /**
+     * Gets can be used to update a pre-auth to a new amount, sometimes called incremental
+     * auth.
+     * @return can be used to update a pre-auth to a new amount, sometimes called
+     * incremental auth.
+     */
+     @JsonProperty("transactionId")
+     public String getTransactionId() {
+          return this.transactionId;
      }
 
     /**

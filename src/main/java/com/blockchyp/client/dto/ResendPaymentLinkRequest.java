@@ -12,9 +12,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 /**
- * Information needed to test connectivity with a terminal.
+ * Resends a pending payment link. Payment links that have already been used or cancelled
+ * cannot be resent and the request will be rejected.
  */
-public class PingRequest implements ITimeoutRequest, ICoreRequest, ITerminalReference {
+public class ResendPaymentLinkRequest implements ITimeoutRequest, ICoreRequest {
 
      private int timeout;
 
@@ -38,9 +39,7 @@ public class PingRequest implements ITimeoutRequest, ICoreRequest, ITerminalRefe
 
      private String testCase;
 
-     private String terminalName;
-
-     private boolean resetConnection;
+     private String linkCode;
 
     /**
      * Sets the request timeout in seconds.
@@ -248,42 +247,20 @@ public class PingRequest implements ITimeoutRequest, ICoreRequest, ITerminalRefe
      }
 
     /**
-     * Sets the name of the target payment terminal.
-     * @param value the name of the target payment terminal.
+     * Sets the payment link code to cancel.
+     * @param value the payment link code to cancel.
      */
-     public void setTerminalName(String value) {
-          this.terminalName = value;
+     public void setLinkCode(String value) {
+          this.linkCode = value;
      }
 
     /**
-     * Gets the name of the target payment terminal.
-     * @return the name of the target payment terminal.
+     * Gets the payment link code to cancel.
+     * @return the payment link code to cancel.
      */
-     @JsonProperty("terminalName")
-     public String getTerminalName() {
-          return this.terminalName;
-     }
-
-    /**
-     * Sets forces the terminal cloud connection to be reset while a transactions is in
-     * flight.
-     * @param value forces the terminal cloud connection to be reset while a transactions
-     * is in flight. This is a diagnostic settings that can be used only for test
-     * transactions.
-     */
-     public void setResetConnection(boolean value) {
-          this.resetConnection = value;
-     }
-
-    /**
-     * Gets forces the terminal cloud connection to be reset while a transactions is in
-     * flight.
-     * @return forces the terminal cloud connection to be reset while a transactions is in
-     * flight. This is a diagnostic settings that can be used only for test transactions.
-     */
-     @JsonProperty("resetConnection")
-     public boolean isResetConnection() {
-          return this.resetConnection;
+     @JsonProperty("linkCode")
+     public String getLinkCode() {
+          return this.linkCode;
      }
 
 }
