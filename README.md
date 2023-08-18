@@ -29,7 +29,7 @@ The BlockChyp SDK is in Maven's Central Repository. Just add this snippet to you
 <dependency>
     <groupId>com.blockchyp</groupId>
     <artifactId>blockchyp-java</artifactId>
-    <version>2.16.0</version>
+    <version>1.16.1</version>
 </dependency>
 ```
 
@@ -38,7 +38,7 @@ The BlockChyp SDK is in Maven's Central Repository. Just add this snippet to you
 For the hipsters among you who've moved up to Gradle, try adding this snippet under dependencies in your Gradle build file.
 
 ```
-compile group: 'com.blockchyp', name: 'blockchyp-java', version:'2.16.0'
+compile group: 'com.blockchyp', name: 'blockchyp-java', version:'1.16.1'
 ```
 
 You'll also need the Maven plugin turned on. Make sure your Gradle build has something like this in it:
@@ -1232,10 +1232,10 @@ same format as all BlockChyp charge and preauth transaction responses.
 **Status Polling**
 
 If real time callbacks aren't practical or necessary in your environment, you can
-always use the Transaction Status API described below.
+always use the Payment Link Status API described futher on.
 
 A common use case for the send link API with status polling is curbside pickup.
-You could have your system check the Transaction Status when a customer arrives to
+You could have your system check the Payment Link Status when a customer arrives to
 ensure it's been paid without necessarily needing to create background threads
 to constantly poll for status updates.
 
@@ -1475,6 +1475,15 @@ public class CancelPaymentLinkExample {
 This API allows you to check on the status of a payment link, including transaction data
 and the full history of attempted transactions.
 
+This API is the preferred source of truth and best practice when you want to check on the 
+status of a payment link (as opposed to Transaction Status). The Transaction Status API is not 
+ideal because of ambiguity when there are multiple transactions associated with a single 
+payment link.
+
+You must pass the `linkCode` value associated with the payment link. It is included in the response from BlockChyp when the payment link is originally created.
+
+
+
 
 
 
@@ -1544,7 +1553,7 @@ public class PaymentLinkStatusExample {
 This API returns the current status for any transaction.  You can lookup a transaction
 by its BlockChyp assigned Transaction ID or your own Transaction Ref.
 
-You should alway use globally unique Transaction Ref values, but in the event
+You should always use globally unique Transaction Ref values, but in the event
 that you duplicate Transaction Refs, the most recent transaction matching your
 Transaction Ref is returned.
 
