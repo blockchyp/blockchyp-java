@@ -489,16 +489,16 @@ public class PaymentLinkStatusResponse implements IAbstractAcknowledgement {
      }
 
     /**
-     * Sets returns details about the last transaction status
-     * @param value returns details about the last transaction status
+     * Sets returns details about the last transaction status.
+     * @param value returns details about the last transaction status.
      */
      public void setLastTransaction(AuthorizationResponse value) {
           this.lastTransaction = value;
      }
 
     /**
-     * Gets returns details about the last transaction status
-     * @return returns details about the last transaction status
+     * Gets returns details about the last transaction status.
+     * @return returns details about the last transaction status.
      */
      @JsonProperty("lastTransaction")
      public AuthorizationResponse getLastTransaction() {
