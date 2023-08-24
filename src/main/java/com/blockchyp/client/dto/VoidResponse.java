@@ -1,5 +1,5 @@
 /**
- * Copyright 2019-2022 BlockChyp, Inc. All rights reserved. Use of this code is governed
+ * Copyright 2019-2023 BlockChyp, Inc. All rights reserved. Use of this code is governed
  * by a license that can be found in the LICENSE file.
  *
  * This file was generated automatically by the BlockChyp SDK Generator. Changes to this
@@ -54,6 +54,10 @@ public class VoidResponse implements IAbstractAcknowledgement, IApprovalResponse
      private String entryMethod;
 
      private String paymentType;
+
+     private String network;
+
+     private String logo;
 
      private String maskedPan;
 
@@ -377,20 +381,62 @@ public class VoidResponse implements IAbstractAcknowledgement, IApprovalResponse
      }
 
     /**
-     * Sets the card brand (VISA, MC, AMEX, etc).
-     * @param value the card brand (VISA, MC, AMEX, etc).
+     * Sets the card brand (VISA, MC, AMEX, DEBIT, etc).
+     * @param value the card brand (VISA, MC, AMEX, DEBIT, etc).
      */
      public void setPaymentType(String value) {
           this.paymentType = value;
      }
 
     /**
-     * Gets the card brand (VISA, MC, AMEX, etc).
-     * @return the card brand (VISA, MC, AMEX, etc).
+     * Gets the card brand (VISA, MC, AMEX, DEBIT, etc).
+     * @return the card brand (VISA, MC, AMEX, DEBIT, etc).
      */
      @JsonProperty("paymentType")
      public String getPaymentType() {
           return this.paymentType;
+     }
+
+    /**
+     * Sets provides network level detail on how a transaction was routed, especially for
+     * debit transactions.
+     * @param value provides network level detail on how a transaction was routed,
+     * especially for debit transactions.
+     */
+     public void setNetwork(String value) {
+          this.network = value;
+     }
+
+    /**
+     * Gets provides network level detail on how a transaction was routed, especially for
+     * debit transactions.
+     * @return provides network level detail on how a transaction was routed, especially
+     * for debit transactions.
+     */
+     @JsonProperty("network")
+     public String getNetwork() {
+          return this.network;
+     }
+
+    /**
+     * Sets identifies the card association based on bin number.
+     * @param value identifies the card association based on bin number. Used primarily
+     * used to indicate the major logo on a card, even when debit transactions are routed on
+     * a different network.
+     */
+     public void setLogo(String value) {
+          this.logo = value;
+     }
+
+    /**
+     * Gets identifies the card association based on bin number.
+     * @return identifies the card association based on bin number. Used primarily used
+     * to indicate the major logo on a card, even when debit transactions are routed on a
+     * different network.
+     */
+     @JsonProperty("logo")
+     public String getLogo() {
+          return this.logo;
      }
 
     /**

@@ -1,6 +1,6 @@
 # BlockChyp Java SDK
 
-[![Build Status](https://circleci.com/gh/blockchyp/blockchyp-java/tree/master.svg?style=shield)](https://circleci.com/gh/blockchyp/blockchyp-java/tree/master)
+[![Build Status](https://github.com/blockchyp/blockchyp-java/actions/workflows/main.yml/badge.svg)](https://github.com/blockchyp/blockchyp-java/actions/workflows/main.yml)
 [![Maven Central](https://img.shields.io/maven-central/v/com.blockchyp/blockchyp-java.svg)](https://search.maven.org/artifact/com.blockchyp/blockchyp-java)
 [![Javadocs](https://img.shields.io/badge/javadocs-latest-blueviolet)](https://docs.blockchyp.com/sdks/java/latest/index.html)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/blockchyp/blockchyp-java/blob/master/LICENSE)
@@ -29,7 +29,7 @@ The BlockChyp SDK is in Maven's Central Repository. Just add this snippet to you
 <dependency>
     <groupId>com.blockchyp</groupId>
     <artifactId>blockchyp-java</artifactId>
-    <version>2.15.5</version>
+    <version>2.16.2</version>
 </dependency>
 ```
 
@@ -38,7 +38,7 @@ The BlockChyp SDK is in Maven's Central Repository. Just add this snippet to you
 For the hipsters among you who've moved up to Gradle, try adding this snippet under dependencies in your Gradle build file.
 
 ```
-compile group: 'com.blockchyp', name: 'blockchyp-java', version:'2.15.5'
+compile group: 'com.blockchyp', name: 'blockchyp-java', version:'2.16.2'
 ```
 
 You'll also need the Maven plugin turned on. Make sure your Gradle build has something like this in it:
@@ -1200,6 +1200,8 @@ display additional UI widgets that allowing customers to switch to a crypto paym
 Add the `enroll` flag to a send link request to enroll the payment method
 in the token vault.
 
+Add the `enrollOnly` flag to enroll the payment method in the token vault without any immediate payment taking place. The payment link will ask the user for their payment information and inform them that they will not be charged immediately, but that their payment may be used for future transactions.
+
 **Cashier Facing Card Entry**
 
 BlockChyp can be used to generate internal/cashier facing card entry pages as well.  This is
@@ -1230,10 +1232,10 @@ same format as all BlockChyp charge and preauth transaction responses.
 **Status Polling**
 
 If real time callbacks aren't practical or necessary in your environment, you can
-always use the Transaction Status API described below.
+always use the Payment Link Status API described futher on.
 
 A common use case for the send link API with status polling is curbside pickup.
-You could have your system check the Transaction Status when a customer arrives to
+You could have your system check the Payment Link Status when a customer arrives to
 ensure it's been paid without necessarily needing to create background threads
 to constantly poll for status updates.
 
@@ -1326,6 +1328,75 @@ public class SendPaymentLinkExample {
 
 ```
 
+#### Resend Payment Link
+
+
+
+* **API Credential Types:** Merchant
+* **Required Role:** Payment API Access
+
+This API will resend a previously created payment link.  An error is returned if the payment link is expired, has been
+cancelled, or has already been paid.
+
+
+
+
+```java
+package com.blockchyp.client.examples;
+
+
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
+import com.blockchyp.client.APICredentials;
+import com.blockchyp.client.BlockChypClient;
+import com.blockchyp.client.dto.ResendPaymentLinkRequest;
+import com.blockchyp.client.dto.ResendPaymentLinkResponse;
+
+
+public class ResendPaymentLinkExample {
+
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    public static void main(String[] args) throws Exception {
+
+        APICredentials creds = new APICredentials();
+        creds.setApiKey(System.getenv("BC_API_KEY"));
+        creds.setBearerToken(System.getenv("BC_BEARER_TOKEN"));
+        creds.setSigningKey(System.getenv("BC_SIGNING_KEY"));
+
+        BlockChypClient client = new BlockChypClient(creds);
+
+        // Set request parameters
+        ResendPaymentLinkRequest request = new ResendPaymentLinkRequest();
+        request.setLinkCode("<PAYMENT LINK CODE>");
+
+        // Send the request
+        ResendPaymentLinkResponse response = client.resendPaymentLink(request);
+        // View the result
+        System.out.println("Response: " + prettyPrint(response));
+
+    }
+
+    public static String prettyPrint(Object object) throws Exception {
+
+        ObjectWriter writer = new ObjectMapper()
+            .writer()
+            .withDefaultPrettyPrinter();
+
+        return object.getClass().getSimpleName()
+            + ": "
+            + writer.writeValueAsString(object);
+
+    }
+}
+
+
+```
+
 #### Cancel Payment Link
 
 
@@ -1394,6 +1465,84 @@ public class CancelPaymentLinkExample {
 
 ```
 
+#### Payment Link Status
+
+
+
+* **API Credential Types:** Merchant
+* **Required Role:** Payment API Access
+
+This API allows you to check on the status of a payment link, including transaction data
+and the full history of attempted transactions.
+
+This API is the preferred source of truth and best practice when you want to check on the 
+status of a payment link (as opposed to Transaction Status). The Transaction Status API is not 
+ideal because of ambiguity when there are multiple transactions associated with a single 
+payment link.
+
+You must pass the `linkCode` value associated with the payment link. It is included in the response from BlockChyp when the payment link is originally created.
+
+
+
+
+
+
+```java
+package com.blockchyp.client.examples;
+
+
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
+import com.blockchyp.client.APICredentials;
+import com.blockchyp.client.BlockChypClient;
+import com.blockchyp.client.dto.PaymentLinkStatusRequest;
+import com.blockchyp.client.dto.PaymentLinkStatusResponse;
+
+
+public class PaymentLinkStatusExample {
+
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    public static void main(String[] args) throws Exception {
+
+        APICredentials creds = new APICredentials();
+        creds.setApiKey(System.getenv("BC_API_KEY"));
+        creds.setBearerToken(System.getenv("BC_BEARER_TOKEN"));
+        creds.setSigningKey(System.getenv("BC_SIGNING_KEY"));
+
+        BlockChypClient client = new BlockChypClient(creds);
+
+        // Set request parameters
+        PaymentLinkStatusRequest request = new PaymentLinkStatusRequest();
+        request.setLinkCode(setupResponse.getLinkCode());
+
+        // Send the request
+        PaymentLinkStatusResponse response = client.paymentLinkStatus(request);
+        // View the result
+        System.out.println("Response: " + prettyPrint(response));
+
+    }
+
+    public static String prettyPrint(Object object) throws Exception {
+
+        ObjectWriter writer = new ObjectMapper()
+            .writer()
+            .withDefaultPrettyPrinter();
+
+        return object.getClass().getSimpleName()
+            + ": "
+            + writer.writeValueAsString(object);
+
+    }
+}
+
+
+```
+
 #### Transaction Status
 
 
@@ -1404,7 +1553,7 @@ public class CancelPaymentLinkExample {
 This API returns the current status for any transaction.  You can lookup a transaction
 by its BlockChyp assigned Transaction ID or your own Transaction Ref.
 
-You should alway use globally unique Transaction Ref values, but in the event
+You should always use globally unique Transaction Ref values, but in the event
 that you duplicate Transaction Refs, the most recent transaction matching your
 Transaction Ref is returned.
 
@@ -2688,7 +2837,7 @@ public class MessageExample {
 * **API Credential Types:** Merchant
 * **Required Role:** Payment API Access
 
-This API Pprompts the customer to answer a yes or no question.
+This API prompts the customer to answer a yes or no question.
 
 You can specify the question or prompt with the `prompt` parameter and
 the response is returned in the `response` field.

@@ -1,5 +1,5 @@
 /**
- * Copyright 2019-2022 BlockChyp, Inc. All rights reserved. Use of this code is governed
+ * Copyright 2019-2023 BlockChyp, Inc. All rights reserved. Use of this code is governed
  * by a license that can be found in the LICENSE file.
  *
  * This file was generated automatically by the BlockChyp SDK Generator. Changes to this
@@ -98,6 +98,8 @@ import com.blockchyp.client.dto.TermsAndConditionsRequest;
 import com.blockchyp.client.dto.TermsAndConditionsResponse;
 import com.blockchyp.client.dto.AuthorizationResponse;
 import com.blockchyp.client.dto.TransactionStatusRequest;
+import com.blockchyp.client.dto.PaymentLinkStatusRequest;
+import com.blockchyp.client.dto.PaymentLinkStatusResponse;
 import com.blockchyp.client.dto.TransactionStatus;
 import com.blockchyp.client.dto.TransactionDisplayDiscount;
 import com.blockchyp.client.dto.TransactionDisplayItem;
@@ -110,6 +112,8 @@ import com.blockchyp.client.dto.PaymentLinkRequest;
 import com.blockchyp.client.dto.PaymentLinkResponse;
 import com.blockchyp.client.dto.CancelPaymentLinkRequest;
 import com.blockchyp.client.dto.CancelPaymentLinkResponse;
+import com.blockchyp.client.dto.ResendPaymentLinkRequest;
+import com.blockchyp.client.dto.ResendPaymentLinkResponse;
 import com.blockchyp.client.dto.CashDiscountRequest;
 import com.blockchyp.client.dto.CashDiscountResponse;
 import com.blockchyp.client.dto.TransactionHistoryRequest;
@@ -477,6 +481,18 @@ public class BlockChypClient {
     }
 
     /**
+     * Resends payment link.
+     * @param request the request parameters.
+     * @return {@link ResendPaymentLinkResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public ResendPaymentLinkResponse resendPaymentLink(ResendPaymentLinkRequest request) throws Exception {
+
+        return (ResendPaymentLinkResponse) postGateway("/api/resend-payment-link", request, ResendPaymentLinkResponse.class);
+
+    }
+
+    /**
      * Cancels a payment link.
      * @param request the request parameters.
      * @return {@link CancelPaymentLinkResponse}
@@ -485,6 +501,18 @@ public class BlockChypClient {
     public CancelPaymentLinkResponse cancelPaymentLink(CancelPaymentLinkRequest request) throws Exception {
 
         return (CancelPaymentLinkResponse) postGateway("/api/cancel-payment-link", request, CancelPaymentLinkResponse.class);
+
+    }
+
+    /**
+     * Retrieves the status of a payment link.
+     * @param request the request parameters.
+     * @return {@link PaymentLinkStatusResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public PaymentLinkStatusResponse paymentLinkStatus(PaymentLinkStatusRequest request) throws Exception {
+
+        return (PaymentLinkStatusResponse) postGateway("/api/payment-link-status", request, PaymentLinkStatusResponse.class);
 
     }
 

@@ -19,7 +19,7 @@ endif
 
 # Integration test config
 export BC_TEST_DELAY := 5
-IMAGE := circleci/openjdk:8-jdk-stretch
+IMAGE := circleci/openjdk:11-jdk-stretch
 SCMROOT := $(shell git rev-parse --show-toplevel)
 PWD := $(shell pwd)
 CACHE := $(HOME)/.local/share/blockchyp/itest-cache
