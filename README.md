@@ -29,7 +29,7 @@ The BlockChyp SDK is in Maven's Central Repository. Just add this snippet to you
 <dependency>
     <groupId>com.blockchyp</groupId>
     <artifactId>blockchyp-java</artifactId>
-    <version>2.16.2</version>
+    <version>2.25.23</version>
 </dependency>
 ```
 
@@ -38,7 +38,7 @@ The BlockChyp SDK is in Maven's Central Repository. Just add this snippet to you
 For the hipsters among you who've moved up to Gradle, try adding this snippet under dependencies in your Gradle build file.
 
 ```
-compile group: 'com.blockchyp', name: 'blockchyp-java', version:'2.16.2'
+compile group: 'com.blockchyp', name: 'blockchyp-java', version:'2.25.23'
 ```
 
 You'll also need the Maven plugin turned on. Make sure your Gradle build has something like this in it:
@@ -1518,7 +1518,7 @@ public class PaymentLinkStatusExample {
 
         // Set request parameters
         PaymentLinkStatusRequest request = new PaymentLinkStatusRequest();
-        request.setLinkCode(setupResponse.getLinkCode());
+        request.setLinkCode("<PAYMENT LINK CODE>");
 
         // Send the request
         PaymentLinkStatusResponse response = client.paymentLinkStatus(request);

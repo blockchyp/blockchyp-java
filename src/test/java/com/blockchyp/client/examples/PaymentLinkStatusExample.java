@@ -28,7 +28,7 @@ public class PaymentLinkStatusExample {
 
         // Set request parameters
         PaymentLinkStatusRequest request = new PaymentLinkStatusRequest();
-        request.setLinkCode(setupResponse.getLinkCode());
+        request.setLinkCode("<PAYMENT LINK CODE>");
 
         // Send the request
         PaymentLinkStatusResponse response = client.paymentLinkStatus(request);
