@@ -72,7 +72,7 @@ public class PaymentLinkStatusTest extends BaseTestCase {
 
         // Set request parameters
         PaymentLinkStatusRequest request = new PaymentLinkStatusRequest();
-        request.setTransactionRef(setupResponse.getTransactionRef());
+        request.setLinkCode(setupResponse.getLinkCode());
 
         Exception ex = null;
         try {
