@@ -179,6 +179,9 @@ import com.blockchyp.client.dto.SlideShowRequest;
 import com.blockchyp.client.dto.BrandingAssetRequest;
 import com.blockchyp.client.dto.BrandingAsset;
 import com.blockchyp.client.dto.BrandingAssetResponse;
+import com.blockchyp.client.dto.PricingPolicyRequest;
+import com.blockchyp.client.dto.PricePoint;
+import com.blockchyp.client.dto.PricingPolicyResponse;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -609,6 +612,18 @@ public class BlockChypClient {
     public TransactionHistoryResponse transactionHistory(TransactionHistoryRequest request) throws Exception {
 
         return (TransactionHistoryResponse) postGateway("/api/tx-history", request, TransactionHistoryResponse.class);
+
+    }
+
+    /**
+     * Returns pricing policy for a merchant.
+     * @param request the request parameters.
+     * @return {@link PricingPolicyResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public PricingPolicyResponse pricingPolicy(PricingPolicyRequest request) throws Exception {
+
+        return (PricingPolicyResponse) postGateway("/api/read-pricing-policy", request, PricingPolicyResponse.class);
 
     }
 

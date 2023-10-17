@@ -5967,6 +5967,76 @@ the standard underwriting process via offer codes and invitations.
 
 
 
+#### Retrieve Pricing Policy
+
+
+
+* **API Credential Types:** Partner
+* **Required Role:** Read Pricing API
+
+The API returns the current pricing policy for a merchant.  This API is valid for partner scoped API credentials
+and `merchantId` is a required parameter.  By default this API returns the currently in-force pricing policy for a merchant,
+but other inactive policies can be returned by providing the `id` parameter.
+
+
+
+
+```java
+package com.blockchyp.client.examples;
+
+
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
+import com.blockchyp.client.APICredentials;
+import com.blockchyp.client.BlockChypClient;
+import com.blockchyp.client.dto.PricingPolicyRequest;
+import com.blockchyp.client.dto.PricingPolicyResponse;
+
+
+public class PricingPolicyExample {
+
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    public static void main(String[] args) throws Exception {
+
+        APICredentials creds = new APICredentials();
+        creds.setApiKey(System.getenv("BC_API_KEY"));
+        creds.setBearerToken(System.getenv("BC_BEARER_TOKEN"));
+        creds.setSigningKey(System.getenv("BC_SIGNING_KEY"));
+
+        BlockChypClient client = new BlockChypClient(creds);
+
+        // Set request parameters
+        PricingPolicyRequest request = new PricingPolicyRequest();
+
+
+        // Send the request
+        PricingPolicyResponse response = client.pricingPolicy(request);
+        // View the result
+        System.out.println("Response: " + prettyPrint(response));
+
+    }
+
+    public static String prettyPrint(Object object) throws Exception {
+
+        ObjectWriter writer = new ObjectMapper()
+            .writer()
+            .withDefaultPrettyPrinter();
+
+        return object.getClass().getSimpleName()
+            + ": "
+            + writer.writeValueAsString(object);
+
+    }
+}
+
+
+```
+
 #### Merchant Profile
 
 
