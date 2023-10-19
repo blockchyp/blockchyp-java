@@ -6613,7 +6613,7 @@ with special roles and permissions that may require a special arrangement with B
 
 
 * **API Credential Types:** Partner
-* **Required Role:** Merchant Management
+* **Required Role:** Partner API Access
 
 The API returns a list of partner residual statements.  By default, all statements are returned with the most recent
 statements listed first.  Optional date parameters can filter statements to a specific date range.
@@ -6677,12 +6677,82 @@ public class PartnerStatementsExample {
 
 ```
 
+#### Partner Statement Detail
+
+
+
+* **API Credential Types:** Partner
+* **Required Role:** Partner API Access
+
+The API returns detailed information about a specific partner statement.  The optional `includeMerchantStatement` and
+`includeInterchange` parameters can be used to return low level detail about how the 
+residuals or commissions were computed.
+
+
+
+
+```java
+package com.blockchyp.client.examples;
+
+
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
+import com.blockchyp.client.APICredentials;
+import com.blockchyp.client.BlockChypClient;
+import com.blockchyp.client.dto.PartnerStatementDetailRequest;
+import com.blockchyp.client.dto.PartnerStatementDetailResponse;
+
+
+public class PartnerStatementDetailExample {
+
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    public static void main(String[] args) throws Exception {
+
+        APICredentials creds = new APICredentials();
+        creds.setApiKey(System.getenv("BC_API_KEY"));
+        creds.setBearerToken(System.getenv("BC_BEARER_TOKEN"));
+        creds.setSigningKey(System.getenv("BC_SIGNING_KEY"));
+
+        BlockChypClient client = new BlockChypClient(creds);
+
+        // Set request parameters
+        PartnerStatementDetailRequest request = new PartnerStatementDetailRequest();
+
+
+        // Send the request
+        PartnerStatementDetailResponse response = client.partnerStatementDetail(request);
+        // View the result
+        System.out.println("Response: " + prettyPrint(response));
+
+    }
+
+    public static String prettyPrint(Object object) throws Exception {
+
+        ObjectWriter writer = new ObjectMapper()
+            .writer()
+            .withDefaultPrettyPrinter();
+
+        return object.getClass().getSimpleName()
+            + ": "
+            + writer.writeValueAsString(object);
+
+    }
+}
+
+
+```
+
 #### Retrieve Pricing Policy
 
 
 
 * **API Credential Types:** Partner
-* **Required Role:** Read Pricing API
+* **Required Role:** Partner API Access
 
 The API returns the current pricing policy for a merchant.  This API is valid for partner scoped API credentials
 and `merchantId` is a required parameter.  By default this API returns the currently in-force pricing policy for a merchant,

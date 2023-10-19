@@ -1,0 +1,115 @@
+/**
+ * Copyright 2019-2023 BlockChyp, Inc. All rights reserved. Use of this code is governed
+ * by a license that can be found in the LICENSE file.
+ *
+ * This file was generated automatically by the BlockChyp SDK Generator. Changes to this
+ * file will be lost every time the code is regenerated.
+ */
+
+package com.blockchyp.client.dto;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+
+/**
+ * Models a request to retrieve detailed partner statement information.
+ */
+public class PartnerStatementDetailRequest implements ITimeoutRequest {
+
+     private int timeout;
+
+     private boolean test;
+
+     private String id;
+
+     private boolean includeMerchantStatement;
+
+     private boolean includeInterchange;
+
+    /**
+     * Sets the request timeout in seconds.
+     * @param value the request timeout in seconds.
+     */
+     public void setTimeout(int value) {
+          this.timeout = value;
+     }
+
+    /**
+     * Gets the request timeout in seconds.
+     * @return the request timeout in seconds.
+     */
+     @JsonProperty("timeout")
+     public int getTimeout() {
+          return this.timeout;
+     }
+
+    /**
+     * Sets whether or not to route transaction to the test gateway.
+     * @param value whether or not to route transaction to the test gateway.
+     */
+     public void setTest(boolean value) {
+          this.test = value;
+     }
+
+    /**
+     * Gets whether or not to route transaction to the test gateway.
+     * @return whether or not to route transaction to the test gateway.
+     */
+     @JsonProperty("test")
+     public boolean isTest() {
+          return this.test;
+     }
+
+    /**
+     * Sets optional start date filter for batch history.
+     * @param value optional start date filter for batch history.
+     */
+     public void setId(String value) {
+          this.id = value;
+     }
+
+    /**
+     * Gets optional start date filter for batch history.
+     * @return optional start date filter for batch history.
+     */
+     @JsonProperty("id")
+     public String getId() {
+          return this.id;
+     }
+
+    /**
+     * Sets that the full merchant statement should be included in the response.
+     * @param value that the full merchant statement should be included in the response.
+     */
+     public void setIncludeMerchantStatement(boolean value) {
+          this.includeMerchantStatement = value;
+     }
+
+    /**
+     * Gets that the full merchant statement should be included in the response.
+     * @return that the full merchant statement should be included in the response.
+     */
+     @JsonProperty("includeMerchantStatement")
+     public boolean isIncludeMerchantStatement() {
+          return this.includeMerchantStatement;
+     }
+
+    /**
+     * Sets that interchange and all other related cost details should be returned.
+     * @param value that interchange and all other related cost details should be
+     * returned.
+     */
+     public void setIncludeInterchange(boolean value) {
+          this.includeInterchange = value;
+     }
+
+    /**
+     * Gets that interchange and all other related cost details should be returned.
+     * @return that interchange and all other related cost details should be returned.
+     */
+     @JsonProperty("includeInterchange")
+     public boolean isIncludeInterchange() {
+          return this.includeInterchange;
+     }
+
+}

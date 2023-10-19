@@ -185,6 +185,8 @@ import com.blockchyp.client.dto.PricingPolicyResponse;
 import com.blockchyp.client.dto.PartnerStatementListRequest;
 import com.blockchyp.client.dto.PartnerStatementSummary;
 import com.blockchyp.client.dto.PartnerStatementListResponse;
+import com.blockchyp.client.dto.PartnerStatementDetailRequest;
+import com.blockchyp.client.dto.PartnerStatementDetailResponse;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -619,7 +621,7 @@ public class BlockChypClient {
     }
 
     /**
-     * Returns pricing policy for a merchant.
+     * Returns a list of partner statements.
      * @param request the request parameters.
      * @return {@link PartnerStatementListResponse}
      * @throws Exception exception if any errors occurred processing the request.
@@ -627,6 +629,18 @@ public class BlockChypClient {
     public PartnerStatementListResponse partnerStatements(PartnerStatementListRequest request) throws Exception {
 
         return (PartnerStatementListResponse) postGateway("/api/partner-statement-list", request, PartnerStatementListResponse.class);
+
+    }
+
+    /**
+     * Returns detail for a single partner statement.
+     * @param request the request parameters.
+     * @return {@link PartnerStatementDetailResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public PartnerStatementDetailResponse partnerStatementDetail(PartnerStatementDetailRequest request) throws Exception {
+
+        return (PartnerStatementDetailResponse) postGateway("/api/partner-statement-detail", request, PartnerStatementDetailResponse.class);
 
     }
 
