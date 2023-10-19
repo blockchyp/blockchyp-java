@@ -182,6 +182,9 @@ import com.blockchyp.client.dto.BrandingAssetResponse;
 import com.blockchyp.client.dto.PricingPolicyRequest;
 import com.blockchyp.client.dto.PricePoint;
 import com.blockchyp.client.dto.PricingPolicyResponse;
+import com.blockchyp.client.dto.PartnerStatementListRequest;
+import com.blockchyp.client.dto.PartnerStatementSummary;
+import com.blockchyp.client.dto.PartnerStatementListResponse;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -612,6 +615,18 @@ public class BlockChypClient {
     public TransactionHistoryResponse transactionHistory(TransactionHistoryRequest request) throws Exception {
 
         return (TransactionHistoryResponse) postGateway("/api/tx-history", request, TransactionHistoryResponse.class);
+
+    }
+
+    /**
+     * Returns pricing policy for a merchant.
+     * @param request the request parameters.
+     * @return {@link PartnerStatementListResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public PartnerStatementListResponse partnerStatements(PartnerStatementListRequest request) throws Exception {
+
+        return (PartnerStatementListResponse) postGateway("/api/partner-statement-list", request, PartnerStatementListResponse.class);
 
     }
 
