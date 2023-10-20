@@ -10,11 +10,14 @@ package com.blockchyp.client.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
 /**
  * Models a response to retrieve detailed partner statement information.
  */
+@SuppressWarnings({"rawtypes", "unchecked"})
 public class PartnerStatementDetailResponse implements IAbstractAcknowledgement {
 
      private boolean success;
@@ -30,6 +33,28 @@ public class PartnerStatementDetailResponse implements IAbstractAcknowledgement 
      private String partnerName;
 
      private Date statementDate;
+
+     private float totalVolume;
+
+     private String totalVolumeFormatted;
+
+     private int transactionCount;
+
+     private float partnerCommission;
+
+     private String partnerCommissionFormatted;
+
+     private float partnerCommissionsOnVolume;
+
+     private String partnerCommissionsOnVolumeFormatted;
+
+     private String status;
+
+     private Collection<PartnerStatementLineItem> lineItems;
+
+     private Collection<PartnerStatementAdjustment> adjustments;
+
+     private Collection<PartnerStatementDisbursement> disbursements;
 
     /**
      * Sets whether or not the request succeeded.
@@ -148,6 +173,234 @@ public class PartnerStatementDetailResponse implements IAbstractAcknowledgement 
      @JsonProperty("statementDate")
      public Date getStatementDate() {
           return this.statementDate;
+     }
+
+    /**
+     * Sets total volume in numeric format.
+     * @param value total volume in numeric format.
+     */
+     public void setTotalVolume(float value) {
+          this.totalVolume = value;
+     }
+
+    /**
+     * Gets total volume in numeric format.
+     * @return total volume in numeric format.
+     */
+     @JsonProperty("totalVolume")
+     public float getTotalVolume() {
+          return this.totalVolume;
+     }
+
+    /**
+     * Sets the string formatted total volume on the statement.
+     * @param value the string formatted total volume on the statement.
+     */
+     public void setTotalVolumeFormatted(String value) {
+          this.totalVolumeFormatted = value;
+     }
+
+    /**
+     * Gets the string formatted total volume on the statement.
+     * @return the string formatted total volume on the statement.
+     */
+     @JsonProperty("totalVolumeFormatted")
+     public String getTotalVolumeFormatted() {
+          return this.totalVolumeFormatted;
+     }
+
+    /**
+     * Sets the total volume on the statement.
+     * @param value the total volume on the statement.
+     */
+     public void setTransactionCount(int value) {
+          this.transactionCount = value;
+     }
+
+    /**
+     * Gets the total volume on the statement.
+     * @return the total volume on the statement.
+     */
+     @JsonProperty("transactionCount")
+     public int getTransactionCount() {
+          return this.transactionCount;
+     }
+
+    /**
+     * Sets the commission earned on the portfolio during the statement period.
+     * @param value the commission earned on the portfolio during the statement period.
+     */
+     public void setPartnerCommission(float value) {
+          this.partnerCommission = value;
+     }
+
+    /**
+     * Gets the commission earned on the portfolio during the statement period.
+     * @return the commission earned on the portfolio during the statement period.
+     */
+     @JsonProperty("partnerCommission")
+     public float getPartnerCommission() {
+          return this.partnerCommission;
+     }
+
+    /**
+     * Sets the string formatted partner commission on the statement.
+     * @param value the string formatted partner commission on the statement.
+     */
+     public void setPartnerCommissionFormatted(String value) {
+          this.partnerCommissionFormatted = value;
+     }
+
+    /**
+     * Gets the string formatted partner commission on the statement.
+     * @return the string formatted partner commission on the statement.
+     */
+     @JsonProperty("partnerCommissionFormatted")
+     public String getPartnerCommissionFormatted() {
+          return this.partnerCommissionFormatted;
+     }
+
+    /**
+     * Sets the partner commission earned on the portfolio during the statement period as
+     * a ratio against volume.
+     * @param value the partner commission earned on the portfolio during the statement
+     * period as a ratio against volume.
+     */
+     public void setPartnerCommissionsOnVolume(float value) {
+          this.partnerCommissionsOnVolume = value;
+     }
+
+    /**
+     * Gets the partner commission earned on the portfolio during the statement period as
+     * a ratio against volume.
+     * @return the partner commission earned on the portfolio during the statement
+     * period as a ratio against volume.
+     */
+     @JsonProperty("partnerCommissionsOnVolume")
+     public float getPartnerCommissionsOnVolume() {
+          return this.partnerCommissionsOnVolume;
+     }
+
+    /**
+     * Sets the string formatted version of partner commissions as a percentage of
+     * volume.
+     * @param value the string formatted version of partner commissions as a percentage
+     * of volume.
+     */
+     public void setPartnerCommissionsOnVolumeFormatted(String value) {
+          this.partnerCommissionsOnVolumeFormatted = value;
+     }
+
+    /**
+     * Gets the string formatted version of partner commissions as a percentage of
+     * volume.
+     * @return the string formatted version of partner commissions as a percentage of
+     * volume.
+     */
+     @JsonProperty("partnerCommissionsOnVolumeFormatted")
+     public String getPartnerCommissionsOnVolumeFormatted() {
+          return this.partnerCommissionsOnVolumeFormatted;
+     }
+
+    /**
+     * Sets the status of the statement.
+     * @param value the status of the statement.
+     */
+     public void setStatus(String value) {
+          this.status = value;
+     }
+
+    /**
+     * Gets the status of the statement.
+     * @return the status of the statement.
+     */
+     @JsonProperty("status")
+     public String getStatus() {
+          return this.status;
+     }
+
+    /**
+     * Sets
+     * @param value
+     */
+     public void setLineItems(Collection<PartnerStatementLineItem> value) {
+          this.lineItems = value;
+     }
+
+    /**
+     * Gets
+     * @return
+     */
+     @JsonProperty("lineItems")
+     public Collection<PartnerStatementLineItem> getLineItems() {
+          return this.lineItems;
+     }
+
+    /**
+     * Sets
+     * @param value
+     */
+     public void setAdjustments(Collection<PartnerStatementAdjustment> value) {
+          this.adjustments = value;
+     }
+
+    /**
+     * Gets
+     * @return
+     */
+     @JsonProperty("adjustments")
+     public Collection<PartnerStatementAdjustment> getAdjustments() {
+          return this.adjustments;
+     }
+
+    /**
+     * Sets
+     * @param value
+     */
+     public void setDisbursements(Collection<PartnerStatementDisbursement> value) {
+          this.disbursements = value;
+     }
+
+    /**
+     * Gets
+     * @return
+     */
+     @JsonProperty("disbursements")
+     public Collection<PartnerStatementDisbursement> getDisbursements() {
+          return this.disbursements;
+     }
+
+    /**
+     * Adds a
+     * @param value
+     */
+     public void addLineItem(PartnerStatementLineItem value) {
+          if (this.lineItems == null) {
+               this.lineItems = new ArrayList();
+          }
+          this.lineItems.add(value);
+     }
+
+    /**
+     * Adds a
+     * @param value
+     */
+     public void addAdjustment(PartnerStatementAdjustment value) {
+          if (this.adjustments == null) {
+               this.adjustments = new ArrayList();
+          }
+          this.adjustments.add(value);
+     }
+
+    /**
+     * Adds a
+     * @param value
+     */
+     public void addDisbursement(PartnerStatementDisbursement value) {
+          if (this.disbursements == null) {
+               this.disbursements = new ArrayList();
+          }
+          this.disbursements.add(value);
      }
 
 }
