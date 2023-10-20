@@ -12,9 +12,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 /**
- * Models a request to retrieve detailed partner statement information.
+ * Models a request to retrieve detailed merchant invoice information.
  */
-public class PartnerStatementDetailRequest implements ITimeoutRequest {
+public class MerchantInvoiceDetailRequest implements ITimeoutRequest {
 
      private int timeout;
 
@@ -57,16 +57,16 @@ public class PartnerStatementDetailRequest implements ITimeoutRequest {
      }
 
     /**
-     * Sets optional start date filter for batch history.
-     * @param value optional start date filter for batch history.
+     * Sets the invoice id.
+     * @param value the invoice id.
      */
      public void setId(String value) {
           this.id = value;
      }
 
     /**
-     * Gets optional start date filter for batch history.
-     * @return optional start date filter for batch history.
+     * Gets the invoice id.
+     * @return the invoice id.
      */
      @JsonProperty("id")
      public String getId() {

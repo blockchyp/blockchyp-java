@@ -190,6 +190,10 @@ import com.blockchyp.client.dto.PartnerStatementDetailResponse;
 import com.blockchyp.client.dto.PartnerStatementLineItem;
 import com.blockchyp.client.dto.PartnerStatementDisbursement;
 import com.blockchyp.client.dto.PartnerStatementAdjustment;
+import com.blockchyp.client.dto.MerchantInvoiceListRequest;
+import com.blockchyp.client.dto.MerchantInvoiceListResponse;
+import com.blockchyp.client.dto.MerchantInvoiceSummary;
+import com.blockchyp.client.dto.MerchantInvoiceDetailRequest;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -632,6 +636,18 @@ public class BlockChypClient {
     public PartnerStatementListResponse partnerStatements(PartnerStatementListRequest request) throws Exception {
 
         return (PartnerStatementListResponse) postGateway("/api/partner-statement-list", request, PartnerStatementListResponse.class);
+
+    }
+
+    /**
+     * Returns a list of merchant invoices.
+     * @param request the request parameters.
+     * @return {@link MerchantInvoiceListResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public MerchantInvoiceListResponse merchantInvoices(MerchantInvoiceListRequest request) throws Exception {
+
+        return (MerchantInvoiceListResponse) postGateway("/api/merchant-invoice-list", request, MerchantInvoiceListResponse.class);
 
     }
 
