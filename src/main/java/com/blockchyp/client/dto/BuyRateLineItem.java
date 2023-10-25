@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 /**
- * 
+ * Models a single buy rate calculation line item.
  */
 public class BuyRateLineItem {
 

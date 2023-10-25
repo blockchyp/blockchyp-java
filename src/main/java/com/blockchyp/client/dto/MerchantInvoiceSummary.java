@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 
 /**
- * 
+ * Models basic information about a merchant invoice for use in list or search results.
  */
 public class MerchantInvoiceSummary {
 

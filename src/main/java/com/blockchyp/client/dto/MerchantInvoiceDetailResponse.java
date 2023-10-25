@@ -15,7 +15,7 @@ import java.util.Collection;
 import java.util.Date;
 
 /**
- * 
+ * Models detailed merchant invoice or statement information.
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class MerchantInvoiceDetailResponse implements IAbstractAcknowledgement {

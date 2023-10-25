@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 /**
- * 
+ * Models information about merchant deposits during a statement period.
  */
 public class StatementDeposit {
 

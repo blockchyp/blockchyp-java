@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 
 /**
- * 
+ * Models partner statement adjustments.
  */
 public class PartnerStatementAdjustment {
 

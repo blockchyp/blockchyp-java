@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 /**
- * 
+ * Models statistics for low level aggregation line items.
  */
 public class AggregateBillingLineItemStats {
 

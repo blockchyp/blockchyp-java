@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 
 /**
- * 
+ * Models line item level data for a partner statement.
  */
 public class PartnerStatementLineItem {
 

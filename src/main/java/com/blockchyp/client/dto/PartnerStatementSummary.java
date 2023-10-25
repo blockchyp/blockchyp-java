@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 
 /**
- * 
+ * Models a basic information about partner statements for use in list or search results.
  */
 public class PartnerStatementSummary {
 

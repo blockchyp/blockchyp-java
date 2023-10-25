@@ -15,7 +15,8 @@ import java.util.Collection;
 import java.util.Date;
 
 /**
- * 
+ * Models detailed information about how partner commissions were calculated for a
+ * statement.
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgement {

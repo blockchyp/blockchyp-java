@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 
 /**
- * 
+ * Models details about disbursements related to partner statements.
  */
 public class PartnerStatementDisbursement {
 

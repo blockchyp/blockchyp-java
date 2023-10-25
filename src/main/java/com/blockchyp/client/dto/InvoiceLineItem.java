@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * 
+ * Models a single invoice or merchant statement line item.
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class InvoiceLineItem {

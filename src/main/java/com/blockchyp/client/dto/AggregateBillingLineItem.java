@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * 
+ * Models low level aggregated and nested data line items.
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class AggregateBillingLineItem {

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * 
+ * Models a response to an invoice list request.
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class MerchantInvoiceListResponse implements IAbstractAcknowledgement {

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * 
+ * Models results to a partner statement list inquiry.
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class PartnerStatementListResponse implements IAbstractAcknowledgement {
