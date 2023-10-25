@@ -198,6 +198,11 @@ import com.blockchyp.client.dto.MerchantInvoiceDetailResponse;
 import com.blockchyp.client.dto.InvoiceLineItem;
 import com.blockchyp.client.dto.InvoicePayment;
 import com.blockchyp.client.dto.StatementDeposit;
+import com.blockchyp.client.dto.PartnerCommissionBreakdownRequest;
+import com.blockchyp.client.dto.PartnerCommissionBreakdownResponse;
+import com.blockchyp.client.dto.BuyRateLineItem;
+import com.blockchyp.client.dto.AggregateBillingLineItem;
+import com.blockchyp.client.dto.AggregateBillingLineItemStats;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -688,6 +693,19 @@ public class BlockChypClient {
     public PricingPolicyResponse pricingPolicy(PricingPolicyRequest request) throws Exception {
 
         return (PricingPolicyResponse) postGateway("/api/read-pricing-policy", request, PricingPolicyResponse.class);
+
+    }
+
+    /**
+     * Returns low level details for how partner commissions were calculated for a
+     * specific merchant statement.
+     * @param request the request parameters.
+     * @return {@link PartnerCommissionBreakdownResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public PartnerCommissionBreakdownResponse partnerCommissionBreakdown(PartnerCommissionBreakdownRequest request) throws Exception {
+
+        return (PartnerCommissionBreakdownResponse) postGateway("/api/partner-commission-breakdown", request, PartnerCommissionBreakdownResponse.class);
 
     }
 
