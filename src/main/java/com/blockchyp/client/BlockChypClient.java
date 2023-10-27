@@ -637,6 +637,18 @@ public class BlockChypClient {
     }
 
     /**
+     * Returns pricing policy for a merchant.
+     * @param request the request parameters.
+     * @return {@link PricingPolicyResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public PricingPolicyResponse pricingPolicy(PricingPolicyRequest request) throws Exception {
+
+        return (PricingPolicyResponse) postGateway("/api/read-pricing-policy", request, PricingPolicyResponse.class);
+
+    }
+
+    /**
      * Returns a list of partner statements.
      * @param request the request parameters.
      * @return {@link PartnerStatementListResponse}
@@ -681,18 +693,6 @@ public class BlockChypClient {
     public PartnerStatementDetailResponse partnerStatementDetail(PartnerStatementDetailRequest request) throws Exception {
 
         return (PartnerStatementDetailResponse) postGateway("/api/partner-statement-detail", request, PartnerStatementDetailResponse.class);
-
-    }
-
-    /**
-     * Returns pricing policy for a merchant.
-     * @param request the request parameters.
-     * @return {@link PricingPolicyResponse}
-     * @throws Exception exception if any errors occurred processing the request.
-     */
-    public PricingPolicyResponse pricingPolicy(PricingPolicyRequest request) throws Exception {
-
-        return (PricingPolicyResponse) postGateway("/api/read-pricing-policy", request, PricingPolicyResponse.class);
 
     }
 
