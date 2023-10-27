@@ -79,16 +79,16 @@ public class MerchantInvoiceListResponse implements IAbstractAcknowledgement {
      }
 
     /**
-     * Sets
-     * @param value
+     * Sets the list of invoices returned by the request.
+     * @param value the list of invoices returned by the request.
      */
      public void setInvoices(Collection<MerchantInvoiceSummary> value) {
           this.invoices = value;
      }
 
     /**
-     * Gets
-     * @return
+     * Gets the list of invoices returned by the request.
+     * @return the list of invoices returned by the request.
      */
      @JsonProperty("invoices")
      public Collection<MerchantInvoiceSummary> getInvoices() {
@@ -96,8 +96,8 @@ public class MerchantInvoiceListResponse implements IAbstractAcknowledgement {
      }
 
     /**
-     * Adds a
-     * @param value
+     * Adds a the list of invoices returned by the request.
+     * @param value the list of invoices returned by the request.
      */
      public void addInvoice(MerchantInvoiceSummary value) {
           if (this.invoices == null) {

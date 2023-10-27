@@ -880,16 +880,17 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      }
 
     /**
-     * Sets
-     * @param value
+     * Sets the list of line items documenting how the total buy rate was calculated.
+     * @param value the list of line items documenting how the total buy rate was
+     * calculated.
      */
      public void setBuyRateLineItems(Collection<BuyRateLineItem> value) {
           this.buyRateLineItems = value;
      }
 
     /**
-     * Gets
-     * @return
+     * Gets the list of line items documenting how the total buy rate was calculated.
+     * @return the list of line items documenting how the total buy rate was calculated.
      */
      @JsonProperty("buyRateLineItems")
      public Collection<BuyRateLineItem> getBuyRateLineItems() {
@@ -897,16 +898,20 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      }
 
     /**
-     * Sets
-     * @param value
+     * Sets the list of detail lines describing how revenue was calculated and collected
+     * by the sponsor bank.
+     * @param value the list of detail lines describing how revenue was calculated and
+     * collected by the sponsor bank.
      */
      public void setRevenueDetails(Collection<AggregateBillingLineItem> value) {
           this.revenueDetails = value;
      }
 
     /**
-     * Gets
-     * @return
+     * Gets the list of detail lines describing how revenue was calculated and collected
+     * by the sponsor bank.
+     * @return the list of detail lines describing how revenue was calculated and
+     * collected by the sponsor bank.
      */
      @JsonProperty("revenueDetails")
      public Collection<AggregateBillingLineItem> getRevenueDetails() {
@@ -914,16 +919,20 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      }
 
     /**
-     * Sets
-     * @param value
+     * Sets the nested list of costs levied by the card brands, grouped by card brand and
+     * type.
+     * @param value the nested list of costs levied by the card brands, grouped by card
+     * brand and type.
      */
      public void setCardBrandCostDetails(Collection<AggregateBillingLineItem> value) {
           this.cardBrandCostDetails = value;
      }
 
     /**
-     * Gets
-     * @return
+     * Gets the nested list of costs levied by the card brands, grouped by card brand and
+     * type.
+     * @return the nested list of costs levied by the card brands, grouped by card brand and
+     * type.
      */
      @JsonProperty("cardBrandCostDetails")
      public Collection<AggregateBillingLineItem> getCardBrandCostDetails() {
@@ -931,8 +940,9 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      }
 
     /**
-     * Adds a
-     * @param value
+     * Adds a the list of line items documenting how the total buy rate was calculated.
+     * @param value the list of line items documenting how the total buy rate was
+     * calculated.
      */
      public void addBuyRateLineItem(BuyRateLineItem value) {
           if (this.buyRateLineItems == null) {
@@ -942,8 +952,10 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      }
 
     /**
-     * Adds a
-     * @param value
+     * Adds a the list of detail lines describing how revenue was calculated and collected
+     * by the sponsor bank.
+     * @param value the list of detail lines describing how revenue was calculated and
+     * collected by the sponsor bank.
      */
      public void addRevenueDetail(AggregateBillingLineItem value) {
           if (this.revenueDetails == null) {
@@ -953,8 +965,10 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      }
 
     /**
-     * Adds a
-     * @param value
+     * Adds a the nested list of costs levied by the card brands, grouped by card brand and
+     * type.
+     * @param value the nested list of costs levied by the card brands, grouped by card
+     * brand and type.
      */
      public void addCardBrandCostDetail(AggregateBillingLineItem value) {
           if (this.cardBrandCostDetails == null) {

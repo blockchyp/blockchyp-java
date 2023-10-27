@@ -320,16 +320,16 @@ public class PartnerStatementDetailResponse implements IAbstractAcknowledgement 
      }
 
     /**
-     * Sets
-     * @param value
+     * Sets the line item detail associated with the statement.
+     * @param value the line item detail associated with the statement.
      */
      public void setLineItems(Collection<PartnerStatementLineItem> value) {
           this.lineItems = value;
      }
 
     /**
-     * Gets
-     * @return
+     * Gets the line item detail associated with the statement.
+     * @return the line item detail associated with the statement.
      */
      @JsonProperty("lineItems")
      public Collection<PartnerStatementLineItem> getLineItems() {
@@ -337,16 +337,16 @@ public class PartnerStatementDetailResponse implements IAbstractAcknowledgement 
      }
 
     /**
-     * Sets
-     * @param value
+     * Sets the list of adjustments made against the statement, if any.
+     * @param value the list of adjustments made against the statement, if any.
      */
      public void setAdjustments(Collection<PartnerStatementAdjustment> value) {
           this.adjustments = value;
      }
 
     /**
-     * Gets
-     * @return
+     * Gets the list of adjustments made against the statement, if any.
+     * @return the list of adjustments made against the statement, if any.
      */
      @JsonProperty("adjustments")
      public Collection<PartnerStatementAdjustment> getAdjustments() {
@@ -354,16 +354,17 @@ public class PartnerStatementDetailResponse implements IAbstractAcknowledgement 
      }
 
     /**
-     * Sets
-     * @param value
+     * Sets the list of partner disbursements made against the partner statement.
+     * @param value the list of partner disbursements made against the partner
+     * statement.
      */
      public void setDisbursements(Collection<PartnerStatementDisbursement> value) {
           this.disbursements = value;
      }
 
     /**
-     * Gets
-     * @return
+     * Gets the list of partner disbursements made against the partner statement.
+     * @return the list of partner disbursements made against the partner statement.
      */
      @JsonProperty("disbursements")
      public Collection<PartnerStatementDisbursement> getDisbursements() {
@@ -371,8 +372,8 @@ public class PartnerStatementDetailResponse implements IAbstractAcknowledgement 
      }
 
     /**
-     * Adds a
-     * @param value
+     * Adds a the line item detail associated with the statement.
+     * @param value the line item detail associated with the statement.
      */
      public void addLineItem(PartnerStatementLineItem value) {
           if (this.lineItems == null) {
@@ -382,8 +383,8 @@ public class PartnerStatementDetailResponse implements IAbstractAcknowledgement 
      }
 
     /**
-     * Adds a
-     * @param value
+     * Adds a the list of adjustments made against the statement, if any.
+     * @param value the list of adjustments made against the statement, if any.
      */
      public void addAdjustment(PartnerStatementAdjustment value) {
           if (this.adjustments == null) {
@@ -393,8 +394,9 @@ public class PartnerStatementDetailResponse implements IAbstractAcknowledgement 
      }
 
     /**
-     * Adds a
-     * @param value
+     * Adds a the list of partner disbursements made against the partner statement.
+     * @param value the list of partner disbursements made against the partner
+     * statement.
      */
      public void addDisbursement(PartnerStatementDisbursement value) {
           if (this.disbursements == null) {

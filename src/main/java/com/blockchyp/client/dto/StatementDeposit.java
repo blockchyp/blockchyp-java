@@ -74,16 +74,16 @@ public class StatementDeposit {
      }
 
     /**
-     * Sets batch id associated with the deposit.
-     * @param value batch id associated with the deposit.
+     * Sets the batch id associated with the deposit.
+     * @param value the batch id associated with the deposit.
      */
      public void setBatchId(String value) {
           this.batchId = value;
      }
 
     /**
-     * Gets batch id associated with the deposit.
-     * @return batch id associated with the deposit.
+     * Gets the batch id associated with the deposit.
+     * @return the batch id associated with the deposit.
      */
      @JsonProperty("batchId")
      public String getBatchId() {
@@ -91,16 +91,16 @@ public class StatementDeposit {
      }
 
     /**
-     * Sets are the prepaid fees associated with the batch.
-     * @param value are the prepaid fees associated with the batch.
+     * Sets the prepaid fees associated with the batch.
+     * @param value the prepaid fees associated with the batch.
      */
      public void setFeesPaid(float value) {
           this.feesPaid = value;
      }
 
     /**
-     * Gets are the prepaid fees associated with the batch.
-     * @return are the prepaid fees associated with the batch.
+     * Gets the prepaid fees associated with the batch.
+     * @return the prepaid fees associated with the batch.
      */
      @JsonProperty("feesPaid")
      public float getFeesPaid() {

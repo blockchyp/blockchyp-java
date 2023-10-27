@@ -19,6 +19,8 @@ public class PartnerStatementLineItem {
 
      private String id;
 
+     private String invoiceId;
+
      private float totalFees;
 
      private String totalFeesFormatted;
@@ -84,6 +86,23 @@ public class PartnerStatementLineItem {
      @JsonProperty("id")
      public String getId() {
           return this.id;
+     }
+
+    /**
+     * Sets the invoice id for the underlying merchant statement.
+     * @param value the invoice id for the underlying merchant statement.
+     */
+     public void setInvoiceId(String value) {
+          this.invoiceId = value;
+     }
+
+    /**
+     * Gets the invoice id for the underlying merchant statement.
+     * @return the invoice id for the underlying merchant statement.
+     */
+     @JsonProperty("invoiceId")
+     public String getInvoiceId() {
+          return this.invoiceId;
      }
 
     /**
@@ -189,16 +208,16 @@ public class PartnerStatementLineItem {
      }
 
     /**
-     * Sets the dba name of the merchant
-     * @param value the dba name of the merchant
+     * Sets the dba name of the merchant.
+     * @param value the dba name of the merchant.
      */
      public void setDbaName(String value) {
           this.dbaName = value;
      }
 
     /**
-     * Gets the dba name of the merchant
-     * @return the dba name of the merchant
+     * Gets the dba name of the merchant.
+     * @return the dba name of the merchant.
      */
      @JsonProperty("dbaName")
      public String getDbaName() {
