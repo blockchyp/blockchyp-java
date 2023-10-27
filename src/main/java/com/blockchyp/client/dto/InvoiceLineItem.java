@@ -345,16 +345,16 @@ public class InvoiceLineItem {
      }
 
     /**
-     * Sets
-     * @param value
+     * Sets the list of nested line items, if any.
+     * @param value the list of nested line items, if any.
      */
      public void setLineItems(Collection<InvoiceLineItem> value) {
           this.lineItems = value;
      }
 
     /**
-     * Gets
-     * @return
+     * Gets the list of nested line items, if any.
+     * @return the list of nested line items, if any.
      */
      @JsonProperty("lineItems")
      public Collection<InvoiceLineItem> getLineItems() {
@@ -362,8 +362,8 @@ public class InvoiceLineItem {
      }
 
     /**
-     * Adds a
-     * @param value
+     * Adds a the list of nested line items, if any.
+     * @param value the list of nested line items, if any.
      */
      public void addLineItem(InvoiceLineItem value) {
           if (this.lineItems == null) {
