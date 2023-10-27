@@ -661,6 +661,18 @@ public class BlockChypClient {
     }
 
     /**
+     * Returns detail for a single partner statement.
+     * @param request the request parameters.
+     * @return {@link PartnerStatementDetailResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public PartnerStatementDetailResponse partnerStatementDetail(PartnerStatementDetailRequest request) throws Exception {
+
+        return (PartnerStatementDetailResponse) postGateway("/api/partner-statement-detail", request, PartnerStatementDetailResponse.class);
+
+    }
+
+    /**
      * Returns a list of merchant invoices.
      * @param request the request parameters.
      * @return {@link MerchantInvoiceListResponse}
@@ -681,18 +693,6 @@ public class BlockChypClient {
     public MerchantInvoiceDetailResponse merchantInvoiceDetail(MerchantInvoiceDetailRequest request) throws Exception {
 
         return (MerchantInvoiceDetailResponse) postGateway("/api/merchant-invoice-detail", request, MerchantInvoiceDetailResponse.class);
-
-    }
-
-    /**
-     * Returns detail for a single partner statement.
-     * @param request the request parameters.
-     * @return {@link PartnerStatementDetailResponse}
-     * @throws Exception exception if any errors occurred processing the request.
-     */
-    public PartnerStatementDetailResponse partnerStatementDetail(PartnerStatementDetailRequest request) throws Exception {
-
-        return (PartnerStatementDetailResponse) postGateway("/api/partner-statement-detail", request, PartnerStatementDetailResponse.class);
 
     }
 

@@ -6775,6 +6775,78 @@ public class PartnerStatementsExample {
 
 ```
 
+#### Partner Statement Detail
+
+
+
+* **API Credential Types:** Partner
+* **Required Role:** Partner API Access
+
+The API returns detailed information about a specific partner statement.  Aggregate data is returned along with
+line item level data for each underlying merchant statement.
+
+Use the merchant statement id with the *Merchant Statement Detail* API and the *Partner Commission Breakdown* API 
+to get the merchant statement and the card brand fee and misc cost breakdown respectively.
+
+
+
+
+```java
+package com.blockchyp.client.examples;
+
+
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
+import com.blockchyp.client.APICredentials;
+import com.blockchyp.client.BlockChypClient;
+import com.blockchyp.client.dto.PartnerStatementDetailRequest;
+import com.blockchyp.client.dto.PartnerStatementDetailResponse;
+
+
+public class PartnerStatementDetailExample {
+
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    public static void main(String[] args) throws Exception {
+
+        APICredentials creds = new APICredentials();
+        creds.setApiKey(System.getenv("BC_API_KEY"));
+        creds.setBearerToken(System.getenv("BC_BEARER_TOKEN"));
+        creds.setSigningKey(System.getenv("BC_SIGNING_KEY"));
+
+        BlockChypClient client = new BlockChypClient(creds);
+
+        // Set request parameters
+        PartnerStatementDetailRequest request = new PartnerStatementDetailRequest();
+
+
+        // Send the request
+        PartnerStatementDetailResponse response = client.partnerStatementDetail(request);
+        // View the result
+        System.out.println("Response: " + prettyPrint(response));
+
+    }
+
+    public static String prettyPrint(Object object) throws Exception {
+
+        ObjectWriter writer = new ObjectMapper()
+            .writer()
+            .withDefaultPrettyPrinter();
+
+        return object.getClass().getSimpleName()
+            + ": "
+            + writer.writeValueAsString(object);
+
+    }
+}
+
+
+```
+
 #### Merchant Invoices
 
 
@@ -6895,76 +6967,6 @@ public class MerchantInvoiceDetailExample {
 
         // Send the request
         MerchantInvoiceDetailResponse response = client.merchantInvoiceDetail(request);
-        // View the result
-        System.out.println("Response: " + prettyPrint(response));
-
-    }
-
-    public static String prettyPrint(Object object) throws Exception {
-
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
-
-    }
-}
-
-
-```
-
-#### Partner Statement Detail
-
-
-
-* **API Credential Types:** Partner
-* **Required Role:** Partner API Access
-
-The API returns detailed information about a specific partner statement.  The optional `includeMerchantStatement` and
-`includeInterchange` parameters can be used to return low level detail about how the 
-residuals or commissions were computed.
-
-
-
-
-```java
-package com.blockchyp.client.examples;
-
-
-
-import java.util.ArrayList;
-import java.util.Collection;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-
-import com.blockchyp.client.APICredentials;
-import com.blockchyp.client.BlockChypClient;
-import com.blockchyp.client.dto.PartnerStatementDetailRequest;
-import com.blockchyp.client.dto.PartnerStatementDetailResponse;
-
-
-public class PartnerStatementDetailExample {
-
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    public static void main(String[] args) throws Exception {
-
-        APICredentials creds = new APICredentials();
-        creds.setApiKey(System.getenv("BC_API_KEY"));
-        creds.setBearerToken(System.getenv("BC_BEARER_TOKEN"));
-        creds.setSigningKey(System.getenv("BC_SIGNING_KEY"));
-
-        BlockChypClient client = new BlockChypClient(creds);
-
-        // Set request parameters
-        PartnerStatementDetailRequest request = new PartnerStatementDetailRequest();
-
-
-        // Send the request
-        PartnerStatementDetailResponse response = client.partnerStatementDetail(request);
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
