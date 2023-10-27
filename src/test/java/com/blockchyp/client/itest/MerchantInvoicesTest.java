@@ -19,10 +19,10 @@ import org.junit.experimental.categories.Category;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.IntegrationTest;
 import com.blockchyp.client.IntegrationTestConfiguration;
-import com.blockchyp.client.dto.PartnerStatementListRequest;
-import com.blockchyp.client.dto.PartnerStatementListResponse;
+import com.blockchyp.client.dto.MerchantInvoiceListRequest;
+import com.blockchyp.client.dto.MerchantInvoiceListResponse;
 
-public class PartnerStatementsTest extends BaseTestCase {
+public class MerchantInvoicesTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
@@ -33,12 +33,12 @@ public class PartnerStatementsTest extends BaseTestCase {
 
         
         // Set request parameters
-        PartnerStatementListRequest request = new PartnerStatementListRequest();
+        MerchantInvoiceListRequest request = new MerchantInvoiceListRequest();
         request.setTest(true);
 
         Exception ex = null;
         try {
-            PartnerStatementListResponse response = client.partnerStatements(request);
+            MerchantInvoiceListResponse response = client.merchantInvoices(request);
             // Response assertions
             Assert.assertTrue(response.isSuccess());
         } catch (Exception e) {
