@@ -487,16 +487,16 @@ public class MerchantInvoiceDetailResponse implements IAbstractAcknowledgement {
      }
 
     /**
-     * Sets
-     * @param value
+     * Sets the list of line item details associated with the invoice.
+     * @param value the list of line item details associated with the invoice.
      */
      public void setLineItems(Collection<InvoiceLineItem> value) {
           this.lineItems = value;
      }
 
     /**
-     * Gets
-     * @return
+     * Gets the list of line item details associated with the invoice.
+     * @return the list of line item details associated with the invoice.
      */
      @JsonProperty("lineItems")
      public Collection<InvoiceLineItem> getLineItems() {
@@ -504,16 +504,16 @@ public class MerchantInvoiceDetailResponse implements IAbstractAcknowledgement {
      }
 
     /**
-     * Sets
-     * @param value
+     * Sets the list of payments collected against the invoice.
+     * @param value the list of payments collected against the invoice.
      */
      public void setPayments(Collection<InvoicePayment> value) {
           this.payments = value;
      }
 
     /**
-     * Gets
-     * @return
+     * Gets the list of payments collected against the invoice.
+     * @return the list of payments collected against the invoice.
      */
      @JsonProperty("payments")
      public Collection<InvoicePayment> getPayments() {
@@ -521,16 +521,17 @@ public class MerchantInvoiceDetailResponse implements IAbstractAcknowledgement {
      }
 
     /**
-     * Sets
-     * @param value
+     * Sets the list of merchant settlements disbursed during the statement period.
+     * @param value the list of merchant settlements disbursed during the statement
+     * period.
      */
      public void setDeposits(Collection<StatementDeposit> value) {
           this.deposits = value;
      }
 
     /**
-     * Gets
-     * @return
+     * Gets the list of merchant settlements disbursed during the statement period.
+     * @return the list of merchant settlements disbursed during the statement period.
      */
      @JsonProperty("deposits")
      public Collection<StatementDeposit> getDeposits() {
@@ -538,8 +539,8 @@ public class MerchantInvoiceDetailResponse implements IAbstractAcknowledgement {
      }
 
     /**
-     * Adds a
-     * @param value
+     * Adds a the list of line item details associated with the invoice.
+     * @param value the list of line item details associated with the invoice.
      */
      public void addLineItem(InvoiceLineItem value) {
           if (this.lineItems == null) {
@@ -549,8 +550,8 @@ public class MerchantInvoiceDetailResponse implements IAbstractAcknowledgement {
      }
 
     /**
-     * Adds a
-     * @param value
+     * Adds a the list of payments collected against the invoice.
+     * @param value the list of payments collected against the invoice.
      */
      public void addPayment(InvoicePayment value) {
           if (this.payments == null) {
@@ -560,8 +561,9 @@ public class MerchantInvoiceDetailResponse implements IAbstractAcknowledgement {
      }
 
     /**
-     * Adds a
-     * @param value
+     * Adds a the list of merchant settlements disbursed during the statement period.
+     * @param value the list of merchant settlements disbursed during the statement
+     * period.
      */
      public void addDeposit(StatementDeposit value) {
           if (this.deposits == null) {

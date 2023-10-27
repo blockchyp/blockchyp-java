@@ -79,16 +79,16 @@ public class PartnerStatementListResponse implements IAbstractAcknowledgement {
      }
 
     /**
-     * Sets
-     * @param value
+     * Sets the list of statements summaries.
+     * @param value the list of statements summaries.
      */
      public void setStatements(Collection<PartnerStatementSummary> value) {
           this.statements = value;
      }
 
     /**
-     * Gets
-     * @return
+     * Gets the list of statements summaries.
+     * @return the list of statements summaries.
      */
      @JsonProperty("statements")
      public Collection<PartnerStatementSummary> getStatements() {
@@ -96,8 +96,8 @@ public class PartnerStatementListResponse implements IAbstractAcknowledgement {
      }
 
     /**
-     * Adds a
-     * @param value
+     * Adds a the list of statements summaries.
+     * @param value the list of statements summaries.
      */
      public void addStatement(PartnerStatementSummary value) {
           if (this.statements == null) {

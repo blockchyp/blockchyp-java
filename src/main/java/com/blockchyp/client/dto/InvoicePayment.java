@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 
 /**
- * Models information about payments against an invoice
+ * Models information about payments against an invoice.
  */
 public class InvoicePayment {
 
