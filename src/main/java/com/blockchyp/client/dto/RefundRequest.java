@@ -938,16 +938,16 @@ public class RefundRequest implements ITimeoutRequest, ICoreRequest, IPaymentMet
      }
 
     /**
-     * Sets manually sets the CIT (Customer Initiated Transaction) flag
-     * @param value manually sets the CIT (Customer Initiated Transaction) flag
+     * Sets manually sets the CIT (Customer Initiated Transaction) flag.
+     * @param value manually sets the CIT (Customer Initiated Transaction) flag.
      */
      public void setCit(boolean value) {
           this.cit = value;
      }
 
     /**
-     * Gets manually sets the CIT (Customer Initiated Transaction) flag
-     * @return manually sets the CIT (Customer Initiated Transaction) flag
+     * Gets manually sets the CIT (Customer Initiated Transaction) flag.
+     * @return manually sets the CIT (Customer Initiated Transaction) flag.
      */
      @JsonProperty("cit")
      public boolean isCit() {
@@ -955,16 +955,16 @@ public class RefundRequest implements ITimeoutRequest, ICoreRequest, IPaymentMet
      }
 
     /**
-     * Sets manually sets the MIT (Merchant Initiated Transaction) flag
-     * @param value manually sets the MIT (Merchant Initiated Transaction) flag
+     * Sets manually sets the MIT (Merchant Initiated Transaction) flag.
+     * @param value manually sets the MIT (Merchant Initiated Transaction) flag.
      */
      public void setMit(boolean value) {
           this.mit = value;
      }
 
     /**
-     * Gets manually sets the MIT (Merchant Initiated Transaction) flag
-     * @return manually sets the MIT (Merchant Initiated Transaction) flag
+     * Gets manually sets the MIT (Merchant Initiated Transaction) flag.
+     * @return manually sets the MIT (Merchant Initiated Transaction) flag.
      */
      @JsonProperty("mit")
      public boolean isMit() {

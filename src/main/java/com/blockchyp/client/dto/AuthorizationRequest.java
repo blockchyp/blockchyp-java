@@ -120,6 +120,10 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
 
      private boolean mit;
 
+     private String purchaseOrderNumber;
+
+     private String supplierReferenceNumber;
+
      private Collection<TransactionDisplayItem> lineItems;
 
      private Map altPrices;
@@ -1030,16 +1034,16 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
      }
 
     /**
-     * Sets manually sets the CIT (Customer Initiated Transaction) flag
-     * @param value manually sets the CIT (Customer Initiated Transaction) flag
+     * Sets manually sets the CIT (Customer Initiated Transaction) flag.
+     * @param value manually sets the CIT (Customer Initiated Transaction) flag.
      */
      public void setCit(boolean value) {
           this.cit = value;
      }
 
     /**
-     * Gets manually sets the CIT (Customer Initiated Transaction) flag
-     * @return manually sets the CIT (Customer Initiated Transaction) flag
+     * Gets manually sets the CIT (Customer Initiated Transaction) flag.
+     * @return manually sets the CIT (Customer Initiated Transaction) flag.
      */
      @JsonProperty("cit")
      public boolean isCit() {
@@ -1047,20 +1051,54 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
      }
 
     /**
-     * Sets manually sets the MIT (Merchant Initiated Transaction) flag
-     * @param value manually sets the MIT (Merchant Initiated Transaction) flag
+     * Sets manually sets the MIT (Merchant Initiated Transaction) flag.
+     * @param value manually sets the MIT (Merchant Initiated Transaction) flag.
      */
      public void setMit(boolean value) {
           this.mit = value;
      }
 
     /**
-     * Gets manually sets the MIT (Merchant Initiated Transaction) flag
-     * @return manually sets the MIT (Merchant Initiated Transaction) flag
+     * Gets manually sets the MIT (Merchant Initiated Transaction) flag.
+     * @return manually sets the MIT (Merchant Initiated Transaction) flag.
      */
      @JsonProperty("mit")
      public boolean isMit() {
           return this.mit;
+     }
+
+    /**
+     * Sets the purchase order number, if known.
+     * @param value the purchase order number, if known.
+     */
+     public void setPurchaseOrderNumber(String value) {
+          this.purchaseOrderNumber = value;
+     }
+
+    /**
+     * Gets the purchase order number, if known.
+     * @return the purchase order number, if known.
+     */
+     @JsonProperty("purchaseOrderNumber")
+     public String getPurchaseOrderNumber() {
+          return this.purchaseOrderNumber;
+     }
+
+    /**
+     * Sets the supplier reference number, if known.
+     * @param value the supplier reference number, if known.
+     */
+     public void setSupplierReferenceNumber(String value) {
+          this.supplierReferenceNumber = value;
+     }
+
+    /**
+     * Gets the supplier reference number, if known.
+     * @return the supplier reference number, if known.
+     */
+     @JsonProperty("supplierReferenceNumber")
+     public String getSupplierReferenceNumber() {
+          return this.supplierReferenceNumber;
      }
 
     /**

@@ -179,6 +179,30 @@ import com.blockchyp.client.dto.SlideShowRequest;
 import com.blockchyp.client.dto.BrandingAssetRequest;
 import com.blockchyp.client.dto.BrandingAsset;
 import com.blockchyp.client.dto.BrandingAssetResponse;
+import com.blockchyp.client.dto.PricingPolicyRequest;
+import com.blockchyp.client.dto.PricePoint;
+import com.blockchyp.client.dto.PricingPolicyResponse;
+import com.blockchyp.client.dto.PartnerStatementListRequest;
+import com.blockchyp.client.dto.PartnerStatementSummary;
+import com.blockchyp.client.dto.PartnerStatementListResponse;
+import com.blockchyp.client.dto.PartnerStatementDetailRequest;
+import com.blockchyp.client.dto.PartnerStatementDetailResponse;
+import com.blockchyp.client.dto.PartnerStatementLineItem;
+import com.blockchyp.client.dto.PartnerStatementDisbursement;
+import com.blockchyp.client.dto.PartnerStatementAdjustment;
+import com.blockchyp.client.dto.MerchantInvoiceListRequest;
+import com.blockchyp.client.dto.MerchantInvoiceListResponse;
+import com.blockchyp.client.dto.MerchantInvoiceSummary;
+import com.blockchyp.client.dto.MerchantInvoiceDetailRequest;
+import com.blockchyp.client.dto.MerchantInvoiceDetailResponse;
+import com.blockchyp.client.dto.InvoiceLineItem;
+import com.blockchyp.client.dto.InvoicePayment;
+import com.blockchyp.client.dto.StatementDeposit;
+import com.blockchyp.client.dto.PartnerCommissionBreakdownRequest;
+import com.blockchyp.client.dto.PartnerCommissionBreakdownResponse;
+import com.blockchyp.client.dto.BuyRateLineItem;
+import com.blockchyp.client.dto.AggregateBillingLineItem;
+import com.blockchyp.client.dto.AggregateBillingLineItemStats;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -609,6 +633,79 @@ public class BlockChypClient {
     public TransactionHistoryResponse transactionHistory(TransactionHistoryRequest request) throws Exception {
 
         return (TransactionHistoryResponse) postGateway("/api/tx-history", request, TransactionHistoryResponse.class);
+
+    }
+
+    /**
+     * Returns pricing policy for a merchant.
+     * @param request the request parameters.
+     * @return {@link PricingPolicyResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public PricingPolicyResponse pricingPolicy(PricingPolicyRequest request) throws Exception {
+
+        return (PricingPolicyResponse) postGateway("/api/read-pricing-policy", request, PricingPolicyResponse.class);
+
+    }
+
+    /**
+     * Returns a list of partner statements.
+     * @param request the request parameters.
+     * @return {@link PartnerStatementListResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public PartnerStatementListResponse partnerStatements(PartnerStatementListRequest request) throws Exception {
+
+        return (PartnerStatementListResponse) postGateway("/api/partner-statement-list", request, PartnerStatementListResponse.class);
+
+    }
+
+    /**
+     * Returns detail for a single partner statement.
+     * @param request the request parameters.
+     * @return {@link PartnerStatementDetailResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public PartnerStatementDetailResponse partnerStatementDetail(PartnerStatementDetailRequest request) throws Exception {
+
+        return (PartnerStatementDetailResponse) postGateway("/api/partner-statement-detail", request, PartnerStatementDetailResponse.class);
+
+    }
+
+    /**
+     * Returns a list of merchant invoices.
+     * @param request the request parameters.
+     * @return {@link MerchantInvoiceListResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public MerchantInvoiceListResponse merchantInvoices(MerchantInvoiceListRequest request) throws Exception {
+
+        return (MerchantInvoiceListResponse) postGateway("/api/merchant-invoice-list", request, MerchantInvoiceListResponse.class);
+
+    }
+
+    /**
+     * Returns detail for a single merchant-invoice statement.
+     * @param request the request parameters.
+     * @return {@link MerchantInvoiceDetailResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public MerchantInvoiceDetailResponse merchantInvoiceDetail(MerchantInvoiceDetailRequest request) throws Exception {
+
+        return (MerchantInvoiceDetailResponse) postGateway("/api/merchant-invoice-detail", request, MerchantInvoiceDetailResponse.class);
+
+    }
+
+    /**
+     * Returns low level details for how partner commissions were calculated for a
+     * specific merchant statement.
+     * @param request the request parameters.
+     * @return {@link PartnerCommissionBreakdownResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public PartnerCommissionBreakdownResponse partnerCommissionBreakdown(PartnerCommissionBreakdownRequest request) throws Exception {
+
+        return (PartnerCommissionBreakdownResponse) postGateway("/api/partner-commission-breakdown", request, PartnerCommissionBreakdownResponse.class);
 
     }
 

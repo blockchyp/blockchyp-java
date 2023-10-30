@@ -157,16 +157,16 @@ public class MerchantUser {
      }
 
     /**
-     * Sets are the role codes assigned to this user.
-     * @param value are the role codes assigned to this user.
+     * Sets the role codes assigned to this user.
+     * @param value the role codes assigned to this user.
      */
      public void setRoles(Collection<String> value) {
           this.roles = value;
      }
 
     /**
-     * Gets are the role codes assigned to this user.
-     * @return are the role codes assigned to this user.
+     * Gets the role codes assigned to this user.
+     * @return the role codes assigned to this user.
      */
      @JsonProperty("roles")
      public Collection<String> getRoles() {
@@ -191,8 +191,8 @@ public class MerchantUser {
      }
 
     /**
-     * Adds a are the role codes assigned to this user.
-     * @param value are the role codes assigned to this user.
+     * Adds a the role codes assigned to this user.
+     * @param value the role codes assigned to this user.
      */
      public void addRole(String value) {
           if (this.roles == null) {
