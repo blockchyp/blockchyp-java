@@ -106,6 +106,10 @@ public class RefundRequest implements ITimeoutRequest, ICoreRequest, IPaymentMet
 
      private boolean asyncReversals;
 
+     private boolean cit;
+
+     private boolean mit;
+
     /**
      * Sets the request timeout in seconds.
      * @param value the request timeout in seconds.
@@ -931,6 +935,40 @@ public class RefundRequest implements ITimeoutRequest, ICoreRequest, IPaymentMet
      @JsonProperty("asyncReversals")
      public boolean isAsyncReversals() {
           return this.asyncReversals;
+     }
+
+    /**
+     * Sets manually sets the CIT (Customer Initiated Transaction) flag.
+     * @param value manually sets the CIT (Customer Initiated Transaction) flag.
+     */
+     public void setCit(boolean value) {
+          this.cit = value;
+     }
+
+    /**
+     * Gets manually sets the CIT (Customer Initiated Transaction) flag.
+     * @return manually sets the CIT (Customer Initiated Transaction) flag.
+     */
+     @JsonProperty("cit")
+     public boolean isCit() {
+          return this.cit;
+     }
+
+    /**
+     * Sets manually sets the MIT (Merchant Initiated Transaction) flag.
+     * @param value manually sets the MIT (Merchant Initiated Transaction) flag.
+     */
+     public void setMit(boolean value) {
+          this.mit = value;
+     }
+
+    /**
+     * Gets manually sets the MIT (Merchant Initiated Transaction) flag.
+     * @return manually sets the MIT (Merchant Initiated Transaction) flag.
+     */
+     @JsonProperty("mit")
+     public boolean isMit() {
+          return this.mit;
      }
 
 }
