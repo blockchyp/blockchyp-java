@@ -78,6 +78,10 @@ public class EnrollRequest implements ITimeoutRequest, ICoreRequest, IPaymentMet
 
      private Customer customer;
 
+     private boolean recurring;
+
+     private boolean subscription;
+
     /**
      * Sets the request timeout in seconds.
      * @param value the request timeout in seconds.
@@ -637,6 +641,40 @@ public class EnrollRequest implements ITimeoutRequest, ICoreRequest, IPaymentMet
      @JsonProperty("customer")
      public Customer getCustomer() {
           return this.customer;
+     }
+
+    /**
+     * Sets that this transaction should be treated as a recurring transaction.
+     * @param value that this transaction should be treated as a recurring transaction.
+     */
+     public void setRecurring(boolean value) {
+          this.recurring = value;
+     }
+
+    /**
+     * Gets that this transaction should be treated as a recurring transaction.
+     * @return that this transaction should be treated as a recurring transaction.
+     */
+     @JsonProperty("recurring")
+     public boolean isRecurring() {
+          return this.recurring;
+     }
+
+    /**
+     * Manually sets the subscription flag.
+     * @param value manually sets the subscription flag.
+     */
+     public void setSubscription(boolean value) {
+          this.subscription = value;
+     }
+
+    /**
+     * Manually gets the subscription flag.
+     * @return if this is a subscription transaction.
+     */
+     @JsonProperty("subscription")
+     public boolean isSubscription() {
+          return this.subscription;
      }
 
 }

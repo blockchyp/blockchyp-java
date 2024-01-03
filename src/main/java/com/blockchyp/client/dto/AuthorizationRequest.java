@@ -120,6 +120,8 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
 
      private boolean mit;
 
+     private boolean subscription;
+
      private String purchaseOrderNumber;
 
      private String supplierReferenceNumber;
@@ -1065,6 +1067,23 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
      @JsonProperty("mit")
      public boolean isMit() {
           return this.mit;
+     }
+
+    /**
+     * Manually sets the subscription flag.
+     * @param value manually sets the subscription flag.
+     */
+     public void setSubscription(boolean value) {
+          this.subscription = value;
+     }
+
+    /**
+     * Manually gets the subscription flag.
+     * @return if this is a subscription transaction.
+     */
+     @JsonProperty("subscription")
+     public boolean isSubscription() {
+          return this.subscription;
      }
 
     /**
