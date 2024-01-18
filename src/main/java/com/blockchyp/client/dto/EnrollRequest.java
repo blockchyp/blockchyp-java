@@ -1,5 +1,5 @@
 /**
- * Copyright 2019-2023 BlockChyp, Inc. All rights reserved. Use of this code is governed
+ * Copyright 2019-2024 BlockChyp, Inc. All rights reserved. Use of this code is governed
  * by a license that can be found in the LICENSE file.
  *
  * This file was generated automatically by the BlockChyp SDK Generator. Changes to this
@@ -661,16 +661,20 @@ public class EnrollRequest implements ITimeoutRequest, ICoreRequest, IPaymentMet
      }
 
     /**
-     * Manually sets the subscription flag.
-     * @param value manually sets the subscription flag.
+     * Sets that this transaction and any using this token should be treated as a
+     * subscription recurring transaction.
+     * @param value that this transaction and any using this token should be treated as a
+     * subscription recurring transaction.
      */
      public void setSubscription(boolean value) {
           this.subscription = value;
      }
 
     /**
-     * Manually gets the subscription flag.
-     * @return if this is a subscription transaction.
+     * Gets that this transaction and any using this token should be treated as a
+     * subscription recurring transaction.
+     * @return that this transaction and any using this token should be treated as a
+     * subscription recurring transaction.
      */
      @JsonProperty("subscription")
      public boolean isSubscription() {

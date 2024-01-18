@@ -1,5 +1,5 @@
 /**
- * Copyright 2019-2023 BlockChyp, Inc. All rights reserved. Use of this code is governed
+ * Copyright 2019-2024 BlockChyp, Inc. All rights reserved. Use of this code is governed
  * by a license that can be found in the LICENSE file.
  *
  * This file was generated automatically by the BlockChyp SDK Generator. Changes to this
@@ -30,6 +30,10 @@ public class MediaLibraryResponse implements IAbstractAcknowledgement {
      private int startIndex;
 
      private int resultCount;
+
+     private int pages;
+
+     private int currentPage;
 
      private Collection<MediaMetadata> results;
 
@@ -133,6 +137,40 @@ public class MediaLibraryResponse implements IAbstractAcknowledgement {
      @JsonProperty("resultCount")
      public int getResultCount() {
           return this.resultCount;
+     }
+
+    /**
+     * Sets total number of pages.
+     * @param value total number of pages.
+     */
+     public void setPages(int value) {
+          this.pages = value;
+     }
+
+    /**
+     * Gets total number of pages.
+     * @return total number of pages.
+     */
+     @JsonProperty("pages")
+     public int getPages() {
+          return this.pages;
+     }
+
+    /**
+     * Sets page currently selected through paging.
+     * @param value page currently selected through paging.
+     */
+     public void setCurrentPage(int value) {
+          this.currentPage = value;
+     }
+
+    /**
+     * Gets page currently selected through paging.
+     * @return page currently selected through paging.
+     */
+     @JsonProperty("currentPage")
+     public int getCurrentPage() {
+          return this.currentPage;
      }
 
     /**
