@@ -22,7 +22,7 @@ import com.blockchyp.client.IntegrationTestConfiguration;
 import com.blockchyp.client.dto.MerchantCredentialGenerationRequest;
 import com.blockchyp.client.dto.MerchantCredentialGenerationResponse;
 
-public class Test extends BaseTestCase {
+public class MerchantCredentialGenerationTest extends BaseTestCase {
 
     @Test
     @Category(IntegrationTest.class)
@@ -34,12 +34,14 @@ public class Test extends BaseTestCase {
         
         // Set request parameters
         MerchantCredentialGenerationRequest request = new MerchantCredentialGenerationRequest();
-
+        request.setTest(true);
+        request.setMerchantId("<MERCHANT ID>");
 
         Exception ex = null;
         try {
             MerchantCredentialGenerationResponse response = client.merchantCredentialGeneration(request);
             // Response assertions
+            Assert.assertTrue(response.isSuccess());
         } catch (Exception e) {
             ex = e;
         }
