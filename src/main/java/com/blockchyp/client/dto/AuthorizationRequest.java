@@ -1,5 +1,5 @@
 /**
- * Copyright 2019-2023 BlockChyp, Inc. All rights reserved. Use of this code is governed
+ * Copyright 2019-2024 BlockChyp, Inc. All rights reserved. Use of this code is governed
  * by a license that can be found in the LICENSE file.
  *
  * This file was generated automatically by the BlockChyp SDK Generator. Changes to this
@@ -119,6 +119,8 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
      private boolean cit;
 
      private boolean mit;
+
+     private boolean subscription;
 
      private String purchaseOrderNumber;
 
@@ -1065,6 +1067,27 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
      @JsonProperty("mit")
      public boolean isMit() {
           return this.mit;
+     }
+
+    /**
+     * Sets that this transaction should be treated as a subscription recurring
+     * transaction.
+     * @param value that this transaction should be treated as a subscription recurring
+     * transaction.
+     */
+     public void setSubscription(boolean value) {
+          this.subscription = value;
+     }
+
+    /**
+     * Gets that this transaction should be treated as a subscription recurring
+     * transaction.
+     * @return that this transaction should be treated as a subscription recurring
+     * transaction.
+     */
+     @JsonProperty("subscription")
+     public boolean isSubscription() {
+          return this.subscription;
      }
 
     /**

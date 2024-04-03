@@ -1,5 +1,5 @@
 /**
- * Copyright 2019-2023 BlockChyp, Inc. All rights reserved. Use of this code is governed
+ * Copyright 2019-2024 BlockChyp, Inc. All rights reserved. Use of this code is governed
  * by a license that can be found in the LICENSE file.
  *
  * This file was generated automatically by the BlockChyp SDK Generator. Changes to this
@@ -53,6 +53,10 @@ public class CaptureRequest implements ITimeoutRequest, ICoreRequest, IPreviousT
      private String tipAmount;
 
      private String taxAmount;
+
+     private int shipmentCount;
+
+     private int shipmentNumber;
 
     /**
      * Sets the request timeout in seconds.
@@ -403,6 +407,41 @@ public class CaptureRequest implements ITimeoutRequest, ICoreRequest, IPreviousT
      @JsonProperty("taxAmount")
      public String getTaxAmount() {
           return this.taxAmount;
+     }
+
+    /**
+     * Sets the number of shipments the original authorization will be broken into.
+     * @param value the number of shipments the original authorization will be broken
+     * into.
+     */
+     public void setShipmentCount(int value) {
+          this.shipmentCount = value;
+     }
+
+    /**
+     * Gets the number of shipments the original authorization will be broken into.
+     * @return the number of shipments the original authorization will be broken into.
+     */
+     @JsonProperty("shipmentCount")
+     public int getShipmentCount() {
+          return this.shipmentCount;
+     }
+
+    /**
+     * Sets which shipment this particular capture is for.
+     * @param value which shipment this particular capture is for.
+     */
+     public void setShipmentNumber(int value) {
+          this.shipmentNumber = value;
+     }
+
+    /**
+     * Gets which shipment this particular capture is for.
+     * @return which shipment this particular capture is for.
+     */
+     @JsonProperty("shipmentNumber")
+     public int getShipmentNumber() {
+          return this.shipmentNumber;
      }
 
 }
