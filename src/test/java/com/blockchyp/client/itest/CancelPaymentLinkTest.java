@@ -72,6 +72,7 @@ public class CancelPaymentLinkTest extends BaseTestCase {
 
         // Set request parameters
         CancelPaymentLinkRequest request = new CancelPaymentLinkRequest();
+        request.setTest(true);
         request.setLinkCode(setupResponse.getLinkCode());
 
         Exception ex = null;

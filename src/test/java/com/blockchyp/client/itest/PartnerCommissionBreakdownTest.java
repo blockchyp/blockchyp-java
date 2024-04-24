@@ -29,7 +29,7 @@ public class PartnerCommissionBreakdownTest extends BaseTestCase {
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public void testEndpoint() throws Exception {
 
-        BlockChypClient client = IntegrationTestConfiguration.getTestClient("");
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient("partner");
 
         
         // Set request parameters

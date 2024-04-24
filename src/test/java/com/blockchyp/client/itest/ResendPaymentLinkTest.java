@@ -72,6 +72,7 @@ public class ResendPaymentLinkTest extends BaseTestCase {
 
         // Set request parameters
         ResendPaymentLinkRequest request = new ResendPaymentLinkRequest();
+        request.setTest(true);
         request.setLinkCode(setupResponse.getLinkCode());
 
         Exception ex = null;

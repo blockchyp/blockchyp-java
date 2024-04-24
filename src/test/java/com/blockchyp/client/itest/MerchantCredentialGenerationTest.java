@@ -21,6 +21,8 @@ import com.blockchyp.client.IntegrationTest;
 import com.blockchyp.client.IntegrationTestConfiguration;
 import com.blockchyp.client.dto.MerchantCredentialGenerationRequest;
 import com.blockchyp.client.dto.MerchantCredentialGenerationResponse;
+import com.blockchyp.client.dto.AddTestMerchantRequest;
+import com.blockchyp.client.dto.MerchantProfileResponse;
 
 public class MerchantCredentialGenerationTest extends BaseTestCase {
 
@@ -29,13 +31,21 @@ public class MerchantCredentialGenerationTest extends BaseTestCase {
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public void testEndpoint() throws Exception {
 
-        BlockChypClient client = IntegrationTestConfiguration.getTestClient("");
+        BlockChypClient client = IntegrationTestConfiguration.getTestClient("partner");
 
         
         // Set request parameters
+        AddTestMerchantRequest setupRequest = new AddTestMerchantRequest();
+        setupRequest.setDbaName("Test Merchant");
+        setupRequest.setCompanyName("Test Merchant");
+
+        MerchantProfileResponse setupResponse = client.addTestMerchant(setupRequest);
+
+
+        // Set request parameters
         MerchantCredentialGenerationRequest request = new MerchantCredentialGenerationRequest();
         request.setTest(true);
-        request.setMerchantId("<MERCHANT ID>");
+        request.setMerchantId(setupResponse.getMerchantId());
 
         Exception ex = null;
         try {
