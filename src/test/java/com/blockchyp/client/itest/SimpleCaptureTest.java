@@ -1,5 +1,5 @@
 /**
- * Copyright 2019-2023 BlockChyp, Inc. All rights reserved. Use of this code is governed
+ * Copyright 2019-2024 BlockChyp, Inc. All rights reserved. Use of this code is governed
  * by a license that can be found in the LICENSE file.
  *
  * This file was generated automatically by the BlockChyp SDK Generator. Changes to this
@@ -39,8 +39,9 @@ public class SimpleCaptureTest extends BaseTestCase {
         setupRequest.setPan("4111111111111111");
         setupRequest.setExpMonth("12");
         setupRequest.setExpYear("2025");
-        setupRequest.setAmount("25.55");
+        setupRequest.setAmount("42.45");
         setupRequest.setTest(true);
+        setupRequest.setBypassDupeFilter(true);
 
         AuthorizationResponse setupResponse = client.preauth(setupRequest);
 

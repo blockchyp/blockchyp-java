@@ -1,5 +1,5 @@
 /**
- * Copyright 2019-2023 BlockChyp, Inc. All rights reserved. Use of this code is governed
+ * Copyright 2019-2024 BlockChyp, Inc. All rights reserved. Use of this code is governed
  * by a license that can be found in the LICENSE file.
  *
  * This file was generated automatically by the BlockChyp SDK Generator. Changes to this
@@ -77,6 +77,10 @@ public class EnrollRequest implements ITimeoutRequest, ICoreRequest, IPaymentMet
      private String entryMethod;
 
      private Customer customer;
+
+     private boolean recurring;
+
+     private boolean subscription;
 
     /**
      * Sets the request timeout in seconds.
@@ -637,6 +641,44 @@ public class EnrollRequest implements ITimeoutRequest, ICoreRequest, IPaymentMet
      @JsonProperty("customer")
      public Customer getCustomer() {
           return this.customer;
+     }
+
+    /**
+     * Sets that this transaction should be treated as a recurring transaction.
+     * @param value that this transaction should be treated as a recurring transaction.
+     */
+     public void setRecurring(boolean value) {
+          this.recurring = value;
+     }
+
+    /**
+     * Gets that this transaction should be treated as a recurring transaction.
+     * @return that this transaction should be treated as a recurring transaction.
+     */
+     @JsonProperty("recurring")
+     public boolean isRecurring() {
+          return this.recurring;
+     }
+
+    /**
+     * Sets that this transaction and any using this token should be treated as a
+     * subscription recurring transaction.
+     * @param value that this transaction and any using this token should be treated as a
+     * subscription recurring transaction.
+     */
+     public void setSubscription(boolean value) {
+          this.subscription = value;
+     }
+
+    /**
+     * Gets that this transaction and any using this token should be treated as a
+     * subscription recurring transaction.
+     * @return that this transaction and any using this token should be treated as a
+     * subscription recurring transaction.
+     */
+     @JsonProperty("subscription")
+     public boolean isSubscription() {
+          return this.subscription;
      }
 
 }

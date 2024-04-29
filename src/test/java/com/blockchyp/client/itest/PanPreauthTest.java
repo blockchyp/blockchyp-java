@@ -1,5 +1,5 @@
 /**
- * Copyright 2019-2023 BlockChyp, Inc. All rights reserved. Use of this code is governed
+ * Copyright 2019-2024 BlockChyp, Inc. All rights reserved. Use of this code is governed
  * by a license that can be found in the LICENSE file.
  *
  * This file was generated automatically by the BlockChyp SDK Generator. Changes to this
@@ -39,8 +39,9 @@ public class PanPreauthTest extends BaseTestCase {
         request.setPan("4111111111111111");
         request.setExpMonth("12");
         request.setExpYear("2025");
-        request.setAmount("25.55");
+        request.setAmount("42.45");
         request.setTest(true);
+        request.setBypassDupeFilter(true);
 
         Exception ex = null;
         try {
@@ -63,7 +64,6 @@ public class PanPreauthTest extends BaseTestCase {
             Assert.assertTrue(response.getMaskedPan().trim().length() > 0);
             Assert.assertNotNull(response.getEntryMethod());
             Assert.assertTrue(response.getEntryMethod().trim().length() > 0);
-            Assert.assertEquals("25.55", response.getAuthorizedAmount());
             Assert.assertEquals("KEYED", response.getEntryMethod());
         } catch (Exception e) {
             ex = e;

@@ -1,5 +1,5 @@
 /**
- * Copyright 2019-2023 BlockChyp, Inc. All rights reserved. Use of this code is governed
+ * Copyright 2019-2024 BlockChyp, Inc. All rights reserved. Use of this code is governed
  * by a license that can be found in the LICENSE file.
  *
  * This file was generated automatically by the BlockChyp SDK Generator. Changes to this
@@ -200,6 +200,8 @@ import com.blockchyp.client.dto.InvoicePayment;
 import com.blockchyp.client.dto.StatementDeposit;
 import com.blockchyp.client.dto.PartnerCommissionBreakdownRequest;
 import com.blockchyp.client.dto.PartnerCommissionBreakdownResponse;
+import com.blockchyp.client.dto.MerchantCredentialGenerationRequest;
+import com.blockchyp.client.dto.MerchantCredentialGenerationResponse;
 import com.blockchyp.client.dto.BuyRateLineItem;
 import com.blockchyp.client.dto.AggregateBillingLineItem;
 import com.blockchyp.client.dto.AggregateBillingLineItemStats;
@@ -784,6 +786,19 @@ public class BlockChypClient {
 
 
 
+    /**
+     * Generates and returns api credentials for a given merchant.
+     * @param request the request parameters.
+     * @return {@link MerchantCredentialGenerationResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+
+        public MerchantCredentialGenerationResponse merchantCredentialGeneration(MerchantCredentialGenerationRequest request) throws Exception {
+
+        return (MerchantCredentialGenerationResponse) postDashboard("/api/generate-merchant-creds", request, MerchantCredentialGenerationResponse.class);
+
+    }
+    
     /**
      * Adds a test merchant account.
      * @param request the request parameters.
