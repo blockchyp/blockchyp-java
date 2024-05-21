@@ -106,6 +106,8 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
 
      private boolean enroll;
 
+     private boolean bypassDupeFilter;
+
      private String description;
 
      private boolean promptForTip;
@@ -944,6 +946,23 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
      @JsonProperty("enroll")
      public boolean isEnroll() {
           return this.enroll;
+     }
+
+    /**
+     * Sets duplicate detection should be bypassed.
+     * @param value duplicate detection should be bypassed.
+     */
+     public void setBypassDupeFilter(boolean value) {
+          this.bypassDupeFilter = value;
+     }
+
+    /**
+     * Gets duplicate detection should be bypassed.
+     * @return duplicate detection should be bypassed.
+     */
+     @JsonProperty("bypassDupeFilter")
+     public boolean isBypassDupeFilter() {
+          return this.bypassDupeFilter;
      }
 
     /**

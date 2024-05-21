@@ -712,18 +712,6 @@ public class BlockChypClient {
     }
 
     /**
-     * Generates and returns api credentials for a given merchant.
-     * @param request the request parameters.
-     * @return {@link MerchantCredentialGenerationResponse}
-     * @throws Exception exception if any errors occurred processing the request.
-     */
-    public MerchantCredentialGenerationResponse merchantCredentialGeneration(MerchantCredentialGenerationRequest request) throws Exception {
-
-        return (MerchantCredentialGenerationResponse) postGateway("/api/creds/generateMerchant", request, MerchantCredentialGenerationResponse.class);
-
-    }
-
-    /**
      * Returns profile information for a merchant.
      * @param request the request parameters.
      * @return {@link MerchantProfileResponse}
@@ -798,6 +786,19 @@ public class BlockChypClient {
 
 
 
+    /**
+     * Generates and returns api credentials for a given merchant.
+     * @param request the request parameters.
+     * @return {@link MerchantCredentialGenerationResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+
+        public MerchantCredentialGenerationResponse merchantCredentialGeneration(MerchantCredentialGenerationRequest request) throws Exception {
+
+        return (MerchantCredentialGenerationResponse) postDashboard("/api/generate-merchant-creds", request, MerchantCredentialGenerationResponse.class);
+
+    }
+    
     /**
      * Adds a test merchant account.
      * @param request the request parameters.

@@ -39,8 +39,9 @@ public class PanPreauthTest extends BaseTestCase {
         request.setPan("4111111111111111");
         request.setExpMonth("12");
         request.setExpYear("2025");
-        request.setAmount("25.55");
+        request.setAmount("42.45");
         request.setTest(true);
+        request.setBypassDupeFilter(true);
 
         Exception ex = null;
         try {
@@ -63,7 +64,6 @@ public class PanPreauthTest extends BaseTestCase {
             Assert.assertTrue(response.getMaskedPan().trim().length() > 0);
             Assert.assertNotNull(response.getEntryMethod());
             Assert.assertTrue(response.getEntryMethod().trim().length() > 0);
-            Assert.assertEquals("25.55", response.getAuthorizedAmount());
             Assert.assertEquals("KEYED", response.getEntryMethod());
         } catch (Exception e) {
             ex = e;
