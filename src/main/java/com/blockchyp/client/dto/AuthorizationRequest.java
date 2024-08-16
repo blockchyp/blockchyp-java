@@ -154,6 +154,8 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
 
      private boolean asyncReversals;
 
+     private String passthroughSurcharge;
+
     /**
      * Sets the request timeout in seconds.
      * @param value the request timeout in seconds.
@@ -1395,6 +1397,25 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
      @JsonProperty("asyncReversals")
      public boolean isAsyncReversals() {
           return this.asyncReversals;
+     }
+
+    /**
+     * Sets a passthrough surcharge amount.
+     * @param value a passthrough surcharge amount. This surcharge amount will be passed
+     * directly to the gateway and is not directly calculated.
+     */
+     public void setPassthroughSurcharge(String value) {
+          this.passthroughSurcharge = value;
+     }
+
+    /**
+     * Gets a passthrough surcharge amount.
+     * @return a passthrough surcharge amount. This surcharge amount will be passed
+     * directly to the gateway and is not directly calculated.
+     */
+     @JsonProperty("passthroughSurcharge")
+     public String getPassthroughSurcharge() {
+          return this.passthroughSurcharge;
      }
 
     /**
