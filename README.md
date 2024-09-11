@@ -29,7 +29,7 @@ The BlockChyp SDK is in Maven's Central Repository. Just add this snippet to you
 <dependency>
     <groupId>com.blockchyp</groupId>
     <artifactId>blockchyp-java</artifactId>
-    <version>2.18.8</version>
+    <version>2.25.23</version>
 </dependency>
 ```
 
@@ -38,7 +38,7 @@ The BlockChyp SDK is in Maven's Central Repository. Just add this snippet to you
 For the hipsters among you who've moved up to Gradle, try adding this snippet under dependencies in your Gradle build file.
 
 ```
-compile group: 'com.blockchyp', name: 'blockchyp-java', version:'2.18.8'
+compile group: 'com.blockchyp', name: 'blockchyp-java', version:'2.25.23'
 ```
 
 You'll also need the Maven plugin turned on. Make sure your Gradle build has something like this in it:
@@ -51,11 +51,6 @@ apply plugin: 'maven'
 
 The BlockChyp SDK has a pretty conventional Maven build with a single pom.xml and no weird repository dependencies. Just clone this repository
 and run `mvn package` to build a jar.
-
-#### Download a Jar
-
-We strongly recommend you get BlockChyp from the Maven repository, but just in case you want a jar, you can download one right here on
-Github from releases.
 
 
 ## Using the SDK
