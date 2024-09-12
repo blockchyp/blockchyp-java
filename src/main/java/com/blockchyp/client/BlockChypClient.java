@@ -125,6 +125,7 @@ import com.blockchyp.client.dto.BatchDetailsRequest;
 import com.blockchyp.client.dto.BatchDetailsResponse;
 import com.blockchyp.client.dto.TerminalVolume;
 import com.blockchyp.client.dto.AddTestMerchantRequest;
+import com.blockchyp.client.dto.AddGatewayMerchantRequest;
 import com.blockchyp.client.dto.MerchantProfileRequest;
 import com.blockchyp.client.dto.MerchantPlatformRequest;
 import com.blockchyp.client.dto.InviteMerchantUserRequest;
@@ -149,6 +150,8 @@ import com.blockchyp.client.dto.GetMerchantsResponse;
 import com.blockchyp.client.dto.MerchantUsersResponse;
 import com.blockchyp.client.dto.MerchantUser;
 import com.blockchyp.client.dto.MerchantPlatformsResponse;
+import com.blockchyp.client.dto.UpdateMerchantPlatformRequest;
+import com.blockchyp.client.dto.UpdateMerchantPlatformResponse;
 import com.blockchyp.client.dto.MerchantPlatform;
 import com.blockchyp.client.dto.TerminalProfileRequest;
 import com.blockchyp.client.dto.TerminalProfileResponse;
@@ -849,6 +852,19 @@ public class BlockChypClient {
         public Acknowledgement inviteMerchantUser(InviteMerchantUserRequest request) throws Exception {
 
         return (Acknowledgement) postDashboard("/api/invite-merchant-user", request, Acknowledgement.class);
+
+    }
+    
+    /**
+     * Adds a live gateway merchant account.
+     * @param request the request parameters.
+     * @return {@link MerchantProfileResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+
+        public MerchantProfileResponse addGatewayMerchant(AddGatewayMerchantRequest request) throws Exception {
+
+        return (MerchantProfileResponse) postDashboard("/api/add-gateway-merchant", request, MerchantProfileResponse.class);
 
     }
     

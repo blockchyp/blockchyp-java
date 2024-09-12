@@ -31,6 +31,8 @@ public class MerchantCredentialGenerationRequest implements ITimeoutRequest {
 
      private String notes;
 
+     private String credentialType;
+
     /**
      * Sets the request timeout in seconds.
      * @param value the request timeout in seconds.
@@ -133,6 +135,25 @@ public class MerchantCredentialGenerationRequest implements ITimeoutRequest {
      @JsonProperty("notes")
      public String getNotes() {
           return this.notes;
+     }
+
+    /**
+     * Sets type of credentials to generate, either API or TOKENIZING.
+     * @param value type of credentials to generate, either API or TOKENIZING. Defaults
+     * to API.
+     */
+     public void setCredentialType(String value) {
+          this.credentialType = value;
+     }
+
+    /**
+     * Gets type of credentials to generate, either API or TOKENIZING.
+     * @return type of credentials to generate, either API or TOKENIZING. Defaults to
+     * API.
+     */
+     @JsonProperty("credentialType")
+     public String getCredentialType() {
+          return this.credentialType;
      }
 
     /**
