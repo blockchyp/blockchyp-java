@@ -12,9 +12,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 /**
- * Merchant api credential data.
+ * Echoes back the state of the current platform configuration after a change.
  */
-public class MerchantCredentialGenerationResponse implements IAbstractAcknowledgement {
+public class UpdateMerchantPlatformResponse implements IAbstractAcknowledgement {
 
      private boolean success;
 
@@ -22,13 +22,7 @@ public class MerchantCredentialGenerationResponse implements IAbstractAcknowledg
 
      private String responseDescription;
 
-     private String apiKey;
-
-     private String bearerToken;
-
-     private String signingKey;
-
-     private String tokenizingKey;
+     private MerchantPlatform platform;
 
     /**
      * Sets whether or not the request succeeded.
@@ -82,71 +76,20 @@ public class MerchantCredentialGenerationResponse implements IAbstractAcknowledg
      }
 
     /**
-     * Sets the merchant api key.
-     * @param value the merchant api key.
+     * Sets the current platform configuration.
+     * @param value the current platform configuration.
      */
-     public void setApiKey(String value) {
-          this.apiKey = value;
+     public void setPlatform(MerchantPlatform value) {
+          this.platform = value;
      }
 
     /**
-     * Gets the merchant api key.
-     * @return the merchant api key.
+     * Gets the current platform configuration.
+     * @return the current platform configuration.
      */
-     @JsonProperty("apiKey")
-     public String getApiKey() {
-          return this.apiKey;
-     }
-
-    /**
-     * Sets the merchant bearer token.
-     * @param value the merchant bearer token.
-     */
-     public void setBearerToken(String value) {
-          this.bearerToken = value;
-     }
-
-    /**
-     * Gets the merchant bearer token.
-     * @return the merchant bearer token.
-     */
-     @JsonProperty("bearerToken")
-     public String getBearerToken() {
-          return this.bearerToken;
-     }
-
-    /**
-     * Sets the merchant signing key.
-     * @param value the merchant signing key.
-     */
-     public void setSigningKey(String value) {
-          this.signingKey = value;
-     }
-
-    /**
-     * Gets the merchant signing key.
-     * @return the merchant signing key.
-     */
-     @JsonProperty("signingKey")
-     public String getSigningKey() {
-          return this.signingKey;
-     }
-
-    /**
-     * Sets the tokenizing key.
-     * @param value the tokenizing key.
-     */
-     public void setTokenizingKey(String value) {
-          this.tokenizingKey = value;
-     }
-
-    /**
-     * Gets the tokenizing key.
-     * @return the tokenizing key.
-     */
-     @JsonProperty("tokenizingKey")
-     public String getTokenizingKey() {
-          return this.tokenizingKey;
+     @JsonProperty("platform")
+     public MerchantPlatform getPlatform() {
+          return this.platform;
      }
 
 }

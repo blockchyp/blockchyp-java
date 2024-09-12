@@ -29,6 +29,8 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
 
      private String merchantId;
 
+     private String bankMid;
+
      private String companyName;
 
      private String dbaName;
@@ -210,6 +212,23 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      @JsonProperty("merchantId")
      public String getMerchantId() {
           return this.merchantId;
+     }
+
+    /**
+     * Sets the primary bank mid.
+     * @param value the primary bank mid.
+     */
+     public void setBankMid(String value) {
+          this.bankMid = value;
+     }
+
+    /**
+     * Gets the primary bank mid.
+     * @return the primary bank mid.
+     */
+     @JsonProperty("bankMid")
+     public String getBankMid() {
+          return this.bankMid;
      }
 
     /**
