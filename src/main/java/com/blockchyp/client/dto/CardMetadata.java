@@ -6,7 +6,7 @@
  * file will be lost every time the code is regenerated.
  */
 
-package com.blockchyp.client.dto; 
+package com.blockchyp.client.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
