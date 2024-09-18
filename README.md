@@ -755,6 +755,94 @@ public class VoidExample {
 
 ```
 
+#### Card Metadata
+
+
+
+* **API Credential Types:** Merchant
+* **Required Role:** Payment API Access
+
+This API allows you to retrieve card metadata.
+
+Card metadata requests can use a payment terminal to retrieve metadata or
+use a previously enrolled payment token.
+
+**Terminal Transactions**
+
+For terminal transactions, make sure you pass in the terminal name using the `terminalName` property.
+
+**Token Transactions**
+
+If you have a payment token, omit the `terminalName` property and pass in the token with the `token`
+property instead.
+
+**Card Numbers and Mag Stripes**
+
+You can also pass in PANs and Mag Stripes, but you probably shouldn't, as this will
+put you in PCI scope and the most common vector for POS breaches is keylogging.
+If you use terminals for manual card entry, you'll bypass any keyloggers that
+might be maliciously running on the point-of-sale system.
+
+
+
+
+```java
+package com.blockchyp.client.examples;
+
+
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
+import com.blockchyp.client.APICredentials;
+import com.blockchyp.client.BlockChypClient;
+import com.blockchyp.client.dto.CardMetadataRequest;
+import com.blockchyp.client.dto.CardMetadataResponse;
+
+
+public class CardMetadataExample {
+
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    public static void main(String[] args) throws Exception {
+
+        APICredentials creds = new APICredentials();
+        creds.setApiKey(System.getenv("BC_API_KEY"));
+        creds.setBearerToken(System.getenv("BC_BEARER_TOKEN"));
+        creds.setSigningKey(System.getenv("BC_SIGNING_KEY"));
+
+        BlockChypClient client = new BlockChypClient(creds);
+
+        // Set request parameters
+        CardMetadataRequest request = new CardMetadataRequest();
+        request.setTest(true);
+        request.setTerminalName("Test Terminal");
+
+        // Send the request
+        CardMetadataResponse response = client.cardMetadata(request);
+        // View the result
+        System.out.println("Response: " + prettyPrint(response));
+
+    }
+
+    public static String prettyPrint(Object object) throws Exception {
+
+        ObjectWriter writer = new ObjectMapper()
+            .writer()
+            .withDefaultPrettyPrinter();
+
+        return object.getClass().getSimpleName()
+            + ": "
+            + writer.writeValueAsString(object);
+
+    }
+}
+
+
+```
+
 #### Time Out Reversal
 
 

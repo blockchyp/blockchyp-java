@@ -12,9 +12,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 /**
- * The information needed to enroll a new payment method in the token vault.
+ * Retrieves card metadata.
  */
-public class EnrollRequest implements ITimeoutRequest, ICoreRequest, IPaymentMethod, ITerminalReference {
+public class CardMetadataRequest implements ITimeoutRequest, ICoreRequest, IPaymentMethod, ITerminalReference {
 
      private int timeout;
 
@@ -74,15 +74,7 @@ public class EnrollRequest implements ITimeoutRequest, ICoreRequest, IPaymentMet
 
      private boolean resetConnection;
 
-     private String entryMethod;
-
-     private Customer customer;
-
-     private boolean recurring;
-
-     private boolean subscription;
-
-     private boolean cardMetadataLookup;
+     private boolean healthcare;
 
     /**
      * Sets the request timeout in seconds.
@@ -611,93 +603,20 @@ public class EnrollRequest implements ITimeoutRequest, ICoreRequest, IPaymentMet
      }
 
     /**
-     * Sets the method by which the payment card was entered (MSR, CHIP, KEYED, etc.
-     * @param value the method by which the payment card was entered (MSR, CHIP, KEYED,
-     * etc.).
+     * Sets marks a transaction as HSA/FSA.
+     * @param value marks a transaction as HSA/FSA.
      */
-     public void setEntryMethod(String value) {
-          this.entryMethod = value;
+     public void setHealthcare(boolean value) {
+          this.healthcare = value;
      }
 
     /**
-     * Gets the method by which the payment card was entered (MSR, CHIP, KEYED, etc.
-     * @return the method by which the payment card was entered (MSR, CHIP, KEYED, etc.).
+     * Gets marks a transaction as HSA/FSA.
+     * @return marks a transaction as HSA/FSA.
      */
-     @JsonProperty("entryMethod")
-     public String getEntryMethod() {
-          return this.entryMethod;
-     }
-
-    /**
-     * Sets customer with which the new token should be associated.
-     * @param value customer with which the new token should be associated.
-     */
-     public void setCustomer(Customer value) {
-          this.customer = value;
-     }
-
-    /**
-     * Gets customer with which the new token should be associated.
-     * @return customer with which the new token should be associated.
-     */
-     @JsonProperty("customer")
-     public Customer getCustomer() {
-          return this.customer;
-     }
-
-    /**
-     * Sets that this transaction should be treated as a recurring transaction.
-     * @param value that this transaction should be treated as a recurring transaction.
-     */
-     public void setRecurring(boolean value) {
-          this.recurring = value;
-     }
-
-    /**
-     * Gets that this transaction should be treated as a recurring transaction.
-     * @return that this transaction should be treated as a recurring transaction.
-     */
-     @JsonProperty("recurring")
-     public boolean isRecurring() {
-          return this.recurring;
-     }
-
-    /**
-     * Sets that this transaction and any using this token should be treated as a
-     * subscription recurring transaction.
-     * @param value that this transaction and any using this token should be treated as a
-     * subscription recurring transaction.
-     */
-     public void setSubscription(boolean value) {
-          this.subscription = value;
-     }
-
-    /**
-     * Gets that this transaction and any using this token should be treated as a
-     * subscription recurring transaction.
-     * @return that this transaction and any using this token should be treated as a
-     * subscription recurring transaction.
-     */
-     @JsonProperty("subscription")
-     public boolean isSubscription() {
-          return this.subscription;
-     }
-
-    /**
-     * Sets that this transaction will include a card metadata lookup.
-     * @param value that this transaction will include a card metadata lookup.
-     */
-     public void setCardMetadataLookup(boolean value) {
-          this.cardMetadataLookup = value;
-     }
-
-    /**
-     * Gets that this transaction will include a card metadata lookup.
-     * @return that this transaction will include a card metadata lookup.
-     */
-     @JsonProperty("cardMetadataLookup")
-     public boolean isCardMetadataLookup() {
-          return this.cardMetadataLookup;
+     @JsonProperty("healthcare")
+     public boolean isHealthcare() {
+          return this.healthcare;
      }
 
 }
