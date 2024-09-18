@@ -208,6 +208,10 @@ import com.blockchyp.client.dto.MerchantCredentialGenerationResponse;
 import com.blockchyp.client.dto.BuyRateLineItem;
 import com.blockchyp.client.dto.AggregateBillingLineItem;
 import com.blockchyp.client.dto.AggregateBillingLineItemStats;
+import com.blockchyp.client.dto.Owner;
+import com.blockchyp.client.dto.ApplicationAccount;
+import com.blockchyp.client.dto.MerchantApplication;
+import com.blockchyp.client.dto.SubmitApplicationRequest;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -799,6 +803,19 @@ public class BlockChypClient {
         public MerchantCredentialGenerationResponse merchantCredentialGeneration(MerchantCredentialGenerationRequest request) throws Exception {
 
         return (MerchantCredentialGenerationResponse) postDashboard("/api/generate-merchant-creds", request, MerchantCredentialGenerationResponse.class);
+
+    }
+    
+    /**
+     * Submits and application to add a new merchant account.
+     * @param request the request parameters.
+     * @return {@link Acknowledgement}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+
+        public Acknowledgement submitApplication(SubmitApplicationRequest request) throws Exception {
+
+        return (Acknowledgement) postDashboard("/api/submit-application", request, Acknowledgement.class);
 
     }
     

@@ -7187,10 +7187,91 @@ public class MerchantCredentialGenerationExample {
 
         // Set request parameters
         MerchantCredentialGenerationRequest request = new MerchantCredentialGenerationRequest();
-
+        request.setMerchantId("<MERCHANT ID>");
 
         // Send the request
         MerchantCredentialGenerationResponse response = client.merchantCredentialGeneration(request);
+        // View the result
+        System.out.println("Response: " + prettyPrint(response));
+
+    }
+
+    public static String prettyPrint(Object object) throws Exception {
+
+        ObjectWriter writer = new ObjectMapper()
+            .writer()
+            .withDefaultPrettyPrinter();
+
+        return object.getClass().getSimpleName()
+            + ": "
+            + writer.writeValueAsString(object);
+
+    }
+}
+
+
+```
+
+#### Submit Application
+
+
+
+* **API Credential Types:** Partner
+* **Required Role:** INVITE MERCHANT
+
+This is a partner level API that can be used to submit applications to add new merchant accounts. The application requires a significant amount of detailed information about the merchant and their business. Rather than providing an exhaustive list of required fields, we recommend submitting as much information as possible in your initial request. 
+
+If any required fields are missing or if there are any validation errors, the API will return specific error messages indicating which fields need to be addressed. Simply review these validation errors, fill in the missing information or correct any errors, and resubmit the application.
+
+Key areas of information include:
+- Business details (name, type, tax information)
+- Contact information
+- Address information (physical and mailing)
+- Owner details
+- Bank account information
+- Transaction volume estimates
+- Operational settings (timezone, batch close time, etc.)
+
+**Note:** Some fields may be conditionally required based on the values of other fields. The validation process will guide you through ensuring all necessary information is provided.
+
+
+
+
+```java
+package com.blockchyp.client.examples;
+
+
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
+import com.blockchyp.client.APICredentials;
+import com.blockchyp.client.BlockChypClient;
+import com.blockchyp.client.dto.SubmitApplicationRequest;
+import com.blockchyp.client.dto.Acknowledgement;
+
+
+public class SubmitApplicationExample {
+
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    public static void main(String[] args) throws Exception {
+
+        APICredentials creds = new APICredentials();
+        creds.setApiKey(System.getenv("BC_API_KEY"));
+        creds.setBearerToken(System.getenv("BC_BEARER_TOKEN"));
+        creds.setSigningKey(System.getenv("BC_SIGNING_KEY"));
+
+        BlockChypClient client = new BlockChypClient(creds);
+
+        // Set request parameters
+        SubmitApplicationRequest request = new SubmitApplicationRequest();
+
+
+        // Send the request
+        Acknowledgement response = client.submitApplication(request);
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
