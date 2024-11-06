@@ -98,7 +98,7 @@ public class RefundRequest implements ITimeoutRequest, ICoreRequest, IPaymentMet
 
      private boolean resetConnection;
 
-     private Healthcare healthcare;
+     private HealthcareMetadata healthcareMetadata;
 
      private boolean simulateChipRejection;
 
@@ -109,6 +109,8 @@ public class RefundRequest implements ITimeoutRequest, ICoreRequest, IPaymentMet
      private boolean cit;
 
      private boolean mit;
+
+     private boolean cardMetadataLookup;
 
     /**
      * Sets the request timeout in seconds.
@@ -866,17 +868,17 @@ public class RefundRequest implements ITimeoutRequest, ICoreRequest, IPaymentMet
      * Sets details for HSA/FSA transactions.
      * @param value details for HSA/FSA transactions.
      */
-     public void setHealthcare(Healthcare value) {
-          this.healthcare = value;
+     public void setHealthcareMetadata(HealthcareMetadata value) {
+          this.healthcareMetadata = value;
      }
 
     /**
      * Gets details for HSA/FSA transactions.
      * @return details for HSA/FSA transactions.
      */
-     @JsonProperty("healthcare")
-     public Healthcare getHealthcare() {
-          return this.healthcare;
+     @JsonProperty("healthcareMetadata")
+     public HealthcareMetadata getHealthcareMetadata() {
+          return this.healthcareMetadata;
      }
 
     /**
@@ -969,6 +971,23 @@ public class RefundRequest implements ITimeoutRequest, ICoreRequest, IPaymentMet
      @JsonProperty("mit")
      public boolean isMit() {
           return this.mit;
+     }
+
+    /**
+     * Sets that this transaction will include a card metadata lookup.
+     * @param value that this transaction will include a card metadata lookup.
+     */
+     public void setCardMetadataLookup(boolean value) {
+          this.cardMetadataLookup = value;
+     }
+
+    /**
+     * Gets that this transaction will include a card metadata lookup.
+     * @return that this transaction will include a card metadata lookup.
+     */
+     @JsonProperty("cardMetadataLookup")
+     public boolean isCardMetadataLookup() {
+          return this.cardMetadataLookup;
      }
 
 }
