@@ -10,11 +10,11 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 
 import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
-import com.blockchyp.client.dto.MerchantCredentialGenerationRequest;
-import com.blockchyp.client.dto.MerchantCredentialGenerationResponse;
+import com.blockchyp.client.dto.CardMetadataRequest;
+import com.blockchyp.client.dto.CardMetadataResponse;
 
 
-public class MerchantCredentialGenerationExample {
+public class CardMetadataExample {
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
@@ -27,11 +27,12 @@ public class MerchantCredentialGenerationExample {
         BlockChypClient client = new BlockChypClient(creds);
 
         // Set request parameters
-        MerchantCredentialGenerationRequest request = new MerchantCredentialGenerationRequest();
-        request.setMerchantId("<MERCHANT ID>");
+        CardMetadataRequest request = new CardMetadataRequest();
+        request.setTest(true);
+        request.setTerminalName("Test Terminal");
 
         // Send the request
-        MerchantCredentialGenerationResponse response = client.merchantCredentialGeneration(request);
+        CardMetadataResponse response = client.cardMetadata(request);
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 

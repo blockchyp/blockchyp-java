@@ -24,6 +24,8 @@ public class TokenMetadataResponse implements IAbstractAcknowledgement {
 
      private CustomerToken token;
 
+     private CardMetadata cardMetadata;
+
     /**
      * Sets whether or not the request succeeded.
      * @param value whether or not the request succeeded.
@@ -90,6 +92,23 @@ public class TokenMetadataResponse implements IAbstractAcknowledgement {
      @JsonProperty("token")
      public CustomerToken getToken() {
           return this.token;
+     }
+
+    /**
+     * Sets details about a payment card derived from its BIN/IIN.
+     * @param value details about a payment card derived from its BIN/IIN.
+     */
+     public void setCardMetadata(CardMetadata value) {
+          this.cardMetadata = value;
+     }
+
+    /**
+     * Gets details about a payment card derived from its BIN/IIN.
+     * @return details about a payment card derived from its BIN/IIN.
+     */
+     @JsonProperty("cardMetadata")
+     public CardMetadata getCardMetadata() {
+          return this.cardMetadata;
      }
 
 }

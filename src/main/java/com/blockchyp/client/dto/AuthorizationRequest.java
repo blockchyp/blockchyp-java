@@ -136,7 +136,7 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
 
      private RoundingMode roundingMode;
 
-     private Healthcare healthcare;
+     private HealthcareMetadata healthcareMetadata;
 
      private String cryptocurrency;
 
@@ -155,6 +155,14 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
      private boolean asyncReversals;
 
      private String passthroughSurcharge;
+
+     private boolean healthcare;
+
+     private String healthcareTotal;
+
+     private String ebtTotal;
+
+     private boolean cardMetadataLookup;
 
     /**
      * Sets the request timeout in seconds.
@@ -1223,17 +1231,17 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
      * Sets details for HSA/FSA transactions.
      * @param value details for HSA/FSA transactions.
      */
-     public void setHealthcare(Healthcare value) {
-          this.healthcare = value;
+     public void setHealthcareMetadata(HealthcareMetadata value) {
+          this.healthcareMetadata = value;
      }
 
     /**
      * Gets details for HSA/FSA transactions.
      * @return details for HSA/FSA transactions.
      */
-     @JsonProperty("healthcare")
-     public Healthcare getHealthcare() {
-          return this.healthcare;
+     @JsonProperty("healthcareMetadata")
+     public HealthcareMetadata getHealthcareMetadata() {
+          return this.healthcareMetadata;
      }
 
     /**
@@ -1416,6 +1424,74 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
      @JsonProperty("passthroughSurcharge")
      public String getPassthroughSurcharge() {
           return this.passthroughSurcharge;
+     }
+
+    /**
+     * Sets marks a transaction as HSA/FSA.
+     * @param value marks a transaction as HSA/FSA.
+     */
+     public void setHealthcare(boolean value) {
+          this.healthcare = value;
+     }
+
+    /**
+     * Gets marks a transaction as HSA/FSA.
+     * @return marks a transaction as HSA/FSA.
+     */
+     @JsonProperty("healthcare")
+     public boolean isHealthcare() {
+          return this.healthcare;
+     }
+
+    /**
+     * Sets the total amount to process as healthcare.
+     * @param value the total amount to process as healthcare.
+     */
+     public void setHealthcareTotal(String value) {
+          this.healthcareTotal = value;
+     }
+
+    /**
+     * Gets the total amount to process as healthcare.
+     * @return the total amount to process as healthcare.
+     */
+     @JsonProperty("healthcareTotal")
+     public String getHealthcareTotal() {
+          return this.healthcareTotal;
+     }
+
+    /**
+     * Sets the total amount to process as ebt.
+     * @param value the total amount to process as ebt.
+     */
+     public void setEbtTotal(String value) {
+          this.ebtTotal = value;
+     }
+
+    /**
+     * Gets the total amount to process as ebt.
+     * @return the total amount to process as ebt.
+     */
+     @JsonProperty("ebtTotal")
+     public String getEbtTotal() {
+          return this.ebtTotal;
+     }
+
+    /**
+     * Sets that this transaction will include a card metadata lookup.
+     * @param value that this transaction will include a card metadata lookup.
+     */
+     public void setCardMetadataLookup(boolean value) {
+          this.cardMetadataLookup = value;
+     }
+
+    /**
+     * Gets that this transaction will include a card metadata lookup.
+     * @return that this transaction will include a card metadata lookup.
+     */
+     @JsonProperty("cardMetadataLookup")
+     public boolean isCardMetadataLookup() {
+          return this.cardMetadataLookup;
      }
 
     /**

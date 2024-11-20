@@ -80,6 +80,9 @@ import com.blockchyp.client.dto.TextPromptResponse;
 import com.blockchyp.client.dto.BooleanPromptResponse;
 import com.blockchyp.client.dto.WhiteListedCard;
 import com.blockchyp.client.dto.AuthorizationRequest;
+import com.blockchyp.client.dto.CardMetadata;
+import com.blockchyp.client.dto.CardMetadataRequest;
+import com.blockchyp.client.dto.CardMetadataResponse;
 import com.blockchyp.client.dto.BalanceRequest;
 import com.blockchyp.client.dto.BalanceResponse;
 import com.blockchyp.client.dto.RefundRequest;
@@ -143,7 +146,7 @@ import com.blockchyp.client.dto.DeleteTokenRequest;
 import com.blockchyp.client.dto.DeleteTokenResponse;
 import com.blockchyp.client.dto.LinkTokenRequest;
 import com.blockchyp.client.dto.UnlinkTokenRequest;
-import com.blockchyp.client.dto.Healthcare;
+import com.blockchyp.client.dto.HealthcareMetadata;
 import com.blockchyp.client.dto.HealthcareGroup;
 import com.blockchyp.client.dto.GetMerchantsRequest;
 import com.blockchyp.client.dto.GetMerchantsResponse;
@@ -208,6 +211,10 @@ import com.blockchyp.client.dto.MerchantCredentialGenerationResponse;
 import com.blockchyp.client.dto.BuyRateLineItem;
 import com.blockchyp.client.dto.AggregateBillingLineItem;
 import com.blockchyp.client.dto.AggregateBillingLineItemStats;
+import com.blockchyp.client.dto.Owner;
+import com.blockchyp.client.dto.ApplicationAccount;
+import com.blockchyp.client.dto.MerchantApplication;
+import com.blockchyp.client.dto.SubmitApplicationRequest;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -803,6 +810,19 @@ public class BlockChypClient {
     }
     
     /**
+     * Submits and application to add a new merchant account.
+     * @param request the request parameters.
+     * @return {@link Acknowledgement}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+
+        public Acknowledgement submitApplication(SubmitApplicationRequest request) throws Exception {
+
+        return (Acknowledgement) postDashboard("/api/submit-application", request, Acknowledgement.class);
+
+    }
+    
+    /**
      * Adds a test merchant account.
      * @param request the request parameters.
      * @return {@link GetMerchantsResponse}
@@ -1352,6 +1372,22 @@ public class BlockChypClient {
             return (EnrollResponse) postTerminal("/api/enroll", request, EnrollResponse.class);
         } else {
             return (EnrollResponse) postGateway("/api/enroll", request, EnrollResponse.class);
+        }
+
+    }
+
+    /**
+     * Retrieves card metadata.
+     * @param request the request parameters.
+     * @return {@link CardMetadataResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public CardMetadataResponse cardMetadata(CardMetadataRequest request) throws Exception {
+
+        if (isTerminalRouted(request)) {
+            return (CardMetadataResponse) postTerminal("/api/card-metadata", request, CardMetadataResponse.class);
+        } else {
+            return (CardMetadataResponse) postGateway("/api/card-metadata", request, CardMetadataResponse.class);
         }
 
     }
