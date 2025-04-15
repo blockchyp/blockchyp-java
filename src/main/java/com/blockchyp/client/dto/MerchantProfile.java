@@ -1,5 +1,5 @@
 /**
- * Copyright 2019-2024 BlockChyp, Inc. All rights reserved. Use of this code is governed
+ * Copyright 2019-2025 BlockChyp, Inc. All rights reserved. Use of this code is governed
  * by a license that can be found in the LICENSE file.
  *
  * This file was generated automatically by the BlockChyp SDK Generator. Changes to this
@@ -124,6 +124,8 @@ public class MerchantProfile implements ITimeoutRequest {
      private boolean gatewayOnly;
 
      private Collection<BankAccount> bankAccounts;
+
+     private boolean passthroughSurchargeEnabled;
 
     /**
      * Sets the request timeout in seconds.
@@ -1044,6 +1046,25 @@ public class MerchantProfile implements ITimeoutRequest {
      @JsonProperty("bankAccounts")
      public Collection<BankAccount> getBankAccounts() {
           return this.bankAccounts;
+     }
+
+    /**
+     * Sets that a merchant is allowed to send a surcharge amount directly to the gateway.
+     * @param value that a merchant is allowed to send a surcharge amount directly to the
+     * gateway.
+     */
+     public void setPassthroughSurchargeEnabled(boolean value) {
+          this.passthroughSurchargeEnabled = value;
+     }
+
+    /**
+     * Gets that a merchant is allowed to send a surcharge amount directly to the gateway.
+     * @return that a merchant is allowed to send a surcharge amount directly to the
+     * gateway.
+     */
+     @JsonProperty("passthroughSurchargeEnabled")
+     public boolean isPassthroughSurchargeEnabled() {
+          return this.passthroughSurchargeEnabled;
      }
 
     /**
