@@ -1,6 +1,6 @@
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.annotations.SerializedName;
 
 public enum SignatureFormat {
 
@@ -15,7 +15,7 @@ public enum SignatureFormat {
         this.code = code;
     }
 
-    @JsonValue
+    // @JsonValue
     public String getCode() {
         return this.code;
     }

@@ -8,32 +8,24 @@
 
 package com.blockchyp.client;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.InputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.URLEncoder;
 import java.security.MessageDigest;
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
-import org.apache.commons.beanutils.BeanUtils;
+import com.google.gson.Gson;
+import okhttp3.*;
+import okhttp3.internal.http.HttpMethod;
+import okio.BufferedSink;
+import okio.BufferedSource;
+import okio.Okio;
 import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.httpclient.ConnectTimeoutException;
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpMethod;
-import org.apache.commons.httpclient.HttpStatus;
-import org.apache.commons.httpclient.MultiThreadedHttpConnectionManager;
-import org.apache.commons.httpclient.methods.EntityEnclosingMethod;
-import org.apache.commons.httpclient.methods.GetMethod;
-import org.apache.commons.httpclient.methods.PostMethod;
-import org.apache.commons.httpclient.methods.DeleteMethod;
-import org.apache.commons.httpclient.methods.PutMethod;
-import org.apache.commons.httpclient.methods.InputStreamRequestEntity;
-import org.apache.commons.httpclient.methods.StringRequestEntity;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.bouncycastle.util.encoders.Hex;
@@ -215,10 +207,6 @@ import com.blockchyp.client.dto.Owner;
 import com.blockchyp.client.dto.ApplicationAccount;
 import com.blockchyp.client.dto.MerchantApplication;
 import com.blockchyp.client.dto.SubmitApplicationRequest;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.util.StdDateFormat;
 
 /**
  * This is the main class Java developers will interact with. You can
@@ -267,15 +255,12 @@ public class BlockChypClient {
 
     private int timeout = 0;
 
-    private ObjectMapper objectMapper;
+    private Gson gson;
 
-    private HttpClient gatewayClient;
-
-    private HttpClient terminalClient;
-
-    private MultiThreadedHttpConnectionManager gatewayManager;
-
-    private MultiThreadedHttpConnectionManager terminalManager;
+    // private HttpClient gatewayClient;
+    private OkHttpClient gatewayClient;
+    // private HttpClient terminalClient;
+    private OkHttpClient terminalClient;
 
     private boolean terminalHttps = false;
 
@@ -283,7 +268,7 @@ public class BlockChypClient {
      * Default constructor.
      */
     public BlockChypClient() {
-        initObjectMapper();
+        initGson();
     }
 
     /**
@@ -415,11 +400,15 @@ public class BlockChypClient {
     /**
      * Initializes the JSON encoder and parser.
      */
-    protected void initObjectMapper() {
-        objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-        objectMapper.setDateFormat(new StdDateFormat().withColonInTimeZone(true));
+    // protected void initObjectMapper() {
+        // objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
+        // objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        // objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        // objectMapper.setDateFormat(new StdDateFormat().withColonInTimeZone(true));
+    // }
+
+    protected void initGson() {
+     gson = new Gson();
     }
 
     /**
@@ -1694,7 +1683,7 @@ public class BlockChypClient {
         if (offlineRouteCacheEnabled) {
             route = getOfflineCache(terminalName);
             if (route != null) {
-                routeCachePut(route);
+                //routeCachePut(route);
             }
         }
 
@@ -1705,7 +1694,7 @@ public class BlockChypClient {
      * Puts a terminal route in the cache (both caches).
      * @param route the terminal route record.
      */
-    @SuppressWarnings({ "unchecked" })
+   /*  @SuppressWarnings({ "unchecked" })
     protected void routeCachePut(TerminalRouteResponse route) {
 
         routeCache.put(defaultCredentials.getApiKey() + route.getTerminalName(), route);
@@ -1726,7 +1715,7 @@ public class BlockChypClient {
             }
 
         }
-    }
+    } */
 
     /**
      * Creates a cache key for terminal routes.
@@ -1809,12 +1798,13 @@ public class BlockChypClient {
                         TerminalRouteResponse.class);
                 if (route != null) {
                     route.setTimestamp(new Date());
-                    routeCachePut(route);
+                    //routeCachePut(route);
                 }
-            } catch (ConnectTimeoutException e) {
-                e.printStackTrace();
-                return fallbackRoute;
+//            } catch (ConnectTimeoutException e) {
+//                e.printStackTrace();
+//                return fallbackRoute;
             } catch (Exception e) {
+                e.printStackTrace();
                 throw new RuntimeException(e);
             }
         }
@@ -1823,42 +1813,51 @@ public class BlockChypClient {
 
     }
 
+
     /**
-     * Returns the gateway client singleton.
-     * @return HttpClient configured for gateway requests.
-     */
-    protected HttpClient getGatewayClient() {
+    * Returns the gateway client singleton.
+    * @return OkHttpClient configured for gateway requests.
+    */
+    protected OkHttpClient getGatewayClient() {
         if (gatewayClient == null) {
-            gatewayManager = new MultiThreadedHttpConnectionManager();
-            gatewayClient = new HttpClient(gatewayManager);
+            OkHttpClient.Builder builder = new OkHttpClient.Builder();
+
             if (connectionTimeout > 0) {
-                gatewayClient.getHttpConnectionManager().getParams().setConnectionTimeout(connectionTimeout);
+                builder.connectTimeout(connectionTimeout, TimeUnit.MILLISECONDS);
             }
+
             if (timeout > 0) {
-                gatewayClient.getHttpConnectionManager().getParams().setSoTimeout(timeout);
+                builder.readTimeout(timeout, TimeUnit.MILLISECONDS);
+                builder.writeTimeout(timeout, TimeUnit.MILLISECONDS); // Optional: match read timeout
             }
+
+            gatewayClient = builder.build();
         }
         return gatewayClient;
     }
 
+
     /**
-     * Returns the terminal client singleton.
-     * @return HttpClient configured for terminal requests.
-     */
-    protected HttpClient getTerminalClient() {
+    * Returns the terminal client singleton.
+    * @return OkHttpClient configured for terminal requests.
+    */
+    protected OkHttpClient getTerminalClient() {
         if (terminalClient == null) {
-            terminalManager = new MultiThreadedHttpConnectionManager();
-            terminalClient = new HttpClient(terminalManager);
+            OkHttpClient.Builder builder = new OkHttpClient.Builder();
+
             if (connectionTimeout > 0) {
-                terminalClient.getHttpConnectionManager().getParams().setConnectionTimeout(connectionTimeout);
+                builder.connectTimeout(connectionTimeout, TimeUnit.MILLISECONDS);
             }
+
             if (timeout > 0) {
-                terminalClient.getHttpConnectionManager().getParams().setSoTimeout(timeout);
+                builder.readTimeout(timeout, TimeUnit.MILLISECONDS);
+                builder.writeTimeout(timeout, TimeUnit.MILLISECONDS); // Optional, for completeness
             }
+
+            terminalClient = builder.build();
         }
         return terminalClient;
     }
-
 
     /**
      * Assembles the scheme, ip address, and port number bits of a terminal URL.
@@ -1907,38 +1906,78 @@ public class BlockChypClient {
      * @return a response of type specified by responseClass
      * @throws Exception exception if any errors occurred processing the request.
      */
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    protected Object finishTerminalRequest(TerminalRouteResponse route, Object request, HttpMethod method,
-            Class responseType) throws Exception {
+//    @SuppressWarnings({ "rawtypes", "unchecked" })
+//    protected Object finishTerminalRequest(TerminalRouteResponse route, Object request, HttpMethod method,
+//            Class responseType) throws Exception {
+//
+//        TerminalRequest termRequest = newTerminalRequestForRoute(route);
+//        termRequest.setRequest(request);
+//
+//        OkHttpClient client = getGatewayClient();
+//
+//        if (method instanceof EntityEnclosingMethod) {
+//            /* StringRequestEntity requestEntity = new StringRequestEntity(objectMapper.writeValueAsString(termRequest),
+//                    "application/json", "UTF-8"); */
+//            StringRequestEntity requestEntity = new StringRequestEntity(gson.toJson(termRequest), "application/json", "UTF-8");
+//
+//            EntityEnclosingMethod entityMethod = (EntityEnclosingMethod) method;
+//            entityMethod.setRequestEntity(requestEntity);
+//        }
+//
+//        method.setRequestHeader("User-Agent", USER_AGENT);
+//
+//        paymentLogger.debug("Terminal: " + method.getURI().toString());
+//
+//        try {
+//            int status = client.executeMethod(method);
+//            if (status != HttpStatus.SC_OK) {
+//                throw new IOException(method.getStatusText());
+//            }
+//            // return objectMapper.readValue(method.getResponseBodyAsStream(), responseType);
+//            return gson.fromJson(method.getResponseBodyAsStream(), responseType);
+//        } finally {
+//            method.releaseConnection();
+//        }
+//
+//    }
+    protected Object finishTerminalRequest(TerminalRouteResponse route, Object request, String method,
+                                           Class responseType) throws Exception {
 
         TerminalRequest termRequest = newTerminalRequestForRoute(route);
         termRequest.setRequest(request);
 
-        HttpClient client = getGatewayClient();
+        OkHttpClient client = getGatewayClient();
 
-        if (method instanceof EntityEnclosingMethod) {
-            StringRequestEntity requestEntity = new StringRequestEntity(objectMapper.writeValueAsString(termRequest),
-                    "application/json", "UTF-8");
+        // Convert the request object to JSON using Gson
+        String jsonRequest = gson.toJson(termRequest);
 
-            EntityEnclosingMethod entityMethod = (EntityEnclosingMethod) method;
-            entityMethod.setRequestEntity(requestEntity);
-        }
+        // Build the RequestBody
+        RequestBody body = RequestBody.create(
+                jsonRequest, MediaType.get("application/json; charset=utf-8"));
 
-        method.setRequestHeader("User-Agent", USER_AGENT);
+        // Build the request based on HTTP method (POST or PUT)
+        Request.Builder requestBuilder = new Request.Builder()
+                .url(route.getUri(method))  // Use route's URI
+                .header("User-Agent", USER_AGENT)
+                .method(method, body);  // POST or PUT
 
-        paymentLogger.debug("Terminal: " + method.getURI().toString());
+        Request httpRequest = requestBuilder.build();
 
-        try {
-            int status = client.executeMethod(method);
-            if (status != HttpStatus.SC_OK) {
-                throw new IOException(method.getStatusText());
+        // Log the request URI
+        paymentLogger.debug("Terminal: " + route.getUri(method).toString());
+
+        // Execute the request
+        try (Response response = client.newCall(httpRequest).execute()) {
+            if (!response.isSuccessful()) {
+                throw new IOException("Unexpected code " + response);
             }
-            return objectMapper.readValue(method.getResponseBodyAsStream(), responseType);
-        } finally {
-            method.releaseConnection();
-        }
 
+            // Parse the response body into the desired responseType
+            return gson.fromJson(response.body().charStream(), responseType);
+        }
     }
+
+
 
     /**
      * Executes a put http request against the terminal API.
@@ -1948,6 +1987,22 @@ public class BlockChypClient {
      * @return a response of type specified by responseClass
      * @throws Exception exception if any errors occurred processing the request.
      */
+//    @SuppressWarnings({ "rawtypes" })
+//    protected Object putTerminal(String path, Object request, Class responseType) throws Exception {
+//
+//        String terminalName = null;
+//        if (request instanceof ITerminalReference) {
+//            ITerminalReference ref = (ITerminalReference) request;
+//            terminalName = ref.getTerminalName();
+//        }
+//
+//        TerminalRouteResponse route = resolveTerminalRoute(terminalName);
+//
+//        PutMethod method = new PutMethod(resolveTerminalHost(route) + path);
+//
+//        return finishTerminalRequest(route, request, method, responseType);
+//
+//    }
     @SuppressWarnings({ "rawtypes" })
     protected Object putTerminal(String path, Object request, Class responseType) throws Exception {
 
@@ -1959,10 +2014,41 @@ public class BlockChypClient {
 
         TerminalRouteResponse route = resolveTerminalRoute(terminalName);
 
-        PutMethod method = new PutMethod(resolveTerminalHost(route) + path);
+        String url = resolveTerminalHost(route) + path;
 
-        return finishTerminalRequest(route, request, method, responseType);
+        OkHttpClient client = getGatewayClient();
 
+        // Serialize request object to JSON
+        String jsonRequest = gson.toJson(request);
+
+        // Build request body
+        RequestBody body = RequestBody.create(
+                jsonRequest, MediaType.get("application/json; charset=utf-8"));
+
+        Request.Builder requestBuilder = new Request.Builder()
+                .url(url)
+                .header("User-Agent", USER_AGENT)
+                .put(body);
+
+        // Optional timeout override
+        if (request instanceof ITimeoutRequest) {
+            ITimeoutRequest coreRequest = (ITimeoutRequest) request;
+            if (coreRequest.getTimeout() > 0) {
+                client = client.newBuilder()
+                        .callTimeout(coreRequest.getTimeout(), TimeUnit.MILLISECONDS)
+                        .build();
+            }
+        }
+
+        paymentLogger.debug("Terminal PUT: " + url);
+
+        // Execute request and parse response
+        try (Response response = client.newCall(requestBuilder.build()).execute()) {
+            if (!response.isSuccessful()) {
+                throw new IOException("Unexpected response code: " + response.code());
+            }
+            return gson.fromJson(response.body().charStream(), responseType);
+        }
     }
 
     /**
@@ -1998,6 +2084,31 @@ public class BlockChypClient {
      * @return a response of type specified by responseClass
      * @throws Exception exception if any errors occurred processing the request.
      */
+//    @SuppressWarnings({ "rawtypes" })
+//    protected Object postTerminal(String path, Object request, Class responseType) throws Exception {
+//
+//        String terminalName = null;
+//        if (request instanceof ITerminalReference) {
+//            ITerminalReference ref = (ITerminalReference) request;
+//            terminalName = ref.getTerminalName();
+//        }
+//
+//        TerminalRouteResponse route = resolveTerminalRoute(terminalName);
+//
+//        PostMethod method = new PostMethod(resolveTerminalHost(route) + path);
+//
+//        if (request instanceof ITimeoutRequest) {
+//            ITimeoutRequest coreRequest = (ITimeoutRequest) request;
+//            if (coreRequest.getTimeout() > 0) {
+//                method.getParams().setSoTimeout(coreRequest.getTimeout());
+//            }
+//        }
+//
+//
+//
+//        return finishTerminalRequest(route, request, method, responseType);
+//
+//    }
     @SuppressWarnings({ "rawtypes" })
     protected Object postTerminal(String path, Object request, Class responseType) throws Exception {
 
@@ -2009,20 +2120,44 @@ public class BlockChypClient {
 
         TerminalRouteResponse route = resolveTerminalRoute(terminalName);
 
-        PostMethod method = new PostMethod(resolveTerminalHost(route) + path);
+        String url = resolveTerminalHost(route) + path;
 
+        OkHttpClient client = getGatewayClient();
+
+        // Convert the request object to JSON using Gson
+        String jsonRequest = gson.toJson(request);
+
+        // Build the request body
+        RequestBody body = RequestBody.create(
+                jsonRequest, MediaType.get("application/json; charset=utf-8"));
+
+        Request.Builder requestBuilder = new Request.Builder()
+                .url(url)
+                .header("User-Agent", USER_AGENT)
+                .post(body);
+
+        // Optional: apply per-request timeout if applicable
         if (request instanceof ITimeoutRequest) {
             ITimeoutRequest coreRequest = (ITimeoutRequest) request;
             if (coreRequest.getTimeout() > 0) {
-                method.getParams().setSoTimeout(coreRequest.getTimeout());
+                client = client.newBuilder()
+                        .callTimeout(coreRequest.getTimeout(), TimeUnit.MILLISECONDS)
+                        .build();
             }
         }
 
+        // Log the request
+        paymentLogger.debug("Terminal POST: " + url);
 
-
-        return finishTerminalRequest(route, request, method, responseType);
-
+        // Execute the request
+        try (Response response = client.newCall(requestBuilder.build()).execute()) {
+            if (!response.isSuccessful()) {
+                throw new IOException("Unexpected response code: " + response.code());
+            }
+            return gson.fromJson(response.body().charStream(), responseType);
+        }
     }
+
 
     /**
      * Executes an http get request against the gateway with a timeout override.
@@ -2048,16 +2183,46 @@ public class BlockChypClient {
      * @return a response of type specified by responseClass
      * @throws Exception exception if any errors occurred processing the request.
      */
+//    @SuppressWarnings({ "rawtypes" })
+//    protected Object getGateway(String path, boolean test, Class responseType, int requestTimeout) throws Exception {
+//
+//        HttpMethod method = new GetMethod(toFullyQualifiedGatewayPath(path, test));
+//        if (requestTimeout > 0) {
+//            method.getParams().setSoTimeout(requestTimeout);
+//        }
+//        return finishGatewayRequest(method, responseType);
+//
+//    }
     @SuppressWarnings({ "rawtypes" })
     protected Object getGateway(String path, boolean test, Class responseType, int requestTimeout) throws Exception {
 
-        HttpMethod method = new GetMethod(toFullyQualifiedGatewayPath(path, test));
-        if (requestTimeout > 0) {
-            method.getParams().setSoTimeout(requestTimeout);
-        }
-        return finishGatewayRequest(method, responseType);
+        String url = toFullyQualifiedGatewayPath(path, test);
 
+        OkHttpClient client = getGatewayClient();
+
+        // Apply custom timeout if needed
+        if (requestTimeout > 0) {
+            client = client.newBuilder()
+                    .callTimeout(requestTimeout, TimeUnit.MILLISECONDS)
+                    .build();
+        }
+
+        Request request = new Request.Builder()
+                .url(url)
+                .header("User-Agent", USER_AGENT)
+                .get()
+                .build();
+
+        paymentLogger.debug("Gateway GET: " + url);
+
+        try (Response response = client.newCall(request).execute()) {
+            if (!response.isSuccessful()) {
+                throw new IOException("Unexpected response code: " + response.code());
+            }
+            return gson.fromJson(response.body().charStream(), responseType);
+        }
     }
+
 
     /**
      * Executes an http get request against the gateway with a timeout override.
@@ -2067,60 +2232,139 @@ public class BlockChypClient {
      * @return a response of type specified by responseClass
      * @throws Exception exception if any errors occurred processing the request.
      */
+//    @SuppressWarnings({ "rawtypes" })
+//    protected Object getDashboard(String path, ITimeoutRequest request, Class responseType) throws Exception {
+//
+//        HttpMethod method = new GetMethod(toFullyQualifiedDashboardPath(path));
+//        if (request.getTimeout() > 0) {
+//            method.getParams().setSoTimeout(request.getTimeout());
+//        }
+//        return finishGatewayRequest(method, responseType);
+//
+//    }
     @SuppressWarnings({ "rawtypes" })
     protected Object getDashboard(String path, ITimeoutRequest request, Class responseType) throws Exception {
 
-        HttpMethod method = new GetMethod(toFullyQualifiedDashboardPath(path));
-        if (request.getTimeout() > 0) {
-            method.getParams().setSoTimeout(request.getTimeout());
-        }
-        return finishGatewayRequest(method, responseType);
+        String url = toFullyQualifiedDashboardPath(path);
 
+        OkHttpClient client = getGatewayClient();
+
+        // Apply timeout if specified
+        if (request.getTimeout() > 0) {
+            client = client.newBuilder()
+                    .callTimeout(request.getTimeout(), TimeUnit.MILLISECONDS)
+                    .build();
+        }
+
+        Request httpRequest = new Request.Builder()
+                .url(url)
+                .header("User-Agent", USER_AGENT)
+                .get()
+                .build();
+
+        paymentLogger.debug("Dashboard GET: " + url);
+
+        try (Response response = client.newCall(httpRequest).execute()) {
+            if (!response.isSuccessful()) {
+                throw new IOException("Unexpected response code: " + response.code());
+            }
+            return gson.fromJson(response.body().charStream(), responseType);
+        }
     }
+
 
     /**
      * Executes a previously assembled HttpMethod against the gateway.  Aggregates common logic
      * associated with hitting the gateway.
-     * @param method the HttpMethod to execute.
+     * @param httpMethod the HttpMethod to execute.
      * @param responseType expected response type.
      * @return a response of type specified by responseClass
      * @throws Exception exception if any errors occurred processing the request.
      */
+//    @SuppressWarnings({ "unchecked", "rawtypes" })
+//    protected Object finishGatewayRequest(HttpMethod method, Class responseType) throws Exception {
+//
+//        // HttpClient client = getGatewayClient();
+//
+//        method.setRequestHeader("User-Agent", USER_AGENT);
+//
+//        Map headers = new HashMap();
+//        if (defaultCredentials != null) {
+//            headers = CryptoUtils.getInstance().generateApiHeaders(defaultCredentials.getApiKey(),
+//                    defaultCredentials.getBearerToken(), defaultCredentials.getSigningKey());
+//        }
+//
+//        paymentLogger.debug("Gateway: " + method.getURI().toString());
+//
+//        Iterator itr = headers.keySet().iterator();
+//        while (itr.hasNext()) {
+//            String key = (String) itr.next();
+//            String value = (String) headers.get(key);
+//            method.addRequestHeader(key, value);
+//        }
+//        try {
+//            int status = client.executeMethod(method);
+//            if (status == HttpStatus.SC_FORBIDDEN) {
+//                // check clock drift
+//                paymentLogger.info("Checking clock drift");
+//            }
+//            if (status != HttpStatus.SC_OK) {
+//                throw new IOException(method.getStatusText());
+//            }
+//            // return objectMapper.readValue(method.getResponseBodyAsStream(), responseType);
+//            return gson.fromJson(method.getResponseBodyAsStream(), responseType);
+//        } finally {
+//            method.releaseConnection();
+//        }
+//    }
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    protected Object finishGatewayRequest(HttpMethod method, Class responseType) throws Exception {
+    protected Object finishGatewayRequest(String url, String httpMethod, RequestBody body, Class responseType) throws Exception {
 
-        HttpClient client = getGatewayClient();
+        OkHttpClient client = getGatewayClient();
 
-        method.setRequestHeader("User-Agent", USER_AGENT);
+        Request.Builder requestBuilder = new Request.Builder()
+                .url(url)
+                .header("User-Agent", USER_AGENT);
 
-        Map headers = new HashMap();
+        // Add crypto headers if credentials are available
         if (defaultCredentials != null) {
-            headers = CryptoUtils.getInstance().generateApiHeaders(defaultCredentials.getApiKey(),
-                    defaultCredentials.getBearerToken(), defaultCredentials.getSigningKey());
+            Map<String, String> headers = CryptoUtils.getInstance().generateApiHeaders(
+                    defaultCredentials.getApiKey(),
+                    defaultCredentials.getBearerToken(),
+                    defaultCredentials.getSigningKey()
+            );
+
+            for (Map.Entry<String, String> entry : headers.entrySet()) {
+                requestBuilder.header(entry.getKey(), entry.getValue());
+            }
         }
 
-        paymentLogger.debug("Gateway: " + method.getURI().toString());
-
-        Iterator itr = headers.keySet().iterator();
-        while (itr.hasNext()) {
-            String key = (String) itr.next();
-            String value = (String) headers.get(key);
-            method.addRequestHeader(key, value);
+        // Set HTTP method
+        if ("POST".equalsIgnoreCase(httpMethod)) {
+            requestBuilder.post(body);
+        } else if ("PUT".equalsIgnoreCase(httpMethod)) {
+            requestBuilder.put(body);
+        } else if ("DELETE".equalsIgnoreCase(httpMethod)) {
+            requestBuilder.delete(body != null ? body : RequestBody.create(new byte[0]));
+        } else {
+            requestBuilder.get(); // default GET
         }
-        try {
-            int status = client.executeMethod(method);
-            if (status == HttpStatus.SC_FORBIDDEN) {
-                // check clock drift
+
+        Request request = requestBuilder.build();
+
+        paymentLogger.debug("Gateway: " + url);
+
+        try (Response response = client.newCall(request).execute()) {
+            if (response.code() == 403) {
                 paymentLogger.info("Checking clock drift");
             }
-            if (status != HttpStatus.SC_OK) {
-                throw new IOException(method.getStatusText());
+            if (!response.isSuccessful()) {
+                throw new IOException("Unexpected response code: " + response.code() + " - " + response.message());
             }
-            return objectMapper.readValue(method.getResponseBodyAsStream(), responseType);
-        } finally {
-            method.releaseConnection();
+            return gson.fromJson(response.body().charStream(), responseType);
         }
     }
+
 
     /**
      * Executes a post HTTP request against the dashboard.
@@ -2131,31 +2375,91 @@ public class BlockChypClient {
      * @return a response of type specified by responseClass
      * @throws Exception exception if any errors occurred processing the request.
      */
+//    @SuppressWarnings({ "rawtypes" })
+//    protected Object postUpload(String path, UploadMetadata request, InputStream inStream, Class responseClass) throws Exception {
+//
+//        PostMethod method = new PostMethod(toFullyQualifiedDashboardPath(path));
+//        if (request.getFileSize() > 0) {
+//            method.addRequestHeader("X-File-Size", Integer.toString(request.getFileSize(), 10));
+//        }
+//        if (request.getFileName() != null && !request.getFileName().equals("")) {
+//            method.addRequestHeader("X-Upload-File-Name", request.getFileName());
+//        }
+//        if (request.getUploadId() != null && !request.getUploadId().equals("")) {
+//            method.addRequestHeader("X-Upload-ID", request.getUploadId());
+//        }
+//
+//        InputStreamRequestEntity requestEntity = new InputStreamRequestEntity(inStream);
+//
+//        method.setRequestEntity(requestEntity);
+//
+//        if (request.getTimeout() > 0) {
+//            method.getParams().setSoTimeout(request.getTimeout());
+//        }
+//
+//        return finishGatewayRequest(method, responseClass);
+//    }
     @SuppressWarnings({ "rawtypes" })
-    protected Object postUpload(String path, UploadMetadata request, InputStream inStream, Class responseClass) throws Exception {
+    protected Object postUpload(String path, UploadMetadata request, final InputStream inStream, Class responseClass) throws Exception {
 
-        PostMethod method = new PostMethod(toFullyQualifiedDashboardPath(path));
+        String url = toFullyQualifiedDashboardPath(path);
+
+        // Prepare headers
+        Request.Builder requestBuilder = new Request.Builder()
+                .url(url)
+                .header("User-Agent", USER_AGENT);
+
         if (request.getFileSize() > 0) {
-            method.addRequestHeader("X-File-Size", Integer.toString(request.getFileSize(), 10));
+            requestBuilder.header("X-File-Size", Integer.toString(request.getFileSize(), 10));
         }
-        if (request.getFileName() != null && !request.getFileName().equals("")) {
-            method.addRequestHeader("X-Upload-File-Name", request.getFileName());
+        if (request.getFileName() != null && !request.getFileName().isEmpty()) {
+            requestBuilder.header("X-Upload-File-Name", request.getFileName());
         }
-        if (request.getUploadId() != null && !request.getUploadId().equals("")) {
-            method.addRequestHeader("X-Upload-ID", request.getUploadId());
-        }
-
-        InputStreamRequestEntity requestEntity = new InputStreamRequestEntity(inStream);
-
-        method.setRequestEntity(requestEntity);
-
-        if (request.getTimeout() > 0) {
-            method.getParams().setSoTimeout(request.getTimeout());
+        if (request.getUploadId() != null && !request.getUploadId().isEmpty()) {
+            requestBuilder.header("X-Upload-ID", request.getUploadId());
         }
 
-        return finishGatewayRequest(method, responseClass);
+        // Add crypto headers if needed
+        if (defaultCredentials != null) {
+            Map<String, String> headers = CryptoUtils.getInstance().generateApiHeaders(
+                    defaultCredentials.getApiKey(),
+                    defaultCredentials.getBearerToken(),
+                    defaultCredentials.getSigningKey()
+            );
+            for (Map.Entry<String, String> entry : headers.entrySet()) {
+                requestBuilder.header(entry.getKey(), entry.getValue());
+            }
+        }
 
+        // Create the streaming request body
+        RequestBody body = new RequestBody() {
+            @Override
+            public MediaType contentType() {
+                return MediaType.parse("application/octet-stream");
+            }
+
+            @Override
+            public void writeTo(BufferedSink sink) throws IOException {
+                try (BufferedSource source = Okio.buffer(Okio.source(inStream))) {
+                    sink.writeAll(source);
+                }
+            }
+        };
+
+        Request requestObj = requestBuilder.post(body).build();
+
+        OkHttpClient client = getGatewayClient();
+
+        paymentLogger.debug("Dashboard Upload: " + url);
+
+        try (Response response = client.newCall(requestObj).execute()) {
+            if (!response.isSuccessful()) {
+                throw new IOException("Upload failed: " + response.code() + " - " + response.message());
+            }
+            return gson.fromJson(response.body().charStream(), responseClass);
+        }
     }
+
 
     /**
      * Executes a post HTTP request against the dashboard.
@@ -2165,22 +2469,75 @@ public class BlockChypClient {
      * @return a response of type specified by responseClass
      * @throws Exception exception if any errors occurred processing the request.
      */
+//    @SuppressWarnings({ "rawtypes" })
+//    protected Object postDashboard(String path, ITimeoutRequest request, Class responseClass) throws Exception {
+//
+//        PostMethod method = new PostMethod(toFullyQualifiedDashboardPath(path));
+//        StringRequestEntity requestEntity = new StringRequestEntity(objectMapper.writeValueAsString(request),
+//                "application/json", "UTF-8");
+//
+//        method.setRequestEntity(requestEntity);
+//
+//        if (request.getTimeout() > 0) {
+//            method.getParams().setSoTimeout(request.getTimeout());
+//        }
+//
+//        return finishGatewayRequest(method, responseClass);
+//
+//    }
     @SuppressWarnings({ "rawtypes" })
     protected Object postDashboard(String path, ITimeoutRequest request, Class responseClass) throws Exception {
 
-        PostMethod method = new PostMethod(toFullyQualifiedDashboardPath(path));
-        StringRequestEntity requestEntity = new StringRequestEntity(objectMapper.writeValueAsString(request),
-                "application/json", "UTF-8");
+        String url = toFullyQualifiedDashboardPath(path);
 
-        method.setRequestEntity(requestEntity);
+        // Serialize the request to JSON
+        String json = gson.toJson(request);
 
-        if (request.getTimeout() > 0) {
-            method.getParams().setSoTimeout(request.getTimeout());
+        // Build the request body
+        RequestBody body = RequestBody.create(json, MediaType.parse("application/json"));
+
+        // Prepare the request
+        Request.Builder requestBuilder = new Request.Builder()
+                .url(url)
+                .header("User-Agent", USER_AGENT)
+                .post(body);
+
+        // Add crypto headers if credentials are present
+        if (defaultCredentials != null) {
+            Map<String, String> headers = CryptoUtils.getInstance().generateApiHeaders(
+                    defaultCredentials.getApiKey(),
+                    defaultCredentials.getBearerToken(),
+                    defaultCredentials.getSigningKey()
+            );
+            for (Map.Entry<String, String> entry : headers.entrySet()) {
+                requestBuilder.header(entry.getKey(), entry.getValue());
+            }
         }
 
-        return finishGatewayRequest(method, responseClass);
+        // Set timeout if needed
+        OkHttpClient client = getGatewayClientWithTimeout(request.getTimeout());
 
+        Request requestObj = requestBuilder.build();
+
+        paymentLogger.debug("Dashboard POST: " + url);
+
+        try (Response response = client.newCall(requestObj).execute()) {
+            if (!response.isSuccessful()) {
+                throw new IOException("POST failed: " + response.code() + " - " + response.message());
+            }
+            return gson.fromJson(response.body().charStream(), responseClass);
+        }
     }
+
+    private OkHttpClient getGatewayClientWithTimeout(int timeoutMs) {
+        if (timeoutMs > 0) {
+            return getGatewayClient().newBuilder()
+                    .callTimeout(Duration.ofMillis(timeoutMs))
+                    .build();
+        }
+        return getGatewayClient();
+    }
+
 
     /**
      * Executes a post HTTP request against the gateway.
@@ -2190,22 +2547,68 @@ public class BlockChypClient {
      * @return a response of type specified by responseClass
      * @throws Exception exception if any errors occurred processing the request.
      */
+//    @SuppressWarnings({ "rawtypes" })
+//    protected Object postGateway(String path, ITimeoutRequest request, Class responseClass) throws Exception {
+//
+//        PostMethod method = new PostMethod(toFullyQualifiedGatewayPath(path, request.isTest()));
+//        StringRequestEntity requestEntity = new StringRequestEntity(objectMapper.writeValueAsString(request),
+//                "application/json", "UTF-8");
+//
+//        method.setRequestEntity(requestEntity);
+//
+//        if (request.getTimeout() > 0) {
+//            method.getParams().setSoTimeout(request.getTimeout());
+//        }
+//
+//        return finishGatewayRequest(method, responseClass);
+//
+//    }
     @SuppressWarnings({ "rawtypes" })
     protected Object postGateway(String path, ITimeoutRequest request, Class responseClass) throws Exception {
 
-        PostMethod method = new PostMethod(toFullyQualifiedGatewayPath(path, request.isTest()));
-        StringRequestEntity requestEntity = new StringRequestEntity(objectMapper.writeValueAsString(request),
-                "application/json", "UTF-8");
+        // Build the full gateway URL
+        String url = toFullyQualifiedGatewayPath(path, request.isTest());
 
-        method.setRequestEntity(requestEntity);
+        // Serialize the request body to JSON using Gson
+        String json = gson.toJson(request);
 
-        if (request.getTimeout() > 0) {
-            method.getParams().setSoTimeout(request.getTimeout());
+        // Create request body
+        RequestBody body = RequestBody.create(json, MediaType.parse("application/json"));
+
+        // Prepare request builder
+        Request.Builder requestBuilder = new Request.Builder()
+                .url(url)
+                .header("User-Agent", USER_AGENT)
+                .post(body);
+
+        // Add authentication headers if needed
+        if (defaultCredentials != null) {
+            Map<String, String> headers = CryptoUtils.getInstance().generateApiHeaders(
+                    defaultCredentials.getApiKey(),
+                    defaultCredentials.getBearerToken(),
+                    defaultCredentials.getSigningKey()
+            );
+            for (Map.Entry<String, String> entry : headers.entrySet()) {
+                requestBuilder.header(entry.getKey(), entry.getValue());
+            }
         }
 
-        return finishGatewayRequest(method, responseClass);
+        // Build request
+        Request requestObj = requestBuilder.build();
 
+        // Apply timeout if set
+        OkHttpClient client = getGatewayClientWithTimeout(request.getTimeout());
+
+        paymentLogger.debug("Gateway POST: " + url);
+
+        try (Response response = client.newCall(requestObj).execute()) {
+            if (!response.isSuccessful()) {
+                throw new IOException("POST failed: " + response.code() + " - " + response.message());
+            }
+            return gson.fromJson(response.body().charStream(), responseClass);
+        }
     }
+
 
     /**
      * Executes a put HTTP request against the gateway.
@@ -2215,18 +2618,62 @@ public class BlockChypClient {
      * @return a reponse of type specified by responseClass
      * @throws Exception exception if any errors occurred processing the request.
      */
+//    @SuppressWarnings({ "rawtypes" })
+//    protected Object putGateway(String path, ITimeoutRequest request, Class responseClass) throws Exception {
+//
+//        PutMethod method = new PutMethod(toFullyQualifiedGatewayPath(path, request.isTest()));
+//        StringRequestEntity requestEntity = new StringRequestEntity(objectMapper.writeValueAsString(request),
+//                "application/json", "UTF-8");
+//
+//        method.setRequestEntity(requestEntity);
+//
+//        return finishGatewayRequest(method, responseClass);
+//    }
     @SuppressWarnings({ "rawtypes" })
     protected Object putGateway(String path, ITimeoutRequest request, Class responseClass) throws Exception {
 
-        PutMethod method = new PutMethod(toFullyQualifiedGatewayPath(path, request.isTest()));
-        StringRequestEntity requestEntity = new StringRequestEntity(objectMapper.writeValueAsString(request),
-                "application/json", "UTF-8");
+        // Build the full gateway URL
+        String url = toFullyQualifiedGatewayPath(path, request.isTest());
 
-        method.setRequestEntity(requestEntity);
+        // Convert the request to JSON
+        String json = gson.toJson(request);
 
-        return finishGatewayRequest(method, responseClass);
+        // Create the request body
+        RequestBody body = RequestBody.create(json, MediaType.parse("application/json"));
 
+        // Build the request
+        Request.Builder requestBuilder = new Request.Builder()
+                .url(url)
+                .header("User-Agent", USER_AGENT)
+                .put(body);
+
+        // Add authentication headers if available
+        if (defaultCredentials != null) {
+            Map<String, String> headers = CryptoUtils.getInstance().generateApiHeaders(
+                    defaultCredentials.getApiKey(),
+                    defaultCredentials.getBearerToken(),
+                    defaultCredentials.getSigningKey()
+            );
+            for (Map.Entry<String, String> entry : headers.entrySet()) {
+                requestBuilder.header(entry.getKey(), entry.getValue());
+            }
+        }
+
+        Request requestObj = requestBuilder.build();
+
+        // Apply timeout if specified
+        OkHttpClient client = getGatewayClientWithTimeout(request.getTimeout());
+
+        paymentLogger.debug("Gateway PUT: " + url);
+
+        try (Response response = client.newCall(requestObj).execute()) {
+            if (!response.isSuccessful()) {
+                throw new IOException("PUT failed: " + response.code() + " - " + response.message());
+            }
+            return gson.fromJson(response.body().charStream(), responseClass);
+        }
     }
+
 
     /**
      * Executes a delete HTTP request against the gateway.
@@ -2236,18 +2683,58 @@ public class BlockChypClient {
      * @return a response of type specified by responseClass
      * @throws Exception exception if any errors occurred processing the request.
      */
+//    @SuppressWarnings({ "rawtypes" })
+//    protected Object deleteGateway(String path, ITimeoutRequest request, Class responseClass) throws Exception {
+//
+//        DeleteMethod method = new DeleteMethod(toFullyQualifiedGatewayPath(path, request.isTest()));
+//
+//        if (request.getTimeout() > 0) {
+//            method.getParams().setSoTimeout(request.getTimeout());
+//        }
+//
+//        return finishGatewayRequest(method, responseClass);
+//
+//    }
     @SuppressWarnings({ "rawtypes" })
     protected Object deleteGateway(String path, ITimeoutRequest request, Class responseClass) throws Exception {
 
-        DeleteMethod method = new DeleteMethod(toFullyQualifiedGatewayPath(path, request.isTest()));
+        // Build the full gateway URL
+        String url = toFullyQualifiedGatewayPath(path, request.isTest());
 
-        if (request.getTimeout() > 0) {
-            method.getParams().setSoTimeout(request.getTimeout());
+        // Prepare the request builder
+        Request.Builder requestBuilder = new Request.Builder()
+                .url(url)
+                .header("User-Agent", USER_AGENT)
+                .delete();
+
+        // Add authentication headers if available
+        if (defaultCredentials != null) {
+            Map<String, String> headers = CryptoUtils.getInstance().generateApiHeaders(
+                    defaultCredentials.getApiKey(),
+                    defaultCredentials.getBearerToken(),
+                    defaultCredentials.getSigningKey()
+            );
+            for (Map.Entry<String, String> entry : headers.entrySet()) {
+                requestBuilder.header(entry.getKey(), entry.getValue());
+            }
         }
 
-        return finishGatewayRequest(method, responseClass);
+        // Build the request
+        Request requestObj = requestBuilder.build();
 
+        // Apply timeout if specified
+        OkHttpClient client = getGatewayClientWithTimeout(request.getTimeout());
+
+        paymentLogger.debug("Gateway DELETE: " + url);
+
+        try (Response response = client.newCall(requestObj).execute()) {
+            if (!response.isSuccessful()) {
+                throw new IOException("DELETE failed: " + response.code() + " - " + response.message());
+            }
+            return gson.fromJson(response.body().charStream(), responseClass);
+        }
     }
+
 
     /**
      * Executes a delete HTTP request against the gateway.
@@ -2257,18 +2744,58 @@ public class BlockChypClient {
      * @return a response of type specified by responseClass
      * @throws Exception exception if any errors occurred processing the request.
      */
+//    @SuppressWarnings({ "rawtypes" })
+//    protected Object deleteDashboard(String path, ITimeoutRequest request, Class responseClass) throws Exception {
+//
+//        DeleteMethod method = new DeleteMethod(toFullyQualifiedDashboardPath(path));
+//
+//        if (request.getTimeout() > 0) {
+//            method.getParams().setSoTimeout(request.getTimeout());
+//        }
+//
+//        return finishGatewayRequest(method, responseClass);
+//
+//    }
     @SuppressWarnings({ "rawtypes" })
     protected Object deleteDashboard(String path, ITimeoutRequest request, Class responseClass) throws Exception {
 
-        DeleteMethod method = new DeleteMethod(toFullyQualifiedDashboardPath(path));
+        // Build the full dashboard URL
+        String url = toFullyQualifiedDashboardPath(path);
 
-        if (request.getTimeout() > 0) {
-            method.getParams().setSoTimeout(request.getTimeout());
+        // Prepare the request builder for DELETE
+        Request.Builder requestBuilder = new Request.Builder()
+                .url(url)
+                .header("User-Agent", USER_AGENT)
+                .delete();
+
+        // Add authentication headers if available
+        if (defaultCredentials != null) {
+            Map<String, String> headers = CryptoUtils.getInstance().generateApiHeaders(
+                    defaultCredentials.getApiKey(),
+                    defaultCredentials.getBearerToken(),
+                    defaultCredentials.getSigningKey()
+            );
+            for (Map.Entry<String, String> entry : headers.entrySet()) {
+                requestBuilder.header(entry.getKey(), entry.getValue());
+            }
         }
 
-        return finishGatewayRequest(method, responseClass);
+        // Build the request
+        Request requestObj = requestBuilder.build();
 
+        // Apply timeout if specified
+        OkHttpClient client = getGatewayClientWithTimeout(request.getTimeout());
+
+        paymentLogger.debug("Dashboard DELETE: " + url);
+
+        try (Response response = client.newCall(requestObj).execute()) {
+            if (!response.isSuccessful()) {
+                throw new IOException("DELETE failed: " + response.code() + " - " + response.message());
+            }
+            return gson.fromJson(response.body().charStream(), responseClass);
+        }
     }
+
 
     /**
      * Returns the offline cache location.  This will be the value of offlineRouteCacheLocation if specified
@@ -2297,6 +2824,27 @@ public class BlockChypClient {
      * @param terminalName the target terminal name.
      * @return terminal route, null if not found.
      */
+//    public TerminalRouteResponse getOfflineCache(String terminalName) {
+//
+//        File file = new File(resolveOfflineRouteCacheLocation(terminalName));
+//
+//        paymentLogger.debug("Checking Offline Route Cache: " + file.getAbsolutePath());
+//
+//        if (!file.exists()) {
+//            paymentLogger.debug("Offline Route Cache Miss: " + terminalName);
+//            return null;
+//        }
+//
+//        try {
+//            TerminalRouteResponse route = objectMapper.readValue(file, TerminalRouteResponse.class);
+//            route.setTransientCredentials(decrypt(route.getTransientCredentials()));
+//            paymentLogger.debug("Offline Route Cache Hit: " + terminalName);
+//            return route;
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+//
+//    }
     public TerminalRouteResponse getOfflineCache(String terminalName) {
 
         File file = new File(resolveOfflineRouteCacheLocation(terminalName));
@@ -2309,14 +2857,19 @@ public class BlockChypClient {
         }
 
         try {
-            TerminalRouteResponse route = objectMapper.readValue(file, TerminalRouteResponse.class);
+            // Use FileInputStream for Android compatibility
+            FileInputStream fileInputStream = new FileInputStream(file);
+            // Deserialize JSON file into TerminalRouteResponse
+            TerminalRouteResponse route = gson.fromJson(new InputStreamReader(fileInputStream), TerminalRouteResponse.class);
+
+            // Decrypt transient credentials if they exist
             route.setTransientCredentials(decrypt(route.getTransientCredentials()));
+
             paymentLogger.debug("Offline Route Cache Hit: " + terminalName);
             return route;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
     }
 
     /**

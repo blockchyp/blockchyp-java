@@ -191,4 +191,8 @@ public class TerminalRouteResponse extends Acknowledgement {
         this.timestamp = timestamp;
     }
 
+    public String getUri(String path) {
+        return "https://" + this.ipAddress + path;
+    }
+
 }

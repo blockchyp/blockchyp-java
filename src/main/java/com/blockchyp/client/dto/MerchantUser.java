@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -49,7 +49,7 @@ public class MerchantUser {
      * Gets whether or not these results are for test or live merchants.
      * @return whether or not these results are for test or live merchants.
      */
-     @JsonProperty("test")
+     @SerializedName("test")
      public boolean isTest() {
           return this.test;
      }
@@ -66,7 +66,7 @@ public class MerchantUser {
      * Gets the user's primary key.
      * @return the user's primary key.
      */
-     @JsonProperty("id")
+     @SerializedName("id")
      public String getId() {
           return this.id;
      }
@@ -83,7 +83,7 @@ public class MerchantUser {
      * Gets the user's first name.
      * @return the user's first name.
      */
-     @JsonProperty("firstName")
+     @SerializedName("firstName")
      public String getFirstName() {
           return this.firstName;
      }
@@ -100,7 +100,7 @@ public class MerchantUser {
      * Gets the user's last name.
      * @return the user's last name.
      */
-     @JsonProperty("lastName")
+     @SerializedName("lastName")
      public String getLastName() {
           return this.lastName;
      }
@@ -117,7 +117,7 @@ public class MerchantUser {
      * Gets the user's email address.
      * @return the user's email address.
      */
-     @JsonProperty("email")
+     @SerializedName("email")
      public String getEmail() {
           return this.email;
      }
@@ -134,7 +134,7 @@ public class MerchantUser {
      * Gets the user account status.
      * @return the user account status.
      */
-     @JsonProperty("status")
+     @SerializedName("status")
      public String getStatus() {
           return this.status;
      }
@@ -151,7 +151,7 @@ public class MerchantUser {
      * Gets the type of user account.
      * @return the type of user account.
      */
-     @JsonProperty("type")
+     @SerializedName("type")
      public String getType() {
           return this.type;
      }
@@ -168,7 +168,7 @@ public class MerchantUser {
      * Gets the role codes assigned to this user.
      * @return the role codes assigned to this user.
      */
-     @JsonProperty("roles")
+     @SerializedName("roles")
      public Collection<String> getRoles() {
           return this.roles;
      }
@@ -185,7 +185,7 @@ public class MerchantUser {
      * Gets whether or not this user account is locked.
      * @return whether or not this user account is locked.
      */
-     @JsonProperty("locked")
+     @SerializedName("locked")
      public boolean isLocked() {
           return this.locked;
      }

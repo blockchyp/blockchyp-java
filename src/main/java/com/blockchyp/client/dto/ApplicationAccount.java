@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 
 /**
@@ -38,7 +38,7 @@ public class ApplicationAccount {
      * Gets the name of the bank account.
      * @return the name of the bank account.
      */
-     @JsonProperty("name")
+     @SerializedName("name")
      public String getName() {
           return this.name;
      }
@@ -55,7 +55,7 @@ public class ApplicationAccount {
      * Gets the name of the bank.
      * @return the name of the bank.
      */
-     @JsonProperty("bank")
+     @SerializedName("bank")
      public String getBank() {
           return this.bank;
      }
@@ -72,7 +72,7 @@ public class ApplicationAccount {
      * Gets the name of the account holder.
      * @return the name of the account holder.
      */
-     @JsonProperty("accountHolderName")
+     @SerializedName("accountHolderName")
      public String getAccountHolderName() {
           return this.accountHolderName;
      }
@@ -89,7 +89,7 @@ public class ApplicationAccount {
      * Gets the routing number of the bank.
      * @return the routing number of the bank.
      */
-     @JsonProperty("routingNumber")
+     @SerializedName("routingNumber")
      public String getRoutingNumber() {
           return this.routingNumber;
      }
@@ -106,7 +106,7 @@ public class ApplicationAccount {
      * Gets the account number.
      * @return the account number.
      */
-     @JsonProperty("accountNumber")
+     @SerializedName("accountNumber")
      public String getAccountNumber() {
           return this.accountNumber;
      }

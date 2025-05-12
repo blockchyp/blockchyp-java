@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 
 /**
@@ -38,7 +38,7 @@ public class SurveyDataPoint {
      * Gets a unique identifier for a specific answer type.
      * @return a unique identifier for a specific answer type.
      */
-     @JsonProperty("answerKey")
+     @SerializedName("answerKey")
      public String getAnswerKey() {
           return this.answerKey;
      }
@@ -55,7 +55,7 @@ public class SurveyDataPoint {
      * Gets a narrative description of the answer.
      * @return a narrative description of the answer.
      */
-     @JsonProperty("answerDescription")
+     @SerializedName("answerDescription")
      public String getAnswerDescription() {
           return this.answerDescription;
      }
@@ -72,7 +72,7 @@ public class SurveyDataPoint {
      * Gets the number of responses.
      * @return the number of responses.
      */
-     @JsonProperty("responseCount")
+     @SerializedName("responseCount")
      public int getResponseCount() {
           return this.responseCount;
      }
@@ -89,7 +89,7 @@ public class SurveyDataPoint {
      * Gets response rate as a percentage of total transactions.
      * @return response rate as a percentage of total transactions.
      */
-     @JsonProperty("responsePercentage")
+     @SerializedName("responsePercentage")
      public float getResponsePercentage() {
           return this.responsePercentage;
      }
@@ -106,7 +106,7 @@ public class SurveyDataPoint {
      * Gets the average transaction amount for a given answer.
      * @return the average transaction amount for a given answer.
      */
-     @JsonProperty("averageTransaction")
+     @SerializedName("averageTransaction")
      public float getAverageTransaction() {
           return this.averageTransaction;
      }

@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 
 /**
@@ -68,7 +68,7 @@ public class TerminalProfile {
      * Gets primary identifier for a given terminal.
      * @return primary identifier for a given terminal.
      */
-     @JsonProperty("id")
+     @SerializedName("id")
      public String getId() {
           return this.id;
      }
@@ -85,7 +85,7 @@ public class TerminalProfile {
      * Gets the terminal's local IP address.
      * @return the terminal's local IP address.
      */
-     @JsonProperty("ipAddress")
+     @SerializedName("ipAddress")
      public String getIpAddress() {
           return this.ipAddress;
      }
@@ -102,7 +102,7 @@ public class TerminalProfile {
      * Gets the name assigned to the terminal during activation.
      * @return the name assigned to the terminal during activation.
      */
-     @JsonProperty("terminalName")
+     @SerializedName("terminalName")
      public String getTerminalName() {
           return this.terminalName;
      }
@@ -119,7 +119,7 @@ public class TerminalProfile {
      * Gets the terminal type.
      * @return the terminal type.
      */
-     @JsonProperty("terminalType")
+     @SerializedName("terminalType")
      public String getTerminalType() {
           return this.terminalType;
      }
@@ -136,7 +136,7 @@ public class TerminalProfile {
      * Gets the terminal type display string.
      * @return the terminal type display string.
      */
-     @JsonProperty("terminalTypeDisplayString")
+     @SerializedName("terminalTypeDisplayString")
      public String getTerminalTypeDisplayString() {
           return this.terminalTypeDisplayString;
      }
@@ -153,7 +153,7 @@ public class TerminalProfile {
      * Gets the current firmware version deployed on the terminal.
      * @return the current firmware version deployed on the terminal.
      */
-     @JsonProperty("blockChypFirmwareVersion")
+     @SerializedName("blockChypFirmwareVersion")
      public String getBlockChypFirmwareVersion() {
           return this.blockChypFirmwareVersion;
      }
@@ -170,7 +170,7 @@ public class TerminalProfile {
      * Gets whether or not the terminal is configured for cloud relay.
      * @return whether or not the terminal is configured for cloud relay.
      */
-     @JsonProperty("cloudBased")
+     @SerializedName("cloudBased")
      public boolean isCloudBased() {
           return this.cloudBased;
      }
@@ -187,7 +187,7 @@ public class TerminalProfile {
      * Gets the terminal's elliptic curve public key.
      * @return the terminal's elliptic curve public key.
      */
-     @JsonProperty("publicKey")
+     @SerializedName("publicKey")
      public String getPublicKey() {
           return this.publicKey;
      }
@@ -204,7 +204,7 @@ public class TerminalProfile {
      * Gets the manufacturer's serial number.
      * @return the manufacturer's serial number.
      */
-     @JsonProperty("serialNumber")
+     @SerializedName("serialNumber")
      public String getSerialNumber() {
           return this.serialNumber;
      }
@@ -221,7 +221,7 @@ public class TerminalProfile {
      * Gets whether or not the terminal is currently online.
      * @return whether or not the terminal is currently online.
      */
-     @JsonProperty("online")
+     @SerializedName("online")
      public boolean isOnline() {
           return this.online;
      }
@@ -238,7 +238,7 @@ public class TerminalProfile {
      * Gets the date and time the terminal was first brought online.
      * @return the date and time the terminal was first brought online.
      */
-     @JsonProperty("since")
+     @SerializedName("since")
      public String getSince() {
           return this.since;
      }
@@ -255,7 +255,7 @@ public class TerminalProfile {
      * Gets the total memory on the terminal.
      * @return the total memory on the terminal.
      */
-     @JsonProperty("totalMemory")
+     @SerializedName("totalMemory")
      public int getTotalMemory() {
           return this.totalMemory;
      }
@@ -272,7 +272,7 @@ public class TerminalProfile {
      * Gets the storage on the terminal.
      * @return the storage on the terminal.
      */
-     @JsonProperty("totalStorage")
+     @SerializedName("totalStorage")
      public int getTotalStorage() {
           return this.totalStorage;
      }
@@ -289,7 +289,7 @@ public class TerminalProfile {
      * Gets the available (unused) memory on the terminal.
      * @return the available (unused) memory on the terminal.
      */
-     @JsonProperty("availableMemory")
+     @SerializedName("availableMemory")
      public int getAvailableMemory() {
           return this.availableMemory;
      }
@@ -306,7 +306,7 @@ public class TerminalProfile {
      * Gets the available (unused) storage on the terminal.
      * @return the available (unused) storage on the terminal.
      */
-     @JsonProperty("availableStorage")
+     @SerializedName("availableStorage")
      public int getAvailableStorage() {
           return this.availableStorage;
      }
@@ -323,7 +323,7 @@ public class TerminalProfile {
      * Gets the memory currently in use on the terminal.
      * @return the memory currently in use on the terminal.
      */
-     @JsonProperty("usedMemory")
+     @SerializedName("usedMemory")
      public int getUsedMemory() {
           return this.usedMemory;
      }
@@ -340,7 +340,7 @@ public class TerminalProfile {
      * Gets the storage currently in use on the terminal.
      * @return the storage currently in use on the terminal.
      */
-     @JsonProperty("usedStorage")
+     @SerializedName("usedStorage")
      public int getUsedStorage() {
           return this.usedStorage;
      }
@@ -357,7 +357,7 @@ public class TerminalProfile {
      * Gets the branding asset currently displayed on the terminal.
      * @return the branding asset currently displayed on the terminal.
      */
-     @JsonProperty("brandingPreview")
+     @SerializedName("brandingPreview")
      public String getBrandingPreview() {
           return this.brandingPreview;
      }
@@ -374,7 +374,7 @@ public class TerminalProfile {
      * Gets the id of the terminal group to which the terminal belongs, if any.
      * @return the id of the terminal group to which the terminal belongs, if any.
      */
-     @JsonProperty("groupId")
+     @SerializedName("groupId")
      public String getGroupId() {
           return this.groupId;
      }
@@ -391,7 +391,7 @@ public class TerminalProfile {
      * Gets the name of the terminal group to which the terminal belongs, if any.
      * @return the name of the terminal group to which the terminal belongs, if any.
      */
-     @JsonProperty("groupName")
+     @SerializedName("groupName")
      public String getGroupName() {
           return this.groupName;
      }

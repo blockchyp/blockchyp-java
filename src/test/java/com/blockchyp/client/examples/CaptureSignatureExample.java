@@ -1,19 +1,13 @@
 package com.blockchyp.client.examples;
 
-
-
-import java.util.ArrayList;
-import java.util.Collection;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.dto.CaptureSignatureRequest;
 import com.blockchyp.client.dto.CaptureSignatureResponse;
 import com.blockchyp.client.dto.SignatureFormat;
-
 
 public class CaptureSignatureExample {
 
@@ -35,20 +29,13 @@ public class CaptureSignatureExample {
 
         // Send the request
         CaptureSignatureResponse response = client.captureSignature(request);
+
         // View the result
         System.out.println("Response: " + prettyPrint(response));
-
     }
 
-    public static String prettyPrint(Object object) throws Exception {
-
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
-
+    public static String prettyPrint(Object object) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
     }
 }

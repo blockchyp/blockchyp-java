@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 
 /**
@@ -60,7 +60,7 @@ public class LocateResponse implements IAbstractAcknowledgement, ICoreResponse {
      * Gets whether or not the request succeeded.
      * @return whether or not the request succeeded.
      */
-     @JsonProperty("success")
+     @SerializedName("success")
      public boolean isSuccess() {
           return this.success;
      }
@@ -77,7 +77,7 @@ public class LocateResponse implements IAbstractAcknowledgement, ICoreResponse {
      * Gets the error, if an error occurred.
      * @return the error, if an error occurred.
      */
-     @JsonProperty("error")
+     @SerializedName("error")
      public String getError() {
           return this.error;
      }
@@ -94,7 +94,7 @@ public class LocateResponse implements IAbstractAcknowledgement, ICoreResponse {
      * Gets a narrative description of the transaction result.
      * @return a narrative description of the transaction result.
      */
-     @JsonProperty("responseDescription")
+     @SerializedName("responseDescription")
      public String getResponseDescription() {
           return this.responseDescription;
      }
@@ -111,7 +111,7 @@ public class LocateResponse implements IAbstractAcknowledgement, ICoreResponse {
      * Gets the ID assigned to the transaction.
      * @return the ID assigned to the transaction.
      */
-     @JsonProperty("transactionId")
+     @SerializedName("transactionId")
      public String getTransactionId() {
           return this.transactionId;
      }
@@ -128,7 +128,7 @@ public class LocateResponse implements IAbstractAcknowledgement, ICoreResponse {
      * Gets the ID assigned to the batch.
      * @return the ID assigned to the batch.
      */
-     @JsonProperty("batchId")
+     @SerializedName("batchId")
      public String getBatchId() {
           return this.batchId;
      }
@@ -149,7 +149,7 @@ public class LocateResponse implements IAbstractAcknowledgement, ICoreResponse {
      * no transaction ref was assiged on the request, then the gateway will randomly
      * generate one.
      */
-     @JsonProperty("transactionRef")
+     @SerializedName("transactionRef")
      public String getTransactionRef() {
           return this.transactionRef;
      }
@@ -166,7 +166,7 @@ public class LocateResponse implements IAbstractAcknowledgement, ICoreResponse {
      * Gets the type of transaction.
      * @return the type of transaction.
      */
-     @JsonProperty("transactionType")
+     @SerializedName("transactionType")
      public String getTransactionType() {
           return this.transactionType;
      }
@@ -183,7 +183,7 @@ public class LocateResponse implements IAbstractAcknowledgement, ICoreResponse {
      * Gets the timestamp of the transaction.
      * @return the timestamp of the transaction.
      */
-     @JsonProperty("timestamp")
+     @SerializedName("timestamp")
      public String getTimestamp() {
           return this.timestamp;
      }
@@ -200,7 +200,7 @@ public class LocateResponse implements IAbstractAcknowledgement, ICoreResponse {
      * Gets the hash of the last tick block.
      * @return the hash of the last tick block.
      */
-     @JsonProperty("tickBlock")
+     @SerializedName("tickBlock")
      public String getTickBlock() {
           return this.tickBlock;
      }
@@ -217,7 +217,7 @@ public class LocateResponse implements IAbstractAcknowledgement, ICoreResponse {
      * Gets that the transaction was processed on the test gateway.
      * @return that the transaction was processed on the test gateway.
      */
-     @JsonProperty("test")
+     @SerializedName("test")
      public boolean isTest() {
           return this.test;
      }
@@ -234,7 +234,7 @@ public class LocateResponse implements IAbstractAcknowledgement, ICoreResponse {
      * Gets the settlement account for merchants with split settlements.
      * @return the settlement account for merchants with split settlements.
      */
-     @JsonProperty("destinationAccount")
+     @SerializedName("destinationAccount")
      public String getDestinationAccount() {
           return this.destinationAccount;
      }
@@ -253,7 +253,7 @@ public class LocateResponse implements IAbstractAcknowledgement, ICoreResponse {
      * @return the ECC signature of the response. Can be used to ensure that it was signed by
      * the terminal and detect man-in-the middle attacks.
      */
-     @JsonProperty("sig")
+     @SerializedName("sig")
      public String getSig() {
           return this.sig;
      }
@@ -270,7 +270,7 @@ public class LocateResponse implements IAbstractAcknowledgement, ICoreResponse {
      * Gets the name assigned to the terminal at activation.
      * @return the name assigned to the terminal at activation.
      */
-     @JsonProperty("terminalName")
+     @SerializedName("terminalName")
      public String getTerminalName() {
           return this.terminalName;
      }
@@ -287,7 +287,7 @@ public class LocateResponse implements IAbstractAcknowledgement, ICoreResponse {
      * Gets the local IP address of the terminal.
      * @return the local IP address of the terminal.
      */
-     @JsonProperty("ipAddress")
+     @SerializedName("ipAddress")
      public String getIpAddress() {
           return this.ipAddress;
      }
@@ -304,7 +304,7 @@ public class LocateResponse implements IAbstractAcknowledgement, ICoreResponse {
      * Gets whether or not the terminal is running in cloud relay mode.
      * @return whether or not the terminal is running in cloud relay mode.
      */
-     @JsonProperty("cloudRelay")
+     @SerializedName("cloudRelay")
      public boolean isCloudRelay() {
           return this.cloudRelay;
      }
@@ -321,7 +321,7 @@ public class LocateResponse implements IAbstractAcknowledgement, ICoreResponse {
      * Gets the terminal's public key.
      * @return the terminal's public key.
      */
-     @JsonProperty("publicKey")
+     @SerializedName("publicKey")
      public String getPublicKey() {
           return this.publicKey;
      }

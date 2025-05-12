@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.Map;
 
@@ -58,7 +58,7 @@ public class MerchantPlatform implements ITimeoutRequest {
      * Gets the request timeout in seconds.
      * @return the request timeout in seconds.
      */
-     @JsonProperty("timeout")
+     @SerializedName("timeout")
      public int getTimeout() {
           return this.timeout;
      }
@@ -75,7 +75,7 @@ public class MerchantPlatform implements ITimeoutRequest {
      * Gets whether or not to route transaction to the test gateway.
      * @return whether or not to route transaction to the test gateway.
      */
-     @JsonProperty("test")
+     @SerializedName("test")
      public boolean isTest() {
           return this.test;
      }
@@ -92,7 +92,7 @@ public class MerchantPlatform implements ITimeoutRequest {
      * Gets primary identifier for a given platform configuration.
      * @return primary identifier for a given platform configuration.
      */
-     @JsonProperty("id")
+     @SerializedName("id")
      public String getId() {
           return this.id;
      }
@@ -109,7 +109,7 @@ public class MerchantPlatform implements ITimeoutRequest {
      * Gets that a platform configuration is disabled.
      * @return that a platform configuration is disabled.
      */
-     @JsonProperty("disabled")
+     @SerializedName("disabled")
      public boolean isDisabled() {
           return this.disabled;
      }
@@ -126,7 +126,7 @@ public class MerchantPlatform implements ITimeoutRequest {
      * Gets BlockChyp's code for the boarding platform.
      * @return BlockChyp's code for the boarding platform.
      */
-     @JsonProperty("platformCode")
+     @SerializedName("platformCode")
      public String getPlatformCode() {
           return this.platformCode;
      }
@@ -143,7 +143,7 @@ public class MerchantPlatform implements ITimeoutRequest {
      * Gets the platform's priority in a multi platform setup.
      * @return the platform's priority in a multi platform setup.
      */
-     @JsonProperty("priority")
+     @SerializedName("priority")
      public int getPriority() {
           return this.priority;
      }
@@ -162,7 +162,7 @@ public class MerchantPlatform implements ITimeoutRequest {
      * @return an optional field specifying the merchant's card brand registration
      * record.
      */
-     @JsonProperty("registrationId")
+     @SerializedName("registrationId")
      public String getRegistrationId() {
           return this.registrationId;
      }
@@ -179,7 +179,7 @@ public class MerchantPlatform implements ITimeoutRequest {
      * Gets the merchant's primary identifier.
      * @return the merchant's primary identifier.
      */
-     @JsonProperty("merchantId")
+     @SerializedName("merchantId")
      public String getMerchantId() {
           return this.merchantId;
      }
@@ -196,7 +196,7 @@ public class MerchantPlatform implements ITimeoutRequest {
      * Gets the merchant id assigned by the acquiring bank.
      * @return the merchant id assigned by the acquiring bank.
      */
-     @JsonProperty("acquirerMid")
+     @SerializedName("acquirerMid")
      public String getAcquirerMid() {
           return this.acquirerMid;
      }
@@ -217,7 +217,7 @@ public class MerchantPlatform implements ITimeoutRequest {
      * @return free form notes description the purpose or intent behind the platform
      * configuration.
      */
-     @JsonProperty("notes")
+     @SerializedName("notes")
      public String getNotes() {
           return this.notes;
      }
@@ -238,7 +238,7 @@ public class MerchantPlatform implements ITimeoutRequest {
      * @return the optional entry method code if a platform should only be used for
      * specific entry methods. Leave blank for 'all'.
      */
-     @JsonProperty("entryMethod")
+     @SerializedName("entryMethod")
      public String getEntryMethod() {
           return this.entryMethod;
      }
@@ -255,7 +255,7 @@ public class MerchantPlatform implements ITimeoutRequest {
      * Gets the date the platform configuration was first created.
      * @return the date the platform configuration was first created.
      */
-     @JsonProperty("dateCreated")
+     @SerializedName("dateCreated")
      public String getDateCreated() {
           return this.dateCreated;
      }
@@ -272,7 +272,7 @@ public class MerchantPlatform implements ITimeoutRequest {
      * Gets the date the platform configuration was last modified.
      * @return the date the platform configuration was last modified.
      */
-     @JsonProperty("lastChange")
+     @SerializedName("lastChange")
      public String getLastChange() {
           return this.lastChange;
      }
@@ -291,7 +291,7 @@ public class MerchantPlatform implements ITimeoutRequest {
      * @return a map of configuration values specific to the boarding platform. These are
      * not published. Contact your BlockChyp rep for supported values.
      */
-     @JsonProperty("configMap")
+     @SerializedName("configMap")
      public Map getConfigMap() {
           return this.configMap;
      }

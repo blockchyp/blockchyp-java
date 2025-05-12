@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
@@ -39,7 +39,7 @@ public class PartnerStatementAdjustment {
      * Gets the adjustment id.
      * @return the adjustment id.
      */
-     @JsonProperty("id")
+     @SerializedName("id")
      public String getId() {
           return this.id;
      }
@@ -56,7 +56,7 @@ public class PartnerStatementAdjustment {
      * Gets the date and time the disbursement was posted to the account.
      * @return the date and time the disbursement was posted to the account.
      */
-     @JsonProperty("timestamp")
+     @SerializedName("timestamp")
      public Date getTimestamp() {
           return this.timestamp;
      }
@@ -73,7 +73,7 @@ public class PartnerStatementAdjustment {
      * Gets a description of the adjustment.
      * @return a description of the adjustment.
      */
-     @JsonProperty("description")
+     @SerializedName("description")
      public String getDescription() {
           return this.description;
      }
@@ -90,7 +90,7 @@ public class PartnerStatementAdjustment {
      * Gets the amount in floating point format.
      * @return the amount in floating point format.
      */
-     @JsonProperty("amount")
+     @SerializedName("amount")
      public float getAmount() {
           return this.amount;
      }
@@ -107,7 +107,7 @@ public class PartnerStatementAdjustment {
      * Gets the currency formatted form of amount.
      * @return the currency formatted form of amount.
      */
-     @JsonProperty("amountFormatted")
+     @SerializedName("amountFormatted")
      public String getAmountFormatted() {
           return this.amountFormatted;
      }

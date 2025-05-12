@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
@@ -83,7 +83,7 @@ public class PartnerStatementLineItem {
      * Gets the line item id.
      * @return the line item id.
      */
-     @JsonProperty("id")
+     @SerializedName("id")
      public String getId() {
           return this.id;
      }
@@ -100,7 +100,7 @@ public class PartnerStatementLineItem {
      * Gets the invoice id for the underlying merchant statement.
      * @return the invoice id for the underlying merchant statement.
      */
-     @JsonProperty("invoiceId")
+     @SerializedName("invoiceId")
      public String getInvoiceId() {
           return this.invoiceId;
      }
@@ -117,7 +117,7 @@ public class PartnerStatementLineItem {
      * Gets the total fees charged to the merchant.
      * @return the total fees charged to the merchant.
      */
-     @JsonProperty("totalFees")
+     @SerializedName("totalFees")
      public float getTotalFees() {
           return this.totalFees;
      }
@@ -134,7 +134,7 @@ public class PartnerStatementLineItem {
      * Gets the total fees charge formatted as a currency string.
      * @return the total fees charge formatted as a currency string.
      */
-     @JsonProperty("totalFeesFormatted")
+     @SerializedName("totalFeesFormatted")
      public String getTotalFeesFormatted() {
           return this.totalFeesFormatted;
      }
@@ -151,7 +151,7 @@ public class PartnerStatementLineItem {
      * Gets the total fees charged to the merchant as ratio of volume.
      * @return the total fees charged to the merchant as ratio of volume.
      */
-     @JsonProperty("totalFeesOnVolume")
+     @SerializedName("totalFeesOnVolume")
      public float getTotalFeesOnVolume() {
           return this.totalFeesOnVolume;
      }
@@ -168,7 +168,7 @@ public class PartnerStatementLineItem {
      * Gets the total fees charged to the merchant as percentage of volume.
      * @return the total fees charged to the merchant as percentage of volume.
      */
-     @JsonProperty("totalFeesOnVolumeFormatted")
+     @SerializedName("totalFeesOnVolumeFormatted")
      public String getTotalFeesOnVolumeFormatted() {
           return this.totalFeesOnVolumeFormatted;
      }
@@ -185,7 +185,7 @@ public class PartnerStatementLineItem {
      * Gets the id of the merchant.
      * @return the id of the merchant.
      */
-     @JsonProperty("merchantId")
+     @SerializedName("merchantId")
      public String getMerchantId() {
           return this.merchantId;
      }
@@ -202,7 +202,7 @@ public class PartnerStatementLineItem {
      * Gets the corporate name of the merchant.
      * @return the corporate name of the merchant.
      */
-     @JsonProperty("merchantName")
+     @SerializedName("merchantName")
      public String getMerchantName() {
           return this.merchantName;
      }
@@ -219,7 +219,7 @@ public class PartnerStatementLineItem {
      * Gets the dba name of the merchant.
      * @return the dba name of the merchant.
      */
-     @JsonProperty("dbaName")
+     @SerializedName("dbaName")
      public String getDbaName() {
           return this.dbaName;
      }
@@ -236,7 +236,7 @@ public class PartnerStatementLineItem {
      * Gets the date the statement was generated.
      * @return the date the statement was generated.
      */
-     @JsonProperty("statementDate")
+     @SerializedName("statementDate")
      public Date getStatementDate() {
           return this.statementDate;
      }
@@ -253,7 +253,7 @@ public class PartnerStatementLineItem {
      * Gets volume in numeric format.
      * @return volume in numeric format.
      */
-     @JsonProperty("volume")
+     @SerializedName("volume")
      public float getVolume() {
           return this.volume;
      }
@@ -270,7 +270,7 @@ public class PartnerStatementLineItem {
      * Gets the string formatted total volume on the statement.
      * @return the string formatted total volume on the statement.
      */
-     @JsonProperty("volumeFormatted")
+     @SerializedName("volumeFormatted")
      public String getVolumeFormatted() {
           return this.volumeFormatted;
      }
@@ -287,7 +287,7 @@ public class PartnerStatementLineItem {
      * Gets the total volume on the statement.
      * @return the total volume on the statement.
      */
-     @JsonProperty("transactionCount")
+     @SerializedName("transactionCount")
      public int getTransactionCount() {
           return this.transactionCount;
      }
@@ -304,7 +304,7 @@ public class PartnerStatementLineItem {
      * Gets the total interchange fees incurred this period.
      * @return the total interchange fees incurred this period.
      */
-     @JsonProperty("interchange")
+     @SerializedName("interchange")
      public float getInterchange() {
           return this.interchange;
      }
@@ -321,7 +321,7 @@ public class PartnerStatementLineItem {
      * Gets the currency formatted form of interchange.
      * @return the currency formatted form of interchange.
      */
-     @JsonProperty("interchangeFormatted")
+     @SerializedName("interchangeFormatted")
      public String getInterchangeFormatted() {
           return this.interchangeFormatted;
      }
@@ -338,7 +338,7 @@ public class PartnerStatementLineItem {
      * Gets the total interchange as a ratio on volume incurred this period.
      * @return the total interchange as a ratio on volume incurred this period.
      */
-     @JsonProperty("interchangeOnVolume")
+     @SerializedName("interchangeOnVolume")
      public float getInterchangeOnVolume() {
           return this.interchangeOnVolume;
      }
@@ -355,7 +355,7 @@ public class PartnerStatementLineItem {
      * Gets the total interchange as a percentage of volume.
      * @return the total interchange as a percentage of volume.
      */
-     @JsonProperty("interchangeOnVolumeFormatted")
+     @SerializedName("interchangeOnVolumeFormatted")
      public String getInterchangeOnVolumeFormatted() {
           return this.interchangeOnVolumeFormatted;
      }
@@ -372,7 +372,7 @@ public class PartnerStatementLineItem {
      * Gets the total card brand assessments fees incurred this period.
      * @return the total card brand assessments fees incurred this period.
      */
-     @JsonProperty("assessments")
+     @SerializedName("assessments")
      public float getAssessments() {
           return this.assessments;
      }
@@ -389,7 +389,7 @@ public class PartnerStatementLineItem {
      * Gets the currency formatted form of card brand assessments.
      * @return the currency formatted form of card brand assessments.
      */
-     @JsonProperty("assessmentsFormatted")
+     @SerializedName("assessmentsFormatted")
      public String getAssessmentsFormatted() {
           return this.assessmentsFormatted;
      }
@@ -407,7 +407,7 @@ public class PartnerStatementLineItem {
      * Gets the total card brand assessments as a ratio on volume incurred this period.
      * @return the total card brand assessments as a ratio on volume incurred this period.
      */
-     @JsonProperty("assessmentsOnVolume")
+     @SerializedName("assessmentsOnVolume")
      public float getAssessmentsOnVolume() {
           return this.assessmentsOnVolume;
      }
@@ -424,7 +424,7 @@ public class PartnerStatementLineItem {
      * Gets the total card brand assessments as a percentage of volume.
      * @return the total card brand assessments as a percentage of volume.
      */
-     @JsonProperty("assessmentsOnVolumeFormatted")
+     @SerializedName("assessmentsOnVolumeFormatted")
      public String getAssessmentsOnVolumeFormatted() {
           return this.assessmentsOnVolumeFormatted;
      }
@@ -441,7 +441,7 @@ public class PartnerStatementLineItem {
      * Gets the commission earned on the portfolio during the statement period.
      * @return the commission earned on the portfolio during the statement period.
      */
-     @JsonProperty("partnerCommission")
+     @SerializedName("partnerCommission")
      public float getPartnerCommission() {
           return this.partnerCommission;
      }
@@ -458,7 +458,7 @@ public class PartnerStatementLineItem {
      * Gets the string formatted total volume on the statement.
      * @return the string formatted total volume on the statement.
      */
-     @JsonProperty("partnerCommissionFormatted")
+     @SerializedName("partnerCommissionFormatted")
      public String getPartnerCommissionFormatted() {
           return this.partnerCommissionFormatted;
      }
@@ -475,7 +475,7 @@ public class PartnerStatementLineItem {
      * Gets the total fees charge to the partner due to buy rates.
      * @return the total fees charge to the partner due to buy rates.
      */
-     @JsonProperty("buyRate")
+     @SerializedName("buyRate")
      public float getBuyRate() {
           return this.buyRate;
      }
@@ -492,7 +492,7 @@ public class PartnerStatementLineItem {
      * Gets the currency formatted form of partner buy rate.
      * @return the currency formatted form of partner buy rate.
      */
-     @JsonProperty("buyRateFormatted")
+     @SerializedName("buyRateFormatted")
      public String getBuyRateFormatted() {
           return this.buyRateFormatted;
      }
@@ -509,7 +509,7 @@ public class PartnerStatementLineItem {
      * Gets refers to card brand fees shared between BlockChyp and the partner.
      * @return refers to card brand fees shared between BlockChyp and the partner.
      */
-     @JsonProperty("hardCosts")
+     @SerializedName("hardCosts")
      public float getHardCosts() {
           return this.hardCosts;
      }
@@ -526,7 +526,7 @@ public class PartnerStatementLineItem {
      * Gets the currency formatted form of hard costs.
      * @return the currency formatted form of hard costs.
      */
-     @JsonProperty("hardCostsFormatted")
+     @SerializedName("hardCostsFormatted")
      public String getHardCostsFormatted() {
           return this.hardCostsFormatted;
      }

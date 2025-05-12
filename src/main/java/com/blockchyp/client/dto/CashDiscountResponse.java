@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 
 /**
@@ -44,7 +44,7 @@ public class CashDiscountResponse implements IAbstractAcknowledgement {
      * Gets whether or not the request succeeded.
      * @return whether or not the request succeeded.
      */
-     @JsonProperty("success")
+     @SerializedName("success")
      public boolean isSuccess() {
           return this.success;
      }
@@ -61,7 +61,7 @@ public class CashDiscountResponse implements IAbstractAcknowledgement {
      * Gets the error, if an error occurred.
      * @return the error, if an error occurred.
      */
-     @JsonProperty("error")
+     @SerializedName("error")
      public String getError() {
           return this.error;
      }
@@ -78,7 +78,7 @@ public class CashDiscountResponse implements IAbstractAcknowledgement {
      * Gets a narrative description of the transaction result.
      * @return a narrative description of the transaction result.
      */
-     @JsonProperty("responseDescription")
+     @SerializedName("responseDescription")
      public String getResponseDescription() {
           return this.responseDescription;
      }
@@ -95,7 +95,7 @@ public class CashDiscountResponse implements IAbstractAcknowledgement {
      * Gets the transaction currency code.
      * @return the transaction currency code.
      */
-     @JsonProperty("currencyCode")
+     @SerializedName("currencyCode")
      public String getCurrencyCode() {
           return this.currencyCode;
      }
@@ -112,7 +112,7 @@ public class CashDiscountResponse implements IAbstractAcknowledgement {
      * Gets the new calculated total amount.
      * @return the new calculated total amount.
      */
-     @JsonProperty("amount")
+     @SerializedName("amount")
      public String getAmount() {
           return this.amount;
      }
@@ -131,7 +131,7 @@ public class CashDiscountResponse implements IAbstractAcknowledgement {
      * @return that the request is tax exempt. Only required for tax exempt level 2
      * processing.
      */
-     @JsonProperty("taxExempt")
+     @SerializedName("taxExempt")
      public boolean isTaxExempt() {
           return this.taxExempt;
      }
@@ -150,7 +150,7 @@ public class CashDiscountResponse implements IAbstractAcknowledgement {
      * @return the normal surcharge for a transaction. Will only be returned if an
      * offsetting cash discount is also returned.
      */
-     @JsonProperty("surcharge")
+     @SerializedName("surcharge")
      public String getSurcharge() {
           return this.surcharge;
      }
@@ -167,7 +167,7 @@ public class CashDiscountResponse implements IAbstractAcknowledgement {
      * Gets the cash discount.
      * @return the cash discount. Will not be returned in surcharge only mode.
      */
-     @JsonProperty("cashDiscount")
+     @SerializedName("cashDiscount")
      public String getCashDiscount() {
           return this.cashDiscount;
      }

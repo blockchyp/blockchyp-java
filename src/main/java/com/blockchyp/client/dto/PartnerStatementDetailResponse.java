@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -68,7 +68,7 @@ public class PartnerStatementDetailResponse implements IAbstractAcknowledgement 
      * Gets whether or not the request succeeded.
      * @return whether or not the request succeeded.
      */
-     @JsonProperty("success")
+     @SerializedName("success")
      public boolean isSuccess() {
           return this.success;
      }
@@ -85,7 +85,7 @@ public class PartnerStatementDetailResponse implements IAbstractAcknowledgement 
      * Gets the error, if an error occurred.
      * @return the error, if an error occurred.
      */
-     @JsonProperty("error")
+     @SerializedName("error")
      public String getError() {
           return this.error;
      }
@@ -102,7 +102,7 @@ public class PartnerStatementDetailResponse implements IAbstractAcknowledgement 
      * Gets a narrative description of the transaction result.
      * @return a narrative description of the transaction result.
      */
-     @JsonProperty("responseDescription")
+     @SerializedName("responseDescription")
      public String getResponseDescription() {
           return this.responseDescription;
      }
@@ -119,7 +119,7 @@ public class PartnerStatementDetailResponse implements IAbstractAcknowledgement 
      * Gets optional start date filter for batch history.
      * @return optional start date filter for batch history.
      */
-     @JsonProperty("id")
+     @SerializedName("id")
      public String getId() {
           return this.id;
      }
@@ -136,7 +136,7 @@ public class PartnerStatementDetailResponse implements IAbstractAcknowledgement 
      * Gets the id of the partner associated with the statement.
      * @return the id of the partner associated with the statement.
      */
-     @JsonProperty("partnerId")
+     @SerializedName("partnerId")
      public String getPartnerId() {
           return this.partnerId;
      }
@@ -153,7 +153,7 @@ public class PartnerStatementDetailResponse implements IAbstractAcknowledgement 
      * Gets the name of the partner associated with the statement.
      * @return the name of the partner associated with the statement.
      */
-     @JsonProperty("partnerName")
+     @SerializedName("partnerName")
      public String getPartnerName() {
           return this.partnerName;
      }
@@ -170,7 +170,7 @@ public class PartnerStatementDetailResponse implements IAbstractAcknowledgement 
      * Gets the date the statement was generated.
      * @return the date the statement was generated.
      */
-     @JsonProperty("statementDate")
+     @SerializedName("statementDate")
      public Date getStatementDate() {
           return this.statementDate;
      }
@@ -187,7 +187,7 @@ public class PartnerStatementDetailResponse implements IAbstractAcknowledgement 
      * Gets total volume in numeric format.
      * @return total volume in numeric format.
      */
-     @JsonProperty("totalVolume")
+     @SerializedName("totalVolume")
      public float getTotalVolume() {
           return this.totalVolume;
      }
@@ -204,7 +204,7 @@ public class PartnerStatementDetailResponse implements IAbstractAcknowledgement 
      * Gets the string formatted total volume on the statement.
      * @return the string formatted total volume on the statement.
      */
-     @JsonProperty("totalVolumeFormatted")
+     @SerializedName("totalVolumeFormatted")
      public String getTotalVolumeFormatted() {
           return this.totalVolumeFormatted;
      }
@@ -221,7 +221,7 @@ public class PartnerStatementDetailResponse implements IAbstractAcknowledgement 
      * Gets the total volume on the statement.
      * @return the total volume on the statement.
      */
-     @JsonProperty("transactionCount")
+     @SerializedName("transactionCount")
      public int getTransactionCount() {
           return this.transactionCount;
      }
@@ -238,7 +238,7 @@ public class PartnerStatementDetailResponse implements IAbstractAcknowledgement 
      * Gets the commission earned on the portfolio during the statement period.
      * @return the commission earned on the portfolio during the statement period.
      */
-     @JsonProperty("partnerCommission")
+     @SerializedName("partnerCommission")
      public float getPartnerCommission() {
           return this.partnerCommission;
      }
@@ -255,7 +255,7 @@ public class PartnerStatementDetailResponse implements IAbstractAcknowledgement 
      * Gets the string formatted partner commission on the statement.
      * @return the string formatted partner commission on the statement.
      */
-     @JsonProperty("partnerCommissionFormatted")
+     @SerializedName("partnerCommissionFormatted")
      public String getPartnerCommissionFormatted() {
           return this.partnerCommissionFormatted;
      }
@@ -276,7 +276,7 @@ public class PartnerStatementDetailResponse implements IAbstractAcknowledgement 
      * @return the partner commission earned on the portfolio during the statement
      * period as a ratio against volume.
      */
-     @JsonProperty("partnerCommissionsOnVolume")
+     @SerializedName("partnerCommissionsOnVolume")
      public float getPartnerCommissionsOnVolume() {
           return this.partnerCommissionsOnVolume;
      }
@@ -297,7 +297,7 @@ public class PartnerStatementDetailResponse implements IAbstractAcknowledgement 
      * @return the string formatted version of partner commissions as a percentage of
      * volume.
      */
-     @JsonProperty("partnerCommissionsOnVolumeFormatted")
+     @SerializedName("partnerCommissionsOnVolumeFormatted")
      public String getPartnerCommissionsOnVolumeFormatted() {
           return this.partnerCommissionsOnVolumeFormatted;
      }
@@ -314,7 +314,7 @@ public class PartnerStatementDetailResponse implements IAbstractAcknowledgement 
      * Gets the status of the statement.
      * @return the status of the statement.
      */
-     @JsonProperty("status")
+     @SerializedName("status")
      public String getStatus() {
           return this.status;
      }
@@ -331,7 +331,7 @@ public class PartnerStatementDetailResponse implements IAbstractAcknowledgement 
      * Gets the line item detail associated with the statement.
      * @return the line item detail associated with the statement.
      */
-     @JsonProperty("lineItems")
+     @SerializedName("lineItems")
      public Collection<PartnerStatementLineItem> getLineItems() {
           return this.lineItems;
      }
@@ -348,7 +348,7 @@ public class PartnerStatementDetailResponse implements IAbstractAcknowledgement 
      * Gets the list of adjustments made against the statement, if any.
      * @return the list of adjustments made against the statement, if any.
      */
-     @JsonProperty("adjustments")
+     @SerializedName("adjustments")
      public Collection<PartnerStatementAdjustment> getAdjustments() {
           return this.adjustments;
      }
@@ -366,7 +366,7 @@ public class PartnerStatementDetailResponse implements IAbstractAcknowledgement 
      * Gets the list of partner disbursements made against the partner statement.
      * @return the list of partner disbursements made against the partner statement.
      */
-     @JsonProperty("disbursements")
+     @SerializedName("disbursements")
      public Collection<PartnerStatementDisbursement> getDisbursements() {
           return this.disbursements;
      }

@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 
 /**
@@ -76,7 +76,7 @@ public class ReceiptSuggestions {
      * Gets the EMV Application Identifier.
      * @return the EMV Application Identifier.
      */
-     @JsonProperty("aid")
+     @SerializedName("aid")
      public String getAid() {
           return this.aid;
      }
@@ -93,7 +93,7 @@ public class ReceiptSuggestions {
      * Gets the EMV Application Request Cryptogram.
      * @return the EMV Application Request Cryptogram.
      */
-     @JsonProperty("arqc")
+     @SerializedName("arqc")
      public String getArqc() {
           return this.arqc;
      }
@@ -110,7 +110,7 @@ public class ReceiptSuggestions {
      * Gets the EMV Issuer Application Data.
      * @return the EMV Issuer Application Data.
      */
-     @JsonProperty("iad")
+     @SerializedName("iad")
      public String getIad() {
           return this.iad;
      }
@@ -127,7 +127,7 @@ public class ReceiptSuggestions {
      * Gets the EMV Authorization Response Code.
      * @return the EMV Authorization Response Code.
      */
-     @JsonProperty("arc")
+     @SerializedName("arc")
      public String getArc() {
           return this.arc;
      }
@@ -144,7 +144,7 @@ public class ReceiptSuggestions {
      * Gets the EMV Transaction Certificate.
      * @return the EMV Transaction Certificate.
      */
-     @JsonProperty("tc")
+     @SerializedName("tc")
      public String getTc() {
           return this.tc;
      }
@@ -161,7 +161,7 @@ public class ReceiptSuggestions {
      * Gets the EMV Terminal Verification Response.
      * @return the EMV Terminal Verification Response.
      */
-     @JsonProperty("tvr")
+     @SerializedName("tvr")
      public String getTvr() {
           return this.tvr;
      }
@@ -178,7 +178,7 @@ public class ReceiptSuggestions {
      * Gets the EMV Transaction Status Indicator.
      * @return the EMV Transaction Status Indicator.
      */
-     @JsonProperty("tsi")
+     @SerializedName("tsi")
      public String getTsi() {
           return this.tsi;
      }
@@ -195,7 +195,7 @@ public class ReceiptSuggestions {
      * Gets the ID of the payment terminal.
      * @return the ID of the payment terminal.
      */
-     @JsonProperty("terminalId")
+     @SerializedName("terminalId")
      public String getTerminalId() {
           return this.terminalId;
      }
@@ -212,7 +212,7 @@ public class ReceiptSuggestions {
      * Gets the name of the merchant's business.
      * @return the name of the merchant's business.
      */
-     @JsonProperty("merchantName")
+     @SerializedName("merchantName")
      public String getMerchantName() {
           return this.merchantName;
      }
@@ -229,7 +229,7 @@ public class ReceiptSuggestions {
      * Gets the ID of the merchant.
      * @return the ID of the merchant.
      */
-     @JsonProperty("merchantId")
+     @SerializedName("merchantId")
      public String getMerchantId() {
           return this.merchantId;
      }
@@ -246,7 +246,7 @@ public class ReceiptSuggestions {
      * Gets the partially masked merchant key required on EMV receipts.
      * @return the partially masked merchant key required on EMV receipts.
      */
-     @JsonProperty("merchantKey")
+     @SerializedName("merchantKey")
      public String getMerchantKey() {
           return this.merchantKey;
      }
@@ -263,7 +263,7 @@ public class ReceiptSuggestions {
      * Gets a description of the selected AID.
      * @return a description of the selected AID.
      */
-     @JsonProperty("applicationLabel")
+     @SerializedName("applicationLabel")
      public String getApplicationLabel() {
           return this.applicationLabel;
      }
@@ -280,7 +280,7 @@ public class ReceiptSuggestions {
      * Gets that the receipt should contain a signature line.
      * @return that the receipt should contain a signature line.
      */
-     @JsonProperty("requestSignature")
+     @SerializedName("requestSignature")
      public boolean isRequestSignature() {
           return this.requestSignature;
      }
@@ -297,7 +297,7 @@ public class ReceiptSuggestions {
      * Gets the masked primary account number of the payment card, as required.
      * @return the masked primary account number of the payment card, as required.
      */
-     @JsonProperty("maskedPan")
+     @SerializedName("maskedPan")
      public String getMaskedPan() {
           return this.maskedPan;
      }
@@ -316,7 +316,7 @@ public class ReceiptSuggestions {
      * @return the amount authorized by the payment network. Could be less than the
      * requested amount for partial auth.
      */
-     @JsonProperty("authorizedAmount")
+     @SerializedName("authorizedAmount")
      public String getAuthorizedAmount() {
           return this.authorizedAmount;
      }
@@ -333,7 +333,7 @@ public class ReceiptSuggestions {
      * Gets the type of transaction performed (CHARGE, PREAUTH, REFUND, etc).
      * @return the type of transaction performed (CHARGE, PREAUTH, REFUND, etc).
      */
-     @JsonProperty("transactionType")
+     @SerializedName("transactionType")
      public String getTransactionType() {
           return this.transactionType;
      }
@@ -351,7 +351,7 @@ public class ReceiptSuggestions {
      * Gets the method by which the payment card was entered (MSR, CHIP, KEYED, etc.
      * @return the method by which the payment card was entered (MSR, CHIP, KEYED, etc.).
      */
-     @JsonProperty("entryMethod")
+     @SerializedName("entryMethod")
      public String getEntryMethod() {
           return this.entryMethod;
      }
@@ -368,7 +368,7 @@ public class ReceiptSuggestions {
      * Gets that PIN verification was performed.
      * @return that PIN verification was performed.
      */
-     @JsonProperty("pinVerified")
+     @SerializedName("pinVerified")
      public boolean isPinVerified() {
           return this.pinVerified;
      }
@@ -385,7 +385,7 @@ public class ReceiptSuggestions {
      * Gets the customer verification method used for the transaction.
      * @return the customer verification method used for the transaction.
      */
-     @JsonProperty("cvmUsed")
+     @SerializedName("cvmUsed")
      public CvmType getCvmUsed() {
           return this.cvmUsed;
      }
@@ -404,7 +404,7 @@ public class ReceiptSuggestions {
      * @return that a chip read failure caused the transaction to fall back to the
      * magstripe.
      */
-     @JsonProperty("fallback")
+     @SerializedName("fallback")
      public boolean isFallback() {
           return this.fallback;
      }
@@ -421,7 +421,7 @@ public class ReceiptSuggestions {
      * Gets the sequence of the transaction in the batch.
      * @return the sequence of the transaction in the batch.
      */
-     @JsonProperty("batchSequence")
+     @SerializedName("batchSequence")
      public int getBatchSequence() {
           return this.batchSequence;
      }
@@ -438,7 +438,7 @@ public class ReceiptSuggestions {
      * Gets the amount of cash back that was approved.
      * @return the amount of cash back that was approved.
      */
-     @JsonProperty("cashBackAmount")
+     @SerializedName("cashBackAmount")
      public String getCashBackAmount() {
           return this.cashBackAmount;
      }
@@ -456,7 +456,7 @@ public class ReceiptSuggestions {
      * Gets the amount added to the transaction to cover eligible credit card fees.
      * @return the amount added to the transaction to cover eligible credit card fees.
      */
-     @JsonProperty("surcharge")
+     @SerializedName("surcharge")
      public String getSurcharge() {
           return this.surcharge;
      }
@@ -477,7 +477,7 @@ public class ReceiptSuggestions {
      * @return the discount applied to the transaction for payment methods ineligible
      * for surcharges.
      */
-     @JsonProperty("cashDiscount")
+     @SerializedName("cashDiscount")
      public String getCashDiscount() {
           return this.cashDiscount;
      }

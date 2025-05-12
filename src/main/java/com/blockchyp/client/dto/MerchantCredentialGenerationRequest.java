@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -45,7 +45,7 @@ public class MerchantCredentialGenerationRequest implements ITimeoutRequest {
      * Gets the request timeout in seconds.
      * @return the request timeout in seconds.
      */
-     @JsonProperty("timeout")
+     @SerializedName("timeout")
      public int getTimeout() {
           return this.timeout;
      }
@@ -62,7 +62,7 @@ public class MerchantCredentialGenerationRequest implements ITimeoutRequest {
      * Gets whether or not to route transaction to the test gateway.
      * @return whether or not to route transaction to the test gateway.
      */
-     @JsonProperty("test")
+     @SerializedName("test")
      public boolean isTest() {
           return this.test;
      }
@@ -79,7 +79,7 @@ public class MerchantCredentialGenerationRequest implements ITimeoutRequest {
      * Gets the merchant id.
      * @return the merchant id.
      */
-     @JsonProperty("merchantId")
+     @SerializedName("merchantId")
      public String getMerchantId() {
           return this.merchantId;
      }
@@ -96,7 +96,7 @@ public class MerchantCredentialGenerationRequest implements ITimeoutRequest {
      * Gets protects the credentials from deletion.
      * @return protects the credentials from deletion.
      */
-     @JsonProperty("deleteProtected")
+     @SerializedName("deleteProtected")
      public boolean isDeleteProtected() {
           return this.deleteProtected;
      }
@@ -114,7 +114,7 @@ public class MerchantCredentialGenerationRequest implements ITimeoutRequest {
      * Gets an optional array of role codes that will be assigned to the credentials.
      * @return an optional array of role codes that will be assigned to the credentials.
      */
-     @JsonProperty("roles")
+     @SerializedName("roles")
      public Collection<String> getRoles() {
           return this.roles;
      }
@@ -132,7 +132,7 @@ public class MerchantCredentialGenerationRequest implements ITimeoutRequest {
      * Gets free form description of the purpose or intent behind the credentials.
      * @return free form description of the purpose or intent behind the credentials.
      */
-     @JsonProperty("notes")
+     @SerializedName("notes")
      public String getNotes() {
           return this.notes;
      }
@@ -151,7 +151,7 @@ public class MerchantCredentialGenerationRequest implements ITimeoutRequest {
      * @return type of credentials to generate, either API or TOKENIZING. Defaults to
      * API.
      */
-     @JsonProperty("credentialType")
+     @SerializedName("credentialType")
      public String getCredentialType() {
           return this.credentialType;
      }

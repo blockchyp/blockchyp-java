@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 
 /**
@@ -52,7 +52,7 @@ public class UploadStatus implements IAbstractAcknowledgement {
      * Gets whether or not the request succeeded.
      * @return whether or not the request succeeded.
      */
-     @JsonProperty("success")
+     @SerializedName("success")
      public boolean isSuccess() {
           return this.success;
      }
@@ -69,7 +69,7 @@ public class UploadStatus implements IAbstractAcknowledgement {
      * Gets the error, if an error occurred.
      * @return the error, if an error occurred.
      */
-     @JsonProperty("error")
+     @SerializedName("error")
      public String getError() {
           return this.error;
      }
@@ -86,7 +86,7 @@ public class UploadStatus implements IAbstractAcknowledgement {
      * Gets a narrative description of the transaction result.
      * @return a narrative description of the transaction result.
      */
-     @JsonProperty("responseDescription")
+     @SerializedName("responseDescription")
      public String getResponseDescription() {
           return this.responseDescription;
      }
@@ -103,7 +103,7 @@ public class UploadStatus implements IAbstractAcknowledgement {
      * Gets id used to track status and progress of an upload while in progress.
      * @return id used to track status and progress of an upload while in progress.
      */
-     @JsonProperty("id")
+     @SerializedName("id")
      public String getId() {
           return this.id;
      }
@@ -120,7 +120,7 @@ public class UploadStatus implements IAbstractAcknowledgement {
      * Gets the media id assigned to the result.
      * @return the media id assigned to the result.
      */
-     @JsonProperty("mediaId")
+     @SerializedName("mediaId")
      public String getMediaId() {
           return this.mediaId;
      }
@@ -137,7 +137,7 @@ public class UploadStatus implements IAbstractAcknowledgement {
      * Gets the size of the file to be uploaded in bytes.
      * @return the size of the file to be uploaded in bytes.
      */
-     @JsonProperty("fileSize")
+     @SerializedName("fileSize")
      public int getFileSize() {
           return this.fileSize;
      }
@@ -154,7 +154,7 @@ public class UploadStatus implements IAbstractAcknowledgement {
      * Gets the amount of the file already uploaded.
      * @return the amount of the file already uploaded.
      */
-     @JsonProperty("uploadedAmount")
+     @SerializedName("uploadedAmount")
      public int getUploadedAmount() {
           return this.uploadedAmount;
      }
@@ -171,7 +171,7 @@ public class UploadStatus implements IAbstractAcknowledgement {
      * Gets the current status of a file upload.
      * @return the current status of a file upload.
      */
-     @JsonProperty("status")
+     @SerializedName("status")
      public String getStatus() {
           return this.status;
      }
@@ -188,7 +188,7 @@ public class UploadStatus implements IAbstractAcknowledgement {
      * Gets whether or not the upload and associated file processing is complete.
      * @return whether or not the upload and associated file processing is complete.
      */
-     @JsonProperty("complete")
+     @SerializedName("complete")
      public boolean isComplete() {
           return this.complete;
      }
@@ -207,7 +207,7 @@ public class UploadStatus implements IAbstractAcknowledgement {
      * @return whether or not the file is processing. This normally applied to video files
      * undergoing format transcoding.
      */
-     @JsonProperty("processing")
+     @SerializedName("processing")
      public boolean isProcessing() {
           return this.processing;
      }
@@ -224,7 +224,7 @@ public class UploadStatus implements IAbstractAcknowledgement {
      * Gets current upload progress rounded to the nearest integer.
      * @return current upload progress rounded to the nearest integer.
      */
-     @JsonProperty("percentage")
+     @SerializedName("percentage")
      public int getPercentage() {
           return this.percentage;
      }
@@ -241,7 +241,7 @@ public class UploadStatus implements IAbstractAcknowledgement {
      * Gets the url of a thumbnail for the file, if available.
      * @return the url of a thumbnail for the file, if available.
      */
-     @JsonProperty("thumbnailLocation")
+     @SerializedName("thumbnailLocation")
      public String getThumbnailLocation() {
           return this.thumbnailLocation;
      }

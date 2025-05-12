@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 
 /**
@@ -34,7 +34,7 @@ public class PricePoint {
      * Gets the string representation of a per transaction minimum.
      * @return the string representation of a per transaction minimum.
      */
-     @JsonProperty("buyRate")
+     @SerializedName("buyRate")
      public String getBuyRate() {
           return this.buyRate;
      }
@@ -51,7 +51,7 @@ public class PricePoint {
      * Gets the string representation of the current fee per transaction.
      * @return the string representation of the current fee per transaction.
      */
-     @JsonProperty("current")
+     @SerializedName("current")
      public String getCurrent() {
           return this.current;
      }
@@ -68,7 +68,7 @@ public class PricePoint {
      * Gets the string representation of a per transaction gouge limit.
      * @return the string representation of a per transaction gouge limit.
      */
-     @JsonProperty("limit")
+     @SerializedName("limit")
      public String getLimit() {
           return this.limit;
      }

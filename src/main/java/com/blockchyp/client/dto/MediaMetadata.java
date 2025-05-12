@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -53,7 +53,7 @@ public class MediaMetadata implements IAbstractAcknowledgement {
      * Gets whether or not the request succeeded.
      * @return whether or not the request succeeded.
      */
-     @JsonProperty("success")
+     @SerializedName("success")
      public boolean isSuccess() {
           return this.success;
      }
@@ -70,7 +70,7 @@ public class MediaMetadata implements IAbstractAcknowledgement {
      * Gets the error, if an error occurred.
      * @return the error, if an error occurred.
      */
-     @JsonProperty("error")
+     @SerializedName("error")
      public String getError() {
           return this.error;
      }
@@ -87,7 +87,7 @@ public class MediaMetadata implements IAbstractAcknowledgement {
      * Gets a narrative description of the transaction result.
      * @return a narrative description of the transaction result.
      */
-     @JsonProperty("responseDescription")
+     @SerializedName("responseDescription")
      public String getResponseDescription() {
           return this.responseDescription;
      }
@@ -104,7 +104,7 @@ public class MediaMetadata implements IAbstractAcknowledgement {
      * Gets id used to identify the media asset.
      * @return id used to identify the media asset.
      */
-     @JsonProperty("id")
+     @SerializedName("id")
      public String getId() {
           return this.id;
      }
@@ -121,7 +121,7 @@ public class MediaMetadata implements IAbstractAcknowledgement {
      * Gets the original filename assigned to the media asset.
      * @return the original filename assigned to the media asset.
      */
-     @JsonProperty("originalFile")
+     @SerializedName("originalFile")
      public String getOriginalFile() {
           return this.originalFile;
      }
@@ -138,7 +138,7 @@ public class MediaMetadata implements IAbstractAcknowledgement {
      * Gets the descriptive name of the media asset.
      * @return the descriptive name of the media asset.
      */
-     @JsonProperty("name")
+     @SerializedName("name")
      public String getName() {
           return this.name;
      }
@@ -155,7 +155,7 @@ public class MediaMetadata implements IAbstractAcknowledgement {
      * Gets a description of the media asset and its purpose.
      * @return a description of the media asset and its purpose.
      */
-     @JsonProperty("description")
+     @SerializedName("description")
      public String getDescription() {
           return this.description;
      }
@@ -172,7 +172,7 @@ public class MediaMetadata implements IAbstractAcknowledgement {
      * Gets an array of tags associated with a media asset.
      * @return an array of tags associated with a media asset.
      */
-     @JsonProperty("tags")
+     @SerializedName("tags")
      public Collection<String> getTags() {
           return this.tags;
      }
@@ -189,7 +189,7 @@ public class MediaMetadata implements IAbstractAcknowledgement {
      * Gets the url for the full resolution versio of the media file.
      * @return the url for the full resolution versio of the media file.
      */
-     @JsonProperty("fileUrl")
+     @SerializedName("fileUrl")
      public String getFileUrl() {
           return this.fileUrl;
      }
@@ -206,7 +206,7 @@ public class MediaMetadata implements IAbstractAcknowledgement {
      * Gets the url for to the thumbnail of an image.
      * @return the url for to the thumbnail of an image.
      */
-     @JsonProperty("thumbnailUrl")
+     @SerializedName("thumbnailUrl")
      public String getThumbnailUrl() {
           return this.thumbnailUrl;
      }
@@ -223,7 +223,7 @@ public class MediaMetadata implements IAbstractAcknowledgement {
      * Gets an identifier used to flag video files.
      * @return an identifier used to flag video files.
      */
-     @JsonProperty("video")
+     @SerializedName("video")
      public boolean isVideo() {
           return this.video;
      }

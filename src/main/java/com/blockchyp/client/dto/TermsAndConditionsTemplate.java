@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 
 /**
@@ -46,7 +46,7 @@ public class TermsAndConditionsTemplate implements ITimeoutRequest, IAbstractAck
      * Gets the request timeout in seconds.
      * @return the request timeout in seconds.
      */
-     @JsonProperty("timeout")
+     @SerializedName("timeout")
      public int getTimeout() {
           return this.timeout;
      }
@@ -63,7 +63,7 @@ public class TermsAndConditionsTemplate implements ITimeoutRequest, IAbstractAck
      * Gets whether or not to route transaction to the test gateway.
      * @return whether or not to route transaction to the test gateway.
      */
-     @JsonProperty("test")
+     @SerializedName("test")
      public boolean isTest() {
           return this.test;
      }
@@ -80,7 +80,7 @@ public class TermsAndConditionsTemplate implements ITimeoutRequest, IAbstractAck
      * Gets whether or not the request succeeded.
      * @return whether or not the request succeeded.
      */
-     @JsonProperty("success")
+     @SerializedName("success")
      public boolean isSuccess() {
           return this.success;
      }
@@ -97,7 +97,7 @@ public class TermsAndConditionsTemplate implements ITimeoutRequest, IAbstractAck
      * Gets the error, if an error occurred.
      * @return the error, if an error occurred.
      */
-     @JsonProperty("error")
+     @SerializedName("error")
      public String getError() {
           return this.error;
      }
@@ -114,7 +114,7 @@ public class TermsAndConditionsTemplate implements ITimeoutRequest, IAbstractAck
      * Gets a narrative description of the transaction result.
      * @return a narrative description of the transaction result.
      */
-     @JsonProperty("responseDescription")
+     @SerializedName("responseDescription")
      public String getResponseDescription() {
           return this.responseDescription;
      }
@@ -131,7 +131,7 @@ public class TermsAndConditionsTemplate implements ITimeoutRequest, IAbstractAck
      * Gets primary identifier for a given template.
      * @return primary identifier for a given template.
      */
-     @JsonProperty("id")
+     @SerializedName("id")
      public String getId() {
           return this.id;
      }
@@ -148,7 +148,7 @@ public class TermsAndConditionsTemplate implements ITimeoutRequest, IAbstractAck
      * Gets an alias or code used to refer to a template.
      * @return an alias or code used to refer to a template.
      */
-     @JsonProperty("alias")
+     @SerializedName("alias")
      public String getAlias() {
           return this.alias;
      }
@@ -166,7 +166,7 @@ public class TermsAndConditionsTemplate implements ITimeoutRequest, IAbstractAck
      * Gets the name of the template.
      * @return the name of the template. Displayed as the agreement title on the terminal.
      */
-     @JsonProperty("name")
+     @SerializedName("name")
      public String getName() {
           return this.name;
      }
@@ -183,7 +183,7 @@ public class TermsAndConditionsTemplate implements ITimeoutRequest, IAbstractAck
      * Gets the full text of the agreement template.
      * @return the full text of the agreement template.
      */
-     @JsonProperty("content")
+     @SerializedName("content")
      public String getContent() {
           return this.content;
      }

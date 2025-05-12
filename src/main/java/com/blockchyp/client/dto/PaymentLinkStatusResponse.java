@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -84,7 +84,7 @@ public class PaymentLinkStatusResponse implements IAbstractAcknowledgement {
      * Gets whether or not the request succeeded.
      * @return whether or not the request succeeded.
      */
-     @JsonProperty("success")
+     @SerializedName("success")
      public boolean isSuccess() {
           return this.success;
      }
@@ -101,7 +101,7 @@ public class PaymentLinkStatusResponse implements IAbstractAcknowledgement {
      * Gets the error, if an error occurred.
      * @return the error, if an error occurred.
      */
-     @JsonProperty("error")
+     @SerializedName("error")
      public String getError() {
           return this.error;
      }
@@ -118,7 +118,7 @@ public class PaymentLinkStatusResponse implements IAbstractAcknowledgement {
      * Gets a narrative description of the transaction result.
      * @return a narrative description of the transaction result.
      */
-     @JsonProperty("responseDescription")
+     @SerializedName("responseDescription")
      public String getResponseDescription() {
           return this.responseDescription;
      }
@@ -135,7 +135,7 @@ public class PaymentLinkStatusResponse implements IAbstractAcknowledgement {
      * Gets the code used to retrieve the payment link.
      * @return the code used to retrieve the payment link.
      */
-     @JsonProperty("linkCode")
+     @SerializedName("linkCode")
      public String getLinkCode() {
           return this.linkCode;
      }
@@ -152,7 +152,7 @@ public class PaymentLinkStatusResponse implements IAbstractAcknowledgement {
      * Gets the BlockChyp merchant id associated with a payment link.
      * @return the BlockChyp merchant id associated with a payment link.
      */
-     @JsonProperty("merchantId")
+     @SerializedName("merchantId")
      public String getMerchantId() {
           return this.merchantId;
      }
@@ -169,7 +169,7 @@ public class PaymentLinkStatusResponse implements IAbstractAcknowledgement {
      * Gets the customer id associated with a payment link.
      * @return the customer id associated with a payment link.
      */
-     @JsonProperty("customerId")
+     @SerializedName("customerId")
      public String getCustomerId() {
           return this.customerId;
      }
@@ -186,7 +186,7 @@ public class PaymentLinkStatusResponse implements IAbstractAcknowledgement {
      * Gets the user's internal reference for any transaction that may occur.
      * @return the user's internal reference for any transaction that may occur.
      */
-     @JsonProperty("transactionRef")
+     @SerializedName("transactionRef")
      public String getTransactionRef() {
           return this.transactionRef;
      }
@@ -203,7 +203,7 @@ public class PaymentLinkStatusResponse implements IAbstractAcknowledgement {
      * Gets the user's internal reference for an order.
      * @return the user's internal reference for an order.
      */
-     @JsonProperty("orderRef")
+     @SerializedName("orderRef")
      public String getOrderRef() {
           return this.orderRef;
      }
@@ -220,7 +220,7 @@ public class PaymentLinkStatusResponse implements IAbstractAcknowledgement {
      * Gets that the order is tax exempt.
      * @return that the order is tax exempt.
      */
-     @JsonProperty("taxExempt")
+     @SerializedName("taxExempt")
      public boolean isTaxExempt() {
           return this.taxExempt;
      }
@@ -237,7 +237,7 @@ public class PaymentLinkStatusResponse implements IAbstractAcknowledgement {
      * Gets that the amount to collect via the payment link.
      * @return that the amount to collect via the payment link.
      */
-     @JsonProperty("amount")
+     @SerializedName("amount")
      public String getAmount() {
           return this.amount;
      }
@@ -254,7 +254,7 @@ public class PaymentLinkStatusResponse implements IAbstractAcknowledgement {
      * Gets the sales tax to be collected via the payment link.
      * @return the sales tax to be collected via the payment link.
      */
-     @JsonProperty("taxAmount")
+     @SerializedName("taxAmount")
      public String getTaxAmount() {
           return this.taxAmount;
      }
@@ -271,7 +271,7 @@ public class PaymentLinkStatusResponse implements IAbstractAcknowledgement {
      * Gets subject for email notifications.
      * @return subject for email notifications.
      */
-     @JsonProperty("subject")
+     @SerializedName("subject")
      public String getSubject() {
           return this.subject;
      }
@@ -288,7 +288,7 @@ public class PaymentLinkStatusResponse implements IAbstractAcknowledgement {
      * Gets id of the most recent transaction associated with the link.
      * @return id of the most recent transaction associated with the link.
      */
-     @JsonProperty("transactionId")
+     @SerializedName("transactionId")
      public String getTransactionId() {
           return this.transactionId;
      }
@@ -305,7 +305,7 @@ public class PaymentLinkStatusResponse implements IAbstractAcknowledgement {
      * Gets description associated with the payment link.
      * @return description associated with the payment link.
      */
-     @JsonProperty("description")
+     @SerializedName("description")
      public String getDescription() {
           return this.description;
      }
@@ -322,7 +322,7 @@ public class PaymentLinkStatusResponse implements IAbstractAcknowledgement {
      * Gets date and time the link will expire.
      * @return date and time the link will expire.
      */
-     @JsonProperty("expiration")
+     @SerializedName("expiration")
      public Date getExpiration() {
           return this.expiration;
      }
@@ -339,7 +339,7 @@ public class PaymentLinkStatusResponse implements IAbstractAcknowledgement {
      * Gets date and time the link was created.
      * @return date and time the link was created.
      */
-     @JsonProperty("dateCreated")
+     @SerializedName("dateCreated")
      public Date getDateCreated() {
           return this.dateCreated;
      }
@@ -356,7 +356,7 @@ public class PaymentLinkStatusResponse implements IAbstractAcknowledgement {
      * Gets line item level data if provided.
      * @return line item level data if provided.
      */
-     @JsonProperty("transactionDetails")
+     @SerializedName("transactionDetails")
      public TransactionDisplayTransaction getTransactionDetails() {
           return this.transactionDetails;
      }
@@ -373,7 +373,7 @@ public class PaymentLinkStatusResponse implements IAbstractAcknowledgement {
      * Gets the current status of the payment link.
      * @return the current status of the payment link.
      */
-     @JsonProperty("status")
+     @SerializedName("status")
      public String getStatus() {
           return this.status;
      }
@@ -390,7 +390,7 @@ public class PaymentLinkStatusResponse implements IAbstractAcknowledgement {
      * Gets alias for any terms and conditions language associated with the link.
      * @return alias for any terms and conditions language associated with the link.
      */
-     @JsonProperty("tcAlias")
+     @SerializedName("tcAlias")
      public String getTcAlias() {
           return this.tcAlias;
      }
@@ -409,7 +409,7 @@ public class PaymentLinkStatusResponse implements IAbstractAcknowledgement {
      * @return name of any terms and conditions agreements associated with the payment
      * link.
      */
-     @JsonProperty("tcName")
+     @SerializedName("tcName")
      public String getTcName() {
           return this.tcName;
      }
@@ -428,7 +428,7 @@ public class PaymentLinkStatusResponse implements IAbstractAcknowledgement {
      * @return full text of any terms and conditions language associated with the
      * agreement.
      */
-     @JsonProperty("tcContent")
+     @SerializedName("tcContent")
      public String getTcContent() {
           return this.tcContent;
      }
@@ -445,7 +445,7 @@ public class PaymentLinkStatusResponse implements IAbstractAcknowledgement {
      * Gets that the link is intended for internal use by the merchant.
      * @return that the link is intended for internal use by the merchant.
      */
-     @JsonProperty("cashierFacing")
+     @SerializedName("cashierFacing")
      public boolean isCashierFacing() {
           return this.cashierFacing;
      }
@@ -462,7 +462,7 @@ public class PaymentLinkStatusResponse implements IAbstractAcknowledgement {
      * Gets that the payment method should be enrolled in the token vault.
      * @return that the payment method should be enrolled in the token vault.
      */
-     @JsonProperty("enroll")
+     @SerializedName("enroll")
      public boolean isEnroll() {
           return this.enroll;
      }
@@ -483,7 +483,7 @@ public class PaymentLinkStatusResponse implements IAbstractAcknowledgement {
      * @return that the link should only be used for enrollment in the token vault without
      * any underlying payment transaction.
      */
-     @JsonProperty("enrollOnly")
+     @SerializedName("enrollOnly")
      public boolean isEnrollOnly() {
           return this.enrollOnly;
      }
@@ -500,7 +500,7 @@ public class PaymentLinkStatusResponse implements IAbstractAcknowledgement {
      * Gets returns details about the last transaction status.
      * @return returns details about the last transaction status.
      */
-     @JsonProperty("lastTransaction")
+     @SerializedName("lastTransaction")
      public AuthorizationResponse getLastTransaction() {
           return this.lastTransaction;
      }
@@ -521,7 +521,7 @@ public class PaymentLinkStatusResponse implements IAbstractAcknowledgement {
      * @return returns a list of transactions associated with the link, including any
      * declines.
      */
-     @JsonProperty("transactionHistory")
+     @SerializedName("transactionHistory")
      public Collection<AuthorizationResponse> getTransactionHistory() {
           return this.transactionHistory;
      }

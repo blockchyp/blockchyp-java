@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
@@ -45,7 +45,7 @@ public class TerminalStatusResponse implements IAbstractAcknowledgement {
      * Gets whether or not the request succeeded.
      * @return whether or not the request succeeded.
      */
-     @JsonProperty("success")
+     @SerializedName("success")
      public boolean isSuccess() {
           return this.success;
      }
@@ -62,7 +62,7 @@ public class TerminalStatusResponse implements IAbstractAcknowledgement {
      * Gets the error, if an error occurred.
      * @return the error, if an error occurred.
      */
-     @JsonProperty("error")
+     @SerializedName("error")
      public String getError() {
           return this.error;
      }
@@ -79,7 +79,7 @@ public class TerminalStatusResponse implements IAbstractAcknowledgement {
      * Gets a narrative description of the transaction result.
      * @return a narrative description of the transaction result.
      */
-     @JsonProperty("responseDescription")
+     @SerializedName("responseDescription")
      public String getResponseDescription() {
           return this.responseDescription;
      }
@@ -96,7 +96,7 @@ public class TerminalStatusResponse implements IAbstractAcknowledgement {
      * Gets that the terminal is idle.
      * @return that the terminal is idle.
      */
-     @JsonProperty("idle")
+     @SerializedName("idle")
      public boolean isIdle() {
           return this.idle;
      }
@@ -113,7 +113,7 @@ public class TerminalStatusResponse implements IAbstractAcknowledgement {
      * Gets whether or not a card is currently in the card slot.
      * @return whether or not a card is currently in the card slot.
      */
-     @JsonProperty("cardInSlot")
+     @SerializedName("cardInSlot")
      public boolean isCardInSlot() {
           return this.cardInSlot;
      }
@@ -130,7 +130,7 @@ public class TerminalStatusResponse implements IAbstractAcknowledgement {
      * Gets the operation that the terminal is performing.
      * @return the operation that the terminal is performing.
      */
-     @JsonProperty("status")
+     @SerializedName("status")
      public String getStatus() {
           return this.status;
      }
@@ -151,7 +151,7 @@ public class TerminalStatusResponse implements IAbstractAcknowledgement {
      * @return the transaction reference for an ongoing transaction, if one was
      * specified at request time.
      */
-     @JsonProperty("transactionRef")
+     @SerializedName("transactionRef")
      public String getTransactionRef() {
           return this.transactionRef;
      }
@@ -168,7 +168,7 @@ public class TerminalStatusResponse implements IAbstractAcknowledgement {
      * Gets the timestamp of the last status change.
      * @return the timestamp of the last status change.
      */
-     @JsonProperty("since")
+     @SerializedName("since")
      public Date getSince() {
           return this.since;
      }

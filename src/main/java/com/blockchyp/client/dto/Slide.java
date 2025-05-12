@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 
 /**
@@ -34,7 +34,7 @@ public class Slide {
      * Gets the id for the media asset to be used for this slide.
      * @return the id for the media asset to be used for this slide. Must be an image.
      */
-     @JsonProperty("mediaId")
+     @SerializedName("mediaId")
      public String getMediaId() {
           return this.mediaId;
      }
@@ -51,7 +51,7 @@ public class Slide {
      * Gets position of the slide within the slide show.
      * @return position of the slide within the slide show.
      */
-     @JsonProperty("ordinal")
+     @SerializedName("ordinal")
      public int getOrdinal() {
           return this.ordinal;
      }
@@ -68,7 +68,7 @@ public class Slide {
      * Gets the fully qualified thumbnail url for the slide.
      * @return the fully qualified thumbnail url for the slide.
      */
-     @JsonProperty("thumbnailUrl")
+     @SerializedName("thumbnailUrl")
      public String getThumbnailUrl() {
           return this.thumbnailUrl;
      }

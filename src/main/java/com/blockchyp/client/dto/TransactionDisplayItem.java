@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -53,7 +53,7 @@ public class TransactionDisplayItem {
      * @return a unique value identifying the item. This is not required, but recommended
      * since it is required to update or delete line items.
      */
-     @JsonProperty("id")
+     @SerializedName("id")
      public String getId() {
           return this.id;
      }
@@ -70,7 +70,7 @@ public class TransactionDisplayItem {
      * Gets a description of the line item.
      * @return a description of the line item.
      */
-     @JsonProperty("description")
+     @SerializedName("description")
      public String getDescription() {
           return this.description;
      }
@@ -87,7 +87,7 @@ public class TransactionDisplayItem {
      * Gets the price of the line item.
      * @return the price of the line item.
      */
-     @JsonProperty("price")
+     @SerializedName("price")
      public String getPrice() {
           return this.price;
      }
@@ -104,7 +104,7 @@ public class TransactionDisplayItem {
      * Gets the quantity of the line item.
      * @return the quantity of the line item.
      */
-     @JsonProperty("quantity")
+     @SerializedName("quantity")
      public float getQuantity() {
           return this.quantity;
      }
@@ -125,7 +125,7 @@ public class TransactionDisplayItem {
      * descriptions match. Calculated subtotal amounts are rounded to two decimal
      * places of precision. Quantity is a floating point number that is not rounded at all.
      */
-     @JsonProperty("extended")
+     @SerializedName("extended")
      public String getExtended() {
           return this.extended;
      }
@@ -144,7 +144,7 @@ public class TransactionDisplayItem {
      * @return an alphanumeric code for units of measurement as used in international
      * trade.
      */
-     @JsonProperty("unitCode")
+     @SerializedName("unitCode")
      public String getUnitCode() {
           return this.unitCode;
      }
@@ -161,7 +161,7 @@ public class TransactionDisplayItem {
      * Gets an international description code of the item.
      * @return an international description code of the item.
      */
-     @JsonProperty("commodityCode")
+     @SerializedName("commodityCode")
      public String getCommodityCode() {
           return this.commodityCode;
      }
@@ -178,7 +178,7 @@ public class TransactionDisplayItem {
      * Gets a merchant-defined description code of the item.
      * @return a merchant-defined description code of the item.
      */
-     @JsonProperty("productCode")
+     @SerializedName("productCode")
      public String getProductCode() {
           return this.productCode;
      }
@@ -195,7 +195,7 @@ public class TransactionDisplayItem {
      * Gets are displayed under their corresponding item.
      * @return are displayed under their corresponding item.
      */
-     @JsonProperty("discounts")
+     @SerializedName("discounts")
      public Collection<TransactionDisplayDiscount> getDiscounts() {
           return this.discounts;
      }

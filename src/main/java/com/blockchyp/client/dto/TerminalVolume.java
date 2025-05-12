@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 
 /**
@@ -38,7 +38,7 @@ public class TerminalVolume {
      * Gets the terminal name assigned during activation.
      * @return the terminal name assigned during activation.
      */
-     @JsonProperty("terminalName")
+     @SerializedName("terminalName")
      public String getTerminalName() {
           return this.terminalName;
      }
@@ -55,7 +55,7 @@ public class TerminalVolume {
      * Gets the manufacturer's serial number.
      * @return the manufacturer's serial number.
      */
-     @JsonProperty("serialNumber")
+     @SerializedName("serialNumber")
      public String getSerialNumber() {
           return this.serialNumber;
      }
@@ -72,7 +72,7 @@ public class TerminalVolume {
      * Gets the terminal type.
      * @return the terminal type.
      */
-     @JsonProperty("terminalType")
+     @SerializedName("terminalType")
      public String getTerminalType() {
           return this.terminalType;
      }
@@ -89,7 +89,7 @@ public class TerminalVolume {
      * Gets the captured amount.
      * @return the captured amount.
      */
-     @JsonProperty("capturedAmount")
+     @SerializedName("capturedAmount")
      public String getCapturedAmount() {
           return this.capturedAmount;
      }
@@ -106,7 +106,7 @@ public class TerminalVolume {
      * Gets the number of transactions run on this terminal.
      * @return the number of transactions run on this terminal.
      */
-     @JsonProperty("transactionCount")
+     @SerializedName("transactionCount")
      public int getTransactionCount() {
           return this.transactionCount;
      }

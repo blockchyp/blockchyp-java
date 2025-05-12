@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -43,7 +43,7 @@ public class CustomerToken {
      * Gets BlockChyp assigned customer id.
      * @return BlockChyp assigned customer id.
      */
-     @JsonProperty("token")
+     @SerializedName("token")
      public String getToken() {
           return this.token;
      }
@@ -60,7 +60,7 @@ public class CustomerToken {
      * Gets masked primary account number.
      * @return masked primary account number.
      */
-     @JsonProperty("maskedPan")
+     @SerializedName("maskedPan")
      public String getMaskedPan() {
           return this.maskedPan;
      }
@@ -77,7 +77,7 @@ public class CustomerToken {
      * Gets expiration month.
      * @return expiration month.
      */
-     @JsonProperty("expiryMonth")
+     @SerializedName("expiryMonth")
      public String getExpiryMonth() {
           return this.expiryMonth;
      }
@@ -94,7 +94,7 @@ public class CustomerToken {
      * Gets expiration month.
      * @return expiration month.
      */
-     @JsonProperty("expiryYear")
+     @SerializedName("expiryYear")
      public String getExpiryYear() {
           return this.expiryYear;
      }
@@ -111,7 +111,7 @@ public class CustomerToken {
      * Gets payment type.
      * @return payment type.
      */
-     @JsonProperty("paymentType")
+     @SerializedName("paymentType")
      public String getPaymentType() {
           return this.paymentType;
      }
@@ -128,7 +128,7 @@ public class CustomerToken {
      * Gets models customer records associated with a payment token.
      * @return models customer records associated with a payment token.
      */
-     @JsonProperty("customers")
+     @SerializedName("customers")
      public Collection<Customer> getCustomers() {
           return this.customers;
      }

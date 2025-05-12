@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 
 /**
@@ -56,7 +56,7 @@ public class Owner {
      * Gets the first name of the owner.
      * @return the first name of the owner.
      */
-     @JsonProperty("firstName")
+     @SerializedName("firstName")
      public String getFirstName() {
           return this.firstName;
      }
@@ -73,7 +73,7 @@ public class Owner {
      * Gets the last name of the owner.
      * @return the last name of the owner.
      */
-     @JsonProperty("lastName")
+     @SerializedName("lastName")
      public String getLastName() {
           return this.lastName;
      }
@@ -90,7 +90,7 @@ public class Owner {
      * Gets the job title of the owner.
      * @return the job title of the owner.
      */
-     @JsonProperty("jobTitle")
+     @SerializedName("jobTitle")
      public String getJobTitle() {
           return this.jobTitle;
      }
@@ -107,7 +107,7 @@ public class Owner {
      * Gets the tax identification number (SSN) of the owner.
      * @return the tax identification number (SSN) of the owner.
      */
-     @JsonProperty("taxIdNumber")
+     @SerializedName("taxIdNumber")
      public String getTaxIdNumber() {
           return this.taxIdNumber;
      }
@@ -124,7 +124,7 @@ public class Owner {
      * Gets the phone number of the owner.
      * @return the phone number of the owner.
      */
-     @JsonProperty("phoneNumber")
+     @SerializedName("phoneNumber")
      public String getPhoneNumber() {
           return this.phoneNumber;
      }
@@ -141,7 +141,7 @@ public class Owner {
      * Gets the date of birth of the owner in mm/dd/yyyy format.
      * @return the date of birth of the owner in mm/dd/yyyy format.
      */
-     @JsonProperty("dob")
+     @SerializedName("dob")
      public String getDob() {
           return this.dob;
      }
@@ -158,7 +158,7 @@ public class Owner {
      * Gets the percentage of ownership.
      * @return the percentage of ownership.
      */
-     @JsonProperty("ownership")
+     @SerializedName("ownership")
      public String getOwnership() {
           return this.ownership;
      }
@@ -175,7 +175,7 @@ public class Owner {
      * Gets the address of the owner.
      * @return the address of the owner.
      */
-     @JsonProperty("address")
+     @SerializedName("address")
      public Address getAddress() {
           return this.address;
      }
@@ -192,7 +192,7 @@ public class Owner {
      * Gets the email address of the owner.
      * @return the email address of the owner.
      */
-     @JsonProperty("email")
+     @SerializedName("email")
      public String getEmail() {
           return this.email;
      }
@@ -209,7 +209,7 @@ public class Owner {
      * Gets A single line representation of the owner's address.
      * @return A single line representation of the owner's address.
      */
-     @JsonProperty("singleLineAddress")
+     @SerializedName("singleLineAddress")
      public String getSingleLineAddress() {
           return this.singleLineAddress;
      }
@@ -226,7 +226,7 @@ public class Owner {
      * Gets the type of entity this owner represents.
      * @return the type of entity this owner represents.
      */
-     @JsonProperty("entityType")
+     @SerializedName("entityType")
      public String getEntityType() {
           return this.entityType;
      }
@@ -243,7 +243,7 @@ public class Owner {
      * Gets the driver's license number of the owner.
      * @return the driver's license number of the owner.
      */
-     @JsonProperty("dlNumber")
+     @SerializedName("dlNumber")
      public String getDlNumber() {
           return this.dlNumber;
      }
@@ -260,7 +260,7 @@ public class Owner {
      * Gets the state that issued the owner's driver's license.
      * @return the state that issued the owner's driver's license.
      */
-     @JsonProperty("dlStateOrProvince")
+     @SerializedName("dlStateOrProvince")
      public String getDlStateOrProvince() {
           return this.dlStateOrProvince;
      }
@@ -277,7 +277,7 @@ public class Owner {
      * Gets the expiration date of the owner's driver's license.
      * @return the expiration date of the owner's driver's license.
      */
-     @JsonProperty("dlExpiration")
+     @SerializedName("dlExpiration")
      public String getDlExpiration() {
           return this.dlExpiration;
      }

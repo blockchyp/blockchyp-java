@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 
 /**
@@ -34,7 +34,7 @@ public class AggregateBillingLineItemStats {
      * Gets the min value in the set.
      * @return the min value in the set.
      */
-     @JsonProperty("min")
+     @SerializedName("min")
      public String getMin() {
           return this.min;
      }
@@ -51,7 +51,7 @@ public class AggregateBillingLineItemStats {
      * Gets the avg value in the set.
      * @return the avg value in the set.
      */
-     @JsonProperty("avg")
+     @SerializedName("avg")
      public String getAvg() {
           return this.avg;
      }
@@ -68,7 +68,7 @@ public class AggregateBillingLineItemStats {
      * Gets the max value in the set.
      * @return the max value in the set.
      */
-     @JsonProperty("max")
+     @SerializedName("max")
      public String getMax() {
           return this.max;
      }

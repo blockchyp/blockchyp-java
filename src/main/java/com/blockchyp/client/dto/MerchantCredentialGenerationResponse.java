@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 
 /**
@@ -42,7 +42,7 @@ public class MerchantCredentialGenerationResponse implements IAbstractAcknowledg
      * Gets whether or not the request succeeded.
      * @return whether or not the request succeeded.
      */
-     @JsonProperty("success")
+     @SerializedName("success")
      public boolean isSuccess() {
           return this.success;
      }
@@ -59,7 +59,7 @@ public class MerchantCredentialGenerationResponse implements IAbstractAcknowledg
      * Gets the error, if an error occurred.
      * @return the error, if an error occurred.
      */
-     @JsonProperty("error")
+     @SerializedName("error")
      public String getError() {
           return this.error;
      }
@@ -76,7 +76,7 @@ public class MerchantCredentialGenerationResponse implements IAbstractAcknowledg
      * Gets a narrative description of the transaction result.
      * @return a narrative description of the transaction result.
      */
-     @JsonProperty("responseDescription")
+     @SerializedName("responseDescription")
      public String getResponseDescription() {
           return this.responseDescription;
      }
@@ -93,7 +93,7 @@ public class MerchantCredentialGenerationResponse implements IAbstractAcknowledg
      * Gets the merchant api key.
      * @return the merchant api key.
      */
-     @JsonProperty("apiKey")
+     @SerializedName("apiKey")
      public String getApiKey() {
           return this.apiKey;
      }
@@ -110,7 +110,7 @@ public class MerchantCredentialGenerationResponse implements IAbstractAcknowledg
      * Gets the merchant bearer token.
      * @return the merchant bearer token.
      */
-     @JsonProperty("bearerToken")
+     @SerializedName("bearerToken")
      public String getBearerToken() {
           return this.bearerToken;
      }
@@ -127,7 +127,7 @@ public class MerchantCredentialGenerationResponse implements IAbstractAcknowledg
      * Gets the merchant signing key.
      * @return the merchant signing key.
      */
-     @JsonProperty("signingKey")
+     @SerializedName("signingKey")
      public String getSigningKey() {
           return this.signingKey;
      }
@@ -144,7 +144,7 @@ public class MerchantCredentialGenerationResponse implements IAbstractAcknowledg
      * Gets the tokenizing key.
      * @return the tokenizing key.
      */
-     @JsonProperty("tokenizingKey")
+     @SerializedName("tokenizingKey")
      public String getTokenizingKey() {
           return this.tokenizingKey;
      }

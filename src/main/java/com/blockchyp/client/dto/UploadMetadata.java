@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 
 /**
@@ -38,7 +38,7 @@ public class UploadMetadata implements ITimeoutRequest {
      * Gets the request timeout in seconds.
      * @return the request timeout in seconds.
      */
-     @JsonProperty("timeout")
+     @SerializedName("timeout")
      public int getTimeout() {
           return this.timeout;
      }
@@ -55,7 +55,7 @@ public class UploadMetadata implements ITimeoutRequest {
      * Gets whether or not to route transaction to the test gateway.
      * @return whether or not to route transaction to the test gateway.
      */
-     @JsonProperty("test")
+     @SerializedName("test")
      public boolean isTest() {
           return this.test;
      }
@@ -74,7 +74,7 @@ public class UploadMetadata implements ITimeoutRequest {
      * @return optional id used to track status and progress of an upload while in
      * progress.
      */
-     @JsonProperty("uploadId")
+     @SerializedName("uploadId")
      public String getUploadId() {
           return this.uploadId;
      }
@@ -91,7 +91,7 @@ public class UploadMetadata implements ITimeoutRequest {
      * Gets the size of the file to be uploaded in bytes.
      * @return the size of the file to be uploaded in bytes.
      */
-     @JsonProperty("fileSize")
+     @SerializedName("fileSize")
      public int getFileSize() {
           return this.fileSize;
      }
@@ -108,7 +108,7 @@ public class UploadMetadata implements ITimeoutRequest {
      * Gets the name of file to be uploaded.
      * @return the name of file to be uploaded.
      */
-     @JsonProperty("fileName")
+     @SerializedName("fileName")
      public String getFileName() {
           return this.fileName;
      }

@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -56,7 +56,7 @@ public class TransactionHistoryResponse implements IAbstractAcknowledgement {
      * Gets whether or not the request succeeded.
      * @return whether or not the request succeeded.
      */
-     @JsonProperty("success")
+     @SerializedName("success")
      public boolean isSuccess() {
           return this.success;
      }
@@ -73,7 +73,7 @@ public class TransactionHistoryResponse implements IAbstractAcknowledgement {
      * Gets the error, if an error occurred.
      * @return the error, if an error occurred.
      */
-     @JsonProperty("error")
+     @SerializedName("error")
      public String getError() {
           return this.error;
      }
@@ -90,7 +90,7 @@ public class TransactionHistoryResponse implements IAbstractAcknowledgement {
      * Gets a narrative description of the transaction result.
      * @return a narrative description of the transaction result.
      */
-     @JsonProperty("responseDescription")
+     @SerializedName("responseDescription")
      public String getResponseDescription() {
           return this.responseDescription;
      }
@@ -107,7 +107,7 @@ public class TransactionHistoryResponse implements IAbstractAcknowledgement {
      * Gets that the response came from the test gateway.
      * @return that the response came from the test gateway.
      */
-     @JsonProperty("test")
+     @SerializedName("test")
      public boolean isTest() {
           return this.test;
      }
@@ -124,7 +124,7 @@ public class TransactionHistoryResponse implements IAbstractAcknowledgement {
      * Gets batch identifier if filtered by batch.
      * @return batch identifier if filtered by batch.
      */
-     @JsonProperty("batchId")
+     @SerializedName("batchId")
      public String getBatchId() {
           return this.batchId;
      }
@@ -141,7 +141,7 @@ public class TransactionHistoryResponse implements IAbstractAcknowledgement {
      * Gets terminal name if filtered by terminal.
      * @return terminal name if filtered by terminal.
      */
-     @JsonProperty("terminalName")
+     @SerializedName("terminalName")
      public String getTerminalName() {
           return this.terminalName;
      }
@@ -158,7 +158,7 @@ public class TransactionHistoryResponse implements IAbstractAcknowledgement {
      * Gets start date if filtered by start date.
      * @return start date if filtered by start date.
      */
-     @JsonProperty("startDate")
+     @SerializedName("startDate")
      public Date getStartDate() {
           return this.startDate;
      }
@@ -175,7 +175,7 @@ public class TransactionHistoryResponse implements IAbstractAcknowledgement {
      * Gets end date if filtered by end date.
      * @return end date if filtered by end date.
      */
-     @JsonProperty("endDate")
+     @SerializedName("endDate")
      public Date getEndDate() {
           return this.endDate;
      }
@@ -194,7 +194,7 @@ public class TransactionHistoryResponse implements IAbstractAcknowledgement {
      * @return max results from the original request echoed back. Defaults to the system
      * max of 250.
      */
-     @JsonProperty("maxResults")
+     @SerializedName("maxResults")
      public int getMaxResults() {
           return this.maxResults;
      }
@@ -211,7 +211,7 @@ public class TransactionHistoryResponse implements IAbstractAcknowledgement {
      * Gets starting index from the original request echoed back.
      * @return starting index from the original request echoed back.
      */
-     @JsonProperty("startIndex")
+     @SerializedName("startIndex")
      public int getStartIndex() {
           return this.startIndex;
      }
@@ -228,7 +228,7 @@ public class TransactionHistoryResponse implements IAbstractAcknowledgement {
      * Gets total number of results accessible through paging.
      * @return total number of results accessible through paging.
      */
-     @JsonProperty("totalResultCount")
+     @SerializedName("totalResultCount")
      public int getTotalResultCount() {
           return this.totalResultCount;
      }
@@ -245,7 +245,7 @@ public class TransactionHistoryResponse implements IAbstractAcknowledgement {
      * Gets matching transaction history.
      * @return matching transaction history.
      */
-     @JsonProperty("transactions")
+     @SerializedName("transactions")
      public Collection<AuthorizationResponse> getTransactions() {
           return this.transactions;
      }

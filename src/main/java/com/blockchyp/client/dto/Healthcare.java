@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -37,7 +37,7 @@ public class Healthcare {
      * Gets a list of healthcare categories in the transaction.
      * @return a list of healthcare categories in the transaction.
      */
-     @JsonProperty("types")
+     @SerializedName("types")
      public Collection<HealthcareGroup> getTypes() {
           return this.types;
      }
@@ -58,7 +58,7 @@ public class Healthcare {
      * @return that the purchased items were verified against an Inventory Information
      * Approval System (IIAS).
      */
-     @JsonProperty("iiasVerified")
+     @SerializedName("iiasVerified")
      public boolean isIiasVerified() {
           return this.iiasVerified;
      }
@@ -75,7 +75,7 @@ public class Healthcare {
      * Gets that the transaction is exempt from IIAS verification.
      * @return that the transaction is exempt from IIAS verification.
      */
-     @JsonProperty("iiasExempt")
+     @SerializedName("iiasExempt")
      public boolean isIiasExempt() {
           return this.iiasExempt;
      }

@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -59,7 +59,7 @@ public class SurveyQuestion implements ITimeoutRequest, IAbstractAcknowledgement
      * Gets the request timeout in seconds.
      * @return the request timeout in seconds.
      */
-     @JsonProperty("timeout")
+     @SerializedName("timeout")
      public int getTimeout() {
           return this.timeout;
      }
@@ -76,7 +76,7 @@ public class SurveyQuestion implements ITimeoutRequest, IAbstractAcknowledgement
      * Gets whether or not to route transaction to the test gateway.
      * @return whether or not to route transaction to the test gateway.
      */
-     @JsonProperty("test")
+     @SerializedName("test")
      public boolean isTest() {
           return this.test;
      }
@@ -93,7 +93,7 @@ public class SurveyQuestion implements ITimeoutRequest, IAbstractAcknowledgement
      * Gets whether or not the request succeeded.
      * @return whether or not the request succeeded.
      */
-     @JsonProperty("success")
+     @SerializedName("success")
      public boolean isSuccess() {
           return this.success;
      }
@@ -110,7 +110,7 @@ public class SurveyQuestion implements ITimeoutRequest, IAbstractAcknowledgement
      * Gets the error, if an error occurred.
      * @return the error, if an error occurred.
      */
-     @JsonProperty("error")
+     @SerializedName("error")
      public String getError() {
           return this.error;
      }
@@ -127,7 +127,7 @@ public class SurveyQuestion implements ITimeoutRequest, IAbstractAcknowledgement
      * Gets a narrative description of the transaction result.
      * @return a narrative description of the transaction result.
      */
-     @JsonProperty("responseDescription")
+     @SerializedName("responseDescription")
      public String getResponseDescription() {
           return this.responseDescription;
      }
@@ -144,7 +144,7 @@ public class SurveyQuestion implements ITimeoutRequest, IAbstractAcknowledgement
      * Gets internal id for a survey question.
      * @return internal id for a survey question.
      */
-     @JsonProperty("id")
+     @SerializedName("id")
      public String getId() {
           return this.id;
      }
@@ -165,7 +165,7 @@ public class SurveyQuestion implements ITimeoutRequest, IAbstractAcknowledgement
      * @return ordinal number indicating the position of the survey question in the post
      * transaction sequence.
      */
-     @JsonProperty("ordinal")
+     @SerializedName("ordinal")
      public int getOrdinal() {
           return this.ordinal;
      }
@@ -184,7 +184,7 @@ public class SurveyQuestion implements ITimeoutRequest, IAbstractAcknowledgement
      * @return determines whether or not the question will be presented post
      * transaction.
      */
-     @JsonProperty("enabled")
+     @SerializedName("enabled")
      public boolean isEnabled() {
           return this.enabled;
      }
@@ -201,7 +201,7 @@ public class SurveyQuestion implements ITimeoutRequest, IAbstractAcknowledgement
      * Gets the full text of the transaction.
      * @return the full text of the transaction.
      */
-     @JsonProperty("questionText")
+     @SerializedName("questionText")
      public String getQuestionText() {
           return this.questionText;
      }
@@ -218,7 +218,7 @@ public class SurveyQuestion implements ITimeoutRequest, IAbstractAcknowledgement
      * Gets the type of question.
      * @return the type of question. Valid values are 'yes_no' and 'scaled'.
      */
-     @JsonProperty("questionType")
+     @SerializedName("questionType")
      public String getQuestionType() {
           return this.questionType;
      }
@@ -239,7 +239,7 @@ public class SurveyQuestion implements ITimeoutRequest, IAbstractAcknowledgement
      * @return the total number of transactions processed during the query period if
      * results are requested.
      */
-     @JsonProperty("transactionCount")
+     @SerializedName("transactionCount")
      public int getTransactionCount() {
           return this.transactionCount;
      }
@@ -260,7 +260,7 @@ public class SurveyQuestion implements ITimeoutRequest, IAbstractAcknowledgement
      * @return the total number of responses during the query period if results are
      * requested.
      */
-     @JsonProperty("responseCount")
+     @SerializedName("responseCount")
      public int getResponseCount() {
           return this.responseCount;
      }
@@ -277,7 +277,7 @@ public class SurveyQuestion implements ITimeoutRequest, IAbstractAcknowledgement
      * Gets the response rate, expressed as a ratio, if results are requested.
      * @return the response rate, expressed as a ratio, if results are requested.
      */
-     @JsonProperty("responseRate")
+     @SerializedName("responseRate")
      public float getResponseRate() {
           return this.responseRate;
      }
@@ -294,7 +294,7 @@ public class SurveyQuestion implements ITimeoutRequest, IAbstractAcknowledgement
      * Gets the set of response data points.
      * @return the set of response data points.
      */
-     @JsonProperty("responses")
+     @SerializedName("responses")
      public Collection<SurveyDataPoint> getResponses() {
           return this.responses;
      }

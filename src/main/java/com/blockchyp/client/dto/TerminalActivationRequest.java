@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 
 /**
@@ -40,7 +40,7 @@ public class TerminalActivationRequest implements ITimeoutRequest {
      * Gets the request timeout in seconds.
      * @return the request timeout in seconds.
      */
-     @JsonProperty("timeout")
+     @SerializedName("timeout")
      public int getTimeout() {
           return this.timeout;
      }
@@ -57,7 +57,7 @@ public class TerminalActivationRequest implements ITimeoutRequest {
      * Gets whether or not to route transaction to the test gateway.
      * @return whether or not to route transaction to the test gateway.
      */
-     @JsonProperty("test")
+     @SerializedName("test")
      public boolean isTest() {
           return this.test;
      }
@@ -74,7 +74,7 @@ public class TerminalActivationRequest implements ITimeoutRequest {
      * Gets the optional merchant id.
      * @return the optional merchant id.
      */
-     @JsonProperty("merchantId")
+     @SerializedName("merchantId")
      public String getMerchantId() {
           return this.merchantId;
      }
@@ -91,7 +91,7 @@ public class TerminalActivationRequest implements ITimeoutRequest {
      * Gets the terminal activation code displayed on the terminal.
      * @return the terminal activation code displayed on the terminal.
      */
-     @JsonProperty("activationCode")
+     @SerializedName("activationCode")
      public String getActivationCode() {
           return this.activationCode;
      }
@@ -110,7 +110,7 @@ public class TerminalActivationRequest implements ITimeoutRequest {
      * @return the name to be assigned to the terminal. Must be unique for the merchant
      * account.
      */
-     @JsonProperty("terminalName")
+     @SerializedName("terminalName")
      public String getTerminalName() {
           return this.terminalName;
      }
@@ -127,7 +127,7 @@ public class TerminalActivationRequest implements ITimeoutRequest {
      * Gets that the terminal should be activated in cloud relay mode.
      * @return that the terminal should be activated in cloud relay mode.
      */
-     @JsonProperty("cloudRelay")
+     @SerializedName("cloudRelay")
      public boolean isCloudRelay() {
           return this.cloudRelay;
      }

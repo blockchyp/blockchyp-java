@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 
 /**
@@ -34,7 +34,7 @@ public class PaymentLinkStatusRequest implements ITimeoutRequest {
      * Gets the request timeout in seconds.
      * @return the request timeout in seconds.
      */
-     @JsonProperty("timeout")
+     @SerializedName("timeout")
      public int getTimeout() {
           return this.timeout;
      }
@@ -51,7 +51,7 @@ public class PaymentLinkStatusRequest implements ITimeoutRequest {
      * Gets whether or not to route transaction to the test gateway.
      * @return whether or not to route transaction to the test gateway.
      */
-     @JsonProperty("test")
+     @SerializedName("test")
      public boolean isTest() {
           return this.test;
      }
@@ -68,7 +68,7 @@ public class PaymentLinkStatusRequest implements ITimeoutRequest {
      * Gets the link code assigned to the payment link.
      * @return the link code assigned to the payment link.
      */
-     @JsonProperty("linkCode")
+     @SerializedName("linkCode")
      public String getLinkCode() {
           return this.linkCode;
      }

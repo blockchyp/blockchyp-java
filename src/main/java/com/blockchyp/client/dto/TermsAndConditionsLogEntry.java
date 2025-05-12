@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 
 /**
@@ -62,7 +62,7 @@ public class TermsAndConditionsLogEntry implements IAbstractAcknowledgement {
      * Gets whether or not the request succeeded.
      * @return whether or not the request succeeded.
      */
-     @JsonProperty("success")
+     @SerializedName("success")
      public boolean isSuccess() {
           return this.success;
      }
@@ -79,7 +79,7 @@ public class TermsAndConditionsLogEntry implements IAbstractAcknowledgement {
      * Gets the error, if an error occurred.
      * @return the error, if an error occurred.
      */
-     @JsonProperty("error")
+     @SerializedName("error")
      public String getError() {
           return this.error;
      }
@@ -96,7 +96,7 @@ public class TermsAndConditionsLogEntry implements IAbstractAcknowledgement {
      * Gets a narrative description of the transaction result.
      * @return a narrative description of the transaction result.
      */
-     @JsonProperty("responseDescription")
+     @SerializedName("responseDescription")
      public String getResponseDescription() {
           return this.responseDescription;
      }
@@ -113,7 +113,7 @@ public class TermsAndConditionsLogEntry implements IAbstractAcknowledgement {
      * Gets internal id for a Terms and Conditions entry.
      * @return internal id for a Terms and Conditions entry.
      */
-     @JsonProperty("id")
+     @SerializedName("id")
      public String getId() {
           return this.id;
      }
@@ -130,7 +130,7 @@ public class TermsAndConditionsLogEntry implements IAbstractAcknowledgement {
      * Gets id of the terminal that captured this terms and conditions entry.
      * @return id of the terminal that captured this terms and conditions entry.
      */
-     @JsonProperty("terminalId")
+     @SerializedName("terminalId")
      public String getTerminalId() {
           return this.terminalId;
      }
@@ -147,7 +147,7 @@ public class TermsAndConditionsLogEntry implements IAbstractAcknowledgement {
      * Gets name of the terminal that captured this terms and conditions entry.
      * @return name of the terminal that captured this terms and conditions entry.
      */
-     @JsonProperty("terminalName")
+     @SerializedName("terminalName")
      public String getTerminalName() {
           return this.terminalName;
      }
@@ -164,7 +164,7 @@ public class TermsAndConditionsLogEntry implements IAbstractAcknowledgement {
      * Gets a flag indicating whether or not the terminal was a test terminal.
      * @return a flag indicating whether or not the terminal was a test terminal.
      */
-     @JsonProperty("test")
+     @SerializedName("test")
      public boolean isTest() {
           return this.test;
      }
@@ -181,7 +181,7 @@ public class TermsAndConditionsLogEntry implements IAbstractAcknowledgement {
      * Gets date and time the terms and conditions acceptance occurred.
      * @return date and time the terms and conditions acceptance occurred.
      */
-     @JsonProperty("timestamp")
+     @SerializedName("timestamp")
      public String getTimestamp() {
           return this.timestamp;
      }
@@ -202,7 +202,7 @@ public class TermsAndConditionsLogEntry implements IAbstractAcknowledgement {
      * @return optional transaction ref if the terms and conditions was associated with a
      * transaction.
      */
-     @JsonProperty("transactionRef")
+     @SerializedName("transactionRef")
      public String getTransactionRef() {
           return this.transactionRef;
      }
@@ -223,7 +223,7 @@ public class TermsAndConditionsLogEntry implements IAbstractAcknowledgement {
      * @return optional transaction id if only log entries related to a transaction
      * should be returned.
      */
-     @JsonProperty("transactionId")
+     @SerializedName("transactionId")
      public String getTransactionId() {
           return this.transactionId;
      }
@@ -240,7 +240,7 @@ public class TermsAndConditionsLogEntry implements IAbstractAcknowledgement {
      * Gets alias of the terms and conditions template used for this entry, if any.
      * @return alias of the terms and conditions template used for this entry, if any.
      */
-     @JsonProperty("alias")
+     @SerializedName("alias")
      public String getAlias() {
           return this.alias;
      }
@@ -257,7 +257,7 @@ public class TermsAndConditionsLogEntry implements IAbstractAcknowledgement {
      * Gets title of the document displayed on the terminal at the time of capture.
      * @return title of the document displayed on the terminal at the time of capture.
      */
-     @JsonProperty("name")
+     @SerializedName("name")
      public String getName() {
           return this.name;
      }
@@ -274,7 +274,7 @@ public class TermsAndConditionsLogEntry implements IAbstractAcknowledgement {
      * Gets full text of the document agreed to at the time of signature capture.
      * @return full text of the document agreed to at the time of signature capture.
      */
-     @JsonProperty("content")
+     @SerializedName("content")
      public String getContent() {
           return this.content;
      }
@@ -293,7 +293,7 @@ public class TermsAndConditionsLogEntry implements IAbstractAcknowledgement {
      * @return first 32 characters of the full text. Used to support user interfaces that
      * show summaries.
      */
-     @JsonProperty("contentLeader")
+     @SerializedName("contentLeader")
      public String getContentLeader() {
           return this.contentLeader;
      }
@@ -310,7 +310,7 @@ public class TermsAndConditionsLogEntry implements IAbstractAcknowledgement {
      * Gets a flag that indicates whether or not a signature has been captured.
      * @return a flag that indicates whether or not a signature has been captured.
      */
-     @JsonProperty("hasSignature")
+     @SerializedName("hasSignature")
      public boolean isHasSignature() {
           return this.hasSignature;
      }
@@ -327,7 +327,7 @@ public class TermsAndConditionsLogEntry implements IAbstractAcknowledgement {
      * Gets the image format to be used for returning signatures.
      * @return the image format to be used for returning signatures.
      */
-     @JsonProperty("sigFormat")
+     @SerializedName("sigFormat")
      public SignatureFormat getSigFormat() {
           return this.sigFormat;
      }
@@ -344,7 +344,7 @@ public class TermsAndConditionsLogEntry implements IAbstractAcknowledgement {
      * Gets the base 64 encoded signature image if the format requested.
      * @return the base 64 encoded signature image if the format requested.
      */
-     @JsonProperty("signature")
+     @SerializedName("signature")
      public String getSignature() {
           return this.signature;
      }

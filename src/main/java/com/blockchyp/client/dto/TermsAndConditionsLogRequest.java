@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 
 /**
@@ -44,7 +44,7 @@ public class TermsAndConditionsLogRequest implements ITimeoutRequest {
      * Gets the request timeout in seconds.
      * @return the request timeout in seconds.
      */
-     @JsonProperty("timeout")
+     @SerializedName("timeout")
      public int getTimeout() {
           return this.timeout;
      }
@@ -61,7 +61,7 @@ public class TermsAndConditionsLogRequest implements ITimeoutRequest {
      * Gets whether or not to route transaction to the test gateway.
      * @return whether or not to route transaction to the test gateway.
      */
-     @JsonProperty("test")
+     @SerializedName("test")
      public boolean isTest() {
           return this.test;
      }
@@ -79,7 +79,7 @@ public class TermsAndConditionsLogRequest implements ITimeoutRequest {
      * Gets the identifier of the log entry to be returned for single result requests.
      * @return the identifier of the log entry to be returned for single result requests.
      */
-     @JsonProperty("logEntryId")
+     @SerializedName("logEntryId")
      public String getLogEntryId() {
           return this.logEntryId;
      }
@@ -100,7 +100,7 @@ public class TermsAndConditionsLogRequest implements ITimeoutRequest {
      * @return optional transaction id if only log entries related to a transaction
      * should be returned.
      */
-     @JsonProperty("transactionId")
+     @SerializedName("transactionId")
      public String getTransactionId() {
           return this.transactionId;
      }
@@ -117,7 +117,7 @@ public class TermsAndConditionsLogRequest implements ITimeoutRequest {
      * Gets max to be returned in a single page.
      * @return max to be returned in a single page. Defaults to the system max of 250.
      */
-     @JsonProperty("maxResults")
+     @SerializedName("maxResults")
      public int getMaxResults() {
           return this.maxResults;
      }
@@ -134,7 +134,7 @@ public class TermsAndConditionsLogRequest implements ITimeoutRequest {
      * Gets starting index for paged results.
      * @return starting index for paged results. Defaults to zero.
      */
-     @JsonProperty("startIndex")
+     @SerializedName("startIndex")
      public int getStartIndex() {
           return this.startIndex;
      }
@@ -151,7 +151,7 @@ public class TermsAndConditionsLogRequest implements ITimeoutRequest {
      * Gets an optional start date for filtering response data.
      * @return an optional start date for filtering response data.
      */
-     @JsonProperty("startDate")
+     @SerializedName("startDate")
      public String getStartDate() {
           return this.startDate;
      }
@@ -168,7 +168,7 @@ public class TermsAndConditionsLogRequest implements ITimeoutRequest {
      * Gets an optional end date for filtering response data.
      * @return an optional end date for filtering response data.
      */
-     @JsonProperty("endDate")
+     @SerializedName("endDate")
      public String getEndDate() {
           return this.endDate;
      }

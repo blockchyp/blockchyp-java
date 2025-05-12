@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 
 /**
@@ -52,7 +52,7 @@ public class CardMetadata {
      * Gets the brand or network of the card (e.
      * @return the brand or network of the card (e.g., Visa, Mastercard, Amex).
      */
-     @JsonProperty("cardBrand")
+     @SerializedName("cardBrand")
      public String getCardBrand() {
           return this.cardBrand;
      }
@@ -69,7 +69,7 @@ public class CardMetadata {
      * Gets the name of the financial institution that issued the card.
      * @return the name of the financial institution that issued the card.
      */
-     @JsonProperty("issuerName")
+     @SerializedName("issuerName")
      public String getIssuerName() {
           return this.issuerName;
      }
@@ -88,7 +88,7 @@ public class CardMetadata {
      * @return whether the card supports Level 3 processing for detailed transaction
      * data.
      */
-     @JsonProperty("l3")
+     @SerializedName("l3")
      public boolean isL3() {
           return this.l3;
      }
@@ -109,7 +109,7 @@ public class CardMetadata {
      * @return whether the card supports Level 2 processing for additional transaction
      * data.
      */
-     @JsonProperty("l2")
+     @SerializedName("l2")
      public boolean isL2() {
           return this.l2;
      }
@@ -126,7 +126,7 @@ public class CardMetadata {
      * Gets the general category or type of the card product.
      * @return the general category or type of the card product.
      */
-     @JsonProperty("productType")
+     @SerializedName("productType")
      public String getProductType() {
           return this.productType;
      }
@@ -143,7 +143,7 @@ public class CardMetadata {
      * Gets the specific name or designation of the card product.
      * @return the specific name or designation of the card product.
      */
-     @JsonProperty("productName")
+     @SerializedName("productName")
      public String getProductName() {
           return this.productName;
      }
@@ -160,7 +160,7 @@ public class CardMetadata {
      * Gets whether the card is an Electronic Benefit Transfer (EBT) card.
      * @return whether the card is an Electronic Benefit Transfer (EBT) card.
      */
-     @JsonProperty("ebt")
+     @SerializedName("ebt")
      public boolean isEbt() {
           return this.ebt;
      }
@@ -177,7 +177,7 @@ public class CardMetadata {
      * Gets whether the card is a debit card.
      * @return whether the card is a debit card.
      */
-     @JsonProperty("debit")
+     @SerializedName("debit")
      public boolean isDebit() {
           return this.debit;
      }
@@ -194,7 +194,7 @@ public class CardMetadata {
      * Gets whether the card is a healthcare-specific payment card.
      * @return whether the card is a healthcare-specific payment card.
      */
-     @JsonProperty("healthcare")
+     @SerializedName("healthcare")
      public boolean isHealthcare() {
           return this.healthcare;
      }
@@ -211,7 +211,7 @@ public class CardMetadata {
      * Gets whether the card is a prepaid card.
      * @return whether the card is a prepaid card.
      */
-     @JsonProperty("prepaid")
+     @SerializedName("prepaid")
      public boolean isPrepaid() {
           return this.prepaid;
      }
@@ -228,7 +228,7 @@ public class CardMetadata {
      * Gets the geographical region associated with the card's issuer.
      * @return the geographical region associated with the card's issuer.
      */
-     @JsonProperty("region")
+     @SerializedName("region")
      public String getRegion() {
           return this.region;
      }
@@ -245,7 +245,7 @@ public class CardMetadata {
      * Gets the country associated with the card's issuer.
      * @return the country associated with the card's issuer.
      */
-     @JsonProperty("country")
+     @SerializedName("country")
      public String getCountry() {
           return this.country;
      }

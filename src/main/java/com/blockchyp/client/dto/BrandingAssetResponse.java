@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -51,7 +51,7 @@ public class BrandingAssetResponse implements IAbstractAcknowledgement {
      * Gets whether or not the request succeeded.
      * @return whether or not the request succeeded.
      */
-     @JsonProperty("success")
+     @SerializedName("success")
      public boolean isSuccess() {
           return this.success;
      }
@@ -68,7 +68,7 @@ public class BrandingAssetResponse implements IAbstractAcknowledgement {
      * Gets the error, if an error occurred.
      * @return the error, if an error occurred.
      */
-     @JsonProperty("error")
+     @SerializedName("error")
      public String getError() {
           return this.error;
      }
@@ -85,7 +85,7 @@ public class BrandingAssetResponse implements IAbstractAcknowledgement {
      * Gets a narrative description of the transaction result.
      * @return a narrative description of the transaction result.
      */
-     @JsonProperty("responseDescription")
+     @SerializedName("responseDescription")
      public String getResponseDescription() {
           return this.responseDescription;
      }
@@ -102,7 +102,7 @@ public class BrandingAssetResponse implements IAbstractAcknowledgement {
      * Gets the id owner of this branding stack.
      * @return the id owner of this branding stack.
      */
-     @JsonProperty("ownerId")
+     @SerializedName("ownerId")
      public String getOwnerId() {
           return this.ownerId;
      }
@@ -119,7 +119,7 @@ public class BrandingAssetResponse implements IAbstractAcknowledgement {
      * Gets the type of user or tenant that owns this branding stack.
      * @return the type of user or tenant that owns this branding stack.
      */
-     @JsonProperty("ownerType")
+     @SerializedName("ownerType")
      public String getOwnerType() {
           return this.ownerType;
      }
@@ -136,7 +136,7 @@ public class BrandingAssetResponse implements IAbstractAcknowledgement {
      * Gets the name of the entity or tenant that owns this branding stack.
      * @return the name of the entity or tenant that owns this branding stack.
      */
-     @JsonProperty("ownerName")
+     @SerializedName("ownerName")
      public String getOwnerName() {
           return this.ownerName;
      }
@@ -153,7 +153,7 @@ public class BrandingAssetResponse implements IAbstractAcknowledgement {
      * Gets the owner level currently being displayed.
      * @return the owner level currently being displayed.
      */
-     @JsonProperty("levelName")
+     @SerializedName("levelName")
      public String getLevelName() {
           return this.levelName;
      }
@@ -170,7 +170,7 @@ public class BrandingAssetResponse implements IAbstractAcknowledgement {
      * Gets a narrative description of the current simulate time.
      * @return a narrative description of the current simulate time.
      */
-     @JsonProperty("narrativeTime")
+     @SerializedName("narrativeTime")
      public String getNarrativeTime() {
           return this.narrativeTime;
      }
@@ -187,7 +187,7 @@ public class BrandingAssetResponse implements IAbstractAcknowledgement {
      * Gets the asset currently displayed on the terminal.
      * @return the asset currently displayed on the terminal.
      */
-     @JsonProperty("activeAsset")
+     @SerializedName("activeAsset")
      public BrandingAsset getActiveAsset() {
           return this.activeAsset;
      }
@@ -204,7 +204,7 @@ public class BrandingAssetResponse implements IAbstractAcknowledgement {
      * Gets enumerates all branding assets in a given credential scope.
      * @return enumerates all branding assets in a given credential scope.
      */
-     @JsonProperty("results")
+     @SerializedName("results")
      public Collection<BrandingAsset> getResults() {
           return this.results;
      }
