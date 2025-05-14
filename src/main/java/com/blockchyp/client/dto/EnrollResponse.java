@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -95,7 +95,7 @@ public class EnrollResponse implements IAbstractAcknowledgement, IApprovalRespon
      * Gets whether or not the request succeeded.
      * @return whether or not the request succeeded.
      */
-     @JsonProperty("success")
+     @SerializedName("success")
      public boolean isSuccess() {
           return this.success;
      }
@@ -112,7 +112,7 @@ public class EnrollResponse implements IAbstractAcknowledgement, IApprovalRespon
      * Gets the error, if an error occurred.
      * @return the error, if an error occurred.
      */
-     @JsonProperty("error")
+     @SerializedName("error")
      public String getError() {
           return this.error;
      }
@@ -129,7 +129,7 @@ public class EnrollResponse implements IAbstractAcknowledgement, IApprovalRespon
      * Gets a narrative description of the transaction result.
      * @return a narrative description of the transaction result.
      */
-     @JsonProperty("responseDescription")
+     @SerializedName("responseDescription")
      public String getResponseDescription() {
           return this.responseDescription;
      }
@@ -146,7 +146,7 @@ public class EnrollResponse implements IAbstractAcknowledgement, IApprovalRespon
      * Gets that the transaction was approved.
      * @return that the transaction was approved.
      */
-     @JsonProperty("approved")
+     @SerializedName("approved")
      public boolean isApproved() {
           return this.approved;
      }
@@ -163,7 +163,7 @@ public class EnrollResponse implements IAbstractAcknowledgement, IApprovalRespon
      * Gets the auth code from the payment network.
      * @return the auth code from the payment network.
      */
-     @JsonProperty("authCode")
+     @SerializedName("authCode")
      public String getAuthCode() {
           return this.authCode;
      }
@@ -184,7 +184,7 @@ public class EnrollResponse implements IAbstractAcknowledgement, IApprovalRespon
      * @return the code returned by the terminal or the card issuer to indicate the
      * disposition of the message.
      */
-     @JsonProperty("authResponseCode")
+     @SerializedName("authResponseCode")
      public String getAuthResponseCode() {
           return this.authResponseCode;
      }
@@ -201,7 +201,7 @@ public class EnrollResponse implements IAbstractAcknowledgement, IApprovalRespon
      * Gets the ID assigned to the transaction.
      * @return the ID assigned to the transaction.
      */
-     @JsonProperty("transactionId")
+     @SerializedName("transactionId")
      public String getTransactionId() {
           return this.transactionId;
      }
@@ -218,7 +218,7 @@ public class EnrollResponse implements IAbstractAcknowledgement, IApprovalRespon
      * Gets the ID assigned to the batch.
      * @return the ID assigned to the batch.
      */
-     @JsonProperty("batchId")
+     @SerializedName("batchId")
      public String getBatchId() {
           return this.batchId;
      }
@@ -239,7 +239,7 @@ public class EnrollResponse implements IAbstractAcknowledgement, IApprovalRespon
      * no transaction ref was assiged on the request, then the gateway will randomly
      * generate one.
      */
-     @JsonProperty("transactionRef")
+     @SerializedName("transactionRef")
      public String getTransactionRef() {
           return this.transactionRef;
      }
@@ -256,7 +256,7 @@ public class EnrollResponse implements IAbstractAcknowledgement, IApprovalRespon
      * Gets the type of transaction.
      * @return the type of transaction.
      */
-     @JsonProperty("transactionType")
+     @SerializedName("transactionType")
      public String getTransactionType() {
           return this.transactionType;
      }
@@ -273,7 +273,7 @@ public class EnrollResponse implements IAbstractAcknowledgement, IApprovalRespon
      * Gets the timestamp of the transaction.
      * @return the timestamp of the transaction.
      */
-     @JsonProperty("timestamp")
+     @SerializedName("timestamp")
      public String getTimestamp() {
           return this.timestamp;
      }
@@ -290,7 +290,7 @@ public class EnrollResponse implements IAbstractAcknowledgement, IApprovalRespon
      * Gets the hash of the last tick block.
      * @return the hash of the last tick block.
      */
-     @JsonProperty("tickBlock")
+     @SerializedName("tickBlock")
      public String getTickBlock() {
           return this.tickBlock;
      }
@@ -307,7 +307,7 @@ public class EnrollResponse implements IAbstractAcknowledgement, IApprovalRespon
      * Gets that the transaction was processed on the test gateway.
      * @return that the transaction was processed on the test gateway.
      */
-     @JsonProperty("test")
+     @SerializedName("test")
      public boolean isTest() {
           return this.test;
      }
@@ -324,7 +324,7 @@ public class EnrollResponse implements IAbstractAcknowledgement, IApprovalRespon
      * Gets the settlement account for merchants with split settlements.
      * @return the settlement account for merchants with split settlements.
      */
-     @JsonProperty("destinationAccount")
+     @SerializedName("destinationAccount")
      public String getDestinationAccount() {
           return this.destinationAccount;
      }
@@ -343,7 +343,7 @@ public class EnrollResponse implements IAbstractAcknowledgement, IApprovalRespon
      * @return the ECC signature of the response. Can be used to ensure that it was signed by
      * the terminal and detect man-in-the middle attacks.
      */
-     @JsonProperty("sig")
+     @SerializedName("sig")
      public String getSig() {
           return this.sig;
      }
@@ -360,7 +360,7 @@ public class EnrollResponse implements IAbstractAcknowledgement, IApprovalRespon
      * Gets the payment token, if the payment was enrolled in the vault.
      * @return the payment token, if the payment was enrolled in the vault.
      */
-     @JsonProperty("token")
+     @SerializedName("token")
      public String getToken() {
           return this.token;
      }
@@ -377,7 +377,7 @@ public class EnrollResponse implements IAbstractAcknowledgement, IApprovalRespon
      * Gets the entry method for the transaction (CHIP, MSR, KEYED, etc).
      * @return the entry method for the transaction (CHIP, MSR, KEYED, etc).
      */
-     @JsonProperty("entryMethod")
+     @SerializedName("entryMethod")
      public String getEntryMethod() {
           return this.entryMethod;
      }
@@ -394,7 +394,7 @@ public class EnrollResponse implements IAbstractAcknowledgement, IApprovalRespon
      * Gets the card brand (VISA, MC, AMEX, DEBIT, etc).
      * @return the card brand (VISA, MC, AMEX, DEBIT, etc).
      */
-     @JsonProperty("paymentType")
+     @SerializedName("paymentType")
      public String getPaymentType() {
           return this.paymentType;
      }
@@ -415,7 +415,7 @@ public class EnrollResponse implements IAbstractAcknowledgement, IApprovalRespon
      * @return provides network level detail on how a transaction was routed, especially
      * for debit transactions.
      */
-     @JsonProperty("network")
+     @SerializedName("network")
      public String getNetwork() {
           return this.network;
      }
@@ -436,7 +436,7 @@ public class EnrollResponse implements IAbstractAcknowledgement, IApprovalRespon
      * to indicate the major logo on a card, even when debit transactions are routed on a
      * different network.
      */
-     @JsonProperty("logo")
+     @SerializedName("logo")
      public String getLogo() {
           return this.logo;
      }
@@ -453,7 +453,7 @@ public class EnrollResponse implements IAbstractAcknowledgement, IApprovalRespon
      * Gets the masked primary account number.
      * @return the masked primary account number.
      */
-     @JsonProperty("maskedPan")
+     @SerializedName("maskedPan")
      public String getMaskedPan() {
           return this.maskedPan;
      }
@@ -471,7 +471,7 @@ public class EnrollResponse implements IAbstractAcknowledgement, IApprovalRespon
      * Gets the BlockChyp public key if the user presented a BlockChyp payment card.
      * @return the BlockChyp public key if the user presented a BlockChyp payment card.
      */
-     @JsonProperty("publicKey")
+     @SerializedName("publicKey")
      public String getPublicKey() {
           return this.publicKey;
      }
@@ -489,7 +489,7 @@ public class EnrollResponse implements IAbstractAcknowledgement, IApprovalRespon
      * Gets that the transaction did something that would put the system in PCI scope.
      * @return that the transaction did something that would put the system in PCI scope.
      */
-     @JsonProperty("ScopeAlert")
+     @SerializedName("ScopeAlert")
      public boolean isScopeAlert() {
           return this.ScopeAlert;
      }
@@ -506,7 +506,7 @@ public class EnrollResponse implements IAbstractAcknowledgement, IApprovalRespon
      * Gets the cardholder name.
      * @return the cardholder name.
      */
-     @JsonProperty("cardHolder")
+     @SerializedName("cardHolder")
      public String getCardHolder() {
           return this.cardHolder;
      }
@@ -523,7 +523,7 @@ public class EnrollResponse implements IAbstractAcknowledgement, IApprovalRespon
      * Gets the card expiration month in MM format.
      * @return the card expiration month in MM format.
      */
-     @JsonProperty("expMonth")
+     @SerializedName("expMonth")
      public String getExpMonth() {
           return this.expMonth;
      }
@@ -540,7 +540,7 @@ public class EnrollResponse implements IAbstractAcknowledgement, IApprovalRespon
      * Gets the card expiration year in YY format.
      * @return the card expiration year in YY format.
      */
-     @JsonProperty("expYear")
+     @SerializedName("expYear")
      public String getExpYear() {
           return this.expYear;
      }
@@ -557,7 +557,7 @@ public class EnrollResponse implements IAbstractAcknowledgement, IApprovalRespon
      * Gets address verification results if address information was submitted.
      * @return address verification results if address information was submitted.
      */
-     @JsonProperty("avsResponse")
+     @SerializedName("avsResponse")
      public AvsResponse getAvsResponse() {
           return this.avsResponse;
      }
@@ -574,7 +574,7 @@ public class EnrollResponse implements IAbstractAcknowledgement, IApprovalRespon
      * Gets suggested receipt fields.
      * @return suggested receipt fields.
      */
-     @JsonProperty("receiptSuggestions")
+     @SerializedName("receiptSuggestions")
      public ReceiptSuggestions getReceiptSuggestions() {
           return this.receiptSuggestions;
      }
@@ -591,7 +591,7 @@ public class EnrollResponse implements IAbstractAcknowledgement, IApprovalRespon
      * Gets customer data, if any.
      * @return customer data, if any. Preserved for reverse compatibility.
      */
-     @JsonProperty("customer")
+     @SerializedName("customer")
      public Customer getCustomer() {
           return this.customer;
      }
@@ -608,7 +608,7 @@ public class EnrollResponse implements IAbstractAcknowledgement, IApprovalRespon
      * Gets customer data, if any.
      * @return customer data, if any.
      */
-     @JsonProperty("customers")
+     @SerializedName("customers")
      public Collection<Customer> getCustomers() {
           return this.customers;
      }
@@ -625,7 +625,7 @@ public class EnrollResponse implements IAbstractAcknowledgement, IApprovalRespon
      * Gets the hex encoded signature data.
      * @return the hex encoded signature data.
      */
-     @JsonProperty("sigFile")
+     @SerializedName("sigFile")
      public String getSigFile() {
           return this.sigFile;
      }
@@ -642,7 +642,7 @@ public class EnrollResponse implements IAbstractAcknowledgement, IApprovalRespon
      * Gets details about a payment card derived from its BIN/IIN.
      * @return details about a payment card derived from its BIN/IIN.
      */
-     @JsonProperty("cardMetadata")
+     @SerializedName("cardMetadata")
      public CardMetadata getCardMetadata() {
           return this.cardMetadata;
      }

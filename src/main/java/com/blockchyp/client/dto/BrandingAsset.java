@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -103,7 +103,7 @@ public class BrandingAsset implements ITimeoutRequest, IAbstractAcknowledgement 
      * Gets the request timeout in seconds.
      * @return the request timeout in seconds.
      */
-     @JsonProperty("timeout")
+     @SerializedName("timeout")
      public int getTimeout() {
           return this.timeout;
      }
@@ -120,7 +120,7 @@ public class BrandingAsset implements ITimeoutRequest, IAbstractAcknowledgement 
      * Gets whether or not to route transaction to the test gateway.
      * @return whether or not to route transaction to the test gateway.
      */
-     @JsonProperty("test")
+     @SerializedName("test")
      public boolean isTest() {
           return this.test;
      }
@@ -137,7 +137,7 @@ public class BrandingAsset implements ITimeoutRequest, IAbstractAcknowledgement 
      * Gets whether or not the request succeeded.
      * @return whether or not the request succeeded.
      */
-     @JsonProperty("success")
+     @SerializedName("success")
      public boolean isSuccess() {
           return this.success;
      }
@@ -154,7 +154,7 @@ public class BrandingAsset implements ITimeoutRequest, IAbstractAcknowledgement 
      * Gets the error, if an error occurred.
      * @return the error, if an error occurred.
      */
-     @JsonProperty("error")
+     @SerializedName("error")
      public String getError() {
           return this.error;
      }
@@ -171,7 +171,7 @@ public class BrandingAsset implements ITimeoutRequest, IAbstractAcknowledgement 
      * Gets a narrative description of the transaction result.
      * @return a narrative description of the transaction result.
      */
-     @JsonProperty("responseDescription")
+     @SerializedName("responseDescription")
      public String getResponseDescription() {
           return this.responseDescription;
      }
@@ -188,7 +188,7 @@ public class BrandingAsset implements ITimeoutRequest, IAbstractAcknowledgement 
      * Gets id used to track a branding asset.
      * @return id used to track a branding asset.
      */
-     @JsonProperty("id")
+     @SerializedName("id")
      public String getId() {
           return this.id;
      }
@@ -205,7 +205,7 @@ public class BrandingAsset implements ITimeoutRequest, IAbstractAcknowledgement 
      * Gets the id owner of the tenant who owns the branding asset.
      * @return the id owner of the tenant who owns the branding asset.
      */
-     @JsonProperty("ownerId")
+     @SerializedName("ownerId")
      public String getOwnerId() {
           return this.ownerId;
      }
@@ -223,7 +223,7 @@ public class BrandingAsset implements ITimeoutRequest, IAbstractAcknowledgement 
      * Gets the terminal id if this branding asset is specific to a single terminal.
      * @return the terminal id if this branding asset is specific to a single terminal.
      */
-     @JsonProperty("terminalId")
+     @SerializedName("terminalId")
      public String getTerminalId() {
           return this.terminalId;
      }
@@ -242,7 +242,7 @@ public class BrandingAsset implements ITimeoutRequest, IAbstractAcknowledgement 
      * @return the terminal group id if this branding asset is specific to a terminal
      * group.
      */
-     @JsonProperty("terminalGroupId")
+     @SerializedName("terminalGroupId")
      public String getTerminalGroupId() {
           return this.terminalGroupId;
      }
@@ -259,7 +259,7 @@ public class BrandingAsset implements ITimeoutRequest, IAbstractAcknowledgement 
      * Gets the merchant id associated with this branding asset.
      * @return the merchant id associated with this branding asset.
      */
-     @JsonProperty("merchantId")
+     @SerializedName("merchantId")
      public String getMerchantId() {
           return this.merchantId;
      }
@@ -276,7 +276,7 @@ public class BrandingAsset implements ITimeoutRequest, IAbstractAcknowledgement 
      * Gets the organization id associated with this branding asset.
      * @return the organization id associated with this branding asset.
      */
-     @JsonProperty("organizationId")
+     @SerializedName("organizationId")
      public String getOrganizationId() {
           return this.organizationId;
      }
@@ -293,7 +293,7 @@ public class BrandingAsset implements ITimeoutRequest, IAbstractAcknowledgement 
      * Gets the partner id associated with this branding asset.
      * @return the partner id associated with this branding asset.
      */
-     @JsonProperty("partnerId")
+     @SerializedName("partnerId")
      public String getPartnerId() {
           return this.partnerId;
      }
@@ -312,7 +312,7 @@ public class BrandingAsset implements ITimeoutRequest, IAbstractAcknowledgement 
      * @return the slide show associated with this branding asset, if any. A branding
      * asset can reference a slide show or media asset, but not both.
      */
-     @JsonProperty("slideShowId")
+     @SerializedName("slideShowId")
      public String getSlideShowId() {
           return this.slideShowId;
      }
@@ -331,7 +331,7 @@ public class BrandingAsset implements ITimeoutRequest, IAbstractAcknowledgement 
      * @return the media id associated with this branding asset, if any. A branding asset
      * can reference a slide show or media asset, but not both.
      */
-     @JsonProperty("mediaId")
+     @SerializedName("mediaId")
      public String getMediaId() {
           return this.mediaId;
      }
@@ -350,7 +350,7 @@ public class BrandingAsset implements ITimeoutRequest, IAbstractAcknowledgement 
      * @return applies standard margins to images displayed on terminals. Usually the
      * best option for logos.
      */
-     @JsonProperty("padded")
+     @SerializedName("padded")
      public boolean isPadded() {
           return this.padded;
      }
@@ -369,7 +369,7 @@ public class BrandingAsset implements ITimeoutRequest, IAbstractAcknowledgement 
      * @return the start date if this asset should be displayed based on a schedule.
      * Format: MM/DD/YYYY.
      */
-     @JsonProperty("startDate")
+     @SerializedName("startDate")
      public String getStartDate() {
           return this.startDate;
      }
@@ -388,7 +388,7 @@ public class BrandingAsset implements ITimeoutRequest, IAbstractAcknowledgement 
      * @return the end date if this asset should be displayed based on a schedule. Format:
      * MM/DD/YYYY.
      */
-     @JsonProperty("endDate")
+     @SerializedName("endDate")
      public String getEndDate() {
           return this.endDate;
      }
@@ -409,7 +409,7 @@ public class BrandingAsset implements ITimeoutRequest, IAbstractAcknowledgement 
      * Days of the week are coded as integers starting with Sunday (0) and ending with
      * Saturday (6).
      */
-     @JsonProperty("daysOfWeek")
+     @SerializedName("daysOfWeek")
      public Collection<Weekday> getDaysOfWeek() {
           return this.daysOfWeek;
      }
@@ -428,7 +428,7 @@ public class BrandingAsset implements ITimeoutRequest, IAbstractAcknowledgement 
      * @return the start date if this asset should be displayed based on a schedule.
      * Format: MM/DD/YYYY.
      */
-     @JsonProperty("startTime")
+     @SerializedName("startTime")
      public String getStartTime() {
           return this.startTime;
      }
@@ -447,7 +447,7 @@ public class BrandingAsset implements ITimeoutRequest, IAbstractAcknowledgement 
      * @return the end date if this asset should be displayed based on a schedule. Format:
      * MM/DD/YYYY.
      */
-     @JsonProperty("endTime")
+     @SerializedName("endTime")
      public String getEndTime() {
           return this.endTime;
      }
@@ -468,7 +468,7 @@ public class BrandingAsset implements ITimeoutRequest, IAbstractAcknowledgement 
      * @return the ordinal number marking the position of this asset within the branding
      * stack.
      */
-     @JsonProperty("ordinal")
+     @SerializedName("ordinal")
      public int getOrdinal() {
           return this.ordinal;
      }
@@ -485,7 +485,7 @@ public class BrandingAsset implements ITimeoutRequest, IAbstractAcknowledgement 
      * Gets enables the asset for display.
      * @return enables the asset for display.
      */
-     @JsonProperty("enabled")
+     @SerializedName("enabled")
      public boolean isEnabled() {
           return this.enabled;
      }
@@ -506,7 +506,7 @@ public class BrandingAsset implements ITimeoutRequest, IAbstractAcknowledgement 
      * @return if true, the asset will be displayed in the merchant portal, but not on
      * merchant terminal hardware. Developers will usually want this to always be false.
      */
-     @JsonProperty("preview")
+     @SerializedName("preview")
      public boolean isPreview() {
           return this.preview;
      }
@@ -523,7 +523,7 @@ public class BrandingAsset implements ITimeoutRequest, IAbstractAcknowledgement 
      * Gets id of the user who created this branding asset, if applicable.
      * @return id of the user who created this branding asset, if applicable.
      */
-     @JsonProperty("userId")
+     @SerializedName("userId")
      public String getUserId() {
           return this.userId;
      }
@@ -540,7 +540,7 @@ public class BrandingAsset implements ITimeoutRequest, IAbstractAcknowledgement 
      * Gets name of the user who created this branding asset, if applicable.
      * @return name of the user who created this branding asset, if applicable.
      */
-     @JsonProperty("userName")
+     @SerializedName("userName")
      public String getUserName() {
           return this.userName;
      }
@@ -558,7 +558,7 @@ public class BrandingAsset implements ITimeoutRequest, IAbstractAcknowledgement 
      * Gets the fully qualified URL of the thumbnail image for this branding asset.
      * @return the fully qualified URL of the thumbnail image for this branding asset.
      */
-     @JsonProperty("thumbnail")
+     @SerializedName("thumbnail")
      public String getThumbnail() {
           return this.thumbnail;
      }
@@ -575,7 +575,7 @@ public class BrandingAsset implements ITimeoutRequest, IAbstractAcknowledgement 
      * Gets the time and date this asset was last modified.
      * @return the time and date this asset was last modified.
      */
-     @JsonProperty("lastModified")
+     @SerializedName("lastModified")
      public String getLastModified() {
           return this.lastModified;
      }
@@ -592,7 +592,7 @@ public class BrandingAsset implements ITimeoutRequest, IAbstractAcknowledgement 
      * Gets a field for notes related to a branding asset.
      * @return a field for notes related to a branding asset.
      */
-     @JsonProperty("notes")
+     @SerializedName("notes")
      public String getNotes() {
           return this.notes;
      }
@@ -613,7 +613,7 @@ public class BrandingAsset implements ITimeoutRequest, IAbstractAcknowledgement 
      * @return if true, the API credentials used to retrieve the branding asset record can
      * be used to update it.
      */
-     @JsonProperty("editable")
+     @SerializedName("editable")
      public boolean isEditable() {
           return this.editable;
      }
@@ -630,7 +630,7 @@ public class BrandingAsset implements ITimeoutRequest, IAbstractAcknowledgement 
      * Gets the type of branding asset.
      * @return the type of branding asset.
      */
-     @JsonProperty("assetType")
+     @SerializedName("assetType")
      public String getAssetType() {
           return this.assetType;
      }
@@ -647,7 +647,7 @@ public class BrandingAsset implements ITimeoutRequest, IAbstractAcknowledgement 
      * Gets the type of user or tenant that owns this asset.
      * @return the type of user or tenant that owns this asset.
      */
-     @JsonProperty("ownerType")
+     @SerializedName("ownerType")
      public String getOwnerType() {
           return this.ownerType;
      }
@@ -666,7 +666,7 @@ public class BrandingAsset implements ITimeoutRequest, IAbstractAcknowledgement 
      * @return a recommended caption for displaying the owner. Takes into account
      * multiple organization types.
      */
-     @JsonProperty("ownerTypeCaption")
+     @SerializedName("ownerTypeCaption")
      public String getOwnerTypeCaption() {
           return this.ownerTypeCaption;
      }
@@ -683,7 +683,7 @@ public class BrandingAsset implements ITimeoutRequest, IAbstractAcknowledgement 
      * Gets the name of the tenant or entity that owns the branding asset.
      * @return the name of the tenant or entity that owns the branding asset.
      */
-     @JsonProperty("ownerName")
+     @SerializedName("ownerName")
      public String getOwnerName() {
           return this.ownerName;
      }
@@ -704,7 +704,7 @@ public class BrandingAsset implements ITimeoutRequest, IAbstractAcknowledgement 
      * @return the recommended image to be displayed when rendering a preview of this
      * branding asset.
      */
-     @JsonProperty("previewImage")
+     @SerializedName("previewImage")
      public String getPreviewImage() {
           return this.previewImage;
      }
@@ -725,7 +725,7 @@ public class BrandingAsset implements ITimeoutRequest, IAbstractAcknowledgement 
      * @return a compact narrative string explaining the effective date and time rules
      * for a branding asset.
      */
-     @JsonProperty("narrativeEffectiveDates")
+     @SerializedName("narrativeEffectiveDates")
      public String getNarrativeEffectiveDates() {
           return this.narrativeEffectiveDates;
      }
@@ -746,7 +746,7 @@ public class BrandingAsset implements ITimeoutRequest, IAbstractAcknowledgement 
      * @return a compact narrative string explaining the display period for a branding
      * asset.
      */
-     @JsonProperty("narrativeDisplayPeriod")
+     @SerializedName("narrativeDisplayPeriod")
      public String getNarrativeDisplayPeriod() {
           return this.narrativeDisplayPeriod;
      }

@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 
 /**
@@ -96,7 +96,7 @@ public class PricingPolicyResponse implements IAbstractAcknowledgement {
      * Gets whether or not the request succeeded.
      * @return whether or not the request succeeded.
      */
-     @JsonProperty("success")
+     @SerializedName("success")
      public boolean isSuccess() {
           return this.success;
      }
@@ -113,7 +113,7 @@ public class PricingPolicyResponse implements IAbstractAcknowledgement {
      * Gets the error, if an error occurred.
      * @return the error, if an error occurred.
      */
-     @JsonProperty("error")
+     @SerializedName("error")
      public String getError() {
           return this.error;
      }
@@ -130,7 +130,7 @@ public class PricingPolicyResponse implements IAbstractAcknowledgement {
      * Gets a narrative description of the transaction result.
      * @return a narrative description of the transaction result.
      */
-     @JsonProperty("responseDescription")
+     @SerializedName("responseDescription")
      public String getResponseDescription() {
           return this.responseDescription;
      }
@@ -147,7 +147,7 @@ public class PricingPolicyResponse implements IAbstractAcknowledgement {
      * Gets the id owner of the pricing policy.
      * @return the id owner of the pricing policy.
      */
-     @JsonProperty("id")
+     @SerializedName("id")
      public String getId() {
           return this.id;
      }
@@ -164,7 +164,7 @@ public class PricingPolicyResponse implements IAbstractAcknowledgement {
      * Gets the id of the partner associated with this pricing policy.
      * @return the id of the partner associated with this pricing policy.
      */
-     @JsonProperty("partnerId")
+     @SerializedName("partnerId")
      public String getPartnerId() {
           return this.partnerId;
      }
@@ -181,7 +181,7 @@ public class PricingPolicyResponse implements IAbstractAcknowledgement {
      * Gets the id of the merchant associated with this pricing policy.
      * @return the id of the merchant associated with this pricing policy.
      */
-     @JsonProperty("merchantId")
+     @SerializedName("merchantId")
      public String getMerchantId() {
           return this.merchantId;
      }
@@ -198,7 +198,7 @@ public class PricingPolicyResponse implements IAbstractAcknowledgement {
      * Gets whether or not a pricing policy is enabled.
      * @return whether or not a pricing policy is enabled.
      */
-     @JsonProperty("enabled")
+     @SerializedName("enabled")
      public boolean isEnabled() {
           return this.enabled;
      }
@@ -215,7 +215,7 @@ public class PricingPolicyResponse implements IAbstractAcknowledgement {
      * Gets the date and time when the pricing policy was created.
      * @return the date and time when the pricing policy was created.
      */
-     @JsonProperty("timestamp")
+     @SerializedName("timestamp")
      public String getTimestamp() {
           return this.timestamp;
      }
@@ -232,7 +232,7 @@ public class PricingPolicyResponse implements IAbstractAcknowledgement {
      * Gets the description of the pricing policy.
      * @return the description of the pricing policy.
      */
-     @JsonProperty("description")
+     @SerializedName("description")
      public String getDescription() {
           return this.description;
      }
@@ -249,7 +249,7 @@ public class PricingPolicyResponse implements IAbstractAcknowledgement {
      * Gets type of pricing policy (flat vs interchange).
      * @return type of pricing policy (flat vs interchange).
      */
-     @JsonProperty("policyType")
+     @SerializedName("policyType")
      public String getPolicyType() {
           return this.policyType;
      }
@@ -266,7 +266,7 @@ public class PricingPolicyResponse implements IAbstractAcknowledgement {
      * Gets the percentage split of the of buy rate markup with BlockChyp.
      * @return the percentage split of the of buy rate markup with BlockChyp.
      */
-     @JsonProperty("partnerMarkupSplit")
+     @SerializedName("partnerMarkupSplit")
      public String getPartnerMarkupSplit() {
           return this.partnerMarkupSplit;
      }
@@ -283,7 +283,7 @@ public class PricingPolicyResponse implements IAbstractAcknowledgement {
      * Gets the flat rate percentage for standard card present transactions.
      * @return the flat rate percentage for standard card present transactions.
      */
-     @JsonProperty("standardFlatRate")
+     @SerializedName("standardFlatRate")
      public PricePoint getStandardFlatRate() {
           return this.standardFlatRate;
      }
@@ -300,7 +300,7 @@ public class PricingPolicyResponse implements IAbstractAcknowledgement {
      * Gets the flat rate percentage for debit card transactions.
      * @return the flat rate percentage for debit card transactions.
      */
-     @JsonProperty("debitFlatRate")
+     @SerializedName("debitFlatRate")
      public PricePoint getDebitFlatRate() {
           return this.debitFlatRate;
      }
@@ -317,7 +317,7 @@ public class PricingPolicyResponse implements IAbstractAcknowledgement {
      * Gets the flat rate percentage for ecommerce transactions.
      * @return the flat rate percentage for ecommerce transactions.
      */
-     @JsonProperty("ecommerceFlatRate")
+     @SerializedName("ecommerceFlatRate")
      public PricePoint getEcommerceFlatRate() {
           return this.ecommerceFlatRate;
      }
@@ -334,7 +334,7 @@ public class PricingPolicyResponse implements IAbstractAcknowledgement {
      * Gets the flat rate percentage for keyed/manual transactions.
      * @return the flat rate percentage for keyed/manual transactions.
      */
-     @JsonProperty("keyedFlatRate")
+     @SerializedName("keyedFlatRate")
      public PricePoint getKeyedFlatRate() {
           return this.keyedFlatRate;
      }
@@ -352,7 +352,7 @@ public class PricingPolicyResponse implements IAbstractAcknowledgement {
      * Gets the flat rate percentage for premium (high rewards) card transactions.
      * @return the flat rate percentage for premium (high rewards) card transactions.
      */
-     @JsonProperty("premiumFlatRate")
+     @SerializedName("premiumFlatRate")
      public PricePoint getPremiumFlatRate() {
           return this.premiumFlatRate;
      }
@@ -371,7 +371,7 @@ public class PricingPolicyResponse implements IAbstractAcknowledgement {
      * @return the interchange markup percentage for standard card present
      * transactions.
      */
-     @JsonProperty("standardInterchangeMarkup")
+     @SerializedName("standardInterchangeMarkup")
      public PricePoint getStandardInterchangeMarkup() {
           return this.standardInterchangeMarkup;
      }
@@ -388,7 +388,7 @@ public class PricingPolicyResponse implements IAbstractAcknowledgement {
      * Gets the interchange markup percentage for debit card transactions.
      * @return the interchange markup percentage for debit card transactions.
      */
-     @JsonProperty("debitInterchangeMarkup")
+     @SerializedName("debitInterchangeMarkup")
      public PricePoint getDebitInterchangeMarkup() {
           return this.debitInterchangeMarkup;
      }
@@ -405,7 +405,7 @@ public class PricingPolicyResponse implements IAbstractAcknowledgement {
      * Gets the interchange markup percentage for ecommerce transactions.
      * @return the interchange markup percentage for ecommerce transactions.
      */
-     @JsonProperty("ecommerceInterchangeMarkup")
+     @SerializedName("ecommerceInterchangeMarkup")
      public PricePoint getEcommerceInterchangeMarkup() {
           return this.ecommerceInterchangeMarkup;
      }
@@ -422,7 +422,7 @@ public class PricingPolicyResponse implements IAbstractAcknowledgement {
      * Gets the interchange markup percentage for keyed/manual transactions.
      * @return the interchange markup percentage for keyed/manual transactions.
      */
-     @JsonProperty("keyedInterchangeMarkup")
+     @SerializedName("keyedInterchangeMarkup")
      public PricePoint getKeyedInterchangeMarkup() {
           return this.keyedInterchangeMarkup;
      }
@@ -443,7 +443,7 @@ public class PricingPolicyResponse implements IAbstractAcknowledgement {
      * @return the interchange markup percentage for premium (high rewards) card
      * transactions.
      */
-     @JsonProperty("premiumInterchangeMarkup")
+     @SerializedName("premiumInterchangeMarkup")
      public PricePoint getPremiumInterchangeMarkup() {
           return this.premiumInterchangeMarkup;
      }
@@ -460,7 +460,7 @@ public class PricingPolicyResponse implements IAbstractAcknowledgement {
      * Gets the transaction fee for standard card present transactions.
      * @return the transaction fee for standard card present transactions.
      */
-     @JsonProperty("standardTransactionFee")
+     @SerializedName("standardTransactionFee")
      public PricePoint getStandardTransactionFee() {
           return this.standardTransactionFee;
      }
@@ -477,7 +477,7 @@ public class PricingPolicyResponse implements IAbstractAcknowledgement {
      * Gets the transaction fee for debit card transactions.
      * @return the transaction fee for debit card transactions.
      */
-     @JsonProperty("debitTransactionFee")
+     @SerializedName("debitTransactionFee")
      public PricePoint getDebitTransactionFee() {
           return this.debitTransactionFee;
      }
@@ -494,7 +494,7 @@ public class PricingPolicyResponse implements IAbstractAcknowledgement {
      * Gets the transaction fee for ecommerce transactions.
      * @return the transaction fee for ecommerce transactions.
      */
-     @JsonProperty("ecommerceTransactionFee")
+     @SerializedName("ecommerceTransactionFee")
      public PricePoint getEcommerceTransactionFee() {
           return this.ecommerceTransactionFee;
      }
@@ -511,7 +511,7 @@ public class PricingPolicyResponse implements IAbstractAcknowledgement {
      * Gets the transaction fee for keyed/manual transactions.
      * @return the transaction fee for keyed/manual transactions.
      */
-     @JsonProperty("keyedTransactionFee")
+     @SerializedName("keyedTransactionFee")
      public PricePoint getKeyedTransactionFee() {
           return this.keyedTransactionFee;
      }
@@ -528,7 +528,7 @@ public class PricingPolicyResponse implements IAbstractAcknowledgement {
      * Gets the transaction fee for premium (high rewards) card transactions.
      * @return the transaction fee for premium (high rewards) card transactions.
      */
-     @JsonProperty("premiumTransactionFee")
+     @SerializedName("premiumTransactionFee")
      public PricePoint getPremiumTransactionFee() {
           return this.premiumTransactionFee;
      }
@@ -545,7 +545,7 @@ public class PricingPolicyResponse implements IAbstractAcknowledgement {
      * Gets the transaction fee for EBT card transactions.
      * @return the transaction fee for EBT card transactions.
      */
-     @JsonProperty("ebtTransactionFee")
+     @SerializedName("ebtTransactionFee")
      public PricePoint getEbtTransactionFee() {
           return this.ebtTransactionFee;
      }
@@ -562,7 +562,7 @@ public class PricingPolicyResponse implements IAbstractAcknowledgement {
      * Gets a flat fee charged per month.
      * @return a flat fee charged per month.
      */
-     @JsonProperty("monthlyFee")
+     @SerializedName("monthlyFee")
      public PricePoint getMonthlyFee() {
           return this.monthlyFee;
      }
@@ -579,7 +579,7 @@ public class PricingPolicyResponse implements IAbstractAcknowledgement {
      * Gets a flat fee charged per year.
      * @return a flat fee charged per year.
      */
-     @JsonProperty("annualFee")
+     @SerializedName("annualFee")
      public PricePoint getAnnualFee() {
           return this.annualFee;
      }
@@ -596,7 +596,7 @@ public class PricingPolicyResponse implements IAbstractAcknowledgement {
      * Gets the fee per dispute or chargeback.
      * @return the fee per dispute or chargeback.
      */
-     @JsonProperty("chargebackFee")
+     @SerializedName("chargebackFee")
      public PricePoint getChargebackFee() {
           return this.chargebackFee;
      }
@@ -613,7 +613,7 @@ public class PricingPolicyResponse implements IAbstractAcknowledgement {
      * Gets the fee per address verification operation.
      * @return the fee per address verification operation.
      */
-     @JsonProperty("avsFee")
+     @SerializedName("avsFee")
      public PricePoint getAvsFee() {
           return this.avsFee;
      }
@@ -630,7 +630,7 @@ public class PricingPolicyResponse implements IAbstractAcknowledgement {
      * Gets the fee per batch.
      * @return the fee per batch.
      */
-     @JsonProperty("batchFee")
+     @SerializedName("batchFee")
      public PricePoint getBatchFee() {
           return this.batchFee;
      }
@@ -647,7 +647,7 @@ public class PricingPolicyResponse implements IAbstractAcknowledgement {
      * Gets the voice authorization fee.
      * @return the voice authorization fee.
      */
-     @JsonProperty("voiceAuthFee")
+     @SerializedName("voiceAuthFee")
      public PricePoint getVoiceAuthFee() {
           return this.voiceAuthFee;
      }
@@ -664,7 +664,7 @@ public class PricingPolicyResponse implements IAbstractAcknowledgement {
      * Gets the one time account setup fee.
      * @return the one time account setup fee.
      */
-     @JsonProperty("accountSetupFee")
+     @SerializedName("accountSetupFee")
      public PricePoint getAccountSetupFee() {
           return this.accountSetupFee;
      }

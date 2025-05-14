@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 
 /**
@@ -36,7 +36,7 @@ public class BooleanPromptResponse implements IAbstractAcknowledgement {
      * Gets whether or not the request succeeded.
      * @return whether or not the request succeeded.
      */
-     @JsonProperty("success")
+     @SerializedName("success")
      public boolean isSuccess() {
           return this.success;
      }
@@ -53,7 +53,7 @@ public class BooleanPromptResponse implements IAbstractAcknowledgement {
      * Gets the error, if an error occurred.
      * @return the error, if an error occurred.
      */
-     @JsonProperty("error")
+     @SerializedName("error")
      public String getError() {
           return this.error;
      }
@@ -70,7 +70,7 @@ public class BooleanPromptResponse implements IAbstractAcknowledgement {
      * Gets a narrative description of the transaction result.
      * @return a narrative description of the transaction result.
      */
-     @JsonProperty("responseDescription")
+     @SerializedName("responseDescription")
      public String getResponseDescription() {
           return this.responseDescription;
      }
@@ -87,7 +87,7 @@ public class BooleanPromptResponse implements IAbstractAcknowledgement {
      * Gets the boolean prompt response.
      * @return the boolean prompt response.
      */
-     @JsonProperty("response")
+     @SerializedName("response")
      public boolean isResponse() {
           return this.response;
      }

@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 
 /**
@@ -50,7 +50,7 @@ public class StatementDeposit {
      * Gets the line item id.
      * @return the line item id.
      */
-     @JsonProperty("id")
+     @SerializedName("id")
      public String getId() {
           return this.id;
      }
@@ -68,7 +68,7 @@ public class StatementDeposit {
      * Gets the number of transactions in the batch for which funds were deposited.
      * @return the number of transactions in the batch for which funds were deposited.
      */
-     @JsonProperty("transactionCount")
+     @SerializedName("transactionCount")
      public int getTransactionCount() {
           return this.transactionCount;
      }
@@ -85,7 +85,7 @@ public class StatementDeposit {
      * Gets the batch id associated with the deposit.
      * @return the batch id associated with the deposit.
      */
-     @JsonProperty("batchId")
+     @SerializedName("batchId")
      public String getBatchId() {
           return this.batchId;
      }
@@ -102,7 +102,7 @@ public class StatementDeposit {
      * Gets the prepaid fees associated with the batch.
      * @return the prepaid fees associated with the batch.
      */
-     @JsonProperty("feesPaid")
+     @SerializedName("feesPaid")
      public float getFeesPaid() {
           return this.feesPaid;
      }
@@ -119,7 +119,7 @@ public class StatementDeposit {
      * Gets the currency formatted form of prepaid fees.
      * @return the currency formatted form of prepaid fees.
      */
-     @JsonProperty("feesPaidFormatted")
+     @SerializedName("feesPaidFormatted")
      public String getFeesPaidFormatted() {
           return this.feesPaidFormatted;
      }
@@ -136,7 +136,7 @@ public class StatementDeposit {
      * Gets the net deposit released to the merchant.
      * @return the net deposit released to the merchant.
      */
-     @JsonProperty("netDeposit")
+     @SerializedName("netDeposit")
      public float getNetDeposit() {
           return this.netDeposit;
      }
@@ -153,7 +153,7 @@ public class StatementDeposit {
      * Gets the currency formatted net deposit released to the merchant.
      * @return the currency formatted net deposit released to the merchant.
      */
-     @JsonProperty("netDepositFormatted")
+     @SerializedName("netDepositFormatted")
      public String getNetDepositFormatted() {
           return this.netDepositFormatted;
      }
@@ -170,7 +170,7 @@ public class StatementDeposit {
      * Gets the total sales in the batch.
      * @return the total sales in the batch.
      */
-     @JsonProperty("totalSales")
+     @SerializedName("totalSales")
      public float getTotalSales() {
           return this.totalSales;
      }
@@ -187,7 +187,7 @@ public class StatementDeposit {
      * Gets the currency formatted total sales in the batch.
      * @return the currency formatted total sales in the batch.
      */
-     @JsonProperty("totalSalesFormatted")
+     @SerializedName("totalSalesFormatted")
      public String getTotalSalesFormatted() {
           return this.totalSalesFormatted;
      }
@@ -204,7 +204,7 @@ public class StatementDeposit {
      * Gets the total refunds in the batch.
      * @return the total refunds in the batch.
      */
-     @JsonProperty("totalRefunds")
+     @SerializedName("totalRefunds")
      public float getTotalRefunds() {
           return this.totalRefunds;
      }
@@ -221,7 +221,7 @@ public class StatementDeposit {
      * Gets the currency formatted total refunds in the batch.
      * @return the currency formatted total refunds in the batch.
      */
-     @JsonProperty("totalRefundsFormatted")
+     @SerializedName("totalRefundsFormatted")
      public String getTotalRefundsFormatted() {
           return this.totalRefundsFormatted;
      }

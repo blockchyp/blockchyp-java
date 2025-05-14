@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 
 /**
@@ -40,7 +40,7 @@ public class HealthcareGroup {
      * Gets the type of healthcare cost.
      * @return the type of healthcare cost.
      */
-     @JsonProperty("type")
+     @SerializedName("type")
      public HealthcareType getType() {
           return this.type;
      }
@@ -57,7 +57,7 @@ public class HealthcareGroup {
      * Gets the amount of this type.
      * @return the amount of this type.
      */
-     @JsonProperty("amount")
+     @SerializedName("amount")
      public String getAmount() {
           return this.amount;
      }
@@ -74,7 +74,7 @@ public class HealthcareGroup {
      * Gets the provider ID used for Mastercard and Discover IIAS requests.
      * @return the provider ID used for Mastercard and Discover IIAS requests.
      */
-     @JsonProperty("providerId")
+     @SerializedName("providerId")
      public String getProviderId() {
           return this.providerId;
      }
@@ -91,7 +91,7 @@ public class HealthcareGroup {
      * Gets the service type code used for Mastercard and Discover IIAS requests.
      * @return the service type code used for Mastercard and Discover IIAS requests.
      */
-     @JsonProperty("serviceTypeCode")
+     @SerializedName("serviceTypeCode")
      public String getServiceTypeCode() {
           return this.serviceTypeCode;
      }
@@ -109,7 +109,7 @@ public class HealthcareGroup {
      * Gets thr payer ID/carrier ID used for Mastercard and Discover IIAS requests.
      * @return thr payer ID/carrier ID used for Mastercard and Discover IIAS requests.
      */
-     @JsonProperty("payerOrCarrierId")
+     @SerializedName("payerOrCarrierId")
      public String getPayerOrCarrierId() {
           return this.payerOrCarrierId;
      }
@@ -130,7 +130,7 @@ public class HealthcareGroup {
      * @return the approval or reject reason code used for Mastercard and Discover IIAS
      * requests.
      */
-     @JsonProperty("approvalRejectReasonCode")
+     @SerializedName("approvalRejectReasonCode")
      public String getApprovalRejectReasonCode() {
           return this.approvalRejectReasonCode;
      }

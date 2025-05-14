@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
@@ -47,7 +47,7 @@ public class BatchSummary {
      * Gets batch identifier.
      * @return batch identifier.
      */
-     @JsonProperty("batchId")
+     @SerializedName("batchId")
      public String getBatchId() {
           return this.batchId;
      }
@@ -64,7 +64,7 @@ public class BatchSummary {
      * Gets entry method for the batch, if any.
      * @return entry method for the batch, if any.
      */
-     @JsonProperty("entryMethod")
+     @SerializedName("entryMethod")
      public String getEntryMethod() {
           return this.entryMethod;
      }
@@ -81,7 +81,7 @@ public class BatchSummary {
      * Gets merchant deposit account into which proceeds should be deposited.
      * @return merchant deposit account into which proceeds should be deposited.
      */
-     @JsonProperty("destinationAccountId")
+     @SerializedName("destinationAccountId")
      public String getDestinationAccountId() {
           return this.destinationAccountId;
      }
@@ -98,7 +98,7 @@ public class BatchSummary {
      * Gets the new captured amount.
      * @return the new captured amount.
      */
-     @JsonProperty("capturedAmount")
+     @SerializedName("capturedAmount")
      public String getCapturedAmount() {
           return this.capturedAmount;
      }
@@ -116,7 +116,7 @@ public class BatchSummary {
      * Gets the amount of preauths opened during the batch that have not been captured.
      * @return the amount of preauths opened during the batch that have not been captured.
      */
-     @JsonProperty("openPreauths")
+     @SerializedName("openPreauths")
      public String getOpenPreauths() {
           return this.openPreauths;
      }
@@ -133,7 +133,7 @@ public class BatchSummary {
      * Gets the currency the batch was settled in.
      * @return the currency the batch was settled in.
      */
-     @JsonProperty("currencyCode")
+     @SerializedName("currencyCode")
      public String getCurrencyCode() {
           return this.currencyCode;
      }
@@ -150,7 +150,7 @@ public class BatchSummary {
      * Gets flag indicating whether or not the batch is open.
      * @return flag indicating whether or not the batch is open.
      */
-     @JsonProperty("open")
+     @SerializedName("open")
      public boolean isOpen() {
           return this.open;
      }
@@ -167,7 +167,7 @@ public class BatchSummary {
      * Gets date and time of the first transaction for this batch.
      * @return date and time of the first transaction for this batch.
      */
-     @JsonProperty("openDate")
+     @SerializedName("openDate")
      public Date getOpenDate() {
           return this.openDate;
      }
@@ -184,7 +184,7 @@ public class BatchSummary {
      * Gets date and time the batch was closed.
      * @return date and time the batch was closed.
      */
-     @JsonProperty("closeDate")
+     @SerializedName("closeDate")
      public Date getCloseDate() {
           return this.closeDate;
      }

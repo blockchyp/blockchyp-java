@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -68,7 +68,7 @@ public class BatchDetailsResponse implements IAbstractAcknowledgement {
      * Gets whether or not the request succeeded.
      * @return whether or not the request succeeded.
      */
-     @JsonProperty("success")
+     @SerializedName("success")
      public boolean isSuccess() {
           return this.success;
      }
@@ -85,7 +85,7 @@ public class BatchDetailsResponse implements IAbstractAcknowledgement {
      * Gets the error, if an error occurred.
      * @return the error, if an error occurred.
      */
-     @JsonProperty("error")
+     @SerializedName("error")
      public String getError() {
           return this.error;
      }
@@ -102,7 +102,7 @@ public class BatchDetailsResponse implements IAbstractAcknowledgement {
      * Gets a narrative description of the transaction result.
      * @return a narrative description of the transaction result.
      */
-     @JsonProperty("responseDescription")
+     @SerializedName("responseDescription")
      public String getResponseDescription() {
           return this.responseDescription;
      }
@@ -119,7 +119,7 @@ public class BatchDetailsResponse implements IAbstractAcknowledgement {
      * Gets that the response came from the test gateway.
      * @return that the response came from the test gateway.
      */
-     @JsonProperty("test")
+     @SerializedName("test")
      public boolean isTest() {
           return this.test;
      }
@@ -136,7 +136,7 @@ public class BatchDetailsResponse implements IAbstractAcknowledgement {
      * Gets batch identifier.
      * @return batch identifier.
      */
-     @JsonProperty("batchId")
+     @SerializedName("batchId")
      public String getBatchId() {
           return this.batchId;
      }
@@ -153,7 +153,7 @@ public class BatchDetailsResponse implements IAbstractAcknowledgement {
      * Gets entry method for the batch, if any.
      * @return entry method for the batch, if any.
      */
-     @JsonProperty("entryMethod")
+     @SerializedName("entryMethod")
      public String getEntryMethod() {
           return this.entryMethod;
      }
@@ -170,7 +170,7 @@ public class BatchDetailsResponse implements IAbstractAcknowledgement {
      * Gets merchant deposit account into which proceeds should be deposited.
      * @return merchant deposit account into which proceeds should be deposited.
      */
-     @JsonProperty("destinationAccountId")
+     @SerializedName("destinationAccountId")
      public String getDestinationAccountId() {
           return this.destinationAccountId;
      }
@@ -187,7 +187,7 @@ public class BatchDetailsResponse implements IAbstractAcknowledgement {
      * Gets the new captured amount.
      * @return the new captured amount.
      */
-     @JsonProperty("capturedAmount")
+     @SerializedName("capturedAmount")
      public String getCapturedAmount() {
           return this.capturedAmount;
      }
@@ -204,7 +204,7 @@ public class BatchDetailsResponse implements IAbstractAcknowledgement {
      * Gets preauths from this batch still open.
      * @return preauths from this batch still open.
      */
-     @JsonProperty("openPreauths")
+     @SerializedName("openPreauths")
      public String getOpenPreauths() {
           return this.openPreauths;
      }
@@ -221,7 +221,7 @@ public class BatchDetailsResponse implements IAbstractAcknowledgement {
      * Gets the total volume from this batch.
      * @return the total volume from this batch.
      */
-     @JsonProperty("totalVolume")
+     @SerializedName("totalVolume")
      public String getTotalVolume() {
           return this.totalVolume;
      }
@@ -238,7 +238,7 @@ public class BatchDetailsResponse implements IAbstractAcknowledgement {
      * Gets the total number of transactions in this batch.
      * @return the total number of transactions in this batch.
      */
-     @JsonProperty("transactionCount")
+     @SerializedName("transactionCount")
      public int getTransactionCount() {
           return this.transactionCount;
      }
@@ -255,7 +255,7 @@ public class BatchDetailsResponse implements IAbstractAcknowledgement {
      * Gets the total volume of gift cards sold.
      * @return the total volume of gift cards sold.
      */
-     @JsonProperty("giftCardsSold")
+     @SerializedName("giftCardsSold")
      public String getGiftCardsSold() {
           return this.giftCardsSold;
      }
@@ -272,7 +272,7 @@ public class BatchDetailsResponse implements IAbstractAcknowledgement {
      * Gets the total volume of gift cards transactions.
      * @return the total volume of gift cards transactions.
      */
-     @JsonProperty("giftCardVolume")
+     @SerializedName("giftCardVolume")
      public String getGiftCardVolume() {
           return this.giftCardVolume;
      }
@@ -293,7 +293,7 @@ public class BatchDetailsResponse implements IAbstractAcknowledgement {
      * @return the expected volume for this batch, usually captured volume less gift card
      * volume.
      */
-     @JsonProperty("expectedDeposit")
+     @SerializedName("expectedDeposit")
      public String getExpectedDeposit() {
           return this.expectedDeposit;
      }
@@ -310,7 +310,7 @@ public class BatchDetailsResponse implements IAbstractAcknowledgement {
      * Gets flag indicating whether or not the batch is open.
      * @return flag indicating whether or not the batch is open.
      */
-     @JsonProperty("open")
+     @SerializedName("open")
      public boolean isOpen() {
           return this.open;
      }
@@ -327,7 +327,7 @@ public class BatchDetailsResponse implements IAbstractAcknowledgement {
      * Gets date and time of the first transaction for this batch.
      * @return date and time of the first transaction for this batch.
      */
-     @JsonProperty("openDate")
+     @SerializedName("openDate")
      public Date getOpenDate() {
           return this.openDate;
      }
@@ -344,7 +344,7 @@ public class BatchDetailsResponse implements IAbstractAcknowledgement {
      * Gets date and time the batch was closed.
      * @return date and time the batch was closed.
      */
-     @JsonProperty("closeDate")
+     @SerializedName("closeDate")
      public Date getCloseDate() {
           return this.closeDate;
      }
@@ -361,7 +361,7 @@ public class BatchDetailsResponse implements IAbstractAcknowledgement {
      * Gets merchant's batch history in descending order.
      * @return merchant's batch history in descending order.
      */
-     @JsonProperty("volumeByTerminal")
+     @SerializedName("volumeByTerminal")
      public Collection<TerminalVolume> getVolumeByTerminal() {
           return this.volumeByTerminal;
      }

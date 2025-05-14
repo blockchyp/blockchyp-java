@@ -2,16 +2,12 @@ package com.blockchyp.client.examples;
 
 
 
-import java.util.ArrayList;
-import java.util.Collection;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-
 import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
 import com.blockchyp.client.dto.TransactionHistoryRequest;
 import com.blockchyp.client.dto.TransactionHistoryResponse;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 
 public class TransactionHistoryExample {
@@ -39,14 +35,8 @@ public class TransactionHistoryExample {
     }
 
     public static String prettyPrint(Object object) throws Exception {
-
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }

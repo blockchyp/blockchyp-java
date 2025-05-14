@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 
 /**
@@ -36,7 +36,7 @@ public class GetMerchantsRequest implements ITimeoutRequest {
      * Gets the request timeout in seconds.
      * @return the request timeout in seconds.
      */
-     @JsonProperty("timeout")
+     @SerializedName("timeout")
      public int getTimeout() {
           return this.timeout;
      }
@@ -53,7 +53,7 @@ public class GetMerchantsRequest implements ITimeoutRequest {
      * Gets whether or not to return test or live merchants.
      * @return whether or not to return test or live merchants.
      */
-     @JsonProperty("test")
+     @SerializedName("test")
      public boolean isTest() {
           return this.test;
      }
@@ -70,7 +70,7 @@ public class GetMerchantsRequest implements ITimeoutRequest {
      * Gets max to be returned in a single page.
      * @return max to be returned in a single page. Defaults to the system max of 250.
      */
-     @JsonProperty("maxResults")
+     @SerializedName("maxResults")
      public int getMaxResults() {
           return this.maxResults;
      }
@@ -87,7 +87,7 @@ public class GetMerchantsRequest implements ITimeoutRequest {
      * Gets starting index for paged results.
      * @return starting index for paged results. Defaults to zero.
      */
-     @JsonProperty("startIndex")
+     @SerializedName("startIndex")
      public int getStartIndex() {
           return this.startIndex;
      }

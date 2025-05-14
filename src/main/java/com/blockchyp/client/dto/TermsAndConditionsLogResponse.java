@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -47,7 +47,7 @@ public class TermsAndConditionsLogResponse implements IAbstractAcknowledgement {
      * Gets whether or not the request succeeded.
      * @return whether or not the request succeeded.
      */
-     @JsonProperty("success")
+     @SerializedName("success")
      public boolean isSuccess() {
           return this.success;
      }
@@ -64,7 +64,7 @@ public class TermsAndConditionsLogResponse implements IAbstractAcknowledgement {
      * Gets the error, if an error occurred.
      * @return the error, if an error occurred.
      */
-     @JsonProperty("error")
+     @SerializedName("error")
      public String getError() {
           return this.error;
      }
@@ -81,7 +81,7 @@ public class TermsAndConditionsLogResponse implements IAbstractAcknowledgement {
      * Gets a narrative description of the transaction result.
      * @return a narrative description of the transaction result.
      */
-     @JsonProperty("responseDescription")
+     @SerializedName("responseDescription")
      public String getResponseDescription() {
           return this.responseDescription;
      }
@@ -102,7 +102,7 @@ public class TermsAndConditionsLogResponse implements IAbstractAcknowledgement {
      * @return optional transaction id if only log entries related to a transaction
      * should be returned.
      */
-     @JsonProperty("transactionId")
+     @SerializedName("transactionId")
      public String getTransactionId() {
           return this.transactionId;
      }
@@ -119,7 +119,7 @@ public class TermsAndConditionsLogResponse implements IAbstractAcknowledgement {
      * Gets max to be returned in a single page.
      * @return max to be returned in a single page. Defaults to the system max of 250.
      */
-     @JsonProperty("maxResults")
+     @SerializedName("maxResults")
      public int getMaxResults() {
           return this.maxResults;
      }
@@ -136,7 +136,7 @@ public class TermsAndConditionsLogResponse implements IAbstractAcknowledgement {
      * Gets starting index for paged results.
      * @return starting index for paged results. Defaults to zero.
      */
-     @JsonProperty("startIndex")
+     @SerializedName("startIndex")
      public int getStartIndex() {
           return this.startIndex;
      }
@@ -153,7 +153,7 @@ public class TermsAndConditionsLogResponse implements IAbstractAcknowledgement {
      * Gets total number of results accessible through paging.
      * @return total number of results accessible through paging.
      */
-     @JsonProperty("resultCount")
+     @SerializedName("resultCount")
      public int getResultCount() {
           return this.resultCount;
      }
@@ -174,7 +174,7 @@ public class TermsAndConditionsLogResponse implements IAbstractAcknowledgement {
      * @return the full result set responsive to the original request, subject to
      * pagination limits.
      */
-     @JsonProperty("results")
+     @SerializedName("results")
      public Collection<TermsAndConditionsLogEntry> getResults() {
           return this.results;
      }

@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
@@ -44,7 +44,7 @@ public class HeartbeatResponse implements IAbstractAcknowledgement {
      * Gets whether or not the request succeeded.
      * @return whether or not the request succeeded.
      */
-     @JsonProperty("success")
+     @SerializedName("success")
      public boolean isSuccess() {
           return this.success;
      }
@@ -61,7 +61,7 @@ public class HeartbeatResponse implements IAbstractAcknowledgement {
      * Gets the error, if an error occurred.
      * @return the error, if an error occurred.
      */
-     @JsonProperty("error")
+     @SerializedName("error")
      public String getError() {
           return this.error;
      }
@@ -78,7 +78,7 @@ public class HeartbeatResponse implements IAbstractAcknowledgement {
      * Gets a narrative description of the transaction result.
      * @return a narrative description of the transaction result.
      */
-     @JsonProperty("responseDescription")
+     @SerializedName("responseDescription")
      public String getResponseDescription() {
           return this.responseDescription;
      }
@@ -95,7 +95,7 @@ public class HeartbeatResponse implements IAbstractAcknowledgement {
      * Gets the timestamp of the heartbeat.
      * @return the timestamp of the heartbeat.
      */
-     @JsonProperty("timestamp")
+     @SerializedName("timestamp")
      public Date getTimestamp() {
           return this.timestamp;
      }
@@ -118,7 +118,7 @@ public class HeartbeatResponse implements IAbstractAcknowledgement {
      * public key. For the production clockchain, this will always be:
      * '3cuhsckVUd9HzMjbdUSW17aY5kCcm1d6YAphJMUwmtXRj7WLyU'.
      */
-     @JsonProperty("clockchain")
+     @SerializedName("clockchain")
      public String getClockchain() {
           return this.clockchain;
      }
@@ -135,7 +135,7 @@ public class HeartbeatResponse implements IAbstractAcknowledgement {
      * Gets the hash of the last tick block.
      * @return the hash of the last tick block.
      */
-     @JsonProperty("latestTick")
+     @SerializedName("latestTick")
      public String getLatestTick() {
           return this.latestTick;
      }
@@ -152,7 +152,7 @@ public class HeartbeatResponse implements IAbstractAcknowledgement {
      * Gets the public key for the merchant's blockchain.
      * @return the public key for the merchant's blockchain.
      */
-     @JsonProperty("merchantPk")
+     @SerializedName("merchantPk")
      public String getMerchantPublicKey() {
           return this.merchantPublicKey;
      }

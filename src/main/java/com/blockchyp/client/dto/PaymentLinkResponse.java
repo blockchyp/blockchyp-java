@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 
 /**
@@ -44,7 +44,7 @@ public class PaymentLinkResponse implements IAbstractAcknowledgement {
      * Gets whether or not the request succeeded.
      * @return whether or not the request succeeded.
      */
-     @JsonProperty("success")
+     @SerializedName("success")
      public boolean isSuccess() {
           return this.success;
      }
@@ -61,7 +61,7 @@ public class PaymentLinkResponse implements IAbstractAcknowledgement {
      * Gets the error, if an error occurred.
      * @return the error, if an error occurred.
      */
-     @JsonProperty("error")
+     @SerializedName("error")
      public String getError() {
           return this.error;
      }
@@ -78,7 +78,7 @@ public class PaymentLinkResponse implements IAbstractAcknowledgement {
      * Gets a narrative description of the transaction result.
      * @return a narrative description of the transaction result.
      */
-     @JsonProperty("responseDescription")
+     @SerializedName("responseDescription")
      public String getResponseDescription() {
           return this.responseDescription;
      }
@@ -95,7 +95,7 @@ public class PaymentLinkResponse implements IAbstractAcknowledgement {
      * Gets the payment link code.
      * @return the payment link code.
      */
-     @JsonProperty("linkCode")
+     @SerializedName("linkCode")
      public String getLinkCode() {
           return this.linkCode;
      }
@@ -112,7 +112,7 @@ public class PaymentLinkResponse implements IAbstractAcknowledgement {
      * Gets the url for the payment link.
      * @return the url for the payment link.
      */
-     @JsonProperty("url")
+     @SerializedName("url")
      public String getUrl() {
           return this.url;
      }
@@ -129,7 +129,7 @@ public class PaymentLinkResponse implements IAbstractAcknowledgement {
      * Gets the url for a QR Code associated with this link.
      * @return the url for a QR Code associated with this link.
      */
-     @JsonProperty("qrcodeUrl")
+     @SerializedName("qrcodeUrl")
      public String getQrcodeUrl() {
           return this.qrcodeUrl;
      }
@@ -147,7 +147,7 @@ public class PaymentLinkResponse implements IAbstractAcknowledgement {
      * Gets the hex encoded binary for the QR Code, if requested.
      * @return the hex encoded binary for the QR Code, if requested. Encoded in PNG format.
      */
-     @JsonProperty("qrcodeBinary")
+     @SerializedName("qrcodeBinary")
      public String getQrcodeBinary() {
           return this.qrcodeBinary;
      }
@@ -164,7 +164,7 @@ public class PaymentLinkResponse implements IAbstractAcknowledgement {
      * Gets the customer id created or used for the payment.
      * @return the customer id created or used for the payment.
      */
-     @JsonProperty("customerId")
+     @SerializedName("customerId")
      public String getCustomerId() {
           return this.customerId;
      }

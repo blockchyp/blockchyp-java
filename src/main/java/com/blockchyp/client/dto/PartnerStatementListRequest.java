@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
@@ -37,7 +37,7 @@ public class PartnerStatementListRequest implements ITimeoutRequest {
      * Gets the request timeout in seconds.
      * @return the request timeout in seconds.
      */
-     @JsonProperty("timeout")
+     @SerializedName("timeout")
      public int getTimeout() {
           return this.timeout;
      }
@@ -54,7 +54,7 @@ public class PartnerStatementListRequest implements ITimeoutRequest {
      * Gets whether or not to route transaction to the test gateway.
      * @return whether or not to route transaction to the test gateway.
      */
-     @JsonProperty("test")
+     @SerializedName("test")
      public boolean isTest() {
           return this.test;
      }
@@ -71,7 +71,7 @@ public class PartnerStatementListRequest implements ITimeoutRequest {
      * Gets optional start date filter for batch history.
      * @return optional start date filter for batch history.
      */
-     @JsonProperty("startDate")
+     @SerializedName("startDate")
      public Date getStartDate() {
           return this.startDate;
      }
@@ -88,7 +88,7 @@ public class PartnerStatementListRequest implements ITimeoutRequest {
      * Gets optional end date filter for batch history.
      * @return optional end date filter for batch history.
      */
-     @JsonProperty("endDate")
+     @SerializedName("endDate")
      public Date getEndDate() {
           return this.endDate;
      }

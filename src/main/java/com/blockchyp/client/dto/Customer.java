@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -47,7 +47,7 @@ public class Customer {
      * Gets BlockChyp assigned customer id.
      * @return BlockChyp assigned customer id.
      */
-     @JsonProperty("id")
+     @SerializedName("id")
      public String getId() {
           return this.id;
      }
@@ -66,7 +66,7 @@ public class Customer {
      * @return optional customer ref that can be used for the client's system's customer
      * id.
      */
-     @JsonProperty("customerRef")
+     @SerializedName("customerRef")
      public String getCustomerRef() {
           return this.customerRef;
      }
@@ -83,7 +83,7 @@ public class Customer {
      * Gets customer's first name.
      * @return customer's first name.
      */
-     @JsonProperty("firstName")
+     @SerializedName("firstName")
      public String getFirstName() {
           return this.firstName;
      }
@@ -100,7 +100,7 @@ public class Customer {
      * Gets customer's last name.
      * @return customer's last name.
      */
-     @JsonProperty("lastName")
+     @SerializedName("lastName")
      public String getLastName() {
           return this.lastName;
      }
@@ -117,7 +117,7 @@ public class Customer {
      * Gets customer's company name.
      * @return customer's company name.
      */
-     @JsonProperty("companyName")
+     @SerializedName("companyName")
      public String getCompanyName() {
           return this.companyName;
      }
@@ -134,7 +134,7 @@ public class Customer {
      * Gets customer's email address.
      * @return customer's email address.
      */
-     @JsonProperty("emailAddress")
+     @SerializedName("emailAddress")
      public String getEmailAddress() {
           return this.emailAddress;
      }
@@ -151,7 +151,7 @@ public class Customer {
      * Gets customer's SMS or mobile number.
      * @return customer's SMS or mobile number.
      */
-     @JsonProperty("smsNumber")
+     @SerializedName("smsNumber")
      public String getSmsNumber() {
           return this.smsNumber;
      }
@@ -168,7 +168,7 @@ public class Customer {
      * Gets model saved payment methods associated with a customer.
      * @return model saved payment methods associated with a customer.
      */
-     @JsonProperty("paymentMethods")
+     @SerializedName("paymentMethods")
      public Collection<CustomerToken> getPaymentMethods() {
           return this.paymentMethods;
      }

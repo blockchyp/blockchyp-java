@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
@@ -43,7 +43,7 @@ public class MerchantInvoiceSummary {
      * Gets the id owner of the invoice.
      * @return the id owner of the invoice.
      */
-     @JsonProperty("id")
+     @SerializedName("id")
      public String getId() {
           return this.id;
      }
@@ -60,7 +60,7 @@ public class MerchantInvoiceSummary {
      * Gets the date the statement was generated.
      * @return the date the statement was generated.
      */
-     @JsonProperty("dateCreated")
+     @SerializedName("dateCreated")
      public Date getDateCreated() {
           return this.dateCreated;
      }
@@ -77,7 +77,7 @@ public class MerchantInvoiceSummary {
      * Gets the grand total.
      * @return the grand total.
      */
-     @JsonProperty("grandTotal")
+     @SerializedName("grandTotal")
      public float getGrandTotal() {
           return this.grandTotal;
      }
@@ -94,7 +94,7 @@ public class MerchantInvoiceSummary {
      * Gets the string formatted grand total.
      * @return the string formatted grand total.
      */
-     @JsonProperty("grandTotalFormatted")
+     @SerializedName("grandTotalFormatted")
      public String getGrandTotalFormatted() {
           return this.grandTotalFormatted;
      }
@@ -111,7 +111,7 @@ public class MerchantInvoiceSummary {
      * Gets the status of the statement.
      * @return the status of the statement.
      */
-     @JsonProperty("status")
+     @SerializedName("status")
      public String getStatus() {
           return this.status;
      }
@@ -128,7 +128,7 @@ public class MerchantInvoiceSummary {
      * Gets identifies the invoice type.
      * @return identifies the invoice type.
      */
-     @JsonProperty("invoiceType")
+     @SerializedName("invoiceType")
      public String getInvoiceType() {
           return this.invoiceType;
      }
@@ -145,7 +145,7 @@ public class MerchantInvoiceSummary {
      * Gets whether or not the invoice had been paid.
      * @return whether or not the invoice had been paid.
      */
-     @JsonProperty("paid")
+     @SerializedName("paid")
      public boolean isPaid() {
           return this.paid;
      }

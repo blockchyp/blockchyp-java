@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 
 /**
@@ -36,7 +36,7 @@ public class BankAccount {
      * Gets the account identifier to be used with authorization requests.
      * @return the account identifier to be used with authorization requests.
      */
-     @JsonProperty("id")
+     @SerializedName("id")
      public String getId() {
           return this.id;
      }
@@ -53,7 +53,7 @@ public class BankAccount {
      * Gets the name of the account.
      * @return the name of the account.
      */
-     @JsonProperty("name")
+     @SerializedName("name")
      public String getName() {
           return this.name;
      }
@@ -70,7 +70,7 @@ public class BankAccount {
      * Gets the purpose of the account.
      * @return the purpose of the account.
      */
-     @JsonProperty("purpose")
+     @SerializedName("purpose")
      public String getPurpose() {
           return this.purpose;
      }
@@ -87,7 +87,7 @@ public class BankAccount {
      * Gets the masked account number.
      * @return the masked account number.
      */
-     @JsonProperty("maskedAccountNumber")
+     @SerializedName("maskedAccountNumber")
      public String getMaskedAccountNumber() {
           return this.maskedAccountNumber;
      }

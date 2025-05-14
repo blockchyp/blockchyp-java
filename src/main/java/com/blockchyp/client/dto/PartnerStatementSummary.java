@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
@@ -45,7 +45,7 @@ public class PartnerStatementSummary {
      * Gets the id owner of the pricing policy.
      * @return the id owner of the pricing policy.
      */
-     @JsonProperty("id")
+     @SerializedName("id")
      public String getId() {
           return this.id;
      }
@@ -62,7 +62,7 @@ public class PartnerStatementSummary {
      * Gets the date the statement was generated.
      * @return the date the statement was generated.
      */
-     @JsonProperty("statementDate")
+     @SerializedName("statementDate")
      public Date getStatementDate() {
           return this.statementDate;
      }
@@ -79,7 +79,7 @@ public class PartnerStatementSummary {
      * Gets total volume in numeric format.
      * @return total volume in numeric format.
      */
-     @JsonProperty("totalVolume")
+     @SerializedName("totalVolume")
      public float getTotalVolume() {
           return this.totalVolume;
      }
@@ -96,7 +96,7 @@ public class PartnerStatementSummary {
      * Gets the string formatted total volume on the statement.
      * @return the string formatted total volume on the statement.
      */
-     @JsonProperty("totalVolumeFormatted")
+     @SerializedName("totalVolumeFormatted")
      public String getTotalVolumeFormatted() {
           return this.totalVolumeFormatted;
      }
@@ -113,7 +113,7 @@ public class PartnerStatementSummary {
      * Gets the total volume on the statement.
      * @return the total volume on the statement.
      */
-     @JsonProperty("transactionCount")
+     @SerializedName("transactionCount")
      public int getTransactionCount() {
           return this.transactionCount;
      }
@@ -130,7 +130,7 @@ public class PartnerStatementSummary {
      * Gets the commission earned on the portfolio during the statement period.
      * @return the commission earned on the portfolio during the statement period.
      */
-     @JsonProperty("partnerCommission")
+     @SerializedName("partnerCommission")
      public float getPartnerCommission() {
           return this.partnerCommission;
      }
@@ -147,7 +147,7 @@ public class PartnerStatementSummary {
      * Gets the string formatted total volume on the statement.
      * @return the string formatted total volume on the statement.
      */
-     @JsonProperty("partnerCommissionFormatted")
+     @SerializedName("partnerCommissionFormatted")
      public String getPartnerCommissionFormatted() {
           return this.partnerCommissionFormatted;
      }
@@ -164,7 +164,7 @@ public class PartnerStatementSummary {
      * Gets the status of the statement.
      * @return the status of the statement.
      */
-     @JsonProperty("status")
+     @SerializedName("status")
      public String getStatus() {
           return this.status;
      }

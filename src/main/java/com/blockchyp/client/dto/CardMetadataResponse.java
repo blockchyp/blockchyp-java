@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -69,7 +69,7 @@ public class CardMetadataResponse implements IAbstractAcknowledgement, IPaymentM
      * Gets whether or not the request succeeded.
      * @return whether or not the request succeeded.
      */
-     @JsonProperty("success")
+     @SerializedName("success")
      public boolean isSuccess() {
           return this.success;
      }
@@ -86,7 +86,7 @@ public class CardMetadataResponse implements IAbstractAcknowledgement, IPaymentM
      * Gets the error, if an error occurred.
      * @return the error, if an error occurred.
      */
-     @JsonProperty("error")
+     @SerializedName("error")
      public String getError() {
           return this.error;
      }
@@ -103,7 +103,7 @@ public class CardMetadataResponse implements IAbstractAcknowledgement, IPaymentM
      * Gets a narrative description of the transaction result.
      * @return a narrative description of the transaction result.
      */
-     @JsonProperty("responseDescription")
+     @SerializedName("responseDescription")
      public String getResponseDescription() {
           return this.responseDescription;
      }
@@ -120,7 +120,7 @@ public class CardMetadataResponse implements IAbstractAcknowledgement, IPaymentM
      * Gets the payment token, if the payment was enrolled in the vault.
      * @return the payment token, if the payment was enrolled in the vault.
      */
-     @JsonProperty("token")
+     @SerializedName("token")
      public String getToken() {
           return this.token;
      }
@@ -137,7 +137,7 @@ public class CardMetadataResponse implements IAbstractAcknowledgement, IPaymentM
      * Gets the entry method for the transaction (CHIP, MSR, KEYED, etc).
      * @return the entry method for the transaction (CHIP, MSR, KEYED, etc).
      */
-     @JsonProperty("entryMethod")
+     @SerializedName("entryMethod")
      public String getEntryMethod() {
           return this.entryMethod;
      }
@@ -154,7 +154,7 @@ public class CardMetadataResponse implements IAbstractAcknowledgement, IPaymentM
      * Gets the card brand (VISA, MC, AMEX, DEBIT, etc).
      * @return the card brand (VISA, MC, AMEX, DEBIT, etc).
      */
-     @JsonProperty("paymentType")
+     @SerializedName("paymentType")
      public String getPaymentType() {
           return this.paymentType;
      }
@@ -175,7 +175,7 @@ public class CardMetadataResponse implements IAbstractAcknowledgement, IPaymentM
      * @return provides network level detail on how a transaction was routed, especially
      * for debit transactions.
      */
-     @JsonProperty("network")
+     @SerializedName("network")
      public String getNetwork() {
           return this.network;
      }
@@ -196,7 +196,7 @@ public class CardMetadataResponse implements IAbstractAcknowledgement, IPaymentM
      * to indicate the major logo on a card, even when debit transactions are routed on a
      * different network.
      */
-     @JsonProperty("logo")
+     @SerializedName("logo")
      public String getLogo() {
           return this.logo;
      }
@@ -213,7 +213,7 @@ public class CardMetadataResponse implements IAbstractAcknowledgement, IPaymentM
      * Gets the masked primary account number.
      * @return the masked primary account number.
      */
-     @JsonProperty("maskedPan")
+     @SerializedName("maskedPan")
      public String getMaskedPan() {
           return this.maskedPan;
      }
@@ -231,7 +231,7 @@ public class CardMetadataResponse implements IAbstractAcknowledgement, IPaymentM
      * Gets the BlockChyp public key if the user presented a BlockChyp payment card.
      * @return the BlockChyp public key if the user presented a BlockChyp payment card.
      */
-     @JsonProperty("publicKey")
+     @SerializedName("publicKey")
      public String getPublicKey() {
           return this.publicKey;
      }
@@ -249,7 +249,7 @@ public class CardMetadataResponse implements IAbstractAcknowledgement, IPaymentM
      * Gets that the transaction did something that would put the system in PCI scope.
      * @return that the transaction did something that would put the system in PCI scope.
      */
-     @JsonProperty("ScopeAlert")
+     @SerializedName("ScopeAlert")
      public boolean isScopeAlert() {
           return this.ScopeAlert;
      }
@@ -266,7 +266,7 @@ public class CardMetadataResponse implements IAbstractAcknowledgement, IPaymentM
      * Gets the cardholder name.
      * @return the cardholder name.
      */
-     @JsonProperty("cardHolder")
+     @SerializedName("cardHolder")
      public String getCardHolder() {
           return this.cardHolder;
      }
@@ -283,7 +283,7 @@ public class CardMetadataResponse implements IAbstractAcknowledgement, IPaymentM
      * Gets the card expiration month in MM format.
      * @return the card expiration month in MM format.
      */
-     @JsonProperty("expMonth")
+     @SerializedName("expMonth")
      public String getExpMonth() {
           return this.expMonth;
      }
@@ -300,7 +300,7 @@ public class CardMetadataResponse implements IAbstractAcknowledgement, IPaymentM
      * Gets the card expiration year in YY format.
      * @return the card expiration year in YY format.
      */
-     @JsonProperty("expYear")
+     @SerializedName("expYear")
      public String getExpYear() {
           return this.expYear;
      }
@@ -317,7 +317,7 @@ public class CardMetadataResponse implements IAbstractAcknowledgement, IPaymentM
      * Gets address verification results if address information was submitted.
      * @return address verification results if address information was submitted.
      */
-     @JsonProperty("avsResponse")
+     @SerializedName("avsResponse")
      public AvsResponse getAvsResponse() {
           return this.avsResponse;
      }
@@ -334,7 +334,7 @@ public class CardMetadataResponse implements IAbstractAcknowledgement, IPaymentM
      * Gets suggested receipt fields.
      * @return suggested receipt fields.
      */
-     @JsonProperty("receiptSuggestions")
+     @SerializedName("receiptSuggestions")
      public ReceiptSuggestions getReceiptSuggestions() {
           return this.receiptSuggestions;
      }
@@ -351,7 +351,7 @@ public class CardMetadataResponse implements IAbstractAcknowledgement, IPaymentM
      * Gets customer data, if any.
      * @return customer data, if any. Preserved for reverse compatibility.
      */
-     @JsonProperty("customer")
+     @SerializedName("customer")
      public Customer getCustomer() {
           return this.customer;
      }
@@ -368,7 +368,7 @@ public class CardMetadataResponse implements IAbstractAcknowledgement, IPaymentM
      * Gets customer data, if any.
      * @return customer data, if any.
      */
-     @JsonProperty("customers")
+     @SerializedName("customers")
      public Collection<Customer> getCustomers() {
           return this.customers;
      }
@@ -385,7 +385,7 @@ public class CardMetadataResponse implements IAbstractAcknowledgement, IPaymentM
      * Gets details about a payment card derived from its BIN/IIN.
      * @return details about a payment card derived from its BIN/IIN.
      */
-     @JsonProperty("cardMetadata")
+     @SerializedName("cardMetadata")
      public CardMetadata getCardMetadata() {
           return this.cardMetadata;
      }

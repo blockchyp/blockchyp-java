@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 
 /**
@@ -44,7 +44,7 @@ public class Address {
      * Gets the first line of the street address.
      * @return the first line of the street address.
      */
-     @JsonProperty("address1")
+     @SerializedName("address1")
      public String getAddress1() {
           return this.address1;
      }
@@ -61,7 +61,7 @@ public class Address {
      * Gets the second line of the street address.
      * @return the second line of the street address.
      */
-     @JsonProperty("address2")
+     @SerializedName("address2")
      public String getAddress2() {
           return this.address2;
      }
@@ -78,7 +78,7 @@ public class Address {
      * Gets the city associated with the street address.
      * @return the city associated with the street address.
      */
-     @JsonProperty("city")
+     @SerializedName("city")
      public String getCity() {
           return this.city;
      }
@@ -95,7 +95,7 @@ public class Address {
      * Gets the state or province associated with the street address.
      * @return the state or province associated with the street address.
      */
-     @JsonProperty("stateOrProvince")
+     @SerializedName("stateOrProvince")
      public String getStateOrProvince() {
           return this.stateOrProvince;
      }
@@ -112,7 +112,7 @@ public class Address {
      * Gets the postal code associated with the street address.
      * @return the postal code associated with the street address.
      */
-     @JsonProperty("postalCode")
+     @SerializedName("postalCode")
      public String getPostalCode() {
           return this.postalCode;
      }
@@ -129,7 +129,7 @@ public class Address {
      * Gets the ISO country code associated with the street address.
      * @return the ISO country code associated with the street address.
      */
-     @JsonProperty("countryCode")
+     @SerializedName("countryCode")
      public String getCountryCode() {
           return this.countryCode;
      }
@@ -146,7 +146,7 @@ public class Address {
      * Gets the latitude component of the address's GPS coordinates.
      * @return the latitude component of the address's GPS coordinates.
      */
-     @JsonProperty("latitude")
+     @SerializedName("latitude")
      public float getLatitude() {
           return this.latitude;
      }
@@ -163,7 +163,7 @@ public class Address {
      * Gets the longitude component of the address's GPS coordinates.
      * @return the longitude component of the address's GPS coordinates.
      */
-     @JsonProperty("longitude")
+     @SerializedName("longitude")
      public float getLongitude() {
           return this.longitude;
      }

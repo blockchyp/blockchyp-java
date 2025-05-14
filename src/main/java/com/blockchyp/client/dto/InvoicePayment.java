@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
@@ -51,7 +51,7 @@ public class InvoicePayment {
      * Gets the line item id.
      * @return the line item id.
      */
-     @JsonProperty("id")
+     @SerializedName("id")
      public String getId() {
           return this.id;
      }
@@ -68,7 +68,7 @@ public class InvoicePayment {
      * Gets timestamp the payment was authorized.
      * @return timestamp the payment was authorized.
      */
-     @JsonProperty("timestamp")
+     @SerializedName("timestamp")
      public Date getTimestamp() {
           return this.timestamp;
      }
@@ -85,7 +85,7 @@ public class InvoicePayment {
      * Gets the type of disbursement transaction.
      * @return the type of disbursement transaction.
      */
-     @JsonProperty("transactionType")
+     @SerializedName("transactionType")
      public String getTransactionType() {
           return this.transactionType;
      }
@@ -102,7 +102,7 @@ public class InvoicePayment {
      * Gets the payment method used to fund the disbursement.
      * @return the payment method used to fund the disbursement.
      */
-     @JsonProperty("paymentType")
+     @SerializedName("paymentType")
      public String getPaymentType() {
           return this.paymentType;
      }
@@ -119,7 +119,7 @@ public class InvoicePayment {
      * Gets the auth code associated with credit card payment methods.
      * @return the auth code associated with credit card payment methods.
      */
-     @JsonProperty("authCode")
+     @SerializedName("authCode")
      public String getAuthCode() {
           return this.authCode;
      }
@@ -136,7 +136,7 @@ public class InvoicePayment {
      * Gets the masked account number into which funds were deposited.
      * @return the masked account number into which funds were deposited.
      */
-     @JsonProperty("maskedPan")
+     @SerializedName("maskedPan")
      public String getMaskedPan() {
           return this.maskedPan;
      }
@@ -153,7 +153,7 @@ public class InvoicePayment {
      * Gets that payment is still pending.
      * @return that payment is still pending.
      */
-     @JsonProperty("pending")
+     @SerializedName("pending")
      public boolean isPending() {
           return this.pending;
      }
@@ -170,7 +170,7 @@ public class InvoicePayment {
      * Gets that payment is approved.
      * @return that payment is approved.
      */
-     @JsonProperty("approved")
+     @SerializedName("approved")
      public boolean isApproved() {
           return this.approved;
      }
@@ -188,7 +188,7 @@ public class InvoicePayment {
      * Gets a response description from the disbursement payment platform, in any.
      * @return a response description from the disbursement payment platform, in any.
      */
-     @JsonProperty("responseDescription")
+     @SerializedName("responseDescription")
      public String getResponseDescription() {
           return this.responseDescription;
      }
@@ -205,7 +205,7 @@ public class InvoicePayment {
      * Gets the amount disbursed in floating point format.
      * @return the amount disbursed in floating point format.
      */
-     @JsonProperty("amount")
+     @SerializedName("amount")
      public float getAmount() {
           return this.amount;
      }
@@ -222,7 +222,7 @@ public class InvoicePayment {
      * Gets the currency formatted form of amount.
      * @return the currency formatted form of amount.
      */
-     @JsonProperty("amountFormatted")
+     @SerializedName("amountFormatted")
      public String getAmountFormatted() {
           return this.amountFormatted;
      }

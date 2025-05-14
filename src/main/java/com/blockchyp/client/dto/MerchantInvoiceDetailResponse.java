@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -86,7 +86,7 @@ public class MerchantInvoiceDetailResponse implements IAbstractAcknowledgement {
      * Gets whether or not the request succeeded.
      * @return whether or not the request succeeded.
      */
-     @JsonProperty("success")
+     @SerializedName("success")
      public boolean isSuccess() {
           return this.success;
      }
@@ -103,7 +103,7 @@ public class MerchantInvoiceDetailResponse implements IAbstractAcknowledgement {
      * Gets the error, if an error occurred.
      * @return the error, if an error occurred.
      */
-     @JsonProperty("error")
+     @SerializedName("error")
      public String getError() {
           return this.error;
      }
@@ -120,7 +120,7 @@ public class MerchantInvoiceDetailResponse implements IAbstractAcknowledgement {
      * Gets a narrative description of the transaction result.
      * @return a narrative description of the transaction result.
      */
-     @JsonProperty("responseDescription")
+     @SerializedName("responseDescription")
      public String getResponseDescription() {
           return this.responseDescription;
      }
@@ -137,7 +137,7 @@ public class MerchantInvoiceDetailResponse implements IAbstractAcknowledgement {
      * Gets optional start date filter for batch history.
      * @return optional start date filter for batch history.
      */
-     @JsonProperty("id")
+     @SerializedName("id")
      public String getId() {
           return this.id;
      }
@@ -154,7 +154,7 @@ public class MerchantInvoiceDetailResponse implements IAbstractAcknowledgement {
      * Gets the id of the merchant associated with the statement.
      * @return the id of the merchant associated with the statement.
      */
-     @JsonProperty("merchantId")
+     @SerializedName("merchantId")
      public String getMerchantId() {
           return this.merchantId;
      }
@@ -171,7 +171,7 @@ public class MerchantInvoiceDetailResponse implements IAbstractAcknowledgement {
      * Gets the corporate name of the merchant associated with the statement.
      * @return the corporate name of the merchant associated with the statement.
      */
-     @JsonProperty("corporateName")
+     @SerializedName("corporateName")
      public String getCorporateName() {
           return this.corporateName;
      }
@@ -188,7 +188,7 @@ public class MerchantInvoiceDetailResponse implements IAbstractAcknowledgement {
      * Gets the dba name of the merchant associated with the statement.
      * @return the dba name of the merchant associated with the statement.
      */
-     @JsonProperty("dbaName")
+     @SerializedName("dbaName")
      public String getDbaName() {
           return this.dbaName;
      }
@@ -205,7 +205,7 @@ public class MerchantInvoiceDetailResponse implements IAbstractAcknowledgement {
      * Gets the date the statement was generated.
      * @return the date the statement was generated.
      */
-     @JsonProperty("dateCreated")
+     @SerializedName("dateCreated")
      public Date getDateCreated() {
           return this.dateCreated;
      }
@@ -222,7 +222,7 @@ public class MerchantInvoiceDetailResponse implements IAbstractAcknowledgement {
      * Gets the current status of the invoice.
      * @return the current status of the invoice.
      */
-     @JsonProperty("status")
+     @SerializedName("status")
      public String getStatus() {
           return this.status;
      }
@@ -239,7 +239,7 @@ public class MerchantInvoiceDetailResponse implements IAbstractAcknowledgement {
      * Gets the type of invoice (statement or invoice).
      * @return the type of invoice (statement or invoice).
      */
-     @JsonProperty("invoiceType")
+     @SerializedName("invoiceType")
      public String getInvoiceType() {
           return this.invoiceType;
      }
@@ -260,7 +260,7 @@ public class MerchantInvoiceDetailResponse implements IAbstractAcknowledgement {
      * @return the type of pricing used for the invoice (typically flat rate or or
      * interchange plus).
      */
-     @JsonProperty("pricingType")
+     @SerializedName("pricingType")
      public String getPricingType() {
           return this.pricingType;
      }
@@ -277,7 +277,7 @@ public class MerchantInvoiceDetailResponse implements IAbstractAcknowledgement {
      * Gets whether or not the invoice has been paid.
      * @return whether or not the invoice has been paid.
      */
-     @JsonProperty("paid")
+     @SerializedName("paid")
      public boolean isPaid() {
           return this.paid;
      }
@@ -294,7 +294,7 @@ public class MerchantInvoiceDetailResponse implements IAbstractAcknowledgement {
      * Gets the grand total.
      * @return the grand total.
      */
-     @JsonProperty("grandTotal")
+     @SerializedName("grandTotal")
      public float getGrandTotal() {
           return this.grandTotal;
      }
@@ -311,7 +311,7 @@ public class MerchantInvoiceDetailResponse implements IAbstractAcknowledgement {
      * Gets the string formatted grand total.
      * @return the string formatted grand total.
      */
-     @JsonProperty("grandTotalFormatted")
+     @SerializedName("grandTotalFormatted")
      public String getGrandTotalFormatted() {
           return this.grandTotalFormatted;
      }
@@ -328,7 +328,7 @@ public class MerchantInvoiceDetailResponse implements IAbstractAcknowledgement {
      * Gets the subtotal before shipping and tax.
      * @return the subtotal before shipping and tax.
      */
-     @JsonProperty("subtotal")
+     @SerializedName("subtotal")
      public float getSubtotal() {
           return this.subtotal;
      }
@@ -345,7 +345,7 @@ public class MerchantInvoiceDetailResponse implements IAbstractAcknowledgement {
      * Gets the string formatted subtotal before shipping and tax.
      * @return the string formatted subtotal before shipping and tax.
      */
-     @JsonProperty("subotalFormatted")
+     @SerializedName("subotalFormatted")
      public String getSubotalFormatted() {
           return this.subotalFormatted;
      }
@@ -362,7 +362,7 @@ public class MerchantInvoiceDetailResponse implements IAbstractAcknowledgement {
      * Gets the total sales tax.
      * @return the total sales tax.
      */
-     @JsonProperty("taxTotal")
+     @SerializedName("taxTotal")
      public float getTaxTotal() {
           return this.taxTotal;
      }
@@ -379,7 +379,7 @@ public class MerchantInvoiceDetailResponse implements IAbstractAcknowledgement {
      * Gets the string formatted total sales tax.
      * @return the string formatted total sales tax.
      */
-     @JsonProperty("taxTotalFormatted")
+     @SerializedName("taxTotalFormatted")
      public String getTaxTotalFormatted() {
           return this.taxTotalFormatted;
      }
@@ -396,7 +396,7 @@ public class MerchantInvoiceDetailResponse implements IAbstractAcknowledgement {
      * Gets the total cost of shipping.
      * @return the total cost of shipping.
      */
-     @JsonProperty("shippingCost")
+     @SerializedName("shippingCost")
      public float getShippingCost() {
           return this.shippingCost;
      }
@@ -413,7 +413,7 @@ public class MerchantInvoiceDetailResponse implements IAbstractAcknowledgement {
      * Gets the string formatted total cost of shipping.
      * @return the string formatted total cost of shipping.
      */
-     @JsonProperty("shippingCostFormatted")
+     @SerializedName("shippingCostFormatted")
      public String getShippingCostFormatted() {
           return this.shippingCostFormatted;
      }
@@ -430,7 +430,7 @@ public class MerchantInvoiceDetailResponse implements IAbstractAcknowledgement {
      * Gets the total unpaid balance on the invoice.
      * @return the total unpaid balance on the invoice.
      */
-     @JsonProperty("balanceDue")
+     @SerializedName("balanceDue")
      public float getBalanceDue() {
           return this.balanceDue;
      }
@@ -447,7 +447,7 @@ public class MerchantInvoiceDetailResponse implements IAbstractAcknowledgement {
      * Gets the string formatted unpaid balance on the invoice.
      * @return the string formatted unpaid balance on the invoice.
      */
-     @JsonProperty("balanceDueFormatted")
+     @SerializedName("balanceDueFormatted")
      public String getBalanceDueFormatted() {
           return this.balanceDueFormatted;
      }
@@ -464,7 +464,7 @@ public class MerchantInvoiceDetailResponse implements IAbstractAcknowledgement {
      * Gets the shipping or physical address associated with the invoice.
      * @return the shipping or physical address associated with the invoice.
      */
-     @JsonProperty("shippingAddress")
+     @SerializedName("shippingAddress")
      public Address getShippingAddress() {
           return this.shippingAddress;
      }
@@ -481,7 +481,7 @@ public class MerchantInvoiceDetailResponse implements IAbstractAcknowledgement {
      * Gets the billing or mailing address associated with the invoice.
      * @return the billing or mailing address associated with the invoice.
      */
-     @JsonProperty("billingAddress")
+     @SerializedName("billingAddress")
      public Address getBillingAddress() {
           return this.billingAddress;
      }
@@ -498,7 +498,7 @@ public class MerchantInvoiceDetailResponse implements IAbstractAcknowledgement {
      * Gets the list of line item details associated with the invoice.
      * @return the list of line item details associated with the invoice.
      */
-     @JsonProperty("lineItems")
+     @SerializedName("lineItems")
      public Collection<InvoiceLineItem> getLineItems() {
           return this.lineItems;
      }
@@ -515,7 +515,7 @@ public class MerchantInvoiceDetailResponse implements IAbstractAcknowledgement {
      * Gets the list of payments collected against the invoice.
      * @return the list of payments collected against the invoice.
      */
-     @JsonProperty("payments")
+     @SerializedName("payments")
      public Collection<InvoicePayment> getPayments() {
           return this.payments;
      }
@@ -533,7 +533,7 @@ public class MerchantInvoiceDetailResponse implements IAbstractAcknowledgement {
      * Gets the list of merchant settlements disbursed during the statement period.
      * @return the list of merchant settlements disbursed during the statement period.
      */
-     @JsonProperty("deposits")
+     @SerializedName("deposits")
      public Collection<StatementDeposit> getDeposits() {
           return this.deposits;
      }

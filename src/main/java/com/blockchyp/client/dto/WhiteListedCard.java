@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 
 /**
@@ -36,7 +36,7 @@ public class WhiteListedCard {
      * Gets the card BIN.
      * @return the card BIN.
      */
-     @JsonProperty("bin")
+     @SerializedName("bin")
      public String getBin() {
           return this.bin;
      }
@@ -53,7 +53,7 @@ public class WhiteListedCard {
      * Gets the track 1 data from the card.
      * @return the track 1 data from the card.
      */
-     @JsonProperty("track1")
+     @SerializedName("track1")
      public String getTrack1() {
           return this.track1;
      }
@@ -70,7 +70,7 @@ public class WhiteListedCard {
      * Gets the track 2 data from the card.
      * @return the track 2 data from the card.
      */
-     @JsonProperty("track2")
+     @SerializedName("track2")
      public String getTrack2() {
           return this.track2;
      }
@@ -87,7 +87,7 @@ public class WhiteListedCard {
      * Gets the card primary account number.
      * @return the card primary account number.
      */
-     @JsonProperty("pan")
+     @SerializedName("pan")
      public String getPan() {
           return this.pan;
      }

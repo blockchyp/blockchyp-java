@@ -1,6 +1,6 @@
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.annotations.SerializedName;
 
 public enum AvsResponse {
 
@@ -18,9 +18,14 @@ public enum AvsResponse {
         this.code = code;
     }
 
-    @JsonValue
+    // @JsonValue
     public String getCode() {
         return this.code;
+    }
+
+    @Override
+    public String toString() {
+        return code;
     }
 
 }

@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -133,7 +133,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the request timeout in seconds.
      * @return the request timeout in seconds.
      */
-     @JsonProperty("timeout")
+     @SerializedName("timeout")
      public int getTimeout() {
           return this.timeout;
      }
@@ -150,7 +150,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets whether or not to route transaction to the test gateway.
      * @return whether or not to route transaction to the test gateway.
      */
-     @JsonProperty("test")
+     @SerializedName("test")
      public boolean isTest() {
           return this.test;
      }
@@ -167,7 +167,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the invite code for the merchant.
      * @return the invite code for the merchant.
      */
-     @JsonProperty("inviteCode")
+     @SerializedName("inviteCode")
      public String getInviteCode() {
           return this.inviteCode;
      }
@@ -184,7 +184,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the business name your customers know you by (DBA Name).
      * @return the business name your customers know you by (DBA Name).
      */
-     @JsonProperty("dbaName")
+     @SerializedName("dbaName")
      public String getDbaName() {
           return this.dbaName;
      }
@@ -201,7 +201,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the name of the legal entity you file your taxes under.
      * @return the name of the legal entity you file your taxes under.
      */
-     @JsonProperty("corporateName")
+     @SerializedName("corporateName")
      public String getCorporateName() {
           return this.corporateName;
      }
@@ -218,7 +218,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the business website.
      * @return the business website.
      */
-     @JsonProperty("webSite")
+     @SerializedName("webSite")
      public String getWebSite() {
           return this.webSite;
      }
@@ -235,7 +235,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the business tax identification number (EIN).
      * @return the business tax identification number (EIN).
      */
-     @JsonProperty("taxIdNumber")
+     @SerializedName("taxIdNumber")
      public String getTaxIdNumber() {
           return this.taxIdNumber;
      }
@@ -252,7 +252,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the type of business entity.
      * @return the type of business entity.
      */
-     @JsonProperty("entityType")
+     @SerializedName("entityType")
      public String getEntityType() {
           return this.entityType;
      }
@@ -269,7 +269,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the state where the business is incorporated.
      * @return the state where the business is incorporated.
      */
-     @JsonProperty("stateOfIncorporation")
+     @SerializedName("stateOfIncorporation")
      public String getStateOfIncorporation() {
           return this.stateOfIncorporation;
      }
@@ -286,7 +286,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the primary type of business (e.
      * @return the primary type of business (e.g., Retail, Service, etc.).
      */
-     @JsonProperty("merchantType")
+     @SerializedName("merchantType")
      public String getMerchantType() {
           return this.merchantType;
      }
@@ -303,7 +303,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets A short description of the products and services sold.
      * @return A short description of the products and services sold.
      */
-     @JsonProperty("businessDescription")
+     @SerializedName("businessDescription")
      public String getBusinessDescription() {
           return this.businessDescription;
      }
@@ -320,7 +320,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the number of years the business has been operating.
      * @return the number of years the business has been operating.
      */
-     @JsonProperty("yearsInBusiness")
+     @SerializedName("yearsInBusiness")
      public String getYearsInBusiness() {
           return this.yearsInBusiness;
      }
@@ -337,7 +337,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the business telephone number.
      * @return the business telephone number.
      */
-     @JsonProperty("businessPhoneNumber")
+     @SerializedName("businessPhoneNumber")
      public String getBusinessPhoneNumber() {
           return this.businessPhoneNumber;
      }
@@ -354,7 +354,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the physical address of the business.
      * @return the physical address of the business.
      */
-     @JsonProperty("physicalAddress")
+     @SerializedName("physicalAddress")
      public Address getPhysicalAddress() {
           return this.physicalAddress;
      }
@@ -371,7 +371,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the mailing address of the business.
      * @return the mailing address of the business.
      */
-     @JsonProperty("mailingAddress")
+     @SerializedName("mailingAddress")
      public Address getMailingAddress() {
           return this.mailingAddress;
      }
@@ -388,7 +388,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the first name of the primary contact.
      * @return the first name of the primary contact.
      */
-     @JsonProperty("contactFirstName")
+     @SerializedName("contactFirstName")
      public String getContactFirstName() {
           return this.contactFirstName;
      }
@@ -405,7 +405,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the last name of the primary contact.
      * @return the last name of the primary contact.
      */
-     @JsonProperty("contactLastName")
+     @SerializedName("contactLastName")
      public String getContactLastName() {
           return this.contactLastName;
      }
@@ -422,7 +422,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the phone number of the primary contact.
      * @return the phone number of the primary contact.
      */
-     @JsonProperty("contactPhoneNumber")
+     @SerializedName("contactPhoneNumber")
      public String getContactPhoneNumber() {
           return this.contactPhoneNumber;
      }
@@ -439,7 +439,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the email address of the primary contact.
      * @return the email address of the primary contact.
      */
-     @JsonProperty("contactEmail")
+     @SerializedName("contactEmail")
      public String getContactEmail() {
           return this.contactEmail;
      }
@@ -456,7 +456,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the job title of the primary contact.
      * @return the job title of the primary contact.
      */
-     @JsonProperty("contactTitle")
+     @SerializedName("contactTitle")
      public String getContactTitle() {
           return this.contactTitle;
      }
@@ -473,7 +473,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the tax identification number (SSN) of the primary contact.
      * @return the tax identification number (SSN) of the primary contact.
      */
-     @JsonProperty("contactTaxIdNumber")
+     @SerializedName("contactTaxIdNumber")
      public String getContactTaxIdNumber() {
           return this.contactTaxIdNumber;
      }
@@ -490,7 +490,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the date of birth of the primary contact.
      * @return the date of birth of the primary contact.
      */
-     @JsonProperty("contactDOB")
+     @SerializedName("contactDOB")
      public String getContactDob() {
           return this.contactDOB;
      }
@@ -507,7 +507,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the driver's license number of the primary contact.
      * @return the driver's license number of the primary contact.
      */
-     @JsonProperty("contactDlNumber")
+     @SerializedName("contactDlNumber")
      public String getContactDlNumber() {
           return this.contactDlNumber;
      }
@@ -524,7 +524,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the state that issued the primary contact's driver's license.
      * @return the state that issued the primary contact's driver's license.
      */
-     @JsonProperty("contactDlStateOrProvince")
+     @SerializedName("contactDlStateOrProvince")
      public String getContactDlStateOrProvince() {
           return this.contactDlStateOrProvince;
      }
@@ -541,7 +541,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the expiration date of the primary contact's driver's license.
      * @return the expiration date of the primary contact's driver's license.
      */
-     @JsonProperty("contactDlExpiration")
+     @SerializedName("contactDlExpiration")
      public String getContactDlExpiration() {
           return this.contactDlExpiration;
      }
@@ -558,7 +558,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the home address of the primary contact.
      * @return the home address of the primary contact.
      */
-     @JsonProperty("contactHomeAddress")
+     @SerializedName("contactHomeAddress")
      public Address getContactHomeAddress() {
           return this.contactHomeAddress;
      }
@@ -575,7 +575,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the role of the primary contact in the business.
      * @return the role of the primary contact in the business.
      */
-     @JsonProperty("contactRole")
+     @SerializedName("contactRole")
      public String getContactRole() {
           return this.contactRole;
      }
@@ -592,7 +592,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets List of individuals with 25% or more ownership in the company.
      * @return List of individuals with 25% or more ownership in the company.
      */
-     @JsonProperty("owners")
+     @SerializedName("owners")
      public Collection<Owner> getOwners() {
           return this.owners;
      }
@@ -609,7 +609,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the bank account information for the business.
      * @return the bank account information for the business.
      */
-     @JsonProperty("manualAccount")
+     @SerializedName("manualAccount")
      public ApplicationAccount getManualAccount() {
           return this.manualAccount;
      }
@@ -626,7 +626,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the average transaction amount.
      * @return the average transaction amount.
      */
-     @JsonProperty("averageTransaction")
+     @SerializedName("averageTransaction")
      public String getAverageTransaction() {
           return this.averageTransaction;
      }
@@ -643,7 +643,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the highest expected transaction amount.
      * @return the highest expected transaction amount.
      */
-     @JsonProperty("highTransaction")
+     @SerializedName("highTransaction")
      public String getHighTransaction() {
           return this.highTransaction;
      }
@@ -660,7 +660,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the average monthly transaction volume.
      * @return the average monthly transaction volume.
      */
-     @JsonProperty("averageMonth")
+     @SerializedName("averageMonth")
      public String getAverageMonth() {
           return this.averageMonth;
      }
@@ -677,7 +677,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the highest expected monthly transaction volume.
      * @return the highest expected monthly transaction volume.
      */
-     @JsonProperty("highMonth")
+     @SerializedName("highMonth")
      public String getHighMonth() {
           return this.highMonth;
      }
@@ -694,7 +694,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the refund policy of the business.
      * @return the refund policy of the business.
      */
-     @JsonProperty("refundPolicy")
+     @SerializedName("refundPolicy")
      public String getRefundPolicy() {
           return this.refundPolicy;
      }
@@ -711,7 +711,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the number of days after purchase that refunds can be issued.
      * @return the number of days after purchase that refunds can be issued.
      */
-     @JsonProperty("refundDays")
+     @SerializedName("refundDays")
      public String getRefundDays() {
           return this.refundDays;
      }
@@ -728,7 +728,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the time zone of the business.
      * @return the time zone of the business.
      */
-     @JsonProperty("timeZone")
+     @SerializedName("timeZone")
      public String getTimeZone() {
           return this.timeZone;
      }
@@ -745,7 +745,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the time when the daily batch should close.
      * @return the time when the daily batch should close.
      */
-     @JsonProperty("batchCloseTime")
+     @SerializedName("batchCloseTime")
      public String getBatchCloseTime() {
           return this.batchCloseTime;
      }
@@ -762,7 +762,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets Indicates if the business has multiple locations.
      * @return Indicates if the business has multiple locations.
      */
-     @JsonProperty("multipleLocations")
+     @SerializedName("multipleLocations")
      public String getMultipleLocations() {
           return this.multipleLocations;
      }
@@ -779,7 +779,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the name of this specific business location.
      * @return the name of this specific business location.
      */
-     @JsonProperty("locationName")
+     @SerializedName("locationName")
      public String getLocationName() {
           return this.locationName;
      }
@@ -796,7 +796,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the store number for this location.
      * @return the store number for this location.
      */
-     @JsonProperty("storeNumber")
+     @SerializedName("storeNumber")
      public String getStoreNumber() {
           return this.storeNumber;
      }
@@ -813,7 +813,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets Indicates if the business wants to accept EBT cards.
      * @return Indicates if the business wants to accept EBT cards.
      */
-     @JsonProperty("ebtRequested")
+     @SerializedName("ebtRequested")
      public String getEbtRequested() {
           return this.ebtRequested;
      }
@@ -830,7 +830,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the FNS number issued by the USDA for EBT processing.
      * @return the FNS number issued by the USDA for EBT processing.
      */
-     @JsonProperty("fnsNumber")
+     @SerializedName("fnsNumber")
      public String getFnsNumber() {
           return this.fnsNumber;
      }
@@ -847,7 +847,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets Indicates if the business plans to accept payments through a website.
      * @return Indicates if the business plans to accept payments through a website.
      */
-     @JsonProperty("ecommerce")
+     @SerializedName("ecommerce")
      public String getEcommerce() {
           return this.ecommerce;
      }
@@ -864,7 +864,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets Indicates if suppliers ship products directly to customers.
      * @return Indicates if suppliers ship products directly to customers.
      */
-     @JsonProperty("dropShipping")
+     @SerializedName("dropShipping")
      public boolean isDropShipping() {
           return this.dropShipping;
      }
@@ -881,7 +881,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the percentage of transactions that will be chip or swipe.
      * @return the percentage of transactions that will be chip or swipe.
      */
-     @JsonProperty("cardPresentPercentage")
+     @SerializedName("cardPresentPercentage")
      public String getCardPresentPercentage() {
           return this.cardPresentPercentage;
      }
@@ -898,7 +898,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the percentage of transactions that will be phone orders.
      * @return the percentage of transactions that will be phone orders.
      */
-     @JsonProperty("phoneOrderPercentage")
+     @SerializedName("phoneOrderPercentage")
      public String getPhoneOrderPercentage() {
           return this.phoneOrderPercentage;
      }
@@ -915,7 +915,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the percentage of transactions that will be e-commerce.
      * @return the percentage of transactions that will be e-commerce.
      */
-     @JsonProperty("ecomPercentage")
+     @SerializedName("ecomPercentage")
      public String getEcomPercentage() {
           return this.ecomPercentage;
      }
@@ -932,7 +932,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the number of days before shipment that customers are charged.
      * @return the number of days before shipment that customers are charged.
      */
-     @JsonProperty("billBeforeShipmentDays")
+     @SerializedName("billBeforeShipmentDays")
      public String getBillBeforeShipmentDays() {
           return this.billBeforeShipmentDays;
      }
@@ -949,7 +949,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets Indicates if the business plans to process recurring payments.
      * @return Indicates if the business plans to process recurring payments.
      */
-     @JsonProperty("subscriptionsSupported")
+     @SerializedName("subscriptionsSupported")
      public String getSubscriptionsSupported() {
           return this.subscriptionsSupported;
      }
@@ -966,7 +966,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the frequency of recurring payments (if applicable).
      * @return the frequency of recurring payments (if applicable).
      */
-     @JsonProperty("subscriptionFrequency")
+     @SerializedName("subscriptionFrequency")
      public String getSubscriptionFrequency() {
           return this.subscriptionFrequency;
      }
@@ -983,7 +983,7 @@ public class SubmitApplicationRequest implements ITimeoutRequest {
      * Gets the full legal name of the person signing the application.
      * @return the full legal name of the person signing the application.
      */
-     @JsonProperty("signerName")
+     @SerializedName("signerName")
      public String getSignerName() {
           return this.signerName;
      }

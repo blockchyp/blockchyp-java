@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
@@ -49,7 +49,7 @@ public class PartnerStatementDisbursement {
      * Gets the disbursement id.
      * @return the disbursement id.
      */
-     @JsonProperty("id")
+     @SerializedName("id")
      public String getId() {
           return this.id;
      }
@@ -66,7 +66,7 @@ public class PartnerStatementDisbursement {
      * Gets date and time the disbursement was processed.
      * @return date and time the disbursement was processed.
      */
-     @JsonProperty("timestamp")
+     @SerializedName("timestamp")
      public Date getTimestamp() {
           return this.timestamp;
      }
@@ -83,7 +83,7 @@ public class PartnerStatementDisbursement {
      * Gets the type of disbursement transaction.
      * @return the type of disbursement transaction.
      */
-     @JsonProperty("transactionType")
+     @SerializedName("transactionType")
      public String getTransactionType() {
           return this.transactionType;
      }
@@ -100,7 +100,7 @@ public class PartnerStatementDisbursement {
      * Gets the payment method used to fund the disbursement.
      * @return the payment method used to fund the disbursement.
      */
-     @JsonProperty("paymentType")
+     @SerializedName("paymentType")
      public String getPaymentType() {
           return this.paymentType;
      }
@@ -117,7 +117,7 @@ public class PartnerStatementDisbursement {
      * Gets the masked account number into which funds were deposited.
      * @return the masked account number into which funds were deposited.
      */
-     @JsonProperty("maskedPan")
+     @SerializedName("maskedPan")
      public String getMaskedPan() {
           return this.maskedPan;
      }
@@ -134,7 +134,7 @@ public class PartnerStatementDisbursement {
      * Gets that payment is still pending.
      * @return that payment is still pending.
      */
-     @JsonProperty("pending")
+     @SerializedName("pending")
      public boolean isPending() {
           return this.pending;
      }
@@ -151,7 +151,7 @@ public class PartnerStatementDisbursement {
      * Gets that payment is approved.
      * @return that payment is approved.
      */
-     @JsonProperty("approved")
+     @SerializedName("approved")
      public boolean isApproved() {
           return this.approved;
      }
@@ -169,7 +169,7 @@ public class PartnerStatementDisbursement {
      * Gets a response description from the disbursement payment platform, in any.
      * @return a response description from the disbursement payment platform, in any.
      */
-     @JsonProperty("responseDescription")
+     @SerializedName("responseDescription")
      public String getResponseDescription() {
           return this.responseDescription;
      }
@@ -186,7 +186,7 @@ public class PartnerStatementDisbursement {
      * Gets the amount disbursed in floating point format.
      * @return the amount disbursed in floating point format.
      */
-     @JsonProperty("amount")
+     @SerializedName("amount")
      public float getAmount() {
           return this.amount;
      }
@@ -203,7 +203,7 @@ public class PartnerStatementDisbursement {
      * Gets the currency formatted form of amount.
      * @return the currency formatted form of amount.
      */
-     @JsonProperty("amountFormatted")
+     @SerializedName("amountFormatted")
      public String getAmountFormatted() {
           return this.amountFormatted;
      }

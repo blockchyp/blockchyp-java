@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -52,7 +52,7 @@ public class BatchHistoryResponse implements IAbstractAcknowledgement {
      * Gets whether or not the request succeeded.
      * @return whether or not the request succeeded.
      */
-     @JsonProperty("success")
+     @SerializedName("success")
      public boolean isSuccess() {
           return this.success;
      }
@@ -69,7 +69,7 @@ public class BatchHistoryResponse implements IAbstractAcknowledgement {
      * Gets the error, if an error occurred.
      * @return the error, if an error occurred.
      */
-     @JsonProperty("error")
+     @SerializedName("error")
      public String getError() {
           return this.error;
      }
@@ -86,7 +86,7 @@ public class BatchHistoryResponse implements IAbstractAcknowledgement {
      * Gets a narrative description of the transaction result.
      * @return a narrative description of the transaction result.
      */
-     @JsonProperty("responseDescription")
+     @SerializedName("responseDescription")
      public String getResponseDescription() {
           return this.responseDescription;
      }
@@ -103,7 +103,7 @@ public class BatchHistoryResponse implements IAbstractAcknowledgement {
      * Gets that the response came from the test gateway.
      * @return that the response came from the test gateway.
      */
-     @JsonProperty("test")
+     @SerializedName("test")
      public boolean isTest() {
           return this.test;
      }
@@ -120,7 +120,7 @@ public class BatchHistoryResponse implements IAbstractAcknowledgement {
      * Gets start date if filtered by start date.
      * @return start date if filtered by start date.
      */
-     @JsonProperty("startDate")
+     @SerializedName("startDate")
      public Date getStartDate() {
           return this.startDate;
      }
@@ -137,7 +137,7 @@ public class BatchHistoryResponse implements IAbstractAcknowledgement {
      * Gets end date if filtered by end date.
      * @return end date if filtered by end date.
      */
-     @JsonProperty("endDate")
+     @SerializedName("endDate")
      public Date getEndDate() {
           return this.endDate;
      }
@@ -154,7 +154,7 @@ public class BatchHistoryResponse implements IAbstractAcknowledgement {
      * Gets merchant's batch history in descending order.
      * @return merchant's batch history in descending order.
      */
-     @JsonProperty("batches")
+     @SerializedName("batches")
      public Collection<BatchSummary> getBatches() {
           return this.batches;
      }
@@ -171,7 +171,7 @@ public class BatchHistoryResponse implements IAbstractAcknowledgement {
      * Gets max results from the original request echoed back.
      * @return max results from the original request echoed back.
      */
-     @JsonProperty("maxResults")
+     @SerializedName("maxResults")
      public int getMaxResults() {
           return this.maxResults;
      }
@@ -188,7 +188,7 @@ public class BatchHistoryResponse implements IAbstractAcknowledgement {
      * Gets starting index from the original request echoed back.
      * @return starting index from the original request echoed back.
      */
-     @JsonProperty("startIndex")
+     @SerializedName("startIndex")
      public int getStartIndex() {
           return this.startIndex;
      }
@@ -205,7 +205,7 @@ public class BatchHistoryResponse implements IAbstractAcknowledgement {
      * Gets total number of results accessible through paging.
      * @return total number of results accessible through paging.
      */
-     @JsonProperty("totalResultCount")
+     @SerializedName("totalResultCount")
      public int getTotalResultCount() {
           return this.totalResultCount;
      }

@@ -362,13 +362,8 @@ public class ChargeExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -467,13 +462,8 @@ public class PreauthExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -545,13 +535,8 @@ public class CaptureExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -663,13 +648,8 @@ public class RefundExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -741,13 +721,8 @@ public class VoidExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -829,13 +804,8 @@ public class CardMetadataExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -917,13 +887,8 @@ public class ReverseExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -1036,13 +1001,8 @@ public class GiftActivateExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -1132,13 +1092,8 @@ public class BalanceExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -1206,13 +1161,8 @@ public class CloseBatchExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -1397,13 +1347,8 @@ public class SendPaymentLinkExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -1466,13 +1411,8 @@ public class ResendPaymentLinkExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -1534,13 +1474,8 @@ public class CancelPaymentLinkExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -1612,13 +1547,8 @@ public class PaymentLinkStatusExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -1685,13 +1615,8 @@ public class TransactionStatusExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -1759,13 +1684,8 @@ public class CashDiscountExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -1848,13 +1768,8 @@ public class BatchHistoryExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -1922,13 +1837,8 @@ public class BatchDetailsExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -2035,13 +1945,8 @@ public class TransactionHistoryExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -2105,13 +2010,8 @@ public class ListQueuedTransactionsExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -2176,13 +2076,8 @@ public class DeleteQueuedTransactionExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -2263,13 +2158,8 @@ public class PingExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -2336,13 +2226,8 @@ public class LocateExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -2407,13 +2292,8 @@ public class ClearExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -2507,13 +2387,8 @@ public class TerminalStatusExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -2595,13 +2470,8 @@ public class CaptureSignatureExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -2707,13 +2577,8 @@ public class NewTransactionDisplayExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -2827,13 +2692,8 @@ public class UpdateTransactionDisplayExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -2899,13 +2759,8 @@ public class MessageExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -2982,13 +2837,8 @@ public class BooleanPromptExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -3073,13 +2923,8 @@ public class TextPromptExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -3144,13 +2989,8 @@ public class TerminalsExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -3215,13 +3055,8 @@ public class DeactivateTerminalExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -3294,13 +3129,8 @@ public class ActivateTerminalExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -3362,13 +3192,8 @@ public class RebootExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -3496,13 +3321,8 @@ public class TermsAndConditionsExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -3564,13 +3384,8 @@ public class TcTemplatesExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -3632,13 +3447,8 @@ public class TcTemplateExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -3710,13 +3520,8 @@ public class TcUpdateTemplateExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -3782,13 +3587,8 @@ public class TcDeleteTemplateExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -3860,13 +3660,8 @@ public class TcLogExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -3931,13 +3726,8 @@ public class TcEntryExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -4026,13 +3816,8 @@ public class EnrollExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -4100,13 +3885,8 @@ public class TokenMetadataExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -4170,13 +3950,8 @@ public class LinkTokenExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -4242,13 +4017,8 @@ public class UnlinkTokenExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -4311,13 +4081,8 @@ public class DeleteTokenExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -4425,13 +4190,8 @@ public class UpdateCustomerExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -4496,13 +4256,8 @@ public class CustomerExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -4567,13 +4322,8 @@ public class CustomerSearchExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -4635,13 +4385,8 @@ public class DeleteCustomerExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -4719,13 +4464,8 @@ public class SurveyQuestionsExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -4787,13 +4527,8 @@ public class SurveyQuestionExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -4868,13 +4603,8 @@ public class UpdateSurveyQuestionExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -4936,13 +4666,8 @@ public class DeleteSurveyQuestionExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -5016,13 +4741,8 @@ public class SurveyResultsExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -5124,13 +4844,8 @@ public class MediaExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -5229,13 +4944,8 @@ public class UploadMediaExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -5304,13 +5014,8 @@ public class UploadStatusExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -5374,13 +5079,8 @@ public class MediaAssetExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -5443,13 +5143,8 @@ public class DeleteMediaAssetExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -5513,13 +5208,8 @@ public class SlideShowsExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -5584,13 +5274,8 @@ public class SlideShowExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -5667,13 +5352,8 @@ public class UpdateSlideShowExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -5735,13 +5415,8 @@ public class DeleteSlideShowExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -5812,13 +5487,8 @@ public class TerminalBrandingExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -5952,13 +5622,8 @@ public class UpdateBrandingAssetExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -6023,13 +5688,8 @@ public class DeleteBrandingAssetExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -6168,13 +5828,8 @@ public class MerchantProfileExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -6242,13 +5897,8 @@ public class GetMerchantsExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -6384,13 +6034,8 @@ public class UpdateMerchantExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -6452,13 +6097,8 @@ public class MerchantUsersExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -6527,13 +6167,8 @@ public class InviteMerchantUserExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -6604,13 +6239,8 @@ public class AddGatewayMerchantExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -6676,13 +6306,8 @@ public class AddTestMerchantExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -6744,13 +6369,8 @@ public class DeleteTestMerchantExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -6848,13 +6468,8 @@ public class PricingPolicyExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -6921,13 +6536,8 @@ public class PartnerStatementsExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -6993,13 +6603,8 @@ public class PartnerStatementDetailExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -7066,13 +6671,8 @@ public class MerchantInvoicesExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -7140,13 +6740,8 @@ public class MerchantInvoiceDetailExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -7210,13 +6805,8 @@ public class PartnerCommissionBreakdownExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -7286,13 +6876,8 @@ public class MerchantCredentialGenerationExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }
@@ -7367,13 +6952,8 @@ public class SubmitApplicationExample {
 
     public static String prettyPrint(Object object) throws Exception {
 
-        ObjectWriter writer = new ObjectMapper()
-            .writer()
-            .withDefaultPrettyPrinter();
-
-        return object.getClass().getSimpleName()
-            + ": "
-            + writer.writeValueAsString(object);
+Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return object.getClass().getSimpleName() + ": " + gson.toJson(object);
 
     }
 }

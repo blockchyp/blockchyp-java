@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -49,7 +49,7 @@ public class AggregateBillingLineItem {
      * Gets the line item identifier.
      * @return the line item identifier.
      */
-     @JsonProperty("id")
+     @SerializedName("id")
      public String getId() {
           return this.id;
      }
@@ -66,7 +66,7 @@ public class AggregateBillingLineItem {
      * Gets provides a basic description of the line item.
      * @return provides a basic description of the line item.
      */
-     @JsonProperty("description")
+     @SerializedName("description")
      public String getDescription() {
           return this.description;
      }
@@ -83,7 +83,7 @@ public class AggregateBillingLineItem {
      * Gets that a line item has nested information.
      * @return that a line item has nested information.
      */
-     @JsonProperty("expandable")
+     @SerializedName("expandable")
      public boolean isExpandable() {
           return this.expandable;
      }
@@ -100,7 +100,7 @@ public class AggregateBillingLineItem {
      * Gets the total is a negative number.
      * @return the total is a negative number.
      */
-     @JsonProperty("negative")
+     @SerializedName("negative")
      public boolean isNegative() {
           return this.negative;
      }
@@ -117,7 +117,7 @@ public class AggregateBillingLineItem {
      * Gets the total for the line item.
      * @return the total for the line item.
      */
-     @JsonProperty("total")
+     @SerializedName("total")
      public float getTotal() {
           return this.total;
      }
@@ -134,7 +134,7 @@ public class AggregateBillingLineItem {
      * Gets the currency formatted total for the line item.
      * @return the currency formatted total for the line item.
      */
-     @JsonProperty("totalFormatted")
+     @SerializedName("totalFormatted")
      public String getTotalFormatted() {
           return this.totalFormatted;
      }
@@ -151,7 +151,7 @@ public class AggregateBillingLineItem {
      * Gets the range of count based fees charged for the given line item.
      * @return the range of count based fees charged for the given line item.
      */
-     @JsonProperty("perTranFeeRange")
+     @SerializedName("perTranFeeRange")
      public AggregateBillingLineItemStats getPerTranFeeRange() {
           return this.perTranFeeRange;
      }
@@ -168,7 +168,7 @@ public class AggregateBillingLineItem {
      * Gets the range of percentage based fees charged for the given line item.
      * @return the range of percentage based fees charged for the given line item.
      */
-     @JsonProperty("transactionPercentageRange")
+     @SerializedName("transactionPercentageRange")
      public AggregateBillingLineItemStats getTransactionPercentageRange() {
           return this.transactionPercentageRange;
      }
@@ -185,7 +185,7 @@ public class AggregateBillingLineItem {
      * Gets encapsulated drill down or detail lines.
      * @return encapsulated drill down or detail lines.
      */
-     @JsonProperty("detailLines")
+     @SerializedName("detailLines")
      public Collection<AggregateBillingLineItem> getDetailLines() {
           return this.detailLines;
      }

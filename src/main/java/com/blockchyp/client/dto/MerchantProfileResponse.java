@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -143,7 +143,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets whether or not the request succeeded.
      * @return whether or not the request succeeded.
      */
-     @JsonProperty("success")
+     @SerializedName("success")
      public boolean isSuccess() {
           return this.success;
      }
@@ -160,7 +160,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets the error, if an error occurred.
      * @return the error, if an error occurred.
      */
-     @JsonProperty("error")
+     @SerializedName("error")
      public String getError() {
           return this.error;
      }
@@ -177,7 +177,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets a narrative description of the transaction result.
      * @return a narrative description of the transaction result.
      */
-     @JsonProperty("responseDescription")
+     @SerializedName("responseDescription")
      public String getResponseDescription() {
           return this.responseDescription;
      }
@@ -194,7 +194,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets that the response came from the test gateway.
      * @return that the response came from the test gateway.
      */
-     @JsonProperty("test")
+     @SerializedName("test")
      public boolean isTest() {
           return this.test;
      }
@@ -211,7 +211,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets the merchant id.
      * @return the merchant id.
      */
-     @JsonProperty("merchantId")
+     @SerializedName("merchantId")
      public String getMerchantId() {
           return this.merchantId;
      }
@@ -228,7 +228,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets the primary bank mid.
      * @return the primary bank mid.
      */
-     @JsonProperty("bankMid")
+     @SerializedName("bankMid")
      public String getBankMid() {
           return this.bankMid;
      }
@@ -245,7 +245,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets the merchant's company name.
      * @return the merchant's company name.
      */
-     @JsonProperty("companyName")
+     @SerializedName("companyName")
      public String getCompanyName() {
           return this.companyName;
      }
@@ -262,7 +262,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets the dba name of the merchant.
      * @return the dba name of the merchant.
      */
-     @JsonProperty("dbaName")
+     @SerializedName("dbaName")
      public String getDbaName() {
           return this.dbaName;
      }
@@ -279,7 +279,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets the name the merchant prefers on payment link invoices.
      * @return the name the merchant prefers on payment link invoices.
      */
-     @JsonProperty("invoiceName")
+     @SerializedName("invoiceName")
      public String getInvoiceName() {
           return this.invoiceName;
      }
@@ -296,7 +296,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets the contact name for the merchant.
      * @return the contact name for the merchant.
      */
-     @JsonProperty("contactName")
+     @SerializedName("contactName")
      public String getContactName() {
           return this.contactName;
      }
@@ -313,7 +313,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets the contact number for the merchant.
      * @return the contact number for the merchant.
      */
-     @JsonProperty("contactNumber")
+     @SerializedName("contactNumber")
      public String getContactNumber() {
           return this.contactNumber;
      }
@@ -330,7 +330,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets the location name.
      * @return the location name.
      */
-     @JsonProperty("locationName")
+     @SerializedName("locationName")
      public String getLocationName() {
           return this.locationName;
      }
@@ -347,7 +347,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets the store number.
      * @return the store number.
      */
-     @JsonProperty("storeNumber")
+     @SerializedName("storeNumber")
      public String getStoreNumber() {
           return this.storeNumber;
      }
@@ -364,7 +364,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets the partner assigne reference for this merchant.
      * @return the partner assigne reference for this merchant.
      */
-     @JsonProperty("partnerRef")
+     @SerializedName("partnerRef")
      public String getPartnerRef() {
           return this.partnerRef;
      }
@@ -381,7 +381,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets the merchant's local time zone.
      * @return the merchant's local time zone.
      */
-     @JsonProperty("timeZone")
+     @SerializedName("timeZone")
      public String getTimeZone() {
           return this.timeZone;
      }
@@ -398,7 +398,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets the batch close time in the merchant's time zone.
      * @return the batch close time in the merchant's time zone.
      */
-     @JsonProperty("batchCloseTime")
+     @SerializedName("batchCloseTime")
      public String getBatchCloseTime() {
           return this.batchCloseTime;
      }
@@ -415,7 +415,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets the terminal firmware update time.
      * @return the terminal firmware update time.
      */
-     @JsonProperty("terminalUpdateTime")
+     @SerializedName("terminalUpdateTime")
      public String getTerminalUpdateTime() {
           return this.terminalUpdateTime;
      }
@@ -432,7 +432,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets flag indicating whether or not the batch automatically closes.
      * @return flag indicating whether or not the batch automatically closes.
      */
-     @JsonProperty("autoBatchClose")
+     @SerializedName("autoBatchClose")
      public boolean isAutoBatchClose() {
           return this.autoBatchClose;
      }
@@ -453,7 +453,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * @return flag indicating whether or not batch closure emails should be
      * automatically sent.
      */
-     @JsonProperty("disableBatchEmails")
+     @SerializedName("disableBatchEmails")
      public boolean isDisableBatchEmails() {
           return this.disableBatchEmails;
      }
@@ -470,7 +470,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets flag indicating whether or not pin entry is enabled.
      * @return flag indicating whether or not pin entry is enabled.
      */
-     @JsonProperty("pinEnabled")
+     @SerializedName("pinEnabled")
      public boolean isPinEnabled() {
           return this.pinEnabled;
      }
@@ -487,7 +487,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets flag indicating whether or not cash back is enabled.
      * @return flag indicating whether or not cash back is enabled.
      */
-     @JsonProperty("cashBackEnabled")
+     @SerializedName("cashBackEnabled")
      public boolean isCashBackEnabled() {
           return this.cashBackEnabled;
      }
@@ -504,7 +504,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets flag indicating whether or not store and forward is enabled.
      * @return flag indicating whether or not store and forward is enabled.
      */
-     @JsonProperty("storeAndForwardEnabled")
+     @SerializedName("storeAndForwardEnabled")
      public boolean isStoreAndForwardEnabled() {
           return this.storeAndForwardEnabled;
      }
@@ -525,7 +525,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * @return flag indicating whether or not partial authorizations are supported for
      * this merchant.
      */
-     @JsonProperty("partialAuthEnabled")
+     @SerializedName("partialAuthEnabled")
      public boolean isPartialAuthEnabled() {
           return this.partialAuthEnabled;
      }
@@ -543,7 +543,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets flag indicating whether or not this merchant support split settlement.
      * @return flag indicating whether or not this merchant support split settlement.
      */
-     @JsonProperty("splitBankAccountsEnabled")
+     @SerializedName("splitBankAccountsEnabled")
      public boolean isSplitBankAccountsEnabled() {
           return this.splitBankAccountsEnabled;
      }
@@ -560,7 +560,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets floor limit for store and forward transactions.
      * @return floor limit for store and forward transactions.
      */
-     @JsonProperty("storeAndForwardFloorLimit")
+     @SerializedName("storeAndForwardFloorLimit")
      public String getStoreAndForwardFloorLimit() {
           return this.storeAndForwardFloorLimit;
      }
@@ -577,7 +577,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets the blockchyp public key for this merchant.
      * @return the blockchyp public key for this merchant.
      */
-     @JsonProperty("publicKey")
+     @SerializedName("publicKey")
      public String getPublicKey() {
           return this.publicKey;
      }
@@ -594,7 +594,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets the underwriting/processing status for the the merchant.
      * @return the underwriting/processing status for the the merchant.
      */
-     @JsonProperty("status")
+     @SerializedName("status")
      public String getStatus() {
           return this.status;
      }
@@ -611,7 +611,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets enables cash discount or surcharging.
      * @return enables cash discount or surcharging.
      */
-     @JsonProperty("cashDiscountEnabled")
+     @SerializedName("cashDiscountEnabled")
      public boolean isCashDiscountEnabled() {
           return this.cashDiscountEnabled;
      }
@@ -628,7 +628,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets the post transaction survey timeout in seconds.
      * @return the post transaction survey timeout in seconds.
      */
-     @JsonProperty("surveyTimeout")
+     @SerializedName("surveyTimeout")
      public int getSurveyTimeout() {
           return this.surveyTimeout;
      }
@@ -649,7 +649,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * @return time a transaction result is displayed on a terminal before the terminal is
      * automatically cleared in seconds.
      */
-     @JsonProperty("cooldownTimeout")
+     @SerializedName("cooldownTimeout")
      public int getCooldownTimeout() {
           return this.cooldownTimeout;
      }
@@ -666,7 +666,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets that tips are enabled for a merchant account.
      * @return that tips are enabled for a merchant account.
      */
-     @JsonProperty("tipEnabled")
+     @SerializedName("tipEnabled")
      public boolean isTipEnabled() {
           return this.tipEnabled;
      }
@@ -687,7 +687,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * @return that tips should be automatically prompted for after charge and preauth
      * transactions.
      */
-     @JsonProperty("promptForTip")
+     @SerializedName("promptForTip")
      public boolean isPromptForTip() {
           return this.promptForTip;
      }
@@ -706,7 +706,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * @return three default values for tips. Can be provided as a percentage if a percent
      * sign is provided. Otherwise the values are assumed to be basis points.
      */
-     @JsonProperty("tipDefaults")
+     @SerializedName("tipDefaults")
      public Collection<String> getTipDefaults() {
           return this.tipDefaults;
      }
@@ -723,7 +723,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets four default values for cashback prompts.
      * @return four default values for cashback prompts.
      */
-     @JsonProperty("cashbackPresets")
+     @SerializedName("cashbackPresets")
      public Collection<String> getCashbackPresets() {
           return this.cashbackPresets;
      }
@@ -740,7 +740,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets that EBT cards are enabled.
      * @return that EBT cards are enabled.
      */
-     @JsonProperty("ebtEnabled")
+     @SerializedName("ebtEnabled")
      public boolean isEbtEnabled() {
           return this.ebtEnabled;
      }
@@ -757,7 +757,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets that refunds without transaction references are permitted.
      * @return that refunds without transaction references are permitted.
      */
-     @JsonProperty("freeRangeRefundsEnabled")
+     @SerializedName("freeRangeRefundsEnabled")
      public boolean isFreeRangeRefundsEnabled() {
           return this.freeRangeRefundsEnabled;
      }
@@ -774,7 +774,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets that pin bypass is enabled.
      * @return that pin bypass is enabled.
      */
-     @JsonProperty("pinBypassEnabled")
+     @SerializedName("pinBypassEnabled")
      public boolean isPinBypassEnabled() {
           return this.pinBypassEnabled;
      }
@@ -791,7 +791,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets that gift cards are disabled.
      * @return that gift cards are disabled.
      */
-     @JsonProperty("giftCardsDisabled")
+     @SerializedName("giftCardsDisabled")
      public boolean isGiftCardsDisabled() {
           return this.giftCardsDisabled;
      }
@@ -808,7 +808,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets disables terms and conditions pages in the merchant UI.
      * @return disables terms and conditions pages in the merchant UI.
      */
-     @JsonProperty("tcDisabled")
+     @SerializedName("tcDisabled")
      public boolean isTcDisabled() {
           return this.tcDisabled;
      }
@@ -825,7 +825,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets that digital signature capture is enabled.
      * @return that digital signature capture is enabled.
      */
-     @JsonProperty("digitalSignaturesEnabled")
+     @SerializedName("digitalSignaturesEnabled")
      public boolean isDigitalSignaturesEnabled() {
           return this.digitalSignaturesEnabled;
      }
@@ -842,7 +842,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets that transactions should auto-reverse when signatures are refused.
      * @return that transactions should auto-reverse when signatures are refused.
      */
-     @JsonProperty("digitalSignatureReversal")
+     @SerializedName("digitalSignatureReversal")
      public boolean isDigitalSignatureReversal() {
           return this.digitalSignatureReversal;
      }
@@ -859,7 +859,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets the address to be used for billing correspondence.
      * @return the address to be used for billing correspondence.
      */
-     @JsonProperty("billingAddress")
+     @SerializedName("billingAddress")
      public Address getBillingAddress() {
           return this.billingAddress;
      }
@@ -876,7 +876,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets the address to be used for shipping.
      * @return the address to be used for shipping.
      */
-     @JsonProperty("shippingAddress")
+     @SerializedName("shippingAddress")
      public Address getShippingAddress() {
           return this.shippingAddress;
      }
@@ -893,7 +893,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets that Visa cards are supported.
      * @return that Visa cards are supported.
      */
-     @JsonProperty("visa")
+     @SerializedName("visa")
      public boolean isVisa() {
           return this.visa;
      }
@@ -910,7 +910,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets that MasterCard is supported.
      * @return that MasterCard is supported.
      */
-     @JsonProperty("masterCard")
+     @SerializedName("masterCard")
      public boolean isMasterCard() {
           return this.masterCard;
      }
@@ -927,7 +927,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets that American Express is supported.
      * @return that American Express is supported.
      */
-     @JsonProperty("amex")
+     @SerializedName("amex")
      public boolean isAmex() {
           return this.amex;
      }
@@ -944,7 +944,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets that Discover cards are supported.
      * @return that Discover cards are supported.
      */
-     @JsonProperty("discover")
+     @SerializedName("discover")
      public boolean isDiscover() {
           return this.discover;
      }
@@ -961,7 +961,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets that JCB (Japan Card Bureau) cards are supported.
      * @return that JCB (Japan Card Bureau) cards are supported.
      */
-     @JsonProperty("jcb")
+     @SerializedName("jcb")
      public boolean isJcb() {
           return this.jcb;
      }
@@ -978,7 +978,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets that China Union Pay cards are supported.
      * @return that China Union Pay cards are supported.
      */
-     @JsonProperty("unionPay")
+     @SerializedName("unionPay")
      public boolean isUnionPay() {
           return this.unionPay;
      }
@@ -995,7 +995,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets that contactless EMV cards are supported.
      * @return that contactless EMV cards are supported.
      */
-     @JsonProperty("contactlessEmv")
+     @SerializedName("contactlessEmv")
      public boolean isContactlessEmv() {
           return this.contactlessEmv;
      }
@@ -1012,7 +1012,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets that manual card entry is enabled.
      * @return that manual card entry is enabled.
      */
-     @JsonProperty("manualEntryEnabled")
+     @SerializedName("manualEntryEnabled")
      public boolean isManualEntryEnabled() {
           return this.manualEntryEnabled;
      }
@@ -1029,7 +1029,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets requires a zip code to be entered for manually entered transactions.
      * @return requires a zip code to be entered for manually entered transactions.
      */
-     @JsonProperty("manualEntryPromptZip")
+     @SerializedName("manualEntryPromptZip")
      public boolean isManualEntryPromptZip() {
           return this.manualEntryPromptZip;
      }
@@ -1047,7 +1047,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets requires a street number to be entered for manually entered transactions.
      * @return requires a street number to be entered for manually entered transactions.
      */
-     @JsonProperty("manualEntryPromptStreetNumber")
+     @SerializedName("manualEntryPromptStreetNumber")
      public boolean isManualEntryPromptStreetNumber() {
           return this.manualEntryPromptStreetNumber;
      }
@@ -1064,7 +1064,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets that this merchant is boarded on BlockChyp in gateway only mode.
      * @return that this merchant is boarded on BlockChyp in gateway only mode.
      */
-     @JsonProperty("gatewayOnly")
+     @SerializedName("gatewayOnly")
      public boolean isGatewayOnly() {
           return this.gatewayOnly;
      }
@@ -1081,7 +1081,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * Gets bank accounts for split bank account merchants.
      * @return bank accounts for split bank account merchants.
      */
-     @JsonProperty("bankAccounts")
+     @SerializedName("bankAccounts")
      public Collection<BankAccount> getBankAccounts() {
           return this.bankAccounts;
      }
@@ -1100,7 +1100,7 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      * @return that a merchant is allowed to send a surcharge amount directly to the
      * gateway.
      */
-     @JsonProperty("passthroughSurchargeEnabled")
+     @SerializedName("passthroughSurchargeEnabled")
      public boolean isPassthroughSurchargeEnabled() {
           return this.passthroughSurchargeEnabled;
      }

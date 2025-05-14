@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -41,7 +41,7 @@ public class TermsAndConditionsTemplateResponse implements IAbstractAcknowledgem
      * Gets whether or not the request succeeded.
      * @return whether or not the request succeeded.
      */
-     @JsonProperty("success")
+     @SerializedName("success")
      public boolean isSuccess() {
           return this.success;
      }
@@ -58,7 +58,7 @@ public class TermsAndConditionsTemplateResponse implements IAbstractAcknowledgem
      * Gets the error, if an error occurred.
      * @return the error, if an error occurred.
      */
-     @JsonProperty("error")
+     @SerializedName("error")
      public String getError() {
           return this.error;
      }
@@ -75,7 +75,7 @@ public class TermsAndConditionsTemplateResponse implements IAbstractAcknowledgem
      * Gets a narrative description of the transaction result.
      * @return a narrative description of the transaction result.
      */
-     @JsonProperty("responseDescription")
+     @SerializedName("responseDescription")
      public String getResponseDescription() {
           return this.responseDescription;
      }
@@ -92,7 +92,7 @@ public class TermsAndConditionsTemplateResponse implements IAbstractAcknowledgem
      * Gets results responsive to a request.
      * @return results responsive to a request.
      */
-     @JsonProperty("results")
+     @SerializedName("results")
      public Collection<TermsAndConditionsTemplate> getResults() {
           return this.results;
      }
@@ -109,7 +109,7 @@ public class TermsAndConditionsTemplateResponse implements IAbstractAcknowledgem
      * Gets an optional timeout override.
      * @return an optional timeout override.
      */
-     @JsonProperty("timeout")
+     @SerializedName("timeout")
      public int getTimeout() {
           return this.timeout;
      }

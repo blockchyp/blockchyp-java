@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 
 /**
@@ -36,7 +36,7 @@ public class AddTestMerchantRequest implements ITimeoutRequest {
      * Gets whether or not to route transaction to the test gateway.
      * @return whether or not to route transaction to the test gateway.
      */
-     @JsonProperty("test")
+     @SerializedName("test")
      public boolean isTest() {
           return this.test;
      }
@@ -53,7 +53,7 @@ public class AddTestMerchantRequest implements ITimeoutRequest {
      * Gets the DBA name for the test merchant.
      * @return the DBA name for the test merchant.
      */
-     @JsonProperty("dbaName")
+     @SerializedName("dbaName")
      public String getDbaName() {
           return this.dbaName;
      }
@@ -70,7 +70,7 @@ public class AddTestMerchantRequest implements ITimeoutRequest {
      * Gets the corporate name for the test merchant.
      * @return the corporate name for the test merchant.
      */
-     @JsonProperty("companyName")
+     @SerializedName("companyName")
      public String getCompanyName() {
           return this.companyName;
      }
@@ -87,7 +87,7 @@ public class AddTestMerchantRequest implements ITimeoutRequest {
      * Gets the request timeout in seconds.
      * @return the request timeout in seconds.
      */
-     @JsonProperty("timeout")
+     @SerializedName("timeout")
      public int getTimeout() {
           return this.timeout;
      }

@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 
 /**
@@ -50,7 +50,7 @@ public class BuyRateLineItem {
      * Gets provides a basic description of the line item.
      * @return provides a basic description of the line item.
      */
-     @JsonProperty("description")
+     @SerializedName("description")
      public String getDescription() {
           return this.description;
      }
@@ -67,7 +67,7 @@ public class BuyRateLineItem {
      * Gets the volume related to this line item.
      * @return the volume related to this line item.
      */
-     @JsonProperty("volume")
+     @SerializedName("volume")
      public float getVolume() {
           return this.volume;
      }
@@ -84,7 +84,7 @@ public class BuyRateLineItem {
      * Gets the currency formatted volume related to this line item.
      * @return the currency formatted volume related to this line item.
      */
-     @JsonProperty("volumeFormatted")
+     @SerializedName("volumeFormatted")
      public String getVolumeFormatted() {
           return this.volumeFormatted;
      }
@@ -101,7 +101,7 @@ public class BuyRateLineItem {
      * Gets the rate on volume charged for this line item.
      * @return the rate on volume charged for this line item.
      */
-     @JsonProperty("volumeRate")
+     @SerializedName("volumeRate")
      public float getVolumeRate() {
           return this.volumeRate;
      }
@@ -118,7 +118,7 @@ public class BuyRateLineItem {
      * Gets the string formatted rate on volume charged for this line item.
      * @return the string formatted rate on volume charged for this line item.
      */
-     @JsonProperty("volumeRateFormatted")
+     @SerializedName("volumeRateFormatted")
      public String getVolumeRateFormatted() {
           return this.volumeRateFormatted;
      }
@@ -135,7 +135,7 @@ public class BuyRateLineItem {
      * Gets the count associated with this line item.
      * @return the count associated with this line item.
      */
-     @JsonProperty("count")
+     @SerializedName("count")
      public int getCount() {
           return this.count;
      }
@@ -152,7 +152,7 @@ public class BuyRateLineItem {
      * Gets the rate per item charged for this line item.
      * @return the rate per item charged for this line item.
      */
-     @JsonProperty("countRate")
+     @SerializedName("countRate")
      public float getCountRate() {
           return this.countRate;
      }
@@ -169,7 +169,7 @@ public class BuyRateLineItem {
      * Gets the string formatted rate per item charged for this line item.
      * @return the string formatted rate per item charged for this line item.
      */
-     @JsonProperty("countRateFormatted")
+     @SerializedName("countRateFormatted")
      public String getCountRateFormatted() {
           return this.countRateFormatted;
      }
@@ -186,7 +186,7 @@ public class BuyRateLineItem {
      * Gets provides a narrative description of the rate.
      * @return provides a narrative description of the rate.
      */
-     @JsonProperty("rateSummary")
+     @SerializedName("rateSummary")
      public String getRateSummary() {
           return this.rateSummary;
      }
@@ -203,7 +203,7 @@ public class BuyRateLineItem {
      * Gets the total amount for the line item.
      * @return the total amount for the line item.
      */
-     @JsonProperty("total")
+     @SerializedName("total")
      public float getTotal() {
           return this.total;
      }
@@ -220,7 +220,7 @@ public class BuyRateLineItem {
      * Gets the string formatted total for the line item.
      * @return the string formatted total for the line item.
      */
-     @JsonProperty("totalFormatted")
+     @SerializedName("totalFormatted")
      public String getTotalFormatted() {
           return this.totalFormatted;
      }

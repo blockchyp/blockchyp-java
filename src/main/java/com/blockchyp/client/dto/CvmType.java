@@ -1,6 +1,6 @@
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.annotations.SerializedName;
 
 public enum CvmType {
 
@@ -16,7 +16,7 @@ public enum CvmType {
         this.code = code;
     }
 
-    @JsonValue
+    // @JsonValue
     public String getCode() {
         return this.code;
     }

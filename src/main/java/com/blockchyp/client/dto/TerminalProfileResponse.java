@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -39,7 +39,7 @@ public class TerminalProfileResponse implements IAbstractAcknowledgement {
      * Gets whether or not the request succeeded.
      * @return whether or not the request succeeded.
      */
-     @JsonProperty("success")
+     @SerializedName("success")
      public boolean isSuccess() {
           return this.success;
      }
@@ -56,7 +56,7 @@ public class TerminalProfileResponse implements IAbstractAcknowledgement {
      * Gets the error, if an error occurred.
      * @return the error, if an error occurred.
      */
-     @JsonProperty("error")
+     @SerializedName("error")
      public String getError() {
           return this.error;
      }
@@ -73,7 +73,7 @@ public class TerminalProfileResponse implements IAbstractAcknowledgement {
      * Gets a narrative description of the transaction result.
      * @return a narrative description of the transaction result.
      */
-     @JsonProperty("responseDescription")
+     @SerializedName("responseDescription")
      public String getResponseDescription() {
           return this.responseDescription;
      }
@@ -90,7 +90,7 @@ public class TerminalProfileResponse implements IAbstractAcknowledgement {
      * Gets enumerates all terminal profiles in the response.
      * @return enumerates all terminal profiles in the response.
      */
-     @JsonProperty("results")
+     @SerializedName("results")
      public Collection<TerminalProfile> getResults() {
           return this.results;
      }

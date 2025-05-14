@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -49,7 +49,7 @@ public class MediaLibraryResponse implements IAbstractAcknowledgement {
      * Gets whether or not the request succeeded.
      * @return whether or not the request succeeded.
      */
-     @JsonProperty("success")
+     @SerializedName("success")
      public boolean isSuccess() {
           return this.success;
      }
@@ -66,7 +66,7 @@ public class MediaLibraryResponse implements IAbstractAcknowledgement {
      * Gets the error, if an error occurred.
      * @return the error, if an error occurred.
      */
-     @JsonProperty("error")
+     @SerializedName("error")
      public String getError() {
           return this.error;
      }
@@ -83,7 +83,7 @@ public class MediaLibraryResponse implements IAbstractAcknowledgement {
      * Gets a narrative description of the transaction result.
      * @return a narrative description of the transaction result.
      */
-     @JsonProperty("responseDescription")
+     @SerializedName("responseDescription")
      public String getResponseDescription() {
           return this.responseDescription;
      }
@@ -100,7 +100,7 @@ public class MediaLibraryResponse implements IAbstractAcknowledgement {
      * Gets max to be returned in a single page.
      * @return max to be returned in a single page. Defaults to the system max of 250.
      */
-     @JsonProperty("maxResults")
+     @SerializedName("maxResults")
      public int getMaxResults() {
           return this.maxResults;
      }
@@ -117,7 +117,7 @@ public class MediaLibraryResponse implements IAbstractAcknowledgement {
      * Gets starting index for paged results.
      * @return starting index for paged results. Defaults to zero.
      */
-     @JsonProperty("startIndex")
+     @SerializedName("startIndex")
      public int getStartIndex() {
           return this.startIndex;
      }
@@ -134,7 +134,7 @@ public class MediaLibraryResponse implements IAbstractAcknowledgement {
      * Gets total number of results accessible through paging.
      * @return total number of results accessible through paging.
      */
-     @JsonProperty("resultCount")
+     @SerializedName("resultCount")
      public int getResultCount() {
           return this.resultCount;
      }
@@ -151,7 +151,7 @@ public class MediaLibraryResponse implements IAbstractAcknowledgement {
      * Gets total number of pages.
      * @return total number of pages.
      */
-     @JsonProperty("pages")
+     @SerializedName("pages")
      public int getPages() {
           return this.pages;
      }
@@ -168,7 +168,7 @@ public class MediaLibraryResponse implements IAbstractAcknowledgement {
      * Gets page currently selected through paging.
      * @return page currently selected through paging.
      */
-     @JsonProperty("currentPage")
+     @SerializedName("currentPage")
      public int getCurrentPage() {
           return this.currentPage;
      }
@@ -185,7 +185,7 @@ public class MediaLibraryResponse implements IAbstractAcknowledgement {
      * Gets enumerates all media assets available in the context.
      * @return enumerates all media assets available in the context.
      */
-     @JsonProperty("results")
+     @SerializedName("results")
      public Collection<MediaMetadata> getResults() {
           return this.results;
      }

@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -67,7 +67,7 @@ public class InvoiceLineItem {
      * Gets the line item id.
      * @return the line item id.
      */
-     @JsonProperty("id")
+     @SerializedName("id")
      public String getId() {
           return this.id;
      }
@@ -84,7 +84,7 @@ public class InvoiceLineItem {
      * Gets the type of line item.
      * @return the type of line item.
      */
-     @JsonProperty("lineType")
+     @SerializedName("lineType")
      public String getLineType() {
           return this.lineType;
      }
@@ -101,7 +101,7 @@ public class InvoiceLineItem {
      * Gets the product id for standard invoices.
      * @return the product id for standard invoices.
      */
-     @JsonProperty("productId")
+     @SerializedName("productId")
      public String getProductId() {
           return this.productId;
      }
@@ -118,7 +118,7 @@ public class InvoiceLineItem {
      * Gets the quantity associated with the line item.
      * @return the quantity associated with the line item.
      */
-     @JsonProperty("quantity")
+     @SerializedName("quantity")
      public int getQuantity() {
           return this.quantity;
      }
@@ -135,7 +135,7 @@ public class InvoiceLineItem {
      * Gets the description associated with the line item.
      * @return the description associated with the line item.
      */
-     @JsonProperty("description")
+     @SerializedName("description")
      public String getDescription() {
           return this.description;
      }
@@ -152,7 +152,7 @@ public class InvoiceLineItem {
      * Gets an alternate explanation.
      * @return an alternate explanation.
      */
-     @JsonProperty("explanation")
+     @SerializedName("explanation")
      public String getExplanation() {
           return this.explanation;
      }
@@ -169,7 +169,7 @@ public class InvoiceLineItem {
      * Gets the transaction count associated with any transaction based fees.
      * @return the transaction count associated with any transaction based fees.
      */
-     @JsonProperty("transactionCount")
+     @SerializedName("transactionCount")
      public int getTransactionCount() {
           return this.transactionCount;
      }
@@ -186,7 +186,7 @@ public class InvoiceLineItem {
      * Gets the transaction volume associated with any fees.
      * @return the transaction volume associated with any fees.
      */
-     @JsonProperty("volume")
+     @SerializedName("volume")
      public float getVolume() {
           return this.volume;
      }
@@ -203,7 +203,7 @@ public class InvoiceLineItem {
      * Gets the string formatted volume.
      * @return the string formatted volume.
      */
-     @JsonProperty("volumeFormatted")
+     @SerializedName("volumeFormatted")
      public String getVolumeFormatted() {
           return this.volumeFormatted;
      }
@@ -220,7 +220,7 @@ public class InvoiceLineItem {
      * Gets the per transaction fee.
      * @return the per transaction fee.
      */
-     @JsonProperty("perTransactionFee")
+     @SerializedName("perTransactionFee")
      public float getPerTransactionFee() {
           return this.perTransactionFee;
      }
@@ -237,7 +237,7 @@ public class InvoiceLineItem {
      * Gets the string formatted per transaction fee.
      * @return the string formatted per transaction fee.
      */
-     @JsonProperty("perTransactionFeeFormatted")
+     @SerializedName("perTransactionFeeFormatted")
      public String getPerTransactionFeeFormatted() {
           return this.perTransactionFeeFormatted;
      }
@@ -254,7 +254,7 @@ public class InvoiceLineItem {
      * Gets the percentage (as floating point ratio) fee assessed on volume.
      * @return the percentage (as floating point ratio) fee assessed on volume.
      */
-     @JsonProperty("transactionPercentage")
+     @SerializedName("transactionPercentage")
      public float getTransactionPercentage() {
           return this.transactionPercentage;
      }
@@ -271,7 +271,7 @@ public class InvoiceLineItem {
      * Gets the string formatted transaction fee percentage.
      * @return the string formatted transaction fee percentage.
      */
-     @JsonProperty("transactionPercentageFormatted")
+     @SerializedName("transactionPercentageFormatted")
      public String getTransactionPercentageFormatted() {
           return this.transactionPercentageFormatted;
      }
@@ -288,7 +288,7 @@ public class InvoiceLineItem {
      * Gets the quantity price associated.
      * @return the quantity price associated.
      */
-     @JsonProperty("price")
+     @SerializedName("price")
      public float getPrice() {
           return this.price;
      }
@@ -305,7 +305,7 @@ public class InvoiceLineItem {
      * Gets the string formatted price associated with a conventional line item.
      * @return the string formatted price associated with a conventional line item.
      */
-     @JsonProperty("priceFormatted")
+     @SerializedName("priceFormatted")
      public String getPriceFormatted() {
           return this.priceFormatted;
      }
@@ -322,7 +322,7 @@ public class InvoiceLineItem {
      * Gets the extended price .
      * @return the extended price .
      */
-     @JsonProperty("priceExtended")
+     @SerializedName("priceExtended")
      public float getPriceExtended() {
           return this.priceExtended;
      }
@@ -339,7 +339,7 @@ public class InvoiceLineItem {
      * Gets the string formatted extended price.
      * @return the string formatted extended price.
      */
-     @JsonProperty("priceExtendedFormatted")
+     @SerializedName("priceExtendedFormatted")
      public String getPriceExtendedFormatted() {
           return this.priceExtendedFormatted;
      }
@@ -356,7 +356,7 @@ public class InvoiceLineItem {
      * Gets the list of nested line items, if any.
      * @return the list of nested line items, if any.
      */
-     @JsonProperty("lineItems")
+     @SerializedName("lineItems")
      public Collection<InvoiceLineItem> getLineItems() {
           return this.lineItems;
      }

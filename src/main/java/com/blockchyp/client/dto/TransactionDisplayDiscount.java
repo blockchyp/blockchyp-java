@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 
 /**
@@ -32,7 +32,7 @@ public class TransactionDisplayDiscount {
      * Gets the discount description.
      * @return the discount description.
      */
-     @JsonProperty("description")
+     @SerializedName("description")
      public String getDescription() {
           return this.description;
      }
@@ -49,7 +49,7 @@ public class TransactionDisplayDiscount {
      * Gets the amount of the discount.
      * @return the amount of the discount.
      */
-     @JsonProperty("amount")
+     @SerializedName("amount")
      public String getAmount() {
           return this.amount;
      }

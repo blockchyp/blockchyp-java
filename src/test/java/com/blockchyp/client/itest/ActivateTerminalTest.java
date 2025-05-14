@@ -47,7 +47,7 @@ public class ActivateTerminalTest extends BaseTestCase {
             ex = e;
         }
 
-    Assert.assertNull(ex);
+        Assert.assertNull(ex);
     }
 
 }

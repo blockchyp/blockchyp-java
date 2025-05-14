@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -127,7 +127,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets whether or not the request succeeded.
      * @return whether or not the request succeeded.
      */
-     @JsonProperty("success")
+     @SerializedName("success")
      public boolean isSuccess() {
           return this.success;
      }
@@ -144,7 +144,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets the error, if an error occurred.
      * @return the error, if an error occurred.
      */
-     @JsonProperty("error")
+     @SerializedName("error")
      public String getError() {
           return this.error;
      }
@@ -161,7 +161,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets a narrative description of the transaction result.
      * @return a narrative description of the transaction result.
      */
-     @JsonProperty("responseDescription")
+     @SerializedName("responseDescription")
      public String getResponseDescription() {
           return this.responseDescription;
      }
@@ -179,7 +179,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets the invoice (statement id) for which the commissions were calculated.
      * @return the invoice (statement id) for which the commissions were calculated.
      */
-     @JsonProperty("invoiceId")
+     @SerializedName("invoiceId")
      public String getInvoiceId() {
           return this.invoiceId;
      }
@@ -196,7 +196,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets the partner name.
      * @return the partner name.
      */
-     @JsonProperty("partnerName")
+     @SerializedName("partnerName")
      public String getPartnerName() {
           return this.partnerName;
      }
@@ -213,7 +213,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets the partner statement id.
      * @return the partner statement id.
      */
-     @JsonProperty("partnerStatementId")
+     @SerializedName("partnerStatementId")
      public String getPartnerStatementId() {
           return this.partnerStatementId;
      }
@@ -230,7 +230,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets the partner statement date.
      * @return the partner statement date.
      */
-     @JsonProperty("partnerStatementDate")
+     @SerializedName("partnerStatementDate")
      public Date getPartnerStatementDate() {
           return this.partnerStatementDate;
      }
@@ -247,7 +247,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets the merchant id.
      * @return the merchant id.
      */
-     @JsonProperty("merchantId")
+     @SerializedName("merchantId")
      public String getMerchantId() {
           return this.merchantId;
      }
@@ -264,7 +264,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets the merchant's corporate name.
      * @return the merchant's corporate name.
      */
-     @JsonProperty("merchantCompanyName")
+     @SerializedName("merchantCompanyName")
      public String getMerchantCompanyName() {
           return this.merchantCompanyName;
      }
@@ -281,7 +281,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets the merchant's dba name.
      * @return the merchant's dba name.
      */
-     @JsonProperty("merchantDbaName")
+     @SerializedName("merchantDbaName")
      public String getMerchantDbaName() {
           return this.merchantDbaName;
      }
@@ -298,7 +298,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets the grand total.
      * @return the grand total.
      */
-     @JsonProperty("grandTotal")
+     @SerializedName("grandTotal")
      public float getGrandTotal() {
           return this.grandTotal;
      }
@@ -315,7 +315,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets the currency formatted grand total.
      * @return the currency formatted grand total.
      */
-     @JsonProperty("grandTotalFormatted")
+     @SerializedName("grandTotalFormatted")
      public String getGrandTotalFormatted() {
           return this.grandTotalFormatted;
      }
@@ -332,7 +332,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets the total fees.
      * @return the total fees.
      */
-     @JsonProperty("totalFees")
+     @SerializedName("totalFees")
      public float getTotalFees() {
           return this.totalFees;
      }
@@ -349,7 +349,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets the currency formatted total fees.
      * @return the currency formatted total fees.
      */
-     @JsonProperty("totalFeesFormatted")
+     @SerializedName("totalFeesFormatted")
      public String getTotalFeesFormatted() {
           return this.totalFeesFormatted;
      }
@@ -366,7 +366,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets the total due the partner for this merchant statement.
      * @return the total due the partner for this merchant statement.
      */
-     @JsonProperty("totalDue")
+     @SerializedName("totalDue")
      public float getTotalDue() {
           return this.totalDue;
      }
@@ -384,7 +384,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets the currency formatted total due the partner for this merchant statement.
      * @return the currency formatted total due the partner for this merchant statement.
      */
-     @JsonProperty("totalDueFormatted")
+     @SerializedName("totalDueFormatted")
      public String getTotalDueFormatted() {
           return this.totalDueFormatted;
      }
@@ -401,7 +401,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets the total volume during the statement period.
      * @return the total volume during the statement period.
      */
-     @JsonProperty("totalVolume")
+     @SerializedName("totalVolume")
      public float getTotalVolume() {
           return this.totalVolume;
      }
@@ -418,7 +418,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets the currency formatted total volume during the statement period.
      * @return the currency formatted total volume during the statement period.
      */
-     @JsonProperty("totalVolumeFormatted")
+     @SerializedName("totalVolumeFormatted")
      public String getTotalVolumeFormatted() {
           return this.totalVolumeFormatted;
      }
@@ -436,7 +436,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets the total number of transactions processed during the statement period.
      * @return the total number of transactions processed during the statement period.
      */
-     @JsonProperty("totalTransactions")
+     @SerializedName("totalTransactions")
      public int getTotalTransactions() {
           return this.totalTransactions;
      }
@@ -453,7 +453,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets the residual earned by the partner.
      * @return the residual earned by the partner.
      */
-     @JsonProperty("partnerResidual")
+     @SerializedName("partnerResidual")
      public float getPartnerResidual() {
           return this.partnerResidual;
      }
@@ -470,7 +470,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets the currency formatted residual earned by the partner.
      * @return the currency formatted residual earned by the partner.
      */
-     @JsonProperty("partnerResidualFormatted")
+     @SerializedName("partnerResidualFormatted")
      public String getPartnerResidualFormatted() {
           return this.partnerResidualFormatted;
      }
@@ -487,7 +487,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets the total interchange charged during the statement period.
      * @return the total interchange charged during the statement period.
      */
-     @JsonProperty("interchange")
+     @SerializedName("interchange")
      public float getInterchange() {
           return this.interchange;
      }
@@ -508,7 +508,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * @return the currency formatted total interchange charged during the statement
      * period.
      */
-     @JsonProperty("interchangeFormatted")
+     @SerializedName("interchangeFormatted")
      public String getInterchangeFormatted() {
           return this.interchangeFormatted;
      }
@@ -525,7 +525,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets the total assessments charged during the statement period.
      * @return the total assessments charged during the statement period.
      */
-     @JsonProperty("assessments")
+     @SerializedName("assessments")
      public float getAssessments() {
           return this.assessments;
      }
@@ -543,7 +543,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets the currency formatted assessments charged during the statement period.
      * @return the currency formatted assessments charged during the statement period.
      */
-     @JsonProperty("assessmentsFormatted")
+     @SerializedName("assessmentsFormatted")
      public String getAssessmentsFormatted() {
           return this.assessmentsFormatted;
      }
@@ -560,7 +560,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets the total of passthrough costs.
      * @return the total of passthrough costs.
      */
-     @JsonProperty("totalPassthrough")
+     @SerializedName("totalPassthrough")
      public float getTotalPassthrough() {
           return this.totalPassthrough;
      }
@@ -577,7 +577,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets the currency formatted total of passthrough costs.
      * @return the currency formatted total of passthrough costs.
      */
-     @JsonProperty("totalPassthroughFormatted")
+     @SerializedName("totalPassthroughFormatted")
      public String getTotalPassthroughFormatted() {
           return this.totalPassthroughFormatted;
      }
@@ -594,7 +594,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets the total of non passthrough costs.
      * @return the total of non passthrough costs.
      */
-     @JsonProperty("totalNonPassthrough")
+     @SerializedName("totalNonPassthrough")
      public float getTotalNonPassthrough() {
           return this.totalNonPassthrough;
      }
@@ -611,7 +611,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets the currency formatted total of non passthrough costs.
      * @return the currency formatted total of non passthrough costs.
      */
-     @JsonProperty("totalNonPassthroughFormatted")
+     @SerializedName("totalNonPassthroughFormatted")
      public String getTotalNonPassthroughFormatted() {
           return this.totalNonPassthroughFormatted;
      }
@@ -628,7 +628,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets the total of all card brand fees.
      * @return the total of all card brand fees.
      */
-     @JsonProperty("totalCardBrandFees")
+     @SerializedName("totalCardBrandFees")
      public float getTotalCardBrandFees() {
           return this.totalCardBrandFees;
      }
@@ -645,7 +645,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets the currency formatted total of all card brand fees.
      * @return the currency formatted total of all card brand fees.
      */
-     @JsonProperty("totalCardBrandFeesFormatted")
+     @SerializedName("totalCardBrandFeesFormatted")
      public String getTotalCardBrandFeesFormatted() {
           return this.totalCardBrandFeesFormatted;
      }
@@ -662,7 +662,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets the total buy rate.
      * @return the total buy rate.
      */
-     @JsonProperty("totalBuyRate")
+     @SerializedName("totalBuyRate")
      public float getTotalBuyRate() {
           return this.totalBuyRate;
      }
@@ -679,7 +679,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets the currency formatted total buy rate.
      * @return the currency formatted total buy rate.
      */
-     @JsonProperty("totalBuyRateFormatted")
+     @SerializedName("totalBuyRateFormatted")
      public String getTotalBuyRateFormatted() {
           return this.totalBuyRateFormatted;
      }
@@ -696,7 +696,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets the total buy rate before passthrough costs.
      * @return the total buy rate before passthrough costs.
      */
-     @JsonProperty("buyRateBeforePassthrough")
+     @SerializedName("buyRateBeforePassthrough")
      public float getBuyRateBeforePassthrough() {
           return this.buyRateBeforePassthrough;
      }
@@ -713,7 +713,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets the currency formatted total buy rate before passthrough costs.
      * @return the currency formatted total buy rate before passthrough costs.
      */
-     @JsonProperty("buyRateBeforePassthroughFormatted")
+     @SerializedName("buyRateBeforePassthroughFormatted")
      public String getBuyRateBeforePassthroughFormatted() {
           return this.buyRateBeforePassthroughFormatted;
      }
@@ -730,7 +730,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets the net markup split between BlockChyp and the partner.
      * @return the net markup split between BlockChyp and the partner.
      */
-     @JsonProperty("netMarkup")
+     @SerializedName("netMarkup")
      public float getNetMarkup() {
           return this.netMarkup;
      }
@@ -749,7 +749,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * @return the currency formatted net markup split between BlockChyp and the
      * partner.
      */
-     @JsonProperty("netMarkupFormatted")
+     @SerializedName("netMarkupFormatted")
      public String getNetMarkupFormatted() {
           return this.netMarkupFormatted;
      }
@@ -766,7 +766,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets the partner's total share of non passthrough hard costs.
      * @return the partner's total share of non passthrough hard costs.
      */
-     @JsonProperty("partnerNonPassthroughShare")
+     @SerializedName("partnerNonPassthroughShare")
      public float getPartnerNonPassthroughShare() {
           return this.partnerNonPassthroughShare;
      }
@@ -785,7 +785,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * @return the currency formatted partner's total share of non passthrough hard
      * costs.
      */
-     @JsonProperty("partnerNonPassthroughShareFormatted")
+     @SerializedName("partnerNonPassthroughShareFormatted")
      public String getPartnerNonPassthroughShareFormatted() {
           return this.partnerNonPassthroughShareFormatted;
      }
@@ -802,7 +802,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets the total of chargeback fees assessed during the statement period.
      * @return the total of chargeback fees assessed during the statement period.
      */
-     @JsonProperty("chargebackFees")
+     @SerializedName("chargebackFees")
      public float getChargebackFees() {
           return this.chargebackFees;
      }
@@ -823,7 +823,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * @return the currency formatted total of chargeback fees assessed during the
      * statement period.
      */
-     @JsonProperty("chargebackFeesFormatted")
+     @SerializedName("chargebackFeesFormatted")
      public String getChargebackFeesFormatted() {
           return this.chargebackFeesFormatted;
      }
@@ -840,7 +840,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets the total number of chargebacks during the period.
      * @return the total number of chargebacks during the period.
      */
-     @JsonProperty("chargebackCount")
+     @SerializedName("chargebackCount")
      public int getChargebackCount() {
           return this.chargebackCount;
      }
@@ -857,7 +857,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets the partner's share of markup.
      * @return the partner's share of markup.
      */
-     @JsonProperty("partnerPercentage")
+     @SerializedName("partnerPercentage")
      public float getPartnerPercentage() {
           return this.partnerPercentage;
      }
@@ -874,7 +874,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets the currency formatted partner's share of markup.
      * @return the currency formatted partner's share of markup.
      */
-     @JsonProperty("partnerPercentageFormatted")
+     @SerializedName("partnerPercentageFormatted")
      public String getPartnerPercentageFormatted() {
           return this.partnerPercentageFormatted;
      }
@@ -892,7 +892,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * Gets the list of line items documenting how the total buy rate was calculated.
      * @return the list of line items documenting how the total buy rate was calculated.
      */
-     @JsonProperty("buyRateLineItems")
+     @SerializedName("buyRateLineItems")
      public Collection<BuyRateLineItem> getBuyRateLineItems() {
           return this.buyRateLineItems;
      }
@@ -913,7 +913,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * @return the list of detail lines describing how revenue was calculated and
      * collected by the sponsor bank.
      */
-     @JsonProperty("revenueDetails")
+     @SerializedName("revenueDetails")
      public Collection<AggregateBillingLineItem> getRevenueDetails() {
           return this.revenueDetails;
      }
@@ -934,7 +934,7 @@ public class PartnerCommissionBreakdownResponse implements IAbstractAcknowledgem
      * @return the nested list of costs levied by the card brands, grouped by card brand and
      * type.
      */
-     @JsonProperty("cardBrandCostDetails")
+     @SerializedName("cardBrandCostDetails")
      public Collection<AggregateBillingLineItem> getCardBrandCostDetails() {
           return this.cardBrandCostDetails;
      }

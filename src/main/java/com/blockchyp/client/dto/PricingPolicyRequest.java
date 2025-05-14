@@ -8,7 +8,7 @@
 
 package com.blockchyp.client.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 
 /**
@@ -37,7 +37,7 @@ public class PricingPolicyRequest implements ITimeoutRequest {
      * Gets the request timeout in seconds.
      * @return the request timeout in seconds.
      */
-     @JsonProperty("timeout")
+     @SerializedName("timeout")
      public int getTimeout() {
           return this.timeout;
      }
@@ -54,7 +54,7 @@ public class PricingPolicyRequest implements ITimeoutRequest {
      * Gets whether or not to route transaction to the test gateway.
      * @return whether or not to route transaction to the test gateway.
      */
-     @JsonProperty("test")
+     @SerializedName("test")
      public boolean isTest() {
           return this.test;
      }
@@ -71,7 +71,7 @@ public class PricingPolicyRequest implements ITimeoutRequest {
      * Gets an optional id used to retrieve a specific pricing policy.
      * @return an optional id used to retrieve a specific pricing policy.
      */
-     @JsonProperty("id")
+     @SerializedName("id")
      public String getId() {
           return this.id;
      }
@@ -90,7 +90,7 @@ public class PricingPolicyRequest implements ITimeoutRequest {
      * @return an optional merchant id if this request is submitted via partner
      * credentials.
      */
-     @JsonProperty("merchantId")
+     @SerializedName("merchantId")
      public String getMerchantId() {
           return this.merchantId;
      }
