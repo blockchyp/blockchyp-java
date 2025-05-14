@@ -23,4 +23,9 @@ public enum AvsResponse {
         return this.code;
     }
 
+    @Override
+    public String toString() {
+        return code;
+    }
+
 }

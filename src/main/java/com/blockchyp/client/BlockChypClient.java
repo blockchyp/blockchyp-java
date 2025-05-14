@@ -20,6 +20,8 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import okhttp3.*;
 import okhttp3.internal.http.HttpMethod;
 import okio.BufferedSink;
@@ -2122,19 +2124,24 @@ public class BlockChypClient {
 
         String url = resolveTerminalHost(route) + path;
 
-        OkHttpClient client = getGatewayClient();
+        OkHttpClient client = getTerminalClient();
+        JsonObject json = new JsonObject();
+        json.addProperty("apiKey", this.defaultCredentials.getApiKey());
+        json.addProperty("bearerToken", this.defaultCredentials.getBearerToken());
+        json.addProperty("signingKey", this.defaultCredentials.getSigningKey());
 
-        // Convert the request object to JSON using Gson
-        String jsonRequest = gson.toJson(request);
+        JsonElement jsonRequest = gson.toJsonTree(request);
+        json.add("request", jsonRequest);
 
         // Build the request body
         RequestBody body = RequestBody.create(
-                jsonRequest, MediaType.get("application/json; charset=utf-8"));
+                json.toString(), MediaType.get("application/json; charset=utf-8"));
 
         Request.Builder requestBuilder = new Request.Builder()
                 .url(url)
                 .header("User-Agent", USER_AGENT)
                 .post(body);
+
 
         // Optional: apply per-request timeout if applicable
         if (request instanceof ITimeoutRequest) {
@@ -2207,11 +2214,23 @@ public class BlockChypClient {
                     .build();
         }
 
-        Request request = new Request.Builder()
+        Map<String, String> headers = CryptoUtils.getInstance().generateApiHeaders(
+                defaultCredentials.getApiKey(),
+                defaultCredentials.getBearerToken(),
+                defaultCredentials.getSigningKey()
+        );
+
+
+        Request.Builder requestBuilder = new Request.Builder()
                 .url(url)
                 .header("User-Agent", USER_AGENT)
-                .get()
-                .build();
+                .get();
+
+        for (Map.Entry<String, String> entry : headers.entrySet()) {
+            requestBuilder.header(entry.getKey(), entry.getValue());
+        }
+
+        Request request = requestBuilder.build();
 
         paymentLogger.debug("Gateway GET: " + url);
 

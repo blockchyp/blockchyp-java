@@ -3,6 +3,7 @@ package com.blockchyp.client;
 import java.util.Date;
 
 import com.blockchyp.client.dto.Acknowledgement;
+import com.google.gson.annotations.SerializedName;
 
 /**
  * Models metadata about a terminal route, including it's location on the local network
@@ -12,8 +13,10 @@ import com.blockchyp.client.dto.Acknowledgement;
 
 public class TerminalRouteResponse extends Acknowledgement {
 
-    private boolean success;
-    private String error;
+//    @SerializedName("success")
+//    private boolean success;
+//    @SerializedName("routeError")
+//    private String error;
     private boolean exists;
     private String terminalName;
     private String ipAddress;
@@ -28,7 +31,7 @@ public class TerminalRouteResponse extends Acknowledgement {
      * @return true if the API call succeeded.
      */
     public boolean isSuccess() {
-        return success;
+        return super.isSuccess();
     }
 
     /**
@@ -37,7 +40,7 @@ public class TerminalRouteResponse extends Acknowledgement {
      * @param success true if the API call succeeded.
      */
     public void setSuccess(boolean success) {
-        this.success = success;
+        super.setSuccess(success);
     }
 
     /**
@@ -45,7 +48,7 @@ public class TerminalRouteResponse extends Acknowledgement {
      * @return narrative description of any error.
      */
     public String getError() {
-        return error;
+        return super.getError();
     }
 
     /**
@@ -53,7 +56,7 @@ public class TerminalRouteResponse extends Acknowledgement {
      * @param error narrative description of any error.
      */
     public void setError(String error) {
-        this.error = error;
+        super.setError(error);
     }
 
     /**
