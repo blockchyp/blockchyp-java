@@ -29,6 +29,14 @@ public class CustomerToken {
 
      private String paymentType;
 
+     private String accountType;
+
+     private String accountHolderType;
+
+     private String bankName;
+
+     private String routingNumber;
+
      private Collection<Customer> customers;
 
     /**
@@ -114,6 +122,74 @@ public class CustomerToken {
      @JsonProperty("paymentType")
      public String getPaymentType() {
           return this.paymentType;
+     }
+
+    /**
+     * Sets bank account type (checking, saving).
+     * @param value bank account type (checking, saving).
+     */
+     public void setAccountType(String value) {
+          this.accountType = value;
+     }
+
+    /**
+     * Gets bank account type (checking, saving).
+     * @return bank account type (checking, saving).
+     */
+     @JsonProperty("accountType")
+     public String getAccountType() {
+          return this.accountType;
+     }
+
+    /**
+     * Sets bank account holder type (personal, business).
+     * @param value bank account holder type (personal, business).
+     */
+     public void setAccountHolderType(String value) {
+          this.accountHolderType = value;
+     }
+
+    /**
+     * Gets bank account holder type (personal, business).
+     * @return bank account holder type (personal, business).
+     */
+     @JsonProperty("accountHolderType")
+     public String getAccountHolderType() {
+          return this.accountHolderType;
+     }
+
+    /**
+     * Sets bank name.
+     * @param value bank name.
+     */
+     public void setBankName(String value) {
+          this.bankName = value;
+     }
+
+    /**
+     * Gets bank name.
+     * @return bank name.
+     */
+     @JsonProperty("bankName")
+     public String getBankName() {
+          return this.bankName;
+     }
+
+    /**
+     * Sets routing number.
+     * @param value routing number.
+     */
+     public void setRoutingNumber(String value) {
+          this.routingNumber = value;
+     }
+
+    /**
+     * Gets routing number.
+     * @return routing number.
+     */
+     @JsonProperty("routingNumber")
+     public String getRoutingNumber() {
+          return this.routingNumber;
      }
 
     /**
