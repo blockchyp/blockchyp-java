@@ -84,6 +84,12 @@ public class EnrollRequest implements ITimeoutRequest, ICoreRequest, IPaymentMet
 
      private boolean cardMetadataLookup;
 
+     private String accountType;
+
+     private String accountHolderType;
+
+     private String bankName;
+
     /**
      * Sets the request timeout in seconds.
      * @param value the request timeout in seconds.
@@ -698,6 +704,62 @@ public class EnrollRequest implements ITimeoutRequest, ICoreRequest, IPaymentMet
      @JsonProperty("cardMetadataLookup")
      public boolean isCardMetadataLookup() {
           return this.cardMetadataLookup;
+     }
+
+    /**
+     * Sets the type of account (checking, savings, etc) for an ACH payment method.
+     * @param value the type of account (checking, savings, etc) for an ACH payment
+     * method.
+     */
+     public void setAccountType(String value) {
+          this.accountType = value;
+     }
+
+    /**
+     * Gets the type of account (checking, savings, etc) for an ACH payment method.
+     * @return the type of account (checking, savings, etc) for an ACH payment method.
+     */
+     @JsonProperty("accountType")
+     public String getAccountType() {
+          return this.accountType;
+     }
+
+    /**
+     * Sets the type of account holder (personal, business, etc) for an ACH payment
+     * method.
+     * @param value the type of account holder (personal, business, etc) for an ACH
+     * payment method.
+     */
+     public void setAccountHolderType(String value) {
+          this.accountHolderType = value;
+     }
+
+    /**
+     * Gets the type of account holder (personal, business, etc) for an ACH payment
+     * method.
+     * @return the type of account holder (personal, business, etc) for an ACH payment
+     * method.
+     */
+     @JsonProperty("accountHolderType")
+     public String getAccountHolderType() {
+          return this.accountHolderType;
+     }
+
+    /**
+     * Sets the bank name for an ACH payment method.
+     * @param value the bank name for an ACH payment method.
+     */
+     public void setBankName(String value) {
+          this.bankName = value;
+     }
+
+    /**
+     * Gets the bank name for an ACH payment method.
+     * @return the bank name for an ACH payment method.
+     */
+     @JsonProperty("bankName")
+     public String getBankName() {
+          return this.bankName;
      }
 
 }
