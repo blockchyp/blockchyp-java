@@ -37,6 +37,10 @@ public class CustomerToken {
 
      private String routingNumber;
 
+     private String tokenHash;
+
+     private String bin;
+
      private Collection<Customer> customers;
 
     /**
@@ -190,6 +194,44 @@ public class CustomerToken {
      @JsonProperty("routingNumber")
      public String getRoutingNumber() {
           return this.routingNumber;
+     }
+
+    /**
+     * Sets token hash (generated with a static salt, Merchant ID, Registration Date and
+     * PAN.
+     * @param value token hash (generated with a static salt, Merchant ID, Registration
+     * Date and PAN.
+     */
+     public void setTokenHash(String value) {
+          this.tokenHash = value;
+     }
+
+    /**
+     * Gets token hash (generated with a static salt, Merchant ID, Registration Date and
+     * PAN.
+     * @return token hash (generated with a static salt, Merchant ID, Registration Date
+     * and PAN.
+     */
+     @JsonProperty("tokenHash")
+     public String getTokenHash() {
+          return this.tokenHash;
+     }
+
+    /**
+     * Sets card bin.
+     * @param value card bin.
+     */
+     public void setBin(String value) {
+          this.bin = value;
+     }
+
+    /**
+     * Gets card bin.
+     * @return card bin.
+     */
+     @JsonProperty("bin")
+     public String getBin() {
+          return this.bin;
      }
 
     /**
