@@ -89,6 +89,10 @@ public class EnrollResponse implements IAbstractAcknowledgement, IApprovalRespon
 
      private String bankName;
 
+     private String tokenHash;
+
+     private String bin;
+
     /**
      * Sets whether or not the request succeeded.
      * @param value whether or not the request succeeded.
@@ -707,6 +711,44 @@ public class EnrollResponse implements IAbstractAcknowledgement, IApprovalRespon
      @JsonProperty("bankName")
      public String getBankName() {
           return this.bankName;
+     }
+
+    /**
+     * Sets the token hash (generated with a static salt, Merchant ID, Registration Date
+     * and PAN).
+     * @param value the token hash (generated with a static salt, Merchant ID,
+     * Registration Date and PAN).
+     */
+     public void setTokenHash(String value) {
+          this.tokenHash = value;
+     }
+
+    /**
+     * Gets the token hash (generated with a static salt, Merchant ID, Registration Date
+     * and PAN).
+     * @return the token hash (generated with a static salt, Merchant ID, Registration
+     * Date and PAN).
+     */
+     @JsonProperty("tokenHash")
+     public String getTokenHash() {
+          return this.tokenHash;
+     }
+
+    /**
+     * Sets the first 8 digits of the card aka the BIN.
+     * @param value the first 8 digits of the card aka the BIN.
+     */
+     public void setBin(String value) {
+          this.bin = value;
+     }
+
+    /**
+     * Gets the first 8 digits of the card aka the BIN.
+     * @return the first 8 digits of the card aka the BIN.
+     */
+     @JsonProperty("bin")
+     public String getBin() {
+          return this.bin;
      }
 
     /**
