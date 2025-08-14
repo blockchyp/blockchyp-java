@@ -42,6 +42,8 @@ public interface IPaymentMethodResponse {
 
      AvsResponse getAvsResponse();
 
+     String getCvvResponse();
+
      ReceiptSuggestions getReceiptSuggestions();
 
      Customer getCustomer();

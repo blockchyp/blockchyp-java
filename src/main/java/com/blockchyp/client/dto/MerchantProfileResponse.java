@@ -131,6 +131,16 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
 
      private boolean passthroughSurchargeEnabled;
 
+     private boolean cvvVerificationEnabled;
+
+     private boolean cvvVerificationNEnabled;
+
+     private boolean cvvVerificationPEnabled;
+
+     private boolean cvvVerificationSEnabled;
+
+     private boolean cvvVerificationUEnabled;
+
     /**
      * Sets whether or not the request succeeded.
      * @param value whether or not the request succeeded.
@@ -1103,6 +1113,99 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      @JsonProperty("passthroughSurchargeEnabled")
      public boolean isPassthroughSurchargeEnabled() {
           return this.passthroughSurchargeEnabled;
+     }
+
+    /**
+     * Sets that CVV verification is enabled for manually entered transactions.
+     * @param value that CVV verification is enabled for manually entered transactions.
+     */
+     public void setCvvVerificationEnabled(boolean value) {
+          this.cvvVerificationEnabled = value;
+     }
+
+    /**
+     * Gets that CVV verification is enabled for manually entered transactions.
+     * @return that CVV verification is enabled for manually entered transactions.
+     */
+     @JsonProperty("cvvVerificationEnabled")
+     public boolean isCvvVerificationEnabled() {
+          return this.cvvVerificationEnabled;
+     }
+
+    /**
+     * Sets that CVV mismatch (N) responses should be declined.
+     * @param value that CVV mismatch (N) responses should be declined.
+     */
+     public void setCvvVerificationNenabled(boolean value) {
+          this.cvvVerificationNEnabled = value;
+     }
+
+    /**
+     * Gets that CVV mismatch (N) responses should be declined.
+     * @return that CVV mismatch (N) responses should be declined.
+     */
+     @JsonProperty("cvvVerificationNEnabled")
+     public boolean isCvvVerificationNenabled() {
+          return this.cvvVerificationNEnabled;
+     }
+
+    /**
+     * Sets that CVV not processed (P) responses should be declined.
+     * @param value that CVV not processed (P) responses should be declined.
+     */
+     public void setCvvVerificationPenabled(boolean value) {
+          this.cvvVerificationPEnabled = value;
+     }
+
+    /**
+     * Gets that CVV not processed (P) responses should be declined.
+     * @return that CVV not processed (P) responses should be declined.
+     */
+     @JsonProperty("cvvVerificationPEnabled")
+     public boolean isCvvVerificationPenabled() {
+          return this.cvvVerificationPEnabled;
+     }
+
+    /**
+     * Sets that CVV should be on card but is not indicated (S) responses should be
+     * declined.
+     * @param value that CVV should be on card but is not indicated (S) responses should be
+     * declined.
+     */
+     public void setCvvVerificationSenabled(boolean value) {
+          this.cvvVerificationSEnabled = value;
+     }
+
+    /**
+     * Gets that CVV should be on card but is not indicated (S) responses should be
+     * declined.
+     * @return that CVV should be on card but is not indicated (S) responses should be
+     * declined.
+     */
+     @JsonProperty("cvvVerificationSEnabled")
+     public boolean isCvvVerificationSenabled() {
+          return this.cvvVerificationSEnabled;
+     }
+
+    /**
+     * Sets that issuer not certified or has not provided encryption key (U) responses
+     * should be declined.
+     * @param value that issuer not certified or has not provided encryption key (U)
+     * responses should be declined.
+     */
+     public void setCvvVerificationUenabled(boolean value) {
+          this.cvvVerificationUEnabled = value;
+     }
+
+    /**
+     * Gets that issuer not certified or has not provided encryption key (U) responses
+     * should be declined.
+     * @return that issuer not certified or has not provided encryption key (U) responses
+     * should be declined.
+     */
+     @JsonProperty("cvvVerificationUEnabled")
+     public boolean isCvvVerificationUenabled() {
+          return this.cvvVerificationUEnabled;
      }
 
     /**
