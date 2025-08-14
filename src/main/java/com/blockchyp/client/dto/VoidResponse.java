@@ -73,6 +73,8 @@ public class VoidResponse implements IAbstractAcknowledgement, IApprovalResponse
 
      private AvsResponse avsResponse;
 
+     private String cvvResponse;
+
      private ReceiptSuggestions receiptSuggestions;
 
      private Customer customer;
@@ -558,6 +560,23 @@ public class VoidResponse implements IAbstractAcknowledgement, IApprovalResponse
      @JsonProperty("avsResponse")
      public AvsResponse getAvsResponse() {
           return this.avsResponse;
+     }
+
+    /**
+     * Sets the CVV verification result if CVV was submitted.
+     * @param value the CVV verification result if CVV was submitted.
+     */
+     public void setCvvResponse(String value) {
+          this.cvvResponse = value;
+     }
+
+    /**
+     * Gets the CVV verification result if CVV was submitted.
+     * @return the CVV verification result if CVV was submitted.
+     */
+     @JsonProperty("cvvResponse")
+     public String getCvvResponse() {
+          return this.cvvResponse;
      }
 
     /**
