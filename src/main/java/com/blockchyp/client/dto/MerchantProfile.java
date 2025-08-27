@@ -137,6 +137,8 @@ public class MerchantProfile implements ITimeoutRequest {
 
      private boolean cvvVerificationUEnabled;
 
+     private String avsRule;
+
     /**
      * Sets the request timeout in seconds.
      * @param value the request timeout in seconds.
@@ -1168,6 +1170,29 @@ public class MerchantProfile implements ITimeoutRequest {
      @JsonProperty("cvvVerificationUEnabled")
      public boolean isCvvVerificationUenabled() {
           return this.cvvVerificationUEnabled;
+     }
+
+    /**
+     * Sets the AVS (Address Verification Service) rule to apply.
+     * @param value the AVS (Address Verification Service) rule to apply. Allowed values
+     * are 'allow_all', 'require_full_match', 'require_zip_match',
+     * 'require_address_match'. If avsRule is empty, then merchant follows partner
+     * setting
+     */
+     public void setAvsRule(String value) {
+          this.avsRule = value;
+     }
+
+    /**
+     * Gets the AVS (Address Verification Service) rule to apply.
+     * @return the AVS (Address Verification Service) rule to apply. Allowed values are
+     * 'allow_all', 'require_full_match', 'require_zip_match',
+     * 'require_address_match'. If avsRule is empty, then merchant follows partner
+     * setting
+     */
+     @JsonProperty("avsRule")
+     public String getAvsRule() {
+          return this.avsRule;
      }
 
     /**
