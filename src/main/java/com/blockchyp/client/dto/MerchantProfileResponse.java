@@ -143,6 +143,8 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
 
      private String avsRule;
 
+     private boolean accountUpdaterEnrolled;
+
     /**
      * Sets whether or not the request succeeded.
      * @param value whether or not the request succeeded.
@@ -1231,6 +1233,26 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      @JsonProperty("avsRule")
      public String getAvsRule() {
           return this.avsRule;
+     }
+
+    /**
+     * Sets flag indicating whether or not account updater is enrolled.
+     * @param value flag indicating whether or not account updater is enrolled. Note that
+     * only merchant's whose partner is enrolled will be processed by the account
+     * updater.
+     */
+     public void setAccountUpdaterEnrolled(boolean value) {
+          this.accountUpdaterEnrolled = value;
+     }
+
+    /**
+     * Gets flag indicating whether or not account updater is enrolled.
+     * @return flag indicating whether or not account updater is enrolled. Note that only
+     * merchant's whose partner is enrolled will be processed by the account updater.
+     */
+     @JsonProperty("accountUpdaterEnrolled")
+     public boolean isAccountUpdaterEnrolled() {
+          return this.accountUpdaterEnrolled;
      }
 
     /**
