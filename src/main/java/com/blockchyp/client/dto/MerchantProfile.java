@@ -1200,7 +1200,7 @@ public class MerchantProfile implements ITimeoutRequest {
      * @param value the AVS (Address Verification Service) rule to apply. Allowed values
      * are 'allow_all', 'require_full_match', 'require_zip_match',
      * 'require_address_match'. If avsRule is empty, then merchant follows partner
-     * setting
+     * setting.
      */
      public void setAvsRule(String value) {
           this.avsRule = value;
@@ -1211,7 +1211,7 @@ public class MerchantProfile implements ITimeoutRequest {
      * @return the AVS (Address Verification Service) rule to apply. Allowed values are
      * 'allow_all', 'require_full_match', 'require_zip_match',
      * 'require_address_match'. If avsRule is empty, then merchant follows partner
-     * setting
+     * setting.
      */
      @JsonProperty("avsRule")
      public String getAvsRule() {
