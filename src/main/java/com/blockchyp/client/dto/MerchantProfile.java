@@ -137,7 +137,11 @@ public class MerchantProfile implements ITimeoutRequest {
 
      private boolean cvvVerificationUEnabled;
 
+     private boolean followPartnerCvvSettings;
+
      private String avsRule;
+
+     private boolean followPartnerAvsSettings;
 
     /**
      * Sets the request timeout in seconds.
@@ -1173,6 +1177,23 @@ public class MerchantProfile implements ITimeoutRequest {
      }
 
     /**
+     * Sets that the merchant follows the partner's CVV settings.
+     * @param value that the merchant follows the partner's CVV settings.
+     */
+     public void setFollowPartnerCvvSettings(boolean value) {
+          this.followPartnerCvvSettings = value;
+     }
+
+    /**
+     * Gets that the merchant follows the partner's CVV settings.
+     * @return that the merchant follows the partner's CVV settings.
+     */
+     @JsonProperty("followPartnerCvvSettings")
+     public boolean isFollowPartnerCvvSettings() {
+          return this.followPartnerCvvSettings;
+     }
+
+    /**
      * Sets the AVS (Address Verification Service) rule to apply.
      * @param value the AVS (Address Verification Service) rule to apply. Allowed values
      * are 'allow_all', 'require_full_match', 'require_zip_match',
@@ -1193,6 +1214,23 @@ public class MerchantProfile implements ITimeoutRequest {
      @JsonProperty("avsRule")
      public String getAvsRule() {
           return this.avsRule;
+     }
+
+    /**
+     * Sets that the merchant follows the partner's AVS settings.
+     * @param value that the merchant follows the partner's AVS settings.
+     */
+     public void setFollowPartnerAvsSettings(boolean value) {
+          this.followPartnerAvsSettings = value;
+     }
+
+    /**
+     * Gets that the merchant follows the partner's AVS settings.
+     * @return that the merchant follows the partner's AVS settings.
+     */
+     @JsonProperty("followPartnerAvsSettings")
+     public boolean isFollowPartnerAvsSettings() {
+          return this.followPartnerAvsSettings;
      }
 
     /**
