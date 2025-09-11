@@ -143,6 +143,8 @@ public class MerchantProfile implements ITimeoutRequest {
 
      private boolean followPartnerAvsSettings;
 
+     private boolean accountUpdaterEnrolled;
+
     /**
      * Sets the request timeout in seconds.
      * @param value the request timeout in seconds.
@@ -1231,6 +1233,26 @@ public class MerchantProfile implements ITimeoutRequest {
      @JsonProperty("followPartnerAvsSettings")
      public boolean isFollowPartnerAvsSettings() {
           return this.followPartnerAvsSettings;
+     }
+
+    /**
+     * Sets flag indicating whether or not account updater is enrolled.
+     * @param value flag indicating whether or not account updater is enrolled. Note that
+     * only merchant's whose partner is enrolled will be processed by the account
+     * updater.
+     */
+     public void setAccountUpdaterEnrolled(boolean value) {
+          this.accountUpdaterEnrolled = value;
+     }
+
+    /**
+     * Gets flag indicating whether or not account updater is enrolled.
+     * @return flag indicating whether or not account updater is enrolled. Note that only
+     * merchant's whose partner is enrolled will be processed by the account updater.
+     */
+     @JsonProperty("accountUpdaterEnrolled")
+     public boolean isAccountUpdaterEnrolled() {
+          return this.accountUpdaterEnrolled;
      }
 
     /**
