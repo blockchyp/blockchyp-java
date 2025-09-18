@@ -145,6 +145,8 @@ public class MerchantProfile implements ITimeoutRequest {
 
      private boolean accountUpdaterEnrolled;
 
+     private boolean bypassEnrollAuthEnabled;
+
     /**
      * Sets the request timeout in seconds.
      * @param value the request timeout in seconds.
@@ -1253,6 +1255,23 @@ public class MerchantProfile implements ITimeoutRequest {
      @JsonProperty("accountUpdaterEnrolled")
      public boolean isAccountUpdaterEnrolled() {
           return this.accountUpdaterEnrolled;
+     }
+
+    /**
+     * Sets whether the merchant should bypass an auth with TSYS on Enrollment.
+     * @param value whether the merchant should bypass an auth with TSYS on Enrollment.
+     */
+     public void setBypassEnrollAuthEnabled(boolean value) {
+          this.bypassEnrollAuthEnabled = value;
+     }
+
+    /**
+     * Gets whether the merchant should bypass an auth with TSYS on Enrollment.
+     * @return whether the merchant should bypass an auth with TSYS on Enrollment.
+     */
+     @JsonProperty("bypassEnrollAuthEnabled")
+     public boolean isBypassEnrollAuthEnabled() {
+          return this.bypassEnrollAuthEnabled;
      }
 
     /**
