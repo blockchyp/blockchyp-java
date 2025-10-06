@@ -75,6 +75,8 @@ import com.blockchyp.client.dto.CustomerSearchResponse;
 import com.blockchyp.client.dto.Customer;
 import com.blockchyp.client.dto.TokenMetadataRequest;
 import com.blockchyp.client.dto.TokenMetadataResponse;
+import com.blockchyp.client.dto.UpdateTokenRequest;
+import com.blockchyp.client.dto.UpdateTokenResponse;
 import com.blockchyp.client.dto.CustomerToken;
 import com.blockchyp.client.dto.TextPromptResponse;
 import com.blockchyp.client.dto.BooleanPromptResponse;
@@ -778,6 +780,18 @@ public class BlockChypClient {
     public Acknowledgement unlinkToken(UnlinkTokenRequest request) throws Exception {
 
         return (Acknowledgement) postGateway("/api/unlink-token", request, Acknowledgement.class);
+
+    }
+
+    /**
+     * Updates a payment token.
+     * @param request the request parameters.
+     * @return {@link UpdateTokenResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public UpdateTokenResponse updateToken(UpdateTokenRequest request) throws Exception {
+
+        return (UpdateTokenResponse) postGateway("/api/token/" + request.getToken(), request, UpdateTokenResponse.class);
 
     }
 
