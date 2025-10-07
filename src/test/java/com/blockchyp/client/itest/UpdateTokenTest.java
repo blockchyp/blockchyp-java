@@ -52,8 +52,8 @@ public class UpdateTokenTest extends BaseTestCase {
         // Set request parameters
         UpdateTokenRequest request = new UpdateTokenRequest();
         request.setToken(setupResponse.getToken());
-        request.setExpMonth(12);
-        request.setExpYear(2040);
+        request.setExpiryMonth("12");
+        request.setExpiryYear("2040");
 
         Exception ex = null;
         try {
