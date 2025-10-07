@@ -29,7 +29,7 @@ The BlockChyp SDK is in Maven's Central Repository. Just add this snippet to you
 <dependency>
     <groupId>com.blockchyp</groupId>
     <artifactId>blockchyp-java</artifactId>
-    <version>2.24.7</version>
+    <version>2.24.8</version>
 </dependency>
 ```
 
@@ -38,7 +38,7 @@ The BlockChyp SDK is in Maven's Central Repository. Just add this snippet to you
 For the hipsters among you who've moved up to Gradle, try adding this snippet under dependencies in your Gradle build file.
 
 ```
-compile group: 'com.blockchyp', name: 'blockchyp-java', version:'2.24.7'
+compile group: 'com.blockchyp', name: 'blockchyp-java', version:'2.24.8'
 ```
 
 You'll also need the Maven plugin turned on. Make sure your Gradle build has something like this in it:
@@ -4300,8 +4300,8 @@ public class UpdateTokenExample {
         // Set request parameters
         UpdateTokenRequest request = new UpdateTokenRequest();
         request.setToken("<TOKEN>");
-        request.setExpMonth(12);
-        request.setExpYear(2040);
+        request.setExpiryMonth("12");
+        request.setExpiryYear("2040");
 
         // Send the request
         UpdateTokenResponse response = client.updateToken(request);

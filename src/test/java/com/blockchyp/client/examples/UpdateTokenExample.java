@@ -29,8 +29,8 @@ public class UpdateTokenExample {
         // Set request parameters
         UpdateTokenRequest request = new UpdateTokenRequest();
         request.setToken("<TOKEN>");
-        request.setExpMonth(12);
-        request.setExpYear(2040);
+        request.setExpiryMonth("12");
+        request.setExpiryYear("2040");
 
         // Send the request
         UpdateTokenResponse response = client.updateToken(request);
