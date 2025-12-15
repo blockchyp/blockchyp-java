@@ -93,6 +93,12 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
 
      private String expYear;
 
+     private String postalCode;
+
+     private String address;
+
+     private String country;
+
      private AvsResponse avsResponse;
 
      private String cvvResponse;
@@ -754,6 +760,57 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
      @JsonProperty("expYear")
      public String getExpYear() {
           return this.expYear;
+     }
+
+    /**
+     * Sets the card postal code.
+     * @param value the card postal code.
+     */
+     public void setPostalCode(String value) {
+          this.postalCode = value;
+     }
+
+    /**
+     * Gets the card postal code.
+     * @return the card postal code.
+     */
+     @JsonProperty("postalCode")
+     public String getPostalCode() {
+          return this.postalCode;
+     }
+
+    /**
+     * Sets the card address.
+     * @param value the card address.
+     */
+     public void setAddress(String value) {
+          this.address = value;
+     }
+
+    /**
+     * Gets the card address.
+     * @return the card address.
+     */
+     @JsonProperty("address")
+     public String getAddress() {
+          return this.address;
+     }
+
+    /**
+     * Sets the card country.
+     * @param value the card country.
+     */
+     public void setCountry(String value) {
+          this.country = value;
+     }
+
+    /**
+     * Gets the card country.
+     * @return the card country.
+     */
+     @JsonProperty("country")
+     public String getCountry() {
+          return this.country;
      }
 
     /**

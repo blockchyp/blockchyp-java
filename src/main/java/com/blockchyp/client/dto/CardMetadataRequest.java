@@ -60,6 +60,8 @@ public class CardMetadataRequest implements ITimeoutRequest, ICoreRequest, IPaym
 
      private String postalCode;
 
+     private String country;
+
      private boolean manualEntry;
 
      private String ksn;
@@ -474,6 +476,23 @@ public class CardMetadataRequest implements ITimeoutRequest, ICoreRequest, IPaym
      @JsonProperty("postalCode")
      public String getPostalCode() {
           return this.postalCode;
+     }
+
+    /**
+     * Sets the cardholder country.
+     * @param value the cardholder country.
+     */
+     public void setCountry(String value) {
+          this.country = value;
+     }
+
+    /**
+     * Gets the cardholder country.
+     * @return the cardholder country.
+     */
+     @JsonProperty("country")
+     public String getCountry() {
+          return this.country;
      }
 
     /**

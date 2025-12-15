@@ -38,6 +38,8 @@ public interface IPaymentMethod {
 
      String getPostalCode();
 
+     String getCountry();
+
      boolean isManualEntry();
 
      String getKsn();
