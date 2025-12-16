@@ -64,6 +64,8 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
 
      private String postalCode;
 
+     private String country;
+
      private boolean manualEntry;
 
      private String ksn;
@@ -163,6 +165,12 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
      private String ebtTotal;
 
      private boolean cardMetadataLookup;
+
+     private String shippingAmount;
+
+     private String processorId;
+
+     private String externalCustomerId;
 
     /**
      * Sets the request timeout in seconds.
@@ -562,6 +570,23 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
      @JsonProperty("postalCode")
      public String getPostalCode() {
           return this.postalCode;
+     }
+
+    /**
+     * Sets the cardholder country.
+     * @param value the cardholder country.
+     */
+     public void setCountry(String value) {
+          this.country = value;
+     }
+
+    /**
+     * Gets the cardholder country.
+     * @return the cardholder country.
+     */
+     @JsonProperty("country")
+     public String getCountry() {
+          return this.country;
      }
 
     /**
@@ -1492,6 +1517,57 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
      @JsonProperty("cardMetadataLookup")
      public boolean isCardMetadataLookup() {
           return this.cardMetadataLookup;
+     }
+
+    /**
+     * Sets the shipping cost associated with the transaction
+     * @param value the shipping cost associated with the transaction
+     */
+     public void setShippingAmount(String value) {
+          this.shippingAmount = value;
+     }
+
+    /**
+     * Gets the shipping cost associated with the transaction
+     * @return the shipping cost associated with the transaction
+     */
+     @JsonProperty("shippingAmount")
+     public String getShippingAmount() {
+          return this.shippingAmount;
+     }
+
+    /**
+     * Sets the processor ID associated with the transaction
+     * @param value the processor ID associated with the transaction
+     */
+     public void setProcessorId(String value) {
+          this.processorId = value;
+     }
+
+    /**
+     * Gets the processor ID associated with the transaction
+     * @return the processor ID associated with the transaction
+     */
+     @JsonProperty("processorId")
+     public String getProcessorId() {
+          return this.processorId;
+     }
+
+    /**
+     * Sets the external customer ID associated with the transaction
+     * @param value the external customer ID associated with the transaction
+     */
+     public void setExternalCustomerId(String value) {
+          this.externalCustomerId = value;
+     }
+
+    /**
+     * Gets the external customer ID associated with the transaction
+     * @return the external customer ID associated with the transaction
+     */
+     @JsonProperty("externalCustomerId")
+     public String getExternalCustomerId() {
+          return this.externalCustomerId;
      }
 
     /**
