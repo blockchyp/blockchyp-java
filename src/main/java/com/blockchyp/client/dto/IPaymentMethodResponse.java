@@ -40,6 +40,12 @@ public interface IPaymentMethodResponse {
 
      String getExpYear();
 
+     String getPostalCode();
+
+     String getAddress();
+
+     String getCountry();
+
      AvsResponse getAvsResponse();
 
      String getCvvResponse();
