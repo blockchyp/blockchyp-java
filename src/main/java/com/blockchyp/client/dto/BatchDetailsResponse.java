@@ -1,5 +1,5 @@
 /**
- * Copyright 2019-2025 BlockChyp, Inc. All rights reserved. Use of this code is governed
+ * Copyright 2019-2026 BlockChyp, Inc. All rights reserved. Use of this code is governed
  * by a license that can be found in the LICENSE file.
  *
  * This file was generated automatically by the BlockChyp SDK Generator. Changes to this
@@ -55,6 +55,10 @@ public class BatchDetailsResponse implements IAbstractAcknowledgement {
      private Date closeDate;
 
      private Collection<TerminalVolume> volumeByTerminal;
+
+     private String netDeposit;
+
+     private String dailyFees;
 
     /**
      * Sets whether or not the request succeeded.
@@ -364,6 +368,42 @@ public class BatchDetailsResponse implements IAbstractAcknowledgement {
      @JsonProperty("volumeByTerminal")
      public Collection<TerminalVolume> getVolumeByTerminal() {
           return this.volumeByTerminal;
+     }
+
+    /**
+     * Sets the net volume for this batch, usually expected volume less daily fees volume.
+     * @param value the net volume for this batch, usually expected volume less daily fees
+     * volume.
+     */
+     public void setNetDeposit(String value) {
+          this.netDeposit = value;
+     }
+
+    /**
+     * Gets the net volume for this batch, usually expected volume less daily fees volume.
+     * @return the net volume for this batch, usually expected volume less daily fees
+     * volume.
+     */
+     @JsonProperty("netDeposit")
+     public String getNetDeposit() {
+          return this.netDeposit;
+     }
+
+    /**
+     * Sets the daily fees for this batch
+     * @param value the daily fees for this batch
+     */
+     public void setDailyFees(String value) {
+          this.dailyFees = value;
+     }
+
+    /**
+     * Gets the daily fees for this batch
+     * @return the daily fees for this batch
+     */
+     @JsonProperty("dailyFees")
+     public String getDailyFees() {
+          return this.dailyFees;
      }
 
     /**
