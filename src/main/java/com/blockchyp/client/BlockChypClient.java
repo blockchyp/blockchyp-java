@@ -1,5 +1,5 @@
 /**
- * Copyright 2019-2025 BlockChyp, Inc. All rights reserved. Use of this code is governed
+ * Copyright 2019-2026 BlockChyp, Inc. All rights reserved. Use of this code is governed
  * by a license that can be found in the LICENSE file.
  *
  * This file was generated automatically by the BlockChyp SDK Generator. Changes to this
@@ -20,7 +20,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.httpclient.ConnectTimeoutException;
 import org.apache.commons.httpclient.HttpClient;
@@ -1727,8 +1726,9 @@ public class BlockChypClient {
         if (offlineRouteCacheEnabled) {
             try {
                 // we clone this because we're going to store a version of it with transient
-                // creds encrypted
-                TerminalRouteResponse offlineRoute = (TerminalRouteResponse) BeanUtils.cloneBean(route);
+                // creds encrypted (using Jackson for Android compatibility)
+                String json = objectMapper.writeValueAsString(route);
+                TerminalRouteResponse offlineRoute = objectMapper.readValue(json, TerminalRouteResponse.class);
                 offlineRoute.setTransientCredentials(encrypt(route.getTransientCredentials()));
 
                 File offlineFile = new File(resolveOfflineRouteCacheLocation(route.getTerminalName()));
