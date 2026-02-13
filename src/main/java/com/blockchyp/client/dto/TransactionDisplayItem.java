@@ -39,6 +39,12 @@ public class TransactionDisplayItem {
 
      private Collection<TransactionDisplayDiscount> discounts;
 
+     private String taxAmount;
+
+     private String taxRate;
+
+     private String discountCode;
+
     /**
      * Sets a unique value identifying the item.
      * @param value a unique value identifying the item. This is not required, but
@@ -198,6 +204,59 @@ public class TransactionDisplayItem {
      @JsonProperty("discounts")
      public Collection<TransactionDisplayDiscount> getDiscounts() {
           return this.discounts;
+     }
+
+    /**
+     * Sets the amount of any value added taxes which apply to the item.
+     * @param value the amount of any value added taxes which apply to the item.
+     */
+     public void setTaxAmount(String value) {
+          this.taxAmount = value;
+     }
+
+    /**
+     * Gets the amount of any value added taxes which apply to the item.
+     * @return the amount of any value added taxes which apply to the item.
+     */
+     @JsonProperty("taxAmount")
+     public String getTaxAmount() {
+          return this.taxAmount;
+     }
+
+    /**
+     * Sets the tax rate as a percentage.
+     * @param value the tax rate as a percentage. Example: '8.5' for 8.5% tax rate.
+     */
+     public void setTaxRate(String value) {
+          this.taxRate = value;
+     }
+
+    /**
+     * Gets the tax rate as a percentage.
+     * @return the tax rate as a percentage. Example: '8.5' for 8.5% tax rate.
+     */
+     @JsonProperty("taxRate")
+     public String getTaxRate() {
+          return this.taxRate;
+     }
+
+    /**
+     * Sets how tax was applied to discounted items.
+     * @param value how tax was applied to discounted items. '0' = no discount, '1' = tax
+     * calculated after discount, '2' = taxcalculated before discount.
+     */
+     public void setDiscountCode(String value) {
+          this.discountCode = value;
+     }
+
+    /**
+     * Gets how tax was applied to discounted items.
+     * @return how tax was applied to discounted items. '0' = no discount, '1' = tax
+     * calculated after discount, '2' = taxcalculated before discount.
+     */
+     @JsonProperty("discountCode")
+     public String getDiscountCode() {
+          return this.discountCode;
      }
 
     /**

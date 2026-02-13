@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -166,11 +167,23 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
 
      private boolean cardMetadataLookup;
 
+     private String totalDiscountAmount;
+
      private String shippingAmount;
+
+     private String dutyAmount;
 
      private String processorId;
 
      private String externalCustomerId;
+
+     private String destinationCountryCode;
+
+     private String shipFromPostalCode;
+
+     private String shipToPostalCode;
+
+     private Date orderDate;
 
     /**
      * Sets the request timeout in seconds.
@@ -1520,16 +1533,37 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
      }
 
     /**
-     * Sets the shipping cost associated with the transaction
-     * @param value the shipping cost associated with the transaction
+     * Sets the total discount amount for the transaction, and will overide additive
+     * logic for line item discounts.
+     * @param value the total discount amount for the transaction, and will overide
+     * additive logic for line item discounts.
+     */
+     public void setTotalDiscountAmount(String value) {
+          this.totalDiscountAmount = value;
+     }
+
+    /**
+     * Gets the total discount amount for the transaction, and will overide additive
+     * logic for line item discounts.
+     * @return the total discount amount for the transaction, and will overide additive
+     * logic for line item discounts.
+     */
+     @JsonProperty("totalDiscountAmount")
+     public String getTotalDiscountAmount() {
+          return this.totalDiscountAmount;
+     }
+
+    /**
+     * Sets the shipping cost associated with the transaction.
+     * @param value the shipping cost associated with the transaction.
      */
      public void setShippingAmount(String value) {
           this.shippingAmount = value;
      }
 
     /**
-     * Gets the shipping cost associated with the transaction
-     * @return the shipping cost associated with the transaction
+     * Gets the shipping cost associated with the transaction.
+     * @return the shipping cost associated with the transaction.
      */
      @JsonProperty("shippingAmount")
      public String getShippingAmount() {
@@ -1537,16 +1571,33 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
      }
 
     /**
-     * Sets the processor ID associated with the transaction
-     * @param value the processor ID associated with the transaction
+     * Sets the duty amount associated with the transaction.
+     * @param value the duty amount associated with the transaction.
+     */
+     public void setDutyAmount(String value) {
+          this.dutyAmount = value;
+     }
+
+    /**
+     * Gets the duty amount associated with the transaction.
+     * @return the duty amount associated with the transaction.
+     */
+     @JsonProperty("dutyAmount")
+     public String getDutyAmount() {
+          return this.dutyAmount;
+     }
+
+    /**
+     * Sets the processor ID associated with the transaction.
+     * @param value the processor ID associated with the transaction.
      */
      public void setProcessorId(String value) {
           this.processorId = value;
      }
 
     /**
-     * Gets the processor ID associated with the transaction
-     * @return the processor ID associated with the transaction
+     * Gets the processor ID associated with the transaction.
+     * @return the processor ID associated with the transaction.
      */
      @JsonProperty("processorId")
      public String getProcessorId() {
@@ -1554,20 +1605,94 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
      }
 
     /**
-     * Sets the external customer ID associated with the transaction
-     * @param value the external customer ID associated with the transaction
+     * Sets the external customer ID associated with the transaction.
+     * @param value the external customer ID associated with the transaction.
      */
      public void setExternalCustomerId(String value) {
           this.externalCustomerId = value;
      }
 
     /**
-     * Gets the external customer ID associated with the transaction
-     * @return the external customer ID associated with the transaction
+     * Gets the external customer ID associated with the transaction.
+     * @return the external customer ID associated with the transaction.
      */
      @JsonProperty("externalCustomerId")
      public String getExternalCustomerId() {
           return this.externalCustomerId;
+     }
+
+    /**
+     * Sets three character, numeric, ship-to country code.
+     * @param value three character, numeric, ship-to country code. Defaults to '840'
+     * (USA) if not specified.
+     */
+     public void setDestinationCountryCode(String value) {
+          this.destinationCountryCode = value;
+     }
+
+    /**
+     * Gets three character, numeric, ship-to country code.
+     * @return three character, numeric, ship-to country code. Defaults to '840' (USA)
+     * if not specified.
+     */
+     @JsonProperty("destinationCountryCode")
+     public String getDestinationCountryCode() {
+          return this.destinationCountryCode;
+     }
+
+    /**
+     * Sets nine character postal code for shipping origin addresses.
+     * @param value nine character postal code for shipping origin addresses. For US
+     * addresses, this is a 5+4 ZIP or five digit ZIP.
+     */
+     public void setShipFromPostalCode(String value) {
+          this.shipFromPostalCode = value;
+     }
+
+    /**
+     * Gets nine character postal code for shipping origin addresses.
+     * @return nine character postal code for shipping origin addresses. For US
+     * addresses, this is a 5+4 ZIP or five digit ZIP.
+     */
+     @JsonProperty("shipFromPostalCode")
+     public String getShipFromPostalCode() {
+          return this.shipFromPostalCode;
+     }
+
+    /**
+     * Sets nine character postal code for shipping destination addresses.
+     * @param value nine character postal code for shipping destination addresses. For
+     * US addresses, this is a 5+4 ZIP or five digit ZIP.
+     */
+     public void setShipToPostalCode(String value) {
+          this.shipToPostalCode = value;
+     }
+
+    /**
+     * Gets nine character postal code for shipping destination addresses.
+     * @return nine character postal code for shipping destination addresses. For US
+     * addresses, this is a 5+4 ZIP or five digit ZIP.
+     */
+     @JsonProperty("shipToPostalCode")
+     public String getShipToPostalCode() {
+          return this.shipToPostalCode;
+     }
+
+    /**
+     * Sets the purchase order date.
+     * @param value the purchase order date.
+     */
+     public void setOrderDate(Date value) {
+          this.orderDate = value;
+     }
+
+    /**
+     * Gets the purchase order date.
+     * @return the purchase order date.
+     */
+     @JsonProperty("orderDate")
+     public Date getOrderDate() {
+          return this.orderDate;
      }
 
     /**
