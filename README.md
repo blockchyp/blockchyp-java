@@ -275,6 +275,79 @@ These are the core payment APIs used to execute and work with payment transactio
 
 
 
+#### Surcharge Review
+
+
+
+* **API Credential Types:** Merchant
+* **Required Role:** Payment API Access
+
+This API calculates surcharge information for a payment request.
+
+If you're using BlockChyp's surcharging features, you can use this endpoint
+to preview the surcharge amounts before processing a transaction. This allows
+you to display accurate pricing information to customers before completing
+the payment.
+
+
+
+
+```java
+package com.blockchyp.client.examples;
+
+
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
+import com.blockchyp.client.APICredentials;
+import com.blockchyp.client.BlockChypClient;
+import com.blockchyp.client.dto.PricingRequest;
+import com.blockchyp.client.dto.PricingResponse;
+
+
+public class SurchargeReviewExample {
+
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    public static void main(String[] args) throws Exception {
+
+        APICredentials creds = new APICredentials();
+        creds.setApiKey(System.getenv("BC_API_KEY"));
+        creds.setBearerToken(System.getenv("BC_BEARER_TOKEN"));
+        creds.setSigningKey(System.getenv("BC_SIGNING_KEY"));
+
+        BlockChypClient client = new BlockChypClient(creds);
+
+        // Set request parameters
+        PricingRequest request = new PricingRequest();
+
+
+        // Send the request
+        PricingResponse response = client.surchargeReview(request);
+        // View the result
+        System.out.println("Response: " + prettyPrint(response));
+
+    }
+
+    public static String prettyPrint(Object object) throws Exception {
+
+        ObjectWriter writer = new ObjectMapper()
+            .writer()
+            .withDefaultPrettyPrinter();
+
+        return object.getClass().getSimpleName()
+            + ": "
+            + writer.writeValueAsString(object);
+
+    }
+}
+
+
+```
+
 #### Charge
 
 

@@ -216,6 +216,15 @@ import com.blockchyp.client.dto.Owner;
 import com.blockchyp.client.dto.ApplicationAccount;
 import com.blockchyp.client.dto.MerchantApplication;
 import com.blockchyp.client.dto.SubmitApplicationRequest;
+import com.blockchyp.client.dto.StateCheckSettings;
+import com.blockchyp.client.dto.PricingMerchantSettings;
+import com.blockchyp.client.dto.PricingRequestAttributes;
+import com.blockchyp.client.dto.PricingRequestData;
+import com.blockchyp.client.dto.PricingRequest;
+import com.blockchyp.client.dto.PricingResponseAttributes;
+import com.blockchyp.client.dto.PricingResponseData;
+import com.blockchyp.client.dto.ErrorType;
+import com.blockchyp.client.dto.PricingResponse;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -446,6 +455,18 @@ public class BlockChypClient {
     public LocateResponse locate(LocateRequest request) throws Exception {
 
         return (LocateResponse) postGateway("/api/terminal-locate", request, LocateResponse.class);
+
+    }
+
+    /**
+     * Calculates surcharge information for a payment request.
+     * @param request the request parameters.
+     * @return {@link PricingResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public PricingResponse surchargeReview(PricingRequest request) throws Exception {
+
+        return (PricingResponse) postGateway("/api/surcharge-review", request, PricingResponse.class);
 
     }
 
