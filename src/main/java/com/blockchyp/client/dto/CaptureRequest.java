@@ -58,6 +58,8 @@ public class CaptureRequest implements ITimeoutRequest, ICoreRequest, IPreviousT
 
      private int shipmentNumber;
 
+     private String passthroughSurcharge;
+
     /**
      * Sets the request timeout in seconds.
      * @param value the request timeout in seconds.
@@ -442,6 +444,25 @@ public class CaptureRequest implements ITimeoutRequest, ICoreRequest, IPreviousT
      @JsonProperty("shipmentNumber")
      public int getShipmentNumber() {
           return this.shipmentNumber;
+     }
+
+    /**
+     * Sets a passthrough surcharge amount.
+     * @param value a passthrough surcharge amount. This surcharge amount will be passed
+     * directly to the gateway and is not directly calculated.
+     */
+     public void setPassthroughSurcharge(String value) {
+          this.passthroughSurcharge = value;
+     }
+
+    /**
+     * Gets a passthrough surcharge amount.
+     * @return a passthrough surcharge amount. This surcharge amount will be passed
+     * directly to the gateway and is not directly calculated.
+     */
+     @JsonProperty("passthroughSurcharge")
+     public String getPassthroughSurcharge() {
+          return this.passthroughSurcharge;
      }
 
 }
