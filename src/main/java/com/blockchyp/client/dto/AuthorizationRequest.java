@@ -185,6 +185,10 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
 
      private Date orderDate;
 
+     private int shipmentCount;
+
+     private int shipmentNumber;
+
     /**
      * Sets the request timeout in seconds.
      * @param value the request timeout in seconds.
@@ -1693,6 +1697,41 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
      @JsonProperty("orderDate")
      public Date getOrderDate() {
           return this.orderDate;
+     }
+
+    /**
+     * Sets the number of shipments the original authorization will be broken into.
+     * @param value the number of shipments the original authorization will be broken
+     * into.
+     */
+     public void setShipmentCount(int value) {
+          this.shipmentCount = value;
+     }
+
+    /**
+     * Gets the number of shipments the original authorization will be broken into.
+     * @return the number of shipments the original authorization will be broken into.
+     */
+     @JsonProperty("shipmentCount")
+     public int getShipmentCount() {
+          return this.shipmentCount;
+     }
+
+    /**
+     * Sets which shipment this particular capture is for.
+     * @param value which shipment this particular capture is for.
+     */
+     public void setShipmentNumber(int value) {
+          this.shipmentNumber = value;
+     }
+
+    /**
+     * Gets which shipment this particular capture is for.
+     * @return which shipment this particular capture is for.
+     */
+     @JsonProperty("shipmentNumber")
+     public int getShipmentNumber() {
+          return this.shipmentNumber;
      }
 
     /**
