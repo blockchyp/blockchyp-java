@@ -109,6 +109,8 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
 
      private Collection<Customer> customers;
 
+     private boolean enhancedDataPassed;
+
     /**
      * Sets whether or not the request succeeded.
      * @param value whether or not the request succeeded.
@@ -896,6 +898,23 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
      @JsonProperty("customers")
      public Collection<Customer> getCustomers() {
           return this.customers;
+     }
+
+    /**
+     * Sets whether enhanced data was passed for the transaction.
+     * @param value whether enhanced data was passed for the transaction.
+     */
+     public void setEnhancedDataPassed(boolean value) {
+          this.enhancedDataPassed = value;
+     }
+
+    /**
+     * Gets whether enhanced data was passed for the transaction.
+     * @return whether enhanced data was passed for the transaction.
+     */
+     @JsonProperty("enhancedDataPassed")
+     public boolean isEnhancedDataPassed() {
+          return this.enhancedDataPassed;
      }
 
     /**
