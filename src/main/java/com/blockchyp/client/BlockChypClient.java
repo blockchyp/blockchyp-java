@@ -220,6 +220,8 @@ import com.blockchyp.client.dto.SurchargeReviewRequest;
 import com.blockchyp.client.dto.SurchargeReviewResponseData;
 import com.blockchyp.client.dto.SurchargeAttributeResponseData;
 import com.blockchyp.client.dto.SurchargeReviewResponse;
+import com.blockchyp.client.dto.TransientKeyRequest;
+import com.blockchyp.client.dto.TransientKeyResponse;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -462,6 +464,18 @@ public class BlockChypClient {
     public SurchargeReviewResponse surchargeReview(SurchargeReviewRequest request) throws Exception {
 
         return (SurchargeReviewResponse) postGateway("/api/surcharge-review", request, SurchargeReviewResponse.class);
+
+    }
+
+    /**
+     * Generates a short-lived API key scoped to terminal and payment operations.
+     * @param request the request parameters.
+     * @return {@link TransientKeyResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public TransientKeyResponse transientKey(TransientKeyRequest request) throws Exception {
+
+        return (TransientKeyResponse) postGateway("/api/transient-credentials", request, TransientKeyResponse.class);
 
     }
 
