@@ -305,8 +305,8 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 
 import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
-import com.blockchyp.client.dto.PricingRequest;
-import com.blockchyp.client.dto.PricingResponse;
+import com.blockchyp.client.dto.SurchargeReviewRequest;
+import com.blockchyp.client.dto.SurchargeReviewResponse;
 
 
 public class SurchargeReviewExample {
@@ -322,11 +322,11 @@ public class SurchargeReviewExample {
         BlockChypClient client = new BlockChypClient(creds);
 
         // Set request parameters
-        PricingRequest request = new PricingRequest();
+        SurchargeReviewRequest request = new SurchargeReviewRequest();
 
 
         // Send the request
-        PricingResponse response = client.surchargeReview(request);
+        SurchargeReviewResponse response = client.surchargeReview(request);
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
