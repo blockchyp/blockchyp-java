@@ -10,11 +10,11 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 
 import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
-import com.blockchyp.client.dto.SurchargeReviewRequest;
-import com.blockchyp.client.dto.SurchargeReviewResponse;
+import com.blockchyp.client.dto.TransientKeyRequest;
+import com.blockchyp.client.dto.TransientKeyResponse;
 
 
-public class SurchargeReviewExample {
+public class TransientKeyExample {
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
@@ -27,11 +27,11 @@ public class SurchargeReviewExample {
         BlockChypClient client = new BlockChypClient(creds);
 
         // Set request parameters
-        SurchargeReviewRequest request = new SurchargeReviewRequest();
+        TransientKeyRequest request = new TransientKeyRequest();
 
 
         // Send the request
-        SurchargeReviewResponse response = client.surchargeReview(request);
+        TransientKeyResponse response = client.transientKey(request);
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 

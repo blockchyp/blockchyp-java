@@ -16,9 +16,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class PricingResponseAttributes {
 
-     private float surchargePercent;
+     private String surchargePercent;
 
-     private float surchargeAmount;
+     private String surchargeAmount;
 
      private boolean surchargeExempt;
 
@@ -44,7 +44,7 @@ public class PricingResponseAttributes {
      * Sets the surcharge percentage.
      * @param value the surcharge percentage.
      */
-     public void setSurchargePercent(float value) {
+     public void setSurchargePercent(String value) {
           this.surchargePercent = value;
      }
 
@@ -53,7 +53,7 @@ public class PricingResponseAttributes {
      * @return the surcharge percentage.
      */
      @JsonProperty("surchargePercent")
-     public float getSurchargePercent() {
+     public String getSurchargePercent() {
           return this.surchargePercent;
      }
 
@@ -61,7 +61,7 @@ public class PricingResponseAttributes {
      * Sets the surcharge amount.
      * @param value the surcharge amount.
      */
-     public void setSurchargeAmount(float value) {
+     public void setSurchargeAmount(String value) {
           this.surchargeAmount = value;
      }
 
@@ -70,7 +70,7 @@ public class PricingResponseAttributes {
      * @return the surcharge amount.
      */
      @JsonProperty("surchargeAmount")
-     public float getSurchargeAmount() {
+     public String getSurchargeAmount() {
           return this.surchargeAmount;
      }
 

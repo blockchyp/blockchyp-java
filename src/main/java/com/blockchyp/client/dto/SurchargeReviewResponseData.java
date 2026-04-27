@@ -12,25 +12,25 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 /**
- * Models the data wrapper for a pricing request.
+ * Models the data included in a surcharge review response.
  */
-public class PricingRequestData {
+public class SurchargeReviewResponseData {
 
      private String type;
 
-     private PricingRequestAttributes attributes;
+     private SurchargeAttributeResponseData attributes;
 
     /**
-     * Sets the type of the request.
-     * @param value the type of the request.
+     * Sets the type of the response.
+     * @param value the type of the response.
      */
      public void setType(String value) {
           this.type = value;
      }
 
     /**
-     * Gets the type of the request.
-     * @return the type of the request.
+     * Gets the type of the response.
+     * @return the type of the response.
      */
      @JsonProperty("type")
      public String getType() {
@@ -38,19 +38,19 @@ public class PricingRequestData {
      }
 
     /**
-     * Sets the pricing request attributes.
-     * @param value the pricing request attributes.
+     * Sets the attributes of the response.
+     * @param value the attributes of the response.
      */
-     public void setAttributes(PricingRequestAttributes value) {
+     public void setAttributes(SurchargeAttributeResponseData value) {
           this.attributes = value;
      }
 
     /**
-     * Gets the pricing request attributes.
-     * @return the pricing request attributes.
+     * Gets the attributes of the response.
+     * @return the attributes of the response.
      */
      @JsonProperty("attributes")
-     public PricingRequestAttributes getAttributes() {
+     public SurchargeAttributeResponseData getAttributes() {
           return this.attributes;
      }
 

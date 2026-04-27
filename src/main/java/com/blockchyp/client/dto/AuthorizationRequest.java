@@ -189,6 +189,8 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
 
      private int shipmentNumber;
 
+     private String externalPartnerMetadata;
+
     /**
      * Sets the request timeout in seconds.
      * @param value the request timeout in seconds.
@@ -1732,6 +1734,25 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
      @JsonProperty("shipmentNumber")
      public int getShipmentNumber() {
           return this.shipmentNumber;
+     }
+
+    /**
+     * Sets an optional field that can be used to pass through data to external partners.
+     * @param value an optional field that can be used to pass through data to external
+     * partners.
+     */
+     public void setExternalPartnerMetadata(String value) {
+          this.externalPartnerMetadata = value;
+     }
+
+    /**
+     * Gets an optional field that can be used to pass through data to external partners.
+     * @return an optional field that can be used to pass through data to external
+     * partners.
+     */
+     @JsonProperty("externalPartnerMetadata")
+     public String getExternalPartnerMetadata() {
+          return this.externalPartnerMetadata;
      }
 
     /**

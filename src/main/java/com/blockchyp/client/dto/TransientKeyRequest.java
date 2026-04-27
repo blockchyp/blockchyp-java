@@ -12,15 +12,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 /**
- * Models a pricing request.
+ * Models a request for short-lived API credentials.
  */
-public class PricingRequest implements ITimeoutRequest {
+public class TransientKeyRequest implements ITimeoutRequest {
 
      private int timeout;
 
      private boolean test;
 
-     private PricingRequestData data;
+     private boolean oneTime;
 
     /**
      * Sets the request timeout in seconds.
@@ -57,20 +57,20 @@ public class PricingRequest implements ITimeoutRequest {
      }
 
     /**
-     * Sets the pricing request data.
-     * @param value the pricing request data.
+     * Sets restricts the returned credentials to a single API call when true.
+     * @param value restricts the returned credentials to a single API call when true.
      */
-     public void setData(PricingRequestData value) {
-          this.data = value;
+     public void setOneTime(boolean value) {
+          this.oneTime = value;
      }
 
     /**
-     * Gets the pricing request data.
-     * @return the pricing request data.
+     * Gets restricts the returned credentials to a single API call when true.
+     * @return restricts the returned credentials to a single API call when true.
      */
-     @JsonProperty("data")
-     public PricingRequestData getData() {
-          return this.data;
+     @JsonProperty("oneTime")
+     public boolean isOneTime() {
+          return this.oneTime;
      }
 
 }

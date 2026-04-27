@@ -139,6 +139,8 @@ public class AuthorizationResponse implements IAbstractAcknowledgement, IApprova
 
      private CardMetadata cardMetadata;
 
+     private boolean enhancedDataPassed;
+
     /**
      * Sets whether or not the request succeeded.
      * @param value whether or not the request succeeded.
@@ -1213,6 +1215,23 @@ public class AuthorizationResponse implements IAbstractAcknowledgement, IApprova
      @JsonProperty("cardMetadata")
      public CardMetadata getCardMetadata() {
           return this.cardMetadata;
+     }
+
+    /**
+     * Sets whether enhanced data was passed for the transaction.
+     * @param value whether enhanced data was passed for the transaction.
+     */
+     public void setEnhancedDataPassed(boolean value) {
+          this.enhancedDataPassed = value;
+     }
+
+    /**
+     * Gets whether enhanced data was passed for the transaction.
+     * @return whether enhanced data was passed for the transaction.
+     */
+     @JsonProperty("enhancedDataPassed")
+     public boolean isEnhancedDataPassed() {
+          return this.enhancedDataPassed;
      }
 
     /**

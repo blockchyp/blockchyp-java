@@ -216,15 +216,12 @@ import com.blockchyp.client.dto.Owner;
 import com.blockchyp.client.dto.ApplicationAccount;
 import com.blockchyp.client.dto.MerchantApplication;
 import com.blockchyp.client.dto.SubmitApplicationRequest;
-import com.blockchyp.client.dto.StateCheckSettings;
-import com.blockchyp.client.dto.PricingMerchantSettings;
-import com.blockchyp.client.dto.PricingRequestAttributes;
-import com.blockchyp.client.dto.PricingRequestData;
-import com.blockchyp.client.dto.PricingRequest;
-import com.blockchyp.client.dto.PricingResponseAttributes;
-import com.blockchyp.client.dto.PricingResponseData;
-import com.blockchyp.client.dto.ErrorType;
-import com.blockchyp.client.dto.PricingResponse;
+import com.blockchyp.client.dto.SurchargeReviewRequest;
+import com.blockchyp.client.dto.SurchargeReviewResponseData;
+import com.blockchyp.client.dto.SurchargeAttributeResponseData;
+import com.blockchyp.client.dto.SurchargeReviewResponse;
+import com.blockchyp.client.dto.TransientKeyRequest;
+import com.blockchyp.client.dto.TransientKeyResponse;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -461,12 +458,24 @@ public class BlockChypClient {
     /**
      * Calculates surcharge information for a payment request.
      * @param request the request parameters.
-     * @return {@link PricingResponse}
+     * @return {@link SurchargeReviewResponse}
      * @throws Exception exception if any errors occurred processing the request.
      */
-    public PricingResponse surchargeReview(PricingRequest request) throws Exception {
+    public SurchargeReviewResponse surchargeReview(SurchargeReviewRequest request) throws Exception {
 
-        return (PricingResponse) postGateway("/api/surcharge-review", request, PricingResponse.class);
+        return (SurchargeReviewResponse) postGateway("/api/surcharge-review", request, SurchargeReviewResponse.class);
+
+    }
+
+    /**
+     * Generates a short-lived API key scoped to terminal and payment operations.
+     * @param request the request parameters.
+     * @return {@link TransientKeyResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public TransientKeyResponse transientKey(TransientKeyRequest request) throws Exception {
+
+        return (TransientKeyResponse) postGateway("/api/transient-credentials", request, TransientKeyResponse.class);
 
     }
 

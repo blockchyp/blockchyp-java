@@ -29,7 +29,7 @@ The BlockChyp SDK is in Maven's Central Repository. Just add this snippet to you
 <dependency>
     <groupId>com.blockchyp</groupId>
     <artifactId>blockchyp-java</artifactId>
-    <version>2.30.1</version>
+    <version>2.30.3</version>
 </dependency>
 ```
 
@@ -38,7 +38,7 @@ The BlockChyp SDK is in Maven's Central Repository. Just add this snippet to you
 For the hipsters among you who've moved up to Gradle, try adding this snippet under dependencies in your Gradle build file.
 
 ```
-compile group: 'com.blockchyp', name: 'blockchyp-java', version:'2.30.1'
+compile group: 'com.blockchyp', name: 'blockchyp-java', version:'2.30.3'
 ```
 
 You'll also need the Maven plugin turned on. Make sure your Gradle build has something like this in it:
@@ -305,8 +305,8 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 
 import com.blockchyp.client.APICredentials;
 import com.blockchyp.client.BlockChypClient;
-import com.blockchyp.client.dto.PricingRequest;
-import com.blockchyp.client.dto.PricingResponse;
+import com.blockchyp.client.dto.SurchargeReviewRequest;
+import com.blockchyp.client.dto.SurchargeReviewResponse;
 
 
 public class SurchargeReviewExample {
@@ -322,11 +322,72 @@ public class SurchargeReviewExample {
         BlockChypClient client = new BlockChypClient(creds);
 
         // Set request parameters
-        PricingRequest request = new PricingRequest();
+        SurchargeReviewRequest request = new SurchargeReviewRequest();
 
 
         // Send the request
-        PricingResponse response = client.surchargeReview(request);
+        SurchargeReviewResponse response = client.surchargeReview(request);
+        // View the result
+        System.out.println("Response: " + prettyPrint(response));
+
+    }
+
+    public static String prettyPrint(Object object) throws Exception {
+
+        ObjectWriter writer = new ObjectMapper()
+            .writer()
+            .withDefaultPrettyPrinter();
+
+        return object.getClass().getSimpleName()
+            + ": "
+            + writer.writeValueAsString(object);
+
+    }
+}
+
+
+```
+
+#### Transient Key
+
+Generates a short-lived API key scoped to terminal and payment operations.
+
+
+```java
+package com.blockchyp.client.examples;
+
+
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
+import com.blockchyp.client.APICredentials;
+import com.blockchyp.client.BlockChypClient;
+import com.blockchyp.client.dto.TransientKeyRequest;
+import com.blockchyp.client.dto.TransientKeyResponse;
+
+
+public class TransientKeyExample {
+
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    public static void main(String[] args) throws Exception {
+
+        APICredentials creds = new APICredentials();
+        creds.setApiKey(System.getenv("BC_API_KEY"));
+        creds.setBearerToken(System.getenv("BC_BEARER_TOKEN"));
+        creds.setSigningKey(System.getenv("BC_SIGNING_KEY"));
+
+        BlockChypClient client = new BlockChypClient(creds);
+
+        // Set request parameters
+        TransientKeyRequest request = new TransientKeyRequest();
+
+
+        // Send the request
+        TransientKeyResponse response = client.transientKey(request);
         // View the result
         System.out.println("Response: " + prettyPrint(response));
 
