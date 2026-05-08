@@ -390,16 +390,16 @@ public class BatchDetailsResponse implements IAbstractAcknowledgement {
      }
 
     /**
-     * Sets the daily fees for this batch
-     * @param value the daily fees for this batch
+     * Sets the daily fees for this batch.
+     * @param value the daily fees for this batch.
      */
      public void setDailyFees(String value) {
           this.dailyFees = value;
      }
 
     /**
-     * Gets the daily fees for this batch
-     * @return the daily fees for this batch
+     * Gets the daily fees for this batch.
+     * @return the daily fees for this batch.
      */
      @JsonProperty("dailyFees")
      public String getDailyFees() {

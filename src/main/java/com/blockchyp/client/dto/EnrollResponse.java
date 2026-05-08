@@ -101,6 +101,8 @@ public class EnrollResponse implements IAbstractAcknowledgement, IApprovalRespon
 
      private String bin;
 
+     private boolean hasCvv;
+
     /**
      * Sets whether or not the request succeeded.
      * @param value whether or not the request succeeded.
@@ -825,6 +827,23 @@ public class EnrollResponse implements IAbstractAcknowledgement, IApprovalRespon
      @JsonProperty("bin")
      public String getBin() {
           return this.bin;
+     }
+
+    /**
+     * Sets whether the token was enrolled with a CVV value present.
+     * @param value whether the token was enrolled with a CVV value present.
+     */
+     public void setHasCvv(boolean value) {
+          this.hasCvv = value;
+     }
+
+    /**
+     * Gets whether the token was enrolled with a CVV value present.
+     * @return whether the token was enrolled with a CVV value present.
+     */
+     @JsonProperty("hasCvv")
+     public boolean isHasCvv() {
+          return this.hasCvv;
      }
 
     /**

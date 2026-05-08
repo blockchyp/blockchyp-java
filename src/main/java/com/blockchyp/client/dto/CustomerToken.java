@@ -49,6 +49,8 @@ public class CustomerToken {
 
      private String cardHolderName;
 
+     private boolean hasCvv;
+
      private Collection<Customer> customers;
 
     /**
@@ -308,6 +310,23 @@ public class CustomerToken {
      @JsonProperty("cardHolderName")
      public String getCardHolderName() {
           return this.cardHolderName;
+     }
+
+    /**
+     * Sets whether the token was enrolled with a CVV value present.
+     * @param value whether the token was enrolled with a CVV value present.
+     */
+     public void setHasCvv(boolean value) {
+          this.hasCvv = value;
+     }
+
+    /**
+     * Gets whether the token was enrolled with a CVV value present.
+     * @return whether the token was enrolled with a CVV value present.
+     */
+     @JsonProperty("hasCvv")
+     public boolean isHasCvv() {
+          return this.hasCvv;
      }
 
     /**
