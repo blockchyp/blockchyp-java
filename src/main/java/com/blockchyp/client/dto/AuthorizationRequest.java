@@ -191,6 +191,12 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
 
      private String externalPartnerMetadata;
 
+     private String externalCustomerEmail;
+
+     private String externalCustomerPhone;
+
+     private String externalCustomerCompany;
+
     /**
      * Sets the request timeout in seconds.
      * @param value the request timeout in seconds.
@@ -1753,6 +1759,57 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
      @JsonProperty("externalPartnerMetadata")
      public String getExternalPartnerMetadata() {
           return this.externalPartnerMetadata;
+     }
+
+    /**
+     * Sets the external customer's email address.
+     * @param value the external customer's email address.
+     */
+     public void setExternalCustomerEmail(String value) {
+          this.externalCustomerEmail = value;
+     }
+
+    /**
+     * Gets the external customer's email address.
+     * @return the external customer's email address.
+     */
+     @JsonProperty("externalCustomerEmail")
+     public String getExternalCustomerEmail() {
+          return this.externalCustomerEmail;
+     }
+
+    /**
+     * Sets the external customer's phone number.
+     * @param value the external customer's phone number.
+     */
+     public void setExternalCustomerPhone(String value) {
+          this.externalCustomerPhone = value;
+     }
+
+    /**
+     * Gets the external customer's phone number.
+     * @return the external customer's phone number.
+     */
+     @JsonProperty("externalCustomerPhone")
+     public String getExternalCustomerPhone() {
+          return this.externalCustomerPhone;
+     }
+
+    /**
+     * Sets the external customer's company name.
+     * @param value the external customer's company name.
+     */
+     public void setExternalCustomerCompany(String value) {
+          this.externalCustomerCompany = value;
+     }
+
+    /**
+     * Gets the external customer's company name.
+     * @return the external customer's company name.
+     */
+     @JsonProperty("externalCustomerCompany")
+     public String getExternalCustomerCompany() {
+          return this.externalCustomerCompany;
      }
 
     /**
