@@ -151,6 +151,10 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
 
      private boolean bypassEnrollAuthEnabled;
 
+     private boolean followPartnerServiceFeeEnabled;
+
+     private boolean serviceFeeEnabled;
+
     /**
      * Sets whether or not the request succeeded.
      * @param value whether or not the request succeeded.
@@ -1310,6 +1314,40 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      @JsonProperty("bypassEnrollAuthEnabled")
      public boolean isBypassEnrollAuthEnabled() {
           return this.bypassEnrollAuthEnabled;
+     }
+
+    /**
+     * Sets that the merchant follows the partner's service fee settings.
+     * @param value that the merchant follows the partner's service fee settings.
+     */
+     public void setFollowPartnerServiceFeeEnabled(boolean value) {
+          this.followPartnerServiceFeeEnabled = value;
+     }
+
+    /**
+     * Gets that the merchant follows the partner's service fee settings.
+     * @return that the merchant follows the partner's service fee settings.
+     */
+     @JsonProperty("followPartnerServiceFeeEnabled")
+     public boolean isFollowPartnerServiceFeeEnabled() {
+          return this.followPartnerServiceFeeEnabled;
+     }
+
+    /**
+     * Sets that the merchant is configured to apply a service fee.
+     * @param value that the merchant is configured to apply a service fee.
+     */
+     public void setServiceFeeEnabled(boolean value) {
+          this.serviceFeeEnabled = value;
+     }
+
+    /**
+     * Gets that the merchant is configured to apply a service fee.
+     * @return that the merchant is configured to apply a service fee.
+     */
+     @JsonProperty("serviceFeeEnabled")
+     public boolean isServiceFeeEnabled() {
+          return this.serviceFeeEnabled;
      }
 
     /**
