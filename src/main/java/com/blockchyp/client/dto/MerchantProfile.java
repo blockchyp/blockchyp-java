@@ -151,6 +151,10 @@ public class MerchantProfile implements ITimeoutRequest {
 
      private boolean serviceFeeEnabled;
 
+     private boolean followPartnerCvvCacheEnabled;
+
+     private boolean cvvCacheEnabled;
+
     /**
      * Sets the request timeout in seconds.
      * @param value the request timeout in seconds.
@@ -1310,6 +1314,40 @@ public class MerchantProfile implements ITimeoutRequest {
      @JsonProperty("serviceFeeEnabled")
      public boolean isServiceFeeEnabled() {
           return this.serviceFeeEnabled;
+     }
+
+    /**
+     * Sets that the merchant follows the partner's CVV cache settings.
+     * @param value that the merchant follows the partner's CVV cache settings.
+     */
+     public void setFollowPartnerCvvCacheEnabled(boolean value) {
+          this.followPartnerCvvCacheEnabled = value;
+     }
+
+    /**
+     * Gets that the merchant follows the partner's CVV cache settings.
+     * @return that the merchant follows the partner's CVV cache settings.
+     */
+     @JsonProperty("followPartnerCvvCacheEnabled")
+     public boolean isFollowPartnerCvvCacheEnabled() {
+          return this.followPartnerCvvCacheEnabled;
+     }
+
+    /**
+     * Sets that the merchant is configured to apply a CVV cache.
+     * @param value that the merchant is configured to apply a CVV cache.
+     */
+     public void setCvvCacheEnabled(boolean value) {
+          this.cvvCacheEnabled = value;
+     }
+
+    /**
+     * Gets that the merchant is configured to apply a CVV cache.
+     * @return that the merchant is configured to apply a CVV cache.
+     */
+     @JsonProperty("cvvCacheEnabled")
+     public boolean isCvvCacheEnabled() {
+          return this.cvvCacheEnabled;
      }
 
     /**
