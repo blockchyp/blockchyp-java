@@ -284,7 +284,7 @@ public class BalanceRequest implements ITimeoutRequest, ICoreRequest, IPaymentMe
     /**
      * Sets the payment token to be used for this transaction.
      * @param value the payment token to be used for this transaction. This should be used
-     * for recurring transactions.
+     * for recurring transactions. The /enroll endpoint ignores this field.
      */
      public void setToken(String value) {
           this.token = value;
@@ -293,7 +293,7 @@ public class BalanceRequest implements ITimeoutRequest, ICoreRequest, IPaymentMe
     /**
      * Gets the payment token to be used for this transaction.
      * @return the payment token to be used for this transaction. This should be used for
-     * recurring transactions.
+     * recurring transactions. The /enroll endpoint ignores this field.
      */
      @JsonProperty("token")
      public String getToken() {

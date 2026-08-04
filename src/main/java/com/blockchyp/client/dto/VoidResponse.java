@@ -89,6 +89,8 @@ public class VoidResponse implements IAbstractAcknowledgement, IApprovalResponse
 
      private String sigFile;
 
+     private String status;
+
     /**
      * Sets whether or not the request succeeded.
      * @param value whether or not the request succeeded.
@@ -702,6 +704,23 @@ public class VoidResponse implements IAbstractAcknowledgement, IApprovalResponse
      @JsonProperty("sigFile")
      public String getSigFile() {
           return this.sigFile;
+     }
+
+    /**
+     * Sets the current status of a transaction.
+     * @param value the current status of a transaction.
+     */
+     public void setStatus(String value) {
+          this.status = value;
+     }
+
+    /**
+     * Gets the current status of a transaction.
+     * @return the current status of a transaction.
+     */
+     @JsonProperty("status")
+     public String getStatus() {
+          return this.status;
      }
 
     /**
