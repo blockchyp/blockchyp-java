@@ -64,6 +64,8 @@ public class ReceiptSuggestions {
 
      private String cashDiscount;
 
+     private String serviceFeeAmount;
+
     /**
      * Sets the EMV Application Identifier.
      * @param value the EMV Application Identifier.
@@ -480,6 +482,23 @@ public class ReceiptSuggestions {
      @JsonProperty("cashDiscount")
      public String getCashDiscount() {
           return this.cashDiscount;
+     }
+
+    /**
+     * Sets the amount added to the transaction to cover processing fees.
+     * @param value the amount added to the transaction to cover processing fees.
+     */
+     public void setServiceFeeAmount(String value) {
+          this.serviceFeeAmount = value;
+     }
+
+    /**
+     * Gets the amount added to the transaction to cover processing fees.
+     * @return the amount added to the transaction to cover processing fees.
+     */
+     @JsonProperty("serviceFeeAmount")
+     public String getServiceFeeAmount() {
+          return this.serviceFeeAmount;
      }
 
 }
