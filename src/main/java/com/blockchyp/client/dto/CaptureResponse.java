@@ -109,6 +109,8 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
 
      private Collection<Customer> customers;
 
+     private String status;
+
      private boolean enhancedDataPassed;
 
     /**
@@ -898,6 +900,23 @@ public class CaptureResponse implements IAbstractAcknowledgement, IApprovalRespo
      @JsonProperty("customers")
      public Collection<Customer> getCustomers() {
           return this.customers;
+     }
+
+    /**
+     * Sets the current status of a transaction.
+     * @param value the current status of a transaction.
+     */
+     public void setStatus(String value) {
+          this.status = value;
+     }
+
+    /**
+     * Gets the current status of a transaction.
+     * @return the current status of a transaction.
+     */
+     @JsonProperty("status")
+     public String getStatus() {
+          return this.status;
      }
 
     /**
