@@ -141,6 +141,8 @@ public class AuthorizationResponse implements IAbstractAcknowledgement, IApprova
 
      private boolean enhancedDataPassed;
 
+     private String externalTransactionRef;
+
     /**
      * Sets whether or not the request succeeded.
      * @param value whether or not the request succeeded.
@@ -1232,6 +1234,27 @@ public class AuthorizationResponse implements IAbstractAcknowledgement, IApprova
      @JsonProperty("enhancedDataPassed")
      public boolean isEnhancedDataPassed() {
           return this.enhancedDataPassed;
+     }
+
+    /**
+     * Sets the external merchant's own reference for the transaction.
+     * @param value the external merchant's own reference for the transaction. It is
+     * stored with the transaction and echoed back on the response, and is not used for
+     * duplicate detection.
+     */
+     public void setExternalTransactionRef(String value) {
+          this.externalTransactionRef = value;
+     }
+
+    /**
+     * Gets the external merchant's own reference for the transaction.
+     * @return the external merchant's own reference for the transaction. It is stored
+     * with the transaction and echoed back on the response, and is not used for duplicate
+     * detection.
+     */
+     @JsonProperty("externalTransactionRef")
+     public String getExternalTransactionRef() {
+          return this.externalTransactionRef;
      }
 
     /**
