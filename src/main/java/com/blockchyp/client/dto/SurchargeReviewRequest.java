@@ -49,6 +49,10 @@ public class SurchargeReviewRequest implements ITimeoutRequest {
 
      private String pricingPlan;
 
+     private String staxMerchantId;
+
+     private String staxTransactionId;
+
     /**
      * Sets the request timeout in seconds.
      * @param value the request timeout in seconds.
@@ -302,6 +306,40 @@ public class SurchargeReviewRequest implements ITimeoutRequest {
      @JsonProperty("pricingPlan")
      public String getPricingPlan() {
           return this.pricingPlan;
+     }
+
+    /**
+     * Sets the Stax merchant UUID for cross-system tracing.
+     * @param value the Stax merchant UUID for cross-system tracing.
+     */
+     public void setStaxMerchantId(String value) {
+          this.staxMerchantId = value;
+     }
+
+    /**
+     * Gets the Stax merchant UUID for cross-system tracing.
+     * @return the Stax merchant UUID for cross-system tracing.
+     */
+     @JsonProperty("staxMerchantId")
+     public String getStaxMerchantId() {
+          return this.staxMerchantId;
+     }
+
+    /**
+     * Sets the Stax transaction UUID for cross-system tracing.
+     * @param value the Stax transaction UUID for cross-system tracing.
+     */
+     public void setStaxTransactionId(String value) {
+          this.staxTransactionId = value;
+     }
+
+    /**
+     * Gets the Stax transaction UUID for cross-system tracing.
+     * @return the Stax transaction UUID for cross-system tracing.
+     */
+     @JsonProperty("staxTransactionId")
+     public String getStaxTransactionId() {
+          return this.staxTransactionId;
      }
 
     /**

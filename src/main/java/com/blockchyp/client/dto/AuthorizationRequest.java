@@ -197,6 +197,8 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
 
      private String externalCustomerCompany;
 
+     private String externalTransactionRef;
+
     /**
      * Sets the request timeout in seconds.
      * @param value the request timeout in seconds.
@@ -1810,6 +1812,27 @@ public class AuthorizationRequest implements ITimeoutRequest, ICoreRequest, IPay
      @JsonProperty("externalCustomerCompany")
      public String getExternalCustomerCompany() {
           return this.externalCustomerCompany;
+     }
+
+    /**
+     * Sets the external merchant's own reference for the transaction.
+     * @param value the external merchant's own reference for the transaction. It is
+     * stored with the transaction and echoed back on the response, and is not used for
+     * duplicate detection.
+     */
+     public void setExternalTransactionRef(String value) {
+          this.externalTransactionRef = value;
+     }
+
+    /**
+     * Gets the external merchant's own reference for the transaction.
+     * @return the external merchant's own reference for the transaction. It is stored
+     * with the transaction and echoed back on the response, and is not used for duplicate
+     * detection.
+     */
+     @JsonProperty("externalTransactionRef")
+     public String getExternalTransactionRef() {
+          return this.externalTransactionRef;
      }
 
     /**

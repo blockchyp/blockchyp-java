@@ -22,6 +22,8 @@ public class TransientKeyRequest implements ITimeoutRequest {
 
      private boolean oneTime;
 
+     private String userId;
+
     /**
      * Sets the request timeout in seconds.
      * @param value the request timeout in seconds.
@@ -71,6 +73,23 @@ public class TransientKeyRequest implements ITimeoutRequest {
      @JsonProperty("oneTime")
      public boolean isOneTime() {
           return this.oneTime;
+     }
+
+    /**
+     * Sets the user ID associated with the transient credentials.
+     * @param value the user ID associated with the transient credentials.
+     */
+     public void setUserId(String value) {
+          this.userId = value;
+     }
+
+    /**
+     * Gets the user ID associated with the transient credentials.
+     * @return the user ID associated with the transient credentials.
+     */
+     @JsonProperty("userId")
+     public String getUserId() {
+          return this.userId;
      }
 
 }

@@ -222,6 +222,8 @@ import com.blockchyp.client.dto.SurchargeAttributeResponseData;
 import com.blockchyp.client.dto.SurchargeReviewResponse;
 import com.blockchyp.client.dto.TransientKeyRequest;
 import com.blockchyp.client.dto.TransientKeyResponse;
+import com.blockchyp.client.dto.ServiceFeeRequest;
+import com.blockchyp.client.dto.ServiceFeeResponse;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -1609,6 +1611,22 @@ public class BlockChypClient {
             return (TextPromptResponse) postTerminal("/api/text-prompt", request, TextPromptResponse.class);
         } else {
             return (TextPromptResponse) postGateway("/api/text-prompt", request, TextPromptResponse.class);
+        }
+
+    }
+
+    /**
+     * Calculates the service fee for a transaction.
+     * @param request the request parameters.
+     * @return {@link ServiceFeeResponse}
+     * @throws Exception exception if any errors occurred processing the request.
+     */
+    public ServiceFeeResponse serviceFee(ServiceFeeRequest request) throws Exception {
+
+        if (isTerminalRouted(request)) {
+            return (ServiceFeeResponse) postTerminal("/api/service-fee", request, ServiceFeeResponse.class);
+        } else {
+            return (ServiceFeeResponse) postGateway("/api/service-fee", request, ServiceFeeResponse.class);
         }
 
     }
