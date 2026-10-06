@@ -41,6 +41,8 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
 
      private String contactNumber;
 
+     private String contactEmail;
+
      private String locationName;
 
      private String storeNumber;
@@ -344,6 +346,23 @@ public class MerchantProfileResponse implements IAbstractAcknowledgement {
      @JsonProperty("contactNumber")
      public String getContactNumber() {
           return this.contactNumber;
+     }
+
+    /**
+     * Sets the contact email address for the merchant.
+     * @param value the contact email address for the merchant.
+     */
+     public void setContactEmail(String value) {
+          this.contactEmail = value;
+     }
+
+    /**
+     * Gets the contact email address for the merchant.
+     * @return the contact email address for the merchant.
+     */
+     @JsonProperty("contactEmail")
+     public String getContactEmail() {
+          return this.contactEmail;
      }
 
     /**
