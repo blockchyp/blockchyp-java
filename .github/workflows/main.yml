@@ -8,14 +8,13 @@ on:
     tags:
       - "*"
 env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
   ENCRYPTION_KEY: ${{ secrets.ENCRYPTION_KEY }}
   GPG_KEYNAME: ${{ secrets.GPG_KEYNAME }}
   GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
   OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
   OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-permissions:
-  contents: read
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -45,7 +44,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: maven:3.8.6-openjdk-18-slim
-    if: ${{ always() && contains(join(needs.*.result, ','), 'success') && startsWith(github.ref_name, 'v') }}
+    if: ${{ always() && contains(join(needs.*.result, ','), 'success') && startsWith(github.ref_name, 'v') && github.server_url == 'https://github.com' }}
     needs: [ test ]
     steps:
       - uses: act10ns/slack@44541246747a30eb3102d87f7a4cc5471b0ffb7d # v2.1.0
